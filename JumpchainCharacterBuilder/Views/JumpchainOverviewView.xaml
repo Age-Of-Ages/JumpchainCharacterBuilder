@@ -1,0 +1,789 @@
+﻿<UserControl x:Class="JumpchainCharacterBuilder.Views.JumpchainOverviewView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:JumpchainCharacterBuilder.Views"
+             xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
+             xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
+             mc:Ignorable="d" 
+             d:DataContext="{d:DesignInstance Type=viewModel:JumpchainOverviewViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="800" d:DesignWidth="950">
+
+    <Grid Background="#FFD8D8D8">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2.5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid x:Name="JumpListDataGrid" ItemsSource="{Binding JumpList}"
+                  SelectedItem="{Binding JumpSelection}"
+                  SelectedIndex="{Binding JumpSelectionIndex}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="#" Binding="{Binding JumpNumber}" Width="*" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
+                <DataGridTextColumn Header="Duration (Years)" Binding="{Binding DurationYears}" Width="3*" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Button Content="Move Up" 
+                Command="{Binding MoveJumpUpCommand}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Style="{DynamicResource DataGridButton}"
+                Grid.Column="0"
+                Grid.Row="0"/>
+
+            <Button Content="Move Down"
+                Command="{Binding MoveJumpDownCommand}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Style="{DynamicResource DataGridButton}"
+                Grid.Column="0"
+                Grid.Row="2"/>
+            
+            <Button Content="New Jump" 
+                Command="{Binding NewJumpCommand}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top"
+                Style="{DynamicResource DataGridButton}"
+                Grid.Column="2"
+                Grid.Row="0"/>
+
+            <Button Content="Delete Jump"
+                Command="{Binding DeleteJumpCommand}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Style="{DynamicResource DataGridButton}"
+                Grid.Column="2"
+                Grid.Row="2"/>
+        </Grid>
+
+        <TabControl Grid.Column="1" Grid.RowSpan="2" SelectedIndex="{Binding BuildTabIndex}">
+            <TabItem Header="Origins">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="1">
+                        <ContentControl x:Name="BudgetPanel" Template="{DynamicResource BudgetPanel}" 
+                            DockPanel.Dock="Top"/>
+                        <ContentControl x:Name="CharacterSelector" Template="{DynamicResource CharacterSelector}" 
+                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                        <ContentControl x:Name="OriginSelector" Template="{DynamicResource OriginSelector}"
+                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                        <ContentControl x:Name="AgeSelector" Template="{DynamicResource AgeSelector}"
+                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                        <ContentControl x:Name="GenderSelector" Template="{DynamicResource GenderSelector}"
+                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                    </DockPanel>
+
+                    <DataGrid x:Name="OriginDetailConfigurator" Grid.Row="2" Margin="3,5,3,0"
+                              ItemsSource="{Binding MiscOriginDetailList}"
+                              SelectedItem="{Binding MiscOriginDetailSelection}"
+                              SelectedIndex="{Binding MiscOriginDetailIndex}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Type" Width="2*" Binding="{Binding Category}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Name" Width="3*" Binding="{Binding Name}"/>
+                            <DataGridTextColumn Header="Cost" Width="*" Binding="{Binding Cost}" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <GroupBox Header="Details" Grid.Column="1" Grid.RowSpan="5">
+                        <ContentControl x:Name="OriginDetails" Template="{DynamicResource OriginDetailsPanel}"/>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Jump Builds">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.094*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="1">
+                        <ContentControl Template="{DynamicResource BudgetPanel}" 
+                            DockPanel.Dock="Top"/>
+                        <ContentControl Template="{DynamicResource CharacterSelector}" 
+                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                        <ContentControl Template="{DynamicResource PurchaseTypeSelector}" 
+                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                    </DockPanel>
+
+                    <DataGrid ItemsSource="{Binding CurrentLoadedPurchaseList}"
+                              SelectedItem="{Binding PurchaseSelection}"
+                              SelectedIndex="{Binding PurchaseSelectionIndex}"
+                              Grid.Row="2" Grid.RowSpan="2"
+                              Margin="0,5,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
+                            <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="New Purchase" 
+                        Command="{Binding NewPurchaseCommand}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"/>
+
+                        <Button Content="Delete Purchase"
+                        Command="{Binding DeletePurchaseCommand}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"/>
+                    </Grid>
+
+                    <GroupBox Header="Purchase Details" Grid.Column="1" Grid.RowSpan="5">
+                        <ContentControl Template="{DynamicResource PurchaseDetailsPanel}" Margin="5,3,0,0"/>
+                    </GroupBox>
+                    
+                </Grid>
+            </TabItem>
+            <TabItem Header="Companion Imports">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.089*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="1">
+                        <ContentControl Template="{DynamicResource BudgetPanel}" 
+                            DockPanel.Dock="Top"/>
+                        <ContentControl Template="{DynamicResource CharacterSelector}" 
+                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                    </DockPanel>
+
+                    <DataGrid ItemsSource="{Binding ImportOptionList}"
+                              SelectedItem="{Binding ImportOptionSelection}"
+                              SelectedIndex="{Binding ImportOptionSelectionIndex}"
+                              Grid.Row="2" Grid.RowSpan="2"
+                              Margin="0,5,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
+                            <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="New Import" 
+                        Command="{Binding NewImportCommand}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"/>
+
+                        <Button Content="Delete Import"
+                        Command="{Binding DeleteImportCommand}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"/>
+                    </Grid>
+
+                    <GroupBox Header="Import Option Details" Grid.Column="1" Grid.RowSpan="5">
+                        <ContentControl Template="{DynamicResource ImportOptionDetailsPanel}" Margin="5,3,0,0"/>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Drawbacks">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.089*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="1">
+                        <ContentControl Template="{DynamicResource BudgetPanel}" 
+                            DockPanel.Dock="Top"/>
+                        <ContentControl Template="{DynamicResource CharacterSelector}" 
+                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                    </DockPanel>
+
+                    <DataGrid ItemsSource="{Binding DrawbackList}"
+                              SelectedItem="{Binding DrawbackSelection}"
+                              SelectedIndex="{Binding DrawbackSelectionIndex}"
+                              Grid.Row="2" Grid.RowSpan="2"
+                              Margin="0,5,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
+                            <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="New Drawback" 
+                        Command="{Binding NewDrawbackCommand}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"/>
+
+                        <Button Content="Delete Drawback"
+                        Command="{Binding DeleteDrawbackCommand}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"/>
+                    </Grid>
+
+                    <GroupBox Header="Drawback Details" Grid.Column="1" Grid.RowSpan="5">
+                        <ContentControl Template="{DynamicResource DrawbackDetailsPanel}" Margin="5,3,0,0"/>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Scenarios">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.089*"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <DockPanel Grid.Row="1">
+                        <ContentControl Template="{DynamicResource BudgetPanel}" 
+                            DockPanel.Dock="Top"/>
+                        <ContentControl Template="{DynamicResource CharacterSelector}" 
+                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                    </DockPanel>
+
+                    <DataGrid ItemsSource="{Binding ScenarioList}"
+                              SelectedItem="{Binding ScenarioSelection}"
+                              SelectedIndex="{Binding ScenarioSelectionIndex}"
+                              Grid.Row="2" Grid.RowSpan="2"
+                              Margin="0,5,0,0">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
+                            <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="New Scenario" 
+                        Command="{Binding NewScenarioCommand}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"/>
+
+                        <Button Content="Delete Scenario"
+                        Command="{Binding DeleteScenarioCommand}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"/>
+                    </Grid>
+
+                    <GroupBox Header="Scenario Details" Grid.Column="1" Grid.RowSpan="5">
+                        <ContentControl Template="{DynamicResource ScenarioDetailsPanel}" Margin="5,3,0,0"/>
+                    </GroupBox>
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Origin Setup">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1.2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="0.1*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="0.5*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="1">
+                        <TextBlock Text="Available Origins"/>
+                        <DataGrid x:Name="OriginConfigureGrid"
+                            ItemsSource="{Binding OriginList}"
+                            SelectedItem="{Binding OriginEditSelection}"
+                            SelectedIndex="{Binding OriginEditSelectionIndex}"
+                            Height="250">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Origin" Width="*" Binding="{Binding Name}"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="New Origin" 
+                        Command="{Binding NewOriginCommand}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Style="{DynamicResource DataGridButton}"/>
+
+                        <Button Content="Delete Origin"
+                        Command="{Binding DeleteOriginCommand}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"/>
+                    </Grid>
+
+                    <GroupBox Header="Origin Details" Grid.Row="3">
+                        <ContentControl x:Name="OriginConfigurePanel" Template="{DynamicResource OriginConfigurePanel}"/>
+                    </GroupBox>
+
+                    <StackPanel Grid.Row="1" Grid.Column="2">
+                        <TextBlock Text="Misc. Origin detail types"/>
+                        <DataGrid x:Name="MiscOriginConfigureGrid"
+                            ItemsSource="{Binding MiscOriginTypeList}"
+                            SelectedItem="{Binding MiscOriginTypeSelection}"
+                            SelectedIndex="{Binding MiscOriginTypeSelectionIndex}"
+                            Height="250">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Type" Width="*" Binding="{Binding}" IsReadOnly="True"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+
+                    <Grid Grid.Row="2" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="New Type" 
+                        Command="{Binding NewTypeCommand}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Style="{DynamicResource DataGridButton}"/>
+
+                        <Button Content="Delete Type"
+                        Command="{Binding DeleteTypeCommand}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"/>
+                    </Grid>
+
+                    <GroupBox Header="Type Details" Grid.Row="3" Grid.Column="2">
+                        <ContentControl x:Name="TypeConfigurePanel" Template="{DynamicResource TypeConfigurePanel}"/>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Jump Settings">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="0.2*"/>
+                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="0.4*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <ContentControl x:Name="JumpDetailsPanel" Template="{DynamicResource JumpDocumentDetails}"
+                                    Margin="5,5,0,0"/>
+                    <ContentControl x:Name="JumpDurationPanel" Template="{DynamicResource JumpDurationDetails}"
+                                    Margin="5,5,0,0" Grid.Column="2"/>
+
+                    <StackPanel Grid.Column="1" Margin="5,22,0,0">
+                        <CheckBox Content="Origin Auto-Discounts" IsChecked="{Binding OriginDiscountsSelection}"/>
+                        <TextBlock Text="Perk Freebie Threshold" Margin="0,7,0,0"/>
+                        <TextBox Text="{Binding PerkFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
+                                 Width="30" HorizontalAlignment="Left"/>
+                        <TextBlock Text="Item Freebie Threshold" Margin="0,5,0,0"/>
+                        <TextBox Text="{Binding ItemFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
+                                 Width="30" HorizontalAlignment="Left"/>
+
+                        <GroupBox Header="Point Bank (Per-character)" Margin="0,10,0,0"
+                                 Visibility="{Binding PointBankAllowed, Converter={StaticResource BoolToVis}}">
+                            <StackPanel>
+                                <TextBlock Text="Banked Points" Margin="3,0,0,0"/>
+                                <TextBox Text="{Binding BankedPoints, ValidatesOnNotifyDataErrors=True}"
+                                 Width="40" HorizontalAlignment="Left" Margin="3,0,0,0"/>
+
+                                <TextBlock Text="Bank Usage" Margin="3,10,0,0"/>
+                                <TextBox Text="{Binding BankUsage, ValidatesOnNotifyDataErrors=True}"
+                                 Width="40" HorizontalAlignment="Left" Margin="3,0,0,0"/>
+                            </StackPanel>
+                        </GroupBox>
+                        
+                    </StackPanel>
+
+                    <TextBlock Text="Currency options" 
+                               Grid.Row="1" 
+                               VerticalAlignment="Bottom" 
+                               HorizontalAlignment="Left"/>
+
+                    <DataGrid ItemsSource="{Binding CurrencyList}"
+                              SelectedItem="{Binding CurrencySelection}"
+                              SelectedIndex="{Binding CurrencySelectionIndex}"
+                              Grid.Row="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding CurrencyName}" Width="1.5*"/>
+                            <DataGridTextColumn Header="Abbreviation" Binding="{Binding CurrencyAbbreviation}" Width="1.5*"/>
+                            <DataGridTextColumn Header="Budget" Binding="{Binding CurrencyBudget}" Width="*" IsReadOnly="True"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="New Currency" 
+                        Command="{Binding NewCurrencyCommand}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"/>
+
+                        <Button Content="Delete Currency"
+                        Command="{Binding DeleteCurrencyCommand}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"/>
+                    </Grid>
+
+                    <GroupBox Header="Currency details" Grid.Row="4">
+                        <Grid>
+
+                            <StackPanel Margin="3,5,0,0">
+                                <TextBlock Text="Name"/>
+                                <TextBox Text="{Binding CurrencySelection.CurrencyName, ValidatesOnNotifyDataErrors=True}"
+                                         Width="100" 
+                                         HorizontalAlignment="Left"/>
+
+                                <TextBlock Text="Abbreviation" Margin="0,10,0,0"/>
+                                <TextBox Text="{Binding CurrencySelection.CurrencyAbbreviation, ValidatesOnNotifyDataErrors=True}"
+                                         Width="30" 
+                                         HorizontalAlignment="Left"/>
+
+                                <TextBlock Text="Starting Budget" Margin="0,10,0,0"/>
+                                <TextBox Text="{Binding CurrencySelection.CurrencyBudget, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40" 
+                                         HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            
+                            
+                        </Grid>
+                    </GroupBox>
+
+                    <ContentControl x:Name="StipendCharacterSelector" Template="{DynamicResource CharacterSelector}"
+                                    Grid.Row="1" Grid.Column="1"/>
+
+                    <DataGrid ItemsSource="{Binding CurrencyList}"
+                              SelectedItem="{Binding CurrencySelection}"
+                              SelectedIndex="{Binding StipendSelectionIndex}"
+                              Grid.Row="2"
+                              Grid.Column="1">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding CurrencyName}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <StackPanel Grid.Row="3" Grid.Column="1"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Top">
+                        <TextBlock Text="Item Stipend"/>
+                        <TextBox Text="{Binding ItemStipend, ValidatesOnNotifyDataErrors=True}"
+                                 Width="40"
+                                 HorizontalAlignment="Left"/>
+                    </StackPanel>
+
+                    <GroupBox Header="Stipend details" Grid.Row="4" Grid.Column="1">
+                        <Grid>
+
+                            <StackPanel Margin="3,5,0,0">
+                                <TextBlock Text="Currency Name"/>
+                                <TextBox Text="{Binding CurrencySelection.CurrencyName, Mode=OneWay}"
+                                         Width="100" 
+                                         HorizontalAlignment="Left"
+                                         IsReadOnly="True"/>
+
+                                <TextBlock Text="Stipend" Margin="0,10,0,0"/>
+                                <TextBox Text="{Binding CurrencyStipend, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40" 
+                                         HorizontalAlignment="Left"/>
+                            </StackPanel>
+
+
+                        </Grid>
+                    </GroupBox>
+
+                    <TextBlock Text="Purchase types" 
+                               Grid.Row="1" 
+                               Grid.Column="2"
+                               VerticalAlignment="Bottom" 
+                               HorizontalAlignment="Left"/>
+                    
+                    <DataGrid x:Name="PurchaseTypeDataGrid" 
+                              ItemsSource="{Binding PurchaseTypeList}"
+                              SelectedItem="{Binding PurchaseTypeSelection}"
+                              SelectedIndex="{Binding PurchaseTypeSelectionIndex}"
+                              Grid.Row="2" Grid.Column="2">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Type}" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                    <Grid Grid.Row="3" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Button Content="New Type" 
+                        Command="{Binding NewPurchaseTypeCommand}"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"/>
+
+                        <Button Content="Delete Type"
+                        Command="{Binding DeletePurchaseTypeCommand}"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"/>
+                    </Grid>
+
+                    <GroupBox Header="Purchase Type details" Grid.Row="4" Grid.Column="2">
+                        <Grid>
+
+                            <StackPanel Margin="3,5,0,0">
+                                <TextBlock Text="Name"/>
+                                <TextBox Text="{Binding PurchaseTypeSelection.Type, ValidatesOnNotifyDataErrors=True}"
+                                         Width="100" 
+                                         HorizontalAlignment="Left"/>
+
+                                <TextBlock Text="Currency" Margin="0,10,0,0"/>
+                                <ComboBox ItemsSource="{Binding CurrencyList}"
+                                          DisplayMemberPath="CurrencyName"
+                                          SelectedItem="{Binding PurchaseTypeCurrencySelection}"
+                                          SelectedIndex="{Binding PurchaseTypeCurrencyIndex}">
+                                    <ComboBox.Style>
+                                        <Style TargetType="{x:Type ComboBox}">
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=PurchaseTypeDataGrid, Path=SelectedIndex}" Value="0">
+                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=PurchaseTypeDataGrid, Path=SelectedIndex}" Value="1">
+                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ComboBox.Style>
+                                </ComboBox>
+
+                                <CheckBox Content="Item Purchase Type" IsChecked="{Binding IsItemType}" Margin="0,20,0,0">
+                                    <CheckBox.Style>
+                                        <Style TargetType="{x:Type CheckBox}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=PurchaseTypeDataGrid, Path=SelectedIndex}" Value="0">
+                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding ElementName=PurchaseTypeDataGrid, Path=SelectedIndex}" Value="1">
+                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </CheckBox.Style>
+                                </CheckBox>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Supplements">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="2*"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Header="Warehouse Investment" Visibility="{Binding WarehouseInvestmentAllowed, 
+                        Converter={StaticResource BoolToVis}}">
+                        <Grid>
+                            <StackPanel Margin="5,3,0,0">
+                                <TextBlock Text="CP invested"/>
+                                <TextBox Text="{Binding WarehousePointsInvested, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40"/>
+
+                                <TextBlock Text="CP to WP" Margin="0,15,0,0"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Text="{Binding WarehouseInvestmentRatio, Mode=OneWay}" IsReadOnly="True"
+                                             Width="40"/>
+                                    <TextBlock Text=" : 1"/>
+                                </StackPanel>
+
+                                <TextBlock Text="WP earned" Margin="0,15,0,0"/>
+                                <TextBox Text="{Binding WarehousePointsGained, Mode=OneWay}" IsReadOnly="True"
+                                         Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Body Mod Investment" Visibility="{Binding BodyModInvestmentAllowed, 
+                        Converter={StaticResource BoolToVis}}" Grid.Column="1">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <ContentControl Template="{DynamicResource CharacterSelector}" VerticalAlignment="Top"/>
+
+                            <StackPanel Margin="5,5,0,0" Grid.Row="1">
+                                <TextBlock Text="CP invested"/>
+                                <TextBox Text="{Binding BodyModPointsInvested, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40"/>
+
+                                <TextBlock Text="CP to Body Mod Points" Margin="0,15,0,0"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBox Text="{Binding BodyModInvestmentRatio, Mode=OneWay}" IsReadOnly="True"
+                                             Width="40"/>
+                                    <TextBlock Text=" : 1"/>
+                                </StackPanel>
+
+                                <TextBlock Text="WP earned" Margin="0,15,0,0"/>
+                                <TextBox Text="{Binding BodyModPointsGained, Mode=OneWay}" IsReadOnly="True"
+                                         Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
