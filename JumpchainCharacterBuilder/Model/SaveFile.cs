@@ -141,7 +141,7 @@ namespace JumpchainCharacterBuilder.Model
         public SaveFile()
         {
             CharacterList.Add(new Character("Jumper"));
-            JumpList.Add(new("First Jump", 1));
+            JumpList.Add(new("First Jump"));
         }
 
         public SaveFile(List<Jump> jumpList, List<Character> characterList, Options options)

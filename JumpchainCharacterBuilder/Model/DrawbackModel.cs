@@ -23,7 +23,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the description of the Drawback/Scenario.
         /// </summary>
         [ObservableProperty]
-        private string _description = "Insert description here.";
+        private string _description = "";
 
         /// <summary>
         /// Represents the reward given by the Drawback/Scenario.

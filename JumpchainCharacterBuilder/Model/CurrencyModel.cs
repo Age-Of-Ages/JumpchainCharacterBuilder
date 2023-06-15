@@ -5,59 +5,26 @@ namespace JumpchainCharacterBuilder.Model
     /// <summary>
     /// Stores individual currency types.
     /// </summary>
-    public class Currency : ObservableValidator
+    public partial class Currency : ObservableValidator
     {
-        private string _currencyName = "";
         /// <summary>
         /// Represents the name of the currency.
         /// </summary>
-        public string CurrencyName
-        {
-            get
-            {
-                return _currencyName;
-            }
-            set
-            {
-                _currencyName = value;
-                OnPropertyChanged(nameof(CurrencyName));
-            }
-        }
+        [ObservableProperty]
+        private string _currencyName = "";
 
-        private string _currencyAbbreviation = "";
         /// <summary>
         /// Represents the abbreviation of the currency's name.
         /// </summary>
-        public string CurrencyAbbreviation
-        {
-            get
-            {
-                return _currencyAbbreviation;
-            }
-            set
-            {
-                _currencyAbbreviation = value;
-                OnPropertyChanged(nameof(CurrencyAbbreviation));
-            }
-        }
+        [ObservableProperty]
+        private string _currencyAbbreviation = "";
 
-        private int _currencyBudget = 0;
         /// <summary>
         /// Represents the universally applied budget associated with this currency
         /// type.
         /// </summary>
-        public int CurrencyBudget
-        {
-            get
-            {
-                return _currencyBudget;
-            }
-            set
-            {
-                _currencyBudget = value;
-                OnPropertyChanged();
-            }
-        }
+        [ObservableProperty]
+        private int _currencyBudget = 0;
 
         public Currency()
         {

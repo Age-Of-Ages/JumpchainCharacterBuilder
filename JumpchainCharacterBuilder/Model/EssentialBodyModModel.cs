@@ -7,12 +7,6 @@ namespace JumpchainCharacterBuilder.Model
     /// </summary>
     public partial class EssentialBodyMod : DocumentDetail
     {
-        /// <summary>
-        /// Represents the starting budget for the selected Body Mod Supplement.
-        /// </summary>
-        [ObservableProperty]
-        private int _budget = 1000;
-
         public enum StartingModes
         {
             Hardcore,
@@ -42,6 +36,12 @@ namespace JumpchainCharacterBuilder.Model
             LesserAccess,
             StandardAccess
         }
+
+        /// <summary>
+        /// Represents the starting budget for the selected Body Mod Supplement.
+        /// </summary>
+        [ObservableProperty]
+        private int _budget = 1000;
 
         /// <summary>
         /// Represents the starting mode selection of the Body Mod.

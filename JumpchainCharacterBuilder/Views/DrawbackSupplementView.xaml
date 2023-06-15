@@ -76,9 +76,9 @@
                             <TextBlock Text="Mode Description" Margin="0,15,0,0"/>
                             <TextBox Text="{Binding UUModeDescription, ValidatesOnNotifyDataErrors=True}"
                                      Width="300"
-                                     Height="200"
-                                     Style="{DynamicResource LargeTextBox}"
-                                     HorizontalAlignment="Left"/>
+                                     Height="200" HorizontalAlignment="Left"
+                                     Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                     Tag="Insert Mode description."/>
                         </StackPanel>
                     </GroupBox>
 
@@ -90,9 +90,9 @@
                             <TextBlock Text="Risk Level Description" Margin="0,15,0,0"/>
                             <TextBox Text="{Binding UURiskLevelDescription, ValidatesOnNotifyDataErrors=True}"
                                      Width="300"
-                                     Height="200"
-                                     Style="{DynamicResource LargeTextBox}"
-                                     HorizontalAlignment="Left"/>
+                                     Height="200" HorizontalAlignment="Left"
+                                     Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                     Tag="Insert Risk Level description."/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
@@ -174,9 +174,9 @@
                                 <TextBlock Text="Description" Margin="0,15,0,0"/>
                                 <TextBox Text="{Binding HouseRuleSelection.HouseRuleDescription, ValidatesOnNotifyDataErrors=True}"
                                          Width="300"
-                                         Height="200"
-                                         Style="{DynamicResource LargeTextBox}"
-                                         HorizontalAlignment="Left"/>
+                                         Height="200" HorizontalAlignment="Left"
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert House Rule description."/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -310,7 +310,8 @@
                                 <TextBox Text="{Binding DrawbackSelection.Description, ValidatesOnNotifyDataErrors=True}"
                                          Width="400"
                                          Height="200"
-                                         Style="{DynamicResource LargeTextBox}"/>
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Drawback description."/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>

@@ -121,7 +121,7 @@ namespace JumpchainCharacterBuilder.Model
             Build.Add(new JumpBuild());
 
             OriginDetails.Add(new OriginDetail("No Origin", "Origin", 0, ""));
-            OriginDetails.Add(new OriginDetail("Origin #1", "Origin", 0, "Lorem Ipsum"));
+            OriginDetails.Add(new OriginDetail("Origin #1", "Origin", 0, ""));
 
             Currencies.Add(new Currency("Choice Points", "CP"));
             Currencies[0].CurrencyBudget = 1000;
@@ -137,47 +137,7 @@ namespace JumpchainCharacterBuilder.Model
             Build.Add(new JumpBuild());
 
             OriginDetails.Add(new OriginDetail("No Origin", "Origin", 0, ""));
-            OriginDetails.Add(new OriginDetail("Test Origin 1", "Origin", 0, "Lorem Ipsum"));
-            OriginDetails.Add(new OriginDetail("Test Origin 2", "Origin", 100, "Lorem Ipsum"));
-            OriginDetails.Add(new OriginDetail("Test Origin 3", "Origin", 200, "Lorem Ipsum"));
-
-            Currencies.Add(new Currency("Choice Points", "CP"));
-            Currencies[0].CurrencyBudget = 1000;
-
-            PurchaseTypes.Add(new PurchaseType("Perks", 0, false));
-            PurchaseTypes.Add(new PurchaseType("Items", 0, true));
-        }
-
-        //public Jump(string name, int choicePointBudget)
-        //{
-        //    Name = name;
-
-        //    Build.Add(new JumpBuild());
-
-        //    OriginDetails.Add(new OriginDetail("Test Origin 1", "Origin", 0, "Lorem Ipsum"));
-        //    OriginDetails.Add(new OriginDetail("Test Origin 2", "Origin", 100, "Lorem Ipsum"));
-        //    OriginDetails.Add(new OriginDetail("Test Origin 3", "Origin", 200, "Lorem Ipsum"));
-        //    OriginDetails.Add(new OriginDetail("Test Origin 4", "Origin", 400, "Lorem Ipsum"));
-
-        //    Currencies.Add(new Currency("Choice Points", "CP"));
-        //    PointBudget.Add(choicePointBudget);
-
-        //    PurchaseTypes.Add(new PurchaseType("Perks", 0));
-        //    PurchaseTypes.Add(new PurchaseType("Items", 0));
-        //}
-
-        public Jump(string name, int originCount)
-        {
-            Name = name;
-
-            Build.Add(new JumpBuild());
-
-            OriginDetails.Add(new OriginDetail("No Origin", "Origin", 0, ""));
-
-            for (int i = 0; i < originCount; i++)
-            {
-                OriginDetails.Add(new OriginDetail($"Test Origin #{i}", "Origin", 100 * i, "Lorem Ipsum"));
-            }
+            OriginDetails.Add(new OriginDetail("Origin #1", "Origin", 0, ""));
 
             Currencies.Add(new Currency("Choice Points", "CP"));
             Currencies[0].CurrencyBudget = 1000;
@@ -191,7 +151,7 @@ namespace JumpchainCharacterBuilder.Model
         {
             Name = name;
             Currencies.Add(new Currency("Choice Points", "CP", choicePointBudget));
-            OriginDetails.Add(new OriginDetail("No Origin", "Origin", 0, "No Description"));
+            OriginDetails.Add(new OriginDetail("No Origin", "Origin", 0, ""));
             PurchaseTypes.Add(new PurchaseType("Perks", 0, false));
             PurchaseTypes.Add(new PurchaseType("Items", 0, true));
 

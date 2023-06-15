@@ -30,7 +30,7 @@ namespace JumpchainCharacterBuilder.Model
         /// this Supplement.
         /// </summary>
         [ObservableProperty]
-        private string _coreModeDescription = "Insert Core Mode description here.";
+        private string _coreModeDescription = "";
 
         /// <summary>
         /// Represents if the Patient Jumper extra mode was selected.

@@ -9,6 +9,7 @@
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:CosmicWarehouseViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="800" d:DesignWidth="950">
+    
     <Grid Background="#FFD8D8D8">
         <TabControl SelectedIndex="{Binding WarehouseTabIndex}">
             <TabItem Header="Statistics">
@@ -98,7 +99,8 @@
                             <TextBox Text="{Binding GenericDescription, ValidatesOnNotifyDataErrors=True}"
                                      Width="350"
                                      Height="200"
-                                     Style="{DynamicResource LargeTextBox}"/>
+                                     Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                     Tag="Insert Warehouse description."/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
@@ -287,7 +289,8 @@
                                 <TextBox Text="{Binding PurchaseSelection.Description, ValidatesOnNotifyDataErrors=True}"
                                          Width="290"
                                          Height="300"
-                                         Style="{DynamicResource LargeTextBox}"/>
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Purchase description."/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -417,7 +420,8 @@
                                 <TextBox Text="{Binding LimitationSelection.Description, ValidatesOnNotifyDataErrors=True}"
                                          Width="290"
                                          Height="300"
-                                         Style="{DynamicResource LargeTextBox}"/>
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Limitation description."/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>

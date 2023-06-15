@@ -24,5 +24,10 @@ namespace JumpchainCharacterBuilder.Views
         }
 
         public JumpchainOverviewViewModel JumpchainOverviewViewModel => (JumpchainOverviewViewModel)DataContext;
+
+        private void DrawbackDescriptionBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

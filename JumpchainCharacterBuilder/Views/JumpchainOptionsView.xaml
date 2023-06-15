@@ -200,9 +200,10 @@
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                                 <TextBlock Text="Description"/>
                                 <TextBox Text="{Binding LoadedSave.GenericWarehouse.FullDescription, ValidatesOnNotifyDataErrors=True}"
-                                     Width="300"
-                                     Height="100"
-                                     Style="{DynamicResource LargeTextBox}"/>
+                                         Width="300"
+                                         Height="100"
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Warehouse description."/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -268,7 +269,8 @@
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                                 <TextBlock Text="Mode Description"/>
                                 <TextBox Text="{Binding PRCoreModeDescription}" HorizontalAlignment="Left"
-                                 Width="300" Height="100" Style="{DynamicResource LargeTextBox}"/>
+                                 Width="300" Height="100" Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Mode description."/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1">
@@ -359,7 +361,8 @@
                                 <TextBox Text="{Binding LoadedSave.GenericBodyMod.FullDescription, ValidatesOnNotifyDataErrors=True}"
                                      Width="300"
                                      Height="100"
-                                     Style="{DynamicResource LargeTextBox}"/>
+                                     Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Body Mod description."/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>

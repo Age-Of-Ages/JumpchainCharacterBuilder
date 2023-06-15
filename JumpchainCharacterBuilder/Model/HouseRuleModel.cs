@@ -14,7 +14,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the House Rule's description.
         /// </summary>
         [ObservableProperty]
-        private string _houseRuleDescription = "Insert House Rule description here.";
+        private string _houseRuleDescription = "";
 
         public HouseRuleModel()
         {

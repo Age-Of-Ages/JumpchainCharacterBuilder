@@ -12,7 +12,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the name of the Companion Purchase Option.
         /// </summary>
         [ObservableProperty]
-        private string _name = "Import Name";
+        private string _name = "";
 
 
         /// <summary>

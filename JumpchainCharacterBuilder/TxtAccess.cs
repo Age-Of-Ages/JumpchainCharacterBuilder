@@ -40,25 +40,6 @@ namespace JumpchainCharacterBuilder
 
         }
 
-        ///// <summary>
-        ///// Check whether a file exists before performing any operations.
-        ///// </summary>
-        ///// <param name="fileName"></param>
-        ///// <param name="subdirectory"></param>
-        ///// <returns></returns>
-        //public static bool CheckFileExists(string fileName, string subdirectory)
-        //{
-        //    string fullPath = $"Exports\\{subdirectory}\\{fileName}.txt";
-        //    if (File.Exists(fullPath))
-        //    {
-        //        return true;
-        //    }
-        //    else
-        //    {
-        //        return false;
-        //    }
-        //}
-
         /// <summary>
         /// Write export data to a text file.
         /// </summary>

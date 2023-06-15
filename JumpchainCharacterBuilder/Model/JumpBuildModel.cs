@@ -126,8 +126,8 @@ namespace JumpchainCharacterBuilder.Model
         {
             PointStipend.Add(0);
 
-            Location = new("No Location", "Location", 0, "Lorem Ipsum Locale");
-            Species = new("Human", "Species", 0, "Lorem Ipsum Specium");
+            Location = new("No Location", "Location", 0, "");
+            Species = new("Human", "Species", 0, "");
 
 
         }
@@ -137,8 +137,8 @@ namespace JumpchainCharacterBuilder.Model
             PointStipend.Add(0);
             ItemStipend = itemStipend;
 
-            Location = new("No Location", "Location", 0, "Lorem Ipsum Locale");
-            Species = new("Human", "Species", 0, "Lorem Ipsum Specium");
+            Location = new("No Location", "Location", 0, "");
+            Species = new("Human", "Species", 0, "");
         }
     }
 }
