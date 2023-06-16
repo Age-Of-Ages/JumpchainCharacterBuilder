@@ -13,14 +13,7 @@ namespace JumpchainCharacterBuilder.Views
         public CosmicPassportView()
         {
             InitializeComponent();
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                // Design-mode specific functionality
-            }
-            else
-            {
-                this.DataContext = App.Current.Services.GetService<CosmicPassportViewModel>();
-            }
+            this.DataContext = App.Current.Services.GetService<CosmicPassportViewModel>();
 
         }
 

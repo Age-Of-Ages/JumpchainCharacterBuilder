@@ -13,7 +13,7 @@ namespace JumpchainCharacterBuilder.Services
         public bool ConfirmDialog(string message)
         {
             MessageBoxResult result = MessageBox.Show(message, "Confirm action", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            return result == MessageBoxResult.Yes ? true : false;
+            return result == MessageBoxResult.Yes;
         }
     }
 }

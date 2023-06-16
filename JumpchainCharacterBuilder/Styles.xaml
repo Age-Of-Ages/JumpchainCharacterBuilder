@@ -114,14 +114,13 @@
         <Setter Property="CanContentScroll" Value="False"/>
     </Style>
 
-    <ControlTemplate x:Key="validationTemplate">
+    <ControlTemplate x:Key="ValidationTemplate">
         <DockPanel ToolTip="{Binding ElementName=ErrorAdorner, 
                    Path=AdornedElement.(Validation.Errors)/ErrorContent}"
                    ToolTipService.InitialShowDelay="100">
             <Grid DockPanel.Dock="Right" Margin="1,0,0,0">
-                <Ellipse Width="14" Height="14" 
-                     Fill="Red" 
-                     HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <Ellipse Width="14" Height="14" Fill="Red" 
+                         HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <TextBlock Foreground="White" FontWeight="Heavy" 
                            FontSize="8" HorizontalAlignment="Center" 
                            VerticalAlignment="Center" TextAlignment="Center"

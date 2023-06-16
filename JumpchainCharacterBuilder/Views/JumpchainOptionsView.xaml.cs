@@ -13,14 +13,7 @@ namespace JumpchainCharacterBuilder.Views
         public JumpchainOptionsView()
         {
             InitializeComponent();
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                // Design-mode specific functionality
-            }
-            else
-            {
-                this.DataContext = App.Current.Services.GetService<JumpchainOptionsViewModel>();
-            }
+            this.DataContext = App.Current.Services.GetService<JumpchainOptionsViewModel>();
         }
 
         public JumpchainOptionsViewModel JumpchainOptionsViewModel => (JumpchainOptionsViewModel)DataContext;

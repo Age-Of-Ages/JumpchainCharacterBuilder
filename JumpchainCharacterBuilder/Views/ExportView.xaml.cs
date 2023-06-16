@@ -13,14 +13,7 @@ namespace JumpchainCharacterBuilder.Views
         public ExportView()
         {
             InitializeComponent();
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                // Design-mode specific functionality
-            }
-            else
-            {
-                this.DataContext = App.Current.Services.GetService<ExportViewModel>();
-            }
+            this.DataContext = App.Current.Services.GetService<ExportViewModel>();
 
         }
 

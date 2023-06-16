@@ -13,21 +13,9 @@ namespace JumpchainCharacterBuilder.Views
         public JumpchainOverviewView()
         {
             InitializeComponent();
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                // Design-mode specific functionality
-            }
-            else
-            {
-                this.DataContext = App.Current.Services.GetService<JumpchainOverviewViewModel>();
-            }
+            this.DataContext = App.Current.Services.GetService<JumpchainOverviewViewModel>();
         }
 
         public JumpchainOverviewViewModel JumpchainOverviewViewModel => (JumpchainOverviewViewModel)DataContext;
-
-        private void DrawbackDescriptionBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
 }

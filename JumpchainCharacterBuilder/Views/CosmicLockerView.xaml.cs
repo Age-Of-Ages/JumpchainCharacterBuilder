@@ -13,14 +13,7 @@ namespace JumpchainCharacterBuilder.Views
         public CosmicLockerView()
         {
             InitializeComponent();
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                // Design-mode specific functionality
-            }
-            else
-            {
-                this.DataContext = App.Current.Services.GetService<CosmicLockerViewModel>();
-            }
+            this.DataContext = App.Current.Services.GetService<CosmicLockerViewModel>();
         }
 
         public CosmicLockerViewModel CosmicLockerViewModel => (CosmicLockerViewModel)DataContext;

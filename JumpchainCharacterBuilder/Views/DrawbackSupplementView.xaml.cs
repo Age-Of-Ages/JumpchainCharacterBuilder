@@ -13,14 +13,7 @@ namespace JumpchainCharacterBuilder.Views
         public DrawbackSupplementView()
         {
             InitializeComponent();
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                // Design-mode specific functionality
-            }
-            else
-            {
-                this.DataContext = App.Current.Services.GetService<DrawbackSupplementViewModel>();
-            }
+            this.DataContext = App.Current.Services.GetService<DrawbackSupplementViewModel>();
         }
 
         public DrawbackSupplementViewModel DrawbackSupplementViewModel => (DrawbackSupplementViewModel)DataContext;

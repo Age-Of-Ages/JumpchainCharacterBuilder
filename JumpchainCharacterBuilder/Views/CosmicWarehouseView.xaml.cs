@@ -13,14 +13,7 @@ namespace JumpchainCharacterBuilder.Views
         public CosmicWarehouseView()
         {
             InitializeComponent();
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                // Design-mode specific functionality
-            }
-            else
-            {
-                this.DataContext = App.Current.Services.GetService<CosmicWarehouseViewModel>();
-            }
+            this.DataContext = App.Current.Services.GetService<CosmicWarehouseViewModel>();
         }
 
         public CosmicWarehouseViewModel CosmicWarehouseViewModel => (CosmicWarehouseViewModel)DataContext;

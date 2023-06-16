@@ -13,14 +13,7 @@ namespace JumpchainCharacterBuilder.Views
         public StatisticsView()
         {
             InitializeComponent();
-            if (DesignerProperties.GetIsInDesignMode(this))
-            {
-                // Design-mode specific functionality
-            }
-            else
-            {
-                this.DataContext = App.Current.Services.GetService<StatisticsViewModel>();
-            }
+            this.DataContext = App.Current.Services.GetService<StatisticsViewModel>();
         }
 
         StatisticsViewModel StatisticsViewModel => (StatisticsViewModel)DataContext;
