@@ -226,14 +226,22 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid ItemsSource="{Binding CharacterAltFormList}"
-                              SelectedItem="{Binding CharacterAltFormSelection}"
+                    <ListView ItemsSource="{Binding CharacterAltFormList}"
+                              SelectedItem="{Binding CharacterAltFormSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding CharacterAltFormSelectionIndex}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding AltFormName, ValidatesOnNotifyDataErrors=True}" Width="*"/>
-                            <DataGridTextColumn Header="Species/Race" Binding="{Binding AltFormSpecies, ValidatesOnNotifyDataErrors=True}" Width="*"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="150"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding AltFormName}"/>
+                                    <GridViewColumn Header="Species/Race" Width="150" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding AltFormSpecies}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -334,7 +342,6 @@
                                                 <GridViewColumn Header="Description" Width="445" 
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
-
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
@@ -584,16 +591,24 @@
                                             </Grid.ColumnDefinitions>
                                             
                                             <StackPanel>
-                                                <DataGrid ItemsSource="{Binding CurrentPhysicalAttributeList}"
-                                                          SelectedItem="{Binding CurrentPhysicalAttributeSelection}"
+                                                <ListView ItemsSource="{Binding CurrentPhysicalAttributeList}"
+                                                          SelectedItem="{Binding CurrentPhysicalAttributeSelection, Mode=OneWayToSource}"
                                                           SelectedIndex="{Binding CurrentPhysicalAttributeIndex}"
-                                                          Height="500"
+                                                          Width="300" Height="500"
                                                           Margin="0,5,0,0">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Attribute Name" Binding="{Binding Name}" Width="*"/>
-                                                        <DataGridTextColumn Header="Attribute Rank" Binding="{Binding DisplayRank}" Width="*" IsReadOnly="True"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
+                                                    <ListView.View>
+                                                        <GridView AllowsColumnReorder="False">
+                                                            <GridView.Columns>
+                                                                <GridViewColumn Header="Attribute Name" Width="150"
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                                <GridViewColumn Header="Attribute Rank" Width="150" 
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding DisplayRank}"/>
+                                                            </GridView.Columns>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
 
                                                 <Grid Grid.Row="1" Margin="0,10,0,0">
                                                     <Grid.ColumnDefinitions>
@@ -671,16 +686,24 @@
                                             </Grid.ColumnDefinitions>
                                             
                                             <StackPanel>
-                                                <DataGrid ItemsSource="{Binding CurrentMentalAttributeList}"
-                                                          SelectedItem="{Binding CurrentMentalAttributeSelection}"
+                                                <ListView ItemsSource="{Binding CurrentMentalAttributeList}"
+                                                          SelectedItem="{Binding CurrentMentalAttributeSelection, Mode=OneWayToSource}"
                                                           SelectedIndex="{Binding CurrentMentalAttributeIndex}"
-                                                          Height="500"
+                                                          Width="300" Height="500"
                                                           Margin="0,5,0,0">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Attribute Name" Binding="{Binding Name}" Width="*"/>
-                                                        <DataGridTextColumn Header="Attribute Rank" Binding="{Binding DisplayRank}" Width="*" IsReadOnly="True"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
+                                                    <ListView.View>
+                                                        <GridView AllowsColumnReorder="False">
+                                                            <GridView.Columns>
+                                                                <GridViewColumn Header="Attribute Name" Width="150"
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                                <GridViewColumn Header="Attribute Rank" Width="150" 
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding DisplayRank}"/>
+                                                            </GridView.Columns>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
 
                                                 <Grid Grid.Row="1" Margin="0,10,0,0">
                                                     <Grid.ColumnDefinitions>
@@ -758,17 +781,25 @@
                                             </Grid.ColumnDefinitions>
                                             
                                             <StackPanel>
-                                                <DataGrid ItemsSource="{Binding CurrentSupernaturalAttributeList}"
-                                                          SelectedItem="{Binding CurrentSupernaturalAttributeSelection}"
+                                                <ListView ItemsSource="{Binding CurrentSupernaturalAttributeList}"
+                                                          SelectedItem="{Binding CurrentSupernaturalAttributeSelection, Mode=OneWayToSource}"
                                                           SelectedIndex="{Binding CurrentSupernaturalAttributeIndex}"
-                                                          Height="500"
+                                                          Width="300" Height="500"
                                                           Margin="0,5,0,0">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Attribute Name" Binding="{Binding Name}" Width="*"/>
-                                                        <DataGridTextColumn Header="Attribute Rank" Binding="{Binding DisplayRank}" Width="*" IsReadOnly="True"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
-
+                                                    <ListView.View>
+                                                        <GridView AllowsColumnReorder="False">
+                                                            <GridView.Columns>
+                                                                <GridViewColumn Header="Attribute Name" Width="150"
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                                <GridViewColumn Header="Attribute Rank" Width="150" 
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding DisplayRank}"/>
+                                                            </GridView.Columns>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
+                                                
                                                 <Grid Grid.Row="1" Margin="0,10,0,0">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="Auto"/>
@@ -869,16 +900,24 @@
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel>
-                                                <DataGrid ItemsSource="{Binding CurrentPhysicalSkillList}"
-                                                          SelectedItem="{Binding CurrentPhysicalSkillSelection}"
+                                                <ListView ItemsSource="{Binding CurrentPhysicalSkillList}"
+                                                          SelectedItem="{Binding CurrentPhysicalSkillSelection, Mode=OneWayToSource}"
                                                           SelectedIndex="{Binding CurrentPhysicalSkillIndex}"
-                                                          Height="500"
+                                                          Width="300" Height="500"
                                                           Margin="0,5,0,0">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Skill Name" Binding="{Binding Name}" Width="*"/>
-                                                        <DataGridTextColumn Header="Skill Rank" Binding="{Binding DisplayRank}" Width="*" IsReadOnly="True"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
+                                                    <ListView.View>
+                                                        <GridView AllowsColumnReorder="False">
+                                                            <GridView.Columns>
+                                                                <GridViewColumn Header="Skill Name" Width="150"
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                                <GridViewColumn Header="Skill Rank" Width="150" 
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding DisplayRank}"/>
+                                                            </GridView.Columns>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
 
                                                 <Grid Grid.Row="1" Margin="0,10,0,0">
                                                     <Grid.ColumnDefinitions>
@@ -956,16 +995,24 @@
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel>
-                                                <DataGrid ItemsSource="{Binding CurrentMentalSkillList}"
-                                                          SelectedItem="{Binding CurrentMentalSkillSelection}"
+                                                <ListView ItemsSource="{Binding CurrentMentalSkillList}"
+                                                          SelectedItem="{Binding CurrentMentalSkillSelection, Mode=OneWayToSource}"
                                                           SelectedIndex="{Binding CurrentMentalSkillIndex}"
-                                                          Height="500"
+                                                          Width="300" Height="500"
                                                           Margin="0,5,0,0">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Skill Name" Binding="{Binding Name}" Width="*"/>
-                                                        <DataGridTextColumn Header="Skill Rank" Binding="{Binding DisplayRank}" Width="*" IsReadOnly="True"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
+                                                    <ListView.View>
+                                                        <GridView AllowsColumnReorder="False">
+                                                            <GridView.Columns>
+                                                                <GridViewColumn Header="Skill Name" Width="150"
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                                <GridViewColumn Header="Skill Rank" Width="150" 
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding DisplayRank}"/>
+                                                            </GridView.Columns>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
 
                                                 <Grid Grid.Row="1" Margin="0,10,0,0">
                                                     <Grid.ColumnDefinitions>
@@ -1043,16 +1090,24 @@
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel>
-                                                <DataGrid ItemsSource="{Binding CurrentSocialSkillList}"
-                                                          SelectedItem="{Binding CurrentSocialSkillSelection}"
+                                                <ListView ItemsSource="{Binding CurrentSocialSkillList}"
+                                                          SelectedItem="{Binding CurrentSocialSkillSelection, Mode=OneWayToSource}"
                                                           SelectedIndex="{Binding CurrentSocialSkillIndex}"
-                                                          Height="500"
+                                                          Width="300" Height="500"
                                                           Margin="0,5,0,0">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Skill Name" Binding="{Binding Name}" Width="*"/>
-                                                        <DataGridTextColumn Header="Skill Rank" Binding="{Binding DisplayRank}" Width="*" IsReadOnly="True"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
+                                                    <ListView.View>
+                                                        <GridView AllowsColumnReorder="False">
+                                                            <GridView.Columns>
+                                                                <GridViewColumn Header="Skill Name" Width="150"
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                                <GridViewColumn Header="Skill Rank" Width="150" 
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding DisplayRank}"/>
+                                                            </GridView.Columns>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
 
                                                 <Grid Grid.Row="1" Margin="0,10,0,0">
                                                     <Grid.ColumnDefinitions>
@@ -1130,16 +1185,24 @@
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel>
-                                                <DataGrid ItemsSource="{Binding CurrentTechnologicalSkillList}"
-                                                          SelectedItem="{Binding CurrentTechnologicalSkillSelection}"
+                                                <ListView ItemsSource="{Binding CurrentTechnologicalSkillList}"
+                                                          SelectedItem="{Binding CurrentTechnologicalSkillSelection, Mode=OneWayToSource}"
                                                           SelectedIndex="{Binding CurrentTechnologicalSkillIndex}"
-                                                          Height="500"
+                                                          Width="300" Height="500"
                                                           Margin="0,5,0,0">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Skill Name" Binding="{Binding Name}" Width="*"/>
-                                                        <DataGridTextColumn Header="Skill Rank" Binding="{Binding DisplayRank}" Width="*" IsReadOnly="True"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
+                                                    <ListView.View>
+                                                        <GridView AllowsColumnReorder="False">
+                                                            <GridView.Columns>
+                                                                <GridViewColumn Header="Skill Name" Width="150"
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                                <GridViewColumn Header="Skill Rank" Width="150" 
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding DisplayRank}"/>
+                                                            </GridView.Columns>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
 
                                                 <Grid Grid.Row="1" Margin="0,10,0,0">
                                                     <Grid.ColumnDefinitions>
@@ -1217,16 +1280,24 @@
                                             </Grid.ColumnDefinitions>
 
                                             <StackPanel>
-                                                <DataGrid ItemsSource="{Binding CurrentSupernaturalSkillList}"
-                                                          SelectedItem="{Binding CurrentSupernaturalSkillSelection}"
+                                                <ListView ItemsSource="{Binding CurrentSupernaturalSkillList}"
+                                                          SelectedItem="{Binding CurrentSupernaturalSkillSelection, Mode=OneWayToSource}"
                                                           SelectedIndex="{Binding CurrentSupernaturalSkillIndex}"
-                                                          Height="500"
+                                                          Width="300" Height="500"
                                                           Margin="0,5,0,0">
-                                                    <DataGrid.Columns>
-                                                        <DataGridTextColumn Header="Skill Name" Binding="{Binding Name}" Width="*"/>
-                                                        <DataGridTextColumn Header="Skill Rank" Binding="{Binding DisplayRank}" Width="*" IsReadOnly="True"/>
-                                                    </DataGrid.Columns>
-                                                </DataGrid>
+                                                    <ListView.View>
+                                                        <GridView AllowsColumnReorder="False">
+                                                            <GridView.Columns>
+                                                                <GridViewColumn Header="Skill Name" Width="150"
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                                <GridViewColumn Header="Skill Rank" Width="150" 
+                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                DisplayMemberBinding="{Binding DisplayRank}"/>
+                                                            </GridView.Columns>
+                                                        </GridView>
+                                                    </ListView.View>
+                                                </ListView>
 
                                                 <Grid Grid.Row="1" Margin="0,10,0,0">
                                                     <Grid.ColumnDefinitions>
@@ -1322,17 +1393,24 @@
                         </Grid.ColumnDefinitions>
 
                         <StackPanel>
-                            <DataGrid ItemsSource="{Binding CurrentBoosterList}"
-                                      SelectedItem="{Binding CurrentBoosterSelection}"
+                            <ListView ItemsSource="{Binding CurrentBoosterList}"
+                                      SelectedItem="{Binding CurrentBoosterSelection, Mode=OneWayToSource}"
                                       SelectedIndex="{Binding CurrentBoosterIndex}"
-                                      Height="500"
+                                      Width="300" Height="500"
                                       Margin="0,5,0,0">
-                                <DataGrid.Columns>
-                                    <DataGridTextColumn Header="Booster Name" Binding="{Binding BoosterName}" Width="*"/>
-                                    <DataGridTextColumn Header="Boost Multiplier" Binding="{Binding BoosterMultiplier, StringFormat={}{0}x}" 
-                                                        Width="*" IsReadOnly="True"/>
-                                </DataGrid.Columns>
-                            </DataGrid>
+                                <ListView.View>
+                                    <GridView AllowsColumnReorder="False">
+                                        <GridView.Columns>
+                                            <GridViewColumn Header="Booster Name" Width="150"
+                                                            CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                            DisplayMemberBinding="{Binding BoosterName}"/>
+                                            <GridViewColumn Header="Boost Multiplier" Width="150" 
+                                                            CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                            DisplayMemberBinding="{Binding BoosterMultiplier, StringFormat={}{0}x}"/>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
 
                             <Grid Grid.Row="1" Margin="0,10,0,0">
                                 <Grid.ColumnDefinitions>
@@ -1401,16 +1479,29 @@
 
                                 <StackPanel Grid.Column="1" Margin="5,3,0,0">
                                     <TextBlock Text="Dependancies"/>
-
-                                    <DataGrid ItemsSource="{Binding CurrentBoosterSelection.BoosterDependencies}"
-                                              Margin="0,10,0,0"
-                                              Height="500">
-                                        <DataGrid.Columns>
-                                            <DataGridTextColumn Header="Source Name" Binding="{Binding DependencySource}" IsReadOnly="True" Width="2*"/>
-                                            <DataGridTextColumn Header="Source Value (Raw)" Binding="{Binding DependencyMultiplier}" IsReadOnly="True" Width="2*"/>
-                                            <DataGridCheckBoxColumn Header="Enabled" Binding="{Binding DependencyEnabled}" Width="*"/>
-                                        </DataGrid.Columns>
-                                    </DataGrid>
+                                    <ListView ItemsSource="{Binding CurrentBoosterSelection.BoosterDependencies}"
+                                              Width="300" Height="500"
+                                              Margin="0,10,0,0">
+                                        <ListView.View>
+                                            <GridView AllowsColumnReorder="False">
+                                                <GridView.Columns>
+                                                    <GridViewColumn Header="Source Name" Width="120"
+                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                    DisplayMemberBinding="{Binding DependencySource}"/>
+                                                    <GridViewColumn Header="Source Value (Raw)" Width="105" 
+                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                    DisplayMemberBinding="{Binding DependencyMultiplier}"/>
+                                                    <GridViewColumn Header="Enabled" Width="75">
+                                                        <GridViewColumn.CellTemplate>
+                                                            <DataTemplate>
+                                                                <CheckBox IsChecked="{Binding DependencyEnabled}"/>
+                                                            </DataTemplate>
+                                                        </GridViewColumn.CellTemplate>
+                                                    </GridViewColumn>
+                                                </GridView.Columns>
+                                            </GridView>
+                                        </ListView.View>
+                                    </ListView>
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
@@ -1530,15 +1621,24 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <DataGrid ItemsSource="{Binding GenericBodyModPurchaseList}"
+                                <ListView ItemsSource="{Binding GenericBodyModPurchaseList}"
                                           SelectedItem="{Binding BodyModPurchaseSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding GenericBodyModPurchaseSelectionIndex}"
-                                          Grid.ColumnSpan="2">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                                        <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                          Width="600" Height="500" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                                          Margin="0,5,0,0">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="500"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Cost" Width="100" 
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding DisplayCost}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
 
                                 <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
@@ -1585,7 +1685,7 @@
                                             Grid.Row="2"/>
                                 </Grid>
 
-                                <GroupBox Header="Purchase Details" Grid.Column="2">
+                                <GroupBox Header="Purchase Details" Grid.Column="2" Grid.RowSpan="2">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1.5*"/>
@@ -1715,16 +1815,25 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <DataGrid ItemsSource="{Binding GenericBodyModDrawbackList}"
-                                          SelectedItem="{Binding BodyModDrawbackSelection}"
+                                <ListView ItemsSource="{Binding GenericBodyModDrawbackList}"
+                                          SelectedItem="{Binding BodyModDrawbackSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding GenericBodyModDrawbackIndex}"
-                                          Grid.ColumnSpan="2">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name, ValidatesOnNotifyDataErrors=True}" Width="2*"/>
-                                        <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
-
+                                          Width="600" Height="500" Grid.ColumnSpan="2" HorizontalAlignment="Left"
+                                          Margin="0,5,0,0">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="500"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Value" Width="100" 
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Value}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                                
                                 <Grid Grid.Row="1">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -1799,13 +1908,21 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <DataGrid ItemsSource="{Binding BodyModAdditionList}"
-                                          SelectedItem="{Binding BodyModAdditionSelection}"
-                                          SelectedIndex="{Binding BodyModAdditionSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name, ValidatesOnNotifyDataErrors=True}" Width="2*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                <ListView ItemsSource="{Binding BodyModAdditionList}"
+                                          SelectedItem="{Binding BodyModAdditionSelection, Mode=OneWayToSource}"
+                                          SelectedIndex="{Binding BodyModAdditionSelectionIndex}"
+                                          Width="600" Height="650" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                          Margin="0,5,0,0">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="300"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
 
                                 <GroupBox Header="Purchase Details" Grid.Column="1">
                                     <Grid>

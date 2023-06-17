@@ -17,6 +17,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         // TODO - Improve the attribute type/category system, as the current implementation is definitely kind of rough.
         // TODO - Implement the Essential Body Mod Essence tab, to allow users to input their chosen essence or essences for future referencing.
         // Specifically, the tab doesn't appear if you have No Essence mode selected, and you can add more than one if you have the dual or multi mode selected.
+        // TODO - Implement Rank descriptions for Attributes and Skills. (Oops)
         #region Fields
         private readonly IDialogService _dialogService;
 
@@ -1197,12 +1198,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCharacterList()
         {
-            CharacterList.Clear();
-
-            foreach (Character character in LoadedSave.CharacterList)
-            {
-                CharacterList.Add(character);
-            }
+            CharacterList = new(LoadedSave.CharacterList);
 
             if (CharacterList.Any())
             {
@@ -1215,12 +1211,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             CharacterTraitList.Clear();
 
-            if (character != null && character.TraitRow.Any())
+            if (character != null)
             {
-                foreach (Trait trait in character.TraitRow)
-                {
-                    CharacterTraitList.Add(trait);
-                }
+                CharacterTraitList = new(character.TraitRow);
             }
 
             DeleteTraitRowCommand.NotifyCanExecuteChanged();
@@ -1232,10 +1225,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             if (character != null && character.AltForms.Any())
             {
-                foreach (AltForm altForm in character.AltForms)
-                {
-                    CharacterAltFormList.Add(altForm);
-                }
+                CharacterAltFormList = new(character.AltForms);
 
                 CharacterAltFormSelection = CharacterAltFormList.Last();
                 CharacterAltFormSelectionIndex = CharacterAltFormList.Count - 1;
@@ -1248,12 +1238,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             AltFormStrengthWeaknessList.Clear();
 
-            if (CharacterAltFormSelection != null && CharacterAltFormSelection.StrengthWeaknessRow.Any())
+            if (CharacterAltFormSelection != null)
             {
-                foreach (AltFormTraitModel row in CharacterAltFormSelection.StrengthWeaknessRow)
-                {
-                    AltFormStrengthWeaknessList.Add(row);
-                }
+                AltFormStrengthWeaknessList = new(CharacterAltFormSelection.StrengthWeaknessRow);
             }
 
             NewStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
@@ -1487,23 +1474,13 @@ namespace JumpchainCharacterBuilder.ViewModel
             switch (LoadedBodyModSupplement)
             {
                 case Options.BodyModSupplements.Generic:
-                    GenericBodyModDrawbackList.Clear();
-
-                    foreach (SupplementDrawbackModel limitation in CharacterSelection.BodyMod.Limitations)
-                    {
-                        GenericBodyModDrawbackList.Add(limitation);
-                    }
+                    GenericBodyModDrawbackList = new(CharacterSelection.BodyMod.Limitations);
 
                     CalculateDrawbackBP(CharacterSelection.BodyMod);
 
                     break;
                 case Options.BodyModSupplements.EssentialBodyMod:
-                    EBMDrawbackList.Clear();
-
-                    foreach (SupplementDrawbackModel drawback in CharacterSelection.BodyMod.EBMDrawbackList)
-                    {
-                        EBMDrawbackList.Add(drawback);
-                    }
+                    EBMDrawbackList = new(CharacterSelection.BodyMod.EBMDrawbackList);
 
                     EBMDrawbackIndex = 0;
 
@@ -1521,24 +1498,15 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case Options.BodyModSupplements.Generic:
                     if (LoadedSave.GenericBodyMod.PurchasesAllowed)
                     {
-                        GenericBodyModPurchaseList.Clear();
-
-                        foreach (SupplementPurchase purchase in CharacterSelection.BodyMod.Purchases)
-                        {
-                            GenericBodyModPurchaseList.Add(purchase);
-                        }
+                        GenericBodyModPurchaseList = new(CharacterSelection.BodyMod.Purchases);
                     }
                     break;
                 case Options.BodyModSupplements.SBBodyMod:
                     SBBodyModGauntlets = CharacterSelection.BodyMod.GauntletsFinished;
                     SBBodyModAnomalousStipend = CharacterSelection.BodyMod.AnomalousLevel * 100;
 
-                    SBExtraBitsList.Clear();
+                    SBExtraBitsList = new(CharacterSelection.BodyMod.ExtraBitsList);
 
-                    foreach (SupplementPurchase purchase in CharacterSelection.BodyMod.ExtraBitsList)
-                    {
-                        SBExtraBitsList.Add(purchase);
-                    }
                     SBExtraBitsIndex = 0;
 
                     switch (CharacterSelection.BodyMod.AffinityIndex)
@@ -1565,12 +1533,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                     SBBodyModAffinityDescription = CharacterSelection.BodyMod.AffinityDescription;
 
-                    SBBodyModPowerList.Clear();
-
-                    foreach (SupplementPurchase purchase in CharacterSelection.BodyMod.SBPowerList)
-                    {
-                        SBBodyModPowerList.Add(purchase);
-                    }
+                    SBBodyModPowerList = new(CharacterSelection.BodyMod.SBPowerList);
 
                     SBBodyModPowerIndex = 0;
                     break;

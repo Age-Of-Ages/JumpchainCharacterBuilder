@@ -29,9 +29,16 @@
     <Style TargetType="{x:Type ListBox}">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
     </Style>
+
     <Style TargetType="{x:Type GridViewColumnHeader}">
         <Setter Property="IsHitTestVisible" Value="False"/>
     </Style>
+
+    <DataTemplate x:Key="GridViewDefaultColumn">
+        <DockPanel>
+            <TextBlock Style="{DynamicResource GridViewText}"/>
+        </DockPanel>
+    </DataTemplate>
 
     <DataTemplate x:Key="GridViewNameColumn">
         <DockPanel>

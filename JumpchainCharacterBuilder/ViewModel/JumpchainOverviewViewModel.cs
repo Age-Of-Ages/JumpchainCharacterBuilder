@@ -14,9 +14,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     // TODO - Switching characters on one tab should update the data on all tabs.
     // TODO - Implement ability to add a stipend for a specific purchase type regardless of currency chosen.
-    // TODO - Fix the quirk where changing Jumps makes the first viewed purchase not update displayed Origin.
-    // TODO - Loading a save seems to result in inaccurate budget calculation for the currently displayed Jump, until something refreshes it.
-    // TODO - There are some general oddities forming when Jumps are selected, in regards to Origin Details.
+    // TODO - There are some general oddities forming when Jumps are selected, in regards to Origin Details. These are probably fixed as of my latest change to the Jump-loading system.
     public partial class JumpchainOverviewViewModel : ViewModelBase
     {
         #region Fields
@@ -123,14 +121,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _purchaseOriginIndex = 0;
 
         [ObservableProperty]
-        private Drawback _drawbackSelection = new("Drawback Name");
+        private Drawback _drawbackSelection = new();
         [ObservableProperty]
         private int _drawbackSelectionIndex = 0;
         [ObservableProperty]
         private ObservableCollection<Drawback> _drawbackList = new();
 
         [ObservableProperty]
-        private Drawback _scenarioSelection = new("Scenario Name");
+        private Drawback _scenarioSelection = new();
         [ObservableProperty]
         private int _scenarioSelectionIndex = 0;
         [ObservableProperty]
@@ -340,57 +338,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
-                CharacterSelectionIndex = 0;
-
-                LoadMiscOriginTypes();
-                LoadCurrencies();
-                LoadPurchaseTypes();
-                LoadAllPurchaseLists();
-                CreateOriginList();
-                LoadDrawbackList();
-                LoadScenarioList();
-                LoadImportOptionList();
-                LoadImportCharacterList();
-                CreateCharacterList();
-                LoadWarehouseInvestment();
-                LoadBodyModInvestment();
-
-                OriginDiscountsSelection = JumpSelection.OriginDiscounts;
-                PerkFreebieThreshold = JumpSelection.OriginPerkFreebieThreshold;
-                ItemFreebieThreshold = JumpSelection.OriginItemFreebieThreshold;
-                SkipJumpNumber = JumpSelection.SkipNumber;
-                IsGauntlet = JumpSelection.IsGauntlet;
-
-                if (LoadedOptions.AllowPointBank)
-                {
-                    if (JumpSelection.IsGauntlet && LoadedOptions.AllowGauntletBank)
-                    {
-                        PointBankAllowed = true;
-                    }
-                    else if (JumpSelection.IsGauntlet)
-                    {
-                        PointBankAllowed = false;
-                        JumpSelection.Build[CharacterSelectionIndex].BankedPoints = 0;
-                        JumpSelection.Build[CharacterSelectionIndex].BankUsage = 0;
-                    }
-                    else
-                    {
-                        PointBankAllowed = true;
-                    }
-                }
-                else
-                {
-                    PointBankAllowed = false;
-                    JumpSelection.Build[CharacterSelectionIndex].BankedPoints = 0;
-                    JumpSelection.Build[CharacterSelectionIndex].BankUsage = 0;
-                }
-
-                BankedPoints = JumpSelection.Build[CharacterSelectionIndex].BankedPoints;
-                BankUsage = JumpSelection.Build[CharacterSelectionIndex].BankUsage;
-
-                Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
-
-                BuildTabIndex = 0;
+                LoadJumpSelection();
             }
 
             DeleteJumpCommand.NotifyCanExecuteChanged();
@@ -646,24 +594,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             if (value != null)
             {
-                CategorySelection = value.Category;
-                PurchaseOriginIndex = value.AssociatedOriginIndex;
-
-                if (value.Attributes.Any())
-                {
-                    PurchaseAttributeList.Clear();
-
-                    foreach (PurchaseAttribute attribute in value.Attributes)
-                    {
-                        PurchaseAttributeList.Add(attribute);
-                    }
-
-                    PurchaseAttributeIndex = 0;
-                }
-                else
-                {
-                    ClearAttributeList();
-                }
+                LoadCurrentPurchaseData();
             }
             else
             {
@@ -882,11 +813,18 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 LoadedOptions = LoadedSave.Options;
 
+                LoadedDrawbackSupplement = LoadedOptions.DrawbackSupplementSetting;
+                LoadedWarehouseSupplement = LoadedOptions.CosmicWarehouseSetting;
+                LoadedBodyModSupplement = LoadedOptions.BodyModSetting;
+
                 CreateJumpList();
                 CreateCharacterList();
-                CreateOriginList();
 
-                Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+                if (JumpList.Any())
+                {
+                    JumpSelection = JumpList.Last();
+                    LoadJumpSelection();
+                }
 
                 ClearAttributeList();
                 LoadAttributeTypes();
@@ -979,6 +917,61 @@ namespace JumpchainCharacterBuilder.ViewModel
                 CharacterSelectionIndex = 0;
                 CharacterSelection = CharacterList.First();
             }
+        }
+
+        private void LoadJumpSelection()
+        {
+            CharacterSelectionIndex = 0;
+
+            LoadMiscOriginTypes();
+            LoadCurrencies();
+            CreateOriginList();
+            LoadPurchaseTypes();
+            LoadAllPurchaseLists();
+            LoadDrawbackList();
+            LoadScenarioList();
+            LoadImportOptionList();
+            LoadImportCharacterList();
+            CreateCharacterList();
+            LoadWarehouseInvestment();
+            LoadBodyModInvestment();
+
+            OriginDiscountsSelection = JumpSelection.OriginDiscounts;
+            PerkFreebieThreshold = JumpSelection.OriginPerkFreebieThreshold;
+            ItemFreebieThreshold = JumpSelection.OriginItemFreebieThreshold;
+            SkipJumpNumber = JumpSelection.SkipNumber;
+            IsGauntlet = JumpSelection.IsGauntlet;
+
+            if (LoadedOptions.AllowPointBank)
+            {
+                if (JumpSelection.IsGauntlet && LoadedOptions.AllowGauntletBank)
+                {
+                    PointBankAllowed = true;
+                }
+                else if (JumpSelection.IsGauntlet)
+                {
+                    PointBankAllowed = false;
+                    JumpSelection.Build[CharacterSelectionIndex].BankedPoints = 0;
+                    JumpSelection.Build[CharacterSelectionIndex].BankUsage = 0;
+                }
+                else
+                {
+                    PointBankAllowed = true;
+                }
+            }
+            else
+            {
+                PointBankAllowed = false;
+                JumpSelection.Build[CharacterSelectionIndex].BankedPoints = 0;
+                JumpSelection.Build[CharacterSelectionIndex].BankUsage = 0;
+            }
+
+            BankedPoints = JumpSelection.Build[CharacterSelectionIndex].BankedPoints;
+            BankUsage = JumpSelection.Build[CharacterSelectionIndex].BankUsage;
+
+            Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+
+            BuildTabIndex = 0;
         }
 
         private void CreateOriginList()
@@ -1107,6 +1100,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 if (CurrentLoadedPurchaseList.Count > 0)
                 {
                     PurchaseSelection = CurrentLoadedPurchaseList.Last();
+                    LoadCurrentPurchaseData();
                 }
                 else
                 {
@@ -1114,6 +1108,28 @@ namespace JumpchainCharacterBuilder.ViewModel
                 }
                 PurchaseType purchaseType = PurchaseTypeList[PurchaseTypeSelectionIndex];
                 Budget = SetBudget(purchaseType);
+            }
+        }
+
+        private void LoadCurrentPurchaseData()
+        {
+            CategorySelection = PurchaseSelection.Category;
+            PurchaseOriginIndex = PurchaseSelection.AssociatedOriginIndex;
+
+            if (PurchaseSelection.Attributes.Any())
+            {
+                PurchaseAttributeList.Clear();
+
+                foreach (PurchaseAttribute attribute in PurchaseSelection.Attributes)
+                {
+                    PurchaseAttributeList.Add(attribute);
+                }
+
+                PurchaseAttributeIndex = 0;
+            }
+            else
+            {
+                ClearAttributeList();
             }
         }
 
@@ -1332,8 +1348,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
 
             BodyModPointsInvested = JumpSelection.Build[CharacterSelectionIndex].BodyModInvestment;
-            // TODO - Make sure that Body Mod point investment still works. If it's broken then change this to commented line.
-            //BodyModPointsGained = BodyModPointsGained / BodyModInvestmentRatio;
             BodyModPointsGained = BodyModPointsInvested / BodyModInvestmentRatio;
         }
 
