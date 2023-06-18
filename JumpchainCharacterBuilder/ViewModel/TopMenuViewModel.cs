@@ -6,6 +6,7 @@ using JumpchainCharacterBuilder.Model;
 using JumpchainCharacterBuilder.Services;
 using Microsoft.Win32;
 using System;
+using System.Windows;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -16,6 +17,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [ObservableProperty]
         private SaveFile _loadedSave = new();
+
+        [ObservableProperty]
+        private string _saveFileName = "";
 
         #endregion
 
@@ -43,7 +47,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #endregion
 
         #region Methods
-        private void SavePrompt()
+        private void SavePrompt(bool saveAs)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Jumper Saves (*.xml)|*.xml";
@@ -58,9 +62,33 @@ namespace JumpchainCharacterBuilder.ViewModel
             XmlAccess.CheckSavesDirectoryExists();
             XmlAccess.CheckSaveBackupsDirectoryExists();
 
-            if (saveFileDialog.ShowDialog() == true)
+            if (SaveFileName != "" && !saveAs)
             {
-                XmlAccess.WriteObject(saveFileDialog.FileName, LoadedSave);
+                if (XmlAccess.CheckFileExists($"{Environment.CurrentDirectory}\\Saves\\{SaveFileName}"))
+                {
+                    if (_dialogService.ConfirmDialog("Overwrite existing save file?"))
+                    {
+                        string filePath = $"{Environment.CurrentDirectory}\\Saves\\{SaveFileName}";
+
+                        XmlAccess.WriteObject(filePath, LoadedSave);
+                    }
+                }
+                else
+                {
+                    if (saveFileDialog.ShowDialog() == true)
+                    {
+                        XmlAccess.WriteObject(saveFileDialog.FileName, LoadedSave);
+                        SaveFileName = saveFileDialog.SafeFileName;
+                    }
+                }
+            }
+            else
+            {
+                if (saveFileDialog.ShowDialog() == true)
+                {
+                    XmlAccess.WriteObject(saveFileDialog.FileName, LoadedSave);
+                    SaveFileName = saveFileDialog.SafeFileName;
+                }
             }
         }
 
@@ -79,6 +107,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 SaveFileLoader saveFileLoader = new();
                 saveFileLoader.LoadSave(openFileDialog.FileName, LoadedSave);
+                SaveFileName = openFileDialog.SafeFileName;
             }
         }
 
@@ -86,15 +115,37 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         #region Commands
         [RelayCommand]
+        private void NewJumper()
+        {
+            if (_dialogService.ConfirmDialog("Create new Jumper? (Will not save current Jumper data.)"))
+            {
+                SaveFileLoader saveFileLoader = new();
+                saveFileLoader.NewSave(LoadedSave);
+            }
+        }
+
+        [RelayCommand]
         private void SaveJumper()
         {
-            SavePrompt();
+            SavePrompt(false);
+        }
+
+        [RelayCommand]
+        private void SaveJumperAs()
+        {
+            SavePrompt(true);
         }
 
         [RelayCommand]
         private void LoadJumper()
         {
             LoadPrompt();
+        }
+
+        [RelayCommand]
+        private void Quit()
+        {
+            Application.Current.Shutdown();
         }
 
         #endregion

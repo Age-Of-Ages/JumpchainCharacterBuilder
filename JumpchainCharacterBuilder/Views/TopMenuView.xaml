@@ -11,11 +11,12 @@
              d:DesignHeight="20" d:DesignWidth="950">
     <Menu>
         <MenuItem Header="_File">
-            <MenuItem Header="_New Jumper"/>
+            <MenuItem Header="_New Jumper" Command="{Binding NewJumperCommand}"/>
             <MenuItem Header="_Save Jumper" Command="{Binding SaveJumperCommand}"/>
+            <MenuItem Header="S_ave Jumper As" Command="{Binding SaveJumperAsCommand}"/>
             <MenuItem Header="L_oad Jumper" Command="{Binding LoadJumperCommand}"/>
             <Separator/>
-            <MenuItem Header="_Quit"/>
+            <MenuItem Header="_Quit" Command="{Binding QuitCommand}"/>
         </MenuItem>
         <MenuItem Header="Theme">
             <MenuItem Header="Light"/>

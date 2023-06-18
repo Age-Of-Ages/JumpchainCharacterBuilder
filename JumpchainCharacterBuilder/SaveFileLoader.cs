@@ -19,6 +19,11 @@ namespace JumpchainCharacterBuilder
             ReplaceSave(saveFile, newSaveFile);
         }
 
+        public void NewSave(SaveFile oldSave)
+        {
+            ReplaceSave(oldSave, new());
+        }
+
         private void ReplaceSave(SaveFile existingSave, SaveFile newSave)
         {
             existingSave.JumpList = new();

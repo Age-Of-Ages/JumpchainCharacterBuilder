@@ -8,9 +8,8 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class MainWindowViewModel : ViewModelBase
     {
         #region Fields
-        // TODO - Consider converting all datagrids to gridviews for improved performance.
         [ObservableProperty]
-        private SaveFile _loadedSave = new SaveFile();
+        private SaveFile _loadedSave = new();
 
         #endregion
 
