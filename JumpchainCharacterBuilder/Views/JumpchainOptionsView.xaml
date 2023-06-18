@@ -84,31 +84,7 @@
                             </StackPanel>
                         </Grid>
                     </GroupBox>
-
-                    <GroupBox Header="Display Formatting"
-                              Grid.Column="2">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Margin="5,0,0,0">
-                                <TextBlock Text="Height Format"/>
-                                <ComboBox ItemsSource="{Binding HeightFormatList}"
-                                          DisplayMemberPath="Key"
-                                          SelectedValuePath="Value"
-                                          SelectedValue="{Binding HeightFormatSelection}"/>
-
-                                <TextBlock Text="Weight Format" Margin="0,20,0,0"/>
-                                <ComboBox ItemsSource="{Binding WeightFormatList}"
-                                          DisplayMemberPath="Key"
-                                          SelectedValuePath="Value"
-                                          SelectedValue="{Binding WeightFormatSelection}"/>
-                            </StackPanel>
-                        </Grid>
-                    </GroupBox>
-
+                    
                     <GroupBox Header="Point Bank"
                               Grid.Row="1">
                         <Grid>

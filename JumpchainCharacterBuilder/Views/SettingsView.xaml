@@ -1,0 +1,51 @@
+﻿<Window x:Class="JumpchainCharacterBuilder.Views.SettingsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JumpchainCharacterBuilder.Views"
+        xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
+        xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewModel:SettingsViewModel, IsDesignTimeCreatable=True}"
+        Title="Input Formatter" Height="400" Width="400"
+        Cursor="" 
+        WindowStyle="SingleBorderWindow" 
+        Background="white" 
+        FontFamily="Lato" 
+        FontSize="12" 
+        ResizeMode="CanMinimize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <GroupBox Header="Display Formatting">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Margin="5,0,0,0">
+                    <TextBlock Text="Height Format"/>
+                    <ComboBox ItemsSource="{Binding HeightFormatList}"
+                      DisplayMemberPath="Key"
+                      SelectedValuePath="Value"
+                      SelectedValue="{Binding HeightFormatSelection}"/>
+
+                    <TextBlock Text="Weight Format" Margin="0,20,0,0"/>
+                    <ComboBox ItemsSource="{Binding WeightFormatList}"
+                      DisplayMemberPath="Key"
+                      SelectedValuePath="Value"
+                      SelectedValue="{Binding WeightFormatSelection}"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

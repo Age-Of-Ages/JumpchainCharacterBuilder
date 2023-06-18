@@ -19,10 +19,13 @@
             <MenuItem Header="_Quit" Command="{Binding QuitCommand}"/>
         </MenuItem>
         <MenuItem Header="Theme">
-            <MenuItem Header="Light"/>
-            <MenuItem Header="Dark"/>
+            <MenuItem Header="Light" Command="{Binding SwitchThemeCommand}" CommandParameter="Light" 
+                      IsChecked="{Binding LightThemeSelected}"/>
+            <MenuItem Header="Dark" Command="{Binding SwitchThemeCommand}" CommandParameter="Dark" 
+                      IsChecked="{Binding DarkThemeSelected}"/>
         </MenuItem>
         <MenuItem Header="Input Formatter" Click="InputFormatter_Click"/>
+        <MenuItem Header="Settings" Click="Settings_Click"/>
         <MenuItem Header="Help">
             <MenuItem Header="Manual"/>
             <MenuItem Header="About"/>

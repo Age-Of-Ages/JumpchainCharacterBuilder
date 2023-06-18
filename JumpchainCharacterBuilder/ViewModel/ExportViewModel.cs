@@ -22,6 +22,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private Options _loadedOptions = new();
         [ObservableProperty]
         private ExportOptions _loadedExportOptions = new();
+        [ObservableProperty]
+        private AppSettingsModel _appSettings = new();
 
         [ObservableProperty]
         private ObservableCollection<Character> _characterList = new();
@@ -316,6 +318,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             Messenger.Register<SupplementChangedMessage>(this, (r, m) =>
             {
                 LoadWarehouseSettings();
+            });
+            Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
+            {
+                AppSettings = m.Value;
             });
 
             _dialogService = dialogService;
@@ -2484,9 +2490,9 @@ namespace JumpchainCharacterBuilder.ViewModel
                                                 FormatBlankLine(output);
                                             }
 
-                                            switch (LoadedOptions.HeightFormat)
+                                            switch (AppSettings.HeightFormat)
                                             {
-                                                case Options.HeightFormats.FeetInches:
+                                                case AppSettingsModel.HeightFormats.FeetInches:
                                                     if (character.HeightInches > 0)
                                                     {
                                                         output.Add($"Height (Inches): {character.HeightInches}");
@@ -2494,7 +2500,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                                         FormatBlankLine(output);
                                                     }
                                                     break;
-                                                case Options.HeightFormats.Feet:
+                                                case AppSettingsModel.HeightFormats.Feet:
                                                     if (character.HeightFeet > 0)
                                                     {
                                                         output.Add($"Height (Feet): {character.HeightFeet}");
@@ -2502,7 +2508,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                                         FormatBlankLine(output);
                                                     }
                                                     break;
-                                                case Options.HeightFormats.Meters:
+                                                case AppSettingsModel.HeightFormats.Meters:
                                                     if (character.HeightMeters > 0)
                                                     {
                                                         output.Add($"Height (Meters): {character.HeightMeters}");
@@ -2514,9 +2520,9 @@ namespace JumpchainCharacterBuilder.ViewModel
                                                     break;
                                             }
 
-                                            switch (LoadedOptions.WeightFormat)
+                                            switch (AppSettings.WeightFormat)
                                             {
-                                                case Options.WeightFormats.Pounds:
+                                                case AppSettingsModel.WeightFormats.Pounds:
                                                     if (character.WeightPounds > 0)
                                                     {
                                                         output.Add($"Weight (Pounds): {character.WeightPounds}");
@@ -2524,7 +2530,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                                         FormatBlankLine(output);
                                                     }
                                                     break;
-                                                case Options.WeightFormats.Kilograms:
+                                                case AppSettingsModel.WeightFormats.Kilograms:
                                                     if (character.WeightKilograms > 0)
                                                     {
                                                         output.Add($"Weight (Kilograms): {character.WeightKilograms}");

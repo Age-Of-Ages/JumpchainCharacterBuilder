@@ -37,25 +37,6 @@ namespace JumpchainCharacterBuilder.Model
         }
 
         /// <summary>
-        /// Stores available height formats.
-        /// </summary>
-        public enum HeightFormats
-        {
-            FeetInches,
-            Feet,
-            Meters
-        }
-
-        /// <summary>
-        /// Stores available weight formats.
-        /// </summary>
-        public enum WeightFormats
-        {
-            Pounds,
-            Kilograms
-        }
-
-        /// <summary>
         /// Represents the selection of Cosmic Warehouse Supplement.
         /// </summary>
         [ObservableProperty]
@@ -139,18 +120,6 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private int _companionBankLimit = 300;
-
-        /// <summary>
-        /// Represents the user-preferred height display format.
-        /// </summary>
-        [ObservableProperty]
-        private HeightFormats _heightFormat = HeightFormats.FeetInches;
-
-        /// <summary>
-        /// Represents the user-preferred weight display format.
-        /// </summary>
-        [ObservableProperty]
-        private WeightFormats _weightFormat = WeightFormats.Pounds;
 
         /// <summary>
         /// Represents options for exporting character details and builds.

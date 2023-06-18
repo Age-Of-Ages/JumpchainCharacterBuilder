@@ -17,14 +17,40 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [ObservableProperty]
         private SaveFile _loadedSave = new();
+        [ObservableProperty]
+        private AppSettingsModel _appSettings = new();
 
         [ObservableProperty]
         private string _saveFileName = "";
 
+        [ObservableProperty]
+        private string _theme = "Light";
+
+        [ObservableProperty]
+        private bool _lightThemeSelected = true;
+        [ObservableProperty]
+        private bool _darkThemeSelected = false;
+
         #endregion
 
         #region Properties
+        partial void OnThemeChanged(string value)
+        {
+            AppSettings.Theme = value;
+            Messenger.Send(new SettingsChangedMessage(true));
+            CfgAccess.WriteCfgFile(AppSettings);
 
+            if (value == "Light")
+            {
+                LightThemeSelected = true;
+                DarkThemeSelected = false;
+            }
+            else if (value == "Dark")
+            {
+                LightThemeSelected = false;
+                DarkThemeSelected = true;
+            }
+        }
 
         #endregion
 
@@ -39,6 +65,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             Messenger.Register<SaveDataSendMessage>(this, (r, m) =>
             {
                 LoadedSave = m.Value;
+            });
+            Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
+            {
+                AppSettings = m.Value;
             });
 
             _dialogService = dialogService;
@@ -64,7 +94,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             if (SaveFileName != "" && !saveAs)
             {
-                if (XmlAccess.CheckFileExists($"{Environment.CurrentDirectory}\\Saves\\{SaveFileName}"))
+                if (FileAccess.CheckFileExists($"{Environment.CurrentDirectory}\\Saves\\{SaveFileName}"))
                 {
                     if (_dialogService.ConfirmDialog("Overwrite existing save file?"))
                     {
@@ -146,6 +176,12 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void Quit()
         {
             Application.Current.Shutdown();
+        }
+
+        [RelayCommand]
+        private void SwitchTheme(string selection)
+        {
+            Theme = selection;
         }
 
         #endregion

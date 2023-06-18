@@ -17,6 +17,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private SaveFile _loadedSave = new();
         [ObservableProperty]
         private Options _loadedOptions = new();
+        [ObservableProperty]
+        private AppSettingsModel _appSettings = new();
 
         [ObservableProperty]
         private int _defaultBudget = 1000;
@@ -50,11 +52,6 @@ namespace JumpchainCharacterBuilder.ViewModel
         private Options.BodyModSupplements _bodyModSelection = new();
         [ObservableProperty]
         private Options.DrawbackSupplements _drawbackSupplementSelection = new();
-
-        [ObservableProperty]
-        private Options.HeightFormats _heightFormatSelection = new();
-        [ObservableProperty]
-        private Options.WeightFormats _weightFormatSelection = new();
 
         [ObservableProperty]
         private bool _genericWarehouseSelected = true;
@@ -99,9 +96,6 @@ namespace JumpchainCharacterBuilder.ViewModel
         private EssentialBodyMod.AdvancementModes _eBMAdvancementModeSelection = new();
         [ObservableProperty]
         private EssentialBodyMod.EPAccessModes _eBMEPAccessModeSelection = new();
-        //[ObservableProperty]
-        //[Range(0, int.MaxValue, ErrorMessage = "Supplements cannot be taken on a negative Jump #.")]
-        //private int _eBMSupplementDelay = 0;
         [ObservableProperty]
         private bool _eBMInvestmentAllowed = false;
         [ObservableProperty]
@@ -290,16 +284,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
 
             Messenger.Send(new SupplementChangedMessage("Drawback"));
-        }
-
-        partial void OnHeightFormatSelectionChanged(Options.HeightFormats value)
-        {
-            LoadedOptions.HeightFormat = value;
-        }
-
-        partial void OnWeightFormatSelectionChanged(Options.WeightFormats value)
-        {
-            LoadedOptions.WeightFormat = value;
         }
 
         partial void OnPRCoreModeSelectionChanged(PersonalReality.CoreModes value)
@@ -571,21 +555,6 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {"U.U. Supplement", Options.DrawbackSupplements.UU}
             };
 
-        public Dictionary<string, Options.HeightFormats> HeightFormatList { get; } =
-            new()
-            {
-                {"Feet/Inches", Options.HeightFormats.FeetInches},
-                {"Feet", Options.HeightFormats.Feet},
-                {"Meters", Options.HeightFormats.Meters}
-            };
-
-        public Dictionary<string, Options.WeightFormats> WeightFormatList { get; } =
-            new()
-            {
-                {"Pounds", Options.WeightFormats.Pounds},
-                {"Kilograms", Options.WeightFormats.Kilograms}
-            };
-
         public Dictionary<string, PersonalReality.CoreModes> PRCoreModeList { get; } =
             new()
             {
@@ -646,6 +615,10 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 AssignOptions();
             });
+            Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
+            {
+                AppSettings = m.Value;
+            });
         }
         #endregion
 
@@ -673,9 +646,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             CosmicWarehouseSelection = LoadedOptions.CosmicWarehouseSetting;
             BodyModSelection = LoadedOptions.BodyModSetting;
             DrawbackSupplementSelection = LoadedOptions.DrawbackSupplementSetting;
-
-            WeightFormatSelection = LoadedOptions.WeightFormat;
-            HeightFormatSelection = LoadedOptions.HeightFormat;
 
             PRCoreModeSelection = LoadedSave.PersonalReality.CoreMode;
             PRPatientJumper = LoadedSave.PersonalReality.PatientJumper;

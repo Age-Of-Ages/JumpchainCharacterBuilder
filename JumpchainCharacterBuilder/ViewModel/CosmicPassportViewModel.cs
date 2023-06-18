@@ -25,6 +25,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private SaveFile _loadedSave = new();
         [ObservableProperty]
         private Options _loadedOptions = new();
+        [ObservableProperty]
+        private AppSettingsModel _appSettings = new();
 
         [ObservableProperty]
         private ObservableCollection<Character> _characterList = new();
@@ -1152,6 +1154,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 AttributeCalculationClass.AttributeCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
                 AttributeCalculationClass.SkillCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
                 AttributeCalculationClass.BoosterCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
+
+                LoadDisplaySettings();
             });
             Messenger.Register<SaveDataSendMessage>(this, (r, m) =>
             {
@@ -1170,6 +1174,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 AttributeCalculationClass.AttributeCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
                 AttributeCalculationClass.SkillCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
                 AttributeCalculationClass.BoosterCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
+
+                LoadDisplaySettings();
             });
             Messenger.Register<SupplementChangedMessage>(this, (r, m) =>
             {
@@ -1188,6 +1194,15 @@ namespace JumpchainCharacterBuilder.ViewModel
                     AttributeCalculationClass.BoosterCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
                 }
             });
+            Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
+            {
+                AppSettings = m.Value;
+                LoadDisplaySettings();
+            });
+            Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
+            {
+                LoadDisplaySettings();
+            });
 
             _dialogService = dialogService;
         }
@@ -1204,6 +1219,44 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 CharacterSelection = CharacterList.First();
                 CharacterSelectionIndex = 0;
+            }
+        }
+
+        private void LoadDisplaySettings()
+        {
+            switch (AppSettings.WeightFormat)
+            {
+                case AppSettingsModel.WeightFormats.Pounds:
+                    UsingPounds = true;
+                    UsingKilograms = false;
+                    break;
+                case AppSettingsModel.WeightFormats.Kilograms:
+                    UsingPounds = false;
+                    UsingKilograms = true;
+                    break;
+                default:
+                    break;
+            }
+
+            switch (AppSettings.HeightFormat)
+            {
+                case AppSettingsModel.HeightFormats.FeetInches:
+                    UsingFeet = false;
+                    UsingFeetInches = true;
+                    UsingMeters = false;
+                    break;
+                case AppSettingsModel.HeightFormats.Feet:
+                    UsingFeet = true;
+                    UsingFeetInches = false;
+                    UsingMeters = false;
+                    break;
+                case AppSettingsModel.HeightFormats.Meters:
+                    UsingFeet = false;
+                    UsingFeetInches = false;
+                    UsingMeters = true;
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -2236,6 +2289,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             AttributeCalculationClass.AttributeCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
             AttributeCalculationClass.SkillCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
             AttributeCalculationClass.BoosterCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
+
+            LoadDisplaySettings();
         }
 
         [RelayCommand]

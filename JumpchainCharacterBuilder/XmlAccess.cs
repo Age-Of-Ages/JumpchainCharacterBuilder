@@ -13,18 +13,6 @@ namespace JumpchainCharacterBuilder
     public static class XmlAccess
     {
         /// <summary>
-        /// Check whether a file exists before performing any operations.
-        /// </summary>
-        /// <param name="filePath">
-        /// Represents the full file path of the save file.
-        /// </param>
-        /// <returns></returns>
-        public static bool CheckFileExists(string filePath)
-        {
-            return File.Exists(filePath);
-        }
-
-        /// <summary>
         /// Checks that the Saves subdirectory exists and creates it if
         /// it doesn't exist.
         /// </summary>
@@ -67,7 +55,7 @@ namespace JumpchainCharacterBuilder
 
             for (int i = 1; i <= 10; i++)
             {
-                if (!CheckFileExists($"{directory}{fileName} ({i}).xml"))
+                if (!FileAccess.CheckFileExists($"{directory}{fileName} ({i}).xml"))
                 {
                     File.Copy(filePath, Path.Combine($"{directory}", $"{fileName} ({i}).xml"), true);
 
@@ -115,7 +103,7 @@ namespace JumpchainCharacterBuilder
                 Encoding = Encoding.UTF8
             };
 
-            if (CheckFileExists(filePath))
+            if (FileAccess.CheckFileExists(filePath))
             {
                 BackupFile(filePath);
             }

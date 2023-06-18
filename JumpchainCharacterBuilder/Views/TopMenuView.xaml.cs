@@ -30,5 +30,12 @@ namespace JumpchainCharacterBuilder.Views
                 inputFormatter.Show();
             }
         }
+
+        private void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsView settingsView = new();
+
+            settingsView.ShowDialog();
+        }
     }
 }
