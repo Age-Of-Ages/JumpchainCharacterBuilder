@@ -29,8 +29,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != "")
             {
+                // Copying from PDF files can cause issues with line-breaks being inserted in incorrect places, so these need to be removed.
                 string temporaryString = Regex.Replace(value, @"(\r\n)(?!\r\n)", " ");
-                temporaryString = Regex.Replace(temporaryString, @"  ", "");
+                // If a string with too many line-breaks is put through this formatter multiple times to fully correct it then extra spaces will appear.
+                // These should be removed to preserve the tidiness of the string.
+                temporaryString = Regex.Replace(temporaryString, @"  ", " ");
 
                 OutputString = temporaryString;
 

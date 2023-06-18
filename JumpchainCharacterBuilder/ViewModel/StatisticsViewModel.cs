@@ -12,6 +12,7 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class StatisticsViewModel : ViewModelBase
     {
         // TODO - Track how many 1-ups the Jumper has.
+        // TODO - Track per-category totals for both Perks and Items.
         #region Fields
         private readonly IDialogService _dialogService;
 
