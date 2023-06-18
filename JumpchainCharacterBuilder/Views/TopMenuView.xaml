@@ -22,7 +22,7 @@
             <MenuItem Header="Light"/>
             <MenuItem Header="Dark"/>
         </MenuItem>
-        <MenuItem Header="Input Formatter"/>
+        <MenuItem Header="Input Formatter" Click="InputFormatter_Click"/>
         <MenuItem Header="Help">
             <MenuItem Header="Manual"/>
             <MenuItem Header="About"/>

@@ -49,6 +49,7 @@ namespace JumpchainCharacterBuilder
             services.AddTransient<CosmicLockerViewModel>();
             services.AddTransient<ExportViewModel>();
             services.AddTransient<StatisticsViewModel>();
+            services.AddTransient<InputFormatterViewModel>();
 
             return services.BuildServiceProvider();
         }

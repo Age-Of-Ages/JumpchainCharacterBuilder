@@ -1088,7 +1088,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             int total;
             int jumps;
             int deposits;
-            // Use the highest Jump number to calculate BP gained. Skipped Jumps are assumed to be Supplemented or similar.
+            
             switch (LoadedOptions.BodyModSetting)
             {
                 case Options.BodyModSupplements.Generic:
