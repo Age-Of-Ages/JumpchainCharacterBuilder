@@ -110,13 +110,20 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid ItemsSource="{Binding HouseRuleList}"
-                              SelectedItem="{Binding HouseRuleSelection}"
-                              SelectedIndex="{Binding HouseRuleSelectionIndex}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding HouseRuleName}" Width="*"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <ListView ItemsSource="{Binding HouseRuleList}"
+                              SelectedItem="{Binding HouseRuleSelection, Mode=OneWayToSource}"
+                              SelectedIndex="{Binding HouseRuleSelectionIndex}"
+                              Height="400" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="236"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding HouseRuleName}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -195,18 +202,33 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid ItemsSource="{Binding DrawbackList}"
-                              SelectedItem="{Binding DrawbackSelection}"
+                    <ListView ItemsSource="{Binding DrawbackList}"
+                              SelectedItem="{Binding DrawbackSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding DrawbackSelectionIndex}"
+                              Height="570" Width="450" HorizontalAlignment="Left" VerticalAlignment="Top"
                               Grid.ColumnSpan="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2*"/>
-                            <DataGridTextColumn Header="CP" Binding="{Binding ValueChoicePoints}" Width="*" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="CP (Items)" Binding="{Binding ValueItemPoints}" Width="*" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="CP (Companions)" Binding="{Binding ValueCompanionPoints}" Width="2*" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="WP" Binding="{Binding ValueWarehousePoints}" Width="*" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="128"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="CP" Width="64"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding ValueChoicePoints}"/>
+                                    <GridViewColumn Header="CP (Items)" Width="64"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding ValueItemPoints}"/>
+                                    <GridViewColumn Header="CP (Companions)" Width="128"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding ValueCompanionPoints}"/>
+                                    <GridViewColumn Header="WP" Width="64"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding ValueWarehousePoints}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>

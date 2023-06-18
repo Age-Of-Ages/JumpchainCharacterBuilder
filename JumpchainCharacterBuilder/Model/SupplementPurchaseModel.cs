@@ -63,6 +63,11 @@ namespace JumpchainCharacterBuilder.Model
 
         }
 
+        public SupplementPurchase(string name)
+        {
+            Name = name;
+        }
+
         public SupplementPurchase(string name, string category)
         {
             Name = name;

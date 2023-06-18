@@ -121,105 +121,177 @@
                                 SelectedIndex="{Binding PurchasesTabIndex}">
                         <TabItem Header="Basics">
                             <Grid>
-                                <DataGrid ItemsSource="{Binding BasicsPurchaseList}"
+                                <ListView ItemsSource="{Binding BasicsPurchaseList}"
                                           SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
-                                          SelectedIndex="{Binding BasicsPurchaseSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                                        <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                          SelectedIndex="{Binding BasicsPurchaseSelectionIndex}"
+                                          Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="545"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Cost" Width="75"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding DisplayCost}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Utilities and Structures" Visibility="{Binding PersonalRealitySelected, 
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
-                                <DataGrid ItemsSource="{Binding UtilitiesPurchaseList}"
+                                <ListView ItemsSource="{Binding UtilitiesPurchaseList}"
                                           SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
-                                          SelectedIndex="{Binding UtilitiesPurchaseSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                                        <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                          SelectedIndex="{Binding UtilitiesPurchaseSelectionIndex}"
+                                          Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="545"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Cost" Width="75"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding DisplayCost}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Cosmetic Upgrades" Visibility="{Binding PersonalRealitySelected, 
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
-                                <DataGrid ItemsSource="{Binding CosmeticPurchaseList}"
+                                <ListView ItemsSource="{Binding CosmeticPurchaseList}"
                                           SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
-                                          SelectedIndex="{Binding CosmeticPurchaseSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                                        <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                          SelectedIndex="{Binding CosmeticPurchaseSelectionIndex}"
+                                          Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="545"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Cost" Width="75"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding DisplayCost}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Facilities" Visibility="{Binding PersonalRealitySelected, 
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
-                                <DataGrid ItemsSource="{Binding FacilitiesPurchaseList}"
+                                <ListView ItemsSource="{Binding FacilitiesPurchaseList}"
                                           SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
-                                          SelectedIndex="{Binding FacilitiesPurchaseSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                                        <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                          SelectedIndex="{Binding FacilitiesPurchaseSelectionIndex}"
+                                          Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="545"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Cost" Width="75"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding DisplayCost}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Extensions" Visibility="{Binding PersonalRealitySelected, 
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
-                                <DataGrid ItemsSource="{Binding ExtensionsPurchaseList}"
+                                <ListView ItemsSource="{Binding ExtensionsPurchaseList}"
                                           SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
-                                          SelectedIndex="{Binding ExtensionsPurchaseSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                                        <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                          SelectedIndex="{Binding ExtensionsPurchaseSelectionIndex}"
+                                          Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="545"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Cost" Width="75"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding DisplayCost}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Items &amp; Equipment" Visibility="{Binding PersonalRealitySelected, 
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
-                                <DataGrid ItemsSource="{Binding EquipmentPurchaseList}"
+                                <ListView ItemsSource="{Binding EquipmentPurchaseList}"
                                           SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
-                                          SelectedIndex="{Binding EquipmentPurchaseSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                                        <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                          SelectedIndex="{Binding EquipmentPurchaseSelectionIndex}"
+                                          Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="545"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Cost" Width="75"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding DisplayCost}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Companions" Visibility="{Binding PersonalRealitySelected, 
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
-                                <DataGrid ItemsSource="{Binding CompanionsPurchaseList}"
+                                <ListView ItemsSource="{Binding CompanionsPurchaseList}"
                                           SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
-                                          SelectedIndex="{Binding CompanionsPurchaseSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                                        <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                          SelectedIndex="{Binding CompanionsPurchaseSelectionIndex}"
+                                          Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="545"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Cost" Width="75"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding DisplayCost}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Misc." Visibility="{Binding PersonalRealitySelected, 
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
-                                <DataGrid ItemsSource="{Binding MiscPurchaseList}"
+                                <ListView ItemsSource="{Binding MiscPurchaseList}"
                                           SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
-                                          SelectedIndex="{Binding MiscPurchaseSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                                        <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                          SelectedIndex="{Binding MiscPurchaseSelectionIndex}"
+                                          Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="545"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                <GridViewColumn Header="Cost" Width="75"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding DisplayCost}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </Grid>
                         </TabItem>
                     </TabControl>
@@ -303,13 +375,20 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <DataGrid ItemsSource="{Binding AdditionList}"
-                              SelectedItem="{Binding AdditionSelection}"
-                              SelectedIndex="{Binding AdditionSelectionIndex}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name, ValidatesOnNotifyDataErrors=True}" Width="2*"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <ListView ItemsSource="{Binding AdditionList}"
+                              SelectedItem="{Binding AdditionSelection, Mode=OneWayToSource}"
+                              SelectedIndex="{Binding AdditionSelectionIndex}"
+                              Width="620" Height="700" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="620"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <GroupBox Header="Purchase Details" Grid.Column="1">
                         <Grid>
@@ -350,15 +429,24 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DataGrid ItemsSource="{Binding LimitationList}"
-                              SelectedItem="{Binding LimitationSelection}"
+                    <ListView ItemsSource="{Binding LimitationList}"
+                              SelectedItem="{Binding LimitationSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding LimitationSelectionIndex}"
+                              Height="575" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top"
                               Grid.ColumnSpan="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name, ValidatesOnNotifyDataErrors=True}" Width="2*"/>
-                            <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="545"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Value" Width="75"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Value}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="1">
                         <Grid.ColumnDefinitions>
@@ -405,7 +493,7 @@
                                 Grid.Row="2"/>
                     </Grid>
 
-                    <GroupBox Header="Purchase Details" Grid.Column="2">
+                    <GroupBox Header="Limitation Details" Grid.Column="2">
                         <Grid>
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>

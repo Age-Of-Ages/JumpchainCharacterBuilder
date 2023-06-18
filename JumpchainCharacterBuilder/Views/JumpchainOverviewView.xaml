@@ -95,7 +95,7 @@
                         <ContentControl x:Name="CharacterSelector" Template="{DynamicResource CharacterSelector}" 
                             DockPanel.Dock="Top" Margin="0,5,0,0"/>
                         <StackPanel DockPanel.Dock="Top" Margin="0,5,0,0"
-                                    HorizontalAlignment="Center">
+                                    HorizontalAlignment="Center" VerticalAlignment="Top">
                             <TextBlock Text="Origin" HorizontalAlignment="Center"/>
                             <ComboBox ItemsSource="{Binding OriginList}" DisplayMemberPath="Name"
                                       SelectedItem="{Binding OriginSelection}"
@@ -108,7 +108,7 @@
                                 <ColumnDefinition Width="15*"/>
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Age" HorizontalAlignment="Center" MinWidth="45"/>
                                 <TextBox Text="{Binding Age, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="30" Margin="5,0,0,0"/>
@@ -125,7 +125,7 @@
                                 <ColumnDefinition Width="15*"/>
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="1" Orientation="Horizontal">
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Gender" HorizontalAlignment="Center" MinWidth="45"/>
                                 <TextBox Text="{Binding Gender, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Margin="5,0,0,0" Width="70"/>
@@ -163,7 +163,7 @@
                                 <RowDefinition Height="15*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Grid.Column="1" Grid.Row="1">
+                            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding MiscOriginDetailSelection.Name, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
@@ -174,7 +174,7 @@
                                          HorizontalAlignment="Left"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2">
+                            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
                                 <TextBox Text="{Binding MiscOriginDetailSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -204,7 +204,7 @@
                             DockPanel.Dock="Top"/>
                         <ContentControl Template="{DynamicResource CharacterSelector}" 
                             DockPanel.Dock="Top" Margin="0,5,0,0"/>
-                        <StackPanel DockPanel.Dock="Top" Margin="0,5,0,0" HorizontalAlignment="Center">
+                        <StackPanel DockPanel.Dock="Top" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
                             <TextBlock Text="Purchase Type" HorizontalAlignment="Center"/>
                             <ComboBox x:Name="PurchaseListSelector" 
                                       ItemsSource="{Binding PurchaseTypeList}"
@@ -267,7 +267,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="3,1,0,0">
+                            <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding PurchaseSelection.Name, ValidatesOnNotifyDataErrors=True}" Width="100"/>
                                 <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -281,7 +281,7 @@
                                           IsChecked="{Binding PurchaseSelection.FreebieEnabled, ValidatesOnNotifyDataErrors=True}"/>
                             </StackPanel>
 
-                            <StackPanel Margin="0,1,0,0" Grid.Column="1">
+                            <StackPanel Margin="0,1,0,0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Category"/>
                                 <ComboBox ItemsSource="{Binding CategoryList}"
                                           SelectedItem="{Binding CategorySelection}"
@@ -293,11 +293,11 @@
                                           Width="100"/>
                             </StackPanel>
 
-                            <StackPanel Margin="0,1,0,0" Grid.Column="2" Grid.ColumnSpan="2">
+                            <StackPanel Margin="0,1,0,0" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <CheckBox Content="Body-Mod Addition" IsChecked="{Binding PurchaseSelection.BodyModAddition}" Margin="5,17,0,0"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
                                 <TextBox Text="{Binding PurchaseSelection.Description, ValidatesOnNotifyDataErrors=True}"
                                          Width="400" Height="200"
@@ -305,7 +305,7 @@
                                          Tag="Insert Purchase description."/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0">
+                            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Special Traits"/>
                                 <ListView ItemsSource="{Binding PurchaseAttributeList}"
                                           SelectedItem="{Binding PurchaseAttributeSelection}"
@@ -352,7 +352,7 @@
 
                             <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="2" 
                                       Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0">
-                                <StackPanel>
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <TextBlock Text="Name"/>
                                     <ComboBox ItemsSource="{Binding CurrentAttributeList}"
                                               SelectedValue="{Binding CurrentAttributeSelection}"
@@ -369,7 +369,7 @@
                                               Width="100" HorizontalAlignment="Left"/>
 
                                     <StackPanel Visibility="{Binding AttributeBasicSelected, Converter={StaticResource BoolToVis}}"
-                                                Margin="0,15,0,0">
+                                                Margin="0,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         <TextBlock Text="Rank"/>
                                         <ComboBox ItemsSource="{Binding AttributeRankDictionary}"
                                                   DisplayMemberPath="Key"
@@ -377,11 +377,13 @@
                                                   SelectedValue="{Binding PurchaseAttributeSelection.Rank}"
                                                   Width="100" HorizontalAlignment="Left"/>
                                     </StackPanel>
-                                    <StackPanel Visibility="{Binding AttributeBoosterSelected, Converter={StaticResource BoolToVis}}">
+                                    <StackPanel Visibility="{Binding AttributeBoosterSelected, Converter={StaticResource BoolToVis}}"
+                                                VerticalAlignment="Top" HorizontalAlignment="Left">
                                         <TextBlock Text="Multiplier"/>
                                         <TextBox Text="{Binding PurchaseAttributeSelection.Value, ValidatesOnNotifyDataErrors=True}" Width="40"/>
                                     </StackPanel>
-                                    <StackPanel Visibility="{Binding AttributeSpecialSelected, Converter={StaticResource BoolToVis}}">
+                                    <StackPanel Visibility="{Binding AttributeSpecialSelected, Converter={StaticResource BoolToVis}}" 
+                                                VerticalAlignment="Top" HorizontalAlignment="Left">
                                         <TextBlock Text="Value"/>
                                         <TextBox Text="{Binding PurchaseAttributeSelection.Value, ValidatesOnNotifyDataErrors=True}" Width="40"/>
                                     </StackPanel>
@@ -464,7 +466,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="3,1,0,0">
+                            <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding ImportOptionSelection.Name, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
@@ -479,7 +481,7 @@
                                           IsChecked="{Binding ImportOptionSelection.FreebieEnabled, ValidatesOnNotifyDataErrors=True}"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
                                 <TextBox Text="{Binding ImportOptionSelection.Description, ValidatesOnNotifyDataErrors=True}"
                                          Width="400"
@@ -488,7 +490,7 @@
                                          Tag="Insert Import option description."/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0">
+                            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Imported Companions"/>
                                 <DataGrid ItemsSource="{Binding ImportCharacterList}" 
                                           SelectedItem="{Binding ImportCharacterSelection}"
@@ -504,7 +506,7 @@
 
                             <GroupBox Header="Import Details" Grid.Row="2" Grid.Column="2" 
                                       Grid.ColumnSpan="2" Margin="0,50,0,0">
-                                <StackPanel>
+                                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <TextBlock Text="Name"/>
                                     <TextBox Text="{Binding ImportCharacterSelection.CompanionName}"
                                              Width="120"
@@ -597,7 +599,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="3,1,0,0">
+                            <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding DrawbackSelection.Name, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
@@ -607,7 +609,7 @@
                                          HorizontalAlignment="Left"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
                                 <TextBox Text="{Binding DrawbackSelection.Description, ValidatesOnNotifyDataErrors=True}"
                                          Width="400" Height="200"
@@ -615,7 +617,7 @@
                                          Tag="Insert Drawback description here."/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Margin="0,75,0,0">
+                            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Margin="0,75,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Reward"/>
                                 <TextBox Text="{Binding DrawbackSelection.Reward, ValidatesOnNotifyDataErrors=True}"
                                          x:Name="DrawbackRewardBox"
@@ -701,7 +703,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="3,1,0,0">
+                            <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding ScenarioSelection.Name, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
@@ -711,7 +713,7 @@
                                          HorizontalAlignment="Left"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2">
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
                                 <TextBox Text="{Binding ScenarioSelection.Description, ValidatesOnNotifyDataErrors=True}"
                                          Width="400"
@@ -720,7 +722,7 @@
                                          Tag="Insert Scenario description."/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Margin="0,75,0,0">
+                            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Margin="0,75,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Reward"/>
                                 <TextBox Text="{Binding ScenarioSelection.Reward, ValidatesOnNotifyDataErrors=True}"
                                          Width="400"
@@ -797,18 +799,18 @@
                                 <RowDefinition Height="5*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel>
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Origin Name"/>
                                 <TextBox Text="{Binding OriginEditSelection.Name, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
                             </StackPanel>
-                            <StackPanel Grid.Row="1">
+                            <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Origin Cost"/>
                                 <TextBox Text="{Binding OriginEditSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
                                          HorizontalAlignment="Left"/>
                             </StackPanel>
-                            <StackPanel Grid.Row="2">
+                            <StackPanel Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Origin Description"/>
                                 <TextBox Text="{Binding OriginEditSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="200"
@@ -867,7 +869,7 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel>
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Type Name"/>
                                 <TextBox Text="{Binding MiscOriginTypeSelection, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
@@ -892,7 +894,7 @@
                     </Grid.RowDefinitions>
 
 
-                    <StackPanel Margin="5,5,0,0">
+                    <StackPanel Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <TextBlock Text="Jump Name"/>
                         <TextBox Text="{Binding JumpSelection.Name, ValidatesOnNotifyDataErrors=True}" 
                                  Width="150"/>
@@ -917,18 +919,18 @@
                     
                     <StackPanel Margin="5,5,0,0" Grid.Column="2">
                         <TextBlock Text="Jump Duration" Margin="0,15,0,0" HorizontalAlignment="Center"/>
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
-                            <StackPanel Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Years"/>
                                 <TextBox Text="{Binding JumpSelection.DurationYears, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                            <StackPanel Orientation="Vertical" Margin="10,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Months"/>
                                 <TextBox Text="{Binding JumpSelection.DurationMonths, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Margin="10,0,0,0">
+                            <StackPanel Orientation="Vertical" Margin="10,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Days"/>
                                 <TextBox Text="{Binding JumpSelection.DurationDays, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>

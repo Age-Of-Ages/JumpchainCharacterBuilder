@@ -2670,7 +2670,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [RelayCommand]
         private void NewSBPower()
         {
-            SupplementPurchase purchase = new();
+            SupplementPurchase purchase = new($"Power #{SBBodyModPowerList.Count + 1}");
 
             SBBodyModPowerList.Add(purchase);
             CharacterSelection.BodyMod.SBPowerList.Add(purchase);

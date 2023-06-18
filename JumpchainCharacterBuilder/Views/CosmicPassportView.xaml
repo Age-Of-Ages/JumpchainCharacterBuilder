@@ -1916,7 +1916,7 @@
                                     <ListView.View>
                                         <GridView AllowsColumnReorder="False">
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="300"
+                                                <GridViewColumn Header="Name" Width="600"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                                 DisplayMemberBinding="{Binding Name}"/>
                                             </GridView.Columns>
@@ -2115,18 +2115,18 @@
                                             </Grid.RowDefinitions>
 
                                             <Button Content="New" 
-                                            Command="{Binding NewSBExtraBitsCommand}"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Style="{DynamicResource DataGridButton}"
-                                            Grid.Row="0"/>
+                                                    Command="{Binding NewSBExtraBitsCommand}"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Top"
+                                                    Style="{DynamicResource DataGridButton}"
+                                                    Grid.Row="0"/>
 
                                             <Button Content="Delete"
-                                            Command="{Binding DeleteSBExtraBitsCommand}"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Top"
-                                            Style="{DynamicResource DataGridButton}"
-                                            Grid.Column="2"/>
+                                                    Command="{Binding DeleteSBExtraBitsCommand}"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Top"
+                                                    Style="{DynamicResource DataGridButton}"
+                                                    Grid.Column="2"/>
                                         </Grid>
                                     </Grid>
                                 </GroupBox>
@@ -2395,16 +2395,27 @@
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
 
-                                        <DataGrid ItemsSource="{Binding SBBodyModPowerList}"
-                                                  SelectedItem="{Binding SBBodyModPowerSelection}"
+                                        <ListView ItemsSource="{Binding SBBodyModPowerList}"
+                                                  SelectedItem="{Binding SBBodyModPowerSelection, Mode=OneWayToSource}"
                                                   SelectedIndex="{Binding SBBodyModPowerIndex}"
+                                                  Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                   Margin="0,5,0,0">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="2.5*"/>
-                                                <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="2.5*" IsReadOnly="True"/>
-                                                <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" IsReadOnly="True"/>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
+                                            <ListView.View>
+                                                <GridView AllowsColumnReorder="False">
+                                                    <GridView.Columns>
+                                                        <GridViewColumn Header="Name" Width="90"
+                                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                        DisplayMemberBinding="{Binding Name}"/>
+                                                        <GridViewColumn Header="Category" Width="90"
+                                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                        DisplayMemberBinding="{Binding Category}"/>
+                                                        <GridViewColumn Header="Cost" Width="50"
+                                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                        DisplayMemberBinding="{Binding Cost}"/>
+                                                    </GridView.Columns>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
 
                                         <Grid Grid.Row="1">
                                             <Grid.ColumnDefinitions>
@@ -2567,13 +2578,20 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <DataGrid ItemsSource="{Binding BodyModAdditionList}"
-                                          SelectedItem="{Binding BodyModAdditionSelection}"
-                                          SelectedIndex="{Binding BodyModAdditionSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name, ValidatesOnNotifyDataErrors=True}" Width="2*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                <ListView ItemsSource="{Binding BodyModAdditionList}"
+                                          SelectedItem="{Binding BodyModAdditionSelection, Mode=OneWayToSource}"
+                                          SelectedIndex="{Binding BodyModAdditionSelectionIndex}"
+                                          Height="700" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="620"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
 
                                 <GroupBox Header="Purchase Details" Grid.Column="1">
                                     <Grid>
@@ -2703,15 +2721,24 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <DataGrid ItemsSource="{Binding EBMBasicPerkList}"
-                                                              SelectedItem="{Binding EBMBasicPerkSelection}"
+                                                    <ListView ItemsSource="{Binding EBMBasicPerkList}"
+                                                              SelectedItem="{Binding EBMBasicPerkSelection, Mode=OneWayToSource}"
                                                               SelectedIndex="{Binding EBMBasicPerkIndex}"
+                                                              Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
-                                                        <DataGrid.Columns>
-                                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                                                            <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" IsReadOnly="True"/>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
+                                                        <ListView.View>
+                                                            <GridView AllowsColumnReorder="False">
+                                                                <GridView.Columns>
+                                                                    <GridViewColumn Header="Name" Width="180"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Name}"/>
+                                                                    <GridViewColumn Header="Cost" Width="50"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                </GridView.Columns>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
 
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
@@ -2877,15 +2904,24 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <DataGrid ItemsSource="{Binding EBMPhysicalPerkList}"
-                                                              SelectedItem="{Binding EBMPhysicalPerkSelection}"
+                                                    <ListView ItemsSource="{Binding EBMPhysicalPerkList}"
+                                                              SelectedItem="{Binding EBMPhysicalPerkSelection, Mode=OneWayToSource}"
                                                               SelectedIndex="{Binding EBMPhysicalPerkIndex}"
+                                                              Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
-                                                        <DataGrid.Columns>
-                                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                                                            <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" IsReadOnly="True"/>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
+                                                        <ListView.View>
+                                                            <GridView AllowsColumnReorder="False">
+                                                                <GridView.Columns>
+                                                                    <GridViewColumn Header="Name" Width="180"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Name}"/>
+                                                                    <GridViewColumn Header="Cost" Width="50"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                </GridView.Columns>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
 
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
@@ -3051,15 +3087,24 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <DataGrid ItemsSource="{Binding EBMMentalPerkList}"
-                                                              SelectedItem="{Binding EBMMentalPerkSelection}"
+                                                    <ListView ItemsSource="{Binding EBMMentalPerkList}"
+                                                              SelectedItem="{Binding EBMMentalPerkSelection, Mode=OneWayToSource}"
                                                               SelectedIndex="{Binding EBMMentalPerkIndex}"
+                                                              Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
-                                                        <DataGrid.Columns>
-                                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                                                            <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" IsReadOnly="True"/>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
+                                                        <ListView.View>
+                                                            <GridView AllowsColumnReorder="False">
+                                                                <GridView.Columns>
+                                                                    <GridViewColumn Header="Name" Width="180"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Name}"/>
+                                                                    <GridViewColumn Header="Cost" Width="50"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                </GridView.Columns>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
 
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
@@ -3225,15 +3270,24 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <DataGrid ItemsSource="{Binding EBMSpiritualPerkList}"
-                                                              SelectedItem="{Binding EBMSpiritualPerkSelection}"
+                                                    <ListView ItemsSource="{Binding EBMSpiritualPerkList}"
+                                                              SelectedItem="{Binding EBMSpiritualPerkSelection, Mode=OneWayToSource}"
                                                               SelectedIndex="{Binding EBMSpiritualPerkIndex}"
+                                                              Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
-                                                        <DataGrid.Columns>
-                                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                                                            <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" IsReadOnly="True"/>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
+                                                        <ListView.View>
+                                                            <GridView AllowsColumnReorder="False">
+                                                                <GridView.Columns>
+                                                                    <GridViewColumn Header="Name" Width="180"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Name}"/>
+                                                                    <GridViewColumn Header="Cost" Width="50"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                </GridView.Columns>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
 
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
@@ -3399,15 +3453,24 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <DataGrid ItemsSource="{Binding EBMSkillPerkList}"
-                                                              SelectedItem="{Binding EBMSkillPerkSelection}"
+                                                    <ListView ItemsSource="{Binding EBMSkillPerkList}"
+                                                              SelectedItem="{Binding EBMSkillPerkSelection, Mode=OneWayToSource}"
                                                               SelectedIndex="{Binding EBMSkillPerkIndex}"
+                                                              Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
-                                                        <DataGrid.Columns>
-                                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                                                            <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" IsReadOnly="True"/>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
+                                                        <ListView.View>
+                                                            <GridView AllowsColumnReorder="False">
+                                                                <GridView.Columns>
+                                                                    <GridViewColumn Header="Name" Width="180"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Name}"/>
+                                                                    <GridViewColumn Header="Cost" Width="50"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                </GridView.Columns>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
 
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
@@ -3573,15 +3636,24 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <DataGrid ItemsSource="{Binding EBMSupernaturalPerkList}"
-                                                              SelectedItem="{Binding EBMSupernaturalPerkSelection}"
+                                                    <ListView ItemsSource="{Binding EBMSupernaturalPerkList}"
+                                                              SelectedItem="{Binding EBMSupernaturalPerkSelection, Mode=OneWayToSource}"
                                                               SelectedIndex="{Binding EBMSupernaturalPerkIndex}"
+                                                              Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
-                                                        <DataGrid.Columns>
-                                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                                                            <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" IsReadOnly="True"/>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
+                                                        <ListView.View>
+                                                            <GridView AllowsColumnReorder="False">
+                                                                <GridView.Columns>
+                                                                    <GridViewColumn Header="Name" Width="180"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Name}"/>
+                                                                    <GridViewColumn Header="Cost" Width="50"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                </GridView.Columns>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
 
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
@@ -3725,8 +3797,6 @@
                                                             </StackPanel>
                                                         </GroupBox>
                                                     </StackPanel>
-
-
                                                 </Grid>
                                             </GroupBox>
                                         </Grid>
@@ -3747,15 +3817,24 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <DataGrid ItemsSource="{Binding EBMItemPerkList}"
-                                                              SelectedItem="{Binding EBMItemPerkSelection}"
+                                                    <ListView ItemsSource="{Binding EBMItemPerkList}"
+                                                              SelectedItem="{Binding EBMItemPerkSelection, Mode=OneWayToSource}"
                                                               SelectedIndex="{Binding EBMItemPerkIndex}"
+                                                              Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
-                                                        <DataGrid.Columns>
-                                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                                                            <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" IsReadOnly="True"/>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
+                                                        <ListView.View>
+                                                            <GridView AllowsColumnReorder="False">
+                                                                <GridView.Columns>
+                                                                    <GridViewColumn Header="Name" Width="180"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Name}"/>
+                                                                    <GridViewColumn Header="Cost" Width="50"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                </GridView.Columns>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
 
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
@@ -3921,15 +4000,24 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <DataGrid ItemsSource="{Binding EBMCompanionPerkList}"
-                                                              SelectedItem="{Binding EBMCompanionPerkSelection}"
+                                                    <ListView ItemsSource="{Binding EBMCompanionPerkList}"
+                                                              SelectedItem="{Binding EBMCompanionPerkSelection, Mode=OneWayToSource}"
                                                               SelectedIndex="{Binding EBMCompanionPerkIndex}"
+                                                              Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
-                                                        <DataGrid.Columns>
-                                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                                                            <DataGridTextColumn Header="Cost" Binding="{Binding Cost}" Width="*" IsReadOnly="True"/>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
+                                                        <ListView.View>
+                                                            <GridView AllowsColumnReorder="False">
+                                                                <GridView.Columns>
+                                                                    <GridViewColumn Header="Name" Width="180"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Name}"/>
+                                                                    <GridViewColumn Header="Cost" Width="50"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                </GridView.Columns>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
 
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
@@ -4095,15 +4183,24 @@
                                                         <RowDefinition Height="*"/>
                                                     </Grid.RowDefinitions>
 
-                                                    <DataGrid ItemsSource="{Binding EBMDrawbackList}"
-                                                              SelectedItem="{Binding EBMDrawbackSelection}"
+                                                    <ListView ItemsSource="{Binding EBMDrawbackList}"
+                                                              SelectedItem="{Binding EBMDrawbackSelection, Mode=OneWayToSource}"
                                                               SelectedIndex="{Binding EBMDrawbackIndex}"
+                                                              Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
-                                                        <DataGrid.Columns>
-                                                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                                                            <DataGridTextColumn Header="Drawback" Binding="{Binding Value}" Width="*" IsReadOnly="True"/>
-                                                        </DataGrid.Columns>
-                                                    </DataGrid>
+                                                        <ListView.View>
+                                                            <GridView AllowsColumnReorder="False">
+                                                                <GridView.Columns>
+                                                                    <GridViewColumn Header="Name" Width="180"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Name}"/>
+                                                                    <GridViewColumn Header="Value" Width="50"
+                                                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                                    DisplayMemberBinding="{Binding Value}"/>
+                                                                </GridView.Columns>
+                                                            </GridView>
+                                                        </ListView.View>
+                                                    </ListView>
 
                                                     <Grid Grid.Row="1">
                                                         <Grid.ColumnDefinitions>
@@ -4170,13 +4267,21 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <DataGrid ItemsSource="{Binding BodyModAdditionList}"
-                                          SelectedItem="{Binding BodyModAdditionSelection}"
-                                          SelectedIndex="{Binding BodyModAdditionSelectionIndex}">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding Name, ValidatesOnNotifyDataErrors=True}" Width="2*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                <ListView ItemsSource="{Binding BodyModAdditionList}"
+                                          SelectedItem="{Binding BodyModAdditionSelection, Mode=OneWayToSource}"
+                                          SelectedIndex="{Binding BodyModAdditionSelectionIndex}"
+                                          Width="600" Height="650" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                          Margin="0,5,0,0">
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="600"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
 
                                 <GroupBox Header="Purchase Details" Grid.Column="1">
                                     <Grid>

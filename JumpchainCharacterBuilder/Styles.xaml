@@ -35,21 +35,15 @@
     </Style>
 
     <DataTemplate x:Key="GridViewDefaultColumn">
-        <DockPanel>
-            <TextBlock Style="{DynamicResource GridViewText}"/>
-        </DockPanel>
+        <TextBlock Style="{DynamicResource GridViewText}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="GridViewNameColumn">
-        <DockPanel>
-            <TextBlock Text="{Binding Path=Name}" Style="{DynamicResource GridViewText}"/>
-        </DockPanel>
+        <TextBlock Text="{Binding Path=Name}" Style="{DynamicResource GridViewText}"/>
     </DataTemplate>
 
     <DataTemplate x:Key="GridViewDescriptionColumn">
-        <DockPanel>
-            <TextBlock Text="{Binding Path=Description}" Style="{DynamicResource GridViewText}"/>
-        </DockPanel>
+        <TextBlock Text="{Binding Path=Description}" Style="{DynamicResource GridViewText}"/>
     </DataTemplate>
 
     <Style x:Key="GridViewText"
@@ -209,11 +203,6 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type StackPanel}">
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="VerticalAlignment" Value="Top"/>
-    </Style>
-    
     <ControlTemplate x:Key="BudgetPanel"
                      TargetType="{x:Type ContentControl}">
         <ControlTemplate.Resources>
