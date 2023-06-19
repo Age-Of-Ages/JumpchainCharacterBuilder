@@ -1781,16 +1781,27 @@ namespace JumpchainCharacterBuilder.ViewModel
         [RelayCommand]
         private void NewPurchase()
         {
+            Purchase purchase;
+
             if (PurchaseTypeSelection.IsItemType)
             {
-                JumpSelection.Build[CharacterSelectionIndex].Purchase.Add(new("New Purchase", PurchaseTypeSelectionIndex, "Other Item"));
+                purchase = new("New Purchase", PurchaseTypeSelectionIndex, "Other Item");
+
+                JumpSelection.Build[CharacterSelectionIndex].Purchase.Add(purchase);
+                PurchaseList[purchase.TypeIndex].Add(purchase);
             }
             else
             {
-                JumpSelection.Build[CharacterSelectionIndex].Purchase.Add(new("New Purchase", PurchaseTypeSelectionIndex, "Other Perk"));
+                purchase = new("New Purchase", PurchaseTypeSelectionIndex, "Other Perk");
+
+                JumpSelection.Build[CharacterSelectionIndex].Purchase.Add(purchase);
+                PurchaseList[purchase.TypeIndex].Add(purchase);
             }
 
-            LoadAllPurchaseLists();
+            PurchaseSelection = CurrentLoadedPurchaseList.Last();
+            LoadCurrentPurchaseData();
+
+            Budget = SetBudget(PurchaseTypeList[PurchaseTypeSelectionIndex]);
 
             DeletePurchaseCommand.NotifyCanExecuteChanged();
         }

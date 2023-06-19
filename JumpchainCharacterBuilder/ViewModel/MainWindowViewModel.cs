@@ -2,13 +2,16 @@
 using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
+using System;
+using System.Linq;
+using System.Windows.Shell;
+using System.Xml.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
         // TODO - Implement themes.
-        // TODO - Implement About window
         // TODO - (Eventually) make the whole UI dynamic.
         #region Fields
         [ObservableProperty]
