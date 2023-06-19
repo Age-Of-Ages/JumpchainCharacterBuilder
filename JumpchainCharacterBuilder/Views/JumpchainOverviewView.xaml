@@ -20,15 +20,26 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <DataGrid x:Name="JumpListDataGrid" ItemsSource="{Binding JumpList}"
-                  SelectedItem="{Binding JumpSelection}"
+        <ListView ItemsSource="{Binding JumpList}"
+                  SelectedItem="{Binding JumpSelection, Mode=OneWayToSource}"
                   SelectedIndex="{Binding JumpSelectionIndex}">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="#" Binding="{Binding JumpNumber}" Width="*" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="4*"/>
-                <DataGridTextColumn Header="Duration (Years)" Binding="{Binding DurationYears}" Width="3*" IsReadOnly="True"/>
-            </DataGrid.Columns>
-        </DataGrid>
+            <ListView.View>
+                <GridView AllowsColumnReorder="False">
+                    <GridView.Columns>
+                        <GridViewColumn Header="#" Width="30"
+                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                DisplayMemberBinding="{Binding JumpNumber}"/>
+                        <GridViewColumn Header="Name" Width="145" 
+                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Duration (Years)" Width="90" 
+                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                DisplayMemberBinding="{Binding DurationYears}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -139,16 +150,26 @@
                         </Grid>
                     </DockPanel>
 
-                    <DataGrid x:Name="OriginDetailConfigurator" Grid.Row="2" Margin="3,5,3,0"
-                              ItemsSource="{Binding MiscOriginDetailList}"
-                              SelectedItem="{Binding MiscOriginDetailSelection}"
-                              SelectedIndex="{Binding MiscOriginDetailIndex}">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Type" Width="2*" Binding="{Binding Category}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Name" Width="3*" Binding="{Binding Name}"/>
-                            <DataGridTextColumn Header="Cost" Width="*" Binding="{Binding Cost}" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                    <ListView ItemsSource="{Binding MiscOriginDetailList}"
+                              SelectedItem="{Binding MiscOriginDetailSelection, Mode=OneWayToSource}"
+                              SelectedIndex="{Binding MiscOriginDetailIndex}"
+                              Grid.Row="2" Margin="3,5,3,0">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Type" Width="65"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Category}"/>
+                                    <GridViewColumn Header="Name" Width="95" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Cost" Width="40" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <GroupBox Header="Details" Grid.Column="1" Grid.RowSpan="5">
                         <Grid>
@@ -215,16 +236,24 @@
                         </StackPanel>
                     </DockPanel>
 
-                    <DataGrid ItemsSource="{Binding CurrentLoadedPurchaseList}"
-                              SelectedItem="{Binding PurchaseSelection}"
+                    <ListView ItemsSource="{Binding CurrentLoadedPurchaseList}"
+                              SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding PurchaseSelectionIndex}"
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                            <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="150"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Cost" Width="70" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
@@ -414,16 +443,24 @@
                             DockPanel.Dock="Top" Margin="0,5,0,0"/>
                     </DockPanel>
 
-                    <DataGrid ItemsSource="{Binding ImportOptionList}"
-                              SelectedItem="{Binding ImportOptionSelection}"
+                    <ListView ItemsSource="{Binding ImportOptionList}"
+                              SelectedItem="{Binding ImportOptionSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding ImportOptionSelectionIndex}"
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                            <DataGridTextColumn Header="Cost" Binding="{Binding DisplayCost}" Width="*" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="150"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Cost" Width="70" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
@@ -492,16 +529,31 @@
 
                             <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Imported Companions"/>
-                                <DataGrid ItemsSource="{Binding ImportCharacterList}" 
-                                          SelectedItem="{Binding ImportCharacterSelection}"
+
+                                <ListView ItemsSource="{Binding ImportCharacterList}"
+                                          SelectedItem="{Binding ImportCharacterSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding ImportCharacterIndex}"
                                           Height="250">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Name" Binding="{Binding CompanionName}" Width="2*"/>
-                                        <DataGridCheckBoxColumn Header="Imported" Binding="{Binding CompanionSelected}" Width="*"/>
-                                        <DataGridTextColumn Header="Stipend" Binding="{Binding CompanionOptionValue}" Width="*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                    <ListView.View>
+                                        <GridView AllowsColumnReorder="False">
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" Width="100"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding CompanionName}"/>
+                                                <GridViewColumn Header="Imported" Width="70">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <CheckBox IsChecked="{Binding CompanionSelected}"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="Stipend" Width="70" 
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding CompanionOptionValue}"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </StackPanel>
 
                             <GroupBox Header="Import Details" Grid.Row="2" Grid.Column="2" 
@@ -547,16 +599,24 @@
                             DockPanel.Dock="Top" Margin="0,5,0,0"/>
                     </DockPanel>
 
-                    <DataGrid ItemsSource="{Binding DrawbackList}"
-                              SelectedItem="{Binding DrawbackSelection}"
+                    <ListView ItemsSource="{Binding DrawbackList}"
+                              SelectedItem="{Binding DrawbackSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding DrawbackSelectionIndex}"
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                            <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="150"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Value" Width="70" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Value}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
@@ -571,17 +631,17 @@
                         </Grid.RowDefinitions>
 
                         <Button Content="New Drawback" 
-                        Command="{Binding NewDrawbackCommand}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Style="{DynamicResource DataGridButton}"/>
+                                Command="{Binding NewDrawbackCommand}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"/>
 
                         <Button Content="Delete Drawback"
-                        Command="{Binding DeleteDrawbackCommand}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Style="{DynamicResource DataGridButton}"
-                        Grid.Column="2"/>
+                                Command="{Binding DeleteDrawbackCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="2"/>
                     </Grid>
 
                     <GroupBox Header="Drawback Details" Grid.Column="1" Grid.RowSpan="5">
@@ -651,16 +711,24 @@
                             DockPanel.Dock="Top" Margin="0,5,0,0"/>
                     </DockPanel>
 
-                    <DataGrid ItemsSource="{Binding ScenarioList}"
-                              SelectedItem="{Binding ScenarioSelection}"
+                    <ListView ItemsSource="{Binding ScenarioList}"
+                              SelectedItem="{Binding ScenarioSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding ScenarioSelectionIndex}"
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="3*"/>
-                            <DataGridTextColumn Header="Value" Binding="{Binding Value}" Width="*" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="150"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
+                                    <GridViewColumn Header="Value" Width="70" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Value}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="4">
                         <Grid.ColumnDefinitions>
@@ -675,17 +743,17 @@
                         </Grid.RowDefinitions>
 
                         <Button Content="New Scenario" 
-                        Command="{Binding NewScenarioCommand}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Style="{DynamicResource DataGridButton}"/>
+                                Command="{Binding NewScenarioCommand}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"/>
 
                         <Button Content="Delete Scenario"
-                        Command="{Binding DeleteScenarioCommand}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Style="{DynamicResource DataGridButton}"
-                        Grid.Column="2"/>
+                                Command="{Binding DeleteScenarioCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="2"/>
                     </Grid>
 
                     <GroupBox Header="Scenario Details" Grid.Column="1" Grid.RowSpan="5">
@@ -751,15 +819,21 @@
 
                     <StackPanel Grid.Row="1">
                         <TextBlock Text="Available Origins"/>
-                        <DataGrid x:Name="OriginConfigureGrid"
-                                  ItemsSource="{Binding OriginList}"
-                                  SelectedItem="{Binding OriginEditSelection}"
+
+                        <ListView ItemsSource="{Binding OriginList}"
+                                  SelectedItem="{Binding OriginEditSelection, Mode=OneWayToSource}"
                                   SelectedIndex="{Binding OriginEditSelectionIndex}"
                                   Height="250" Width="225">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Origin" Width="*" Binding="{Binding Name}"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                            <ListView.View>
+                                <GridView AllowsColumnReorder="False">
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Origin" Width="215"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </StackPanel>
 
                     <Grid Grid.Row="2">
@@ -967,16 +1041,26 @@
                                VerticalAlignment="Bottom" 
                                HorizontalAlignment="Left"/>
 
-                    <DataGrid ItemsSource="{Binding CurrencyList}"
-                              SelectedItem="{Binding CurrencySelection}"
+                    <ListView ItemsSource="{Binding CurrencyList}"
+                              SelectedItem="{Binding CurrencySelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding CurrencySelectionIndex}"
                               Grid.Row="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding CurrencyName}" Width="1.5*"/>
-                            <DataGridTextColumn Header="Abbreviation" Binding="{Binding CurrencyAbbreviation}" Width="1.5*"/>
-                            <DataGridTextColumn Header="Budget" Binding="{Binding CurrencyBudget}" Width="*" IsReadOnly="True"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="85"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding CurrencyName}"/>
+                                    <GridViewColumn Header="Abbreviation" Width="75" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding CurrencyAbbreviation}"/>
+                                    <GridViewColumn Header="Budget" Width="50" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding CurrencyBudget}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
@@ -991,17 +1075,17 @@
                         </Grid.RowDefinitions>
 
                         <Button Content="New Currency" 
-                        Command="{Binding NewCurrencyCommand}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Style="{DynamicResource DataGridButton}"/>
+                                Command="{Binding NewCurrencyCommand}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"/>
 
                         <Button Content="Delete Currency"
-                        Command="{Binding DeleteCurrencyCommand}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Style="{DynamicResource DataGridButton}"
-                        Grid.Column="2"/>
+                                Command="{Binding DeleteCurrencyCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="2"/>
                     </Grid>
 
                     <GroupBox Header="Currency details" Grid.Row="4">
@@ -1031,15 +1115,20 @@
                     <ContentControl x:Name="StipendCharacterSelector" Template="{DynamicResource CharacterSelector}"
                                     Grid.Row="1" Grid.Column="1"/>
 
-                    <DataGrid ItemsSource="{Binding CurrencyList}"
-                              SelectedItem="{Binding CurrencySelection}"
+                    <ListView ItemsSource="{Binding CurrencyList}"
+                              SelectedItem="{Binding CurrencySelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding StipendSelectionIndex}"
-                              Grid.Row="2"
-                              Grid.Column="1">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding CurrencyName}" Width="*"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                              Grid.Row="2" Grid.Column="1">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="210"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding CurrencyName}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <StackPanel Grid.Row="3" Grid.Column="1"
                                 HorizontalAlignment="Center"
@@ -1075,16 +1164,22 @@
                                Grid.Column="2"
                                VerticalAlignment="Bottom" 
                                HorizontalAlignment="Left"/>
-                    
-                    <DataGrid x:Name="PurchaseTypeDataGrid" 
-                              ItemsSource="{Binding PurchaseTypeList}"
-                              SelectedItem="{Binding PurchaseTypeSelection}"
+
+                    <ListView ItemsSource="{Binding PurchaseTypeList}"
+                              SelectedItem="{Binding PurchaseTypeSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding PurchaseTypeSelectionIndex}"
-                              Grid.Row="2" Grid.Column="2">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="Name" Binding="{Binding Type}" Width="*"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
+                              Grid.Row="2" Grid.Column="2"
+                              x:Name="PurchaseTypeDataGrid">
+                        <ListView.View>
+                            <GridView AllowsColumnReorder="False">
+                                <GridView.Columns>
+                                    <GridViewColumn Header="Name" Width="210"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Type}"/>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
 
                     <Grid Grid.Row="3" Grid.Column="2">
                         <Grid.ColumnDefinitions>
@@ -1099,17 +1194,17 @@
                         </Grid.RowDefinitions>
 
                         <Button Content="New Type" 
-                        Command="{Binding NewPurchaseTypeCommand}"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Style="{DynamicResource DataGridButton}"/>
+                                Command="{Binding NewPurchaseTypeCommand}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"/>
 
                         <Button Content="Delete Type"
-                        Command="{Binding DeletePurchaseTypeCommand}"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Style="{DynamicResource DataGridButton}"
-                        Grid.Column="2"/>
+                                Command="{Binding DeletePurchaseTypeCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="2"/>
                     </Grid>
 
                     <GroupBox Header="Purchase Type details" Grid.Row="4" Grid.Column="2">
