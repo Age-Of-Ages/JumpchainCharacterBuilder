@@ -48,5 +48,11 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private string _theme = "Light";
+
+        /// <summary>
+        /// Represents the link to the Github repository.
+        /// </summary>
+        [ObservableProperty]
+        private string _githubUrl = "";
     }
 }

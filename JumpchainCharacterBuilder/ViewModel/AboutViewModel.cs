@@ -19,6 +19,9 @@ namespace JumpchainCharacterBuilder.ViewModel
     {
         #region Fields
         [ObservableProperty]
+        private AppSettingsModel _appSettings = new();
+
+        [ObservableProperty]
         private string _versionString = "";
 
         [ObservableProperty]
@@ -53,6 +56,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Constructor
         public AboutViewModel()
         {
+            Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
+            {
+                AppSettings = m.Value;
+            });
+
             Assembly? assembly = Assembly.GetEntryAssembly();
 
             if (assembly != null)
