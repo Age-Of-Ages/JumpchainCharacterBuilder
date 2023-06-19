@@ -871,7 +871,206 @@
                             </Grid>
                         </TabItem>
                         <TabItem Header="Rank Descriptions">
-                            
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <GroupBox Header="Rank Explanation">
+                                    <StackPanel Margin="5,3,0,0">
+                                        <TextBlock Text="Ranks are split into a set of four tiers, each representing a general bracket of capabilities. The four tiers are as follows: Human, Extraordinary, Mythic, and Cosmic."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="These tiers are split into a standard letter grading system, with each tier past Human having a special prefix to indicate the tier."
+                                                   TextWrapping="Wrap" Margin="0,10,0,0"/>
+
+                                        <TextBlock Text="Beyond simply moving from rank to rank, it is also possible to gain 'plus ranks', which represent more granular progress between ranks. Each rank has three corrosponding plus ranks, and will progress to the next rank rather than achieving a fourth plus rank."
+                                                   TextWrapping="Wrap" Margin="0,10,0,0"/>
+
+                                        <TextBlock Text="The difficulty of achieving a plus rank through natural means increases exponentially as the attribute's rank grows. It will generally be unfeasible to develop an attribute beyond the Extraordinary tier by natural means, at least without an uncapper and training boosters."
+                                                   TextWrapping="Wrap" Margin="0,10,0,0"/>
+
+                                        <TextBlock Text="Furthermore, breaching the boundary between tiers is more difficult than any unaided training or Perks within that tier could realistically accomplish. Going from peak-peak-human to truly, genuinely superhuman requires something special, and the gap only grows for later tiers."
+                                                   TextWrapping="Wrap" Margin="0,10,0,0"/>
+                                    </StackPanel>
+                                </GroupBox>
+                                
+                                <GroupBox Header="Human" Grid.Column="1">
+                                    <StackPanel Margin="0,3,0,0">
+                                        <TextBlock Text="Attributes in this tier are within what is generally agreed to be typical human capabilities."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="F" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="The minimum level of capability that one can have while still being said to possess the attribute at all."
+                                                   TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="A modest amount of capability in the listed attribute. Nothing special, but better than nothing."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="D" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Below average for the listed attribute, but not by much."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="C" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Average human capability in the listed attribute. This is generally where most people will fall for most attributes."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="B" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="You're well beyond the average by the time you reach this point. For something like physical strength, professional weightlifters would be in this rank."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="A" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="The peak of human capability. Although it is theoretically possible to exceed this limit, even a single plus ranking would likely take multiple lifetimes. Reaching the maximum of A+++ would be a truly incredible feat."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Extraordinary" Grid.Column="2">
+                                    <StackPanel Margin="0,3,0,0">
+                                        <TextBlock Text="Attributes in this tier are explicitly beyond human capability."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="EX-F" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="This level of ability is far above what a normal human can achieve. Mere mortals could not hope to reach this level in the listed attribute."
+                                                   TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="For a given physical attribute, this is the point where you start to exceed what even the more specialized animal senses can match."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-D" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Mundane natural organisms can't hope to match your capabilities in this attribute."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-C" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="As far as enhancements to direct attributes go, the average superhero would be unlikely to exceed your level of ability in this attribute."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-B" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Even among the realm of cultural heroes, your ability in this attribute is matched by few."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-A" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="The listed attribute has achieved legendary status. The plus ranks beyond this point represent the very limits of what is physically possible to attain. Only something truly special could push you further beyond..."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Mythic" Grid.Column="3">
+                                    <StackPanel Margin="0,3,0,0">
+                                        <TextBlock Text="Attributes in this tier are within the realm of godlike entities -- the lesser gods, anyways."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="S-F" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Anyone functioning on traditional physics would be hard pressed to even approach your level with this attribute."
+                                                   TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Your feats in this attribute are solidly godlike. Lifting a mountain wouldn't be out of the question for Strength at this rank, or even that difficult."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-D" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Even for more exotic and potent superpowers, matching you in this attribute would be outright miraculous."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-C" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="An incredible level of ability in the listed attribute, enough to enact miracles of your own within the bounds of the listed attribute."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-B" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="You quickly approach the limits of what could be considered a 'lesser' god."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-A" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="This is it, the peak of myth and legend. Very, very few can even see the peak you stand upon. You're not quite in the Big Leagues yet, but you're solidly in the middle of the godly range."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Cosmic" Grid.Column="4">
+                                    <StackPanel Margin="0,3,0,0">
+                                        <TextBlock Text="Even most gods can't claim this level of power. Attributes at this tier are more on par with creator deity levels of power. It is essentially pointless to attempt to describe attributes with these ranks."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="Z-F" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Limitations and the laws of physics fade away like so much mist before the glory of this attribute."
+                                                   TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Boundaries become meaningless, Strength of this rank can lift the galaxies themselves."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-D" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="The listed attribute exceeds all forms of measurement, likely limited only by your imagination."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-C" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="You're solidly in the middle of the 'creator deity' range of ability."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-B" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Most creator deities can't claim this rank on their own."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-A" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="This is the absolute zenith, describing your attribute would likely require the 'omni-' prefix. Attempting to describe a level of power beyond this rank would be an exercise in futility."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>
@@ -1370,7 +1569,206 @@
                             </Grid>
                         </TabItem>
                         <TabItem Header="Rank Descriptions">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
+                                <GroupBox Header="Rank Explanation">
+                                    <StackPanel Margin="5,3,0,0">
+                                        <TextBlock Text="Ranks are split into a set of four tiers, each representing a general bracket of capabilities. The four tiers are as follows: Human, Extraordinary, Mythic, and Cosmic."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="These tiers are split into a standard letter grading system, with each tier past Human having a special prefix to indicate the tier."
+                                                   TextWrapping="Wrap" Margin="0,10,0,0"/>
+
+                                        <TextBlock Text="Beyond simply moving from rank to rank, it is also possible to gain 'plus ranks', which represent more granular progress between ranks. Each rank has three corrosponding plus ranks, and will progress to the next rank rather than achieving a fourth plus rank."
+                                                   TextWrapping="Wrap" Margin="0,10,0,0"/>
+
+                                        <TextBlock Text="The difficulty of achieving a plus rank through natural means increases exponentially as the skill's rank grows. It will generally be unfeasible to develop a skill beyond the Extraordinary tier by natural means, at least without an uncapper and training boosters."
+                                                   TextWrapping="Wrap" Margin="0,10,0,0"/>
+
+                                        <TextBlock Text="Furthermore, breaching the boundary between tiers is more difficult than any unaided training or Perks within that tier could realistically accomplish. Going from peak-peak-human to truly, genuinely superhuman requires something special, and the gap only grows for later tiers."
+                                                   TextWrapping="Wrap" Margin="0,10,0,0"/>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Human" Grid.Column="1">
+                                    <StackPanel Margin="0,3,0,0">
+                                        <TextBlock Text="Skills in this tier are within what is generally agreed to be typical human capabilities."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="F" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="A dabbling level of skill, equal to someone that just started practicing said skill."
+                                                   TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="This is the level of someone that's gained a modest amount of skill in the area."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="D" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Most hobbyists are in this rank, and it represents an adequate level of skill."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="C" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="A professional level of skill, equal to what someone with education and experience in the area might have."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="B" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Expert-level proficiency, enough that most would consider you to have mastered the skill."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="A" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="The peak of human skill. Although it is theoretically possible to exceed this limit, even a single plus ranking would likely take multiple lifetimes. Reaching the maximum of A+++ would be a truly incredible feat."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Extraordinary" Grid.Column="2">
+                                    <StackPanel Margin="0,3,0,0">
+                                        <TextBlock Text="Skills in this tier are explicitly beyond human capability."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="EX-F" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="This level of skill is far above what a normal human can achieve. Mere mortals could not hope to reach this level of proficiency."
+                                                   TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="In regards to the listed skill, your efforts would likely be considered outright magical by most."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-D" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Mundane natural organisms can't hope to match your skill in this area."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-C" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Your level of skill in this area is so great that it seems like a legitimate superpower."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-B" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Even among the realm of cultural heroes, your skill in this area is matched by few."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="EX-A" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="The listed skill has achieved legendary status. The plus ranks beyond this point represent the very limits of what is physically possible to attain. Only something truly special could push you further beyond..."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Mythic" Grid.Column="3">
+                                    <StackPanel Margin="0,3,0,0">
+                                        <TextBlock Text="Skills in this tier are within the realm of godlike entities -- the lesser gods, anyways."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="S-F" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Anyone functioning on traditional physics would be hard pressed to even approach your level of skill."
+                                                   TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Your feats in this area are solidly godlike. Crafting legendary artifacts wouldn't be out of the question, or even terribly difficult."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-D" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Even for more exotic and potent superpowers, matching you in this skill would be outright miraculous."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-C" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="An incredible level of experience with the listed skill, enough to enact miracles of your own within its bounds."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-B" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="You quickly approach the limits of what could be considered a 'lesser' god."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="S-A" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="This is it, the peak of myth and legend. Very, very few can even see the peak you stand upon. You're not quite in the Big Leagues yet, but you're solidly in the middle of the godly range."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Cosmic" Grid.Column="4">
+                                    <StackPanel Margin="0,3,0,0">
+                                        <TextBlock Text="Even most gods can't claim this level of power. Skills at this tier are more on par with creator deity levels of power. It is essentially pointless to attempt to describe skills with these ranks."
+                                                   TextWrapping="Wrap"/>
+
+                                        <TextBlock Text="Z-F" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Limitations and the laws of physics fade away like so much mist before the glory of this skill."
+                                                   TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-E" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Boundaries become meaningless, crafting entire galaxies is feasible at this rank."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-D" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="The listed skill exceeds all forms of measurement, likely limited only by your imagination."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-C" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="You're solidly in the middle of the 'creator deity' range of skill."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-B" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="Most creator deities can't claim this rank on their own."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+
+                                        <TextBlock Text="Z-A" HorizontalAlignment="Center" Margin="0,10,0,0"/>
+                                        <Border BorderBrush="Black" BorderThickness="1">
+                                            <TextBlock Text="This is the absolute zenith, beyond the point where mere words could be sufficient. Attempting to describe a level of skill beyond this rank would be an exercise in futility."
+                                                       TextWrapping="Wrap"/>
+                                        </Border>
+                                    </StackPanel>
+                                </GroupBox>
+                            </Grid>
                         </TabItem>
                     </TabControl>
                 </Grid>

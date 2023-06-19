@@ -18,7 +18,6 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class JumpchainOverviewViewModel : ViewModelBase
     {
         #region Fields
-
         private readonly IDialogService _dialogService;
 
         [ObservableProperty]
