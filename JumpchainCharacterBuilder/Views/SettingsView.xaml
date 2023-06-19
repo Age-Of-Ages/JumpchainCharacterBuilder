@@ -14,7 +14,7 @@
         Background="white" 
         FontFamily="Lato" 
         FontSize="12" 
-        ResizeMode="CanMinimize">
+        ResizeMode="NoResize">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>

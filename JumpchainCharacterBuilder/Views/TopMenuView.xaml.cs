@@ -37,5 +37,12 @@ namespace JumpchainCharacterBuilder.Views
 
             settingsView.ShowDialog();
         }
+
+        private void About_Click(object sender, RoutedEventArgs e)
+        {
+            AboutView aboutView = new();
+
+            aboutView.ShowDialog();
+        }
     }
 }

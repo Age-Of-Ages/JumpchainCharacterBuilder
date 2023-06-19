@@ -56,6 +56,7 @@ namespace JumpchainCharacterBuilder
             services.AddTransient<StatisticsViewModel>();
             services.AddTransient<InputFormatterViewModel>();
             services.AddTransient<SettingsViewModel>();
+            services.AddTransient<AboutViewModel>();
 
             return services.BuildServiceProvider();
         }

@@ -1,0 +1,94 @@
+﻿<Window x:Class="JumpchainCharacterBuilder.Views.AboutView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JumpchainCharacterBuilder.Views"
+        xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
+        xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewModel:AboutViewModel, IsDesignTimeCreatable=True}"
+        Title="About" Height="400" Width="400"
+        Cursor="" 
+        WindowStyle="SingleBorderWindow" 
+        Background="white" 
+        FontFamily="Lato" 
+        FontSize="12" 
+        ResizeMode="NoResize">
+
+    <TabControl>
+        <TabItem Header="About">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Border BorderThickness="2" BorderBrush="Black">
+                    <TextBlock Text="Icon Placeholder" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                </Border>
+
+                <GroupBox Header="Program details" Grid.Column="1" Grid.ColumnSpan="2">
+                    <StackPanel Margin="5,3,0,0">
+                        <TextBlock Text="Jumpchain Character Builder"/>
+                        <TextBlock Text="{Binding VersionString}" Margin="0,5,0,0"/>
+                    </StackPanel>
+                </GroupBox>
+
+                <GroupBox Header="Made by" Grid.Row="1">
+                    <StackPanel Margin="5,3,0,0">
+                        <TextBlock Text="(Spacebattles)"/>
+                        <TextBlock Text="AgeOfAges"/>
+                        <TextBlock Text="(Github)" Margin="0,10,0,0"/>
+                        <TextBlock Text="Age-Of-Ages"/>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
+        </TabItem>
+        <TabItem Header="License">
+            <Grid>
+                <StackPanel Margin="5,3,0,0">
+                    <TextBlock Text="Program License"/>
+
+                    <TextBox Grid.Row="1" Text="{Binding JcbLicense}" IsReadOnly="True" Style="{DynamicResource LargeTextBox}"
+                             HorizontalAlignment="Stretch"
+                             Height="315"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Dependencies">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="2*"/>
+                </Grid.RowDefinitions>
+
+                <ListView ItemsSource="{Binding DependencyLicenses.Keys}"
+                          SelectedItem="{Binding DependencyLicenseSelection, Mode=OneWayToSource}">
+                    <ListView.View>
+                        <GridView AllowsColumnReorder="False">
+                            <GridView.Columns>
+                                <GridViewColumn Header="Dependency" Width="350"
+                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                DisplayMemberBinding="{Binding}"/>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <StackPanel Grid.Row="1" Margin="5,0,0,0">
+                    <TextBlock Text="License"/>
+                    <TextBox Text="{Binding DependencyLicenseString}" IsReadOnly="True" Style="{DynamicResource LargeTextBox}"
+                             HorizontalAlignment="Stretch"
+                             Height="200"/>
+                </StackPanel>
+            </Grid>
+        </TabItem>
+    </TabControl>
+</Window>

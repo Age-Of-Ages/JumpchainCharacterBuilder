@@ -83,6 +83,17 @@ namespace JumpchainCharacterBuilder
 
         }
 
+        public static List<string> ReadText(string filePath)
+        {
+            List<string> result = new();
+
+            if (FileAccess.CheckFileExists(filePath))
+            {
+                result = File.ReadLines(filePath).ToList();
+            }
+
+            return result;
+        }
 
         public static void WriteLog(List<string> lines)
         {

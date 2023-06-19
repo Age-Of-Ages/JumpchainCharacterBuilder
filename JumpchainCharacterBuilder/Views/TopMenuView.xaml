@@ -28,7 +28,7 @@
         <MenuItem Header="Settings" Click="Settings_Click"/>
         <MenuItem Header="Help">
             <MenuItem Header="Manual"/>
-            <MenuItem Header="About"/>
+            <MenuItem Header="About" Click="About_Click"/>
         </MenuItem>
     </Menu>
 </UserControl>
