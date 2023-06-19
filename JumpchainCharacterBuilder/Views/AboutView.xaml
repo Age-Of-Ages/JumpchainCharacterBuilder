@@ -38,6 +38,12 @@
                     <StackPanel Margin="5,3,0,0">
                         <TextBlock Text="Jumpchain Character Builder"/>
                         <TextBlock Text="{Binding VersionString}" Margin="0,5,0,0"/>
+                        <TextBlock Margin="0,5,0,0">
+                            <Hyperlink x:Name="Github_Hyperlink" NavigateUri="https://github.com/Age-Of-Ages/JumpchainCharacterBuilder" 
+                                       RequestNavigate="Github_RequestNavigate">
+                                Github Repository
+                            </Hyperlink>
+                        </TextBlock>
                     </StackPanel>
                 </GroupBox>
 
@@ -49,13 +55,6 @@
                         <TextBlock Text="Age-Of-Ages"/>
                     </StackPanel>
                 </GroupBox>
-
-                <TextBlock Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
-                    <Hyperlink x:Name="Github_Hyperlink" NavigateUri="https://github.com/Age-Of-Ages/JumpchainCharacterBuilder" 
-                               RequestNavigate="Github_RequestNavigate">
-                        Github Repository
-                    </Hyperlink>
-                </TextBlock>
             </Grid>
         </TabItem>
         <TabItem Header="License">
