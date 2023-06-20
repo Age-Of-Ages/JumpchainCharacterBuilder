@@ -373,7 +373,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 LoadedSave.PersonalReality.InvestmentRatio = value;
             }
-            
+
         }
 
         partial void OnSBBodyModBudgetChanged(int value)

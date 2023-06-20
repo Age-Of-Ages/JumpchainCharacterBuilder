@@ -1,17 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-using CommunityToolkit.Mvvm.Messaging;
-using JumpchainCharacterBuilder.Messages;
-using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {

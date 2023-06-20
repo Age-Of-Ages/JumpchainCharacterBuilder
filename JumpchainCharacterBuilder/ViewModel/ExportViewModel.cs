@@ -1067,7 +1067,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             int total;
             int jumps;
             int deposits;
-            
+
             switch (LoadedOptions.BodyModSetting)
             {
                 case Options.BodyModSupplements.Generic:

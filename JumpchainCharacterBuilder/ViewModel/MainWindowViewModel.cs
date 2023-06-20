@@ -2,10 +2,6 @@
 using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using System;
-using System.Linq;
-using System.Windows.Shell;
-using System.Xml.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {

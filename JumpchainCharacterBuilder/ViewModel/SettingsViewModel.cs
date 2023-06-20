@@ -1,14 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -61,7 +55,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Constructor
         public SettingsViewModel()
         {
-            AppSettings = Messenger.Send<SettingsRequestMessage>(); 
+            AppSettings = Messenger.Send<SettingsRequestMessage>();
             LoadSettings();
         }
         #endregion
