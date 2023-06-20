@@ -30,6 +30,10 @@
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
     </Style>
 
+    <Style TargetType="{x:Type ListView}">
+        <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+    </Style>
+
     <Style TargetType="{x:Type GridViewColumnHeader}">
         <Setter Property="IsHitTestVisible" Value="False"/>
     </Style>

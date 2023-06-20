@@ -126,7 +126,7 @@
                                           SelectedIndex="{Binding BasicsPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="545"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -148,7 +148,7 @@
                                           SelectedIndex="{Binding UtilitiesPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="545"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -170,7 +170,7 @@
                                           SelectedIndex="{Binding CosmeticPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="545"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -192,7 +192,7 @@
                                           SelectedIndex="{Binding FacilitiesPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="545"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -214,7 +214,7 @@
                                           SelectedIndex="{Binding ExtensionsPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="545"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -236,7 +236,7 @@
                                           SelectedIndex="{Binding EquipmentPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="545"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -258,7 +258,7 @@
                                           SelectedIndex="{Binding CompanionsPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="545"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -280,7 +280,7 @@
                                           SelectedIndex="{Binding MiscPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="545"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -380,7 +380,7 @@
                               SelectedIndex="{Binding AdditionSelectionIndex}"
                               Width="620" Height="700" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="620"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -435,7 +435,7 @@
                               Height="575" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top"
                               Grid.ColumnSpan="2">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="545"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"

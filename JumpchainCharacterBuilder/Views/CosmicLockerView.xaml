@@ -35,7 +35,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding WeaponsItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -53,7 +53,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding ArmorItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -71,7 +71,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding AccessoriesItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -89,7 +89,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding ClothingItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -107,7 +107,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding MiscEquipItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -125,7 +125,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding ToolsItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -143,7 +143,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding MaterialsItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -161,7 +161,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding FoodItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -179,7 +179,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding MediaItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -197,7 +197,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding WealthItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -215,7 +215,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding VehiclesItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -233,7 +233,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding PropertiesItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -251,7 +251,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding BusinessItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -269,7 +269,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding CreaturesItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -287,7 +287,7 @@
                               SelectedItem="{Binding ItemSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding OtherItemSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>

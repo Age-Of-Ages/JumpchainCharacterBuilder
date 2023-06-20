@@ -230,7 +230,7 @@
                               SelectedItem="{Binding CharacterAltFormSelection, Mode=OneWayToSource}"
                               SelectedIndex="{Binding CharacterAltFormSelectionIndex}">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -335,7 +335,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding PhysicalPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -353,7 +353,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding MentalPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -372,7 +372,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding SocialPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -391,7 +391,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding StealthPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -410,7 +410,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding MagicalPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -429,7 +429,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding SpiritualPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -448,7 +448,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding TechnologicalPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -467,7 +467,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding CraftingPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -486,7 +486,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding BlacksmithingPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -505,7 +505,7 @@
                                           SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
                                           SelectedIndex="{Binding MetaPerkSelectionIndex}">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -525,7 +525,7 @@
                                           SelectedIndex="{Binding OtherPerkSelectionIndex}"
                                           SelectionMode="Single">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="150"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
@@ -597,7 +597,7 @@
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Attribute Name" Width="150"
                                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -692,7 +692,7 @@
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Attribute Name" Width="150"
                                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -787,7 +787,7 @@
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Attribute Name" Width="150"
                                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1105,7 +1105,7 @@
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Skill Name" Width="150"
                                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1200,7 +1200,7 @@
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Skill Name" Width="150"
                                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1295,7 +1295,7 @@
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Skill Name" Width="150"
                                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1390,7 +1390,7 @@
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Skill Name" Width="150"
                                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1485,7 +1485,7 @@
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Skill Name" Width="150"
                                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1797,7 +1797,7 @@
                                       Width="300" Height="500"
                                       Margin="0,5,0,0">
                                 <ListView.View>
-                                    <GridView AllowsColumnReorder="False">
+                                    <GridView>
                                         <GridView.Columns>
                                             <GridViewColumn Header="Booster Name" Width="150"
                                                             CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1881,7 +1881,7 @@
                                               Width="300" Height="500"
                                               Margin="0,10,0,0">
                                         <ListView.View>
-                                            <GridView AllowsColumnReorder="False">
+                                            <GridView>
                                                 <GridView.Columns>
                                                     <GridViewColumn Header="Source Name" Width="120"
                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -2025,7 +2025,7 @@
                                           Width="600" Height="500" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                                           Margin="0,5,0,0">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="500"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -2121,7 +2121,7 @@
                                                               Width="185"
                                                               Height="155">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="60"/>
@@ -2219,7 +2219,7 @@
                                           Width="600" Height="500" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                                           Margin="0,5,0,0">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="500"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -2312,7 +2312,7 @@
                                           Width="600" Height="650" HorizontalAlignment="Left" VerticalAlignment="Top"
                                           Margin="0,5,0,0">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="600"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -2600,7 +2600,7 @@
                                                           Margin="5,5,0,0"
                                                           HorizontalAlignment="Left" VerticalAlignment="Top">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
                                                                 <GridViewColumn Header="Level" DisplayMemberBinding="{Binding AugmentLevel}"/>
@@ -2617,7 +2617,7 @@
                                                           Margin="5,5,0,0"
                                                           HorizontalAlignment="Left" VerticalAlignment="Top">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
                                                                 <GridViewColumn Header="Level" DisplayMemberBinding="{Binding AugmentLevel}"/>
@@ -2634,7 +2634,7 @@
                                                           Margin="5,5,0,0"
                                                           HorizontalAlignment="Left" VerticalAlignment="Top">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
                                                                 <GridViewColumn Header="Level" DisplayMemberBinding="{Binding AugmentLevel}"/>
@@ -2693,7 +2693,7 @@
                                                               Width="200"
                                                               Height="200">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                     <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -2799,7 +2799,7 @@
                                                   Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                   Margin="0,5,0,0">
                                             <ListView.View>
-                                                <GridView AllowsColumnReorder="False">
+                                                <GridView>
                                                     <GridView.Columns>
                                                         <GridViewColumn Header="Name" Width="90"
                                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -2887,7 +2887,7 @@
                                                               Width="200"
                                                               Height="200">
                                                     <ListView.View>
-                                                        <GridView AllowsColumnReorder="False">
+                                                        <GridView>
                                                             <GridView.Columns>
                                                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -2981,7 +2981,7 @@
                                           SelectedIndex="{Binding BodyModAdditionSelectionIndex}"
                                           Height="700" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="620"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -3125,7 +3125,7 @@
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" Width="180"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -3204,7 +3204,7 @@
                                                               Width="200"
                                                               Height="200">
                                                                 <ListView.View>
-                                                                    <GridView AllowsColumnReorder="False">
+                                                                    <GridView>
                                                                         <GridView.Columns>
                                                                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -3308,7 +3308,7 @@
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" Width="180"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -3387,7 +3387,7 @@
                                                               Width="200"
                                                               Height="200">
                                                                 <ListView.View>
-                                                                    <GridView AllowsColumnReorder="False">
+                                                                    <GridView>
                                                                         <GridView.Columns>
                                                                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -3491,7 +3491,7 @@
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" Width="180"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -3570,7 +3570,7 @@
                                                               Width="200"
                                                               Height="200">
                                                                 <ListView.View>
-                                                                    <GridView AllowsColumnReorder="False">
+                                                                    <GridView>
                                                                         <GridView.Columns>
                                                                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -3674,7 +3674,7 @@
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" Width="180"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -3753,7 +3753,7 @@
                                                               Width="200"
                                                               Height="200">
                                                                 <ListView.View>
-                                                                    <GridView AllowsColumnReorder="False">
+                                                                    <GridView>
                                                                         <GridView.Columns>
                                                                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -3857,7 +3857,7 @@
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" Width="180"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -3936,7 +3936,7 @@
                                                               Width="200"
                                                               Height="200">
                                                                 <ListView.View>
-                                                                    <GridView AllowsColumnReorder="False">
+                                                                    <GridView>
                                                                         <GridView.Columns>
                                                                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -4040,7 +4040,7 @@
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" Width="180"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -4119,7 +4119,7 @@
                                                               Width="200"
                                                               Height="200">
                                                                 <ListView.View>
-                                                                    <GridView AllowsColumnReorder="False">
+                                                                    <GridView>
                                                                         <GridView.Columns>
                                                                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -4221,7 +4221,7 @@
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" Width="180"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -4300,7 +4300,7 @@
                                                               Width="200"
                                                               Height="200">
                                                                 <ListView.View>
-                                                                    <GridView AllowsColumnReorder="False">
+                                                                    <GridView>
                                                                         <GridView.Columns>
                                                                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -4404,7 +4404,7 @@
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" Width="180"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -4483,7 +4483,7 @@
                                                               Width="200"
                                                               Height="200">
                                                                 <ListView.View>
-                                                                    <GridView AllowsColumnReorder="False">
+                                                                    <GridView>
                                                                         <GridView.Columns>
                                                                             <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                                             <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -4587,7 +4587,7 @@
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
                                                         <ListView.View>
-                                                            <GridView AllowsColumnReorder="False">
+                                                            <GridView>
                                                                 <GridView.Columns>
                                                                     <GridViewColumn Header="Name" Width="180"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -4671,7 +4671,7 @@
                                           Width="600" Height="650" HorizontalAlignment="Left" VerticalAlignment="Top"
                                           Margin="0,5,0,0">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="600"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"

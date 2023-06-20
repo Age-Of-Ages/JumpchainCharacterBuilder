@@ -78,7 +78,7 @@
                 <ListView ItemsSource="{Binding DependencyLicenses.Keys}"
                           SelectedItem="{Binding DependencyLicenseSelection, Mode=OneWayToSource}">
                     <ListView.View>
-                        <GridView AllowsColumnReorder="False">
+                        <GridView>
                             <GridView.Columns>
                                 <GridViewColumn Header="Dependency" Width="350"
                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"

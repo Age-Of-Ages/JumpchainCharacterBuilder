@@ -115,7 +115,7 @@
                               SelectedIndex="{Binding HouseRuleSelectionIndex}"
                               Height="400" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="236"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -208,7 +208,7 @@
                               Height="570" Width="450" HorizontalAlignment="Left" VerticalAlignment="Top"
                               Grid.ColumnSpan="2">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="128"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"

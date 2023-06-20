@@ -24,12 +24,12 @@
                   SelectedItem="{Binding JumpSelection, Mode=OneWayToSource}"
                   SelectedIndex="{Binding JumpSelectionIndex}">
             <ListView.View>
-                <GridView AllowsColumnReorder="False">
+                <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="#" Width="30"
                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                 DisplayMemberBinding="{Binding JumpNumber}"/>
-                        <GridViewColumn Header="Name" Width="145" 
+                        <GridViewColumn Header="Name" Width="135" 
                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                 DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Duration (Years)" Width="90" 
@@ -155,7 +155,7 @@
                               SelectedIndex="{Binding MiscOriginDetailIndex}"
                               Grid.Row="2" Margin="3,5,3,0">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Type" Width="65"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -242,7 +242,7 @@
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -342,7 +342,7 @@
                                           Width="200"
                                           Height="200">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
                                                 <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
@@ -449,7 +449,7 @@
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -535,12 +535,12 @@
                                           SelectedIndex="{Binding ImportCharacterIndex}"
                                           Height="250">
                                     <ListView.View>
-                                        <GridView AllowsColumnReorder="False">
+                                        <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="100"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                                 DisplayMemberBinding="{Binding CompanionName}"/>
-                                                <GridViewColumn Header="Imported" Width="70">
+                                                <GridViewColumn Header="Imported" Width="50">
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <CheckBox IsChecked="{Binding CompanionSelected}"/>
@@ -605,7 +605,7 @@
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -717,7 +717,7 @@
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="150"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -825,7 +825,7 @@
                                   SelectedIndex="{Binding OriginEditSelectionIndex}"
                                   Height="250" Width="225">
                             <ListView.View>
-                                <GridView AllowsColumnReorder="False">
+                                <GridView>
                                     <GridView.Columns>
                                         <GridViewColumn Header="Origin" Width="215"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1046,7 +1046,7 @@
                               SelectedIndex="{Binding CurrencySelectionIndex}"
                               Grid.Row="2">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="85"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1120,7 +1120,7 @@
                               SelectedIndex="{Binding StipendSelectionIndex}"
                               Grid.Row="2" Grid.Column="1">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="210"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
@@ -1171,7 +1171,7 @@
                               Grid.Row="2" Grid.Column="2"
                               x:Name="PurchaseTypeDataGrid">
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False">
+                            <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="210"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
