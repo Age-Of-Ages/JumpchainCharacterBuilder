@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -107,25 +107,13 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnUUModeChanged(string value)
-        {
-            LoadedSave.UUSupplement.Mode = value;
-        }
+        partial void OnUUModeChanged(string value) => LoadedSave.UUSupplement.Mode = value;
 
-        partial void OnUUModeDescriptionChanged(string value)
-        {
-            LoadedSave.UUSupplement.ModeDescription = value;
-        }
+        partial void OnUUModeDescriptionChanged(string value) => LoadedSave.UUSupplement.ModeDescription = value;
 
-        partial void OnUURiskLevelChanged(string value)
-        {
-            LoadedSave.UUSupplement.RiskLevel = value;
-        }
+        partial void OnUURiskLevelChanged(string value) => LoadedSave.UUSupplement.RiskLevel = value;
 
-        partial void OnUURiskLevelDescriptionChanged(string value)
-        {
-            LoadedSave.UUSupplement.RiskLevelDescription = value;
-        }
+        partial void OnUURiskLevelDescriptionChanged(string value) => LoadedSave.UUSupplement.RiskLevelDescription = value;
         #endregion
 
         #region Constructor
@@ -357,10 +345,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         }
 
-        private bool CanDeleteHouseRule()
-        {
-            return HouseRuleList.Any() && HouseRuleSelection != null;
-        }
+        private bool CanDeleteHouseRule() => HouseRuleList.Any() && HouseRuleSelection != null;
 
         [RelayCommand(CanExecute = nameof(CanMoveHouseRuleUp))]
         private void MoveHouseRuleUp()
@@ -386,10 +371,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveHouseRuleDownCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMoveHouseRuleUp()
-        {
-            return HouseRuleSelectionIndex > 0 && HouseRuleSelection != null;
-        }
+        private bool CanMoveHouseRuleUp() => HouseRuleSelectionIndex > 0 && HouseRuleSelection != null;
 
         [RelayCommand(CanExecute = nameof(CanMoveHouseRuleDown))]
         private void MoveHouseRuleDown()
@@ -415,10 +397,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveHouseRuleDownCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMoveHouseRuleDown()
-        {
-            return HouseRuleSelectionIndex < HouseRuleList.Count - 1 && HouseRuleSelection != null;
-        }
+        private bool CanMoveHouseRuleDown() => HouseRuleSelectionIndex < HouseRuleList.Count - 1 && HouseRuleSelection != null;
 
         [RelayCommand]
         private void NewDrawback()
@@ -474,10 +453,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteDrawback()
-        {
-            return DrawbackList.Any() && DrawbackSelection != null;
-        }
+        private bool CanDeleteDrawback() => DrawbackList.Any() && DrawbackSelection != null;
 
         [RelayCommand(CanExecute = nameof(CanMoveDrawbackUp))]
         private void MoveDrawbackUp()
@@ -503,10 +479,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveDrawbackUpCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMoveDrawbackUp()
-        {
-            return DrawbackSelectionIndex > 0 && DrawbackSelection != null;
-        }
+        private bool CanMoveDrawbackUp() => DrawbackSelectionIndex > 0 && DrawbackSelection != null;
 
         [RelayCommand(CanExecute = nameof(CanMoveDrawbackDown))]
         private void MoveDrawbackDown()
@@ -532,10 +505,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveDrawbackUpCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMoveDrawbackDown()
-        {
-            return DrawbackSelectionIndex < DrawbackList.Count - 1 && DrawbackSelection != null;
-        }
+        private bool CanMoveDrawbackDown() => DrawbackSelectionIndex < DrawbackList.Count - 1 && DrawbackSelection != null;
 
         #endregion
     }

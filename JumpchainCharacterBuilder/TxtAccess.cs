@@ -51,14 +51,7 @@ namespace JumpchainCharacterBuilder
         {
             try
             {
-                if (File.ReadLines(filePath).Count() < maxLength)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return File.ReadLines(filePath).Count() < maxLength;
             }
             catch (Exception)
             {

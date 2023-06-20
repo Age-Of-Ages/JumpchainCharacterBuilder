@@ -111,7 +111,7 @@ namespace JumpchainCharacterBuilder
             Z_APlusPlusPlus = 65000000
         }
 
-        private static Dictionary<RankList, string> _rankListDisplayValues = new()
+        private static readonly Dictionary<RankList, string> _rankListDisplayValues = new()
         {
             { RankList.None, "N/A" },
             { RankList.F, "F" },

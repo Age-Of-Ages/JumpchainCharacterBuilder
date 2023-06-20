@@ -14,7 +14,7 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         [DataMember]
-        private List<Jump> _jumpList = new List<Jump>();
+        private List<Jump> _jumpList = new();
 
         /// <summary>
         /// A list of all characters stored in this save file, including the Jumper.

@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -343,10 +343,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #endregion
 
         #region Properties
-        partial void OnLoadedSaveChanged(SaveFile value)
-        {
-            LoadedOptions = value.Options;
-        }
+        partial void OnLoadedSaveChanged(SaveFile value) => LoadedOptions = value.Options;
 
         partial void OnJumpSelectionChanged(Jump value)
         {
@@ -368,10 +365,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnBuildTabIndexChanged(int value)
-        {
-            BuildTabChanged();
-        }
+        partial void OnBuildTabIndexChanged(int value) => BuildTabChanged();
 
         partial void OnCharacterSelectionChanged(Character value)
         {
@@ -473,10 +467,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnCharacterListChanged(ObservableCollection<Character> value)
-        {
-            CharacterSelection = CharacterList[0];
-        }
+        partial void OnCharacterListChanged(ObservableCollection<Character> value) => CharacterSelection = CharacterList[0];
 
         partial void OnOriginSelectionChanged(OriginDetail value)
         {
@@ -495,10 +486,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        partial void OnMiscOriginDetailSelectionChanged(OriginDetail value)
-        {
-            Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
-        }
+        partial void OnMiscOriginDetailSelectionChanged(OriginDetail value) => Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
 
         partial void OnMiscOriginTypeSelectionChanged(string value)
         {
@@ -509,20 +497,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnOriginDiscountsSelectionChanged(bool value)
-        {
-            JumpSelection.OriginDiscounts = value;
-        }
+        partial void OnOriginDiscountsSelectionChanged(bool value) => JumpSelection.OriginDiscounts = value;
 
-        partial void OnPerkFreebieThresholdChanged(int value)
-        {
-            JumpSelection.OriginPerkFreebieThreshold = value;
-        }
+        partial void OnPerkFreebieThresholdChanged(int value) => JumpSelection.OriginPerkFreebieThreshold = value;
 
-        partial void OnItemFreebieThresholdChanged(int value)
-        {
-            JumpSelection.OriginItemFreebieThreshold = value;
-        }
+        partial void OnItemFreebieThresholdChanged(int value) => JumpSelection.OriginItemFreebieThreshold = value;
 
         partial void OnSkipJumpNumberChanged(bool value)
         {
@@ -554,10 +533,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnIsItemTypeChanged(bool value)
-        {
-            PurchaseTypeSelection.IsItemType = value;
-        }
+        partial void OnIsItemTypeChanged(bool value) => PurchaseTypeSelection.IsItemType = value;
 
         partial void OnStipendSelectionIndexChanged(int value)
         {
@@ -615,16 +591,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnDrawbackSelectionChanged(Drawback value)
-        {
-            Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
-        }
+        partial void OnDrawbackSelectionChanged(Drawback value) => Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
 
 
-        partial void OnScenarioSelectionChanged(Drawback value)
-        {
-            Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
-        }
+        partial void OnScenarioSelectionChanged(Drawback value) => Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
 
         partial void OnImportOptionSelectionChanged(CompanionPurchase value)
         {
@@ -648,10 +618,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
         }
 
-        partial void OnGenderChanged(string value)
-        {
-            JumpSelection.Build[CharacterSelectionIndex].Gender = value;
-        }
+        partial void OnGenderChanged(string value) => JumpSelection.Build[CharacterSelectionIndex].Gender = value;
 
         partial void OnGenderCostChanged(int value)
         {
@@ -659,15 +626,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
         }
 
-        partial void OnLoadedWarehouseSupplementChanged(Options.CosmicWarehouseSupplements value)
-        {
-            LoadWarehouseInvestment();
-        }
+        partial void OnLoadedWarehouseSupplementChanged(Options.CosmicWarehouseSupplements value) => LoadWarehouseInvestment();
 
-        partial void OnLoadedBodyModSupplementChanged(Options.BodyModSupplements value)
-        {
-            LoadBodyModInvestment();
-        }
+        partial void OnLoadedBodyModSupplementChanged(Options.BodyModSupplements value) => LoadBodyModInvestment();
 
         partial void OnWarehousePointsInvestedChanged(int value)
         {
@@ -681,10 +642,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             JumpSelection.Build[CharacterSelectionIndex].BodyModInvestment = value;
         }
 
-        partial void OnIsGauntletChanged(bool value)
-        {
-            JumpSelection.IsGauntlet = value;
-        }
+        partial void OnIsGauntletChanged(bool value) => JumpSelection.IsGauntlet = value;
 
         partial void OnBankedPointsChanged(int value)
         {
@@ -873,7 +831,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             JumpSelectionIndex = JumpList.Count - 1;
         }
 
-        private void CalculateJumpNumber(List<Jump> jumps)
+        private static void CalculateJumpNumber(List<Jump> jumps)
         {
             int currentNumber = 1;
 
@@ -1224,40 +1182,31 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             if (purchaseType.CurrencyIndex == 0)
             {
-                switch (LoadedDrawbackSupplement)
+                return LoadedDrawbackSupplement switch
                 {
-                    case Options.DrawbackSupplements.Generic:
-                        return BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
-                            CharacterSelectionIndex, LoadedSave.GenericDrawbackSupplement, jumpIndex);
-                    case Options.DrawbackSupplements.UDS:
-                        return BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
-                            CharacterSelectionIndex, LoadedSave.UniversalDrawbackSupplement, jumpIndex);
-                    case Options.DrawbackSupplements.UU:
-                        return BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
-                            CharacterSelectionIndex, LoadedSave.UUSupplement, jumpIndex);
-                    default:
-                        return BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
-                            CharacterSelectionIndex, LoadedSave.GenericDrawbackSupplement, jumpIndex);
-                }
-
+                    Options.DrawbackSupplements.Generic => BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
+                                                CharacterSelectionIndex, LoadedSave.GenericDrawbackSupplement, jumpIndex),
+                    Options.DrawbackSupplements.UDS => BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
+                                                CharacterSelectionIndex, LoadedSave.UniversalDrawbackSupplement, jumpIndex),
+                    Options.DrawbackSupplements.UU => BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
+                                                CharacterSelectionIndex, LoadedSave.UUSupplement, jumpIndex),
+                    _ => BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
+                                                CharacterSelectionIndex, LoadedSave.GenericDrawbackSupplement, jumpIndex),
+                };
             }
             else
             {
-                switch (LoadedDrawbackSupplement)
+                return LoadedDrawbackSupplement switch
                 {
-                    case Options.DrawbackSupplements.Generic:
-                        return BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
-                            CharacterSelectionIndex, LoadedSave.GenericDrawbackSupplement, jumpIndex);
-                    case Options.DrawbackSupplements.UDS:
-                        return BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
-                            CharacterSelectionIndex, LoadedSave.UniversalDrawbackSupplement, jumpIndex);
-                    case Options.DrawbackSupplements.UU:
-                        return BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
-                            CharacterSelectionIndex, LoadedSave.UUSupplement, jumpIndex);
-                    default:
-                        return BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
-                            CharacterSelectionIndex, LoadedSave.GenericDrawbackSupplement, jumpIndex);
-                }
+                    Options.DrawbackSupplements.Generic => BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
+                                                CharacterSelectionIndex, LoadedSave.GenericDrawbackSupplement, jumpIndex),
+                    Options.DrawbackSupplements.UDS => BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
+                                                CharacterSelectionIndex, LoadedSave.UniversalDrawbackSupplement, jumpIndex),
+                    Options.DrawbackSupplements.UU => BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
+                                                CharacterSelectionIndex, LoadedSave.UUSupplement, jumpIndex),
+                    _ => BudgetCalculationsClass.JumpBudgetCalculation(JumpSelection, purchaseType,
+                                                CharacterSelectionIndex, LoadedSave.GenericDrawbackSupplement, jumpIndex),
+                };
             }
         }
 
@@ -1553,10 +1502,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteJump()
-        {
-            return JumpList != null && JumpList.Count > 1 && JumpSelection != null;
-        }
+        private bool CanDeleteJump() => JumpList != null && JumpList.Count > 1 && JumpSelection != null;
 
         [RelayCommand(CanExecute = nameof(CanMoveJumpUp))]
         private void MoveJumpUp()
@@ -1571,10 +1517,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             CalculateJumpNumber(LoadedSave.JumpList);
         }
 
-        private bool CanMoveJumpUp()
-        {
-            return LoadedSave.JumpList.IndexOf(JumpSelection) > 0 && JumpSelection != null;
-        }
+        private bool CanMoveJumpUp() => LoadedSave.JumpList.IndexOf(JumpSelection) > 0 && JumpSelection != null;
 
         [RelayCommand(CanExecute = nameof(CanMoveJumpDown))]
         private void MoveJumpDown()
@@ -1588,10 +1531,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             CalculateJumpNumber(LoadedSave.JumpList);
         }
-        private bool CanMoveJumpDown()
-        {
-            return LoadedSave.JumpList.IndexOf(JumpSelection) < (JumpList.Count - 1) && JumpSelection != null;
-        }
+        private bool CanMoveJumpDown() => LoadedSave.JumpList.IndexOf(JumpSelection) < (JumpList.Count - 1) && JumpSelection != null;
 
         [RelayCommand]
         private void NewOrigin()
@@ -1637,10 +1577,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteOrigin()
-        {
-            return OriginEditSelectionIndex > 0;
-        }
+        private bool CanDeleteOrigin() => OriginEditSelectionIndex > 0;
 
         [RelayCommand]
         private void NewType()
@@ -1666,10 +1603,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteType()
-        {
-            return MiscOriginTypeList.Count > 1;
-        }
+        private bool CanDeleteType() => MiscOriginTypeList.Count > 1;
 
         [RelayCommand]
 
@@ -1714,10 +1648,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteCurrency()
-        {
-            return CurrencySelectionIndex != 0;
-        }
+        private bool CanDeleteCurrency() => CurrencySelectionIndex != 0;
 
         [RelayCommand]
 
@@ -1761,10 +1692,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeletePurchaseType()
-        {
-            return PurchaseTypeSelectionIndex > 1;
-        }
+        private bool CanDeletePurchaseType() => PurchaseTypeSelectionIndex > 1;
 
         [RelayCommand]
         private void NewPurchase()
@@ -1809,10 +1737,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeletePurchase()
-        {
-            return CurrentLoadedPurchaseList.Any() && PurchaseSelection != null;
-        }
+        private bool CanDeletePurchase() => CurrentLoadedPurchaseList.Any() && PurchaseSelection != null;
 
         [RelayCommand]
         private void NewScenario()
@@ -1841,10 +1766,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteScenario()
-        {
-            return ScenarioList.Any() && ScenarioSelection != null;
-        }
+        private bool CanDeleteScenario() => ScenarioList.Any() && ScenarioSelection != null;
 
         [RelayCommand]
         private void NewDrawback()
@@ -1873,10 +1795,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteDrawback()
-        {
-            return DrawbackList.Any() && DrawbackSelection != null;
-        }
+        private bool CanDeleteDrawback() => DrawbackList.Any() && DrawbackSelection != null;
 
         [RelayCommand]
         private void NewImport()
@@ -1908,10 +1827,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteImport()
-        {
-            return ImportOptionList.Any() && ImportOptionSelection != null;
-        }
+        private bool CanDeleteImport() => ImportOptionList.Any() && ImportOptionSelection != null;
 
         private void BuildTabChanged()
         {
@@ -1972,10 +1888,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeletePurchaseTraitCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanDeletePurchaseTrait()
-        {
-            return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && PurchaseSelection != null;
-        }
+        private bool CanDeletePurchaseTrait() => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && PurchaseSelection != null;
 
         #endregion
     }

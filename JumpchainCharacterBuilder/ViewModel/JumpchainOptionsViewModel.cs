@@ -165,10 +165,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #endregion
 
         #region Properties
-        partial void OnDefaultBudgetChanged(int value)
-        {
-            LoadedOptions.DefaultBudget = value;
-        }
+        partial void OnDefaultBudgetChanged(int value) => LoadedOptions.DefaultBudget = value;
 
         partial void OnPerkFreebieThresholdChanged(int value)
         {
@@ -186,35 +183,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnItemStipendChanged(int value)
-        {
-            LoadedOptions.DefaultItemStipend = value;
-        }
+        partial void OnItemStipendChanged(int value) => LoadedOptions.DefaultItemStipend = value;
 
-        partial void OnLoadedOptionsChanged(Options value)
-        {
-            ReloadOptions();
-        }
+        partial void OnLoadedOptionsChanged(Options value) => ReloadOptions();
 
-        partial void OnOriginDiscountsChanged(bool value)
-        {
-            LoadedOptions.OriginDiscounts = value;
-        }
+        partial void OnOriginDiscountsChanged(bool value) => LoadedOptions.OriginDiscounts = value;
 
-        partial void OnAllowPointBankChanged(bool value)
-        {
-            LoadedOptions.AllowPointBank = value;
-        }
+        partial void OnAllowPointBankChanged(bool value) => LoadedOptions.AllowPointBank = value;
 
-        partial void OnAllowGauntletBankChanged(bool value)
-        {
-            LoadedOptions.AllowGauntletBank = value;
-        }
+        partial void OnAllowGauntletBankChanged(bool value) => LoadedOptions.AllowGauntletBank = value;
 
-        partial void OnAllowCompanionsBankChanged(bool value)
-        {
-            LoadedOptions.AllowCompanionsBank = value;
-        }
+        partial void OnAllowCompanionsBankChanged(bool value) => LoadedOptions.AllowCompanionsBank = value;
 
         partial void OnPointBankLimitChanged(int value)
         {
@@ -339,15 +318,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnPRPatientJumperChanged(bool value)
-        {
-            LoadedSave.PersonalReality.PatientJumper = value;
-        }
+        partial void OnPRPatientJumperChanged(bool value) => LoadedSave.PersonalReality.PatientJumper = value;
 
-        partial void OnPRPatientJumperCountFirstJumpChanged(bool value)
-        {
-            LoadedSave.PersonalReality.PatientJumperCountFirstJump = value;
-        }
+        partial void OnPRPatientJumperCountFirstJumpChanged(bool value) => LoadedSave.PersonalReality.PatientJumperCountFirstJump = value;
 
         partial void OnPRSupplementDelayChanged(int value)
         {
@@ -357,15 +330,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnPRCoreModeDescriptionChanged(string value)
-        {
-            LoadedSave.PersonalReality.CoreModeDescription = value;
-        }
+        partial void OnPRCoreModeDescriptionChanged(string value) => LoadedSave.PersonalReality.CoreModeDescription = value;
 
-        partial void OnPRInvestmentAllowedChanged(bool value)
-        {
-            LoadedSave.PersonalReality.InvestmentAllowed = value;
-        }
+        partial void OnPRInvestmentAllowedChanged(bool value) => LoadedSave.PersonalReality.InvestmentAllowed = value;
 
         partial void OnPRInvestmentRatioChanged(int value)
         {
@@ -376,15 +343,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         }
 
-        partial void OnSBBodyModBudgetChanged(int value)
-        {
-            LoadedSave.SBBodyMod.Budget = value;
-        }
+        partial void OnSBBodyModBudgetChanged(int value) => LoadedSave.SBBodyMod.Budget = value;
 
-        partial void OnSBBodyModInvestmentAllowedChanged(bool value)
-        {
-            LoadedSave.SBBodyMod.InvestmentAllowed = value;
-        }
+        partial void OnSBBodyModInvestmentAllowedChanged(bool value) => LoadedSave.SBBodyMod.InvestmentAllowed = value;
 
         partial void OnSBBodyModInvestmentRatioChanged(int value)
         {
@@ -414,10 +375,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnEBMEssenceModeSelectionChanged(EssentialBodyMod.EssenceModes value)
-        {
-            LoadedSave.EssentialBodyMod.EssenceMode = value;
-        }
+        partial void OnEBMEssenceModeSelectionChanged(EssentialBodyMod.EssenceModes value) => LoadedSave.EssentialBodyMod.EssenceMode = value;
 
         partial void OnEBMAdvancementModeSelectionChanged(EssentialBodyMod.AdvancementModes value)
         {
@@ -460,10 +418,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
 
         }
-        partial void OnEBMInvestmentAllowedChanged(bool value)
-        {
-            LoadedSave.EssentialBodyMod.InvestmentAllowed = value;
-        }
+        partial void OnEBMInvestmentAllowedChanged(bool value) => LoadedSave.EssentialBodyMod.InvestmentAllowed = value;
 
         partial void OnEBMInvestmentRatioChanged(int value)
         {
@@ -473,25 +428,13 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnGBMBudgetChanged(int value)
-        {
-            LoadedSave.GenericBodyMod.Budget = value;
-        }
+        partial void OnGBMBudgetChanged(int value) => LoadedSave.GenericBodyMod.Budget = value;
 
-        partial void OnGBMIncrementalBudgetChanged(int value)
-        {
-            LoadedSave.GenericBodyMod.IncrementalBudget = value;
-        }
+        partial void OnGBMIncrementalBudgetChanged(int value) => LoadedSave.GenericBodyMod.IncrementalBudget = value;
 
-        partial void OnGBMPurchasesAllowedChanged(bool value)
-        {
-            LoadedSave.GenericBodyMod.PurchasesAllowed = value;
-        }
+        partial void OnGBMPurchasesAllowedChanged(bool value) => LoadedSave.GenericBodyMod.PurchasesAllowed = value;
 
-        partial void OnGBMInvestmentAllowedChanged(bool value)
-        {
-            LoadedSave.GenericBodyMod.InvestmentAllowed = value;
-        }
+        partial void OnGBMInvestmentAllowedChanged(bool value) => LoadedSave.GenericBodyMod.InvestmentAllowed = value;
 
         partial void OnGBMInvestmentRatioChanged(int value)
         {
@@ -501,20 +444,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnGWBudgetChanged(int value)
-        {
-            LoadedSave.GenericWarehouse.Budget = value;
-        }
+        partial void OnGWBudgetChanged(int value) => LoadedSave.GenericWarehouse.Budget = value;
 
-        partial void OnGWIncrementalBudgetChanged(int value)
-        {
-            LoadedSave.GenericWarehouse.IncrementalBudget = value;
-        }
+        partial void OnGWIncrementalBudgetChanged(int value) => LoadedSave.GenericWarehouse.IncrementalBudget = value;
 
-        partial void OnGWPurchasesAllowedChanged(bool value)
-        {
-            LoadedSave.GenericWarehouse.PurchasesAllowed = value;
-        }
+        partial void OnGWPurchasesAllowedChanged(bool value) => LoadedSave.GenericWarehouse.PurchasesAllowed = value;
         partial void OnGWSupplementDelayChanged(int value)
         {
             if (!GetErrors(nameof(GWSupplementDelay)).Any())
@@ -522,10 +456,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadedSave.GenericWarehouse.SupplementDelay = value;
             }
         }
-        partial void OnGWInvestmentAllowedChanged(bool value)
-        {
-            LoadedSave.GenericWarehouse.InvestmentAllowed = value;
-        }
+        partial void OnGWInvestmentAllowedChanged(bool value) => LoadedSave.GenericWarehouse.InvestmentAllowed = value;
 
         partial void OnGWInvestmentRatioChanged(int value)
         {
@@ -535,35 +466,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnGenericDrawbackGauntletPointsChanged(bool value)
-        {
-            LoadedSave.GenericDrawbackSupplement.AllowedDuringGauntlets = value;
-        }
+        partial void OnGenericDrawbackGauntletPointsChanged(bool value) => LoadedSave.GenericDrawbackSupplement.AllowedDuringGauntlets = value;
 
-        partial void OnGenericDrawbackGauntletHalvedChanged(bool value)
-        {
-            LoadedSave.GenericDrawbackSupplement.HalvedPointsDuringGauntlets = value;
-        }
+        partial void OnGenericDrawbackGauntletHalvedChanged(bool value) => LoadedSave.GenericDrawbackSupplement.HalvedPointsDuringGauntlets = value;
 
-        partial void OnUDSGauntletPointsChanged(bool value)
-        {
-            LoadedSave.UniversalDrawbackSupplement.AllowedDuringGauntlets = value;
-        }
+        partial void OnUDSGauntletPointsChanged(bool value) => LoadedSave.UniversalDrawbackSupplement.AllowedDuringGauntlets = value;
 
-        partial void OnUDSGauntletHalvedChanged(bool value)
-        {
-            LoadedSave.UniversalDrawbackSupplement.HalvedPointsDuringGauntlets = value;
-        }
+        partial void OnUDSGauntletHalvedChanged(bool value) => LoadedSave.UniversalDrawbackSupplement.HalvedPointsDuringGauntlets = value;
 
-        partial void OnUUGauntletPointsChanged(bool value)
-        {
-            LoadedSave.UUSupplement.AllowedDuringGauntlets = value;
-        }
+        partial void OnUUGauntletPointsChanged(bool value) => LoadedSave.UUSupplement.AllowedDuringGauntlets = value;
 
-        partial void OnUUGauntletHalvedChanged(bool value)
-        {
-            LoadedSave.UUSupplement.HalvedPointsDuringGauntlets = value;
-        }
+        partial void OnUUGauntletHalvedChanged(bool value) => LoadedSave.UUSupplement.HalvedPointsDuringGauntlets = value;
 
         public Dictionary<string, Options.CosmicWarehouseSupplements> CosmicWarehouseList { get; } =
             new()
@@ -657,10 +570,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         #region Methods
 
-        public void AssignOptions()
-        {
-            LoadedOptions = LoadedSave.Options;
-        }
+        public void AssignOptions() => LoadedOptions = LoadedSave.Options;
 
         public void ReloadOptions()
         {

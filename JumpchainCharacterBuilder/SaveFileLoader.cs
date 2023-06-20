@@ -10,13 +10,11 @@ namespace JumpchainCharacterBuilder
     /// </summary>
     public class SaveFileLoader : ObservableRecipient
     {
-        public void LoadSave(string fileName, SaveFile saveFile)
+        public void LoadSave(string filePath, SaveFile saveFile)
         {
-            SaveFile newSaveFile = new();
             XmlAccess.CheckSavesDirectoryExists();
-            newSaveFile = XmlAccess.ReadObject(fileName);
 
-            ReplaceSave(saveFile, newSaveFile);
+            ReplaceSave(saveFile, XmlAccess.ReadObject(filePath));
         }
 
         public void NewSave(SaveFile oldSave)

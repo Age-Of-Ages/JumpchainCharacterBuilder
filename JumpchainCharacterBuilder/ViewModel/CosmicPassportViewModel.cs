@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -566,15 +566,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnCharacterAltFormSelectionChanged(AltForm value)
-        {
-            LoadAltFormTraits();
-        }
+        partial void OnCharacterAltFormSelectionChanged(AltForm value) => LoadAltFormTraits();
 
-        partial void OnPerkTabIndexChanged(int value)
-        {
-            PerkTabChanged();
-        }
+        partial void OnPerkTabIndexChanged(int value) => PerkTabChanged();
 
         partial void OnLoadedBodyModSupplementChanged(Options.BodyModSupplements value)
         {
@@ -625,10 +619,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnSBBodyModGauntletsChanged(int value)
-        {
-            CharacterSelection.BodyMod.GauntletsFinished = value;
-        }
+        partial void OnSBBodyModGauntletsChanged(int value) => CharacterSelection.BodyMod.GauntletsFinished = value;
 
         partial void OnSBBodyModAnomalousStipendChanged(int value)
         {
@@ -652,10 +643,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnSBBodyModAnomalousDescriptionChanged(string value)
-        {
-            CharacterSelection.BodyMod.AnomalousDescription = value;
-        }
+        partial void OnSBBodyModAnomalousDescriptionChanged(string value) => CharacterSelection.BodyMod.AnomalousDescription = value;
 
         partial void OnSBBodyModAffinityIndexChanged(int value)
         {
@@ -670,10 +658,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnSBBodyModAffinityDescriptionChanged(string value)
-        {
-            CharacterSelection.BodyMod.AffinityDescription = value;
-        }
+        partial void OnSBBodyModAffinityDescriptionChanged(string value) => CharacterSelection.BodyMod.AffinityDescription = value;
 
         partial void OnSBAugmentSelectionChanged(AugmentPurchase value)
         {
@@ -736,15 +721,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnEBMMinorQuestsChanged(int value)
-        {
-            CharacterSelection.BodyMod.EBMMinorQuests = value;
-        }
+        partial void OnEBMMinorQuestsChanged(int value) => CharacterSelection.BodyMod.EBMMinorQuests = value;
 
-        partial void OnEBMMajorQuestsChanged(int value)
-        {
-            CharacterSelection.BodyMod.EBMMajorQuests = value;
-        }
+        partial void OnEBMMajorQuestsChanged(int value) => CharacterSelection.BodyMod.EBMMajorQuests = value;
 
 
         partial void OnEBMBasicPerkSelectionChanged(SupplementPurchase value)
@@ -956,10 +935,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnEBMPurchaseTabIndexChanged(int value)
-        {
-            ClearAttributeList();
-        }
+        partial void OnEBMPurchaseTabIndexChanged(int value) => ClearAttributeList();
 
         partial void OnPurchaseAttributeSelectionChanged(PurchaseAttribute value)
         {
@@ -1843,10 +1819,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private void CalculateBudget()
-        {
-            Budget = BudgetCalculationsClass.BodyModBudgetCalculation(CharacterSelection.BodyMod, TotalBP, LoadedBodyModSupplement);
-        }
+        private void CalculateBudget() => Budget = BudgetCalculationsClass.BodyModBudgetCalculation(CharacterSelection.BodyMod, TotalBP, LoadedBodyModSupplement);
 
         private void ClearAttributeList()
         {
@@ -2145,10 +2118,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         }
 
-        private bool CanDeleteCharacter()
-        {
-            return CharacterList.Any() && CharacterSelectionIndex > 0;
-        }
+        private bool CanDeleteCharacter() => CharacterList.Any() && CharacterSelectionIndex > 0;
 
         [RelayCommand]
         private void NewTraitRow()
@@ -2170,10 +2140,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteTraitRowCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanDeleteTraitRow()
-        {
-            return CharacterTraitList.Any();
-        }
+        private bool CanDeleteTraitRow() => CharacterTraitList.Any();
 
         [RelayCommand]
         private void RefreshPassports()
@@ -2235,10 +2202,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteAltForm()
-        {
-            return CharacterAltFormList.Any() && CharacterAltFormSelection != null;
-        }
+        private bool CanDeleteAltForm() => CharacterAltFormList.Any() && CharacterAltFormSelection != null;
 
         [RelayCommand(CanExecute = nameof(CanNewStrengthWeaknessRow))]
         private void NewStrengthWeaknessRow()
@@ -2254,10 +2218,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanNewStrengthWeaknessRow()
-        {
-            return CharacterAltFormSelection != null;
-        }
+        private bool CanNewStrengthWeaknessRow() => CharacterAltFormSelection != null;
 
         [RelayCommand(CanExecute = nameof(CanDeleteStrengthWeaknessRow))]
         private void DeleteStrengthWeaknessRow()
@@ -2271,16 +2232,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteStrengthWeaknessRow()
-        {
-            return AltFormStrengthWeaknessList.Any();
-        }
+        private bool CanDeleteStrengthWeaknessRow() => AltFormStrengthWeaknessList.Any();
 
         [RelayCommand]
-        private void RefreshBP()
-        {
-            LoadBodyModDetails();
-        }
+        private void RefreshBP() => LoadBodyModDetails();
 
         [RelayCommand]
         private void NewBodyModPurchase()
@@ -2340,15 +2295,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeleteBodyModPurchase()
         {
-            switch (LoadedBodyModSupplement)
+            return LoadedBodyModSupplement switch
             {
-                case Options.BodyModSupplements.Generic:
-                    return GenericBodyModPurchaseList.Any() && GenericBodyModPurchaseSelectionIndex != -1;
-                case Options.BodyModSupplements.SBBodyMod:
-                case Options.BodyModSupplements.EssentialBodyMod:
-                default:
-                    return false;
-            }
+                Options.BodyModSupplements.Generic => GenericBodyModPurchaseList.Any() && GenericBodyModPurchaseSelectionIndex != -1,
+                _ => false,
+            };
         }
 
         [RelayCommand(CanExecute = nameof(CanMoveBodyModPurchaseUp))]
@@ -2383,15 +2334,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanMoveBodyModPurchaseUp()
         {
-            switch (LoadedBodyModSupplement)
+            return LoadedBodyModSupplement switch
             {
-                case Options.BodyModSupplements.Generic:
-                    return GenericBodyModPurchaseSelectionIndex > 0;
-                case Options.BodyModSupplements.SBBodyMod:
-                case Options.BodyModSupplements.EssentialBodyMod:
-                default:
-                    return false;
-            }
+                Options.BodyModSupplements.Generic => GenericBodyModPurchaseSelectionIndex > 0,
+                _ => false,
+            };
         }
 
         [RelayCommand(CanExecute = nameof(CanMoveBodyModPurchaseDown))]
@@ -2426,15 +2373,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanMoveBodyModPurchaseDown()
         {
-            switch (LoadedBodyModSupplement)
+            return LoadedBodyModSupplement switch
             {
-                case Options.BodyModSupplements.Generic:
-                    return GenericBodyModPurchaseSelectionIndex < GenericBodyModPurchaseList.Count - 1;
-                case Options.BodyModSupplements.SBBodyMod:
-                case Options.BodyModSupplements.EssentialBodyMod:
-                default:
-                    return false;
-            }
+                Options.BodyModSupplements.Generic => GenericBodyModPurchaseSelectionIndex < GenericBodyModPurchaseList.Count - 1,
+                _ => false,
+            };
         }
 
         [RelayCommand]
@@ -2495,15 +2438,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeleteBodyModDrawback()
         {
-            switch (LoadedBodyModSupplement)
+            return LoadedBodyModSupplement switch
             {
-                case Options.BodyModSupplements.Generic:
-                    return GenericBodyModDrawbackList.Any() && GenericBodyModDrawbackIndex != -1;
-                case Options.BodyModSupplements.SBBodyMod:
-                case Options.BodyModSupplements.EssentialBodyMod:
-                default:
-                    return false;
-            }
+                Options.BodyModSupplements.Generic => GenericBodyModDrawbackList.Any() && GenericBodyModDrawbackIndex != -1,
+                _ => false,
+            };
         }
 
         [RelayCommand(CanExecute = nameof(CanMoveBodyModDrawbackUp))]
@@ -2538,15 +2477,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanMoveBodyModDrawbackUp()
         {
-            switch (LoadedBodyModSupplement)
+            return LoadedBodyModSupplement switch
             {
-                case Options.BodyModSupplements.Generic:
-                    return GenericBodyModDrawbackIndex > 0;
-                case Options.BodyModSupplements.SBBodyMod:
-                case Options.BodyModSupplements.EssentialBodyMod:
-                default:
-                    return false;
-            }
+                Options.BodyModSupplements.Generic => GenericBodyModDrawbackIndex > 0,
+                _ => false,
+            };
         }
 
         [RelayCommand(CanExecute = nameof(CanMoveBodyModDrawbackDown))]
@@ -2581,15 +2516,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanMoveBodyModDrawbackDown()
         {
-            switch (LoadedBodyModSupplement)
+            return LoadedBodyModSupplement switch
             {
-                case Options.BodyModSupplements.Generic:
-                    return GenericBodyModDrawbackIndex < GenericBodyModDrawbackList.Count - 1;
-                case Options.BodyModSupplements.SBBodyMod:
-                case Options.BodyModSupplements.EssentialBodyMod:
-                default:
-                    return false;
-            }
+                Options.BodyModSupplements.Generic => GenericBodyModDrawbackIndex < GenericBodyModDrawbackList.Count - 1,
+                _ => false,
+            };
         }
 
         [RelayCommand]
@@ -2620,10 +2551,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteSBExtraBits()
-        {
-            return SBExtraBitsList.Any() && SBExtraBitsIndex != -1;
-        }
+        private bool CanDeleteSBExtraBits() => SBExtraBitsList.Any() && SBExtraBitsIndex != -1;
 
         [RelayCommand]
         private void NewSBPower()
@@ -2653,10 +2581,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteSBPower()
-        {
-            return SBBodyModPowerList.Any() && SBBodyModPowerIndex != -1;
-        }
+        private bool CanDeleteSBPower() => SBBodyModPowerList.Any() && SBBodyModPowerIndex != -1;
 
         [RelayCommand]
         private void NewEBMPerk()
@@ -2809,34 +2734,27 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeleteEBMPerk()
         {
-            switch (EBMPurchaseTabIndex)
+            return EBMPurchaseTabIndex switch
             {
-                case 0:
-                    return EBMBasicPerkList.Any() && EBMBasicPerkIndex != -1;
-                case 1:
-                    return EBMPhysicalPerkList.Any() && EBMPhysicalPerkIndex != -1;
-                case 2:
-                    return EBMMentalPerkList.Any() && EBMMentalPerkIndex != -1;
-                case 3:
-                    return EBMSpiritualPerkList.Any() && EBMSpiritualPerkIndex != -1;
-                case 4:
-                    return EBMSkillPerkList.Any() && EBMSkillPerkIndex != -1;
-                case 5:
-                    return EBMSupernaturalPerkList.Any() && EBMSupernaturalPerkIndex != -1;
-                case 6:
-                    return EBMItemPerkList.Any() && EBMItemPerkIndex != -1;
-                case 7:
-                    return EBMCompanionPerkList.Any() && EBMCompanionPerkIndex != -1;
-                default:
-                    return false;
-            }
+                0 => EBMBasicPerkList.Any() && EBMBasicPerkIndex != -1,
+                1 => EBMPhysicalPerkList.Any() && EBMPhysicalPerkIndex != -1,
+                2 => EBMMentalPerkList.Any() && EBMMentalPerkIndex != -1,
+                3 => EBMSpiritualPerkList.Any() && EBMSpiritualPerkIndex != -1,
+                4 => EBMSkillPerkList.Any() && EBMSkillPerkIndex != -1,
+                5 => EBMSupernaturalPerkList.Any() && EBMSupernaturalPerkIndex != -1,
+                6 => EBMItemPerkList.Any() && EBMItemPerkIndex != -1,
+                7 => EBMCompanionPerkList.Any() && EBMCompanionPerkIndex != -1,
+                _ => false,
+            };
         }
 
         [RelayCommand]
         private void NewEBMDrawback()
         {
-            SupplementDrawbackModel drawback = new();
-            drawback.Name = $"Drawback #{EBMDrawbackList.Count + 1}";
+            SupplementDrawbackModel drawback = new()
+            {
+                Name = $"Drawback #{EBMDrawbackList.Count + 1}"
+            };
 
             CharacterSelection.BodyMod.EBMDrawbackList.Add(drawback);
             EBMDrawbackList.Add(drawback);
@@ -2861,18 +2779,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteEBMDrawback()
-        {
-            return EBMDrawbackList.Any() && EBMDrawbackIndex != -1;
-        }
+        private bool CanDeleteEBMDrawback() => EBMDrawbackList.Any() && EBMDrawbackIndex != -1;
 
         [RelayCommand]
         private void NewAugmentTrait()
         {
             if (SBAugmentSelection != null)
             {
-                PurchaseAttribute attribute = new();
-                attribute.Name = $"Trait #{SBAugmentSelection.Attributes.Count + 1}";
+                PurchaseAttribute attribute = new()
+                {
+                    Name = $"Trait #{SBAugmentSelection.Attributes.Count + 1}"
+                };
 
                 SBAugmentSelection.Attributes.Add(attribute);
                 PurchaseAttributeList.Add(attribute);
@@ -2894,18 +2811,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteAugmentTraitCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanDeleteAugmentTrait()
-        {
-            return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && SBAugmentSelection != null;
-        }
+        private bool CanDeleteAugmentTrait() => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && SBAugmentSelection != null;
 
         [RelayCommand]
         private void NewGBMPurchaseTrait()
         {
             if (BodyModPurchaseSelection != null)
             {
-                PurchaseAttribute attribute = new();
-                attribute.Name = $"Trait #{BodyModPurchaseSelection.Attributes.Count + 1}";
+                PurchaseAttribute attribute = new()
+                {
+                    Name = $"Trait #{BodyModPurchaseSelection.Attributes.Count + 1}"
+                };
 
                 BodyModPurchaseSelection.Attributes.Add(attribute);
                 PurchaseAttributeList.Add(attribute);
@@ -2927,18 +2843,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteGBMPurchaseTraitCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanDeleteGBMPurchaseTrait()
-        {
-            return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && BodyModPurchaseSelection != null;
-        }
+        private bool CanDeleteGBMPurchaseTrait() => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && BodyModPurchaseSelection != null;
 
         [RelayCommand]
         private void NewSBPowerTrait()
         {
             if (SBBodyModPowerSelection != null)
             {
-                PurchaseAttribute attribute = new();
-                attribute.Name = $"Trait #{SBBodyModPowerSelection.Attributes.Count + 1}";
+                PurchaseAttribute attribute = new()
+                {
+                    Name = $"Trait #{SBBodyModPowerSelection.Attributes.Count + 1}"
+                };
 
                 SBBodyModPowerSelection.Attributes.Add(attribute);
                 PurchaseAttributeList.Add(attribute);
@@ -2960,10 +2875,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteSBPowerTraitCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanDeleteSBPowerTrait()
-        {
-            return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && SBBodyModPowerSelection != null;
-        }
+        private bool CanDeleteSBPowerTrait() => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && SBBodyModPowerSelection != null;
 
         [RelayCommand]
         private void NewEBMTrait()
@@ -2973,8 +2885,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case 0:
                     if (EBMBasicPerkIndex != -1)
                     {
-                        PurchaseAttribute attribute = new();
-                        attribute.Name = $"Trait #{EBMBasicPerkSelection.Attributes.Count + 1}";
+                        PurchaseAttribute attribute = new()
+                        {
+                            Name = $"Trait #{EBMBasicPerkSelection.Attributes.Count + 1}"
+                        };
 
                         EBMBasicPerkSelection.Attributes.Add(attribute);
                         PurchaseAttributeList.Add(attribute);
@@ -2987,8 +2901,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case 1:
                     if (EBMPhysicalPerkIndex != -1)
                     {
-                        PurchaseAttribute attribute = new();
-                        attribute.Name = $"Trait #{EBMPhysicalPerkSelection.Attributes.Count + 1}";
+                        PurchaseAttribute attribute = new()
+                        {
+                            Name = $"Trait #{EBMPhysicalPerkSelection.Attributes.Count + 1}"
+                        };
 
                         EBMPhysicalPerkSelection.Attributes.Add(attribute);
                         PurchaseAttributeList.Add(attribute);
@@ -3001,8 +2917,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case 2:
                     if (EBMMentalPerkIndex != -1)
                     {
-                        PurchaseAttribute attribute = new();
-                        attribute.Name = $"Trait #{EBMMentalPerkSelection.Attributes.Count + 1}";
+                        PurchaseAttribute attribute = new()
+                        {
+                            Name = $"Trait #{EBMMentalPerkSelection.Attributes.Count + 1}"
+                        };
 
                         EBMMentalPerkSelection.Attributes.Add(attribute);
                         PurchaseAttributeList.Add(attribute);
@@ -3015,8 +2933,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case 3:
                     if (EBMSpiritualPerkIndex != -1)
                     {
-                        PurchaseAttribute attribute = new();
-                        attribute.Name = $"Trait #{EBMSpiritualPerkSelection.Attributes.Count + 1}";
+                        PurchaseAttribute attribute = new()
+                        {
+                            Name = $"Trait #{EBMSpiritualPerkSelection.Attributes.Count + 1}"
+                        };
 
                         EBMSpiritualPerkSelection.Attributes.Add(attribute);
                         PurchaseAttributeList.Add(attribute);
@@ -3029,8 +2949,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case 4:
                     if (EBMSkillPerkIndex != -1)
                     {
-                        PurchaseAttribute attribute = new();
-                        attribute.Name = $"Trait #{EBMSkillPerkSelection.Attributes.Count + 1}";
+                        PurchaseAttribute attribute = new()
+                        {
+                            Name = $"Trait #{EBMSkillPerkSelection.Attributes.Count + 1}"
+                        };
 
                         EBMSkillPerkSelection.Attributes.Add(attribute);
                         PurchaseAttributeList.Add(attribute);
@@ -3043,8 +2965,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case 5:
                     if (EBMSupernaturalPerkIndex != -1)
                     {
-                        PurchaseAttribute attribute = new();
-                        attribute.Name = $"Trait #{EBMSupernaturalPerkSelection.Attributes.Count + 1}";
+                        PurchaseAttribute attribute = new()
+                        {
+                            Name = $"Trait #{EBMSupernaturalPerkSelection.Attributes.Count + 1}"
+                        };
 
                         EBMSupernaturalPerkSelection.Attributes.Add(attribute);
                         PurchaseAttributeList.Add(attribute);
@@ -3057,8 +2981,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case 6:
                     if (EBMItemPerkIndex != -1)
                     {
-                        PurchaseAttribute attribute = new();
-                        attribute.Name = $"Trait #{EBMItemPerkSelection.Attributes.Count + 1}";
+                        PurchaseAttribute attribute = new()
+                        {
+                            Name = $"Trait #{EBMItemPerkSelection.Attributes.Count + 1}"
+                        };
 
                         EBMItemPerkSelection.Attributes.Add(attribute);
                         PurchaseAttributeList.Add(attribute);
@@ -3071,8 +2997,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case 7:
                     if (EBMCompanionPerkIndex != -1)
                     {
-                        PurchaseAttribute attribute = new();
-                        attribute.Name = $"Trait #{EBMCompanionPerkSelection.Attributes.Count + 1}";
+                        PurchaseAttribute attribute = new()
+                        {
+                            Name = $"Trait #{EBMCompanionPerkSelection.Attributes.Count + 1}"
+                        };
 
                         EBMCompanionPerkSelection.Attributes.Add(attribute);
                         PurchaseAttributeList.Add(attribute);
@@ -3172,34 +3100,25 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeleteEBMTrait()
         {
-            switch (EBMPurchaseTabIndex)
+            return EBMPurchaseTabIndex switch
             {
-                case 0:
-                    return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMBasicPerkIndex != -1;
-                case 1:
-                    return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMPhysicalPerkIndex != -1;
-                case 2:
-                    return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMMentalPerkIndex != -1;
-                case 3:
-                    return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMSpiritualPerkIndex != -1;
-                case 4:
-                    return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMSkillPerkIndex != -1;
-                case 5:
-                    return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMSupernaturalPerkIndex != -1;
-                case 6:
-                    return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMItemPerkIndex != -1;
-                case 7:
-                    return PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMCompanionPerkIndex != -1;
-                default:
-                    return false;
-            }
+                0 => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMBasicPerkIndex != -1,
+                1 => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMPhysicalPerkIndex != -1,
+                2 => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMMentalPerkIndex != -1,
+                3 => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMSpiritualPerkIndex != -1,
+                4 => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMSkillPerkIndex != -1,
+                5 => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMSupernaturalPerkIndex != -1,
+                6 => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMItemPerkIndex != -1,
+                7 => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && EBMCompanionPerkIndex != -1,
+                _ => false,
+            };
         }
 
         [RelayCommand]
-        private void RefreshAttributes()
-        {
-            AttributeCalculationClass.AttributeCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
-        }
+        private void RefreshAttributes() => AttributeCalculationClass.AttributeCalculation(CharacterSelection,
+                                                                                           CharacterSelectionIndex,
+                                                                                           LoadedBodyModSupplement,
+                                                                                           LoadedSave.JumpList);
 
         [RelayCommand]
         private void NewPhysicalAttribute()
@@ -3229,10 +3148,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeletePhysicalAttribute()
-        {
-            return CurrentPhysicalAttributeList.Any() && CurrentPhysicalAttributeIndex != -1;
-        }
+        private bool CanDeletePhysicalAttribute() => CurrentPhysicalAttributeList.Any() && CurrentPhysicalAttributeIndex != -1;
 
         [RelayCommand]
         private void NewMentalAttribute()
@@ -3262,10 +3178,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteMentalAttribute()
-        {
-            return CurrentMentalAttributeList.Any() && CurrentMentalAttributeIndex != -1;
-        }
+        private bool CanDeleteMentalAttribute() => CurrentMentalAttributeList.Any() && CurrentMentalAttributeIndex != -1;
 
         [RelayCommand]
         private void NewSupernaturalAttribute()
@@ -3295,16 +3208,13 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteSupernaturalAttribute()
-        {
-            return CurrentSupernaturalAttributeList.Any() && CurrentSupernaturalAttributeIndex != -1;
-        }
+        private bool CanDeleteSupernaturalAttribute() => CurrentSupernaturalAttributeList.Any() && CurrentSupernaturalAttributeIndex != -1;
 
         [RelayCommand]
-        private void RefreshSkills()
-        {
-            AttributeCalculationClass.SkillCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
-        }
+        private void RefreshSkills() => AttributeCalculationClass.SkillCalculation(CharacterSelection,
+                                                                                   CharacterSelectionIndex,
+                                                                                   LoadedBodyModSupplement,
+                                                                                   LoadedSave.JumpList);
 
         [RelayCommand]
         private void NewPhysicalSkill()
@@ -3334,10 +3244,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeletePhysicalSkill()
-        {
-            return CurrentPhysicalSkillList.Any() && CurrentPhysicalSkillIndex != -1;
-        }
+        private bool CanDeletePhysicalSkill() => CurrentPhysicalSkillList.Any() && CurrentPhysicalSkillIndex != -1;
 
         [RelayCommand]
         private void NewMentalSkill()
@@ -3367,10 +3274,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteMentalSkill()
-        {
-            return CurrentMentalSkillList.Any() && CurrentMentalSkillIndex != -1;
-        }
+        private bool CanDeleteMentalSkill() => CurrentMentalSkillList.Any() && CurrentMentalSkillIndex != -1;
 
         [RelayCommand]
         private void NewSocialSkill()
@@ -3466,10 +3370,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteSupernaturalSkill()
-        {
-            return CurrentSupernaturalSkillList.Any() && CurrentSupernaturalSkillIndex != -1;
-        }
+        private bool CanDeleteSupernaturalSkill() => CurrentSupernaturalSkillList.Any() && CurrentSupernaturalSkillIndex != -1;
 
         [RelayCommand]
         private void NewBooster()
@@ -3530,10 +3431,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteBooster()
-        {
-            return CurrentBoosterList.Any() && CurrentBoosterIndex != -1;
-        }
+        private bool CanDeleteBooster() => CurrentBoosterList.Any() && CurrentBoosterIndex != -1;
 
         [RelayCommand]
         private void RefreshBoosters()

@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
 using Microsoft.Win32;
 using System;
 using System.Windows;
@@ -79,15 +79,17 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Methods
         private void SavePrompt(bool saveAs)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Jumper Saves (*.xml)|*.xml";
-            saveFileDialog.DefaultExt = "*.xml";
-            saveFileDialog.AddExtension = true;
-            saveFileDialog.InitialDirectory = Environment.CurrentDirectory;
-            saveFileDialog.CheckPathExists = true;
-            saveFileDialog.ValidateNames = true;
-            saveFileDialog.OverwritePrompt = true;
-            saveFileDialog.CreatePrompt = true;
+            SaveFileDialog saveFileDialog = new()
+            {
+                Filter = "Jumper Saves (*.xml)|*.xml",
+                DefaultExt = "*.xml",
+                AddExtension = true,
+                InitialDirectory = Environment.CurrentDirectory,
+                CheckPathExists = true,
+                ValidateNames = true,
+                OverwritePrompt = true,
+                CreatePrompt = true
+            };
 
             XmlAccess.CheckSavesDirectoryExists();
             XmlAccess.CheckSaveBackupsDirectoryExists();
@@ -124,14 +126,16 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadPrompt()
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Jumper Saves (*.xml)|*.xml";
-            openFileDialog.DefaultExt = "*.xml";
-            openFileDialog.InitialDirectory = Environment.CurrentDirectory;
-            openFileDialog.CheckPathExists = true;
-            openFileDialog.ValidateNames = true;
-            openFileDialog.AddExtension = true;
-            openFileDialog.CheckFileExists = true;
+            OpenFileDialog openFileDialog = new()
+            {
+                Filter = "Jumper Saves (*.xml)|*.xml",
+                DefaultExt = "*.xml",
+                InitialDirectory = Environment.CurrentDirectory,
+                CheckPathExists = true,
+                ValidateNames = true,
+                AddExtension = true,
+                CheckFileExists = true
+            };
 
             if (openFileDialog.ShowDialog() == true)
             {
@@ -155,34 +159,19 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         [RelayCommand]
-        private void SaveJumper()
-        {
-            SavePrompt(false);
-        }
+        private void SaveJumper() => SavePrompt(false);
 
         [RelayCommand]
-        private void SaveJumperAs()
-        {
-            SavePrompt(true);
-        }
+        private void SaveJumperAs() => SavePrompt(true);
 
         [RelayCommand]
-        private void LoadJumper()
-        {
-            LoadPrompt();
-        }
+        private void LoadJumper() => LoadPrompt();
 
         [RelayCommand]
-        private void Quit()
-        {
-            Application.Current.Shutdown();
-        }
+        private static void Quit() => Application.Current.Shutdown();
 
         [RelayCommand]
-        private void SwitchTheme(string selection)
-        {
-            Theme = selection;
-        }
+        private void SwitchTheme(string selection) => Theme = selection;
 
         #endregion
     }

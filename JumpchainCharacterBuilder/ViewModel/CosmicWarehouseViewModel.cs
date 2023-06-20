@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -125,25 +125,13 @@ namespace JumpchainCharacterBuilder.ViewModel
             WarehouseTabIndex = 0;
         }
 
-        partial void OnLoadedDrawbackSupplementChanged(Options.DrawbackSupplements value)
-        {
-            LoadDrawbackData();
-        }
+        partial void OnLoadedDrawbackSupplementChanged(Options.DrawbackSupplements value) => LoadDrawbackData();
 
-        partial void OnWarehouseTabIndexChanged(int value)
-        {
-            WarehouseTabChanged();
-        }
+        partial void OnWarehouseTabIndexChanged(int value) => WarehouseTabChanged();
 
-        partial void OnPurchasesTabIndexChanged(int value)
-        {
-            PurchaseTabChanged();
-        }
+        partial void OnPurchasesTabIndexChanged(int value) => PurchaseTabChanged();
 
-        partial void OnPurchaseSelectionChanged(SupplementPurchase value)
-        {
-            CalculateBudget();
-        }
+        partial void OnPurchaseSelectionChanged(SupplementPurchase value) => CalculateBudget();
 
         #endregion
 
@@ -295,21 +283,13 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadDrawbackData()
         {
-            switch (LoadedDrawbackSupplement)
+            DrawbackWP = LoadedDrawbackSupplement switch
             {
-                case Options.DrawbackSupplements.Generic:
-                    DrawbackWP = LoadedSave.GenericDrawbackSupplement.WPGained;
-                    break;
-                case Options.DrawbackSupplements.UDS:
-                    DrawbackWP = LoadedSave.UniversalDrawbackSupplement.WPGained;
-                    break;
-                case Options.DrawbackSupplements.UU:
-                    DrawbackWP = LoadedSave.UUSupplement.WPGained;
-                    break;
-                default:
-                    DrawbackWP = 0;
-                    break;
-            }
+                Options.DrawbackSupplements.Generic => LoadedSave.GenericDrawbackSupplement.WPGained,
+                Options.DrawbackSupplements.UDS => LoadedSave.UniversalDrawbackSupplement.WPGained,
+                Options.DrawbackSupplements.UU => LoadedSave.UUSupplement.WPGained,
+                _ => 0,
+            };
         }
 
         private void LoadPurchaseLists()
@@ -485,18 +465,12 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void CalculateBudget()
         {
-            switch (LoadedWarehouseSupplement)
+            Budget = LoadedWarehouseSupplement switch
             {
-                case Options.CosmicWarehouseSupplements.Generic:
-                    Budget = BudgetCalculationsClass.WarehouseBudgetCalculation(LoadedSave.GenericWarehouse, TotalWP);
-                    break;
-                case Options.CosmicWarehouseSupplements.PersonalReality:
-                    Budget = BudgetCalculationsClass.WarehouseBudgetCalculation(LoadedSave.PersonalReality, TotalWP);
-                    break;
-                default:
-                    Budget = 0;
-                    break;
-            }
+                Options.CosmicWarehouseSupplements.Generic => BudgetCalculationsClass.WarehouseBudgetCalculation(LoadedSave.GenericWarehouse, TotalWP),
+                Options.CosmicWarehouseSupplements.PersonalReality => BudgetCalculationsClass.WarehouseBudgetCalculation(LoadedSave.PersonalReality, TotalWP),
+                _ => 0,
+            };
         }
 
         private void WarehouseTabChanged()
@@ -591,10 +565,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         #region Commands
         [RelayCommand]
-        private void RefreshWP()
-        {
-            LoadWarehouseData();
-        }
+        private void RefreshWP() => LoadWarehouseData();
 
         [RelayCommand]
         private void NewPurchase()
@@ -750,27 +721,18 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeletePurchase()
         {
-            switch (PurchasesTabIndex)
+            return PurchasesTabIndex switch
             {
-                case 0:
-                    return BasicsPurchaseList.Any() && BasicsPurchaseSelectionIndex != -1;
-                case 1:
-                    return UtilitiesPurchaseList.Any() && UtilitiesPurchaseSelectionIndex != -1;
-                case 2:
-                    return CosmeticPurchaseList.Any() && CosmeticPurchaseSelectionIndex != -1;
-                case 3:
-                    return FacilitiesPurchaseList.Any() && FacilitiesPurchaseSelectionIndex != -1;
-                case 4:
-                    return ExtensionsPurchaseList.Any() && ExtensionsPurchaseSelectionIndex != -1;
-                case 5:
-                    return EquipmentPurchaseList.Any() && EquipmentPurchaseSelectionIndex != -1;
-                case 6:
-                    return CompanionsPurchaseList.Any() && CompanionsPurchaseSelectionIndex != -1;
-                case 7:
-                    return MiscPurchaseList.Any() && MiscPurchaseSelectionIndex != -1;
-                default:
-                    return false;
-            }
+                0 => BasicsPurchaseList.Any() && BasicsPurchaseSelectionIndex != -1,
+                1 => UtilitiesPurchaseList.Any() && UtilitiesPurchaseSelectionIndex != -1,
+                2 => CosmeticPurchaseList.Any() && CosmeticPurchaseSelectionIndex != -1,
+                3 => FacilitiesPurchaseList.Any() && FacilitiesPurchaseSelectionIndex != -1,
+                4 => ExtensionsPurchaseList.Any() && ExtensionsPurchaseSelectionIndex != -1,
+                5 => EquipmentPurchaseList.Any() && EquipmentPurchaseSelectionIndex != -1,
+                6 => CompanionsPurchaseList.Any() && CompanionsPurchaseSelectionIndex != -1,
+                7 => MiscPurchaseList.Any() && MiscPurchaseSelectionIndex != -1,
+                _ => false,
+            };
         }
 
         [RelayCommand(CanExecute = nameof(CanMovePurchaseUp))]
@@ -869,27 +831,18 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanMovePurchaseUp()
         {
-            switch (PurchasesTabIndex)
+            return PurchasesTabIndex switch
             {
-                case 0:
-                    return BasicsPurchaseSelectionIndex > 0;
-                case 1:
-                    return UtilitiesPurchaseSelectionIndex > 0;
-                case 2:
-                    return CosmeticPurchaseSelectionIndex > 0;
-                case 3:
-                    return FacilitiesPurchaseSelectionIndex > 0;
-                case 4:
-                    return ExtensionsPurchaseSelectionIndex > 0;
-                case 5:
-                    return EquipmentPurchaseSelectionIndex > 0;
-                case 6:
-                    return CompanionsPurchaseSelectionIndex > 0;
-                case 7:
-                    return MiscPurchaseSelectionIndex > 0;
-                default:
-                    return false;
-            }
+                0 => BasicsPurchaseSelectionIndex > 0,
+                1 => UtilitiesPurchaseSelectionIndex > 0,
+                2 => CosmeticPurchaseSelectionIndex > 0,
+                3 => FacilitiesPurchaseSelectionIndex > 0,
+                4 => ExtensionsPurchaseSelectionIndex > 0,
+                5 => EquipmentPurchaseSelectionIndex > 0,
+                6 => CompanionsPurchaseSelectionIndex > 0,
+                7 => MiscPurchaseSelectionIndex > 0,
+                _ => false,
+            };
         }
 
         [RelayCommand(CanExecute = nameof(CanMovePurchaseDown))]
@@ -988,28 +941,18 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanMovePurchaseDown()
         {
-            switch (PurchasesTabIndex)
+            return PurchasesTabIndex switch
             {
-                case 0:
-                    return BasicsPurchaseSelectionIndex < BasicsPurchaseList.Count - 1;
-                case 1:
-                    return UtilitiesPurchaseSelectionIndex < UtilitiesPurchaseList.Count - 1;
-                case 2:
-                    return CosmeticPurchaseSelectionIndex < CosmeticPurchaseList.Count - 1;
-                case 3:
-                    return FacilitiesPurchaseSelectionIndex < FacilitiesPurchaseList.Count - 1;
-                case 4:
-                    return ExtensionsPurchaseSelectionIndex < ExtensionsPurchaseList.Count - 1;
-                case 5:
-                    return EquipmentPurchaseSelectionIndex < EquipmentPurchaseList.Count - 1;
-                case 6:
-                    return CompanionsPurchaseSelectionIndex < CompanionsPurchaseList.Count - 1;
-                case 7:
-                    return MiscPurchaseSelectionIndex < MiscPurchaseList.Count - 1;
-                default:
-                    return false;
-            }
-
+                0 => BasicsPurchaseSelectionIndex < BasicsPurchaseList.Count - 1,
+                1 => UtilitiesPurchaseSelectionIndex < UtilitiesPurchaseList.Count - 1,
+                2 => CosmeticPurchaseSelectionIndex < CosmeticPurchaseList.Count - 1,
+                3 => FacilitiesPurchaseSelectionIndex < FacilitiesPurchaseList.Count - 1,
+                4 => ExtensionsPurchaseSelectionIndex < ExtensionsPurchaseList.Count - 1,
+                5 => EquipmentPurchaseSelectionIndex < EquipmentPurchaseList.Count - 1,
+                6 => CompanionsPurchaseSelectionIndex < CompanionsPurchaseList.Count - 1,
+                7 => MiscPurchaseSelectionIndex < MiscPurchaseList.Count - 1,
+                _ => false,
+            };
         }
 
         [RelayCommand]
@@ -1062,10 +1005,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteLimitation()
-        {
-            return LimitationList.Any() && LimitationSelection != null;
-        }
+        private bool CanDeleteLimitation() => LimitationList.Any() && LimitationSelection != null;
 
         [RelayCommand(CanExecute = nameof(CanMoveLimitationUp))]
         private void MoveLimitationUp()
@@ -1093,10 +1033,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveLimitationUpCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMoveLimitationUp()
-        {
-            return LimitationSelectionIndex > 0;
-        }
+        private bool CanMoveLimitationUp() => LimitationSelectionIndex > 0;
 
         [RelayCommand(CanExecute = nameof(CanMoveLimitationDown))]
         private void MoveLimitationDown()
@@ -1124,10 +1061,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveLimitationUpCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMoveLimitationDown()
-        {
-            return LimitationSelectionIndex < LimitationList.Count - 1;
-        }
+        private bool CanMoveLimitationDown() => LimitationSelectionIndex < LimitationList.Count - 1;
         #endregion
     }
 }

@@ -113,7 +113,6 @@ namespace JumpchainCharacterBuilder
                 ser.WriteObject(writer, saveFile);
                 writer.Close();
             }
-
         }
 
         /// <summary>
@@ -134,13 +133,10 @@ namespace JumpchainCharacterBuilder
                 DtdProcessing = DtdProcessing.Prohibit,
                 XmlResolver = null
             };
-
-            SaveFile newSave = new();
-
             using (XmlReader reader = XmlReader.Create(filePath, settings))
             {
-                newSave = ser.ReadObject(reader) as SaveFile
-                          ?? throw new ArgumentNullException();
+                SaveFile newSave = ser.ReadObject(reader) as SaveFile
+                                   ?? throw new ArgumentNullException();
                 reader.Close();
                 return newSave;
             }

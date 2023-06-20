@@ -1,19 +1,13 @@
 ﻿using System.Windows;
+using JumpchainCharacterBuilder.Interfaces;
 
 namespace JumpchainCharacterBuilder.Services
 {
-
-    public interface IDialogService
-    {
-        bool ConfirmDialog(string message);
-    }
-
     public class DialogService : IDialogService
     {
         public bool ConfirmDialog(string message)
         {
-            MessageBoxResult result = MessageBox.Show(message, "Confirm action", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            return result == MessageBoxResult.Yes;
+            return MessageBox.Show(message, "Confirm action", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes;
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -478,7 +478,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return title;
         }
 
-        private void FormatDocumentDetails(DocumentDetail document, List<string> output)
+        private static void FormatDocumentDetails(DocumentDetail document, List<string> output)
         {
             if (document.Name != "")
             {
@@ -498,9 +498,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private string FormatPointSummary(int baseBudget, Dictionary<string, int> additionalValues, string currencyAbbreviation)
+        private static string FormatPointSummary(int baseBudget, Dictionary<string, int> additionalValues, string currencyAbbreviation)
         {
-            string line = "";
             int subtotal = 0;
 
             subtotal += baseBudget;
@@ -510,7 +509,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 subtotal += value;
             }
 
-            line = $"Point Total: {subtotal}{currencyAbbreviation} | {baseBudget} (Base)";
+            string line = $"Point Total: {subtotal}{currencyAbbreviation} | {baseBudget} (Base)";
 
             foreach (KeyValuePair<string, int> value in additionalValues)
             {
@@ -533,21 +532,15 @@ namespace JumpchainCharacterBuilder.ViewModel
             char rightBracket = LoadedExportOptions.BudgetEnclosingFormat[1];
             char budgetSeparator = LoadedExportOptions.BudgetSeparatorFormat;
 
-            switch (LoadedExportOptions.BudgetFormat)
+            return LoadedExportOptions.BudgetFormat switch
             {
-                case 0:
-                    return $"{leftBracket}{value}{budgetSeparator}{budget}{currencyAbbreviation}{rightBracket}";
-                case 1:
-                    return $"{leftBracket}{value}{budgetSeparator}{sectionSubtotal}{currencyAbbreviation}{rightBracket}";
-                case 2:
-                    return $"{leftBracket}{value}{currencyAbbreviation}{rightBracket}";
-                case 3:
-                    return $"{leftBracket}{budget}{currencyAbbreviation}{rightBracket}";
-                case 4:
-                    return $"{leftBracket}{sectionSubtotal}{currencyAbbreviation}{rightBracket}";
-                default:
-                    return $"{leftBracket}{value}{budgetSeparator}{budget}{currencyAbbreviation}{rightBracket}";
-            }
+                0 => $"{leftBracket}{value}{budgetSeparator}{budget}{currencyAbbreviation}{rightBracket}",
+                1 => $"{leftBracket}{value}{budgetSeparator}{sectionSubtotal}{currencyAbbreviation}{rightBracket}",
+                2 => $"{leftBracket}{value}{currencyAbbreviation}{rightBracket}",
+                3 => $"{leftBracket}{budget}{currencyAbbreviation}{rightBracket}",
+                4 => $"{leftBracket}{sectionSubtotal}{currencyAbbreviation}{rightBracket}",
+                _ => $"{leftBracket}{value}{budgetSeparator}{budget}{currencyAbbreviation}{rightBracket}",
+            };
         }
 
         private string FormatUDSBudgetLastHalf(Dictionary<string, string> budgetLastHalves, Dictionary<string, int> values, Dictionary<string, int> budgets)
@@ -577,33 +570,15 @@ namespace JumpchainCharacterBuilder.ViewModel
                         break;
                 }
 
-                switch (LoadedExportOptions.BudgetFormat)
+                budgetLastHalves[key] = LoadedExportOptions.BudgetFormat switch
                 {
-                    case 0:
-                        budgetLastHalves[key] = $"{leftBracket}{values[key]}{budgetSeparator}{budgets[key]}{currencyAbbreviation}{rightBracket}";
-
-                        break;
-                    case 1:
-                        budgetLastHalves[key] = $"{leftBracket}{values[key]}{budgetSeparator}{budgets[key]}{currencyAbbreviation}{rightBracket}";
-
-                        break;
-                    case 2:
-                        budgetLastHalves[key] = $"{leftBracket}{values[key]}{currencyAbbreviation}{rightBracket}";
-
-                        break;
-                    case 3:
-                        budgetLastHalves[key] = $"{leftBracket}{budgets[key]}{currencyAbbreviation}{rightBracket}";
-
-                        break;
-                    case 4:
-                        budgetLastHalves[key] = $"{leftBracket}{budgets[key]}{currencyAbbreviation}{rightBracket}";
-
-                        break;
-                    default:
-                        budgetLastHalves[key] = $"{leftBracket}{values[key]}{budgetSeparator}{budgets[key]}{currencyAbbreviation}{rightBracket}";
-
-                        break;
-                }
+                    0 => $"{leftBracket}{values[key]}{budgetSeparator}{budgets[key]}{currencyAbbreviation}{rightBracket}",
+                    1 => $"{leftBracket}{values[key]}{budgetSeparator}{budgets[key]}{currencyAbbreviation}{rightBracket}",
+                    2 => $"{leftBracket}{values[key]}{currencyAbbreviation}{rightBracket}",
+                    3 => $"{leftBracket}{budgets[key]}{currencyAbbreviation}{rightBracket}",
+                    4 => $"{leftBracket}{budgets[key]}{currencyAbbreviation}{rightBracket}",
+                    _ => $"{leftBracket}{values[key]}{budgetSeparator}{budgets[key]}{currencyAbbreviation}{rightBracket}",
+                };
             }
 
             return $"{budgetLastHalves["Choice Points"]} " +
@@ -614,8 +589,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void FormatPricedDataLine(string name, string description, string budgetLastHalf, List<string> output, int cost = 1, string reward = "")
         {
-            string line = "";
-
+            string line;
             switch (LoadedExportOptions.ExportMode)
             {
                 case "Generic":
@@ -776,7 +750,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void FormatNonPricedDataLine(string name, string description, List<string> output, string sourceCharacter = "", string sourceJump = "")
         {
-            string line = "";
+            string line;
 
             switch (LoadedExportOptions.ExportMode)
             {
@@ -932,7 +906,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void FormatSectionEnding(List<string> output, bool sectionEnabled, char sectionSeparator)
         {
-            string line = "";
+            string line;
 
             switch (LoadedExportOptions.ExportMode)
             {
@@ -1050,7 +1024,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return warehouse.TotalInvestment;
         }
 
-        private int CalculateLimitationWP(WarehouseUniversal warehouse)
+        private static int CalculateLimitationWP(WarehouseUniversal warehouse)
         {
             int total = 0;
 
@@ -1156,7 +1130,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private int CalculateQuestBP(int characterIndex)
         {
-            int result = 0;
+            int result;
 
             int MinorBP = CharacterList[characterIndex].BodyMod.EBMMinorQuests * 50;
             int MajorBP = CharacterList[characterIndex].BodyMod.EBMMajorQuests * 100;
@@ -1193,14 +1167,14 @@ namespace JumpchainCharacterBuilder.ViewModel
             char budgetSeparator = LoadedExportOptions.BudgetSeparatorFormat;
             char sectionSeparator = LoadedExportOptions.SectionSeparator;
             string budgetLastHalf = "";
-            string currencyAbbreviation = "";
+            string currencyAbbreviation;
 
             List<string> output = new();
             string line = "";
 
             List<int> budget = new();
-            List<int> stipend = new();
-            int sectionSubtotal = 0;
+            List<int> stipend;
+            int sectionSubtotal;
 
             int importStipend = 0;
 
@@ -3244,17 +3218,14 @@ namespace JumpchainCharacterBuilder.ViewModel
                     break;
             }
 
-            char leftBracket = LoadedExportOptions.BudgetEnclosingFormat[0];
-            char rightBracket = LoadedExportOptions.BudgetEnclosingFormat[1];
-            char budgetSeparator = LoadedExportOptions.BudgetSeparatorFormat;
             char sectionSeparator = LoadedExportOptions.SectionSeparator;
-            string budgetLastHalf = "";
-            string currencyAbbreviation = "";
+            string budgetLastHalf;
+            string currencyAbbreviation;
 
             int budget = 0;
-            int sectionSubtotal = 0;
+            int sectionSubtotal;
 
-            int drawbackSupplementWP = 0;
+            int drawbackSupplementWP;
             int supplementLimitationWP = 0;
             int jumpWP = 0;
             int investmentWP = 0;
@@ -3263,7 +3234,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             List<Purchase> warehouseAddons = new();
 
             List<string> output = new();
-            string line = "";
+            string line;
 
             drawbackSupplementWP = drawbackSupplement.WPGained;
 
@@ -3765,15 +3736,12 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             int characterIndex = CharacterList.IndexOf(character);
 
-            char leftBracket = LoadedExportOptions.BudgetEnclosingFormat[0];
-            char rightBracket = LoadedExportOptions.BudgetEnclosingFormat[1];
-            char budgetSeparator = LoadedExportOptions.BudgetSeparatorFormat;
             char sectionSeparator = LoadedExportOptions.SectionSeparator;
-            string budgetLastHalf = "";
-            string currencyAbbreviation = "";
+            string budgetLastHalf;
+            string currencyAbbreviation;
 
             int budget = 0;
-            int sectionSubtotal = 0;
+            int sectionSubtotal;
 
             int drawbackBP = 0;
             int jumpBP = 0;
@@ -3783,7 +3751,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             List<Purchase> bodyModAddons = new();
 
             List<string> output = new();
-            string line = "";
+            string line;
 
             switch (loadedBodyMod)
             {
@@ -4285,7 +4253,6 @@ namespace JumpchainCharacterBuilder.ViewModel
                     List<SupplementPurchase> EBMSupernaturalPerkList = new();
                     List<SupplementPurchase> EBMItemPerkList = new();
                     List<SupplementPurchase> EBMCompanionPerkList = new();
-                    List<SupplementPurchase> EBMDrawbackList = new();
 
                     foreach (SupplementPurchase purchase in character.BodyMod.EBMPurchaseList)
                     {
@@ -4614,10 +4581,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void ExportDrawbackSupplement(Options.DrawbackSupplements loadedDrawbackSupplement)
         {
-            char leftBracket = LoadedExportOptions.BudgetEnclosingFormat[0];
-            char rightBracket = LoadedExportOptions.BudgetEnclosingFormat[1];
-            char budgetSeparator = LoadedExportOptions.BudgetSeparatorFormat;
-            char sectionSeparator = LoadedExportOptions.SectionSeparator;
             Dictionary<string, string> budgetLastHalves = new()
             {
                 {"Choice Points", ""},
@@ -4625,7 +4588,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {"Companion Choice Points", ""},
                 {"Item Choice Points", ""}
             };
-            string budgetLastHalf = "";
+            string budgetLastHalf;
 
             Dictionary<string, int> drawbackValues = new()
             {
@@ -4646,7 +4609,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             List<HouseRuleModel> houseRules = new();
 
             List<string> output = new();
-            string line = "";
+            string line;
 
             switch (loadedDrawbackSupplement)
             {
@@ -5090,10 +5053,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         [RelayCommand]
-        private void ExportBodyModData()
-        {
-            ExportBodyMod(CharacterSelection, LoadedOptions.BodyModSetting);
-        }
+        private void ExportBodyModData() => ExportBodyMod(CharacterSelection, LoadedOptions.BodyModSetting);
 
         [RelayCommand]
         private void ExportAllBodyMods()
@@ -5105,10 +5065,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         [RelayCommand]
-        private void ExportDrawbackSupplementData()
-        {
-            ExportDrawbackSupplement(LoadedOptions.DrawbackSupplementSetting);
-        }
+        private void ExportDrawbackSupplementData() => ExportDrawbackSupplement(LoadedOptions.DrawbackSupplementSetting);
 
         [RelayCommand]
         private void ExportAllData()
@@ -5150,10 +5107,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveBuildSectionUp()
-        {
-            return BuildSectionSelectionIndex != -1 && BuildSectionSelectionIndex > 0;
-        }
+        private bool CanMoveBuildSectionUp() => BuildSectionSelectionIndex != -1 && BuildSectionSelectionIndex > 0;
 
         [RelayCommand(CanExecute = nameof(CanMoveBuildSectionDown))]
         private void MoveBuildSectionDown()
@@ -5169,10 +5123,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveBuildSectionDown()
-        {
-            return BuildSectionSelectionIndex != -1 && BuildSectionSelectionIndex < LoadedExportOptions.BuildSectionList.Count - 1;
-        }
+        private bool CanMoveBuildSectionDown() => BuildSectionSelectionIndex != -1 && BuildSectionSelectionIndex < LoadedExportOptions.BuildSectionList.Count - 1;
 
         [RelayCommand(CanExecute = nameof(CanMoveProfileSectionUp))]
         private void MoveProfileSectionUp()
@@ -5188,10 +5139,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveProfileSectionUp()
-        {
-            return ProfileSectionSelectionIndex != -1 && ProfileSectionSelectionIndex > 0;
-        }
+        private bool CanMoveProfileSectionUp() => ProfileSectionSelectionIndex != -1 && ProfileSectionSelectionIndex > 0;
 
         [RelayCommand(CanExecute = nameof(CanMoveProfileSectionDown))]
         private void MoveProfileSectionDown()
@@ -5207,10 +5155,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveProfileSectionDown()
-        {
-            return ProfileSectionSelectionIndex != -1 && ProfileSectionSelectionIndex < LoadedExportOptions.ProfileSectionList.Count - 1;
-        }
+        private bool CanMoveProfileSectionDown() => ProfileSectionSelectionIndex != -1 && ProfileSectionSelectionIndex < LoadedExportOptions.ProfileSectionList.Count - 1;
 
         [RelayCommand(CanExecute = nameof(CanMoveProfileSubsectionUp))]
         private void MoveProfileSubsectionUp()
@@ -5226,10 +5171,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveProfileSubsectionUp()
-        {
-            return ProfileSubsectionSelectionIndex != -1 && ProfileSubsectionSelectionIndex > 0;
-        }
+        private bool CanMoveProfileSubsectionUp() => ProfileSubsectionSelectionIndex != -1 && ProfileSubsectionSelectionIndex > 0;
 
         [RelayCommand(CanExecute = nameof(CanMoveProfileSubsectionDown))]
         private void MoveProfileSubsectionDown()
@@ -5245,10 +5187,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveProfileSubsectionDown()
-        {
-            return ProfileSubsectionSelectionIndex != -1 && ProfileSubsectionSelectionIndex < LoadedExportOptions.ProfileSubsectionList.Count - 1;
-        }
+        private bool CanMoveProfileSubsectionDown() => ProfileSubsectionSelectionIndex != -1 && ProfileSubsectionSelectionIndex < LoadedExportOptions.ProfileSubsectionList.Count - 1;
 
         [RelayCommand(CanExecute = nameof(CanMoveWarehouseSectionUp))]
         private void MoveWarehouseSectionUp()
@@ -5353,10 +5292,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveBodyModSectionUp()
-        {
-            return BodyModSectionSelectionIndex != -1 && BodyModSectionSelectionIndex > 0;
-        }
+        private bool CanMoveBodyModSectionUp() => BodyModSectionSelectionIndex != -1 && BodyModSectionSelectionIndex > 0;
 
         [RelayCommand(CanExecute = nameof(CanMoveBodyModSectionDown))]
         private void MoveBodyModSectionDown()
@@ -5372,10 +5308,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveBodyModSectionDown()
-        {
-            return BodyModSectionSelectionIndex != -1 && BodyModSectionSelectionIndex < LoadedExportOptions.BodyModSectionList.Count - 1;
-        }
+        private bool CanMoveBodyModSectionDown() => BodyModSectionSelectionIndex != -1 && BodyModSectionSelectionIndex < LoadedExportOptions.BodyModSectionList.Count - 1;
 
         [RelayCommand(CanExecute = nameof(CanMoveDrawbackSupplementSectionUp))]
         private void MoveDrawbackSupplementSectionUp()
@@ -5391,10 +5324,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveDrawbackSupplementSectionUp()
-        {
-            return DrawbackSupplementSectionSelectionIndex != -1 && DrawbackSupplementSectionSelectionIndex > 0;
-        }
+        private bool CanMoveDrawbackSupplementSectionUp() => DrawbackSupplementSectionSelectionIndex != -1 && DrawbackSupplementSectionSelectionIndex > 0;
 
         [RelayCommand(CanExecute = nameof(CanMoveDrawbackSupplementSectionDown))]
         private void MoveDrawbackSupplementSectionDown()
@@ -5410,10 +5340,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        private bool CanMoveDrawbackSupplementSectionDown()
-        {
-            return DrawbackSupplementSectionSelectionIndex != -1 && DrawbackSupplementSectionSelectionIndex < LoadedExportOptions.DrawbackSupplementSectionList.Count - 1;
-        }
+        private bool CanMoveDrawbackSupplementSectionDown() => DrawbackSupplementSectionSelectionIndex != -1 && DrawbackSupplementSectionSelectionIndex < LoadedExportOptions.DrawbackSupplementSectionList.Count - 1;
         #endregion
     }
 }
