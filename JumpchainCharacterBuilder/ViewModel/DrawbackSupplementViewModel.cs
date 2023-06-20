@@ -29,6 +29,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<DrawbackSupplementPurchase> _drawbackList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteDrawbackCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveDrawbackUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveDrawbackDownCommand))]
         private DrawbackSupplementPurchase _drawbackSelection = new();
         [ObservableProperty]
         private int _drawbackSelectionIndex = 0;
@@ -36,6 +39,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<HouseRuleModel> _houseRuleList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteHouseRuleCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveHouseRuleUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveHouseRuleDownCommand))]
         private HouseRuleModel _houseRuleSelection = new();
         [ObservableProperty]
         private int _houseRuleSelectionIndex = 0;
@@ -99,17 +105,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 UpdatePointValues();
             }
-
-            DeleteDrawbackCommand.NotifyCanExecuteChanged();
-            MoveDrawbackDownCommand.NotifyCanExecuteChanged();
-            MoveDrawbackUpCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnHouseRuleSelectionChanged(HouseRuleModel value)
-        {
-            DeleteHouseRuleCommand.NotifyCanExecuteChanged();
-            MoveHouseRuleUpCommand.NotifyCanExecuteChanged();
-            MoveHouseRuleDownCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnUUModeChanged(string value)
@@ -333,7 +328,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveHouseRuleDownCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteHouseRule")]
+        [RelayCommand(CanExecute = nameof(CanDeleteHouseRule))]
         private void DeleteHouseRule()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this House Rule? " +
@@ -367,7 +362,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return HouseRuleList.Any() && HouseRuleSelection != null;
         }
 
-        [RelayCommand(CanExecute = "CanMoveHouseRuleUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveHouseRuleUp))]
         private void MoveHouseRuleUp()
         {
             int index = HouseRuleSelectionIndex;
@@ -396,7 +391,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return HouseRuleSelectionIndex > 0 && HouseRuleSelection != null;
         }
 
-        [RelayCommand(CanExecute = "CanMoveHouseRuleDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveHouseRuleDown))]
         private void MoveHouseRuleDown()
         {
             int index = HouseRuleSelectionIndex;
@@ -450,7 +445,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveDrawbackUpCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteDrawback")]
+        [RelayCommand(CanExecute = nameof(CanDeleteDrawback))]
         private void DeleteDrawback()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Drawback? " +
@@ -484,7 +479,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return DrawbackList.Any() && DrawbackSelection != null;
         }
 
-        [RelayCommand(CanExecute = "CanMoveDrawbackUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveDrawbackUp))]
         private void MoveDrawbackUp()
         {
             int index = DrawbackSelectionIndex;
@@ -513,7 +508,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return DrawbackSelectionIndex > 0 && DrawbackSelection != null;
         }
 
-        [RelayCommand(CanExecute = "CanMoveDrawbackDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveDrawbackDown))]
         private void MoveDrawbackDown()
         {
             int index = DrawbackSelectionIndex;

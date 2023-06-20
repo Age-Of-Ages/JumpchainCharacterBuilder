@@ -91,11 +91,17 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _miscPurchaseSelectionIndex = 0;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeletePurchaseCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePurchaseUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePurchaseDownCommand))]
         private SupplementPurchase _purchaseSelection = new();
 
         [ObservableProperty]
         private ObservableCollection<SupplementDrawbackModel> _limitationList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteLimitationCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveLimitationUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveLimitationDownCommand))]
         private SupplementDrawbackModel _limitationSelection = new();
         [ObservableProperty]
         private int _limitationSelectionIndex = 0;
@@ -137,17 +143,6 @@ namespace JumpchainCharacterBuilder.ViewModel
         partial void OnPurchaseSelectionChanged(SupplementPurchase value)
         {
             CalculateBudget();
-
-            DeletePurchaseCommand.NotifyCanExecuteChanged();
-            MovePurchaseDownCommand.NotifyCanExecuteChanged();
-            MovePurchaseUpCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnLimitationSelectionChanged(SupplementDrawbackModel value)
-        {
-            DeleteLimitationCommand.NotifyCanExecuteChanged();
-            MoveLimitationDownCommand.NotifyCanExecuteChanged();
-            MoveLimitationUpCommand.NotifyCanExecuteChanged();
         }
 
         #endregion
@@ -683,7 +678,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanDeletePurchase")]
+        [RelayCommand(CanExecute = nameof(CanDeletePurchase))]
         private void DeletePurchase()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Purchase " +
@@ -778,7 +773,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanMovePurchaseUp")]
+        [RelayCommand(CanExecute = nameof(CanMovePurchaseUp))]
         private void MovePurchaseUp()
         {
             int index;
@@ -897,7 +892,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanMovePurchaseDown")]
+        [RelayCommand(CanExecute = nameof(CanMovePurchaseDown))]
         private void MovePurchaseDown()
         {
             int index;
@@ -1041,7 +1036,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveLimitationUpCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteLimitation")]
+        [RelayCommand(CanExecute = nameof(CanDeleteLimitation))]
         private void DeleteLimitation()
         {
             if (_dialogService.ConfirmDialog("Are you sure that you want to delete this Limitation? " +
@@ -1072,7 +1067,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return LimitationList.Any() && LimitationSelection != null;
         }
 
-        [RelayCommand(CanExecute = "CanMoveLimitationUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveLimitationUp))]
         private void MoveLimitationUp()
         {
             int index = LimitationSelectionIndex;
@@ -1103,7 +1098,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return LimitationSelectionIndex > 0;
         }
 
-        [RelayCommand(CanExecute = "CanMoveLimitationDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveLimitationDown))]
         private void MoveLimitationDown()
         {
             int index = LimitationSelectionIndex;

@@ -17,7 +17,6 @@ namespace JumpchainCharacterBuilder.ViewModel
         // TODO - Improve the attribute type/category system, as the current implementation is definitely kind of rough.
         // TODO - Implement the Essential Body Mod Essence tab, to allow users to input their chosen essence or essences for future referencing.
         // Specifically, the tab doesn't appear if you have No Essence mode selected, and you can add more than one if you have the dual or multi mode selected.
-        // TODO - Implement Rank descriptions for Attributes and Skills. (Oops)
         #region Fields
         private readonly IDialogService _dialogService;
 
@@ -31,6 +30,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<Character> _characterList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteCharacterCommand))]
         private Character _characterSelection = new();
         [ObservableProperty]
         private int _characterSelectionIndex = 0;
@@ -62,6 +62,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<AltForm> _characterAltFormList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(NewStrengthWeaknessRowCommand))]
+        [NotifyCanExecuteChangedFor(nameof(DeleteStrengthWeaknessRowCommand))]
         private AltForm _characterAltFormSelection = new();
         [ObservableProperty]
         private int _characterAltFormSelectionIndex = 0;
@@ -171,8 +173,15 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _questBP = 0;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteBodyModPurchaseCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveBodyModPurchaseUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveBodyModPurchaseDownCommand))]
+        [NotifyCanExecuteChangedFor(nameof(DeleteSBPowerTraitCommand))]
         private SupplementPurchase _bodyModPurchaseSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteBodyModDrawbackCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveBodyModDrawbackUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveBodyModDrawbackDownCommand))]
         private SupplementDrawbackModel _bodyModDrawbackSelection = new();
 
         [ObservableProperty]
@@ -192,6 +201,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _genericBodyModDrawbackIndex = 0;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Supplements cannot be taken on a negative Jump #.")]
         private int _gBMSupplementDelay = 0;
 
@@ -208,6 +218,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private string _sBBodyModAnomalousDescription = "";
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Supplements cannot be taken on a negative Jump #.")]
         private int _sBBodyModSupplementDelay = 0;
         [ObservableProperty]
@@ -216,6 +227,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _sBExtraBitsList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteSBExtraBitsCommand))]
         private int _sBExtraBitsIndex = 0;
 
         [ObservableProperty]
@@ -234,13 +246,16 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _sBBodyModAffinityDescription = "";
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteAugmentTraitCommand))]
         private AugmentPurchase _sBAugmentSelection = new();
 
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _sBBodyModPowerList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteSBPowerTraitCommand))]
         private SupplementPurchase _sBBodyModPowerSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteSBPowerCommand))]
         private int _sBBodyModPowerIndex = 0;
         [ObservableProperty]
         private List<string> _sBBodyModPowerCategories = new()
@@ -255,6 +270,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
 
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Supplements cannot be taken on a negative Jump #.")]
         private int _eBMSupplementDelay = 0;
         [ObservableProperty]
@@ -263,6 +279,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _eBMMajorQuests = 0;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMDrawbackCommand))]
         private int _eBMPurchaseTabIndex = 0;
 
         [ObservableProperty]
@@ -270,48 +288,63 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private SupplementPurchase _eBMBasicPerkSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMBasicPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMPhysicalPerkList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMPhysicalPerkSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMPhysicalPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMMentalPerkList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMMentalPerkSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMMentalPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMSpiritualPerkList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMSpiritualPerkSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMSpiritualPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMSkillPerkList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMSkillPerkSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMSkillPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMSupernaturalPerkList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMSupernaturalPerkSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMSupernaturalPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMItemPerkList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMItemPerkSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMItemPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMCompanionPerkList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMCompanionPerkSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMCompanionPerkIndex = 0;
 
         [ObservableProperty]
@@ -319,11 +352,13 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private SupplementDrawbackModel _eBMDrawbackSelection = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMDrawbackCommand))]
         private int _eBMDrawbackIndex = 0;
 
         [ObservableProperty]
         private ObservableCollection<PurchaseAttribute> _purchaseAttributeList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteAugmentTraitCommand))]
         private PurchaseAttribute _purchaseAttributeSelection = new();
         [ObservableProperty]
         private int _purchaseAttributeIndex = 0;
@@ -453,18 +488,21 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentPhysicalAttributeList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeletePhysicalAttributeCommand))]
         private ProfileAttribute _currentPhysicalAttributeSelection = new();
         [ObservableProperty]
         private int _currentPhysicalAttributeIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentMentalAttributeList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteMentalAttributeCommand))]
         private ProfileAttribute _currentMentalAttributeSelection = new();
         [ObservableProperty]
         private int _currentMentalAttributeIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentSupernaturalAttributeList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteSupernaturalAttributeCommand))]
         private ProfileAttribute _currentSupernaturalAttributeSelection = new();
         [ObservableProperty]
         private int _currentSupernaturalAttributeIndex = 0;
@@ -472,30 +510,35 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentPhysicalSkillList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeletePhysicalSkillCommand))]
         private ProfileAttribute _currentPhysicalSkillSelection = new();
         [ObservableProperty]
         private int _currentPhysicalSkillIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentMentalSkillList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteMentalSkillCommand))]
         private ProfileAttribute _currentMentalSkillSelection = new();
         [ObservableProperty]
         private int _currentMentalSkillIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentSocialSkillList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteSocialSkillCommand))]
         private ProfileAttribute _currentSocialSkillSelection = new();
         [ObservableProperty]
         private int _currentSocialSkillIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentTechnologicalSkillList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteTechnologicalSkillCommand))]
         private ProfileAttribute _currentTechnologicalSkillSelection = new();
         [ObservableProperty]
         private int _currentTechnologicalSkillIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentSupernaturalSkillList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteSupernaturalSkillCommand))]
         private ProfileAttribute _currentSupernaturalSkillSelection = new();
         [ObservableProperty]
         private int _currentSupernaturalSkillIndex = 0;
@@ -503,6 +546,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<Booster> _currentBoosterList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteBoosterCommand))]
         private Booster _currentBoosterSelection = new();
         [ObservableProperty]
         private int _currentBoosterIndex = 0;
@@ -519,17 +563,12 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadAltForms(value);
 
                 CharacterChanged(CharacterSelectionIndex);
-
-                DeleteCharacterCommand.NotifyCanExecuteChanged();
             }
         }
 
         partial void OnCharacterAltFormSelectionChanged(AltForm value)
         {
             LoadAltFormTraits();
-
-            NewStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
-            DeleteStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnPerkTabIndexChanged(int value)
@@ -562,10 +601,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnBodyModPurchaseSelectionChanged(SupplementPurchase value)
         {
-            DeleteBodyModPurchaseCommand.NotifyCanExecuteChanged();
-            MoveBodyModPurchaseUpCommand.NotifyCanExecuteChanged();
-            MoveBodyModPurchaseDownCommand.NotifyCanExecuteChanged();
-
             if (value != null)
             {
                 if (value.Attributes.Any())
@@ -588,15 +623,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteSBPowerTraitCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnBodyModDrawbackSelectionChanged(SupplementDrawbackModel value)
-        {
-            DeleteBodyModDrawbackCommand.NotifyCanExecuteChanged();
-            MoveBodyModDrawbackUpCommand.NotifyCanExecuteChanged();
-            MoveBodyModDrawbackDownCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnSBBodyModGauntletsChanged(int value)
@@ -673,18 +699,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteAugmentTraitCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnSBExtraBitsIndexChanged(int value)
-        {
-            DeleteSBExtraBitsCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnSBBodyModPowerIndexChanged(int value)
-        {
-            DeleteSBPowerCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnSBBodyModPowerSelectionChanged(SupplementPurchase value)
@@ -712,8 +726,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteSBPowerTraitCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnEBMSupplementDelayChanged(int value)
@@ -734,10 +746,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             CharacterSelection.BodyMod.EBMMajorQuests = value;
         }
 
-        partial void OnEBMBasicPerkIndexChanged(int value)
-        {
-            DeleteEBMPerkCommand.NotifyCanExecuteChanged();
-        }
 
         partial void OnEBMBasicPerkSelectionChanged(SupplementPurchase value)
         {
@@ -763,14 +771,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteEBMTraitCommand.NotifyCanExecuteChanged();
         }
 
-        partial void OnEBMPhysicalPerkIndexChanged(int value)
-        {
-            DeleteEBMPerkCommand.NotifyCanExecuteChanged();
-        }
 
         partial void OnEBMPhysicalPerkSelectionChanged(SupplementPurchase value)
         {
@@ -796,13 +798,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteEBMTraitCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnEBMMentalPerkIndexChanged(int value)
-        {
-            DeleteEBMPerkCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnEBMMentalPerkSelectionChanged(SupplementPurchase value)
@@ -829,13 +824,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteEBMTraitCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnEBMSpiritualPerkIndexChanged(int value)
-        {
-            DeleteEBMPerkCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnEBMSpiritualPerkSelectionChanged(SupplementPurchase value)
@@ -862,13 +850,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteEBMTraitCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnEBMSkillPerkIndexChanged(int value)
-        {
-            DeleteEBMPerkCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnEBMSkillPerkSelectionChanged(SupplementPurchase value)
@@ -895,13 +876,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteEBMTraitCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnEBMSupernaturalPerkIndexChanged(int value)
-        {
-            DeleteEBMPerkCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnEBMSupernaturalPerkSelectionChanged(SupplementPurchase value)
@@ -928,13 +902,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteEBMTraitCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnEBMItemPerkIndexChanged(int value)
-        {
-            DeleteEBMPerkCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnEBMItemPerkSelectionChanged(SupplementPurchase value)
@@ -961,13 +928,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteEBMTraitCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnEBMCompanionPerkIndexChanged(int value)
-        {
-            DeleteEBMPerkCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnEBMCompanionPerkSelectionChanged(SupplementPurchase value)
@@ -994,20 +954,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeleteEBMTraitCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnEBMDrawbackIndexChanged(int value)
-        {
-            DeleteEBMDrawbackCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnEBMPurchaseTabIndexChanged(int value)
         {
-            DeleteEBMDrawbackCommand.NotifyCanExecuteChanged();
-            DeleteEBMPerkCommand.NotifyCanExecuteChanged();
-
             ClearAttributeList();
         }
 
@@ -1025,8 +975,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 AvailableAttributeCategoryList.Clear();
             }
-
-            DeleteAugmentTraitCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnAttributeTypeSelectionChanged(string value)
@@ -1082,51 +1030,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 PurchaseAttributeSelection.Name = value;
             }
-        }
-
-        partial void OnCurrentPhysicalAttributeSelectionChanged(ProfileAttribute value)
-        {
-            DeletePhysicalAttributeCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnCurrentMentalAttributeSelectionChanged(ProfileAttribute value)
-        {
-            DeleteMentalAttributeCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnCurrentSupernaturalAttributeSelectionChanged(ProfileAttribute value)
-        {
-            DeleteSupernaturalAttributeCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnCurrentPhysicalSkillSelectionChanged(ProfileAttribute value)
-        {
-            DeletePhysicalSkillCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnCurrentMentalSkillSelectionChanged(ProfileAttribute value)
-        {
-            DeleteMentalSkillCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnCurrentSocialSkillSelectionChanged(ProfileAttribute value)
-        {
-            DeleteSocialSkillCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnCurrentTechnologicalSkillSelectionChanged(ProfileAttribute value)
-        {
-            DeleteTechnologicalSkillCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnCurrentSupernaturalSkillSelectionChanged(ProfileAttribute value)
-        {
-            DeleteSupernaturalSkillCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnCurrentBoosterSelectionChanged(Booster value)
-        {
-            DeleteBoosterCommand.NotifyCanExecuteChanged();
         }
         #endregion
 
@@ -2203,7 +2106,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteCharacterCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteCharacter")]
+        [RelayCommand(CanExecute = nameof(CanDeleteCharacter))]
         private void DeleteCharacter()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete the currently selected character? " +
@@ -2258,7 +2161,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteTraitRowCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteTraitRow")]
+        [RelayCommand(CanExecute = nameof(CanDeleteTraitRow))]
         private void DeleteTraitRow()
         {
             CharacterTraitList.Remove(CharacterTraitList.Last());
@@ -2309,7 +2212,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteAltForm")]
+        [RelayCommand(CanExecute = nameof(CanDeleteAltForm))]
         private void DeleteAltForm()
         {
             if (_dialogService.ConfirmDialog("Are you sure that you want to delete this Alt-Form? " +
@@ -2337,7 +2240,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return CharacterAltFormList.Any() && CharacterAltFormSelection != null;
         }
 
-        [RelayCommand(CanExecute = "CanNewStrengthWeaknessRow")]
+        [RelayCommand(CanExecute = nameof(CanNewStrengthWeaknessRow))]
         private void NewStrengthWeaknessRow()
         {
             if (CharacterAltFormSelection != null)
@@ -2356,7 +2259,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return CharacterAltFormSelection != null;
         }
 
-        [RelayCommand(CanExecute = "CanDeleteStrengthWeaknessRow")]
+        [RelayCommand(CanExecute = nameof(CanDeleteStrengthWeaknessRow))]
         private void DeleteStrengthWeaknessRow()
         {
             if (CharacterAltFormSelection != null)
@@ -2408,7 +2311,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveBodyModPurchaseDownCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteBodyModPurchase")]
+        [RelayCommand(CanExecute = nameof(CanDeleteBodyModPurchase))]
         private void DeleteBodyModPurchase()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this purchase? " +
@@ -2448,7 +2351,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanMoveBodyModPurchaseUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveBodyModPurchaseUp))]
         private void MoveBodyModPurchaseUp()
         {
             int index;
@@ -2491,7 +2394,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanMoveBodyModPurchaseDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveBodyModPurchaseDown))]
         private void MoveBodyModPurchaseDown()
         {
             int index;
@@ -2563,7 +2466,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveBodyModDrawbackDownCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteBodyModDrawback")]
+        [RelayCommand(CanExecute = nameof(CanDeleteBodyModDrawback))]
         private void DeleteBodyModDrawback()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Drawback? " +
@@ -2603,7 +2506,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanMoveBodyModDrawbackUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveBodyModDrawbackUp))]
         private void MoveBodyModDrawbackUp()
         {
             int index;
@@ -2646,7 +2549,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanMoveBodyModDrawbackDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveBodyModDrawbackDown))]
         private void MoveBodyModDrawbackDown()
         {
             int index;
@@ -2702,7 +2605,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteSBExtraBitsCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteSBExtraBits")]
+        [RelayCommand(CanExecute = nameof(CanDeleteSBExtraBits))]
         private void DeleteSBExtraBits()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this purchase? " +
@@ -2735,7 +2638,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteSBPowerCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteSBPower")]
+        [RelayCommand(CanExecute = nameof(CanDeleteSBPower))]
         private void DeleteSBPower()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this power? " +
@@ -2840,7 +2743,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteEBMPerkCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteEBMPerk")]
+        [RelayCommand(CanExecute = nameof(CanDeleteEBMPerk))]
         private void DeleteEBMPerk()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this power? " +
@@ -2943,7 +2846,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteEBMDrawbackCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteEBMDrawback")]
+        [RelayCommand(CanExecute = nameof(CanDeleteEBMDrawback))]
         private void DeleteEBMDrawback()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Drawback? " +
@@ -2980,7 +2883,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanDeleteAugmentTrait")]
+        [RelayCommand(CanExecute = nameof(CanDeleteAugmentTrait))]
         private void DeleteAugmentTrait()
         {
             SBAugmentSelection.Attributes.RemoveAt(PurchaseAttributeIndex);
@@ -3013,7 +2916,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanDeleteGBMPurchaseTrait")]
+        [RelayCommand(CanExecute = nameof(CanDeleteGBMPurchaseTrait))]
         private void DeleteGBMPurchaseTrait()
         {
             BodyModPurchaseSelection.Attributes.RemoveAt(PurchaseAttributeIndex);
@@ -3046,7 +2949,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanDeleteSBPowerTrait")]
+        [RelayCommand(CanExecute = nameof(CanDeleteSBPowerTrait))]
         private void DeleteSBPowerTrait()
         {
             SBBodyModPowerSelection.Attributes.RemoveAt(PurchaseAttributeIndex);
@@ -3185,7 +3088,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         }
 
-        [RelayCommand(CanExecute = "CanDeleteEBMTrait")]
+        [RelayCommand(CanExecute = nameof(CanDeleteEBMTrait))]
         private void DeleteEBMTrait()
         {
             switch (EBMPurchaseTabIndex)
@@ -3311,7 +3214,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeletePhysicalAttributeCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeletePhysicalAttribute")]
+        [RelayCommand(CanExecute = nameof(CanDeletePhysicalAttribute))]
         private void DeletePhysicalAttribute()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Attribute? " +
@@ -3344,7 +3247,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteMentalAttributeCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteMentalAttribute")]
+        [RelayCommand(CanExecute = nameof(CanDeleteMentalAttribute))]
         private void DeleteMentalAttribute()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Attribute? " +
@@ -3377,7 +3280,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteSupernaturalAttributeCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteSupernaturalAttribute")]
+        [RelayCommand(CanExecute = nameof(CanDeleteSupernaturalAttribute))]
         private void DeleteSupernaturalAttribute()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Attribute? " +
@@ -3416,7 +3319,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeletePhysicalSkillCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeletePhysicalSkill")]
+        [RelayCommand(CanExecute = nameof(CanDeletePhysicalSkill))]
         private void DeletePhysicalSkill()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Skill? " +
@@ -3449,7 +3352,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteMentalSkillCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteMentalSkill")]
+        [RelayCommand(CanExecute = nameof(CanDeleteMentalSkill))]
         private void DeleteMentalSkill()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Skill? " +
@@ -3482,7 +3385,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteSocialSkillCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteSocialSkill")]
+        [RelayCommand(CanExecute = nameof(CanDeleteSocialSkill))]
         private void DeleteSocialSkill()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Skill? " +
@@ -3515,7 +3418,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteTechnologicalSkillCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteTechnologicalSkill")]
+        [RelayCommand(CanExecute = nameof(CanDeleteTechnologicalSkill))]
         private void DeleteTechnologicalSkill()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Skill? " +
@@ -3548,7 +3451,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteSupernaturalSkillCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteSupernaturalSkill")]
+        [RelayCommand(CanExecute = nameof(CanDeleteSupernaturalSkill))]
         private void DeleteSupernaturalSkill()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Skill? " +
@@ -3596,7 +3499,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteBoosterCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteBooster")]
+        [RelayCommand(CanExecute = nameof(CanDeleteBooster))]
         private void DeleteBooster()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Booster? " +

@@ -53,7 +53,6 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the chosen age.
         /// </summary>
         [ObservableProperty]
-        [Range(0, int.MaxValue)]
         private int _age = 0;
 
         /// <summary>

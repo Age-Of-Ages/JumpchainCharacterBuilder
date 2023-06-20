@@ -113,6 +113,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             new("Supplements", true)
         };
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(MoveBuildSectionUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveBuildSectionDownCommand))]
         private int _buildSectionSelectionIndex = 0;
 
         [ObservableProperty]
@@ -127,6 +129,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             new("Learning Rates", true)
         };
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(MoveProfileSectionUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveProfileSectionDownCommand))]
         private int _profileSectionSelectionIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ExportFormatToggle> _profileSubsectionList = new()
@@ -138,6 +142,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             new("Traits", true)
         };
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(MoveProfileSubsectionUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveProfileSubsectionDownCommand))]
         private int _profileSubsectionSelectionIndex = 0;
 
         [ObservableProperty]
@@ -150,6 +156,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             new("Limitations", true)
         };
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(MoveWarehouseSectionUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveWarehouseSectionDownCommand))]
         private int _genericWarehouseSectionSelectionIndex = 0;
 
         [ObservableProperty]
@@ -162,6 +170,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             new("Limitations", true)
         };
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(MoveWarehouseSectionUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveWarehouseSectionDownCommand))]
         private int _personalRealitySectionSelectionIndex = 0;
 
         [ObservableProperty]
@@ -179,6 +189,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             new("Drawbacks", true)
         };
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(MoveBodyModSectionUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveBodyModSectionDownCommand))]
         private int _bodyModSectionSelectionIndex = 0;
 
         [ObservableProperty]
@@ -190,6 +202,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             new("Drawbacks", true)
         };
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(MoveDrawbackSupplementSectionUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveDrawbackSupplementSectionDownCommand))]
         private int _drawbackSupplementSectionSelectionIndex = 0;
         #endregion
 
@@ -220,47 +234,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             LoadedExportOptions.ExportMode = value;
         }
 
-        partial void OnBuildSectionSelectionIndexChanged(int value)
-        {
-            MoveBuildSectionUpCommand.NotifyCanExecuteChanged();
-            MoveBuildSectionDownCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnProfileSectionSelectionIndexChanged(int value)
-        {
-            MoveProfileSectionUpCommand.NotifyCanExecuteChanged();
-            MoveProfileSectionDownCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnProfileSubsectionSelectionIndexChanged(int value)
-        {
-            MoveProfileSubsectionUpCommand.NotifyCanExecuteChanged();
-            MoveProfileSubsectionDownCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnGenericWarehouseSectionSelectionIndexChanged(int value)
-        {
-            MoveWarehouseSectionUpCommand.NotifyCanExecuteChanged();
-            MoveWarehouseSectionDownCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnPersonalRealitySectionSelectionIndexChanged(int value)
-        {
-            MoveWarehouseSectionUpCommand.NotifyCanExecuteChanged();
-            MoveWarehouseSectionDownCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnBodyModSectionSelectionIndexChanged(int value)
-        {
-            MoveBodyModSectionUpCommand.NotifyCanExecuteChanged();
-            MoveBodyModSectionDownCommand.NotifyCanExecuteChanged();
-        }
-
-        partial void OnDrawbackSupplementSectionSelectionIndexChanged(int value)
-        {
-            MoveDrawbackSupplementSectionUpCommand.NotifyCanExecuteChanged();
-            MoveDrawbackSupplementSectionDownCommand.NotifyCanExecuteChanged();
-        }
         partial void OnExportTabIndexChanged(int value)
         {
             switch (value)
@@ -5163,7 +5136,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             ExportDrawbackSupplement(LoadedOptions.DrawbackSupplementSetting);
         }
 
-        [RelayCommand(CanExecute = "CanMoveBuildSectionUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveBuildSectionUp))]
         private void MoveBuildSectionUp()
         {
             int index = BuildSectionSelectionIndex;
@@ -5182,7 +5155,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return BuildSectionSelectionIndex != -1 && BuildSectionSelectionIndex > 0;
         }
 
-        [RelayCommand(CanExecute = "CanMoveBuildSectionDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveBuildSectionDown))]
         private void MoveBuildSectionDown()
         {
             int index = BuildSectionSelectionIndex;
@@ -5201,7 +5174,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return BuildSectionSelectionIndex != -1 && BuildSectionSelectionIndex < LoadedExportOptions.BuildSectionList.Count - 1;
         }
 
-        [RelayCommand(CanExecute = "CanMoveProfileSectionUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveProfileSectionUp))]
         private void MoveProfileSectionUp()
         {
             int index = ProfileSectionSelectionIndex;
@@ -5220,7 +5193,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return ProfileSectionSelectionIndex != -1 && ProfileSectionSelectionIndex > 0;
         }
 
-        [RelayCommand(CanExecute = "CanMoveProfileSectionDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveProfileSectionDown))]
         private void MoveProfileSectionDown()
         {
             int index = ProfileSectionSelectionIndex;
@@ -5239,7 +5212,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return ProfileSectionSelectionIndex != -1 && ProfileSectionSelectionIndex < LoadedExportOptions.ProfileSectionList.Count - 1;
         }
 
-        [RelayCommand(CanExecute = "CanMoveProfileSubsectionUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveProfileSubsectionUp))]
         private void MoveProfileSubsectionUp()
         {
             int index = ProfileSubsectionSelectionIndex;
@@ -5258,7 +5231,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return ProfileSubsectionSelectionIndex != -1 && ProfileSubsectionSelectionIndex > 0;
         }
 
-        [RelayCommand(CanExecute = "CanMoveProfileSubsectionDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveProfileSubsectionDown))]
         private void MoveProfileSubsectionDown()
         {
             int index = ProfileSubsectionSelectionIndex;
@@ -5277,7 +5250,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return ProfileSubsectionSelectionIndex != -1 && ProfileSubsectionSelectionIndex < LoadedExportOptions.ProfileSubsectionList.Count - 1;
         }
 
-        [RelayCommand(CanExecute = "CanMoveWarehouseSectionUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveWarehouseSectionUp))]
         private void MoveWarehouseSectionUp()
         {
             if (GenericWarehouseSelected)
@@ -5321,7 +5294,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanMoveWarehouseSectionDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveWarehouseSectionDown))]
         private void MoveWarehouseSectionDown()
         {
             if (GenericWarehouseSelected)
@@ -5366,7 +5339,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanMoveBodyModSectionUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveBodyModSectionUp))]
         private void MoveBodyModSectionUp()
         {
             int index = BodyModSectionSelectionIndex;
@@ -5385,7 +5358,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return BodyModSectionSelectionIndex != -1 && BodyModSectionSelectionIndex > 0;
         }
 
-        [RelayCommand(CanExecute = "CanMoveBodyModSectionDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveBodyModSectionDown))]
         private void MoveBodyModSectionDown()
         {
             int index = BodyModSectionSelectionIndex;
@@ -5404,7 +5377,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return BodyModSectionSelectionIndex != -1 && BodyModSectionSelectionIndex < LoadedExportOptions.BodyModSectionList.Count - 1;
         }
 
-        [RelayCommand(CanExecute = "CanMoveDrawbackSupplementSectionUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveDrawbackSupplementSectionUp))]
         private void MoveDrawbackSupplementSectionUp()
         {
             int index = DrawbackSupplementSectionSelectionIndex;
@@ -5423,7 +5396,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return DrawbackSupplementSectionSelectionIndex != -1 && DrawbackSupplementSectionSelectionIndex > 0;
         }
 
-        [RelayCommand(CanExecute = "CanMoveDrawbackSupplementSectionDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveDrawbackSupplementSectionDown))]
         private void MoveDrawbackSupplementSectionDown()
         {
             int index = DrawbackSupplementSectionSelectionIndex;

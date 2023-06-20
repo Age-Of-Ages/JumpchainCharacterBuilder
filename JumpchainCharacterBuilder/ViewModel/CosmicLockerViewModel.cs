@@ -194,7 +194,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadAllLists()
         {
-            // Clean and regenerate existing lists to ensure proper indexing.
             InactiveWeaponsItemLists.Clear();
             InactiveArmorItemLists.Clear();
             InactiveAccessoriesItemLists.Clear();

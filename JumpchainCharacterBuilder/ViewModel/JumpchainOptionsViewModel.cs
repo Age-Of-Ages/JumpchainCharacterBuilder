@@ -27,9 +27,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _originDiscounts = false;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Perk Freebie threshold must be a positive number.")]
         private int _perkFreebieThreshold = 100;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Item Freebie threshold must be a positive number.")]
         private int _itemFreebieThreshold = 100;
 
@@ -40,9 +42,12 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _allowCompanionsBank = false;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Point bank cap must be a positive integer.")]
         private int _pointBankLimit = 300;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Point bank cap must be a positive integer.")]
         private int _companionBankLimit = 300;
 
@@ -65,6 +70,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _pRPatientJumperCountFirstJump = false;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Supplements cannot be taken on a negative Jump #.")]
         private int _pRSupplementDelay = 0;
         [ObservableProperty]
@@ -72,6 +78,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _pRInvestmentAllowed = false;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Range(1, int.MaxValue, ErrorMessage = "Ratio cannot be lower than 1:1.")]
         private int _pRInvestmentRatio = 25;
 
         [ObservableProperty]
@@ -86,6 +94,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _sBBodyModInvestmentAllowed = false;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Range(1, int.MaxValue, ErrorMessage = "Ratio cannot be lower than 1:1.")]
         private int _sBBodyModInvestmentRatio = 1;
 
         [ObservableProperty]
@@ -99,6 +109,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _eBMInvestmentAllowed = false;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Range(1, int.MaxValue, ErrorMessage = "Ratio cannot be lower than 1:1.")]
         private int _eBMInvestmentRatio = 1;
 
         [ObservableProperty]
@@ -110,6 +122,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _gBMInvestmentAllowed = false;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Range(1, int.MaxValue, ErrorMessage = "Ratio cannot be lower than 1:1.")]
         private int _gBMInvestmentRatio = 1;
 
         [ObservableProperty]
@@ -119,11 +133,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _gWPurchasesAllowed = false;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Supplements cannot be taken on a negative Jump #.")]
         private int _gWSupplementDelay = 0;
         [ObservableProperty]
         private bool _gWInvestmentAllowed = false;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [Range(1, int.MaxValue, ErrorMessage = "Ratio cannot be lower than 1:1.")]
         private int _gWInvestmentRatio = 1;
 
         [ObservableProperty]
@@ -352,7 +369,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnPRInvestmentRatioChanged(int value)
         {
-            LoadedSave.PersonalReality.InvestmentRatio = value;
+            if (!GetErrors(nameof(PRInvestmentRatio)).Any())
+            {
+                LoadedSave.PersonalReality.InvestmentRatio = value;
+            }
+            
         }
 
         partial void OnSBBodyModBudgetChanged(int value)
@@ -367,7 +388,10 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnSBBodyModInvestmentRatioChanged(int value)
         {
-            LoadedSave.SBBodyMod.InvestmentRatio = value;
+            if (!GetErrors(nameof(SBBodyModInvestmentRatio)).Any())
+            {
+                LoadedSave.SBBodyMod.InvestmentRatio = value;
+            }
         }
 
         partial void OnEBMStartingModeSelectionChanged(EssentialBodyMod.StartingModes value)
@@ -443,7 +467,10 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnEBMInvestmentRatioChanged(int value)
         {
-            LoadedSave.EssentialBodyMod.InvestmentRatio = value;
+            if (!GetErrors(nameof(EBMInvestmentRatio)).Any())
+            {
+                LoadedSave.EssentialBodyMod.InvestmentRatio = value;
+            }
         }
 
         partial void OnGBMBudgetChanged(int value)
@@ -468,7 +495,10 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnGBMInvestmentRatioChanged(int value)
         {
-            LoadedSave.GenericBodyMod.InvestmentRatio = value;
+            if (!GetErrors(nameof(GBMInvestmentRatio)).Any())
+            {
+                LoadedSave.GenericBodyMod.InvestmentRatio = value;
+            }
         }
 
         partial void OnGWBudgetChanged(int value)
@@ -499,7 +529,10 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnGWInvestmentRatioChanged(int value)
         {
-            LoadedSave.GenericWarehouse.InvestmentRatio = value;
+            if (!GetErrors(nameof(GWInvestmentRatio)).Any())
+            {
+                LoadedSave.GenericWarehouse.InvestmentRatio = value;
+            }
         }
 
         partial void OnGenericDrawbackGauntletPointsChanged(bool value)

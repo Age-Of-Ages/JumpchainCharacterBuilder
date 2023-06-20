@@ -27,6 +27,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the number of days spent in a Jump.
         /// </summary>
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, 366, ErrorMessage = "Days must be a value between 0 and 366")]
         private int durationDays = 0;
 
@@ -34,6 +35,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the number of months spent in a Jump.
         /// </summary>
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, 12, ErrorMessage = "Months must be a value between 0 and 12")]
         private int durationMonths = 0;
 

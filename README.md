@@ -6,7 +6,9 @@
 ## Overview
 The Jumpchain Character Builder is a program for storing, managing, and exporting Jumpchain character data. It is designed to take as much of the burden off the user's shoulders in favor of allowing them to focus on the less tedious parts of making builds. Budgeting, discounts, replication of purchases to character sheets, and even the process of exporting a build to share with the Jumpchain community are all automated, among other things.
 
-The goal of this project is primarily to suit my own needs, but I have also made an effort to include functionality that I feel others will find useful. It is my hope that those of you that choose to make use of this program will find it convenient to use. If it doesn't quite work for you for any reason then don't hesitate to let me know. I can't promise I'll take action on every piece of feedback that I receive, but I will make note of what I receive.
+The goal of this project is primarily to suit my own needs, but I have also made an effort to include functionality that I feel others will find useful. It is my hope that those of you that choose to make use of this program will find it convenient to use. If it doesn't quite work for you for any reason then don't hesitate to let me know. I can't promise I'll take action on every piece of feedback that I receive, but I will make note of it.
+
+
 ***
 ## Feature List
 1. Jumpchain Overview
@@ -63,7 +65,5 @@ Although this program was coded solely by myself, some aspects of the design do 
 ***
 
 This project uses the following Nuget packages as dependencies:
-
-CommunityToolkit.Mvvm - Using the MIT license.
-
-Microsoft.Extensions.DependencyInjection - Using the MIT license.
+- CommunityToolkit.Mvvm - Using the MIT license.
+- Microsoft.Extensions.DependencyInjection - Using the MIT license.

@@ -25,6 +25,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private Options _loadedOptions = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteJumpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveJumpUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveJumpDownCommand))]
         private Jump _jumpSelection = new();
         [ObservableProperty]
         private int _jumpSelectionIndex = 0;
@@ -51,6 +54,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<OriginDetail> _originList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteOriginCommand))]
         private OriginDetail _originEditSelection = new();
         [ObservableProperty]
         private int _originEditSelectionIndex = 0;
@@ -62,6 +66,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<OriginDetail> _miscOriginDetailList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteTypeCommand))]
         private string _miscOriginTypeSelection = "";
         [ObservableProperty]
         private int _miscOriginTypeSelectionIndex = 0;
@@ -85,6 +90,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<Currency> _currencyList = new();
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeletePurchaseTypeCommand))]
         private PurchaseType _purchaseTypeSelection = new();
         [ObservableProperty]
         private int _purchaseTypeSelectionIndex = 0;
@@ -109,10 +115,13 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<Purchase> _currentLoadedPurchaseList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeletePurchaseCommand))]
+        [NotifyCanExecuteChangedFor(nameof(DeletePurchaseTraitCommand))]
         private Purchase _purchaseSelection = new();
         [ObservableProperty]
         private int _purchaseSelectionIndex = 0;
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteCurrencyCommand))]
         private string _categorySelection = "";
         [ObservableProperty]
         private ObservableCollection<string> _categoryList = new();
@@ -120,6 +129,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _purchaseOriginIndex = 0;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteDrawbackCommand))]
         private Drawback _drawbackSelection = new();
         [ObservableProperty]
         private int _drawbackSelectionIndex = 0;
@@ -127,6 +137,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<Drawback> _drawbackList = new();
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteScenarioCommand))]
         private Drawback _scenarioSelection = new();
         [ObservableProperty]
         private int _scenarioSelectionIndex = 0;
@@ -148,6 +159,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<CompanionImportDetailClass> _importCharacterList = new();
 
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Age must be a positive number.")]
         private int _age = 0;
         [ObservableProperty]
@@ -188,9 +200,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _isGauntlet = false;
 
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Banked points must be a positive integer")]
         private int _bankedPoints = 0;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
         [Range(0, int.MaxValue, ErrorMessage = "Withdrawn points must be a positive integer")]
         private int _bankUsage = 0;
 
@@ -200,6 +214,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<PurchaseAttribute> _purchaseAttributeList = new();
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeletePurchaseTraitCommand))]
         private PurchaseAttribute _purchaseAttributeSelection = new();
         [ObservableProperty]
         private int _purchaseAttributeIndex = 0;
@@ -339,10 +354,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 LoadJumpSelection();
             }
-
-            DeleteJumpCommand.NotifyCanExecuteChanged();
-            MoveJumpDownCommand.NotifyCanExecuteChanged();
-            MoveJumpUpCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnJumpListChanged(ObservableCollection<Jump> value)
@@ -483,10 +494,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnOriginEditSelectionChanged(OriginDetail value)
-        {
-            DeleteOriginCommand.NotifyCanExecuteChanged();
-        }
 
         partial void OnMiscOriginDetailSelectionChanged(OriginDetail value)
         {
@@ -500,8 +507,6 @@ namespace JumpchainCharacterBuilder.ViewModel
                 JumpSelection.MiscOriginCategories[MiscOriginTypeSelectionIndex] = value;
                 LoadMiscOriginTypes();
             }
-
-            DeleteTypeCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnOriginDiscountsSelectionChanged(bool value)
@@ -525,11 +530,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             CalculateJumpNumber(LoadedSave.JumpList);
         }
 
-        partial void OnCurrencySelectionChanged(Currency value)
-        {
-            DeleteCurrencyCommand.NotifyCanExecuteChanged();
-        }
-
         partial void OnPurchaseTypeSelectionChanged(PurchaseType value)
         {
             if (value != null)
@@ -544,8 +544,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 IsItemType = PurchaseTypeSelection.IsItemType;
             }
-
-            DeletePurchaseTypeCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnPurchaseTypeCurrencyIndexChanged(int value)
@@ -599,9 +597,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ClearAttributeList();
             }
-
-            DeletePurchaseCommand.NotifyCanExecuteChanged();
-            DeletePurchaseTraitCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnPurchaseOriginIndexChanged(int value)
@@ -623,16 +618,12 @@ namespace JumpchainCharacterBuilder.ViewModel
         partial void OnDrawbackSelectionChanged(Drawback value)
         {
             Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
-
-            DeleteDrawbackCommand.NotifyCanExecuteChanged();
         }
 
 
         partial void OnScenarioSelectionChanged(Drawback value)
         {
             Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
-
-            DeleteScenarioCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnImportOptionSelectionChanged(CompanionPurchase value)
@@ -741,8 +732,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 AvailableAttributeCategoryList.Clear();
             }
-
-            DeletePurchaseTraitCommand.NotifyCanExecuteChanged();
         }
 
         partial void OnAttributeTypeSelectionChanged(string value)
@@ -1537,7 +1526,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             BuildTabIndex = 6;
         }
 
-        [RelayCommand(CanExecute = "CanDeleteJump")]
+        [RelayCommand(CanExecute = nameof(CanDeleteJump))]
         private void DeleteJump()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete the selected Jump? This decision cannot be reversed."))
@@ -1569,7 +1558,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return JumpList != null && JumpList.Count > 1 && JumpSelection != null;
         }
 
-        [RelayCommand(CanExecute = "CanMoveJumpUp")]
+        [RelayCommand(CanExecute = nameof(CanMoveJumpUp))]
         private void MoveJumpUp()
         {
             int index = LoadedSave.JumpList.IndexOf(JumpSelection);
@@ -1587,7 +1576,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             return LoadedSave.JumpList.IndexOf(JumpSelection) > 0 && JumpSelection != null;
         }
 
-        [RelayCommand(CanExecute = "CanMoveJumpDown")]
+        [RelayCommand(CanExecute = nameof(CanMoveJumpDown))]
         private void MoveJumpDown()
         {
             int index = LoadedSave.JumpList.IndexOf(JumpSelection);
@@ -1612,7 +1601,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             CreateOriginList();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteOrigin")]
+        [RelayCommand(CanExecute = nameof(CanDeleteOrigin))]
         private void DeleteOrigin()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Origin? " +
@@ -1662,7 +1651,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             LoadMiscOriginList();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteType")]
+        [RelayCommand(CanExecute = nameof(CanDeleteType))]
         private void DeleteType()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Type? " +
@@ -1695,7 +1684,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteCurrencyCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteCurrency")]
+        [RelayCommand(CanExecute = nameof(CanDeleteCurrency))]
 
         private void DeleteCurrency()
         {
@@ -1739,7 +1728,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             LoadPurchaseTypes();
         }
 
-        [RelayCommand(CanExecute = "CanDeletePurchaseType")]
+        [RelayCommand(CanExecute = nameof(CanDeletePurchaseType))]
 
         private void DeletePurchaseType()
         {
@@ -1805,7 +1794,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeletePurchaseCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeletePurchase")]
+        [RelayCommand(CanExecute = nameof(CanDeletePurchase))]
         private void DeletePurchase()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this purchase? " +
@@ -1835,7 +1824,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteScenarioCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteScenario")]
+        [RelayCommand(CanExecute = nameof(CanDeleteScenario))]
         private void DeleteScenario()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Scenario? " +
@@ -1867,7 +1856,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteDrawbackCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteDrawback")]
+        [RelayCommand(CanExecute = nameof(CanDeleteDrawback))]
         private void DeleteDrawback()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Drawback? " +
@@ -1899,7 +1888,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeleteImportCommand.NotifyCanExecuteChanged();
         }
 
-        [RelayCommand(CanExecute = "CanDeleteImport")]
+        [RelayCommand(CanExecute = nameof(CanDeleteImport))]
         private void DeleteImport()
         {
             if (_dialogService.ConfirmDialog("Are you sure you want to delete this Import option? " +
@@ -1972,7 +1961,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        [RelayCommand(CanExecute = "CanDeletePurchaseTrait")]
+        [RelayCommand(CanExecute = nameof(CanDeletePurchaseTrait))]
         private void DeletePurchaseTrait()
         {
             PurchaseSelection.Attributes.RemoveAt(PurchaseAttributeIndex);

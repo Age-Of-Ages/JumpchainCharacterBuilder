@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace JumpchainCharacterBuilder.Model
 {

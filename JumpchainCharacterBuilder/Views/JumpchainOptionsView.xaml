@@ -197,7 +197,7 @@
 
                                 <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Text="{Binding GWInvestmentRatio}"
+                                    <TextBox Text="{Binding GWInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
                                              Width="30"/>
                                     <TextBlock Text=": 1"/>
                                 </StackPanel>
@@ -264,7 +264,7 @@
 
                                 <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Text="{Binding PRInvestmentRatio}"
+                                    <TextBox Text="{Binding PRInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
                                      Width="30"/>
                                     <TextBlock Text=": 1"/>
                                 </StackPanel>
@@ -356,7 +356,7 @@
 
                                 <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Text="{Binding GBMInvestmentRatio}"
+                                    <TextBox Text="{Binding GBMInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
                                      Width="30"/>
                                     <TextBlock Text=": 1"/>
                                 </StackPanel>
@@ -390,7 +390,7 @@
 
                                 <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
                                 <StackPanel Orientation="Horizontal">
-                                    <TextBox Text="{Binding SBBodyModInvestmentRatio}"
+                                    <TextBox Text="{Binding SBBodyModInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
                                      Width="30"/>
                                     <TextBlock Text=": 1"/>
                                 </StackPanel>
