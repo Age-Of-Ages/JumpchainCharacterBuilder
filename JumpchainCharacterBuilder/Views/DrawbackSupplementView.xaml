@@ -111,7 +111,7 @@
                     </Grid.RowDefinitions>
 
                     <ListView ItemsSource="{Binding HouseRuleList}"
-                              SelectedItem="{Binding HouseRuleSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding HouseRuleSelection}"
                               SelectedIndex="{Binding HouseRuleSelectionIndex}"
                               Height="400" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <ListView.View>
@@ -203,7 +203,7 @@
                     </Grid.RowDefinitions>
 
                     <ListView ItemsSource="{Binding DrawbackList}"
-                              SelectedItem="{Binding DrawbackSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding DrawbackSelection}"
                               SelectedIndex="{Binding DrawbackSelectionIndex}"
                               Height="570" Width="450" HorizontalAlignment="Left" VerticalAlignment="Top"
                               Grid.ColumnSpan="2">

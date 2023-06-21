@@ -21,7 +21,7 @@
         </Grid.RowDefinitions>
 
         <ListView ItemsSource="{Binding JumpList}"
-                  SelectedItem="{Binding JumpSelection, Mode=OneWayToSource}"
+                  SelectedItem="{Binding JumpSelection}"
                   SelectedIndex="{Binding JumpSelectionIndex}">
             <ListView.View>
                 <GridView>
@@ -29,7 +29,7 @@
                         <GridViewColumn Header="#" Width="30"
                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                 DisplayMemberBinding="{Binding JumpNumber}"/>
-                        <GridViewColumn Header="Name" Width="135" 
+                        <GridViewColumn Header="Name" Width="145" 
                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                 DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Duration (Years)" Width="90" 
@@ -85,7 +85,7 @@
                     Grid.Row="2"/>
         </Grid>
 
-        <TabControl Grid.Column="1" Grid.RowSpan="2" SelectedIndex="{Binding BuildTabIndex}">
+        <TabControl Grid.Column="1" Grid.RowSpan="2" SelectedIndex="{Binding BuildTabIndex}" Visibility="{Binding JumpSelected, Converter={StaticResource BoolToVis}}">
             <TabItem Header="Origins">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -151,19 +151,19 @@
                     </DockPanel>
 
                     <ListView ItemsSource="{Binding MiscOriginDetailList}"
-                              SelectedItem="{Binding MiscOriginDetailSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding MiscOriginDetailSelection}"
                               SelectedIndex="{Binding MiscOriginDetailIndex}"
                               Grid.Row="2" Margin="3,5,3,0">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn Header="Type" Width="65"
+                                    <GridViewColumn Header="Type" Width="70"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding Category}"/>
-                                    <GridViewColumn Header="Name" Width="95" 
+                                    <GridViewColumn Header="Name" Width="100" 
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="Cost" Width="40" 
+                                    <GridViewColumn Header="Cost" Width="45" 
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding Cost}"/>
                                 </GridView.Columns>
@@ -237,7 +237,7 @@
                     </DockPanel>
 
                     <ListView ItemsSource="{Binding CurrentLoadedPurchaseList}"
-                              SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding PurchaseSelection}"
                               SelectedIndex="{Binding PurchaseSelectionIndex}"
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
@@ -444,7 +444,7 @@
                     </DockPanel>
 
                     <ListView ItemsSource="{Binding ImportOptionList}"
-                              SelectedItem="{Binding ImportOptionSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding ImportOptionSelection}"
                               SelectedIndex="{Binding ImportOptionSelectionIndex}"
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
@@ -531,23 +531,23 @@
                                 <TextBlock Text="Imported Companions"/>
 
                                 <ListView ItemsSource="{Binding ImportCharacterList}"
-                                          SelectedItem="{Binding ImportCharacterSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding ImportCharacterSelection}"
                                           SelectedIndex="{Binding ImportCharacterIndex}"
                                           Height="250">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="100"
+                                                <GridViewColumn Header="Name" Width="110"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                                 DisplayMemberBinding="{Binding CompanionName}"/>
-                                                <GridViewColumn Header="Imported" Width="50">
+                                                <GridViewColumn Header="Imported" Width="60">
                                                     <GridViewColumn.CellTemplate>
                                                         <DataTemplate>
                                                             <CheckBox IsChecked="{Binding CompanionSelected}"/>
                                                         </DataTemplate>
                                                     </GridViewColumn.CellTemplate>
                                                 </GridViewColumn>
-                                                <GridViewColumn Header="Stipend" Width="70" 
+                                                <GridViewColumn Header="Stipend" Width="75" 
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                                 DisplayMemberBinding="{Binding CompanionOptionValue}"/>
                                             </GridView.Columns>
@@ -600,7 +600,7 @@
                     </DockPanel>
 
                     <ListView ItemsSource="{Binding DrawbackList}"
-                              SelectedItem="{Binding DrawbackSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding DrawbackSelection}"
                               SelectedIndex="{Binding DrawbackSelectionIndex}"
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
@@ -712,7 +712,7 @@
                     </DockPanel>
 
                     <ListView ItemsSource="{Binding ScenarioList}"
-                              SelectedItem="{Binding ScenarioSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding ScenarioSelection}"
                               SelectedIndex="{Binding ScenarioSelectionIndex}"
                               Grid.Row="2" Grid.RowSpan="2"
                               Margin="0,5,0,0">
@@ -821,13 +821,13 @@
                         <TextBlock Text="Available Origins"/>
 
                         <ListView ItemsSource="{Binding OriginList}"
-                                  SelectedItem="{Binding OriginEditSelection, Mode=OneWayToSource}"
+                                  SelectedItem="{Binding OriginEditSelection}"
                                   SelectedIndex="{Binding OriginEditSelectionIndex}"
                                   Height="250" Width="225">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
-                                        <GridViewColumn Header="Origin" Width="215"
+                                        <GridViewColumn Header="Origin" Width="225"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                         DisplayMemberBinding="{Binding Name}"/>
                                     </GridView.Columns>
@@ -897,15 +897,20 @@
 
                     <StackPanel Grid.Row="1" Grid.Column="2">
                         <TextBlock Text="Misc. Origin detail types"/>
-                        <DataGrid x:Name="MiscOriginConfigureGrid"
-                                  ItemsSource="{Binding MiscOriginTypeList}"
+                        <ListView ItemsSource="{Binding MiscOriginTypeList}"
                                   SelectedItem="{Binding MiscOriginTypeSelection}"
                                   SelectedIndex="{Binding MiscOriginTypeSelectionIndex}"
                                   Height="250" Width="225">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Type" Width="*" Binding="{Binding}" IsReadOnly="True"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Type" Width="225"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </StackPanel>
 
                     <Grid Grid.Row="2" Grid.Column="2">
@@ -1042,19 +1047,19 @@
                                HorizontalAlignment="Left"/>
 
                     <ListView ItemsSource="{Binding CurrencyList}"
-                              SelectedItem="{Binding CurrencySelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding CurrencySelection}"
                               SelectedIndex="{Binding CurrencySelectionIndex}"
                               Grid.Row="2">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="85"
+                                    <GridViewColumn Header="Name" Width="90"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding CurrencyName}"/>
                                     <GridViewColumn Header="Abbreviation" Width="75" 
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding CurrencyAbbreviation}"/>
-                                    <GridViewColumn Header="Budget" Width="50" 
+                                    <GridViewColumn Header="Budget" Width="55" 
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding CurrencyBudget}"/>
                                 </GridView.Columns>
@@ -1116,13 +1121,13 @@
                                     Grid.Row="1" Grid.Column="1"/>
 
                     <ListView ItemsSource="{Binding CurrencyList}"
-                              SelectedItem="{Binding CurrencySelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding CurrencySelection}"
                               SelectedIndex="{Binding StipendSelectionIndex}"
                               Grid.Row="2" Grid.Column="1">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="210"
+                                    <GridViewColumn Header="Name" Width="225"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding CurrencyName}"/>
                                 </GridView.Columns>
@@ -1166,14 +1171,14 @@
                                HorizontalAlignment="Left"/>
 
                     <ListView ItemsSource="{Binding PurchaseTypeList}"
-                              SelectedItem="{Binding PurchaseTypeSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding PurchaseTypeSelection}"
                               SelectedIndex="{Binding PurchaseTypeSelectionIndex}"
                               Grid.Row="2" Grid.Column="2"
                               x:Name="PurchaseTypeDataGrid">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="210"
+                                    <GridViewColumn Header="Name" Width="225"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding Type}"/>
                                 </GridView.Columns>

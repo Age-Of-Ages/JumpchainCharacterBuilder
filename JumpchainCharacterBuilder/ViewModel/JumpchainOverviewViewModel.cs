@@ -35,6 +35,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<Jump> _jumpList = new();
 
         [ObservableProperty]
+        private bool _jumpSelected = false;
+
+        [ObservableProperty]
         private int _buildTabIndex = 0;
 
         [ObservableProperty]
@@ -350,6 +353,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (value != null)
             {
                 LoadJumpSelection();
+
+                JumpSelected = true;
+            }
+            else
+            {
+                JumpSelected = false;
             }
         }
 

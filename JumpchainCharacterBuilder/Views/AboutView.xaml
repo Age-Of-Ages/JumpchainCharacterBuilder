@@ -76,7 +76,7 @@
                 </Grid.RowDefinitions>
 
                 <ListView ItemsSource="{Binding DependencyLicenses.Keys}"
-                          SelectedItem="{Binding DependencyLicenseSelection, Mode=OneWayToSource}">
+                          SelectedItem="{Binding DependencyLicenseSelection}">
                     <ListView.View>
                         <GridView>
                             <GridView.Columns>

@@ -58,44 +58,35 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             List<string> tempLicenseList = TxtAccess.ReadText(Path.Combine(Environment.CurrentDirectory, "LICENSE.txt"));
 
-            foreach (string license in tempLicenseList)
-            {
-                if (license == "")
-                {
-                    JcbLicense += "\r\n\r\n";
-                }
-                else
-                {
-                    JcbLicense += license + " ";
-                }
-            }
+            JcbLicense = FormatLicenseString(tempLicenseList);
 
             List<string> diLicenseList = TxtAccess.ReadText(Path.Combine(Environment.CurrentDirectory, "Licenses", "Microsoft.Extensions.DependencyInjection License.txt"));
             List<string> toolkitLicenseList = TxtAccess.ReadText(Path.Combine(Environment.CurrentDirectory, "Licenses", "CommunityToolkit.Mvvm License.txt"));
 
-            foreach (string license in diLicenseList)
+            DependencyLicenses["Dependency Injection"] = FormatLicenseString(diLicenseList);
+            DependencyLicenses["Community Toolkit"] = FormatLicenseString(toolkitLicenseList);
+        }
+
+        #endregion
+
+        #region Methods
+        private static string FormatLicenseString(List<string> licenseStrings)
+        {
+            string output = "";
+
+            foreach (string line in licenseStrings)
             {
-                if (license == "")
+                if (line == "")
                 {
-                    DependencyLicenses["Dependency Injection"] += "\r\n\r\n";
+                    output += "\r\n\r\n";
                 }
                 else
                 {
-                    DependencyLicenses["Dependency Injection"] += license + " ";
+                    output += line + " ";
                 }
             }
 
-            foreach (string license in toolkitLicenseList)
-            {
-                if (license == "")
-                {
-                    DependencyLicenses["Community Toolkit"] += "\r\n\r\n";
-                }
-                else
-                {
-                    DependencyLicenses["Community Toolkit"] += license + " ";
-                }
-            }
+            return output;
         }
 
         #endregion

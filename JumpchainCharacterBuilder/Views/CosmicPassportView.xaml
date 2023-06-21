@@ -227,12 +227,12 @@
                     </Grid.RowDefinitions>
 
                     <ListView ItemsSource="{Binding CharacterAltFormList}"
-                              SelectedItem="{Binding CharacterAltFormSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding CharacterAltFormSelection}"
                               SelectedIndex="{Binding CharacterAltFormSelectionIndex}">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="150"
+                                    <GridViewColumn Header="Name" Width="160"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding AltFormName}"/>
                                     <GridViewColumn Header="Species/Race" Width="150" 
@@ -332,15 +332,15 @@
                         <TabItem Header="Physical">
                             <Grid>
                                 <ListView ItemsSource="{Binding PhysicalPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding PhysicalPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
                                         </GridView>
                                     </ListView.View>
@@ -350,15 +350,15 @@
                         <TabItem Header="Mental">
                             <Grid>
                                 <ListView ItemsSource="{Binding MentalPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding MentalPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -369,15 +369,15 @@
                         <TabItem Header="Social">
                             <Grid>
                                 <ListView ItemsSource="{Binding SocialPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding SocialPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -388,15 +388,15 @@
                         <TabItem Header="Stealth">
                             <Grid>
                                 <ListView ItemsSource="{Binding StealthPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding StealthPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -407,15 +407,15 @@
                         <TabItem Header="Magical">
                             <Grid>
                                 <ListView ItemsSource="{Binding MagicalPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding MagicalPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -426,15 +426,15 @@
                         <TabItem Header="Spiritual">
                             <Grid>
                                 <ListView ItemsSource="{Binding SpiritualPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding SpiritualPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -445,15 +445,15 @@
                         <TabItem Header="Technological">
                             <Grid>
                                 <ListView ItemsSource="{Binding TechnologicalPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding TechnologicalPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -464,15 +464,15 @@
                         <TabItem Header="Crafting">
                             <Grid>
                                 <ListView ItemsSource="{Binding CraftingPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding CraftingPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -483,15 +483,15 @@
                         <TabItem Header="Blacksmithing">
                             <Grid>
                                 <ListView ItemsSource="{Binding BlacksmithingPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding BlacksmithingPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -502,15 +502,15 @@
                         <TabItem Header="Meta">
                             <Grid>
                                 <ListView ItemsSource="{Binding MetaPerkList}"
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding MetaPerkSelectionIndex}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -521,16 +521,16 @@
                         <TabItem Header="Other">
                             <Grid>
                                 <ListView ItemsSource="{Binding OtherPerkList}" 
-                                          SelectedItem="{Binding PerkSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PerkSelection}"
                                           SelectedIndex="{Binding OtherPerkSelectionIndex}"
                                           SelectionMode="Single">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="150"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                                <GridViewColumn Header="Name" Width="170"
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -592,7 +592,7 @@
                                             
                                             <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentPhysicalAttributeList}"
-                                                          SelectedItem="{Binding CurrentPhysicalAttributeSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding CurrentPhysicalAttributeSelection}"
                                                           SelectedIndex="{Binding CurrentPhysicalAttributeIndex}"
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
@@ -687,7 +687,7 @@
                                             
                                             <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentMentalAttributeList}"
-                                                          SelectedItem="{Binding CurrentMentalAttributeSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding CurrentMentalAttributeSelection}"
                                                           SelectedIndex="{Binding CurrentMentalAttributeIndex}"
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
@@ -782,7 +782,7 @@
                                             
                                             <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentSupernaturalAttributeList}"
-                                                          SelectedItem="{Binding CurrentSupernaturalAttributeSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding CurrentSupernaturalAttributeSelection}"
                                                           SelectedIndex="{Binding CurrentSupernaturalAttributeIndex}"
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
@@ -1100,7 +1100,7 @@
 
                                             <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentPhysicalSkillList}"
-                                                          SelectedItem="{Binding CurrentPhysicalSkillSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding CurrentPhysicalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentPhysicalSkillIndex}"
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
@@ -1195,7 +1195,7 @@
 
                                             <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentMentalSkillList}"
-                                                          SelectedItem="{Binding CurrentMentalSkillSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding CurrentMentalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentMentalSkillIndex}"
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
@@ -1290,7 +1290,7 @@
 
                                             <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentSocialSkillList}"
-                                                          SelectedItem="{Binding CurrentSocialSkillSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding CurrentSocialSkillSelection}"
                                                           SelectedIndex="{Binding CurrentSocialSkillIndex}"
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
@@ -1385,7 +1385,7 @@
 
                                             <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentTechnologicalSkillList}"
-                                                          SelectedItem="{Binding CurrentTechnologicalSkillSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding CurrentTechnologicalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentTechnologicalSkillIndex}"
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
@@ -1480,7 +1480,7 @@
 
                                             <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentSupernaturalSkillList}"
-                                                          SelectedItem="{Binding CurrentSupernaturalSkillSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding CurrentSupernaturalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentSupernaturalSkillIndex}"
                                                           Width="300" Height="500"
                                                           Margin="0,5,0,0">
@@ -1792,7 +1792,7 @@
 
                         <StackPanel>
                             <ListView ItemsSource="{Binding CurrentBoosterList}"
-                                      SelectedItem="{Binding CurrentBoosterSelection, Mode=OneWayToSource}"
+                                      SelectedItem="{Binding CurrentBoosterSelection}"
                                       SelectedIndex="{Binding CurrentBoosterIndex}"
                                       Width="300" Height="500"
                                       Margin="0,5,0,0">
@@ -2020,7 +2020,7 @@
                                 </Grid.RowDefinitions>
 
                                 <ListView ItemsSource="{Binding GenericBodyModPurchaseList}"
-                                          SelectedItem="{Binding BodyModPurchaseSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding BodyModPurchaseSelection}"
                                           SelectedIndex="{Binding GenericBodyModPurchaseSelectionIndex}"
                                           Width="600" Height="500" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                                           Margin="0,5,0,0">
@@ -2214,7 +2214,7 @@
                                 </Grid.RowDefinitions>
 
                                 <ListView ItemsSource="{Binding GenericBodyModDrawbackList}"
-                                          SelectedItem="{Binding BodyModDrawbackSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding BodyModDrawbackSelection}"
                                           SelectedIndex="{Binding GenericBodyModDrawbackIndex}"
                                           Width="600" Height="500" Grid.ColumnSpan="2" HorizontalAlignment="Left"
                                           Margin="0,5,0,0">
@@ -2307,7 +2307,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <ListView ItemsSource="{Binding BodyModAdditionList}"
-                                          SelectedItem="{Binding BodyModAdditionSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding BodyModAdditionSelection}"
                                           SelectedIndex="{Binding BodyModAdditionSelectionIndex}"
                                           Width="600" Height="650" HorizontalAlignment="Left" VerticalAlignment="Top"
                                           Margin="0,5,0,0">
@@ -2595,16 +2595,16 @@
                                             <StackPanel Grid.Row="1" Margin="0,10,0,0">
                                                 <TextBlock Text="Body Augments" HorizontalAlignment="Center"/>
                                                 <ListView ItemsSource="{Binding CharacterSelection.BodyMod.BodyAugmentList, ValidatesOnNotifyDataErrors=True}"
-                                                          SelectedItem="{Binding SBAugmentSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding SBAugmentSelection}"
                                                           Height="150" Width="330"
                                                           Margin="5,5,0,0"
                                                           HorizontalAlignment="Left" VerticalAlignment="Top">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
-                                                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                                                <GridViewColumn Header="Level" DisplayMemberBinding="{Binding AugmentLevel}"/>
-                                                                <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding DisplayCost}"/>
+                                                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="110"/>
+                                                                <GridViewColumn Header="Level" DisplayMemberBinding="{Binding AugmentLevel}" Width="110"/>
+                                                                <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding DisplayCost}" Width="110"/>
                                                             </GridView.Columns>
                                                         </GridView>
                                                     </ListView.View>
@@ -2612,16 +2612,16 @@
 
                                                 <TextBlock Text="Mind Augments" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                                                 <ListView ItemsSource="{Binding CharacterSelection.BodyMod.MindAugmentList, ValidatesOnNotifyDataErrors=True}"
-                                                          SelectedItem="{Binding SBAugmentSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding SBAugmentSelection}"
                                                           Height="150" Width="330"
                                                           Margin="5,5,0,0"
                                                           HorizontalAlignment="Left" VerticalAlignment="Top">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
-                                                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                                                <GridViewColumn Header="Level" DisplayMemberBinding="{Binding AugmentLevel}"/>
-                                                                <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding DisplayCost}"/>
+                                                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="110"/>
+                                                                <GridViewColumn Header="Level" DisplayMemberBinding="{Binding AugmentLevel}" Width="110"/>
+                                                                <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding DisplayCost}" Width="110"/>
                                                             </GridView.Columns>
                                                         </GridView>
                                                     </ListView.View>
@@ -2629,16 +2629,16 @@
 
                                                 <TextBlock Text="Heart Augments" HorizontalAlignment="Center" Margin="0,10,0,0"/>
                                                 <ListView ItemsSource="{Binding CharacterSelection.BodyMod.HeartAugmentList, ValidatesOnNotifyDataErrors=True}"
-                                                          SelectedItem="{Binding SBAugmentSelection, Mode=OneWayToSource}"
+                                                          SelectedItem="{Binding SBAugmentSelection}"
                                                           Height="150" Width="330"
                                                           Margin="5,5,0,0"
                                                           HorizontalAlignment="Left" VerticalAlignment="Top">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
-                                                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
-                                                                <GridViewColumn Header="Level" DisplayMemberBinding="{Binding AugmentLevel}"/>
-                                                                <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding DisplayCost}"/>
+                                                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="110"/>
+                                                                <GridViewColumn Header="Level" DisplayMemberBinding="{Binding AugmentLevel}" Width="110"/>
+                                                                <GridViewColumn Header="Cost" DisplayMemberBinding="{Binding DisplayCost}" Width="110"/>
                                                             </GridView.Columns>
                                                         </GridView>
                                                     </ListView.View>
@@ -2794,7 +2794,7 @@
                                         </Grid.RowDefinitions>
 
                                         <ListView ItemsSource="{Binding SBBodyModPowerList}"
-                                                  SelectedItem="{Binding SBBodyModPowerSelection, Mode=OneWayToSource}"
+                                                  SelectedItem="{Binding SBBodyModPowerSelection}"
                                                   SelectedIndex="{Binding SBBodyModPowerIndex}"
                                                   Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                   Margin="0,5,0,0">
@@ -2977,7 +2977,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <ListView ItemsSource="{Binding BodyModAdditionList}"
-                                          SelectedItem="{Binding BodyModAdditionSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding BodyModAdditionSelection}"
                                           SelectedIndex="{Binding BodyModAdditionSelectionIndex}"
                                           Height="700" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
@@ -3120,7 +3120,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <ListView ItemsSource="{Binding EBMBasicPerkList}"
-                                                              SelectedItem="{Binding EBMBasicPerkSelection, Mode=OneWayToSource}"
+                                                              SelectedItem="{Binding EBMBasicPerkSelection}"
                                                               SelectedIndex="{Binding EBMBasicPerkIndex}"
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
@@ -3303,7 +3303,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <ListView ItemsSource="{Binding EBMPhysicalPerkList}"
-                                                              SelectedItem="{Binding EBMPhysicalPerkSelection, Mode=OneWayToSource}"
+                                                              SelectedItem="{Binding EBMPhysicalPerkSelection}"
                                                               SelectedIndex="{Binding EBMPhysicalPerkIndex}"
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
@@ -3486,7 +3486,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <ListView ItemsSource="{Binding EBMMentalPerkList}"
-                                                              SelectedItem="{Binding EBMMentalPerkSelection, Mode=OneWayToSource}"
+                                                              SelectedItem="{Binding EBMMentalPerkSelection}"
                                                               SelectedIndex="{Binding EBMMentalPerkIndex}"
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
@@ -3669,7 +3669,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <ListView ItemsSource="{Binding EBMSpiritualPerkList}"
-                                                              SelectedItem="{Binding EBMSpiritualPerkSelection, Mode=OneWayToSource}"
+                                                              SelectedItem="{Binding EBMSpiritualPerkSelection}"
                                                               SelectedIndex="{Binding EBMSpiritualPerkIndex}"
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
@@ -3852,7 +3852,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <ListView ItemsSource="{Binding EBMSkillPerkList}"
-                                                              SelectedItem="{Binding EBMSkillPerkSelection, Mode=OneWayToSource}"
+                                                              SelectedItem="{Binding EBMSkillPerkSelection}"
                                                               SelectedIndex="{Binding EBMSkillPerkIndex}"
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
@@ -4035,7 +4035,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <ListView ItemsSource="{Binding EBMSupernaturalPerkList}"
-                                                              SelectedItem="{Binding EBMSupernaturalPerkSelection, Mode=OneWayToSource}"
+                                                              SelectedItem="{Binding EBMSupernaturalPerkSelection}"
                                                               SelectedIndex="{Binding EBMSupernaturalPerkIndex}"
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
@@ -4216,7 +4216,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <ListView ItemsSource="{Binding EBMItemPerkList}"
-                                                              SelectedItem="{Binding EBMItemPerkSelection, Mode=OneWayToSource}"
+                                                              SelectedItem="{Binding EBMItemPerkSelection}"
                                                               SelectedIndex="{Binding EBMItemPerkIndex}"
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
@@ -4399,7 +4399,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <ListView ItemsSource="{Binding EBMCompanionPerkList}"
-                                                              SelectedItem="{Binding EBMCompanionPerkSelection, Mode=OneWayToSource}"
+                                                              SelectedItem="{Binding EBMCompanionPerkSelection}"
                                                               SelectedIndex="{Binding EBMCompanionPerkIndex}"
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
@@ -4582,7 +4582,7 @@
                                                     </Grid.RowDefinitions>
 
                                                     <ListView ItemsSource="{Binding EBMDrawbackList}"
-                                                              SelectedItem="{Binding EBMDrawbackSelection, Mode=OneWayToSource}"
+                                                              SelectedItem="{Binding EBMDrawbackSelection}"
                                                               SelectedIndex="{Binding EBMDrawbackIndex}"
                                                               Height="550" Width="230" HorizontalAlignment="Left" VerticalAlignment="Top"
                                                               Margin="0,5,0,0">
@@ -4666,7 +4666,7 @@
                                 </Grid.ColumnDefinitions>
 
                                 <ListView ItemsSource="{Binding BodyModAdditionList}"
-                                          SelectedItem="{Binding BodyModAdditionSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding BodyModAdditionSelection}"
                                           SelectedIndex="{Binding BodyModAdditionSelectionIndex}"
                                           Width="600" Height="650" HorizontalAlignment="Left" VerticalAlignment="Top"
                                           Margin="0,5,0,0">

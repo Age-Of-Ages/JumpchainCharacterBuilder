@@ -122,7 +122,7 @@
                         <TabItem Header="Basics">
                             <Grid>
                                 <ListView ItemsSource="{Binding BasicsPurchaseList}"
-                                          SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PurchaseSelection}"
                                           SelectedIndex="{Binding BasicsPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
@@ -144,7 +144,7 @@
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <ListView ItemsSource="{Binding UtilitiesPurchaseList}"
-                                          SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PurchaseSelection}"
                                           SelectedIndex="{Binding UtilitiesPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
@@ -166,7 +166,7 @@
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <ListView ItemsSource="{Binding CosmeticPurchaseList}"
-                                          SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PurchaseSelection}"
                                           SelectedIndex="{Binding CosmeticPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
@@ -188,7 +188,7 @@
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <ListView ItemsSource="{Binding FacilitiesPurchaseList}"
-                                          SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PurchaseSelection}"
                                           SelectedIndex="{Binding FacilitiesPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
@@ -210,7 +210,7 @@
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <ListView ItemsSource="{Binding ExtensionsPurchaseList}"
-                                          SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PurchaseSelection}"
                                           SelectedIndex="{Binding ExtensionsPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
@@ -232,7 +232,7 @@
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <ListView ItemsSource="{Binding EquipmentPurchaseList}"
-                                          SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PurchaseSelection}"
                                           SelectedIndex="{Binding EquipmentPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
@@ -254,7 +254,7 @@
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <ListView ItemsSource="{Binding CompanionsPurchaseList}"
-                                          SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PurchaseSelection}"
                                           SelectedIndex="{Binding CompanionsPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
@@ -276,7 +276,7 @@
                             Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <ListView ItemsSource="{Binding MiscPurchaseList}"
-                                          SelectedItem="{Binding PurchaseSelection, Mode=OneWayToSource}"
+                                          SelectedItem="{Binding PurchaseSelection}"
                                           SelectedIndex="{Binding MiscPurchaseSelectionIndex}"
                                           Height="590" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top">
                                     <ListView.View>
@@ -376,7 +376,7 @@
                     </Grid.ColumnDefinitions>
 
                     <ListView ItemsSource="{Binding AdditionList}"
-                              SelectedItem="{Binding AdditionSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding AdditionSelection}"
                               SelectedIndex="{Binding AdditionSelectionIndex}"
                               Width="620" Height="700" HorizontalAlignment="Left" VerticalAlignment="Top">
                         <ListView.View>
@@ -430,7 +430,7 @@
                     </Grid.RowDefinitions>
 
                     <ListView ItemsSource="{Binding LimitationList}"
-                              SelectedItem="{Binding LimitationSelection, Mode=OneWayToSource}"
+                              SelectedItem="{Binding LimitationSelection}"
                               SelectedIndex="{Binding LimitationSelectionIndex}"
                               Height="575" Width="620" HorizontalAlignment="Left" VerticalAlignment="Top"
                               Grid.ColumnSpan="2">
