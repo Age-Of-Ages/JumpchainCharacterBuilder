@@ -339,9 +339,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
                                         </GridView>
                                     </ListView.View>
@@ -357,9 +357,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -376,9 +376,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -395,9 +395,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -414,9 +414,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -433,9 +433,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -452,9 +452,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -471,9 +471,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -490,9 +490,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -509,9 +509,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>
@@ -529,9 +529,9 @@
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
 
                                         </GridView>

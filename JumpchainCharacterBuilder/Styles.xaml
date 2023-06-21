@@ -44,6 +44,14 @@
         <TextBlock Style="{DynamicResource GridViewText}"/>
     </DataTemplate>
 
+    <DataTemplate x:Key="GridViewNameColumn">
+        <TextBlock Text="{Binding Path=Name}" Style="{DynamicResource GridViewText}"/>
+    </DataTemplate>
+
+    <DataTemplate x:Key="GridViewDescriptionColumn">
+        <TextBlock Text="{Binding Path=Description}" Style="{DynamicResource GridViewText}"/>
+    </DataTemplate>
+    
     <Style x:Key="GridViewText"
            TargetType="{x:Type TextBlock}">
         <Setter Property="TextWrapping" Value="Wrap"/>
