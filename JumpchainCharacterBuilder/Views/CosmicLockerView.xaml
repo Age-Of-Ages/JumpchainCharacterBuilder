@@ -38,9 +38,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -56,9 +58,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -74,9 +78,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -92,9 +98,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -110,9 +118,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -128,9 +138,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -146,9 +158,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -164,9 +178,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -182,9 +198,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -200,9 +218,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -218,9 +238,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -236,9 +258,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -254,9 +278,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -272,9 +298,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -290,9 +318,11 @@
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewLargeTextColumn}"
+                                                    DisplayMemberBinding="{Binding Description}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>

@@ -44,6 +44,10 @@
         <TextBlock Style="{DynamicResource GridViewText}"/>
     </DataTemplate>
 
+    <DataTemplate x:Key="GridViewLargeTextColumn">
+        <TextBlock Style="{DynamicResource GridViewText}" TextWrapping="Wrap"/>
+    </DataTemplate>
+
     <Style x:Key="GridViewText"
            TargetType="{x:Type TextBlock}">
         <Setter Property="TextWrapping" Value="Wrap"/>

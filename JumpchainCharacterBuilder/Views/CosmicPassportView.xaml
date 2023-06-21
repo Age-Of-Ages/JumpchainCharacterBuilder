@@ -329,216 +329,35 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TabControl SelectedIndex="{Binding PerkTabIndex}">
-                        <TabItem Header="Physical">
-                            <Grid>
-                                <ListView ItemsSource="{Binding PhysicalPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding PhysicalPerkSelectionIndex}">
+                    <TabControl ItemsSource="{Binding ActivePerkLists}"
+                                SelectedItem="{Binding PerkTabName, Mode=OneWay}" 
+                                SelectedIndex="{Binding PerkTabIndex}">
+                        <TabControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Key}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </TabControl.ItemTemplate>
+                        <TabControl.ContentTemplate>
+                            <DataTemplate>
+                                <ListView ItemsSource="{Binding Value}"
+                                          SelectedItem="{Binding PurchaseSelection}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Name}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                DisplayMemberBinding="{Binding Description}"/>
                                             </GridView.Columns>
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Mental">
-                            <Grid>
-                                <ListView ItemsSource="{Binding MentalPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding MentalPerkSelectionIndex}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Social">
-                            <Grid>
-                                <ListView ItemsSource="{Binding SocialPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding SocialPerkSelectionIndex}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Stealth">
-                            <Grid>
-                                <ListView ItemsSource="{Binding StealthPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding StealthPerkSelectionIndex}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Magical">
-                            <Grid>
-                                <ListView ItemsSource="{Binding MagicalPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding MagicalPerkSelectionIndex}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Spiritual">
-                            <Grid>
-                                <ListView ItemsSource="{Binding SpiritualPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding SpiritualPerkSelectionIndex}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Technological">
-                            <Grid>
-                                <ListView ItemsSource="{Binding TechnologicalPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding TechnologicalPerkSelectionIndex}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Crafting">
-                            <Grid>
-                                <ListView ItemsSource="{Binding CraftingPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding CraftingPerkSelectionIndex}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Blacksmithing">
-                            <Grid>
-                                <ListView ItemsSource="{Binding BlacksmithingPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding BlacksmithingPerkSelectionIndex}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Meta">
-                            <Grid>
-                                <ListView ItemsSource="{Binding MetaPerkList}"
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding MetaPerkSelectionIndex}">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Other">
-                            <Grid>
-                                <ListView ItemsSource="{Binding OtherPerkList}" 
-                                          SelectedItem="{Binding PerkSelection}"
-                                          SelectedIndex="{Binding OtherPerkSelectionIndex}"
-                                          SelectionMode="Single">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                                <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"/>
-                                            </GridView.Columns>
-
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
-                            </Grid>
-                        </TabItem>
+                            </DataTemplate>
+                        </TabControl.ContentTemplate>
                     </TabControl>
 
                     <GroupBox Header="Perk Details" Grid.Column="1"
