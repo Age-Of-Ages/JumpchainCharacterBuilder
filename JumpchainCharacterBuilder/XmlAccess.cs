@@ -80,11 +80,9 @@ namespace JumpchainCharacterBuilder
                 BackupFile(filePath);
             }
 
-            using (XmlWriter writer = XmlWriter.Create(filePath, settings))
-            {
-                ser.WriteObject(writer, saveFile);
-                writer.Close();
-            }
+            using XmlWriter writer = XmlWriter.Create(filePath, settings);
+            ser.WriteObject(writer, saveFile);
+            writer.Close();
         }
 
         /// <summary>
@@ -105,13 +103,11 @@ namespace JumpchainCharacterBuilder
                 DtdProcessing = DtdProcessing.Prohibit,
                 XmlResolver = null
             };
-            using (XmlReader reader = XmlReader.Create(filePath, settings))
-            {
-                SaveFile newSave = ser.ReadObject(reader) as SaveFile
-                                   ?? throw new ArgumentNullException();
-                reader.Close();
-                return newSave;
-            }
+            using XmlReader reader = XmlReader.Create(filePath, settings);
+            SaveFile newSave = ser.ReadObject(reader) as SaveFile
+                               ?? throw new ArgumentNullException();
+            reader.Close();
+            return newSave;
 
         }
     }
