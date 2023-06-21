@@ -8,7 +8,7 @@
         xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModel:AboutViewModel, IsDesignTimeCreatable=True}"
-        Title="About" Height="400" Width="400"
+        Title="About" Height="500" Width="600"
         Cursor="" 
         WindowStyle="SingleBorderWindow" 
         Background="white" 
@@ -34,7 +34,7 @@
                     <TextBlock Text="Icon Placeholder" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 </Border>
 
-                <GroupBox Header="Program details" Grid.Column="1" Grid.ColumnSpan="2">
+                <GroupBox Header="Program details" Grid.Column="1">
                     <StackPanel Margin="5,3,0,0">
                         <TextBlock Text="Jumpchain Character Builder"/>
                         <TextBlock Text="{Binding VersionString}" Margin="0,5,0,0"/>
@@ -80,7 +80,7 @@
                     <ListView.View>
                         <GridView>
                             <GridView.Columns>
-                                <GridViewColumn Header="Dependency" Width="350"
+                                <GridViewColumn Header="Dependency" Width="590"
                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                 DisplayMemberBinding="{Binding}"/>
                             </GridView.Columns>
@@ -92,7 +92,7 @@
                     <TextBlock Text="License"/>
                     <TextBox Text="{Binding DependencyLicenseString}" IsReadOnly="True" Style="{DynamicResource LargeTextBox}"
                              HorizontalAlignment="Stretch"
-                             Height="200"/>
+                             Height="280"/>
                 </StackPanel>
             </Grid>
         </TabItem>

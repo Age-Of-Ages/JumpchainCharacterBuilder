@@ -341,7 +341,8 @@
                                 Grid.Row="2"/>
                     </Grid>
 
-                    <GroupBox Header="Purchase Details" Grid.Column="2">
+                    <GroupBox Header="Purchase Details" Grid.Column="2"
+                              Visibility="{Binding PurchaseSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>
@@ -390,7 +391,8 @@
                         </ListView.View>
                     </ListView>
 
-                    <GroupBox Header="Purchase Details" Grid.Column="1">
+                    <GroupBox Header="Addition Details" Grid.Column="1"
+                              Visibility="{Binding AdditionSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>
@@ -493,7 +495,8 @@
                                 Grid.Row="2"/>
                     </Grid>
 
-                    <GroupBox Header="Limitation Details" Grid.Column="2">
+                    <GroupBox Header="Limitation Details" Grid.Column="2"
+                              Visibility="{Binding LimitationSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>

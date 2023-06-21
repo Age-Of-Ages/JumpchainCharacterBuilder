@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 
 namespace JumpchainCharacterBuilder.ViewModel
@@ -65,6 +66,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             DependencyLicenses["Dependency Injection"] = FormatLicenseString(diLicenseList);
             DependencyLicenses["Community Toolkit"] = FormatLicenseString(toolkitLicenseList);
+
+            DependencyLicenseSelection = DependencyLicenses.First().Key;
         }
 
         #endregion

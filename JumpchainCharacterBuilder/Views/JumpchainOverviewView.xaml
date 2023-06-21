@@ -85,7 +85,8 @@
                     Grid.Row="2"/>
         </Grid>
 
-        <TabControl Grid.Column="1" Grid.RowSpan="2" SelectedIndex="{Binding BuildTabIndex}" Visibility="{Binding JumpSelected, Converter={StaticResource BoolToVis}}">
+        <TabControl Grid.Column="1" Grid.RowSpan="2" SelectedIndex="{Binding BuildTabIndex}" 
+                    Visibility="{Binding JumpSelection, Converter={StaticResource NullToVis}}">
             <TabItem Header="Origins">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -171,7 +172,8 @@
                         </ListView.View>
                     </ListView>
 
-                    <GroupBox Header="Details" Grid.Column="1" Grid.RowSpan="5">
+                    <GroupBox Header="Details" Grid.Column="1" Grid.RowSpan="5" 
+                              Visibility="{Binding MiscOriginDetailSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="0.2*"/>
@@ -281,7 +283,8 @@
                                 Grid.Column="2"/>
                     </Grid>
 
-                    <GroupBox Header="Purchase Details" Grid.Column="1" Grid.RowSpan="5">
+                    <GroupBox Header="Purchase Details" Grid.Column="1" Grid.RowSpan="5"
+                              Visibility="{Binding PurchaseSelection, Converter={StaticResource NullToVis}}">
                         <Grid Margin="5,3,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1.5*"/>
@@ -380,7 +383,8 @@
                             </StackPanel>
 
                             <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="2" 
-                                      Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0">
+                                      Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0"
+                                      Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <TextBlock Text="Name"/>
                                     <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -488,7 +492,8 @@
                                 Grid.Column="2"/>
                     </Grid>
 
-                    <GroupBox Header="Import Option Details" Grid.Column="1" Grid.RowSpan="5">
+                    <GroupBox Header="Import Option Details" Grid.Column="1" Grid.RowSpan="5"
+                              Visibility="{Binding ImportOptionSelection, Converter={StaticResource NullToVis}}">
                         <Grid Margin="5,3,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1.5*"/>
@@ -557,7 +562,8 @@
                             </StackPanel>
 
                             <GroupBox Header="Import Details" Grid.Row="2" Grid.Column="2" 
-                                      Grid.ColumnSpan="2" Margin="0,50,0,0">
+                                      Grid.ColumnSpan="2" Margin="0,50,0,0"
+                                      Visibility="{Binding ImportCharacterSelection, Converter={StaticResource NullToVis}}">
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <TextBlock Text="Name"/>
                                     <TextBox Text="{Binding ImportCharacterSelection.CompanionName}"
@@ -644,7 +650,8 @@
                                 Grid.Column="2"/>
                     </Grid>
 
-                    <GroupBox Header="Drawback Details" Grid.Column="1" Grid.RowSpan="5">
+                    <GroupBox Header="Drawback Details" Grid.Column="1" Grid.RowSpan="5"
+                                      Visibility="{Binding DrawbackSelection, Converter={StaticResource NullToVis}}">
                         <Grid Margin="5,3,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1.5*"/>
@@ -756,7 +763,8 @@
                                 Grid.Column="2"/>
                     </Grid>
 
-                    <GroupBox Header="Scenario Details" Grid.Column="1" Grid.RowSpan="5">
+                    <GroupBox Header="Scenario Details" Grid.Column="1" Grid.RowSpan="5"
+                                      Visibility="{Binding ScenarioSelection, Converter={StaticResource NullToVis}}">
                         <Grid Margin="5,3,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="1.5*"/>
@@ -862,7 +870,8 @@
                                 Grid.Column="2"/>
                     </Grid>
 
-                    <GroupBox Header="Origin Details" Grid.Row="3">
+                    <GroupBox Header="Origin Details" Grid.Row="3"
+                                      Visibility="{Binding OriginEditSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -939,7 +948,8 @@
                                 Grid.Column="2"/>
                     </Grid>
 
-                    <GroupBox Header="Type Details" Grid.Row="3" Grid.Column="2">
+                    <GroupBox Header="Type Details" Grid.Row="3" Grid.Column="2"
+                                      Visibility="{Binding MiscOriginTypeSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -1093,7 +1103,8 @@
                                 Grid.Column="2"/>
                     </Grid>
 
-                    <GroupBox Header="Currency details" Grid.Row="4">
+                    <GroupBox Header="Currency details" Grid.Row="4"
+                                      Visibility="{Binding CurrencySelection, Converter={StaticResource NullToVis}}">
                         <Grid>
 
                             <StackPanel Margin="3,5,0,0">
@@ -1144,7 +1155,8 @@
                                  HorizontalAlignment="Left"/>
                     </StackPanel>
 
-                    <GroupBox Header="Stipend details" Grid.Row="4" Grid.Column="1">
+                    <GroupBox Header="Stipend details" Grid.Row="4" Grid.Column="1"
+                                      Visibility="{Binding CurrencySelection, Converter={StaticResource NullToVis}}">
                         <Grid>
 
                             <StackPanel Margin="3,5,0,0">
@@ -1212,7 +1224,8 @@
                                 Grid.Column="2"/>
                     </Grid>
 
-                    <GroupBox Header="Purchase Type details" Grid.Row="4" Grid.Column="2">
+                    <GroupBox Header="Purchase Type details" Grid.Row="4" Grid.Column="2"
+                                      Visibility="{Binding PurchaseTypeSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
 
                             <StackPanel Margin="3,5,0,0">

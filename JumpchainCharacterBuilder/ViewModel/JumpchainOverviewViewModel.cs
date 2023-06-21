@@ -35,9 +35,6 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<Jump> _jumpList = new();
 
         [ObservableProperty]
-        private bool _jumpSelected = false;
-
-        [ObservableProperty]
         private int _buildTabIndex = 0;
 
         [ObservableProperty]
@@ -353,12 +350,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (value != null)
             {
                 LoadJumpSelection();
-
-                JumpSelected = true;
-            }
-            else
-            {
-                JumpSelected = false;
             }
         }
 
@@ -499,10 +490,13 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnMiscOriginTypeSelectionChanged(string value)
         {
-            if (value != null && value != MiscOriginTypeList[MiscOriginTypeSelectionIndex])
+            if (MiscOriginTypeList.Any())
             {
-                JumpSelection.MiscOriginCategories[MiscOriginTypeSelectionIndex] = value;
-                LoadMiscOriginTypes();
+                if (value != null && value != MiscOriginTypeList[MiscOriginTypeSelectionIndex])
+                {
+                    JumpSelection.MiscOriginCategories[MiscOriginTypeSelectionIndex] = value;
+                    LoadMiscOriginTypes();
+                }
             }
         }
 

@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:convert="clr-namespace:JumpchainCharacterBuilder.Converters">
 
     <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    <convert:NullVisConverter x:Key="NullToVis"/>
 
     <Style TargetType="{x:Type Grid}">
         <Setter Property="ClipToBounds" Value="False"/>

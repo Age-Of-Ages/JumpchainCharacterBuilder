@@ -301,7 +301,8 @@
             </TabItem>
         </TabControl>
 
-        <GroupBox Header="Item Details" Grid.Row="1" Grid.Column="1" Background="White">
+        <GroupBox Header="Item Details" Grid.Row="1" Grid.Column="1" Background="White"
+                  Visibility="{Binding ItemSelection, Converter={StaticResource NullToVis}}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>

@@ -263,7 +263,8 @@
                                 Style="{DynamicResource DataGridButton}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                     </Grid>
 
-                    <GroupBox Grid.Column="1" Header="Alt-Form Details">
+                    <GroupBox Grid.Column="1" Header="Alt-Form Details"
+                              Visibility="{Binding CharacterAltFormSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -540,7 +541,8 @@
                         </TabItem>
                     </TabControl>
 
-                    <GroupBox Header="Perk Details" Grid.Column="1">
+                    <GroupBox Header="Perk Details" Grid.Column="1"
+                              Visibility="{Binding PerkSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="2*"/>
@@ -633,7 +635,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Grid.Column="2" Header="Attribute Details">
+                                            <GroupBox Grid.Column="2" Header="Attribute Details"
+                                                      Visibility="{Binding CurrentPhysicalAttributeSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Attribute Name"/>
                                                     <TextBox Text="{Binding CurrentPhysicalAttributeSelection.Name, ValidatesOnNotifyDataErrors=True}"
@@ -728,7 +731,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Grid.Column="2" Header="Attribute Details">
+                                            <GroupBox Grid.Column="2" Header="Attribute Details"
+                                                      Visibility="{Binding CurrentMentalAttributeSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Attribute Name"/>
                                                     <TextBox Text="{Binding CurrentMentalAttributeSelection.Name, ValidatesOnNotifyDataErrors=True}"
@@ -823,7 +827,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Grid.Column="2" Header="Attribute Details">
+                                            <GroupBox Grid.Column="2" Header="Attribute Details"
+                                                      Visibility="{Binding CurrentSupernaturalAttributeSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Attribute Name"/>
                                                     <TextBox Text="{Binding CurrentSupernaturalAttributeSelection.Name, ValidatesOnNotifyDataErrors=True}"
@@ -1141,7 +1146,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Grid.Column="2" Header="Skill Details">
+                                            <GroupBox Grid.Column="2" Header="Skill Details"
+                                                      Visibility="{Binding CurrentPhysicalSkillSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
                                                     <TextBox Text="{Binding CurrentPhysicalSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
@@ -1236,7 +1242,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Grid.Column="2" Header="Skill Details">
+                                            <GroupBox Grid.Column="2" Header="Skill Details"
+                                                      Visibility="{Binding CurrentMentalSkillSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
                                                     <TextBox Text="{Binding CurrentMentalSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
@@ -1331,7 +1338,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Grid.Column="2" Header="Skill Details">
+                                            <GroupBox Grid.Column="2" Header="Skill Details"
+                                                      Visibility="{Binding CurrentSocialSkillSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
                                                     <TextBox Text="{Binding CurrentSocialSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
@@ -1426,7 +1434,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Grid.Column="2" Header="Skill Details">
+                                            <GroupBox Grid.Column="2" Header="Skill Details"
+                                                      Visibility="{Binding CurrentTechnologicalSkillSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
                                                     <TextBox Text="{Binding CurrentTechnologicalSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
@@ -1521,7 +1530,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Grid.Column="2" Header="Skill Details">
+                                            <GroupBox Grid.Column="2" Header="Skill Details"
+                                                      Visibility="{Binding CurrentSupernaturalSkillSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
                                                     <TextBox Text="{Binding CurrentSupernaturalSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
@@ -1833,7 +1843,8 @@
                             </Grid>
                         </StackPanel>
 
-                        <GroupBox Grid.Column="2" Header="Attribute Details">
+                        <GroupBox Grid.Column="2" Header="Attribute Details"
+                                  Visibility="{Binding CurrentBoosterSelection, Converter={StaticResource NullToVis}}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -2083,7 +2094,8 @@
                                             Grid.Row="2"/>
                                 </Grid>
 
-                                <GroupBox Header="Purchase Details" Grid.Column="2" Grid.RowSpan="2">
+                                <GroupBox Header="Purchase Details" Grid.Column="2" Grid.RowSpan="2"
+                                          Visibility="{Binding BodyModPurchaseSelection, Converter={StaticResource NullToVis}}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1.5*"/>
@@ -2158,7 +2170,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Header="Trait Details" Margin="5,0,0,0">
+                                            <GroupBox Header="Trait Details" Margin="5,0,0,0"
+                                                      Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
                                                     <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -2277,7 +2290,8 @@
                                             Grid.Row="2"/>
                                 </Grid>
 
-                                <GroupBox Header="Purchase Details" Grid.Column="2">
+                                <GroupBox Header="Drawback Details" Grid.Column="2"
+                                          Visibility="{Binding BodyModDrawbackSelection, Converter={StaticResource NullToVis}}">
                                     <Grid>
                                         <StackPanel Margin="5,3,0,0">
                                             <TextBlock Text="Name"/>
@@ -2322,7 +2336,8 @@
                                     </ListView.View>
                                 </ListView>
 
-                                <GroupBox Header="Purchase Details" Grid.Column="1">
+                                <GroupBox Header="Addition Details" Grid.Column="1"
+                                          Visibility="{Binding BodyModAdditionSelection, Converter={StaticResource NullToVis}}">
                                     <Grid>
                                         <StackPanel Margin="5,3,0,0">
                                             <TextBlock Text="Name"/>
@@ -2644,11 +2659,12 @@
                                                     </ListView.View>
                                                 </ListView>
                                             </StackPanel>
-                                            
+
                                         </Grid>
                                     </GroupBox>
 
-                                    <GroupBox Header="Augment Details" Grid.Column="1">
+                                    <GroupBox Header="Augment Details" Grid.Column="1"
+                                              Visibility="{Binding SBAugmentSelection, Converter={StaticResource NullToVis}}">
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="1.5*"/>
@@ -2729,8 +2745,9 @@
                                                         Grid.Column="2"/>
                                                     </Grid>
                                                 </StackPanel>
-                                                
-                                                <GroupBox Header="Trait Details" Margin="5,0,0,0">
+
+                                                <GroupBox Header="Trait Details" Margin="5,0,0,0"
+                                                          Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                     <StackPanel>
                                                         <TextBlock Text="Name"/>
                                                         <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -2769,12 +2786,9 @@
                                                     </StackPanel>
                                                 </GroupBox>
                                             </StackPanel>
-
-
                                         </Grid>
                                     </GroupBox>
                                 </Grid>
-                                
                             </Grid>
                         </TabItem>
                         <TabItem Header="Powers">
@@ -2843,7 +2857,8 @@
                                     </Grid>
                                 </DockPanel>
 
-                                <GroupBox Header="Purchase Details" Grid.Column="1">
+                                <GroupBox Header="Purchase Details" Grid.Column="1"
+                                          Visibility="{Binding SBBodyModPowerSelection, Converter={StaticResource NullToVis}}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="2*"/>
@@ -2924,7 +2939,8 @@
                                                 </Grid>
                                             </StackPanel>
 
-                                            <GroupBox Header="Trait Details" Margin="5,15,0,0">
+                                            <GroupBox Header="Trait Details" Margin="5,15,0,0"
+                                                      Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
                                                     <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -2963,8 +2979,6 @@
                                                 </StackPanel>
                                             </GroupBox>
                                         </StackPanel>
-
-
                                     </Grid>
                                 </GroupBox>
                             </Grid>
@@ -2991,7 +3005,8 @@
                                     </ListView.View>
                                 </ListView>
 
-                                <GroupBox Header="Purchase Details" Grid.Column="1">
+                                <GroupBox Header="Addition Details" Grid.Column="1"
+                                          Visibility="{Binding BodyModAdditionSelection, Converter={StaticResource NullToVis}}">
                                     <Grid>
                                         <StackPanel Margin="5,3,0,0">
                                             <TextBlock Text="Name"/>
@@ -3166,7 +3181,8 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1"
+                                                      Visibility="{Binding EBMBasicPerkSelection, Converter={StaticResource NullToVis}}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3241,7 +3257,8 @@
                                                             </Grid>
                                                         </StackPanel>
 
-                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0">
+                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0"
+                                                                  Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                             <StackPanel>
                                                                 <TextBlock Text="Name"/>
                                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -3349,7 +3366,8 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1"
+                                                      Visibility="{Binding EBMPhysicalPerkSelection, Converter={StaticResource NullToVis}}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3424,7 +3442,8 @@
                                                             </Grid>
                                                         </StackPanel>
 
-                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0">
+                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0"
+                                                                  Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                             <StackPanel>
                                                                 <TextBlock Text="Name"/>
                                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -3532,7 +3551,8 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1"
+                                                      Visibility="{Binding EBMMentalPerkSelection, Converter={StaticResource NullToVis}}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3607,7 +3627,8 @@
                                                             </Grid>
                                                         </StackPanel>
 
-                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0">
+                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0"
+                                                                  Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                             <StackPanel>
                                                                 <TextBlock Text="Name"/>
                                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -3715,7 +3736,8 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1"
+                                                      Visibility="{Binding EBMSpiritualPerkSelection, Converter={StaticResource NullToVis}}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3790,7 +3812,8 @@
                                                             </Grid>
                                                         </StackPanel>
 
-                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0">
+                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0"
+                                                                  Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                             <StackPanel>
                                                                 <TextBlock Text="Name"/>
                                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -3898,7 +3921,8 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1"
+                                                      Visibility="{Binding EBMSkillPerkSelection, Converter={StaticResource NullToVis}}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3973,7 +3997,8 @@
                                                             </Grid>
                                                         </StackPanel>
 
-                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0">
+                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0"
+                                                                  Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                             <StackPanel>
                                                                 <TextBlock Text="Name"/>
                                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -4081,7 +4106,8 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1"
+                                                      Visibility="{Binding EBMSupernaturalPerkSelection, Converter={StaticResource NullToVis}}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -4156,7 +4182,8 @@
                                                             </Grid>
                                                         </StackPanel>
 
-                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0">
+                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0"
+                                                                  Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                             <StackPanel>
                                                                 <TextBlock Text="Name"/>
                                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -4262,7 +4289,8 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1"
+                                                      Visibility="{Binding EBMItemPerkSelection, Converter={StaticResource NullToVis}}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -4337,7 +4365,8 @@
                                                             </Grid>
                                                         </StackPanel>
 
-                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0">
+                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0"
+                                                                  Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                             <StackPanel>
                                                                 <TextBlock Text="Name"/>
                                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -4445,7 +4474,8 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1"
+                                                      Visibility="{Binding EBMCompanionPerkSelection, Converter={StaticResource NullToVis}}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -4520,7 +4550,8 @@
                                                             </Grid>
                                                         </StackPanel>
 
-                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0">
+                                                        <GroupBox Header="Trait Details" Margin="5,15,0,0"
+                                                                  Visibility="{Binding PurchaseAttributeSelection, Converter={StaticResource NullToVis}}">
                                                             <StackPanel>
                                                                 <TextBlock Text="Name"/>
                                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -4628,7 +4659,8 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Drawback Details" Grid.Column="1">
+                                            <GroupBox Header="Drawback Details" Grid.Column="1"
+                                                      Visibility="{Binding EBMDrawbackSelection, Converter={StaticResource NullToVis}}">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -4681,7 +4713,8 @@
                                     </ListView.View>
                                 </ListView>
 
-                                <GroupBox Header="Purchase Details" Grid.Column="1">
+                                <GroupBox Header="Addition Details" Grid.Column="1"
+                                          Visibility="{Binding BodyModAdditionSelection, Converter={StaticResource NullToVis}}">
                                     <Grid>
                                         <StackPanel Margin="5,3,0,0">
                                             <TextBlock Text="Name"/>
