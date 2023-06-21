@@ -342,16 +342,14 @@
                         <TabControl.ContentTemplate>
                             <DataTemplate>
                                 <ListView ItemsSource="{Binding Value}"
-                                          SelectedItem="{Binding PurchaseSelection}">
+                                          SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=TabControl}, Path=DataContext.PerkSelection}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
                                                 <GridViewColumn Header="Name" Width="170"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                DisplayMemberBinding="{Binding Name}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                                 <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                DisplayMemberBinding="{Binding Description}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                             </GridView.Columns>
                                         </GridView>
                                     </ListView.View>

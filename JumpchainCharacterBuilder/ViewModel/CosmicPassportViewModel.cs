@@ -1180,6 +1180,14 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
+        private void LoadCurrentPerkList()
+        {
+            if (PerkTabName != "" && InactivePerkLists[CharacterSelection].ContainsKey(PerkTabName))
+            {
+                CurrentPerkList = new(InactivePerkLists[CharacterSelection][PerkTabName]);
+            }
+        }
+
         private void LoadBodyModTabs()
         {
             switch (LoadedBodyModSupplement)
@@ -1214,14 +1222,6 @@ namespace JumpchainCharacterBuilder.ViewModel
                     break;
                 default:
                     break;
-            }
-        }
-
-        private void LoadCurrentPerkList()
-        {
-            if (PerkTabName != "" && InactivePerkLists[CharacterSelection].ContainsKey(PerkTabName))
-            {
-                CurrentPerkList = new(InactivePerkLists[CharacterSelection][PerkTabName]);
             }
         }
 
