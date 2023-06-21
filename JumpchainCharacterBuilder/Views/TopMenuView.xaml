@@ -27,7 +27,7 @@
         <MenuItem Header="Input Formatter" Click="InputFormatter_Click"/>
         <MenuItem Header="Settings" Click="Settings_Click"/>
         <MenuItem Header="Help">
-            <MenuItem Header="Manual"/>
+            <MenuItem Header="Manual" Command="{Binding OpenManualCommand}"/>
             <MenuItem Header="About" Click="About_Click"/>
         </MenuItem>
     </Menu>

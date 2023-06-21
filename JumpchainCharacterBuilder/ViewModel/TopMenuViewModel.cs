@@ -173,6 +173,16 @@ namespace JumpchainCharacterBuilder.ViewModel
         [RelayCommand]
         private void SwitchTheme(string selection) => Theme = selection;
 
+        [RelayCommand]
+        private void OpenManual()
+        {
+            if (_dialogService.ConfirmDialog("Would you like to open the Github Wiki manual for this project? " +
+                "(Opens link in default browser)"))
+            {
+                // TODO - Implement link to Wiki when it's done.
+            }
+        }
+
         #endregion
     }
 }
