@@ -4962,29 +4962,16 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ListValidationClass.CheckBuildCount(JumpSelection, CharacterSelectionIndex);
 
-                switch (LoadedExportOptions.ExportMode)
+                if (CharacterSelectionIndex == 0 && LoadedExportOptions.CompanionBuilds)
                 {
-                    case "Generic":
-
-                        break;
-                    case "BBCode":
-                        if (CharacterSelectionIndex == 0 && LoadedExportOptions.CompanionBuilds)
-                        {
-                            for (int i = 0; i < CharacterList.Count; i++)
-                            {
-                                ExportBuild(JumpSelection, i);
-                            }
-                        }
-                        else
-                        {
-                            ExportBuild(JumpSelection, CharacterSelectionIndex);
-                        }
-                        break;
-                    case "Markdown":
-
-                        break;
-                    default:
-                        break;
+                    for (int i = 0; i < CharacterList.Count; i++)
+                    {
+                        ExportBuild(JumpSelection, i);
+                    }
+                }
+                else
+                {
+                    ExportBuild(JumpSelection, CharacterSelectionIndex);
                 }
             }
         }
@@ -4992,22 +4979,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         [RelayCommand]
         private void ExportAllProfileData()
         {
-            if (CharacterSelectionIndex != -1)
+            if (CharacterSelection != null)
             {
-                switch (LoadedExportOptions.ExportMode)
-                {
-                    case "Generic":
-
-                        break;
-                    case "BBCode":
-                        ExportProfile(CharacterSelection, CharacterSelectionIndex);
-                        break;
-                    case "Markdown":
-
-                        break;
-                    default:
-                        break;
-                }
+                ExportProfile(CharacterSelection, CharacterSelectionIndex);
             }
         }
 
@@ -5016,44 +4990,21 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             foreach (Character character in CharacterList)
             {
-                switch (LoadedExportOptions.ExportMode)
-                {
-                    case "Generic":
-
-                        break;
-                    case "BBCode":
-                        ExportProfile(character, CharacterList.IndexOf(character));
-                        break;
-                    case "Markdown":
-
-                        break;
-                    default:
-                        break;
-                }
+                ExportProfile(character, CharacterList.IndexOf(character));
             }
         }
 
         [RelayCommand]
-        private void ExportAllWarehouseData()
+        private void ExportAllWarehouseData() => ExportWarehouse(CharacterList[0], LoadedOptions.CosmicWarehouseSetting);
+
+        [RelayCommand]
+        private void ExportBodyModData()
         {
-            switch (LoadedExportOptions.ExportMode)
+            if (CharacterSelection != null)
             {
-                case "Generic":
-
-                    break;
-                case "BBCode":
-                    ExportWarehouse(CharacterList[0], LoadedOptions.CosmicWarehouseSetting);
-                    break;
-                case "Markdown":
-
-                    break;
-                default:
-                    break;
+                ExportBodyMod(CharacterSelection, LoadedOptions.BodyModSetting);
             }
         }
-
-        [RelayCommand]
-        private void ExportBodyModData() => ExportBodyMod(CharacterSelection, LoadedOptions.BodyModSetting);
 
         [RelayCommand]
         private void ExportAllBodyMods()

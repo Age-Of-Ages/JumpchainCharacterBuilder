@@ -12,54 +12,6 @@ namespace JumpchainCharacterBuilder
     public static class TxtAccess
     {
         /// <summary>
-        /// Checks that the Export subdirectory exists and creates it if it doesn't exist.
-        /// </summary>
-        public static void CheckExportDirectoryExists()
-        {
-            DirectoryInfo directory = new(Environment.CurrentDirectory);
-
-            if (!Directory.Exists($"{directory} \\Exports"))
-            {
-                directory.CreateSubdirectory("Exports");
-            }
-
-        }
-
-        /// <summary>
-        /// Checks that the specific export subdirectory exists and creates it if it doesn't exist.
-        /// </summary>
-        public static void CheckExportSubdirectoryExists(string subdirectory)
-        {
-            CheckExportDirectoryExists();
-
-            DirectoryInfo directory = new(Environment.CurrentDirectory);
-
-            if (!Directory.Exists($"{directory} \\Exports\\{subdirectory}"))
-            {
-                directory.CreateSubdirectory($"Exports\\{subdirectory}");
-            }
-
-        }
-
-        /// <summary>
-        /// Check if a text file is within a certain length.
-        /// </summary>
-        /// <param name="maxLength">The maximum number of lines allowed.</param>
-        /// <param name="filePath">The full path of the file to check.</param>
-        /// <returns>True if the file is within the stated length, false if it is not or if an error occurs.</returns>
-        public static bool CheckFileLength(int maxLength, string filePath)
-        {
-            try
-            {
-                return File.ReadLines(filePath).Count() < maxLength;
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
-        /// <summary>
         /// Write export data to a text file.
         /// </summary>
         /// <param name="fileName">The file name to write to.</param>
@@ -68,11 +20,12 @@ namespace JumpchainCharacterBuilder
         /// <param name="lines">The fully formatted data to write.</param>
         public static void WriteText(string fileName, string exportDirectory, List<string> lines)
         {
-            CheckExportSubdirectoryExists(exportDirectory);
+            FileAccess.CheckSubdirectoryExists("Exports");
+            FileAccess.CheckSubdirectoryExists(@"Exports\" + exportDirectory);
 
             fileName = Regex.Replace(fileName, @"[^0-9a-zA-Z ]+", "");
 
-            File.WriteAllLines($"{Environment.CurrentDirectory}\\Exports\\{exportDirectory}\\{fileName}.txt", lines);
+            File.WriteAllLines(@$"{Environment.CurrentDirectory}\Exports\{exportDirectory}\{fileName}.txt", lines);
 
         }
 
@@ -97,7 +50,7 @@ namespace JumpchainCharacterBuilder
                 File.Create(logPath);
             }
 
-            bool fileSizeWithinBounds = CheckFileLength(500, logPath);
+            bool fileSizeWithinBounds = FileAccess.CheckFileLength(500, logPath);
 
             if (!fileSizeWithinBounds)
             {

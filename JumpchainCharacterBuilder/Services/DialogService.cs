@@ -1,5 +1,5 @@
-﻿using System.Windows;
-using JumpchainCharacterBuilder.Interfaces;
+﻿using JumpchainCharacterBuilder.Interfaces;
+using System.Windows;
 
 namespace JumpchainCharacterBuilder.Services
 {

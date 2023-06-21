@@ -6,6 +6,5 @@ namespace JumpchainCharacterBuilder.ViewModel
     [ObservableRecipient]
     public partial class ViewModelBase : ObservableValidator, INotifyPropertyChanged
     {
-
     }
 }

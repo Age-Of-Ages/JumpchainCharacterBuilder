@@ -12,7 +12,7 @@ namespace JumpchainCharacterBuilder
     {
         public void LoadSave(string filePath, SaveFile saveFile)
         {
-            XmlAccess.CheckSavesDirectoryExists();
+            FileAccess.CheckSubdirectoryExists("Saves");
 
             ReplaceSave(saveFile, XmlAccess.ReadObject(filePath));
         }

@@ -91,8 +91,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 CreatePrompt = true
             };
 
-            XmlAccess.CheckSavesDirectoryExists();
-            XmlAccess.CheckSaveBackupsDirectoryExists();
+            FileAccess.CheckSubdirectoryExists("Saves");
+            FileAccess.CheckSubdirectoryExists("Backups");
 
             if (SaveFileName != "" && !saveAs)
             {

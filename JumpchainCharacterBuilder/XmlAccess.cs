@@ -13,36 +13,6 @@ namespace JumpchainCharacterBuilder
     public static class XmlAccess
     {
         /// <summary>
-        /// Checks that the Saves subdirectory exists and creates it if
-        /// it doesn't exist.
-        /// </summary>
-        public static void CheckSavesDirectoryExists()
-        {
-            DirectoryInfo directory = new(Environment.CurrentDirectory);
-
-            if (!Directory.Exists($"{directory} \\Saves"))
-            {
-                directory.CreateSubdirectory("Saves");
-            }
-
-        }
-
-        /// <summary>
-        /// Checks that the Save backups subdirectory exists and creates it if
-        /// it doesn't exist.
-        /// </summary>
-        public static void CheckSaveBackupsDirectoryExists()
-        {
-            DirectoryInfo directory = new(Environment.CurrentDirectory);
-
-            if (!Directory.Exists($"{directory} \\Backups"))
-            {
-                directory.CreateSubdirectory("Backups");
-            }
-
-        }
-
-        /// <summary>
         /// Backup existing save file before overwriting.
         /// </summary>
         /// <param name="filePath">
@@ -50,8 +20,10 @@ namespace JumpchainCharacterBuilder
         /// </param>
         public static void BackupFile(string filePath)
         {
+            FileAccess.CheckSubdirectoryExists("Backups");
+
             string fileName = Path.GetFileNameWithoutExtension(filePath);
-            DirectoryInfo directory = new(Environment.CurrentDirectory + @"\Backups\");
+            DirectoryInfo directory = new(Path.Combine(Environment.CurrentDirectory, "Backups"));
 
             for (int i = 1; i <= 10; i++)
             {
