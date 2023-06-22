@@ -28,16 +28,28 @@
                     Style="{DynamicResource DataGridButton}"/>
         </StackPanel>
 
-        <TabControl Grid.Row="1" SelectedIndex="{Binding LockerTabIndex}">
-            <TabItem Header="Weapons">
-                <Grid>
-                    <ListView ItemsSource="{Binding WeaponsItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding WeaponsItemSelectionIndex}">
+        <TabControl ItemsSource="{Binding ActiveItemLists}"
+                    SelectedItem="{Binding ItemTabName, Mode=OneWay}" 
+                    SelectedIndex="{Binding ItemTabIndex}"
+                    Grid.Row="1">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Key}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
+            <TabControl.ContentTemplate>
+                <DataTemplate>
+                    <ListView ItemsSource="{Binding Value}"
+                              SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=TabControl}, Path=DataContext.ItemSelection}">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
                                     <GridViewColumn Header="Name" Width="175"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                    <GridViewColumn Header="Description" Width="445" 
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                     <GridViewColumn Header="Description" Width="445" 
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
@@ -45,260 +57,8 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Armor">
-                <Grid>
-                    <ListView ItemsSource="{Binding ArmorItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding ArmorItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Accessories">
-                <Grid>
-                    <ListView ItemsSource="{Binding AccessoriesItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding AccessoriesItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Clothing">
-                <Grid>
-                    <ListView ItemsSource="{Binding ClothingItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding ClothingItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Misc. Equipment">
-                <Grid>
-                    <ListView ItemsSource="{Binding MiscEquipItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding MiscEquipItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Tools">
-                <Grid>
-                    <ListView ItemsSource="{Binding ToolsItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding ToolsItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Materials">
-                <Grid>
-                    <ListView ItemsSource="{Binding MaterialsItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding MaterialsItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Food">
-                <Grid>
-                    <ListView ItemsSource="{Binding FoodItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding FoodItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Media">
-                <Grid>
-                    <ListView ItemsSource="{Binding MediaItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding MediaItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Wealth">
-                <Grid>
-                    <ListView ItemsSource="{Binding WealthItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding WealthItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Vehicles">
-                <Grid>
-                    <ListView ItemsSource="{Binding VehiclesItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding VehiclesItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Properties">
-                <Grid>
-                    <ListView ItemsSource="{Binding PropertiesItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding PropertiesItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Businesses">
-                <Grid>
-                    <ListView ItemsSource="{Binding BusinessItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding BusinessItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Creatures">
-                <Grid>
-                    <ListView ItemsSource="{Binding CreaturesItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding CreaturesItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
-            <TabItem Header="Other Items">
-                <Grid>
-                    <ListView ItemsSource="{Binding OtherItemList}"
-                              SelectedItem="{Binding ItemSelection}"
-                              SelectedIndex="{Binding OtherItemSelectionIndex}">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="175"
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
-                                    <GridViewColumn Header="Description" Width="445" 
-                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-                </Grid>
-            </TabItem>
+                </DataTemplate>
+            </TabControl.ContentTemplate>
         </TabControl>
 
         <GroupBox Header="Item Details" Grid.Row="1" Grid.Column="1" Background="White"

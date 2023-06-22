@@ -73,77 +73,20 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<AltFormTraitModel> _altFormStrengthWeaknessList = new();
 
         [ObservableProperty]
+        private ObservableCollection<string> _perkTabList = new();
+        [ObservableProperty]
+        private string _perkTabName = "";
+        [ObservableProperty]
         private int _perkTabIndex = 0;
 
         [ObservableProperty]
+        private Dictionary<Character, Dictionary<string, List<Purchase>>> _inactivePerkLists = new();
+        [ObservableProperty]
+        private Dictionary<string, List<Purchase>> _activePerkLists = new();
+        [ObservableProperty]
+        private ObservableCollection<Purchase> _currentPerkList = new();
+        [ObservableProperty]
         private Purchase _perkSelection = new();
-
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactivePhysicalPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _physicalPerkList = new();
-        [ObservableProperty]
-        private int _physicalPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveMentalPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _mentalPerkList = new();
-        [ObservableProperty]
-        private int _mentalPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveSocialPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _socialPerkList = new();
-        [ObservableProperty]
-        private int _socialPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveStealthPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _stealthPerkList = new();
-        [ObservableProperty]
-        private int _stealthPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveMagicalPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _magicalPerkList = new();
-        [ObservableProperty]
-        private int _magicalPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveSpiritualPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _spiritualPerkList = new();
-        [ObservableProperty]
-        private int _spiritualPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveTechnologicalPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _technologicalPerkList = new();
-        [ObservableProperty]
-        private int _technologicalPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveCraftingPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _craftingPerkList = new();
-        [ObservableProperty]
-        private int _craftingPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveBlacksmithingPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _blacksmithingPerkList = new();
-        [ObservableProperty]
-        private int _blacksmithingPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveMetaPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _metaPerkList = new();
-        [ObservableProperty]
-        private int _metaPerkSelectionIndex = 0;
-        [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _inactiveOtherPerkLists = new();
-        [ObservableProperty]
-        private ObservableCollection<Purchase> _otherPerkList = new();
-        [ObservableProperty]
-        private int _otherPerkSelectionIndex = 0;
 
         [ObservableProperty]
         private Options.BodyModSupplements _loadedBodyModSupplement = Options.BodyModSupplements.Generic;
@@ -1022,8 +965,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 LoadedOptions = LoadedSave.Options;
 
-                LoadAllPerkLists();
                 LoadCharacterList();
+                LoadAllPerkLists();
                 LoadBodyModDetails();
 
                 ClearAttributeList();
@@ -1042,8 +985,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadedSave = m.Value;
                 LoadedOptions = LoadedSave.Options;
 
-                LoadAllPerkLists();
                 LoadCharacterList();
+                LoadAllPerkLists();
                 LoadBodyModDetails();
 
                 ClearAttributeList();
@@ -1182,36 +1125,26 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadAllPerkLists()
         {
-            InactivePhysicalPerkLists.Clear();
-            InactiveMentalPerkLists.Clear();
-            InactiveSocialPerkLists.Clear();
-            InactiveStealthPerkLists.Clear();
-            InactiveMagicalPerkLists.Clear();
-            InactiveSpiritualPerkLists.Clear();
-            InactiveTechnologicalPerkLists.Clear();
-            InactiveCraftingPerkLists.Clear();
-            InactiveBlacksmithingPerkLists.Clear();
-            InactiveMetaPerkLists.Clear();
-            InactiveOtherPerkLists.Clear();
+            int charIndex;
 
-            int charCount = LoadedSave.CharacterList.Count;
+            InactivePerkLists.Clear();
+            CurrentPerkList.Clear();
+            PerkTabList.Clear();
 
-            for (int i = 0; i < charCount; i++)
+            foreach (Character character in LoadedSave.CharacterList)
             {
-                InactivePhysicalPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveMentalPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveSocialPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveStealthPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveMagicalPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveSpiritualPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveTechnologicalPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveCraftingPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveBlacksmithingPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveMetaPerkLists.Add(new ObservableCollection<Purchase>());
-                InactiveOtherPerkLists.Add(new ObservableCollection<Purchase>());
+                InactivePerkLists.Add(character, new());
             }
 
-            int charIndex;
+            foreach (string category in LoadedSave.PerkCategoryList)
+            {
+                foreach (KeyValuePair<Character, Dictionary<string, List<Purchase>>> list in InactivePerkLists)
+                {
+                    list.Value.Add(category, new());
+                }
+
+                PerkTabList.Add(category);
+            }
 
             foreach (Jump jump in LoadedSave.JumpList)
             {
@@ -1221,64 +1154,38 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                     foreach (Purchase purchase in build.Purchase)
                     {
-                        switch (purchase.Category)
+                        if (!jump.PurchaseTypes[purchase.TypeIndex].IsItemType)
                         {
-                            case "Physical":
-                                InactivePhysicalPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Mental":
-                                InactiveMentalPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Social":
-                                InactiveSocialPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Stealth":
-                                InactiveStealthPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Magical":
-                                InactiveMagicalPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Spiritual":
-                                InactiveSpiritualPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Technological":
-                                InactiveTechnologicalPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Crafting":
-                                InactiveCraftingPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Blacksmithing":
-                                InactiveBlacksmithingPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Meta":
-                                InactiveMetaPerkLists[charIndex].Add(purchase);
-                                break;
-                            case "Other Perk":
-                                InactiveOtherPerkLists[charIndex].Add(purchase);
-                                break;
-                            default:
-                                break;
-                        }
+                            InactivePerkLists[CharacterList[charIndex]][purchase.Category].Add(purchase);
 
-                        purchase.SourceJump = jump.Name;
-                        purchase.SourceCharacter = LoadedSave.CharacterList[charIndex].Name;
+                            purchase.SourceJump = jump.Name;
+                            purchase.SourceCharacter = LoadedSave.CharacterList[charIndex].Name;
+                        }
                     }
                 }
             }
 
-            PhysicalPerkList = InactivePhysicalPerkLists[CharacterSelectionIndex];
-            MentalPerkList = InactiveMentalPerkLists[CharacterSelectionIndex];
-            SocialPerkList = InactiveSocialPerkLists[CharacterSelectionIndex];
-            StealthPerkList = InactiveStealthPerkLists[CharacterSelectionIndex];
-            MagicalPerkList = InactiveMagicalPerkLists[CharacterSelectionIndex];
-            SpiritualPerkList = InactiveSpiritualPerkLists[CharacterSelectionIndex];
-            TechnologicalPerkList = InactiveTechnologicalPerkLists[CharacterSelectionIndex];
-            CraftingPerkList = InactiveCraftingPerkLists[CharacterSelectionIndex];
-            BlacksmithingPerkList = InactiveBlacksmithingPerkLists[CharacterSelectionIndex];
-            MetaPerkList = InactiveMetaPerkLists[CharacterSelectionIndex];
-            OtherPerkList = InactiveOtherPerkLists[CharacterSelectionIndex];
+            LoadActivePerkLists();
+        }
 
-            PerkTabIndex = 0;
+        private void LoadActivePerkLists()
+        {
+            if (InactivePerkLists.ContainsKey(CharacterSelection))
+            {
+                ActivePerkLists = InactivePerkLists[CharacterSelection];
+
+                PerkTabIndex = 0;
+
+                LoadCurrentPerkList();
+            }
+        }
+
+        private void LoadCurrentPerkList()
+        {
+            if (PerkTabName != "" && InactivePerkLists[CharacterSelection].ContainsKey(PerkTabName))
+            {
+                CurrentPerkList = new(InactivePerkLists[CharacterSelection][PerkTabName]);
+            }
         }
 
         private void LoadBodyModTabs()
@@ -1555,19 +1462,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (charIndex != -1)
             {
-                PhysicalPerkList = InactivePhysicalPerkLists[charIndex];
-                MentalPerkList = InactiveMentalPerkLists[charIndex];
-                SocialPerkList = InactiveSocialPerkLists[charIndex];
-                StealthPerkList = InactiveStealthPerkLists[charIndex];
-                MagicalPerkList = InactiveMagicalPerkLists[charIndex];
-                SpiritualPerkList = InactiveSpiritualPerkLists[charIndex];
-                TechnologicalPerkList = InactiveTechnologicalPerkLists[charIndex];
-                CraftingPerkList = InactiveCraftingPerkLists[charIndex];
-                BlacksmithingPerkList = InactiveBlacksmithingPerkLists[charIndex];
-                MetaPerkList = InactiveMetaPerkLists[charIndex];
-                OtherPerkList = InactiveOtherPerkLists[charIndex];
-
-                PerkTabIndex = 0;
+                LoadActivePerkLists();
 
                 LoadBodyModDetails();
 
@@ -1579,91 +1474,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private void PerkTabChanged()
-        {
-            switch (PerkTabIndex)
-            {
-                case 0:
-                    if (PhysicalPerkList.Any())
-                    {
-                        PhysicalPerkSelectionIndex = 0;
-                        PerkSelection = PhysicalPerkList.First();
-                    }
-                    break;
-                case 1:
-                    if (MentalPerkList.Any())
-                    {
-                        MentalPerkSelectionIndex = 0;
-                        PerkSelection = MentalPerkList.First();
-                    }
-                    break;
-                case 2:
-                    if (SocialPerkList.Any())
-                    {
-                        SocialPerkSelectionIndex = 0;
-                        PerkSelection = SocialPerkList.First();
-                    }
-                    break;
-                case 3:
-                    if (StealthPerkList.Any())
-                    {
-                        StealthPerkSelectionIndex = 0;
-                        PerkSelection = StealthPerkList.First();
-                    }
-                    break;
-                case 4:
-                    if (MagicalPerkList.Any())
-                    {
-                        MagicalPerkSelectionIndex = 0;
-                        PerkSelection = MagicalPerkList.First();
-                    }
-                    break;
-                case 5:
-                    if (SpiritualPerkList.Any())
-                    {
-                        SpiritualPerkSelectionIndex = 0;
-                        PerkSelection = SpiritualPerkList.First();
-                    }
-                    break;
-                case 6:
-                    if (TechnologicalPerkList.Any())
-                    {
-                        TechnologicalPerkSelectionIndex = 0;
-                        PerkSelection = TechnologicalPerkList.First();
-                    }
-                    break;
-                case 7:
-                    if (CraftingPerkList.Any())
-                    {
-                        CraftingPerkSelectionIndex = 0;
-                        PerkSelection = CraftingPerkList.First();
-                    }
-                    break;
-                case 8:
-                    if (BlacksmithingPerkList.Any())
-                    {
-                        BlacksmithingPerkSelectionIndex = 0;
-                        PerkSelection = BlacksmithingPerkList.First();
-                    }
-                    break;
-                case 9:
-                    if (MetaPerkList.Any())
-                    {
-                        MetaPerkSelectionIndex = 0;
-                        PerkSelection = MetaPerkList.First();
-                    }
-                    break;
-                case 10:
-                    if (OtherPerkList.Any())
-                    {
-                        OtherPerkSelectionIndex = 0;
-                        PerkSelection = OtherPerkList.First();
-                    }
-                    break;
-                default:
-                    break;
-            }
-        }
+        private void PerkTabChanged() => LoadCurrentPerkList();
 
         private void CalculateTrueAge(Character character)
         {
