@@ -51,7 +51,7 @@ The goal of this project is primarily to suit my own needs, but I have also made
 ## Use Instructions
 (Todo: Write use instructions.)
 
-
+When running the program, Windows Smartscreen may complain about it being unrecognized. This can be resolved either by clicking 'More Info' in the warning window and then 'Run Anyway'. Alternatively, you can right click on the exe, select Properties in the context menu, and then look for a security notice at the bottom of the properties window. There should be a checkbox that is labeled 'Unblock', and checking this will tell Smartscreen to allow it.
 
 ## Credits
 Although this program was coded solely by myself, some aspects of the design do call back to my original Jumpchain Character Sheet. As such, I would like to share my thanks once again to those that helped me along the way.
