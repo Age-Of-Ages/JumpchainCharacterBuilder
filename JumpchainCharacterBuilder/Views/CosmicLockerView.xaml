@@ -50,6 +50,9 @@
                                                     CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
                                     <GridViewColumn Header="Description" Width="445" 
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                                    <GridViewColumn Header="Description" Width="445" 
+                                                                CellTemplate="{StaticResource ResourceKey=GridViewDescriptionColumn}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
