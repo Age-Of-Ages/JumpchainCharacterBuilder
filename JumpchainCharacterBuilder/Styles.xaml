@@ -4,6 +4,7 @@
 
     <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     <convert:NullVisConverter x:Key="NullToVis"/>
+    <convert:BoolResizeConverter x:Key="BoolToResize"/>
 
     <Style TargetType="{x:Type Grid}">
         <Setter Property="ClipToBounds" Value="False"/>

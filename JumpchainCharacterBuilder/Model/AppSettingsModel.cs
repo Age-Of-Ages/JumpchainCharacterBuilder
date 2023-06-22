@@ -43,5 +43,11 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private string _theme = "Light";
+
+        /// <summary>
+        /// Represents if the window is allowed to be resized or not.
+        /// </summary>
+        [ObservableProperty]
+        private bool _canResizeWindow = false;
     }
 }

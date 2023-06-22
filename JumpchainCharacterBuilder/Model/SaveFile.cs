@@ -87,7 +87,61 @@ namespace JumpchainCharacterBuilder.Model
         private UUSupplement _uUSupplement = new();
 
         /// <summary>
-        /// Represents the available list of Perk categories.
+        /// Represents the base list of Perk categories.
+        /// </summary>
+        public readonly List<string> _basePerkCategoryList = new()
+        {
+            "Physical",
+            "Mental",
+            "Social",
+            "Stealth",
+            "Magical",
+            "Spiritual",
+            "Technological",
+            "Crafting",
+            "Meta",
+            "Other Perk"
+        };
+
+        /// <summary>
+        /// Represents the base list of Item categories.
+        /// </summary>
+        public readonly List<string> _baseItemCategoryList = new()
+        {
+            "Weapons",
+            "Armor",
+            "Accessories",
+            "Clothing",
+            "Misc. Equipment",
+            "Tools",
+            "Materials",
+            "Food",
+            "Media",
+            "Wealth",
+            "Vehicles",
+            "Properties",
+            "Businesses",
+            "Creatures",
+            "Warehouse Addon",
+            "Other Item"
+        };
+
+        /// <summary>
+        /// Represents the users custom Perk categories
+        /// </summary>
+        [ObservableProperty]
+        [DataMember]
+        private List<string> _userPerkCategoryList = new();
+
+        /// <summary>
+        /// Represents the user's custom Item categories.
+        /// </summary>
+        [ObservableProperty]
+        [DataMember]
+        private List<string> _userItemCategoryList = new();
+
+        /// <summary>
+        /// Represents the compiled list of Perk categories.
         /// </summary>
         [ObservableProperty]
         [DataMember]
@@ -101,13 +155,12 @@ namespace JumpchainCharacterBuilder.Model
             "Spiritual",
             "Technological",
             "Crafting",
-            "Blacksmithing",
             "Meta",
             "Other Perk"
         };
 
         /// <summary>
-        /// Represents the available list of Item categories.
+        /// Represents the compiled list of Item categories.
         /// </summary>
         [ObservableProperty]
         [DataMember]

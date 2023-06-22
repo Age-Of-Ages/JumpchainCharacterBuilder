@@ -15,6 +15,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private AppSettingsModel _appSettings = new();
 
+        [ObservableProperty]
+        private bool _resizeAllowed = false;
+
         #endregion
 
         #region Properties
@@ -28,11 +31,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 m.Reply(r.AppSettings);
             });
+            Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
+            {
+                ResizeAllowed = AppSettings.CanResizeWindow;
+            });
 
             Messenger.Send(new SaveDataSendMessage(LoadedSave));
 
             CfgAccess.ReadCfgFile(AppSettings);
             Messenger.Send(new SettingsLoadedMessage(AppSettings));
+
+            ResizeAllowed = AppSettings.CanResizeWindow;
         }
     }
 }

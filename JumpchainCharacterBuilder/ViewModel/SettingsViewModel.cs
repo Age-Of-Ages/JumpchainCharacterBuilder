@@ -17,6 +17,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private AppSettingsModel.WeightFormats _weightFormatSelection = AppSettingsModel.WeightFormats.Pounds;
 
+        [ObservableProperty]
+        private bool _canResizeWindow = false;
+
         #endregion
 
         #region Properties 
@@ -34,6 +37,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             CfgAccess.WriteCfgFile(AppSettings);
         }
 
+        partial void OnCanResizeWindowChanged(bool value)
+        {
+            AppSettings.CanResizeWindow = value;
+            Messenger.Send(new SettingsChangedMessage(true));
+            CfgAccess.WriteCfgFile(AppSettings);
+        }
 
         public Dictionary<string, AppSettingsModel.HeightFormats> HeightFormatList { get; } =
             new()
@@ -65,6 +74,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             WeightFormatSelection = AppSettings.WeightFormat;
             HeightFormatSelection = AppSettings.HeightFormat;
+
+            CanResizeWindow = AppSettings.CanResizeWindow;
         }
 
         #endregion

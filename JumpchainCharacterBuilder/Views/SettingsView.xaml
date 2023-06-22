@@ -47,5 +47,14 @@
                 </StackPanel>
             </Grid>
         </GroupBox>
+
+        <GroupBox Header="Window settings" Grid.Column="1">
+            <Grid>
+                <StackPanel Margin="5,0,0,0">
+                    <TextBlock Text="Allow the window to be resized? Warning: This setting is temporary and a bit hacky, and only really intended to allow people with a lower resolution to use this application at all until I can update the ui." Width="170" TextWrapping="Wrap"/>
+                    <CheckBox Content="Resizable window" IsChecked="{Binding CanResizeWindow}" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
     </Grid>
 </Window>

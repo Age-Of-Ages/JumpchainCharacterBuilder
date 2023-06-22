@@ -52,7 +52,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != -1)
             {
-                CharacterChanged(value);
+                CharacterChanged();
             }
         }
 
@@ -153,7 +153,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             LoadActiveItemLists();
 
-            CharacterChanged(0);
+            CharacterChanged();
         }
 
         private void LoadActiveItemLists()
@@ -176,7 +176,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private void CharacterChanged(int charIndex)
+        private void CharacterChanged()
         {
             LoadActiveItemLists();
         }

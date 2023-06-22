@@ -16,38 +16,40 @@
         Background="#FFD8D8D8" 
         FontFamily="Lato" 
         FontSize="12" 
-        ResizeMode="CanMinimize" 
+        ResizeMode="{Binding ResizeAllowed, Converter={StaticResource BoolToResize}}" 
         SizeToContent="WidthAndHeight">
-    
-    <Grid Height="800" Width="950">
-        <DockPanel>
-            <local:TopMenuView DockPanel.Dock="Top"/>
-            <TabControl Margin="0,5,0,0">
-                <TabItem Header="Jumpchain Overview">
-                    <local:JumpchainOverviewView/>
-                </TabItem>
-                <TabItem Header="Cosmic Passport">
-                    <local:CosmicPassportView/>
-                </TabItem>
-                <TabItem Header="Cosmic Warehouse">
-                    <local:CosmicWarehouseView/>
-                </TabItem>
-                <TabItem Header="Cosmic Locker">
-                    <local:CosmicLockerView/>
-                </TabItem>
-                <TabItem Header="Drawback Supplement">
-                    <local:DrawbackSupplementView/>
-                </TabItem>
-                <TabItem Header="Export">
-                    <local:ExportView/>
-                </TabItem>
-                <TabItem Header="Statistics">
-                    <local:StatisticsView/>
-                </TabItem>
-                <TabItem Header="Jumpchain Options">
-                    <local:JumpchainOptionsView/>
-                </TabItem>
-            </TabControl>
-        </DockPanel>
-    </Grid>
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <Grid Height="800" Width="950">
+            <DockPanel>
+                <local:TopMenuView DockPanel.Dock="Top"/>
+                <TabControl Margin="0,5,0,0">
+                    <TabItem Header="Jumpchain Overview">
+                        <local:JumpchainOverviewView/>
+                    </TabItem>
+                    <TabItem Header="Cosmic Passport">
+                        <local:CosmicPassportView/>
+                    </TabItem>
+                    <TabItem Header="Cosmic Warehouse">
+                        <local:CosmicWarehouseView/>
+                    </TabItem>
+                    <TabItem Header="Cosmic Locker">
+                        <local:CosmicLockerView/>
+                    </TabItem>
+                    <TabItem Header="Drawback Supplement">
+                        <local:DrawbackSupplementView/>
+                    </TabItem>
+                    <TabItem Header="Export">
+                        <local:ExportView/>
+                    </TabItem>
+                    <TabItem Header="Statistics">
+                        <local:StatisticsView/>
+                    </TabItem>
+                    <TabItem Header="Jumpchain Options">
+                        <local:JumpchainOptionsView/>
+                    </TabItem>
+                </TabControl>
+            </DockPanel>
+        </Grid>
+    </ScrollViewer>
 </Window>
