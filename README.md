@@ -1,15 +1,12 @@
 # JumpchainCharacterBuilderWPF
 ## A new way to store your Jumper data.
 
-***
-
 ## Overview
 The Jumpchain Character Builder is a program for storing, managing, and exporting Jumpchain character data. It is designed to take as much of the burden off the user's shoulders in favor of allowing them to focus on the less tedious parts of making builds. Budgeting, discounts, replication of purchases to character sheets, and even the process of exporting a build to share with the Jumpchain community are all automated, among other things.
 
 The goal of this project is primarily to suit my own needs, but I have also made an effort to include functionality that I feel others will find useful. It is my hope that those of you that choose to make use of this program will find it convenient to use. If it doesn't quite work for you for any reason then don't hesitate to let me know. I can't promise I'll take action on every piece of feedback that I receive, but I will make note of it.
 
 
-***
 ## Feature List
 1. Jumpchain Overview
    - Full storage of all Jumps and their builds.
@@ -49,18 +46,17 @@ The goal of this project is primarily to suit my own needs, but I have also made
    - Configure defaults for newly created Jumps. 
    - Select Body-Mod, Warehouse, and Drawback Supplement used, and configure options for each. 
    - These options depend on the specific selections made, and can include various modes for certain Supplements, or on which Jump the Jumper took the Supplement.
-***
 
 
 ## Use Instructions
 (Todo: Write use instructions.)
 
 
+
 ## Credits
 Although this program was coded solely by myself, some aspects of the design do call back to my original Jumpchain Character Sheet. As such, I would like to share my thanks once again to those that helped me along the way.
 - TobiasCook (Reddit): For creating the original Jumpchain character spreadsheet that one day led to my own creation, thank you.
 - He_Who_Writes (Reddit): In addition to producing the expanded form of the Jumpchain character spreadsheet that I eventually used, they also designed the first take on a "skill" system.
-
 
 ***
 
