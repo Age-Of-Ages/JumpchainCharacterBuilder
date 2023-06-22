@@ -17,7 +17,8 @@ namespace JumpchainCharacterBuilder
             {
                 {"WeightFormat", appSettings.WeightFormat.ToString() },
                 {"HeightFormat", appSettings.HeightFormat.ToString() },
-                {"Theme", appSettings.Theme }
+                {"Theme", appSettings.Theme },
+                {"CanResizeWindow", appSettings.CanResizeWindow.ToString() }
             };
 
             settings.Add("# Application settings");
@@ -54,7 +55,8 @@ namespace JumpchainCharacterBuilder
                 {
                     {"HeightFormat", "FeetInches" },
                     {"WeightFormat", "Pounds" },
-                    {"Theme", "Light" }
+                    {"Theme", "Light" },
+                    {"CanResizeWindow", "False" }
                 };
                 string[] splitString;
                 string settingKey;
@@ -97,6 +99,15 @@ namespace JumpchainCharacterBuilder
                 }
 
                 appSettings.Theme = settingsDictionary["Theme"];
+
+                if (settingsDictionary["CanResizeWindow"] == "True")
+                {
+                    appSettings.CanResizeWindow = true;
+                }
+                else
+                {
+                    appSettings.CanResizeWindow = false;
+                }
             }
         }
     }
