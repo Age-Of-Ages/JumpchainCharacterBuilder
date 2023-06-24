@@ -17,13 +17,14 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch">
-            <ContentControl Template="{DynamicResource CharacterSelector}"/>
-
-            <Button Content="+"
-                    Command="{Binding NewCharacterCommand}" Margin="15,0,0,0" VerticalAlignment="Bottom"
+            <Button Content="New character"
+                    Command="{Binding NewCharacterCommand}" VerticalAlignment="Bottom"
                     Style="{DynamicResource DataGridButton}"
                     MinWidth="25" Height="5"/>
-            <Button Content="-"
+
+            <ContentControl Template="{DynamicResource CharacterSelector}" Margin="15,0,0,0"/>
+
+            <Button Content="Delete character"
                     Command="{Binding DeleteCharacterCommand}" Margin="10,0,0,0" VerticalAlignment="Bottom"
                     Style="{DynamicResource DataGridButton}"
                     MinWidth="25" Height="5"/>
