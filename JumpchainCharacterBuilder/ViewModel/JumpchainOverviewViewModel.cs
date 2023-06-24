@@ -117,6 +117,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePurchaseCommand))]
         [NotifyCanExecuteChangedFor(nameof(DeletePurchaseTraitCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePurchaseUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePurchaseDownCommand))]
         private Purchase _purchaseSelection = new();
         [ObservableProperty]
         private int _purchaseSelectionIndex = 0;
@@ -130,6 +132,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteDrawbackCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveDrawbackUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveDrawbackDownCommand))]
         private Drawback _drawbackSelection = new();
         [ObservableProperty]
         private int _drawbackSelectionIndex = 0;
@@ -138,6 +142,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteScenarioCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveScenarioUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveScenarioDownCommand))]
         private Drawback _scenarioSelection = new();
         [ObservableProperty]
         private int _scenarioSelectionIndex = 0;
@@ -1728,6 +1734,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             Budget = SetBudget(PurchaseTypeList[PurchaseTypeSelectionIndex]);
 
             DeletePurchaseCommand.NotifyCanExecuteChanged();
+            MovePurchaseUpCommand.NotifyCanExecuteChanged();
+            MovePurchaseDownCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(CanDeletePurchase))]
@@ -1742,10 +1750,46 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadAllPurchaseLists();
 
                 DeletePurchaseCommand.NotifyCanExecuteChanged();
+                MovePurchaseUpCommand.NotifyCanExecuteChanged();
+                MovePurchaseDownCommand.NotifyCanExecuteChanged();
             }
         }
 
         private bool CanDeletePurchase() => CurrentLoadedPurchaseList.Any() && PurchaseSelection != null;
+
+        [RelayCommand(CanExecute = nameof(CanMovePurchaseUp))]
+        private void MovePurchaseUp()
+        {
+            int index = PurchaseSelectionIndex;
+
+            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].Purchase, index, index - 1);
+            ListOperationsClass.SwapCollectionItems(CurrentLoadedPurchaseList, index, index - 1);
+
+            PurchaseSelectionIndex = index - 1;
+
+            MovePurchaseUpCommand.NotifyCanExecuteChanged();
+            MovePurchaseDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMovePurchaseUp() => PurchaseSelectionIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMovePurchaseDown))]
+        private void MovePurchaseDown()
+        {
+            int index = PurchaseSelectionIndex;
+
+            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].Purchase, index, index + 1);
+            ListOperationsClass.SwapCollectionItems(CurrentLoadedPurchaseList, index, index + 1);
+
+            PurchaseSelectionIndex = index + 1;
+
+            MovePurchaseUpCommand.NotifyCanExecuteChanged();
+            MovePurchaseDownCommand.NotifyCanExecuteChanged();
+        }
+
+
+        private bool CanMovePurchaseDown() => PurchaseSelectionIndex != -1 && PurchaseSelectionIndex < CurrentLoadedPurchaseList.Count - 1;
+
 
         [RelayCommand]
         private void NewScenario()
@@ -1755,6 +1799,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             LoadScenarioList();
 
             DeleteScenarioCommand.NotifyCanExecuteChanged();
+            MoveScenarioUpCommand.NotifyCanExecuteChanged();
+            MoveScenarioDownCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(CanDeleteScenario))]
@@ -1771,10 +1817,45 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadScenarioList();
 
                 DeleteScenarioCommand.NotifyCanExecuteChanged();
+                MoveScenarioUpCommand.NotifyCanExecuteChanged();
+                MoveScenarioDownCommand.NotifyCanExecuteChanged();
             }
         }
 
         private bool CanDeleteScenario() => ScenarioList.Any() && ScenarioSelection != null;
+
+        [RelayCommand(CanExecute = nameof(CanMoveScenarioUp))]
+        private void MoveScenarioUp()
+        {
+            int index = ScenarioSelectionIndex;
+
+            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].ScenarioSelection, index, index - 1);
+            ListOperationsClass.SwapCollectionItems(ScenarioList, index, index - 1);
+
+            ScenarioSelectionIndex = index - 1;
+
+            MoveScenarioUpCommand.NotifyCanExecuteChanged();
+            MoveScenarioDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveScenarioUp() => ScenarioSelectionIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveScenarioDown))]
+        private void MoveScenarioDown()
+        {
+            int index = ScenarioSelectionIndex;
+
+            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].ScenarioSelection, index, index + 1);
+            ListOperationsClass.SwapCollectionItems(ScenarioList, index, index + 1);
+
+            ScenarioSelectionIndex = index + 1;
+
+            MoveScenarioUpCommand.NotifyCanExecuteChanged();
+            MoveScenarioDownCommand.NotifyCanExecuteChanged();
+        }
+
+
+        private bool CanMoveScenarioDown() => ScenarioSelectionIndex != -1 && ScenarioSelectionIndex < ScenarioList.Count - 1;
 
         [RelayCommand]
         private void NewDrawback()
@@ -1784,6 +1865,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             LoadDrawbackList();
 
             DeleteDrawbackCommand.NotifyCanExecuteChanged();
+            MoveDrawbackUpCommand.NotifyCanExecuteChanged();
+            MoveDrawbackDownCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(CanDeleteDrawback))]
@@ -1800,10 +1883,45 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadDrawbackList();
 
                 DeleteDrawbackCommand.NotifyCanExecuteChanged();
+                MoveDrawbackUpCommand.NotifyCanExecuteChanged();
+                MoveDrawbackDownCommand.NotifyCanExecuteChanged();
             }
         }
 
         private bool CanDeleteDrawback() => DrawbackList.Any() && DrawbackSelection != null;
+
+        [RelayCommand(CanExecute = nameof(CanMoveDrawbackUp))]
+        private void MoveDrawbackUp()
+        {
+            int index = DrawbackSelectionIndex;
+
+            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].DrawbackSelection, index, index - 1);
+            ListOperationsClass.SwapCollectionItems(DrawbackList, index, index - 1);
+
+            DrawbackSelectionIndex = index - 1;
+
+            MoveDrawbackUpCommand.NotifyCanExecuteChanged();
+            MoveDrawbackDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveDrawbackUp() => DrawbackSelectionIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveDrawbackDown))]
+        private void MoveDrawbackDown()
+        {
+            int index = DrawbackSelectionIndex;
+
+            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].DrawbackSelection, index, index + 1);
+            ListOperationsClass.SwapCollectionItems(DrawbackList, index, index + 1);
+
+            DrawbackSelectionIndex = index + 1;
+
+            MoveDrawbackUpCommand.NotifyCanExecuteChanged();
+            MoveDrawbackDownCommand.NotifyCanExecuteChanged();
+        }
+
+
+        private bool CanMoveDrawbackDown() => DrawbackSelectionIndex != -1 && DrawbackSelectionIndex < DrawbackList.Count - 1;
 
         [RelayCommand]
         private void NewImport()

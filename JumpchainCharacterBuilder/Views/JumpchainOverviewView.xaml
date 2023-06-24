@@ -401,6 +401,22 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
+                        <Button Content="Move Up" 
+                                Command="{Binding MovePurchaseUpCommand}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="0"
+                                Grid.Row="1"/>
+
+                        <Button Content="Move Down"
+                                Command="{Binding MovePurchaseDownCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="2"
+                                Grid.Row="1"/>
+                        
                         <Button Content="New Purchase" 
                                 Command="{Binding NewPurchaseCommand}"
                                 HorizontalAlignment="Left"
@@ -768,6 +784,22 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
+                        <Button Content="Move Up" 
+                                Command="{Binding MoveDrawbackUpCommand}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="0"
+                                Grid.Row="1"/>
+
+                        <Button Content="Move Down"
+                                Command="{Binding MoveDrawbackDownCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="2"
+                                Grid.Row="1"/>
+                        
                         <Button Content="New Drawback" 
                                 Command="{Binding NewDrawbackCommand}"
                                 HorizontalAlignment="Left"
@@ -880,7 +912,23 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
+                        
+                        <Button Content="Move Up" 
+                                Command="{Binding MoveScenarioUpCommand}"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="0"
+                                Grid.Row="1"/>
 
+                        <Button Content="Move Down"
+                                Command="{Binding MoveScenarioDownCommand}"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Center"
+                                Style="{DynamicResource DataGridButton}"
+                                Grid.Column="2"
+                                Grid.Row="1"/>
+                        
                         <Button Content="New Scenario" 
                                 Command="{Binding NewScenarioCommand}"
                                 HorizontalAlignment="Left"
