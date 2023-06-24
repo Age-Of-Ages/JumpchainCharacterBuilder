@@ -89,7 +89,7 @@ namespace JumpchainCharacterBuilder.Model
         /// <summary>
         /// Represents the base list of Perk categories.
         /// </summary>
-        public readonly List<string> _basePerkCategoryList = new()
+        public readonly List<string> BasePerkCategoryList = new()
         {
             "Physical",
             "Mental",
@@ -106,7 +106,7 @@ namespace JumpchainCharacterBuilder.Model
         /// <summary>
         /// Represents the base list of Item categories.
         /// </summary>
-        public readonly List<string> _baseItemCategoryList = new()
+        public readonly List<string> BaseItemCategoryList = new()
         {
             "Weapons",
             "Armor",
@@ -155,6 +155,7 @@ namespace JumpchainCharacterBuilder.Model
             "Spiritual",
             "Technological",
             "Crafting",
+            "Blacksmithing",
             "Meta",
             "Other Perk"
         };

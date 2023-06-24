@@ -8,7 +8,7 @@
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:StatisticsViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="800" d:DesignWidth="950">
+             d:DesignHeight="757" d:DesignWidth="950">
 
     <Grid Background="#FFD8D8D8">
         <Grid.RowDefinitions>

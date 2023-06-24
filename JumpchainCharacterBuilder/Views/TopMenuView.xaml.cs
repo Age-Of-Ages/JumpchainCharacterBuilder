@@ -1,5 +1,6 @@
 ﻿using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,8 +15,10 @@ namespace JumpchainCharacterBuilder.Views
         public TopMenuView()
         {
             InitializeComponent();
-            this.DataContext = App.Current.Services.GetService<TopMenuViewModel>();
-
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = App.Current.Services.GetService<TopMenuViewModel>();
+            }
         }
 
         public TopMenuViewModel TopMenuViewModel => (TopMenuViewModel)DataContext;

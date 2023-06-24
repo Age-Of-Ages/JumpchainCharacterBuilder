@@ -1,5 +1,6 @@
 ﻿using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using System.Windows;
 
 namespace JumpchainCharacterBuilder
@@ -12,7 +13,10 @@ namespace JumpchainCharacterBuilder
         public MainWindowView()
         {
             InitializeComponent();
-            this.DataContext = App.Current.Services.GetService<MainWindowViewModel>();
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = App.Current.Services.GetService<MainWindowViewModel>(); 
+            }
         }
 
         public MainWindowViewModel MainWindowViewModel => (MainWindowViewModel)DataContext;

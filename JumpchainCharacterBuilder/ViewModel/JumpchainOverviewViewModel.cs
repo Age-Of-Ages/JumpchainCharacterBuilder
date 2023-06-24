@@ -810,6 +810,11 @@ namespace JumpchainCharacterBuilder.ViewModel
                 ClearAttributeList();
                 LoadAttributeTypes();
             });
+            Messenger.Register<CategoryChangedMessage>(this, (r, m) =>
+            {
+                LoadPurchaseCategoryList();
+                LoadCurrentPurchaseData();
+            });
 
             CreateJumpList();
 

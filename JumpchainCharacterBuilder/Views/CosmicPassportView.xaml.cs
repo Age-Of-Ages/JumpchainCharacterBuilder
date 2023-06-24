@@ -1,5 +1,6 @@
 ﻿using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using System.Windows.Controls;
 
 namespace JumpchainCharacterBuilder.Views
@@ -12,8 +13,11 @@ namespace JumpchainCharacterBuilder.Views
         public CosmicPassportView()
         {
             InitializeComponent();
-            this.DataContext = App.Current.Services.GetService<CosmicPassportViewModel>();
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = App.Current.Services.GetService<CosmicPassportViewModel>();
 
+            }
         }
 
         CosmicPassportViewModel CosmicPassportViewModel => (CosmicPassportViewModel)DataContext;

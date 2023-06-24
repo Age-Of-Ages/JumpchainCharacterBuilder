@@ -1,5 +1,6 @@
 ﻿using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using System.Windows;
 
 namespace JumpchainCharacterBuilder.Views
@@ -12,7 +13,10 @@ namespace JumpchainCharacterBuilder.Views
         public InputFormatterView()
         {
             InitializeComponent();
-            this.DataContext = App.Current.Services.GetService<InputFormatterViewModel>();
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = App.Current.Services.GetService<InputFormatterViewModel>(); 
+            }
         }
 
         public InputFormatterViewModel InputFormatterViewModel => (InputFormatterViewModel)DataContext;

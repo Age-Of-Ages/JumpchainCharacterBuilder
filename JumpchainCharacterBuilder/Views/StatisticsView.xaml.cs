@@ -1,5 +1,6 @@
 ﻿using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using System.Windows.Controls;
 
 namespace JumpchainCharacterBuilder.Views
@@ -12,7 +13,10 @@ namespace JumpchainCharacterBuilder.Views
         public StatisticsView()
         {
             InitializeComponent();
-            this.DataContext = App.Current.Services.GetService<StatisticsViewModel>();
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = App.Current.Services.GetService<StatisticsViewModel>(); 
+            }
         }
 
         StatisticsViewModel StatisticsViewModel => (StatisticsViewModel)DataContext;

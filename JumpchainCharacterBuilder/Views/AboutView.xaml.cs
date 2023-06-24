@@ -1,5 +1,6 @@
 ﻿using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Navigation;
@@ -14,7 +15,10 @@ namespace JumpchainCharacterBuilder.Views
         public AboutView()
         {
             InitializeComponent();
-            this.DataContext = App.Current.Services.GetService<AboutViewModel>();
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = App.Current.Services.GetService<AboutViewModel>(); 
+            }
         }
 
         public AboutViewModel AboutViewModel => (AboutViewModel)DataContext;

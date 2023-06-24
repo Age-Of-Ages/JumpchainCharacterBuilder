@@ -35,6 +35,10 @@ namespace JumpchainCharacterBuilder
             existingSave.GenericDrawbackSupplement = new();
             existingSave.UniversalDrawbackSupplement = new();
             existingSave.UUSupplement = new();
+            existingSave.ItemCategoryList = new();
+            existingSave.PerkCategoryList = new();
+            existingSave.UserPerkCategoryList = new();
+            existingSave.UserItemCategoryList = new();
 
             existingSave.Options = newSave.Options;
             existingSave.GenericBodyMod = newSave.GenericBodyMod;
@@ -47,6 +51,10 @@ namespace JumpchainCharacterBuilder
             existingSave.UUSupplement = newSave.UUSupplement;
             existingSave.JumpList = newSave.JumpList;
             existingSave.CharacterList = newSave.CharacterList;
+            existingSave.ItemCategoryList = newSave.ItemCategoryList;
+            existingSave.PerkCategoryList = newSave.PerkCategoryList;
+            existingSave.UserItemCategoryList = newSave.UserItemCategoryList;
+            existingSave.UserPerkCategoryList = newSave.UserPerkCategoryList;
 
             existingSave.SaveVersion = newSave.SaveVersion;
 

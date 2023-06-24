@@ -1,5 +1,6 @@
 ﻿using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel;
 using System.Windows.Controls;
 
 namespace JumpchainCharacterBuilder.Views
@@ -12,7 +13,10 @@ namespace JumpchainCharacterBuilder.Views
         public CosmicLockerView()
         {
             InitializeComponent();
-            this.DataContext = App.Current.Services.GetService<CosmicLockerViewModel>();
+            if (!DesignerProperties.GetIsInDesignMode(this))
+            {
+                this.DataContext = App.Current.Services.GetService<CosmicLockerViewModel>(); 
+            }
         }
 
         public CosmicLockerViewModel CosmicLockerViewModel => (CosmicLockerViewModel)DataContext;

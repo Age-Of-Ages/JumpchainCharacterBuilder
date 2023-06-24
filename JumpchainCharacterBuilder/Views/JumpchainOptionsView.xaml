@@ -8,7 +8,7 @@
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:JumpchainOptionsViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="800" d:DesignWidth="950">
+             d:DesignHeight="757" d:DesignWidth="950">
     
     <Grid Background="#FFD8D8D8">
         <TabControl x:Name="OptionsTabMenu">
@@ -105,6 +105,80 @@
 
                                 <TextBlock Text="NOTICE: Point bank is currently entirely manual and only used for the sake of accurate budgeting." 
                                            Margin="0,15,3,0" TextWrapping="Wrap"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="User-defined Perk Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
+                        <Grid>
+                            <StackPanel Margin="5,3,5,0">
+                                <ListView ItemsSource="{Binding UserPerkCategories}"
+                                          SelectedIndex="{Binding UserPerkCategoryIndex}"
+                                          Height="300"/>
+
+                                <StackPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Category name"/>
+                                    <TextBox Text="{Binding UserPerkCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                </StackPanel>
+
+                                <Grid Grid.Row="1" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Content="New Category" 
+                                            Command="{Binding NewPerkCategoryCommand}"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Style="{DynamicResource DataGridButton}"
+                                            Grid.Row="1"/>
+
+                                    <Button Content="Delete Category"
+                                            Command="{Binding DeletePerkCategoryCommand}"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Style="{DynamicResource DataGridButton}"
+                                            Grid.Column="2"/>
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="User-defined Item Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
+                        <Grid>
+                            <StackPanel Margin="5,3,5,0">
+                                <ListView ItemsSource="{Binding UserItemCategories}"
+                                          SelectedIndex="{Binding UserItemCategoryIndex}"
+                                          Height="300"/>
+
+                                <StackPanel Margin="0,10,0,0" HorizontalAlignment="Center">
+                                    <TextBlock Text="Category name"/>
+                                    <TextBox Text="{Binding UserItemCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                </StackPanel>
+
+                                <Grid Grid.Row="1" Margin="0,10,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Content="New Category" 
+                                            Command="{Binding NewItemCategoryCommand}"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Top"
+                                            Style="{DynamicResource DataGridButton}"
+                                            Grid.Row="1"/>
+
+                                    <Button Content="Delete Category"
+                                            Command="{Binding DeleteItemCategoryCommand}"
+                                            HorizontalAlignment="Right"
+                                            VerticalAlignment="Bottom"
+                                            Style="{DynamicResource DataGridButton}"
+                                            Grid.Column="2"/>
+                                </Grid>
                             </StackPanel>
                         </Grid>
                     </GroupBox>

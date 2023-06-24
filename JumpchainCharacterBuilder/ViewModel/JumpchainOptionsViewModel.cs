@@ -1,11 +1,17 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Attributes;
+using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
+using JumpchainCharacterBuilder.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -13,6 +19,8 @@ namespace JumpchainCharacterBuilder.ViewModel
     {
         // TODO - Implement EBM options correctly.
         #region Fields
+        private readonly IDialogService _dialogService;
+
         [ObservableProperty]
         private SaveFile _loadedSave = new();
         [ObservableProperty]
@@ -43,7 +51,6 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _allowCompanionsBank = false;
         [ObservableProperty]
         [NotifyDataErrorInfo]
-        [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Point bank cap must be a positive integer.")]
         private int _pointBankLimit = 300;
         [ObservableProperty]
@@ -161,6 +168,30 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _uUGauntletPoints = false;
         [ObservableProperty]
         private bool _uUGauntletHalved = false;
+
+        [ObservableProperty]
+        private ObservableCollection<string> _userPerkCategories = new();
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeletePerkCategoryCommand))]
+        [NotifyDataErrorInfo]
+        [UniqueName(nameof(CompiledPerkCategories))]
+        private string _userPerkCategorySelection = "";
+        [ObservableProperty]
+        private int _userPerkCategoryIndex = 0;
+        [ObservableProperty]
+        private ObservableCollection<string> _userItemCategories = new();
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteItemCategoryCommand))]
+        [NotifyDataErrorInfo]
+        [UniqueName(nameof(CompiledItemCategories))]
+        private string _userItemCategorySelection = "";
+        [ObservableProperty]
+        private int _userItemCategoryIndex = 0;
+
+        [ObservableProperty]
+        private List<string> _compiledPerkCategories = new();
+        [ObservableProperty]
+        private List<string> _compiledItemCategories = new();
 
         #endregion
 
@@ -478,6 +509,86 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnUUGauntletHalvedChanged(bool value) => LoadedSave.UUSupplement.HalvedPointsDuringGauntlets = value;
 
+        partial void OnUserPerkCategoryIndexChanged(int value)
+        {
+            if (value != -1)
+            {
+                UserPerkCategorySelection = UserPerkCategories[value];
+            }
+        }
+
+        partial void OnUserPerkCategorySelectionChanging(string value)
+        {
+            List<string> tempList = UserPerkCategories.ToList();
+
+            tempList[UserPerkCategoryIndex] = value;
+
+            tempList.AddRange(LoadedSave.BasePerkCategoryList);
+
+            CompiledPerkCategories = new(tempList);
+        }
+
+        partial void OnUserPerkCategorySelectionChanged(string value)
+        {
+            int index = UserPerkCategoryIndex;
+            string oldCategory = LoadedSave.UserPerkCategoryList[index];
+
+            if (!GetErrors(nameof(UserPerkCategorySelection)).Any())
+            {
+                if (value != null && UserPerkCategoryIndex != -1)
+                {
+                    if (UserPerkCategories[index] != value)
+                    {
+                        LoadedSave.UserPerkCategoryList[index] = value;
+                        UserPerkCategories[index] = value;
+
+                        UpdateCategories(perks: true);
+                        ChangePurchaseCategory(oldCategory, value);
+                    }
+                }
+            }
+        }
+
+        partial void OnUserItemCategoryIndexChanged(int value)
+        {
+            if (value != -1)
+            {
+                UserItemCategorySelection = UserItemCategories[value];
+            }
+        }
+
+        partial void OnUserItemCategorySelectionChanging(string value)
+        {
+            List<string> tempList = UserItemCategories.ToList();
+
+            tempList[UserItemCategoryIndex] = value;
+
+            tempList.AddRange(LoadedSave.BaseItemCategoryList);
+
+            CompiledItemCategories = new(tempList);
+        }
+
+        partial void OnUserItemCategorySelectionChanged(string value)
+        {
+            int index = UserItemCategoryIndex;
+            string oldCategory = LoadedSave.UserItemCategoryList[index];
+
+            if (!GetErrors(nameof(UserItemCategorySelection)).Any())
+            {
+                if (value != null && UserItemCategoryIndex != -1)
+                {
+                    if (UserItemCategories[index] != value)
+                    {
+                        LoadedSave.UserItemCategoryList[index] = value;
+                        UserItemCategories[index] = value;
+
+                        UpdateCategories(perks: false);
+                        ChangePurchaseCategory(oldCategory, value);
+                    }
+                }
+            }
+        }
+
         public Dictionary<string, Options.CosmicWarehouseSupplements> CosmicWarehouseList { get; } =
             new()
             {
@@ -550,6 +661,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Constructor
         public JumpchainOptionsViewModel()
         {
+            
+        }
+
+        public JumpchainOptionsViewModel(IDialogService dialogService)
+        {
             Messenger.Register<SaveDataChangedMessage>(this, (r, m) =>
             {
                 AssignOptions();
@@ -565,6 +681,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 AppSettings = m.Value;
             });
+
+            _dialogService = dialogService;
         }
         #endregion
 
@@ -628,6 +746,165 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             UUGauntletPoints = LoadedSave.UUSupplement.AllowedDuringGauntlets;
             UUGauntletHalved = LoadedSave.UUSupplement.HalvedPointsDuringGauntlets;
+
+            LoadCategories();
+        }
+
+        private void LoadCategories()
+        {
+            UserPerkCategories = new(LoadedSave.UserPerkCategoryList);
+            UserItemCategories = new(LoadedSave.UserItemCategoryList);
+
+            CompiledPerkCategories = LoadedSave.PerkCategoryList;
+            CompiledItemCategories = LoadedSave.ItemCategoryList;
+
+            if (UserPerkCategories.Any())
+            {
+                UserPerkCategoryIndex = 0;
+            }
+            if (UserItemCategories.Any())
+            {
+                UserItemCategoryIndex = 0;
+            }
+        }
+
+        private void UpdateCategories(bool perks)
+        {
+            List<string> compiledList = new();
+
+            if (perks)
+            {
+                compiledList.AddRange(LoadedSave.BasePerkCategoryList);
+                compiledList.AddRange(UserPerkCategories);
+
+                LoadedSave.PerkCategoryList = compiledList;
+                CompiledPerkCategories = new(compiledList);
+            }
+            else
+            {
+                compiledList.AddRange(LoadedSave.BaseItemCategoryList);
+                compiledList.AddRange(UserItemCategories);
+
+                LoadedSave.ItemCategoryList = compiledList;
+                CompiledItemCategories = new(compiledList);
+            }
+        }
+
+        private void ChangePurchaseCategory(string oldCategory, string newCategory)
+        {
+            foreach (Jump jump in LoadedSave.JumpList)
+            {
+                foreach (JumpBuild build in jump.Build)
+                {
+                    foreach (Purchase purchase in build.Purchase)
+                    {
+                        if (purchase.Category == oldCategory)
+                        {
+                            purchase.Category = newCategory;
+                        }
+                    }
+                }
+            }
+
+            Messenger.Send(new CategoryChangedMessage(true));
+        }
+        #endregion
+
+        #region Commands
+        [RelayCommand]
+        private void NewPerkCategory()
+        {
+            int count = LoadedSave.PerkCategoryList.Count + 1;
+            string category = $"Custom Category #{count}";
+
+            while (LoadedSave.PerkCategoryList.Contains(category))
+            {
+                count++;
+                category = $"Custom Category #{count}";
+            }
+
+            UserPerkCategories.Add(category);
+            LoadedSave.UserPerkCategoryList.Add(category);
+
+            UpdateCategories(perks: true);
+
+            UserPerkCategoryIndex = UserPerkCategories.Count() - 1;
+
+            DeletePerkCategoryCommand.NotifyCanExecuteChanged();
+        }
+
+        [RelayCommand(CanExecute = nameof(CanDeletePerkCategory))]
+        private void DeletePerkCategory()
+        {
+            if (_dialogService.ConfirmDialog("Are you sure that you want to delete this category? " +
+                "This will reset all Perks using this to the default."))
+            {
+                string category = UserPerkCategorySelection;
+
+                ChangePurchaseCategory(category, "Other Perk");
+
+                UserPerkCategories.Remove(category);
+                CompiledPerkCategories.Remove(category);
+
+                UpdateCategories(perks: true);
+
+                UserPerkCategoryIndex = 0;
+
+                DeletePerkCategoryCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        private bool CanDeletePerkCategory()
+        {
+            return UserPerkCategorySelection != "" && UserPerkCategorySelection != null && UserPerkCategoryIndex != -1;
+        }
+
+        [RelayCommand]
+        private void NewItemCategory()
+        {
+            int count = LoadedSave.ItemCategoryList.Count + 1;
+            string category = $"Custom Category #{count}";
+
+            while (LoadedSave.ItemCategoryList.Contains(category))
+            {
+                count++;
+                category = $"Custom Category #{count}";
+            }
+
+            UserItemCategories.Add(category);
+            LoadedSave.UserItemCategoryList.Add(category);
+
+            UpdateCategories(perks: false);
+
+            UserItemCategoryIndex = UserItemCategories.Count() - 1;
+
+            DeleteItemCategoryCommand.NotifyCanExecuteChanged();
+        }
+
+        [RelayCommand(CanExecute = nameof(CanDeleteItemCategory))]
+        private void DeleteItemCategory()
+        {
+            if (_dialogService.ConfirmDialog("Are you sure that you want to delete this category? " +
+                "This will reset all Items using this to the default."))
+            {
+                string category = UserItemCategorySelection;
+
+                ChangePurchaseCategory(category, "Other Item");
+
+                UserItemCategories.Remove(category);
+                CompiledItemCategories.Remove(category);
+
+                UpdateCategories(perks: true);
+
+                UserItemCategoryIndex = 0;
+
+                DeleteItemCategoryCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        private bool CanDeleteItemCategory()
+        {
+            return UserItemCategorySelection != "" && UserItemCategorySelection != null && UserItemCategoryIndex != -1;
         }
         #endregion
     }
