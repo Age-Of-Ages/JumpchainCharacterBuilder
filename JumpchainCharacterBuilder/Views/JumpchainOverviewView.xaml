@@ -91,7 +91,8 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
@@ -172,7 +173,7 @@
                         </ListView.View>
                     </ListView>
 
-                    <GroupBox Header="Details" Grid.Column="1" Grid.RowSpan="5" 
+                    <GroupBox Header="Details" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" 
                               Visibility="{Binding MiscOriginDetailSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -183,7 +184,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.1*"/>
                                 <RowDefinition Height="5*"/>
-                                <RowDefinition Height="15*"/>
+                                <RowDefinition Height="10*"/>
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -203,6 +204,137 @@
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Width="400" Height="200"
                                          Tag="Insert Origin Detail description."/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <StackPanel Grid.Row="3" Grid.Column="1">
+                        <TextBlock Text="Available Origins"/>
+
+                        <ListView ItemsSource="{Binding OriginList}"
+                                SelectedItem="{Binding OriginEditSelection}"
+                                SelectedIndex="{Binding OriginEditSelectionIndex}"
+                                Height="150">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Origin" Width="225"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding Name}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="New Origin" 
+                                    Command="{Binding NewOriginCommand}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Style="{DynamicResource DataGridButton}"/>
+
+                            <Button Content="Delete Origin"
+                                    Command="{Binding DeleteOriginCommand}"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="3">
+                        <TextBlock Text="Misc. Origin detail types"/>
+                        <ListView ItemsSource="{Binding MiscOriginTypeList}"
+                                    SelectedItem="{Binding MiscOriginTypeSelection}"
+                                    SelectedIndex="{Binding MiscOriginTypeSelectionIndex}"
+                                    Height="150">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Type" Width="225"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Button Content="New Type" 
+                                    Command="{Binding NewTypeCommand}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Style="{DynamicResource DataGridButton}"/>
+
+                            <Button Content="Delete Type"
+                                    Command="{Binding DeleteTypeCommand}"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"/>
+                        </Grid>
+                    </StackPanel>
+
+                    <GroupBox Header="Origin Details" Grid.Row="3" Grid.RowSpan="2" Grid.Column="2"
+                              Visibility="{Binding OriginEditSelection, Converter={StaticResource NullToVis}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1.5*"/>
+                                <RowDefinition Height="5*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <TextBlock Text="Origin Name"/>
+                                <TextBox Text="{Binding OriginEditSelection.Name, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                         Width="100"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <TextBlock Text="Origin Cost"/>
+                                <TextBox Text="{Binding OriginEditSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40"
+                                         HorizontalAlignment="Left"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <TextBlock Text="Origin Description"/>
+                                <TextBox Text="{Binding OriginEditSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                         Width="200"
+                                         Height="150"
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Origin description."/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Type Details" Grid.Row="4"
+                              Visibility="{Binding MiscOriginTypeSelection, Converter={StaticResource NullToVis}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                                <TextBlock Text="Type Name"/>
+                                <TextBox Text="{Binding MiscOriginTypeSelection, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                         Width="100"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -805,163 +937,6 @@
                                          Height="200"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert reward description here. This data is only visible here so make sure that you add it as a Perk/Item if it has an effect that you want to store for later."/>
-                            </StackPanel>
-                        </Grid>
-                    </GroupBox>
-
-                </Grid>
-            </TabItem>
-            <TabItem Header="Origin Setup">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.2*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.2*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="0.1*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="0.5*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Grid.Row="1">
-                        <TextBlock Text="Available Origins"/>
-
-                        <ListView ItemsSource="{Binding OriginList}"
-                                  SelectedItem="{Binding OriginEditSelection}"
-                                  SelectedIndex="{Binding OriginEditSelectionIndex}"
-                                  Height="250" Width="225">
-                            <ListView.View>
-                                <GridView>
-                                    <GridView.Columns>
-                                        <GridViewColumn Header="Origin" Width="225"
-                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                        DisplayMemberBinding="{Binding Name}"/>
-                                    </GridView.Columns>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </StackPanel>
-
-                    <Grid Grid.Row="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <Button Content="New Origin" 
-                                Command="{Binding NewOriginCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Style="{DynamicResource DataGridButton}"/>
-
-                        <Button Content="Delete Origin"
-                                Command="{Binding DeleteOriginCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"/>
-                    </Grid>
-
-                    <GroupBox Header="Origin Details" Grid.Row="3"
-                                      Visibility="{Binding OriginEditSelection, Converter={StaticResource NullToVis}}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="1.5*"/>
-                                <RowDefinition Height="5*"/>
-                            </Grid.RowDefinitions>
-
-                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Origin Name"/>
-                                <TextBox Text="{Binding OriginEditSelection.Name, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="100"/>
-                            </StackPanel>
-                            <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Origin Cost"/>
-                                <TextBox Text="{Binding OriginEditSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40"
-                                         HorizontalAlignment="Left"/>
-                            </StackPanel>
-                            <StackPanel Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Origin Description"/>
-                                <TextBox Text="{Binding OriginEditSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="200"
-                                         Height="150"
-                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
-                                         Tag="Insert Origin description."/>
-                            </StackPanel>
-                        </Grid>
-                    </GroupBox>
-
-                    <StackPanel Grid.Row="1" Grid.Column="2">
-                        <TextBlock Text="Misc. Origin detail types"/>
-                        <ListView ItemsSource="{Binding MiscOriginTypeList}"
-                                  SelectedItem="{Binding MiscOriginTypeSelection}"
-                                  SelectedIndex="{Binding MiscOriginTypeSelectionIndex}"
-                                  Height="250" Width="225">
-                            <ListView.View>
-                                <GridView>
-                                    <GridView.Columns>
-                                        <GridViewColumn Header="Type" Width="225"
-                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                        DisplayMemberBinding="{Binding}"/>
-                                    </GridView.Columns>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-                    </StackPanel>
-
-                    <Grid Grid.Row="2" Grid.Column="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <Button Content="New Type" 
-                                Command="{Binding NewTypeCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Style="{DynamicResource DataGridButton}"/>
-
-                        <Button Content="Delete Type"
-                                Command="{Binding DeleteTypeCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"/>
-                    </Grid>
-
-                    <GroupBox Header="Type Details" Grid.Row="3" Grid.Column="2"
-                                      Visibility="{Binding MiscOriginTypeSelection, Converter={StaticResource NullToVis}}">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-
-                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Type Name"/>
-                                <TextBox Text="{Binding MiscOriginTypeSelection, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="100"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
