@@ -830,7 +830,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             UpdateCategories(perks: true);
 
-            UserPerkCategoryIndex = UserPerkCategories.Count() - 1;
+            UserPerkCategoryIndex = UserPerkCategories.Count - 1;
+
+            Messenger.Send(new CategoryChangedMessage(true));
 
             DeletePerkCategoryCommand.NotifyCanExecuteChanged();
         }
@@ -881,7 +883,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             UpdateCategories(perks: false);
 
-            UserItemCategoryIndex = UserItemCategories.Count() - 1;
+            UserItemCategoryIndex = UserItemCategories.Count - 1;
+
+            Messenger.Send(new CategoryChangedMessage(true));
 
             DeleteItemCategoryCommand.NotifyCanExecuteChanged();
         }

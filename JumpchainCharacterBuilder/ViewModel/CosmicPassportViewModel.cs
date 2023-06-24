@@ -1026,6 +1026,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 LoadDisplaySettings();
             });
+            Messenger.Register<CategoryChangedMessage>(this, (r, m) =>
+            {
+                LoadAllPerkLists();
+            });
 
             _dialogService = dialogService;
         }
