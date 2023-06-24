@@ -988,22 +988,26 @@
                         <TextBox Text="{Binding JumpSelection.Name, ValidatesOnNotifyDataErrors=True}" 
                                  Width="150"/>
 
-                        <TextBlock Text="Jump Version" Margin="0,5,0,0"/>
+                        <TextBlock Text="Jump Version"/>
                         <TextBox Text="{Binding JumpSelection.Version, ValidatesOnNotifyDataErrors=True}" 
                                  Width="150"/>
 
-                        <TextBlock Text="Author" Margin="0,5,0,0"/>
+                        <TextBlock Text="Author"/>
                         <TextBox Text="{Binding JumpSelection.Author, ValidatesOnNotifyDataErrors=True}" 
                                  Width="150"/>
 
-                        <TextBlock Text="Jump #" Margin="0,15,0,0"/>
+                        <TextBlock Text="Source"/>
+                        <TextBox Text="{Binding JumpSelection.Source, ValidatesOnNotifyDataErrors=True}" 
+                                 Width="150"/>
+
+                        <TextBlock Text="Jump #"/>
                         <TextBox Text="{Binding JumpSelection.JumpNumber, Mode=OneWay}"
                                  Width="30" HorizontalAlignment="Left"
                                  IsReadOnly="True"/>
 
                         <CheckBox Content="Skip Jump number" IsChecked="{Binding SkipJumpNumber}" Margin="0,10,0,0"/>
 
-                        <CheckBox Content="Is this a Gauntlet?" IsChecked="{Binding IsGauntlet}" Margin="0,10,0,0"/>
+                        <CheckBox Content="Is this a Gauntlet?" IsChecked="{Binding IsGauntlet}" Margin="0,5,0,0"/>
                     </StackPanel>
                     
                     <StackPanel Margin="5,5,0,0" Grid.Column="2">
