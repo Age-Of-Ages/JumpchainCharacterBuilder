@@ -511,7 +511,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnUserPerkCategoryIndexChanged(int value)
         {
-            if (value != -1)
+            if (value != -1 && UserPerkCategories.Any())
             {
                 UserPerkCategorySelection = UserPerkCategories[value];
             }
@@ -551,7 +551,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnUserItemCategoryIndexChanged(int value)
         {
-            if (value != -1)
+            if (value != -1 && UserItemCategories.Any())
             {
                 UserItemCategorySelection = UserItemCategories[value];
             }
@@ -761,10 +761,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (UserPerkCategories.Any())
             {
                 UserPerkCategoryIndex = 0;
+                UserPerkCategorySelection = UserPerkCategories[UserPerkCategoryIndex];
             }
             if (UserItemCategories.Any())
             {
                 UserItemCategoryIndex = 0;
+                UserItemCategorySelection = UserItemCategories[UserItemCategoryIndex];
             }
         }
 
@@ -848,7 +850,10 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 UpdateCategories(perks: true);
 
-                UserPerkCategoryIndex = 0;
+                if (UserPerkCategories.Any())
+                {
+                    UserPerkCategoryIndex = 0;
+                }
 
                 DeletePerkCategoryCommand.NotifyCanExecuteChanged();
             }
@@ -896,7 +901,10 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 UpdateCategories(perks: true);
 
-                UserItemCategoryIndex = 0;
+                if (UserItemCategories.Any())
+                {
+                    UserItemCategoryIndex = 0;
+                }
 
                 DeleteItemCategoryCommand.NotifyCanExecuteChanged();
             }

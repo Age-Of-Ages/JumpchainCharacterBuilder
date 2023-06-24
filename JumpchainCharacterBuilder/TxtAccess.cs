@@ -18,7 +18,7 @@ namespace JumpchainCharacterBuilder
         /// <param name="exportDirectory">The export subdirectory that the file should be saved in.
         /// Examples are: Builds, Passport, Warehouse, etc.</param>
         /// <param name="lines">The fully formatted data to write.</param>
-        public static void WriteText(string fileName, string exportDirectory, List<string> lines)
+        public static void WriteExportText(string fileName, string exportDirectory, List<string> lines)
         {
             FileAccess.CheckSubdirectoryExists("Exports");
             FileAccess.CheckSubdirectoryExists(@"Exports\" + exportDirectory);
@@ -27,6 +27,15 @@ namespace JumpchainCharacterBuilder
 
             File.WriteAllLines(@$"{Environment.CurrentDirectory}\Exports\{exportDirectory}\{fileName}.txt", lines);
 
+        }
+
+        public static void WriteText(string fileName, string directory, List<string> lines)
+        {
+            FileAccess.CheckSubdirectoryExists(directory);
+
+            fileName = Regex.Replace(fileName, @"[^0-9a-zA-Z ]+", "");
+
+            File.WriteAllLines(Path.Combine(Environment.CurrentDirectory, directory, fileName), lines);
         }
 
         public static List<string> ReadText(string filePath)

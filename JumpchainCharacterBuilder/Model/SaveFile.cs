@@ -189,7 +189,7 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         [DataMember]
-        private double _saveVersion = 1.0;
+        private double _saveVersion = 1.1;
 
         public SaveFile()
         {

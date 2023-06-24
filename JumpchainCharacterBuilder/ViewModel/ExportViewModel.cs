@@ -2148,7 +2148,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             FormatClosingLines(output);
 
-            TxtAccess.WriteText($"{jump.Name} {CharacterList[characterIndex].Name} Build", "Builds", output);
+            TxtAccess.WriteExportText($"{jump.Name} {CharacterList[characterIndex].Name} Build", "Builds", output);
         }
 
         private void ExportJumpData(Jump jump)
@@ -2199,7 +2199,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             FormatClosingLines(output);
 
-            TxtAccess.WriteText($"{CharacterList[0].Name} - {jump.Name}", "Jump Details", output);
+            TxtAccess.WriteExportText($"{CharacterList[0].Name} - {jump.Name}", "Jump Details", output);
         }
 
         private void ExportProfile(Character character, int characterIndex)
@@ -3196,7 +3196,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             FormatClosingLines(output);
 
-            TxtAccess.WriteText($"{CharacterList[characterIndex].Name} Profile", "Profiles", output);
+            TxtAccess.WriteExportText($"{CharacterList[characterIndex].Name} Profile", "Profiles", output);
         }
 
         private void ExportWarehouse(Character character, Options.CosmicWarehouseSupplements loadedWarehouse)
@@ -3729,7 +3729,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             FormatClosingLines(output);
 
-            TxtAccess.WriteText($"{character.Name} Warehouse Build", "Warehouse", output);
+            TxtAccess.WriteExportText($"{character.Name} Warehouse Build", "Warehouse", output);
         }
 
         private void ExportBodyMod(Character character, Options.BodyModSupplements loadedBodyMod)
@@ -4576,7 +4576,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             FormatClosingLines(output);
 
-            TxtAccess.WriteText($"{character.Name} Body Mod", "Body Mods", output);
+            TxtAccess.WriteExportText($"{character.Name} Body Mod", "Body Mods", output);
         }
 
         private void ExportDrawbackSupplement(Options.DrawbackSupplements loadedDrawbackSupplement)
@@ -4939,7 +4939,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             FormatClosingLines(output);
 
-            TxtAccess.WriteText($"{CharacterList[0].Name} Universal Drawbacks", "Universal Drawbacks", output);
+            TxtAccess.WriteExportText($"{CharacterList[0].Name} Universal Drawbacks", "Universal Drawbacks", output);
         }
         #endregion
 

@@ -145,7 +145,7 @@
                             </StackPanel>
                         </Grid>
                     </GroupBox>
-
+                    
                     <GroupBox Header="User-defined Item Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
                         <Grid>
                             <StackPanel Margin="5,3,5,0">

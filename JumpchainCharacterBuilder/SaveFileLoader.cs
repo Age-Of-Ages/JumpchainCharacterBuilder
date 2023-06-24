@@ -14,7 +14,14 @@ namespace JumpchainCharacterBuilder
         {
             FileAccess.CheckSubdirectoryExists("Saves");
 
-            ReplaceSave(saveFile, XmlAccess.ReadObject(filePath));
+            SaveFile newSave = XmlAccess.ReadObject(filePath);
+
+            if (newSave.SaveVersion < 1.1)
+            {
+                newSave = SaveMigration.SaveModify(newSave);
+            }
+
+            ReplaceSave(saveFile, newSave);
         }
 
         public void NewSave(SaveFile oldSave)

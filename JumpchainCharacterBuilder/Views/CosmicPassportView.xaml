@@ -342,7 +342,7 @@
                         <TabControl.ContentTemplate>
                             <DataTemplate>
                                 <ListView ItemsSource="{Binding Value}"
-                                          SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=TabControl}, Path=DataContext.PerkSelection}">
+                                          SelectedItem="{Binding RelativeSource={RelativeSource AncestorType={x:Type TabControl}}, Path=DataContext.PerkSelection}">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
