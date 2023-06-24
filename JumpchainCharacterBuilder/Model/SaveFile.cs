@@ -155,7 +155,6 @@ namespace JumpchainCharacterBuilder.Model
             "Spiritual",
             "Technological",
             "Crafting",
-            "Blacksmithing",
             "Meta",
             "Other Perk"
         };
