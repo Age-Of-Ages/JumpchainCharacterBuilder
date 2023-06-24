@@ -19,6 +19,7 @@
             <MenuItem Header="_Quit" Command="{Binding QuitCommand}"/>
         </MenuItem>
         <MenuItem Header="Theme">
+            <MenuItem Header="(NOT IMPLEMENTED)"/>
             <MenuItem Header="Light" Command="{Binding SwitchThemeCommand}" CommandParameter="Light" 
                       IsChecked="{Binding LightThemeSelected}"/>
             <MenuItem Header="Dark" Command="{Binding SwitchThemeCommand}" CommandParameter="Dark" 
