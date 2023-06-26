@@ -236,6 +236,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _eBMMultiEssence = false;
 
         [ObservableProperty]
+        private ObservableCollection<EBMEssence> _eBMEssenceList = new();
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEssenceCommand))]
+        private EBMEssence _eBMEssenceSelection = new();
+        [ObservableProperty]
+        private int _eBMEssenceIndex = 0;
+
+        [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMBasicPerkList = new();
         [ObservableProperty]
         private SupplementPurchase _eBMBasicPerkSelection = new();
@@ -2435,6 +2443,39 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeleteSBPower() => SBBodyModPowerList.Any() && SBBodyModPowerIndex != -1;
 
+        [RelayCommand]
+        private void NewEssence()
+        {
+            EBMEssence essence = new()
+            {
+                Name = $"Essence #{EBMEssenceList.Count + 1}"
+            };
+
+            EBMEssenceList.Add(essence);
+            CharacterSelection.BodyMod.EBMEssenceList.Add(essence);
+
+            EBMEssenceSelection = EBMEssenceList.Last();
+
+            DeleteEssenceCommand.NotifyCanExecuteChanged();
+        }
+
+        [RelayCommand(CanExecute = nameof(CanDeleteEssence))]
+        private void DeleteEssence()
+        {
+            if (_dialogService.ConfirmDialog("Are you sure you want to delete this essence? " +
+                "This action cannot be reversed."))
+            {
+                CharacterSelection.BodyMod.EBMEssenceList.RemoveAt(EBMEssenceIndex);
+                EBMEssenceList.RemoveAt(EBMEssenceIndex);
+
+                EBMEssenceIndex = 0;
+
+                DeleteEssenceCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        private bool CanDeleteEssence() => EBMEssenceSelection != null && EBMEssenceList.Any();
+        
         [RelayCommand]
         private void NewEBMPerk()
         {

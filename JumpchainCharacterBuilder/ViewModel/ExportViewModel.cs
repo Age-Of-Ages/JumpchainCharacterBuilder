@@ -4366,11 +4366,42 @@ namespace JumpchainCharacterBuilder.ViewModel
                                     output.Add(line);
 
                                     FormatBlankLine(output);
-                                    // TODO - Fix this line when I finish doing the Essence stuff.
-                                    //if (character.BodyMod.EBMEssenceSelection != "")
-                                    //{
-                                    //    output.Add("Essence selection: " + character.BodyMod.EBMEssenceSelection);
-                                    //}
+
+                                    if (character.BodyMod.EBMEssenceList.Any())
+                                    {
+                                        switch (LoadedSave.EssentialBodyMod.EssenceMode)
+                                        {
+                                            case EssentialBodyMod.EssenceModes.SingleEssence:
+                                                output.Add("Essence selection: " + character.BodyMod.EBMEssenceList[0].Name);
+                                                output.Add("Essence description: " + character.BodyMod.EBMEssenceList[0].Description);
+                                                break;
+                                            case EssentialBodyMod.EssenceModes.DualEssence:
+
+                                                output.Add("Essence selection: " + character.BodyMod.EBMEssenceList[0].Name);
+                                                output.Add("Essence description: " + character.BodyMod.EBMEssenceList[0].Description);
+
+                                                if (character.BodyMod.EBMEssenceList.Count > 1)
+                                                {
+                                                    FormatBlankLine(output);
+                                                    output.Add("Essence selection: " + character.BodyMod.EBMEssenceList[1].Name);
+                                                    output.Add("Essence description: " + character.BodyMod.EBMEssenceList[1].Description);
+                                                }
+                                                break;
+                                            case EssentialBodyMod.EssenceModes.MultiEssence:
+                                                foreach (EBMEssence essence in character.BodyMod.EBMEssenceList)
+                                                {
+                                                    output.Add("Essence selection: " + essence.Name);
+                                                    output.Add("Essence description: " + essence.Description);
+
+                                                    FormatBlankLine(output);
+                                                }
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+
+                                    FormatBlankLine(output);
 
                                     if (LoadedSave.EssentialBodyMod.AdvancementMode == EssentialBodyMod.AdvancementModes.Questing)
                                     {

@@ -1739,7 +1739,7 @@
                 <Grid>
                     <TabControl Visibility="{Binding GenericBodyModSelected, Converter={StaticResource BoolToVis}}"
                                 SelectedIndex="{Binding GBMTabIndex}">
-                        <TabItem Header="Statistics" Visibility="{Binding BodyModPurchasesAllowed, Converter={StaticResource BoolToVis}}">
+                        <TabItem Header="Supplement Details" Visibility="{Binding BodyModPurchasesAllowed, Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.2*"/>
@@ -1748,8 +1748,8 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
                                     <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
                                 <GroupBox Header="BP">
@@ -1805,22 +1805,8 @@
                                                  Width="40" HorizontalAlignment="Left"/>
                                     </StackPanel>
                                 </GroupBox>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Supplement Description">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="1.5*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="1.5*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
 
-                                <GroupBox Header="Description">
+                                <GroupBox Header="Description" Grid.Row="1">
                                     <StackPanel>
                                         <TextBlock Text="Supplement Name"/>
                                         <TextBox Text="{Binding LoadedSave.GenericBodyMod.Name, ValidatesOnNotifyDataErrors=True}"
@@ -1828,8 +1814,8 @@
 
                                         <TextBlock Text="Supplement Description" Margin="0,15,0,0"/>
                                         <TextBox Text="{Binding LoadedSave.GenericBodyMod.FullDescription, ValidatesOnNotifyDataErrors=True}"
-                                                 Width="350"
-                                                 Height="180"
+                                                 Width="320"
+                                                 Height="220"
                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                  Tag="Insert Supplement description."/>
                                     </StackPanel>
@@ -2181,7 +2167,7 @@
                     
                     <TabControl Visibility="{Binding SBBodyModSelected, Converter={StaticResource BoolToVis}}"
                                 SelectedIndex="{Binding SBBodyModTabIndex}">
-                        <TabItem Header="Statistics">
+                        <TabItem Header="Supplement Details">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.2*"/>
@@ -2850,7 +2836,7 @@
 
                     <TabControl Visibility="{Binding EssentialBodyModSelected, Converter={StaticResource BoolToVis}}"
                                 SelectedIndex="{Binding EBMTabIndex}">
-                        <TabItem Header="Statistics">
+                        <TabItem Header="Supplement Details">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.2*"/>
@@ -2859,8 +2845,8 @@
                                 </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
                                     <RowDefinition Height="2*"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
                                 <GroupBox Header="EP">
@@ -2928,23 +2914,67 @@
                                                  Width="40"/>
                                     </StackPanel>
                                 </GroupBox>
-                            </Grid>
-                        </TabItem>
-                        <TabItem Header="Essences" Visibility="{Binding EBMEssenceAllowed, Converter={StaticResource BoolToVis}}">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
 
-                                <ListView >
-                                    
-                                </ListView>
+                                <GroupBox Header="Essence Selection" Grid.Row="1" Grid.Column="1"
+                                          Visibility="{Binding EBMEssenceAllowed, Converter={StaticResource BoolToVis}}">
+                                    <StackPanel>
+                                        <ListView ItemsSource="{Binding EBMEssenceList}"
+                                                  SelectedItem="{Binding EBMEssenceSelection}"
+                                                  SelectedIndex="{Binding EBMEssenceIndex}"
+                                                  Height="200"
+                                                  VerticalAlignment="Top">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.Columns>
+                                                        <GridViewColumn Header="Name" Width="290"
+                                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                        DisplayMemberBinding="{Binding Name}"/>
+                                                    </GridView.Columns>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+
+                                        <Grid Margin="0,10,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+
+                                            <Button Content="New Essence" 
+                                                    Command="{Binding NewEssenceCommand}"
+                                                    HorizontalAlignment="Left"
+                                                    VerticalAlignment="Center"
+                                                    Style="{DynamicResource DataGridButton}"/>
+
+                                            <Button Content="Delete Essence"
+                                                    Command="{Binding DeleteEssenceCommand}"
+                                                    HorizontalAlignment="Right"
+                                                    VerticalAlignment="Center"
+                                                    Style="{DynamicResource DataGridButton}"
+                                                    Grid.Column="2"/>
+                                        </Grid>
+                                    </StackPanel>
+                                </GroupBox>
+
+                                <GroupBox Header="Essence Details" Grid.Row="1" Grid.Column="2"
+                                          Visibility="{Binding EssentialBodyModSelected, Converter={StaticResource NullToVis}}">
+                                    <StackPanel Margin="5,3,0,0">
+                                        <TextBlock Text="Name"/>
+                                        <TextBox Text="{Binding EBMEssenceSelection.Name, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+
+                                        <TextBlock Text="Description" Margin="0,10,0,0"/>
+                                        <TextBox Text="{Binding EBMEssenceSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                 Width="270" Height="240"
+                                                 Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                                 Tag="Insert Essence description."/>
+                                    </StackPanel>
+                                </GroupBox>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Purchases">
