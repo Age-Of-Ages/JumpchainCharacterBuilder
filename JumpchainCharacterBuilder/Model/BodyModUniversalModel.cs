@@ -155,10 +155,10 @@ namespace JumpchainCharacterBuilder.Model
         private int _eBMMajorQuests = 0;
 
         /// <summary>
-        /// Represents the selected Essence for the EBM, which is only used for display purposes.
+        /// Represents the Essence(s) selected for the Essential Body Mod.
         /// </summary>
         [ObservableProperty]
-        private string _eBMEssenceSelection = "";
+        private List<EBMEssence> _eBMEssenceList = new();
 
         /// <summary>
         /// Represents the list of purchases for the EBM.

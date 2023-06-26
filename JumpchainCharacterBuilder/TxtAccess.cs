@@ -63,7 +63,7 @@ namespace JumpchainCharacterBuilder
 
             if (!fileSizeWithinBounds)
             {
-                List<string> tempLogs = (List<string>)File.ReadLines(logPath);
+                List<string> tempLogs = File.ReadLines(logPath).ToList();
 
                 tempLogs.AddRange(lines);
 

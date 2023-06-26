@@ -4366,11 +4366,11 @@ namespace JumpchainCharacterBuilder.ViewModel
                                     output.Add(line);
 
                                     FormatBlankLine(output);
-
-                                    if (character.BodyMod.EBMEssenceSelection != "")
-                                    {
-                                        output.Add("Essence selection: " + character.BodyMod.EBMEssenceSelection);
-                                    }
+                                    // TODO - Fix this line when I finish doing the Essence stuff.
+                                    //if (character.BodyMod.EBMEssenceSelection != "")
+                                    //{
+                                    //    output.Add("Essence selection: " + character.BodyMod.EBMEssenceSelection);
+                                    //}
 
                                     if (LoadedSave.EssentialBodyMod.AdvancementMode == EssentialBodyMod.AdvancementModes.Questing)
                                     {

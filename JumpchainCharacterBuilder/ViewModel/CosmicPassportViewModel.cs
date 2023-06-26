@@ -227,6 +227,15 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _eBMPurchaseTabIndex = 0;
 
         [ObservableProperty]
+        private bool _eBMEssenceAllowed = true;
+        [ObservableProperty]
+        private bool _eBMSingleEssence = true;
+        [ObservableProperty]
+        private bool _eBMDualEssence = false;
+        [ObservableProperty]
+        private bool _eBMMultiEssence = false;
+
+        [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMBasicPerkList = new();
         [ObservableProperty]
         private SupplementPurchase _eBMBasicPerkSelection = new();
@@ -1295,6 +1304,34 @@ namespace JumpchainCharacterBuilder.ViewModel
                     EBMSupplementDelay = CharacterSelection.BodyMod.SupplementDelay;
                     EBMMinorQuests = CharacterSelection.BodyMod.EBMMinorQuests;
                     EBMMajorQuests = CharacterSelection.BodyMod.EBMMajorQuests;
+
+                    switch (LoadedSave.EssentialBodyMod.EssenceMode)
+                    {
+                        case EssentialBodyMod.EssenceModes.SingleEssence:
+                            EBMEssenceAllowed = true;
+                            EBMSingleEssence = true;
+                            EBMDualEssence = false;
+                            EBMMultiEssence = false;
+                            break;
+                        case EssentialBodyMod.EssenceModes.DualEssence:
+                            EBMEssenceAllowed = true;
+                            EBMSingleEssence = false;
+                            EBMDualEssence = true;
+                            EBMMultiEssence = false;
+                            break;
+                        case EssentialBodyMod.EssenceModes.MultiEssence:
+                            EBMEssenceAllowed = true;
+                            EBMSingleEssence = false;
+                            EBMDualEssence = false;
+                            EBMMultiEssence = true;
+                            break;
+                        default:
+                            EBMEssenceAllowed = false;
+                            EBMSingleEssence = false;
+                            EBMDualEssence = false;
+                            EBMMultiEssence = false;
+                            break;
+                    }
                     break;
                 default:
                     break;

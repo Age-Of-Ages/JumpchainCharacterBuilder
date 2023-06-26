@@ -97,9 +97,9 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="0.1*"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="1.3*"/>
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="1.5*"/>
-                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <DockPanel Grid.Row="1">
@@ -184,7 +184,7 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.1*"/>
                                 <RowDefinition Height="5*"/>
-                                <RowDefinition Height="10*"/>
+                                <RowDefinition Height="13*"/>
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -192,7 +192,7 @@
                                 <TextBox Text="{Binding MiscOriginDetailSelection.Name, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
 
-                                <TextBlock Text="Cost" Margin="0,25,0,0"/>
+                                <TextBlock Text="Cost" Margin="0,10,0,0"/>
                                 <TextBox Text="{Binding MiscOriginDetailSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="40" 
                                          HorizontalAlignment="Left"/>
@@ -202,19 +202,19 @@
                                 <TextBlock Text="Description"/>
                                 <TextBox Text="{Binding MiscOriginDetailSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
-                                         Width="400" Height="200"
+                                         Width="400" Height="150"
                                          Tag="Insert Origin Detail description."/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
-                    <StackPanel Grid.Row="3" Grid.Column="1">
+                    <StackPanel Grid.Row="4">
                         <TextBlock Text="Available Origins"/>
 
                         <ListView ItemsSource="{Binding OriginList}"
-                                SelectedItem="{Binding OriginEditSelection}"
-                                SelectedIndex="{Binding OriginEditSelectionIndex}"
-                                Height="150">
+                                  SelectedItem="{Binding OriginEditSelection}"
+                                  SelectedIndex="{Binding OriginEditSelectionIndex}"
+                                  Height="150">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
@@ -287,16 +287,16 @@
                         </Grid>
                     </StackPanel>
 
-                    <GroupBox Header="Origin Details" Grid.Row="3" Grid.RowSpan="2" Grid.Column="2"
+                    <GroupBox Header="Origin Details" Grid.Row="4" Grid.Column="1"
                               Visibility="{Binding OriginEditSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="1.5*"/>
-                                <RowDefinition Height="5*"/>
+                                <RowDefinition Height="3*"/>
                             </Grid.RowDefinitions>
 
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
@@ -304,24 +304,26 @@
                                 <TextBox Text="{Binding OriginEditSelection.Name, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
                             </StackPanel>
-                            <StackPanel Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            
+                            <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Origin Cost"/>
                                 <TextBox Text="{Binding OriginEditSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
                                          HorizontalAlignment="Left"/>
                             </StackPanel>
-                            <StackPanel Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            
+                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Origin Description"/>
                                 <TextBox Text="{Binding OriginEditSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="200"
-                                         Height="150"
+                                         Width="210"
+                                         Height="100"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Origin description."/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="Type Details" Grid.Row="4"
+                    <GroupBox Header="Type Details" Grid.Row="3" Grid.Column="1"
                               Visibility="{Binding MiscOriginTypeSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.ColumnDefinitions>

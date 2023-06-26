@@ -2930,8 +2930,22 @@
                                 </GroupBox>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Essences">
+                        <TabItem Header="Essences" Visibility="{Binding EBMEssenceAllowed, Converter={StaticResource BoolToVis}}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
+                                <ListView >
+                                    
+                                </ListView>
+                            </Grid>
                         </TabItem>
                         <TabItem Header="Purchases">
                             <Grid>
