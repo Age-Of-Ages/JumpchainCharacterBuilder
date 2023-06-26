@@ -52,6 +52,8 @@ The goal of this project is primarily to suit my own needs, but I have also made
 ## Use Instructions
 (Todo: Write use instructions.)
 
+Download the latest version of the software by navigating to the Releases page on the right side of this page and downloading the JumpchainCharacterBuilder.zip file located in the Assets section of the most recent release. If you download anything from the front page of the repository (where you are right now) then you will only receive the source code of this software. Once you have downloaded the correct file, you can unzip it into its own folder. If you have downloaded the correct file then you should have an executable file in the main folder. If you do not see the JumpchainCharacterBuilder.exe file then you have downloaded the incorrect .zip file.
+
 When running the program, Windows Smartscreen may complain about it being unrecognized. This can be resolved either by clicking 'More Info' in the warning window and then 'Run Anyway'. Alternatively, you can right click on the exe, select Properties in the context menu, and then look for a security notice at the bottom of the properties window. There should be a checkbox that is labeled 'Unblock', and checking this will tell Smartscreen to allow it.
 
 ## Credits
