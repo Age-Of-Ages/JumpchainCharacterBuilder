@@ -15,8 +15,6 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class CosmicPassportViewModel : ViewModelBase
     {
         // TODO - Improve the attribute type/category system, as the current implementation is definitely kind of rough.
-        // TODO - Implement the Essential Body Mod Essence tab, to allow users to input their chosen essence or essences for future referencing.
-        // Specifically, the tab doesn't appear if you have No Essence mode selected, and you can add more than one if you have the dual or multi mode selected.
         #region Fields
         private readonly IDialogService _dialogService;
 
