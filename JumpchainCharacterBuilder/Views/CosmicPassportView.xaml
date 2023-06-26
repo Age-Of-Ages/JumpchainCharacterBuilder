@@ -1739,7 +1739,7 @@
                 <Grid>
                     <TabControl Visibility="{Binding GenericBodyModSelected, Converter={StaticResource BoolToVis}}"
                                 SelectedIndex="{Binding GBMTabIndex}">
-                        <TabItem Header="Supplement Details" Visibility="{Binding BodyModPurchasesAllowed, Converter={StaticResource BoolToVis}}">
+                        <TabItem Header="Supplement Details">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.2*"/>
@@ -1752,7 +1752,7 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <GroupBox Header="BP">
+                                <GroupBox Header="BP" Visibility="{Binding BodyModPurchasesAllowed, Converter={StaticResource BoolToVis}}">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*"/>
