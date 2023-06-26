@@ -1621,7 +1621,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteType() => MiscOriginTypeList.Count > 1;
+        private bool CanDeleteType() => MiscOriginTypeList.Any() && MiscOriginTypeSelectionIndex != -1;
 
         [RelayCommand]
 

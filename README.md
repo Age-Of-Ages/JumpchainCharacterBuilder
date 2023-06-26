@@ -46,6 +46,7 @@ The goal of this project is primarily to suit my own needs, but I have also made
    - Configure defaults for newly created Jumps. 
    - Select Body-Mod, Warehouse, and Drawback Supplement used, and configure options for each. 
    - These options depend on the specific selections made, and can include various modes for certain Supplements, or on which Jump the Jumper took the Supplement.
+   - Add your own user-defined Perk and Item categories, for sorting and displaying your Jumper's purchases.
 
 
 ## Use Instructions
