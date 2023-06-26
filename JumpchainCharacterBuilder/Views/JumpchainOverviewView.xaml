@@ -202,7 +202,7 @@
                                 <TextBlock Text="Description"/>
                                 <TextBox Text="{Binding MiscOriginDetailSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
-                                         Width="400" Height="150"
+                                         Width="400" Height="200"
                                          Tag="Insert Origin Detail description."/>
                             </StackPanel>
                         </Grid>
@@ -251,9 +251,9 @@
                     <StackPanel Grid.Row="4">
                         <TextBlock Text="Misc. Origin detail types"/>
                         <ListView ItemsSource="{Binding MiscOriginTypeList}"
-                                    SelectedItem="{Binding MiscOriginTypeSelection}"
-                                    SelectedIndex="{Binding MiscOriginTypeSelectionIndex}"
-                                    Height="150">
+                                  SelectedItem="{Binding MiscOriginTypeSelection}"
+                                  SelectedIndex="{Binding MiscOriginTypeSelectionIndex}"
+                                  Height="150">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>

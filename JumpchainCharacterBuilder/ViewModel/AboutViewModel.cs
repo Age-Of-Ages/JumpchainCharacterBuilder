@@ -53,7 +53,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 if (assemblyName.Version != null)
                 {
-                    VersionString = "v" + assemblyName.Version.ToString();
+                    VersionString = $"v{assemblyName.Version.Major}.{assemblyName.Version.Minor}.{assemblyName.Version.Build}";
                 }
             }
 
