@@ -208,7 +208,7 @@
                         </Grid>
                     </GroupBox>
 
-                    <StackPanel Grid.Row="4">
+                    <StackPanel Grid.Row="3">
                         <TextBlock Text="Available Origins"/>
 
                         <ListView ItemsSource="{Binding OriginList}"
@@ -248,7 +248,7 @@
                         </Grid>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="3">
+                    <StackPanel Grid.Row="4">
                         <TextBlock Text="Misc. Origin detail types"/>
                         <ListView ItemsSource="{Binding MiscOriginTypeList}"
                                     SelectedItem="{Binding MiscOriginTypeSelection}"
@@ -287,7 +287,7 @@
                         </Grid>
                     </StackPanel>
 
-                    <GroupBox Header="Origin Details" Grid.Row="4" Grid.Column="1"
+                    <GroupBox Header="Origin Details" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                               Visibility="{Binding OriginEditSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -315,7 +315,7 @@
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Origin Description"/>
                                 <TextBox Text="{Binding OriginEditSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="210"
+                                         Width="400"
                                          Height="100"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Origin description."/>
@@ -323,7 +323,7 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="Type Details" Grid.Row="3" Grid.Column="1"
+                    <GroupBox Header="Type Details" Grid.Row="4" Grid.Column="1"
                               Visibility="{Binding MiscOriginTypeSelection, Converter={StaticResource NullToVis}}">
                         <Grid>
                             <Grid.ColumnDefinitions>

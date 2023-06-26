@@ -14,7 +14,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     // TODO - Switching characters on one tab should update the data on all tabs.
     // TODO - Implement ability to add a stipend for a specific purchase type regardless of currency chosen.
-    // TODO - There are some general oddities forming when Jumps are selected, in regards to Origin Details. These are probably fixed as of my latest change to the Jump-loading system.
     public partial class JumpchainOverviewViewModel : ViewModelBase
     {
         #region Fields
@@ -970,21 +969,24 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadMiscOriginList()
         {
-            ObservableCollection<OriginDetail> origins = new()
+            if (JumpSelection.Build.Count > CharacterSelectionIndex)
             {
-                JumpSelection.Build[CharacterSelectionIndex].Location,
-                JumpSelection.Build[CharacterSelectionIndex].Species
-            };
+                ObservableCollection<OriginDetail> origins = new()
+                {
+                    JumpSelection.Build[CharacterSelectionIndex].Location,
+                    JumpSelection.Build[CharacterSelectionIndex].Species
+                };
 
-            ListValidationClass.CheckMiscOriginCount(JumpSelection, CharacterSelectionIndex);
+                ListValidationClass.CheckMiscOriginCount(JumpSelection, CharacterSelectionIndex);
 
-            foreach (OriginDetail origin in JumpSelection.Build[CharacterSelectionIndex].MiscOriginDetails)
-            {
-                origins.Add(origin);
+                foreach (OriginDetail origin in JumpSelection.Build[CharacterSelectionIndex].MiscOriginDetails)
+                {
+                    origins.Add(origin);
+                }
+
+                MiscOriginDetailList = origins;
+                MiscOriginDetailIndex = 0;
             }
-
-            MiscOriginDetailList = origins;
-            MiscOriginDetailIndex = 0;
         }
 
         private void LoadOtherOriginDetails()
@@ -1003,6 +1005,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 MiscOriginTypeList.Add(type);
             }
+
+            LoadMiscOriginList();
         }
 
         private void LoadCurrencies()
