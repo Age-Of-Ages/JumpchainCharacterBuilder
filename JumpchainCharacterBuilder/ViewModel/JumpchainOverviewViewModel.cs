@@ -658,7 +658,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 if (value > LoadedOptions.PointBankLimit)
                 {
-                    value = LoadedOptions.PointBankLimit;
+                    BankedPoints = LoadedOptions.PointBankLimit;
                 }
                 else
                 {
@@ -674,7 +674,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 if (value > LoadedOptions.PointBankLimit)
                 {
-                    value = LoadedOptions.PointBankLimit;
+                    BankUsage = LoadedOptions.PointBankLimit;
                 }
                 else
                 {
