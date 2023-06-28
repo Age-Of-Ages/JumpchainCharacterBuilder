@@ -119,6 +119,12 @@ namespace JumpchainCharacterBuilder.Model
         [ObservableProperty]
         private int _bankUsage = 0;
 
+        /// <summary>
+        /// Represents the state of the point bank for this Jump. This is only used for exports.
+        /// </summary>
+        [ObservableProperty]
+        private int _currentBank = 0;
+
         public JumpBuild()
         {
             PointStipend.Add(0);

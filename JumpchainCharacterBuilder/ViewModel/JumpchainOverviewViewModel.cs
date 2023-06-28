@@ -1219,6 +1219,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             CurrentBankTotal += JumpSelection.Build[CharacterSelectionIndex].BankedPoints;
             CurrentBankTotal -= JumpSelection.Build[CharacterSelectionIndex].BankUsage;
+
+            JumpSelection.Build[CharacterSelectionIndex].CurrentBank = CurrentBankTotal;
         }
 
         private int SetBudget(PurchaseType purchaseType)
@@ -1522,7 +1524,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             CalculateJumpNumber(LoadedSave.JumpList);
 
             JumpSelectionIndex = JumpList.Count - 1;
-            BuildTabIndex = 6;
+            BuildTabIndex = 5;
         }
 
         [RelayCommand(CanExecute = nameof(CanDeleteJump))]

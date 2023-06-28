@@ -1347,6 +1347,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                             line = $"Invested {build.BankedPoints} CP into bank. {budgetLastHalf}";
                             output.Add(line);
+                            FormatBlankLine(output);
+
+                            output.Add($"Point bank contains {build.CurrentBank} CP.");
                         }
                         else
                         {
