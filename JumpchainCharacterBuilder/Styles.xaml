@@ -210,6 +210,18 @@
         </Setter>
     </Style>
 
+    <Style x:Key="TitleBox" TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="MediumBlue"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Width" Value="50"/>
+        <Setter Property="Margin" Value="-1"/>
+    </Style>
+    <Style x:Key="BudgetBox" TargetType="{x:Type Label}">
+        <Setter Property="Background" Value="CadetBlue"/>
+        <Setter Property="Width" Value="40"/>
+        <Setter Property="Margin" Value="-1"/>
+    </Style>
+
     <ControlTemplate x:Key="BudgetPanel"
                      TargetType="{x:Type ContentControl}">
         <ControlTemplate.Resources>
@@ -217,19 +229,6 @@
                 <Setter Property="Orientation" Value="Horizontal"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
                 <Setter Property="VerticalAlignment" Value="Top"/>
-            </Style>
-            <Style x:Key="TitleBox" 
-                   TargetType="{x:Type Label}">
-                <Setter Property="Background" Value="MediumBlue"/>
-                <Setter Property="Foreground" Value="White"/>
-                <Setter Property="Width" Value="50"/>
-                <Setter Property="Margin" Value="-1"/>
-            </Style>
-            <Style x:Key="BudgetBox" 
-                   TargetType="{x:Type Label}">
-                <Setter Property="Background" Value="CadetBlue"/>
-                <Setter Property="Width" Value="40"/>
-                <Setter Property="Margin" Value="-1"/>
             </Style>
             <Style TargetType="{x:Type Border}">
                 <Setter Property="BorderBrush" Value="Black"/>

@@ -91,7 +91,9 @@
                             <StackPanel Margin="5,0,0,0">
                                 <CheckBox Content="Enable point bank mechanic" IsChecked="{Binding AllowPointBank}" Margin="0,5,0,0"/>
                                 <CheckBox Content="Allow Gauntlets to use point bank" IsChecked="{Binding AllowGauntletBank}" Margin="0,5,0,0"/>
-                                <CheckBox Content="Allow Companions to use point bank mechanic" IsChecked="{Binding AllowCompanionsBank}" Margin="0,5,0,0"/>
+                                <CheckBox Content="Allow Supplemented Jumps to share points" IsChecked="{Binding AllowSupplementedJumpBankSharing}" Margin="0,5,0,0"/>
+                                
+                                <CheckBox Content="Allow Companions to use point bank mechanic" IsChecked="{Binding AllowCompanionsBank}" Margin="0,15,0,0"/>
 
                                 <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
                                     <TextBox Text="{Binding PointBankLimit, ValidatesOnNotifyDataErrors=True}" Width="40" />
@@ -102,9 +104,6 @@
                                     <TextBox Text="{Binding CompanionBankLimit, ValidatesOnNotifyDataErrors=True}" Width="40" />
                                     <TextBlock Text="Point bank cap (Companions)" Margin="5,0,0,0"/>
                                 </StackPanel>
-
-                                <TextBlock Text="NOTICE: Point bank is currently entirely manual and only used for the sake of accurate budgeting." 
-                                           Margin="0,15,3,0" TextWrapping="Wrap"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>

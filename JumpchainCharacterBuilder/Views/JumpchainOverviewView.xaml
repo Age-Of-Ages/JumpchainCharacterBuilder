@@ -1067,15 +1067,31 @@
 
                         <GroupBox Header="Point Bank (Per-character)" Margin="0,10,0,0"
                                  Visibility="{Binding PointBankAllowed, Converter={StaticResource BoolToVis}}">
-                            <StackPanel>
-                                <TextBlock Text="Banked Points" Margin="3,0,0,0"/>
-                                <TextBox Text="{Binding BankedPoints, ValidatesOnNotifyDataErrors=True}"
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <StackPanel>
+                                    <TextBlock Text="Banked Points" Margin="3,0,0,0"/>
+                                    <TextBox Text="{Binding BankedPoints, ValidatesOnNotifyDataErrors=True}"
                                  Width="40" HorizontalAlignment="Left" Margin="3,0,0,0"/>
 
-                                <TextBlock Text="Bank Usage" Margin="3,10,0,0"/>
-                                <TextBox Text="{Binding BankUsage, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBlock Text="Bank Usage" Margin="3,10,0,0"/>
+                                    <TextBox Text="{Binding BankUsage, ValidatesOnNotifyDataErrors=True}"
                                  Width="40" HorizontalAlignment="Left" Margin="3,0,0,0"/>
-                            </StackPanel>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Border BorderBrush="Black" BorderThickness="3" CornerRadius="1">
+                                        <Label Style="{DynamicResource TitleBox}" Content="Bank"/>
+                                    </Border>
+                                    <Border Margin="-5,0,0,0" BorderBrush="Black" BorderThickness="3" CornerRadius="1">
+                                        <Label Style="{DynamicResource BudgetBox}" Content="{Binding CurrentBankTotal}"/>
+                                    </Border>
+                                </StackPanel>
+                            </Grid>
                         </GroupBox>
                         
                     </StackPanel>

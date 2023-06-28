@@ -102,6 +102,12 @@ namespace JumpchainCharacterBuilder.Model
         private bool _allowGauntletBank = false;
 
         /// <summary>
+        /// Represents if Supplemented Jumps (or any Jumps with the same Jump number) can access banked points from each other.
+        /// </summary>
+        [ObservableProperty]
+        private bool _allowSupplementedJumpBankSharing = false;
+
+        /// <summary>
         /// Represents if Companions are allowed to use the point bank system.
         /// </summary>
         [ObservableProperty]

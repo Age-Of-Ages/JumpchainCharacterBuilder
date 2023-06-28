@@ -217,6 +217,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _pointBankAllowed = false;
 
         [ObservableProperty]
+        private int _currentBankTotal = 0;
+
+        [ObservableProperty]
         private ObservableCollection<PurchaseAttribute> _purchaseAttributeList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePurchaseTraitCommand))]
@@ -469,6 +472,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 BankedPoints = JumpSelection.Build[CharacterSelectionIndex].BankedPoints;
                 BankUsage = JumpSelection.Build[CharacterSelectionIndex].BankUsage;
+
+                LoadCurrentPointBank();
             }
         }
 
@@ -665,6 +670,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                     JumpSelection.Build[CharacterSelectionIndex].BankedPoints = value;
                     Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
                 }
+
+                LoadCurrentPointBank();
             }
         }
 
@@ -678,9 +685,18 @@ namespace JumpchainCharacterBuilder.ViewModel
                 }
                 else
                 {
-                    JumpSelection.Build[CharacterSelectionIndex].BankUsage = value;
-                    Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+                    if (value > CurrentBankTotal + JumpSelection.Build[CharacterSelectionIndex].BankUsage)
+                    {
+                        BankUsage = CurrentBankTotal + JumpSelection.Build[CharacterSelectionIndex].BankUsage;
+                    }
+                    else
+                    {
+                        JumpSelection.Build[CharacterSelectionIndex].BankUsage = value;
+                        Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+                    }
                 }
+
+                LoadCurrentPointBank();
             }
         }
 
@@ -927,6 +943,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             BankedPoints = JumpSelection.Build[CharacterSelectionIndex].BankedPoints;
             BankUsage = JumpSelection.Build[CharacterSelectionIndex].BankUsage;
+
+            LoadCurrentPointBank();
 
             Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
 
@@ -1187,6 +1205,32 @@ namespace JumpchainCharacterBuilder.ViewModel
                     new("Dummy Entry")
                 };
             }
+        }
+
+        private void LoadCurrentPointBank()
+        {
+            CurrentBankTotal = 0;
+
+            List<Jump> jumpSubset = LoadedSave.JumpList.GetRange(0, JumpSelectionIndex);
+
+            foreach (Jump jump in jumpSubset)
+            {
+                if (jump.Build.Count > CharacterSelectionIndex && (!jump.IsGauntlet || LoadedOptions.AllowGauntletBank))
+                {
+                    if (jump.JumpNumber != JumpSelection.JumpNumber || LoadedOptions.AllowSupplementedJumpBankSharing)
+                    {
+                        CurrentBankTotal += jump.Build[CharacterSelectionIndex].BankedPoints;
+                        CurrentBankTotal -= jump.Build[CharacterSelectionIndex].BankUsage;
+                    }
+                    else
+                    {
+                        CurrentBankTotal -= jump.Build[CharacterSelectionIndex].BankUsage;
+                    }
+                }
+            }
+
+            CurrentBankTotal += JumpSelection.Build[CharacterSelectionIndex].BankedPoints;
+            CurrentBankTotal -= JumpSelection.Build[CharacterSelectionIndex].BankUsage;
         }
 
         private int SetBudget(PurchaseType purchaseType)

@@ -48,6 +48,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _allowGauntletBank = false;
         [ObservableProperty]
+        private bool _allowSupplementedJumpBankSharing = false;
+        [ObservableProperty]
         private bool _allowCompanionsBank = false;
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -223,6 +225,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         partial void OnAllowPointBankChanged(bool value) => LoadedOptions.AllowPointBank = value;
 
         partial void OnAllowGauntletBankChanged(bool value) => LoadedOptions.AllowGauntletBank = value;
+
+        partial void OnAllowSupplementedJumpBankSharingChanged(bool value) => LoadedOptions.AllowSupplementedJumpBankSharing = value;
 
         partial void OnAllowCompanionsBankChanged(bool value) => LoadedOptions.AllowCompanionsBank = value;
 
@@ -700,6 +704,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             AllowPointBank = LoadedOptions.AllowPointBank;
             AllowGauntletBank = LoadedOptions.AllowGauntletBank;
+            AllowSupplementedJumpBankSharing = LoadedOptions.AllowSupplementedJumpBankSharing;
             AllowCompanionsBank = LoadedOptions.AllowCompanionsBank;
             PointBankLimit = LoadedOptions.PointBankLimit;
             CompanionBankLimit = LoadedOptions.CompanionBankLimit;
