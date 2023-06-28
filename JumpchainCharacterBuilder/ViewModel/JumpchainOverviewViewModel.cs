@@ -421,19 +421,15 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {
                     if (LoadedOptions.AllowPointBank)
                     {
-                        if (JumpSelection.IsGauntlet && LoadedOptions.AllowGauntletBank)
+                        if (!JumpSelection.IsGauntlet || LoadedOptions.AllowGauntletBank)
                         {
                             PointBankAllowed = true;
                         }
-                        else if (JumpSelection.IsGauntlet)
+                        else
                         {
                             PointBankAllowed = false;
                             JumpSelection.Build[CharacterSelectionIndex].BankedPoints = 0;
                             JumpSelection.Build[CharacterSelectionIndex].BankUsage = 0;
-                        }
-                        else
-                        {
-                            PointBankAllowed = true;
                         }
                     }
                     else
@@ -447,19 +443,15 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {
                     if (LoadedOptions.AllowCompanionsBank)
                     {
-                        if (JumpSelection.IsGauntlet && LoadedOptions.AllowGauntletBank)
+                        if (!JumpSelection.IsGauntlet || LoadedOptions.AllowGauntletBank)
                         {
                             PointBankAllowed = true;
                         }
-                        else if (JumpSelection.IsGauntlet)
+                        else
                         {
                             PointBankAllowed = false;
                             JumpSelection.Build[CharacterSelectionIndex].BankedPoints = 0;
                             JumpSelection.Build[CharacterSelectionIndex].BankUsage = 0;
-                        }
-                        else
-                        {
-                            PointBankAllowed = true;
                         }
                     }
                     else
@@ -919,19 +911,15 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             if (LoadedOptions.AllowPointBank)
             {
-                if (JumpSelection.IsGauntlet && LoadedOptions.AllowGauntletBank)
+                if (!JumpSelection.IsGauntlet || LoadedOptions.AllowGauntletBank)
                 {
                     PointBankAllowed = true;
                 }
-                else if (JumpSelection.IsGauntlet)
+                else
                 {
                     PointBankAllowed = false;
                     JumpSelection.Build[CharacterSelectionIndex].BankedPoints = 0;
                     JumpSelection.Build[CharacterSelectionIndex].BankUsage = 0;
-                }
-                else
-                {
-                    PointBankAllowed = true;
                 }
             }
             else
