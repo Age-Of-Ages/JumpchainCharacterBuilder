@@ -2216,33 +2216,15 @@ namespace JumpchainCharacterBuilder.ViewModel
             Dictionary<string, List<Purchase>> perks = new();
             Dictionary<string, List<Purchase>> items = new();
 
-            perks.Add("Physical Perks", new());
-            perks.Add("Mental Perks", new());
-            perks.Add("Social Perks", new());
-            perks.Add("Stealth Perks", new());
-            perks.Add("Magical Perks", new());
-            perks.Add("Spiritual Perks", new());
-            perks.Add("Technological Perks", new());
-            perks.Add("Crafting Perks", new());
-            perks.Add("Blacksmithing Perks", new());
-            perks.Add("Meta Perks", new());
-            perks.Add("Other Perks", new());
+            foreach (string perkCategory in LoadedSave.PerkCategoryList)
+            {
+                perks.Add(perkCategory, new());
+            }
 
-            items.Add("Weapons", new());
-            items.Add("Armor", new());
-            items.Add("Accessories", new());
-            items.Add("Clothing", new());
-            items.Add("Misc. Equipment", new());
-            items.Add("Tools", new());
-            items.Add("Materials", new());
-            items.Add("Food", new());
-            items.Add("Media", new());
-            items.Add("Wealth", new());
-            items.Add("Vehicles", new());
-            items.Add("Properties", new());
-            items.Add("Businesses", new());
-            items.Add("Creatures", new());
-            items.Add("Other Item", new());
+            foreach (string itemCategory in LoadedSave.ItemCategoryList)
+            {
+                items.Add(itemCategory, new());
+            }
 
             foreach (Jump jump in JumpList)
             {
@@ -2252,99 +2234,12 @@ namespace JumpchainCharacterBuilder.ViewModel
                     {
                         if (jump.PurchaseTypes[purchase.TypeIndex].IsItemType)
                         {
-                            switch (purchase.Category)
-                            {
-                                case "Weapons":
-                                    items["Weapons"].Add(purchase);
-                                    break;
-                                case "Armor":
-                                    items["Armor"].Add(purchase);
-                                    break;
-                                case "Accessories":
-                                    items["Accessories"].Add(purchase);
-                                    break;
-                                case "Clothing":
-                                    items["Clothing"].Add(purchase);
-                                    break;
-                                case "Misc. Equipment":
-                                    items["Misc. Equipment"].Add(purchase);
-                                    break;
-                                case "Tools":
-                                    items["Tools"].Add(purchase);
-                                    break;
-                                case "Materials":
-                                    items["Materials"].Add(purchase);
-                                    break;
-                                case "Food":
-                                    items["Food"].Add(purchase);
-                                    break;
-                                case "Media":
-                                    items["Media"].Add(purchase);
-                                    break;
-                                case "Wealth":
-                                    items["Wealth"].Add(purchase);
-                                    break;
-                                case "Vehicles":
-                                    items["Vehicles"].Add(purchase);
-                                    break;
-                                case "Properties":
-                                    items["Properties"].Add(purchase);
-                                    break;
-                                case "Businesses":
-                                    items["Businesses"].Add(purchase);
-                                    break;
-                                case "Creatures":
-                                    items["Creatures"].Add(purchase);
-                                    break;
-                                case "Other Item":
-                                    items["Other Item"].Add(purchase);
-                                    break;
-                                default:
-                                    break;
-                            }
+                            items[purchase.Category].Add(purchase);
                         }
                         else
                         {
-                            switch (purchase.Category)
-                            {
-                                case "Physical":
-                                    perks["Physical Perks"].Add(purchase);
-                                    break;
-                                case "Mental":
-                                    perks["Mental Perks"].Add(purchase);
-                                    break;
-                                case "Social":
-                                    perks["Social Perks"].Add(purchase);
-                                    break;
-                                case "Stealth":
-                                    perks["Stealth Perks"].Add(purchase);
-                                    break;
-                                case "Magical":
-                                    perks["Magical Perks"].Add(purchase);
-                                    break;
-                                case "Spiritual":
-                                    perks["Spiritual Perks"].Add(purchase);
-                                    break;
-                                case "Technological":
-                                    perks["Technological Perks"].Add(purchase);
-                                    break;
-                                case "Crafting":
-                                    perks["Crafting Perks"].Add(purchase);
-                                    break;
-                                case "Blacksmithing":
-                                    perks["Blacksmithing Perks"].Add(purchase);
-                                    break;
-                                case "Meta":
-                                    perks["Meta Perks"].Add(purchase);
-                                    break;
-                                case "Other Perk":
-                                    perks["Other Perks"].Add(purchase);
-                                    break;
-                                default:
-                                    break;
-                            }
+                            perks[purchase.Category].Add(purchase);
                         }
-
                     }
                 }
             }
@@ -2728,121 +2623,16 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                             FormatBlankLine(output);
 
-                            output.Add(FormatSectionTitle("Physical Perks"));
-
-                            foreach (Purchase perk in perks["Physical Perks"])
+                            foreach (KeyValuePair<string, List<Purchase>> category in perks)
                             {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
+                                output.Add(FormatSectionTitle(category.Key));
 
-                                FormatBlankLine(output);
-                            }
+                                foreach (Purchase perk in category.Value)
+                                {
+                                    FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
 
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Mental Perks"));
-
-                            foreach (Purchase perk in perks["Mental Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Social Perks"));
-
-                            foreach (Purchase perk in perks["Social Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Stealth Perks"));
-
-                            foreach (Purchase perk in perks["Stealth Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Magical Perks"));
-
-                            foreach (Purchase perk in perks["Magical Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Spiritual Perks"));
-
-                            foreach (Purchase perk in perks["Spiritual Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Technological Perks"));
-
-                            foreach (Purchase perk in perks["Technological Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Crafting Perks"));
-
-                            foreach (Purchase perk in perks["Crafting Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Blacksmithing Perks"));
-
-                            foreach (Purchase perk in perks["Blacksmithing Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Meta Perks"));
-
-                            foreach (Purchase perk in perks["Meta Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Other Perks"));
-
-                            foreach (Purchase perk in perks["Other Perks"])
-                            {
-                                FormatNonPricedDataLine(perk.Name, perk.Description, output, sourceJump: perk.SourceJump);
+                                    FormatBlankLine(output);
+                                }
 
                                 FormatBlankLine(output);
                             }
@@ -2852,165 +2642,16 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                             FormatBlankLine(output);
 
-                            output.Add(FormatSectionTitle("Weapons"));
-
-                            foreach (Purchase item in items["Weapons"])
+                            foreach (KeyValuePair<string, List<Purchase>> category in items)
                             {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
+                                output.Add(FormatSectionTitle(category.Key));
 
-                                FormatBlankLine(output);
-                            }
+                                foreach (Purchase item in category.Value)
+                                {
+                                    FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
 
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Armor"));
-
-                            foreach (Purchase item in items["Armor"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Accessories"));
-
-                            foreach (Purchase item in items["Accessories"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Clothing"));
-
-                            foreach (Purchase item in items["Clothing"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Misc. Equipment"));
-
-                            foreach (Purchase item in items["Misc. Equipment"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Tools"));
-
-                            foreach (Purchase item in items["Tools"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Materials"));
-
-                            foreach (Purchase item in items["Materials"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Food"));
-
-                            foreach (Purchase item in items["Food"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Media"));
-
-                            foreach (Purchase item in items["Media"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Wealth"));
-
-                            foreach (Purchase item in items["Wealth"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Vehicles"));
-
-                            foreach (Purchase item in items["Vehicles"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Properties"));
-
-                            foreach (Purchase item in items["Properties"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Businesses"));
-
-                            foreach (Purchase item in items["Businesses"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Creatures"));
-
-                            foreach (Purchase item in items["Creatures"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
-
-                                FormatBlankLine(output);
-                            }
-
-                            FormatBlankLine(output);
-
-                            output.Add(FormatSectionTitle("Other Item"));
-
-                            foreach (Purchase item in items["Other Item"])
-                            {
-                                FormatNonPricedDataLine(item.Name, item.Description, output, sourceJump: item.SourceJump);
+                                    FormatBlankLine(output);
+                                }
 
                                 FormatBlankLine(output);
                             }
