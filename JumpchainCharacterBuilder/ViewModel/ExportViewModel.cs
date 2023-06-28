@@ -468,7 +468,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                     }
                     if (LoadedExportOptions.MarkdownFormattingOptions[2].Enabled)
                     {
-                        title = "#" + title;
+                        title = "# " + title;
                     }
                     break;
                 default:
@@ -735,9 +735,13 @@ namespace JumpchainCharacterBuilder.ViewModel
                         {
                             output.Add(line);
 
+                            output.Add("");
+
                             output.Add(description);
                             if (reward != "")
                             {
+                                output.Add("");
+
                                 output.Add(reward);
                             }
                         }
@@ -851,19 +855,21 @@ namespace JumpchainCharacterBuilder.ViewModel
                         {
                             output.Add(line);
 
+                            output.Add("");
+
                             output.Add(description);
                         }
                     }
 
                     if (sourceJump != "")
                     {
-                        FormatBlankLine(output);
+                        output.Add("");
                         output.Add("Source Jump: " + sourceJump);
                     }
 
                     if (sourceCharacter != "")
                     {
-                        FormatBlankLine(output);
+                        output.Add("");
                         output.Add("Source Character: " + sourceCharacter);
                     }
                     break;
