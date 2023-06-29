@@ -12,8 +12,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class ExportViewModel : ViewModelBase
     {
-        // TODO - Fix bug when Supplement Investment is empty.
-
         #region Fields
         private readonly IDialogService _dialogService;
 
@@ -2024,10 +2022,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                         if (build.BodyModInvestment > 0)
                                         {
-                                            line = $"Body Mod Investment {budgetLastHalf}";
+                                            output.Add($"Body Mod Investment {budgetLastHalf}");
                                         }
-
-                                        output.Add(line);
                                     }
                                     break;
                                 case Options.BodyModSupplements.SBBodyMod:
@@ -2040,10 +2036,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                         if (build.BodyModInvestment > 0)
                                         {
-                                            line = $"SB Body Mod Investment {budgetLastHalf}";
+                                            output.Add($"SB Body Mod Investment {budgetLastHalf}");
                                         }
-
-                                        output.Add(line);
                                     }
                                     break;
                                 case Options.BodyModSupplements.EssentialBodyMod:
@@ -2056,10 +2050,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                         if (build.BodyModInvestment > 0)
                                         {
-                                            line = $"Essential Body Mod Investment {budgetLastHalf}";
+                                            output.Add($"Essential Body Mod Investment {budgetLastHalf}");
                                         }
-
-                                        output.Add(line);
                                     }
                                     break;
                                 default:
@@ -2078,10 +2070,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                         if (build.WarehouseInvestment > 0)
                                         {
-                                            line = $"Warehouse Investment {budgetLastHalf}";
+                                            output.Add($"Warehouse Investment {budgetLastHalf}");
                                         }
-
-                                        output.Add(line);
                                     }
                                     break;
                                 case Options.CosmicWarehouseSupplements.PersonalReality:
@@ -2094,10 +2084,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                         if (build.WarehouseInvestment > 0)
                                         {
-                                            line = $"Personal Reality Investment {budgetLastHalf}";
+                                            output.Add($"Personal Reality Investment {budgetLastHalf}");
                                         }
-
-                                        output.Add(line);
                                     }
                                     break;
                                 default:
