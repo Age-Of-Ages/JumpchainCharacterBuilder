@@ -27,7 +27,7 @@ namespace JumpchainCharacterBuilder
 
             for (int i = 1; i <= 10; i++)
             {
-                if (!FileAccess.CheckFileExists($"{directory}{fileName} ({i}).xml"))
+                if (!FileAccess.CheckFileExists(Path.Combine(directory.FullName, $"{fileName} ({i}).xml")))
                 {
                     File.Copy(filePath, Path.Combine($"{directory}", $"{fileName} ({i}).xml"), true);
 
