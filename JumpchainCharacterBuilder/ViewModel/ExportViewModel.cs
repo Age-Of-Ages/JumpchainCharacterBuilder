@@ -12,6 +12,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class ExportViewModel : ViewModelBase
     {
+        // TODO - Fix bug when Supplement Investment is empty.
 
         #region Fields
         private readonly IDialogService _dialogService;

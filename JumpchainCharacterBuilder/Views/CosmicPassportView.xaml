@@ -3009,7 +3009,7 @@
                                                                                     DisplayMemberBinding="{Binding Name}"/>
                                                                     <GridViewColumn Header="Cost" Width="50"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -3194,7 +3194,7 @@
                                                                                     DisplayMemberBinding="{Binding Name}"/>
                                                                     <GridViewColumn Header="Cost" Width="50"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -3379,7 +3379,7 @@
                                                                                     DisplayMemberBinding="{Binding Name}"/>
                                                                     <GridViewColumn Header="Cost" Width="50"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -3564,7 +3564,7 @@
                                                                                     DisplayMemberBinding="{Binding Name}"/>
                                                                     <GridViewColumn Header="Cost" Width="50"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -3749,7 +3749,7 @@
                                                                                     DisplayMemberBinding="{Binding Name}"/>
                                                                     <GridViewColumn Header="Cost" Width="50"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -3934,7 +3934,7 @@
                                                                                     DisplayMemberBinding="{Binding Name}"/>
                                                                     <GridViewColumn Header="Cost" Width="50"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -4117,7 +4117,7 @@
                                                                                     DisplayMemberBinding="{Binding Name}"/>
                                                                     <GridViewColumn Header="Cost" Width="50"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -4302,7 +4302,7 @@
                                                                                     DisplayMemberBinding="{Binding Name}"/>
                                                                     <GridViewColumn Header="Cost" Width="50"
                                                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                    DisplayMemberBinding="{Binding Cost}"/>
+                                                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
