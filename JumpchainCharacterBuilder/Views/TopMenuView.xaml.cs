@@ -30,6 +30,7 @@ namespace JumpchainCharacterBuilder.Views
                 InputFormatterView inputFormatter = new();
 
                 inputFormatter.Show();
+                inputFormatter.Owner = Application.Current.MainWindow;
             }
         }
 
