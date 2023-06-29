@@ -14,7 +14,8 @@
         Background="#FFD8D8D8" 
         FontFamily="Lato" 
         FontSize="12" 
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        ShowInTaskbar="False">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
