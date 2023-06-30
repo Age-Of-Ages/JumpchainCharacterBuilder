@@ -24,5 +24,11 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private string _sourceRank = "";
+
+        /// <summary>
+        /// Represents the number value of the purchase source.
+        /// </summary>
+        [ObservableProperty]
+        private int _sourceValue = 0;
     }
 }

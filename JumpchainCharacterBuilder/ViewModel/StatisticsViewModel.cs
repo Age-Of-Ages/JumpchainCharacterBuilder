@@ -11,7 +11,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class StatisticsViewModel : ViewModelBase
     {
-        // TODO - Track how many 1-ups the Jumper has.
         // TODO - Track per-category totals for both Perks and Items.
         #region Fields
         private readonly IDialogService _dialogService;
@@ -87,6 +86,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _characterWarehouseAddons = 0;
 
+        [ObservableProperty]
+        private int _overallOneUps = 0;
+        [ObservableProperty]
+        private int _characterOneUps = 0;
+
         #endregion
 
         #region Properties
@@ -107,6 +111,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 CharacterScenariosTaken = 0;
                 CharacterBodyModAddons = 0;
                 CharacterWarehouseAddons = 0;
+
+                CharacterOneUps = 0;
 
                 foreach (Jump jump in JumpList)
                 {
@@ -216,6 +222,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             CharacterBodyModAddons = 0;
             CharacterWarehouseAddons = 0;
 
+            OverallOneUps = 0;
+            CharacterOneUps = 0;
+
             foreach (Jump jump in JumpList)
             {
                 if (jump.IsGauntlet)
@@ -271,6 +280,18 @@ namespace JumpchainCharacterBuilder.ViewModel
                             CharacterBodyModAddons++;
                         }
                     }
+
+                    if (purchase.Attributes.Any())
+                    {
+                        foreach (PurchaseAttribute attribute in purchase.Attributes)
+                        {
+                            if (attribute.Category == "1-up")
+                            {
+                                OverallOneUps += attribute.Value;
+                                CharacterOneUps += attribute.Value;
+                            }
+                        }
+                    }
                 }
 
                 foreach (CompanionPurchase import in build.CompanionPurchase)
@@ -319,6 +340,17 @@ namespace JumpchainCharacterBuilder.ViewModel
                             OverallBodyModAddons++;
                         }
                     }
+
+                    if (purchase.Attributes.Any())
+                    {
+                        foreach (PurchaseAttribute attribute in purchase.Attributes)
+                        {
+                            if (attribute.Category == "1-up")
+                            {
+                                OverallOneUps += attribute.Value;
+                            }
+                        }
+                    }
                 }
 
                 foreach (CompanionPurchase import in build.CompanionPurchase)
@@ -364,6 +396,17 @@ namespace JumpchainCharacterBuilder.ViewModel
                     if (purchase.BodyModAddition)
                     {
                         CharacterBodyModAddons++;
+                    }
+                }
+
+                if (purchase.Attributes.Any())
+                {
+                    foreach (PurchaseAttribute attribute in purchase.Attributes)
+                    {
+                        if (attribute.Category == "1-up")
+                        {
+                            CharacterOneUps += attribute.Value;
+                        }
                     }
                 }
             }

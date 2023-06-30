@@ -159,12 +159,6 @@ namespace JumpchainCharacterBuilder.Model
         [ObservableProperty]
         private BodyModUniversal _bodyMod = new();
 
-        /// <summary>
-        /// Represents the character's Cosmic Locker.
-        /// </summary>
-        [ObservableProperty]
-        private CosmicLocker _cosmicLocker = new();
-
         public Character()
         {
 

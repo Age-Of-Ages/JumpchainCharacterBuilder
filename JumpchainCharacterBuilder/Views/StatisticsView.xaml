@@ -74,6 +74,20 @@
                         </Grid>
                     </GroupBox>
 
+                    <GroupBox Header="Misc. Stats" Grid.Row="2" Grid.Column="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Margin="5,3,0,0">
+                                <TextBlock Text="1-ups obtained"/>
+                                <TextBox Text="{Binding OverallOneUps}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
                     <GroupBox Header="Point Summary (All currencies)" Grid.Column="2" Margin="0,0,5,0">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -146,6 +160,20 @@
 
                                 <TextBlock Text="Warehouse Addons" Margin="0,5,0,0"/>
                                 <TextBox Text="{Binding CharacterWarehouseAddons}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Misc. Stats" Grid.Row="2" Grid.Column="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Margin="5,3,0,0">
+                                <TextBlock Text="1-ups obtained"/>
+                                <TextBox Text="{Binding CharacterOneUps}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
