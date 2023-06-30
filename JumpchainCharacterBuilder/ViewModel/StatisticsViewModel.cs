@@ -326,6 +326,13 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadJumpBuildData(Jump jump, JumpBuild build, int characterIndex)
         {
+            Dictionary<string, PurchaseCategoryStatistics> overallPerks = OverallPerkCategoryTotals.ToDictionary(x => x.Name);
+            Dictionary<string, PurchaseCategoryStatistics> overallItems = OverallItemCategoryTotals.ToDictionary(x => x.Name);
+
+            Dictionary<string, PurchaseCategoryStatistics> characterPerks = CharacterPerkCategoryTotals.ToDictionary(x => x.Name);
+            Dictionary<string, PurchaseCategoryStatistics> characterItems = CharacterItemCategoryTotals.ToDictionary(x => x.Name);
+
+
             if (characterIndex == CharacterSelectionIndex)
             {
                 foreach (Purchase purchase in build.Purchase)
@@ -347,8 +354,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                             CharacterWarehouseAddons++;
                         }
 
-                        OverallItemCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
-                        CharacterItemCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
+                        overallItems[purchase.Category].Total++;
+                        characterItems[purchase.Category].Total++;
                     }
                     else
                     {
@@ -364,8 +371,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                             CharacterBodyModAddons++;
                         }
 
-                        OverallPerkCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
-                        CharacterPerkCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
+                        overallPerks[purchase.Category].Total++;
+                        characterPerks[purchase.Category].Total++;
                     }
 
                     if (purchase.Attributes.Any())
@@ -416,7 +423,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                             OverallWarehouseAddons++;
                         }
 
-                        OverallItemCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
+                        overallItems[purchase.Category].Total++;
                     }
                     else
                     {
@@ -429,7 +436,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                             OverallBodyModAddons++;
                         }
 
-                        OverallPerkCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
+                        overallPerks[purchase.Category].Total++;
                     }
 
                     if (purchase.Attributes.Any())
@@ -463,6 +470,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadSingleCharacterData(Jump jump, JumpBuild build)
         {
+            Dictionary<string, PurchaseCategoryStatistics> characterPerks = CharacterPerkCategoryTotals.ToDictionary(x => x.Name);
+            Dictionary<string, PurchaseCategoryStatistics> characterItems = CharacterItemCategoryTotals.ToDictionary(x => x.Name);
+
             foreach (Purchase purchase in build.Purchase)
             {
                 CharacterPointsSpent += purchase.DisplayCost;
@@ -478,7 +488,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                         CharacterWarehouseAddons++;
                     }
 
-                    CharacterItemCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
+                    characterItems[purchase.Category].Total++;
                 }
                 else
                 {
@@ -491,7 +501,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                         CharacterBodyModAddons++;
                     }
 
-                    CharacterPerkCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
+                    characterPerks[purchase.Category].Total++;
                 }
 
                 if (purchase.Attributes.Any())
