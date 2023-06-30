@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
@@ -11,7 +12,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class StatisticsViewModel : ViewModelBase
     {
-        // TODO - Track per-category totals for both Perks and Items.
         #region Fields
         private readonly IDialogService _dialogService;
 
@@ -91,6 +91,16 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _characterOneUps = 0;
 
+        [ObservableProperty]
+        private ObservableCollection<PurchaseCategoryStatistics> _overallPerkCategoryTotals = new();
+        [ObservableProperty]
+        private ObservableCollection<PurchaseCategoryStatistics> _overallItemCategoryTotals = new();
+
+        [ObservableProperty]
+        private ObservableCollection<PurchaseCategoryStatistics> _characterPerkCategoryTotals = new();
+        [ObservableProperty]
+        private ObservableCollection<PurchaseCategoryStatistics> _characterItemCategoryTotals = new();
+
         #endregion
 
         #region Properties
@@ -113,6 +123,16 @@ namespace JumpchainCharacterBuilder.ViewModel
                 CharacterWarehouseAddons = 0;
 
                 CharacterOneUps = 0;
+
+                foreach (PurchaseCategoryStatistics category in CharacterPerkCategoryTotals)
+                {
+                    category.Total = 0;
+                }
+
+                foreach (PurchaseCategoryStatistics category in CharacterItemCategoryTotals)
+                {
+                    category.Total = 0;
+                }
 
                 foreach (Jump jump in JumpList)
                 {
@@ -138,6 +158,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 LoadedOptions = LoadedSave.Options;
 
+                LoadCategoryList();
                 LoadCharacterList();
                 LoadJumpList();
             });
@@ -146,6 +167,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadedSave = m.Value;
                 LoadedOptions = LoadedSave.Options;
 
+                LoadCategoryList();
                 LoadCharacterList();
                 LoadJumpList();
             });
@@ -153,6 +175,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
 
             });
+            Messenger.Register<CategoryChangedMessage>(this, (r, m) =>
+            {
+                LoadCategoryList();
+            });
+
+            LoadCategoryList();
 
             _dialogService = dialogService;
         }
@@ -183,6 +211,39 @@ namespace JumpchainCharacterBuilder.ViewModel
             foreach (Jump jump in LoadedSave.JumpList)
             {
                 JumpList.Add(jump);
+            }
+        }
+
+        private void LoadCategoryList()
+        {
+            OverallPerkCategoryTotals.Clear();
+            OverallItemCategoryTotals.Clear();
+
+            CharacterPerkCategoryTotals.Clear();
+            CharacterItemCategoryTotals.Clear();
+
+            foreach (string category in LoadedSave.PerkCategoryList)
+            {
+                OverallPerkCategoryTotals.Add(new()
+                {
+                    Name = category
+                });
+                CharacterPerkCategoryTotals.Add(new()
+                {
+                    Name = category
+                });
+            }
+
+            foreach (string category in LoadedSave.ItemCategoryList)
+            {
+                OverallItemCategoryTotals.Add(new()
+                {
+                    Name = category
+                });
+                CharacterItemCategoryTotals.Add(new()
+                {
+                    Name = category
+                });
             }
         }
 
@@ -225,6 +286,26 @@ namespace JumpchainCharacterBuilder.ViewModel
             OverallOneUps = 0;
             CharacterOneUps = 0;
 
+            foreach (PurchaseCategoryStatistics category in OverallPerkCategoryTotals)
+            {
+                category.Total = 0;
+            }
+
+            foreach (PurchaseCategoryStatistics category in CharacterPerkCategoryTotals)
+            {
+                category.Total = 0;
+            }
+
+            foreach (PurchaseCategoryStatistics category in OverallItemCategoryTotals)
+            {
+                category.Total = 0;
+            }
+
+            foreach (PurchaseCategoryStatistics category in CharacterItemCategoryTotals)
+            {
+                category.Total = 0;
+            }
+
             foreach (Jump jump in JumpList)
             {
                 if (jump.IsGauntlet)
@@ -265,6 +346,9 @@ namespace JumpchainCharacterBuilder.ViewModel
                             OverallWarehouseAddons++;
                             CharacterWarehouseAddons++;
                         }
+
+                        OverallItemCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
+                        CharacterItemCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
                     }
                     else
                     {
@@ -279,6 +363,9 @@ namespace JumpchainCharacterBuilder.ViewModel
                             OverallBodyModAddons++;
                             CharacterBodyModAddons++;
                         }
+
+                        OverallPerkCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
+                        CharacterPerkCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
                     }
 
                     if (purchase.Attributes.Any())
@@ -328,6 +415,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                         {
                             OverallWarehouseAddons++;
                         }
+
+                        OverallItemCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
                     }
                     else
                     {
@@ -339,6 +428,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                         {
                             OverallBodyModAddons++;
                         }
+
+                        OverallPerkCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
                     }
 
                     if (purchase.Attributes.Any())
@@ -386,6 +477,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                     {
                         CharacterWarehouseAddons++;
                     }
+
+                    CharacterItemCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
                 }
                 else
                 {
@@ -397,6 +490,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                     {
                         CharacterBodyModAddons++;
                     }
+
+                    CharacterPerkCategoryTotals.Single(x => x.Name == purchase.Category).Total++;
                 }
 
                 if (purchase.Attributes.Any())

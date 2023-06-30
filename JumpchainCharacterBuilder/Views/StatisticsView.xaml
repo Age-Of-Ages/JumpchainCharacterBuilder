@@ -74,18 +74,38 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="Misc. Stats" Grid.Row="2" Grid.Column="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                    <GroupBox Header="Per-category Perk totals" Grid.Row="1">
+                        <ListView ItemsSource="{Binding OverallPerkCategoryTotals}" Margin="4">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Category" Width="145"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Perk totals" Width="145"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Total}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </GroupBox>
 
-                            <StackPanel Margin="5,3,0,0">
-                                <TextBlock Text="1-ups obtained"/>
-                                <TextBox Text="{Binding OverallOneUps}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
-                            </StackPanel>
-                        </Grid>
+                    <GroupBox Header="Per-category Item totals" Grid.Row="1" Grid.Column="1">
+                        <ListView ItemsSource="{Binding OverallItemCategoryTotals}" Margin="4">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Category" Width="145"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Item totals" Width="145"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Total}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
                     </GroupBox>
 
                     <GroupBox Header="Point Summary (All currencies)" Grid.Column="2" Margin="0,0,5,0">
@@ -115,6 +135,20 @@
 
                                 <TextBlock Text="Points earned from Scenarios" Margin="0,5,0,0"/>
                                 <TextBox Text="{Binding OverallScenarioPointsEarned}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Misc. Stats" Grid.Row="2" Grid.Column="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Margin="5,3,0,0">
+                                <TextBlock Text="1-ups obtained"/>
+                                <TextBox Text="{Binding OverallOneUps}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -163,21 +197,7 @@
                             </StackPanel>
                         </Grid>
                     </GroupBox>
-
-                    <GroupBox Header="Misc. Stats" Grid.Row="2" Grid.Column="1">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Margin="5,3,0,0">
-                                <TextBlock Text="1-ups obtained"/>
-                                <TextBox Text="{Binding CharacterOneUps}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
-                            </StackPanel>
-                        </Grid>
-                    </GroupBox>
-
+                    
                     <GroupBox Header="Point Summary (All currencies)" Grid.Column="2" Margin="0,0,5,0">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -205,6 +225,54 @@
 
                                 <TextBlock Text="Points earned from Scenarios" Margin="0,5,0,0"/>
                                 <TextBox Text="{Binding CharacterScenarioPointsEarned}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Per-category Perk totals" Grid.Row="1">
+                        <ListView ItemsSource="{Binding CharacterPerkCategoryTotals}" Margin="4">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Category" Width="145"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Perk totals" Width="145"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Total}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </GroupBox>
+
+                    <GroupBox Header="Per-category Item totals" Grid.Row="1" Grid.Column="1">
+                        <ListView ItemsSource="{Binding CharacterItemCategoryTotals}" Margin="4">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Category" Width="145"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Item totals" Width="145"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Total}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </GroupBox>
+
+                    <GroupBox Header="Misc. Stats" Grid.Row="2" Grid.Column="1">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel Margin="5,3,0,0">
+                                <TextBlock Text="1-ups obtained"/>
+                                <TextBox Text="{Binding CharacterOneUps}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
