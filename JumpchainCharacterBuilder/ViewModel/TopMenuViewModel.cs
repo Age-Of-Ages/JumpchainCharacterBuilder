@@ -6,6 +6,7 @@ using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
 using Microsoft.Win32;
 using System;
+using System.IO;
 using System.Windows;
 
 namespace JumpchainCharacterBuilder.ViewModel
@@ -84,7 +85,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 Filter = "Jumper Saves (*.xml)|*.xml",
                 DefaultExt = "*.xml",
                 AddExtension = true,
-                InitialDirectory = Environment.CurrentDirectory,
+                InitialDirectory = Path.Combine(Environment.CurrentDirectory, "Saves"),
                 CheckPathExists = true,
                 ValidateNames = true,
                 OverwritePrompt = true,
@@ -126,11 +127,13 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadPrompt()
         {
+            FileAccess.CheckSubdirectoryExists("Saves");
+
             OpenFileDialog openFileDialog = new()
             {
                 Filter = "Jumper Saves (*.xml)|*.xml",
                 DefaultExt = "*.xml",
-                InitialDirectory = Environment.CurrentDirectory,
+                InitialDirectory = Path.Combine(Environment.CurrentDirectory, "Saves"),
                 CheckPathExists = true,
                 ValidateNames = true,
                 AddExtension = true,
