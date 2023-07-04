@@ -158,6 +158,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 SaveFileLoader saveFileLoader = new();
                 saveFileLoader.NewSave(LoadedSave);
+
+                SaveFileName = "";
             }
         }
 
