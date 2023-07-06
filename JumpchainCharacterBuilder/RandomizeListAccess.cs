@@ -93,13 +93,14 @@ namespace JumpchainCharacterBuilder
                             jumpWeight = 0;
                         }
 
-                        if (!Uri.IsWellFormedUriString(splitString[2], UriKind.Absolute))
+                        if (Uri.IsWellFormedUriString(splitString[2], UriKind.Absolute) && Uri.TryCreate(splitString[2], UriKind.Absolute, out Uri? result) && 
+                                                                                        (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps))
                         {
-                            jumpUri = new("About:Blank");
+                            jumpUri = new(splitString[2], UriKind.Absolute);
                         }
                         else
                         {
-                            jumpUri = new(splitString[2]);
+                            jumpUri = new("About:Blank");
                         }
 
                         output.Last().ListEntries.Add(new()
