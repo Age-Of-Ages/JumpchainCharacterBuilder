@@ -194,6 +194,18 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         [RelayCommand]
+        private void SortJumpList()
+        {
+            if (_dialogService.ConfirmDialog("Would you like to sort the current list alphanumerically?"))
+            {
+                List<JumpRandomizerEntry> tempList = JumpRandomizerEntryList.OrderBy(x => x.JumpName).ToList();
+
+                JumpRandomizerEntryList = new(tempList);
+                ActiveJumpRandomizerList.ListEntries = tempList;
+            }
+        }
+
+        [RelayCommand]
         private void SendChanges()
         {
             SaveJumpLists();

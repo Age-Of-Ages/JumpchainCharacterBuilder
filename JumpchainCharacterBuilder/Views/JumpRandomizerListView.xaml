@@ -40,6 +40,9 @@
                       VerticalContentAlignment="Center"/>
             <Button Content="Delete List" Command="{Binding DeleteRandomizerListCommand}" Style="{DynamicResource DataGridButton}" 
                     Margin="10,0,0,0"/>
+
+            <Button Content="Sort List" Command="{Binding SortJumpListCommand}" Style="{DynamicResource DataGridButton}" 
+                    Margin="10,0,0,0"/>
         </StackPanel>
 
         <StackPanel Orientation="Horizontal"
@@ -73,7 +76,7 @@
                 </ListView.View>
             </ListView>
 
-            <Grid Margin="0,15,0,0">
+            <Grid Margin="0,10,0,0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>

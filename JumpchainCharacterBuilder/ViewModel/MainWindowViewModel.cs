@@ -9,7 +9,6 @@ namespace JumpchainCharacterBuilder.ViewModel
     {
         // TODO - Implement themes.
         // TODO - (Eventually) make the whole UI dynamic.
-        // TODO - Implement random Jump selector. Provide a list of Jumps in a txt file and it will pull a selected number of random Jumps from that list.
         #region Fields
         [ObservableProperty]
         private SaveFile _loadedSave = new();
