@@ -1,0 +1,14 @@
+# Lines in this entry that are not blank and that do not start with # will be considered valid lines for the Jump randomizer function.
+# Entries should be formatted as 'JumpName | Weight | Link'
+# The weight of a Jump will determine how likely it is to be selected compared to other Jumps.
+# The third section is optional and may be entered as 'About:Blank' to ignore it.
+# Each entry must be underneath a section tag, formatted as '[SectionName]'
+# It is not advised to edit this file manually. Prefer using the application interface to edit Jump lists.
+
+[Example List]
+Example Jump 1 | 1 | about:Blank
+Example Jump 2 | 1 | about:Blank
+Example Jump 3 | 2 | about:Blank
+Example Jump 4 | 1 | about:Blank
+Example Jump 5 | 1 | about:Blank
+

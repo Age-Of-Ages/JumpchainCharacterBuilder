@@ -14,7 +14,8 @@
         Background="white" 
         FontFamily="Lato" 
         FontSize="12" 
-        ResizeMode="NoResize">
+        ResizeMode="NoResize"
+        ShowInTaskbar="False">
 
     <TabControl>
         <TabItem Header="About">

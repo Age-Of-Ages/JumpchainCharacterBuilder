@@ -26,6 +26,10 @@
                       IsChecked="{Binding DarkThemeSelected}"/>
         </MenuItem>
         <MenuItem Header="Input Formatter" Click="InputFormatter_Click"/>
+        <MenuItem Header="Jump Randomizer">
+            <MenuItem Header="Random Jump Selector" Click="JumpRandomizer_Click"/>
+            <MenuItem Header="Jump Randomizer Settings" Click="JumpRandomizerSettings_Click"/>
+        </MenuItem>
         <MenuItem Header="Settings" Click="Settings_Click"/>
         <MenuItem Header="Help">
             <MenuItem Header="Manual" Command="{Binding OpenManualCommand}"/>

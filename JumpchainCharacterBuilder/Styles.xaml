@@ -5,6 +5,7 @@
     <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     <convert:NullVisConverter x:Key="NullToVis"/>
     <convert:BoolResizeConverter x:Key="BoolToResize"/>
+    <convert:UriVisConverter x:Key="UriToVis"/>
 
     <Style TargetType="{x:Type Grid}">
         <Setter Property="ClipToBounds" Value="False"/>
@@ -52,7 +53,7 @@
     <DataTemplate x:Key="GridViewDescriptionColumn">
         <TextBlock Text="{Binding Path=Description}" Style="{DynamicResource GridViewText}"/>
     </DataTemplate>
-    
+
     <Style x:Key="GridViewText"
            TargetType="{x:Type TextBlock}">
         <Setter Property="TextWrapping" Value="Wrap"/>

@@ -27,25 +27,56 @@ namespace JumpchainCharacterBuilder.Views
         {
             if (!Application.Current.Windows.OfType<InputFormatterView>().Any())
             {
-                InputFormatterView inputFormatter = new();
+                InputFormatterView inputFormatter = new()
+                {
+                    Owner = Application.Current.MainWindow
+                };
 
                 inputFormatter.Show();
-                inputFormatter.Owner = Application.Current.MainWindow;
             }
         }
 
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
-            SettingsView settingsView = new();
+            SettingsView settingsView = new()
+            {
+                Owner = Application.Current.MainWindow
+            };
 
             settingsView.ShowDialog();
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
         {
-            AboutView aboutView = new();
+            AboutView aboutView = new()
+            {
+                Owner = Application.Current.MainWindow
+            };
 
             aboutView.ShowDialog();
+        }
+
+        private void JumpRandomizer_Click(object sender, RoutedEventArgs e)
+        {
+            if (!Application.Current.Windows.OfType<JumpRandomizerSelectorView>().Any())
+            {
+                JumpRandomizerSelectorView jumpRandomizer = new()
+                {
+                    Owner = Application.Current.MainWindow
+                };
+
+                jumpRandomizer.Show();
+            }
+        }
+
+        private void JumpRandomizerSettings_Click(object sender, RoutedEventArgs e)
+        {
+            JumpRandomizerListView randomizerSettingsView = new()
+            {
+                Owner = Application.Current.MainWindow
+            };
+
+            randomizerSettingsView.ShowDialog();
         }
     }
 }
