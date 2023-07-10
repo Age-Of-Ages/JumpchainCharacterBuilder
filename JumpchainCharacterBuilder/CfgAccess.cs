@@ -7,7 +7,7 @@ using System.Text.RegularExpressions;
 
 namespace JumpchainCharacterBuilder
 {
-    public static class CfgAccess
+    public static partial class CfgAccess
     {
         public static void WriteCfgFile(AppSettingsModel appSettings)
         {
@@ -18,7 +18,8 @@ namespace JumpchainCharacterBuilder
                 {"WeightFormat", appSettings.WeightFormat.ToString() },
                 {"HeightFormat", appSettings.HeightFormat.ToString() },
                 {"Theme", appSettings.Theme },
-                {"CanResizeWindow", appSettings.CanResizeWindow.ToString() }
+                {"CanResizeWindow", appSettings.CanResizeWindow.ToString() },
+                {"ConfirmSaveOnClose", appSettings.ConfirmSaveOnClose.ToString() }
             };
 
             settings.Add("# Application settings");
@@ -56,7 +57,8 @@ namespace JumpchainCharacterBuilder
                     {"HeightFormat", "FeetInches" },
                     {"WeightFormat", "Pounds" },
                     {"Theme", "Light" },
-                    {"CanResizeWindow", "False" }
+                    {"CanResizeWindow", "False" },
+                    {"ConfirmSaveOnClose", "True" }
                 };
                 string[] splitString;
                 string settingKey;
@@ -64,7 +66,7 @@ namespace JumpchainCharacterBuilder
 
                 foreach (string line in settings)
                 {
-                    if (Regex.IsMatch(line, @".+ = .+") && line[0] != '#' && line != "")
+                    if (CfgSplitRegex().IsMatch(line) && line[0] != '#' && line != "")
                     {
                         splitString = line.Split(" = ");
 
@@ -108,7 +110,19 @@ namespace JumpchainCharacterBuilder
                 {
                     appSettings.CanResizeWindow = false;
                 }
+
+                if (settingsDictionary["ConfirmSaveOnClose"] == "True")
+                {
+                    appSettings.ConfirmSaveOnClose = true;
+                }
+                else
+                {
+                    appSettings.ConfirmSaveOnClose = false;
+                }
             }
         }
+
+        [GeneratedRegex(".+ = .+")]
+        private static partial Regex CfgSplitRegex();
     }
 }

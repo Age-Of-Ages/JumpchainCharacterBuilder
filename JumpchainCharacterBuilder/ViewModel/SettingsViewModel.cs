@@ -19,7 +19,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [ObservableProperty]
         private bool _canResizeWindow = false;
-
+        [ObservableProperty]
+        private bool _confirmSaveOnClose = true;
         #endregion
 
         #region Properties 
@@ -40,6 +41,13 @@ namespace JumpchainCharacterBuilder.ViewModel
         partial void OnCanResizeWindowChanged(bool value)
         {
             AppSettings.CanResizeWindow = value;
+            Messenger.Send(new SettingsChangedMessage(true));
+            CfgAccess.WriteCfgFile(AppSettings);
+        }
+
+        partial void OnConfirmSaveOnCloseChanged(bool value)
+        {
+            AppSettings.ConfirmSaveOnClose = value;
             Messenger.Send(new SettingsChangedMessage(true));
             CfgAccess.WriteCfgFile(AppSettings);
         }
@@ -76,6 +84,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             HeightFormatSelection = AppSettings.HeightFormat;
 
             CanResizeWindow = AppSettings.CanResizeWindow;
+            ConfirmSaveOnClose = AppSettings.ConfirmSaveOnClose;
         }
 
         #endregion

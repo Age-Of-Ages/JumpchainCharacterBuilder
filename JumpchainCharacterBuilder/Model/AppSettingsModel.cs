@@ -49,5 +49,11 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private bool _canResizeWindow = false;
+
+        /// <summary>
+        /// Represents if the application should ask the user to save their current data before closing.
+        /// </summary>
+        [ObservableProperty]
+        private bool _confirmSaveOnClose = true;
     }
 }
