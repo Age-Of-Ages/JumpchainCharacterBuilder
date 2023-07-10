@@ -81,6 +81,19 @@ namespace JumpchainCharacterBuilder
                     else if (line != "" && line[0] != '#')
                     {
                         splitString = line.Split(" | ");
+
+                        if (splitString.Length < 3)
+                        {
+                            TxtAccess.WriteLog(new()
+                            {
+                                $"Entry in JumpList.txt at line {tempLines.IndexOf(line)} is incorrectly formatted or missing one or more required values.",
+                                "Skipping and moving on to the next line. Note: Data will be lost if list is saved in this state.",
+                                $"Incorrect data line: {line}"
+                            });
+
+                            continue;
+                        }
+
                         jumpName = splitString[0];
 
                         if (!int.TryParse(splitString[1], out int jumpWeight))
