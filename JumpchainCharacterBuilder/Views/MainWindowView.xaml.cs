@@ -20,5 +20,12 @@ namespace JumpchainCharacterBuilder
         }
 
         public MainWindowViewModel MainWindowViewModel => (MainWindowViewModel)DataContext;
+
+        private void Window_Closing(object sender, CancelEventArgs e)
+        {
+            var viewModel = (MainWindowViewModel)DataContext;
+
+            viewModel.TriggerSaveCommand.Execute(this);
+        }
     }
 }

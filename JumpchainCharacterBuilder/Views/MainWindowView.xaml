@@ -17,7 +17,8 @@
         FontFamily="Lato" 
         FontSize="12" 
         ResizeMode="{Binding ResizeAllowed, Converter={StaticResource BoolToResize}}" 
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight"
+        Closing="Window_Closing">
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Height="800" Width="950">

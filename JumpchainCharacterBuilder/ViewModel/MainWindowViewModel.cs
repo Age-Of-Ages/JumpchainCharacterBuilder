@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
@@ -25,6 +26,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         #endregion
 
+        #region Constructor
         public MainWindowViewModel()
         {
             Messenger.Register<MainWindowViewModel, SettingsRequestMessage>(this, (r, m) =>
@@ -43,5 +45,16 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             ResizeAllowed = AppSettings.CanResizeWindow;
         }
+
+        #endregion
+
+        #region Commands
+        [RelayCommand]
+        private void TriggerSave()
+        {
+            Messenger.Send(new SaveCommandMessage(true));
+        }
+
+        #endregion
     }
 }
