@@ -73,7 +73,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnDrawbackSelectionIndexChanging(int value)
         {
-            if (value != -1)
+            // TODO - Put the suspend objects in the DrawbackSelection so that this extra bit isn't necessary.
+            if (value != -1 && DrawbackSelection != null)
             {
                 int count = DrawbackSuspendList.Count;
                 if (count <= DrawbackSelection.Suspend.Count)

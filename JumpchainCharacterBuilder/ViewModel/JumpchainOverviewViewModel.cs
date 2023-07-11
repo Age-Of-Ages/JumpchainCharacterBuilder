@@ -14,6 +14,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     // TODO - Switching characters on one tab should update the data on all tabs.
     // TODO - Implement ability to add a stipend for a specific purchase type regardless of currency chosen.
+    // TODO - Modify Warehouse Investment to handle the Unlimited Core Mode of the Personal Reality Supplement.
     public partial class JumpchainOverviewViewModel : ViewModelBase
     {
         #region Fields
