@@ -302,7 +302,7 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="1.5*"/>
                             </Grid.RowDefinitions>
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel Margin="5,3,0,0" Grid.ColumnSpan="2">
                                 <TextBlock Text="Mode (Core)"/>
                                 <ComboBox ItemsSource="{Binding PRCoreModeList}"
                                   DisplayMemberPath="Key"
