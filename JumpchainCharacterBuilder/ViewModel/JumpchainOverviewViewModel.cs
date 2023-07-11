@@ -1800,7 +1800,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             int index = PurchaseSelectionIndex;
 
-            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].Purchase, index, index - 1);
+            int buildIndex1 = JumpSelection.Build[CharacterSelectionIndex].Purchase.IndexOf(CurrentLoadedPurchaseList[index]);
+            int buildIndex2 = JumpSelection.Build[CharacterSelectionIndex].Purchase.IndexOf(CurrentLoadedPurchaseList[index - 1]);
+
+            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].Purchase, buildIndex1, buildIndex2);
             ListOperationsClass.SwapCollectionItems(CurrentLoadedPurchaseList, index, index - 1);
 
             PurchaseSelectionIndex = index - 1;
@@ -1816,7 +1819,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             int index = PurchaseSelectionIndex;
 
-            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].Purchase, index, index + 1);
+            int buildIndex1 = JumpSelection.Build[CharacterSelectionIndex].Purchase.IndexOf(CurrentLoadedPurchaseList[index]);
+            int buildIndex2 = JumpSelection.Build[CharacterSelectionIndex].Purchase.IndexOf(CurrentLoadedPurchaseList[index + 1]);
+
+            ListOperationsClass.SwapListItems(JumpSelection.Build[CharacterSelectionIndex].Purchase, buildIndex1, buildIndex2);
             ListOperationsClass.SwapCollectionItems(CurrentLoadedPurchaseList, index, index + 1);
 
             PurchaseSelectionIndex = index + 1;
