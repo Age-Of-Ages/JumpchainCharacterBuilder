@@ -666,42 +666,42 @@ namespace JumpchainCharacterBuilder.ViewModel
                         switch (PurchasesTabIndex)
                         {
                             case 0:
-                                LoadedSave.PersonalReality.Purchases.RemoveAt(BasicsPurchaseSelectionIndex);
+                                LoadedSave.PersonalReality.Purchases.Remove(PurchaseSelection);
                                 BasicsPurchaseList.RemoveAt(BasicsPurchaseSelectionIndex);
                                 BasicsPurchaseSelectionIndex = 0;
                                 break;
                             case 1:
-                                LoadedSave.PersonalReality.Purchases.RemoveAt(UtilitiesPurchaseSelectionIndex);
+                                LoadedSave.PersonalReality.Purchases.Remove(PurchaseSelection);
                                 UtilitiesPurchaseList.RemoveAt(UtilitiesPurchaseSelectionIndex);
                                 UtilitiesPurchaseSelectionIndex = 0;
                                 break;
                             case 2:
-                                LoadedSave.PersonalReality.Purchases.RemoveAt(CosmeticPurchaseSelectionIndex);
+                                LoadedSave.PersonalReality.Purchases.Remove(PurchaseSelection);
                                 CosmeticPurchaseList.RemoveAt(CosmeticPurchaseSelectionIndex);
                                 CosmeticPurchaseSelectionIndex = 0;
                                 break;
                             case 3:
-                                LoadedSave.PersonalReality.Purchases.RemoveAt(FacilitiesPurchaseSelectionIndex);
+                                LoadedSave.PersonalReality.Purchases.Remove(PurchaseSelection);
                                 FacilitiesPurchaseList.RemoveAt(FacilitiesPurchaseSelectionIndex);
                                 FacilitiesPurchaseSelectionIndex = 0;
                                 break;
                             case 4:
-                                LoadedSave.PersonalReality.Purchases.RemoveAt(ExtensionsPurchaseSelectionIndex);
+                                LoadedSave.PersonalReality.Purchases.Remove(PurchaseSelection);
                                 ExtensionsPurchaseList.RemoveAt(ExtensionsPurchaseSelectionIndex);
                                 ExtensionsPurchaseSelectionIndex = 0;
                                 break;
                             case 5:
-                                LoadedSave.PersonalReality.Purchases.RemoveAt(EquipmentPurchaseSelectionIndex);
+                                LoadedSave.PersonalReality.Purchases.Remove(PurchaseSelection);
                                 EquipmentPurchaseList.RemoveAt(EquipmentPurchaseSelectionIndex);
                                 EquipmentPurchaseSelectionIndex = 0;
                                 break;
                             case 6:
-                                LoadedSave.PersonalReality.Purchases.RemoveAt(CompanionsPurchaseSelectionIndex);
+                                LoadedSave.PersonalReality.Purchases.Remove(PurchaseSelection);
                                 CompanionsPurchaseList.RemoveAt(CompanionsPurchaseSelectionIndex);
                                 CompanionsPurchaseSelectionIndex = 0;
                                 break;
                             case 7:
-                                LoadedSave.PersonalReality.Purchases.RemoveAt(MiscPurchaseSelectionIndex);
+                                LoadedSave.PersonalReality.Purchases.Remove(PurchaseSelection);
                                 MiscPurchaseList.RemoveAt(MiscPurchaseSelectionIndex);
                                 MiscPurchaseSelectionIndex = 0;
                                 break;

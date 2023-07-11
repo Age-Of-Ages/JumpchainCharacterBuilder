@@ -2963,7 +2963,7 @@
                                 </GroupBox>
 
                                 <GroupBox Header="Essence Details" Grid.Row="1" Grid.Column="2"
-                                          Visibility="{Binding EssentialBodyModSelected, Converter={StaticResource NullToVis}}">
+                                          Visibility="{Binding EBMEssenceSelection, Converter={StaticResource NullToVis}}">
                                     <StackPanel Margin="5,3,0,0">
                                         <TextBlock Text="Name"/>
                                         <TextBox Text="{Binding EBMEssenceSelection.Name, ValidatesOnNotifyDataErrors=True}" Width="120"/>
