@@ -48,9 +48,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnItemTabIndexChanged(int value) => LockerTabChanged();
 
-        partial void OnCharacterSelectionIndexChanged(int value)
+        partial void OnCharacterSelectionChanged(Character value)
         {
-            if (value != -1)
+            if (value != null)
             {
                 CharacterChanged();
             }
