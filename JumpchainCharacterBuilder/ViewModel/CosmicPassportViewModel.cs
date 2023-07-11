@@ -1338,6 +1338,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                             EBMMultiEssence = false;
                             break;
                     }
+
+                    EBMEssenceList = new(CharacterSelection.BodyMod.EBMEssenceList);
                     break;
                 default:
                     break;
