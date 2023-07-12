@@ -390,7 +390,7 @@
                                 <TextBlock Text="Description" Margin="0,50,0,0"/>
                                 <TextBox Text="{Binding PerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
                                      Width="295"
-                                     Height="300"
+                                     Height="290"
                                      Style="{DynamicResource LargeTextBox}"/>
                             </StackPanel>
                         </Grid>
