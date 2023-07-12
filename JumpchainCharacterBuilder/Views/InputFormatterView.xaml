@@ -31,6 +31,10 @@
                      Tag="Input string to be formatted."/>
         </StackPanel>
 
+        <StackPanel Grid.Row="1" Margin="5,0,0,0">
+            <CheckBox Content="Leave double line breaks in" IsChecked="{Binding LeaveDoubleLineBreaks}"/>
+        </StackPanel>
+
         <StackPanel Margin="5,3,0,0" Grid.Row="2">
             <TextBlock Text="Output"/>
             <TextBox Text="{Binding OutputString}" IsReadOnly="True"

@@ -12,6 +12,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private string _outputString = "";
 
+        [ObservableProperty]
+        private bool _leaveDoubleLineBreaks = false;
+
         #endregion
 
         #region Properties
@@ -19,15 +22,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != "")
             {
-                // Copying from PDF files can cause issues with line-breaks being inserted in incorrect places, so these need to be removed.
-                string temporaryString = Regex.Replace(value, @"(\r\n)(?!\r\n)", " ");
-                // If a string with too many line-breaks is put through this formatter multiple times to fully correct it then extra spaces will appear.
-                // These should be removed to preserve the tidiness of the string.
-                // Intended line-breaks also leave spaces at the beginning of the paragraph, so these should be corrected.
-                temporaryString = Regex.Replace(temporaryString, @"  ", " ");
-                temporaryString = Regex.Replace(temporaryString, @"(?:\n) ", "");
-
-                OutputString = temporaryString;
+                FormatString();
             }
             else
             {
@@ -35,11 +30,52 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
+        partial void OnLeaveDoubleLineBreaksChanged(bool value)
+        {
+            FormatString();
+        }
+
         #endregion
 
         #region Constructor
 
 
+        #endregion
+
+        #region Methods
+        private void FormatString()
+        {
+            string temporaryString;
+
+            // Copying from PDF files can cause issues with line-breaks being inserted in incorrect places, so these need to be removed.
+            if (LeaveDoubleLineBreaks)
+            {
+                temporaryString = RemoveLineBreaksNoDoubleRegex().Replace(InputString, " ");
+            }
+            else
+            {
+                temporaryString = RemoveLineBreaksRegex().Replace(InputString, " ");
+            }
+            // If a string with too many line-breaks is put through this formatter multiple times to fully correct it then extra spaces will appear.
+            // These should be removed to preserve the tidiness of the string.
+            // Intended line-breaks also leave spaces at the beginning of the paragraph, so these should be corrected.
+            temporaryString = RemoveDoubleSpacesRegex().Replace(temporaryString, " ");
+            temporaryString = RemoveParagraphStartSpacesRegex().Replace(temporaryString, "");
+
+            OutputString = temporaryString;
+        }
+
+        [GeneratedRegex("(\\r\\n)(?!\\r\\n)")]
+        private static partial Regex RemoveLineBreaksRegex();
+
+        [GeneratedRegex("(?<!\\r\\n)(\\r\\n)(?!\\r\\n)")]
+        private static partial Regex RemoveLineBreaksNoDoubleRegex();
+
+        [GeneratedRegex("  ")]
+        private static partial Regex RemoveDoubleSpacesRegex();
+
+        [GeneratedRegex("(?<=\\n) ")]
+        private static partial Regex RemoveParagraphStartSpacesRegex();
         #endregion
     }
 }
