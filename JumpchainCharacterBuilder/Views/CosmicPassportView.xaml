@@ -2962,8 +2962,13 @@
                                     </StackPanel>
                                 </GroupBox>
 
-                                <GroupBox Header="Essence Details" Grid.Row="1" Grid.Column="2"
-                                          Visibility="{Binding EBMEssenceSelection, Converter={StaticResource NullToVis}}">
+                                <GroupBox Header="Essence Details" Grid.Row="1" Grid.Column="2">
+                                    <GroupBox.Visibility>
+                                        <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                            <Binding Path="EBMEssenceSelection"/>
+                                            <Binding Path="EBMEssenceList"/>
+                                        </MultiBinding>
+                                    </GroupBox.Visibility>
                                     <StackPanel Margin="5,3,0,0">
                                         <TextBlock Text="Name"/>
                                         <TextBox Text="{Binding EBMEssenceSelection.Name, ValidatesOnNotifyDataErrors=True}" Width="120"/>
@@ -3043,8 +3048,13 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1"
-                                                      Visibility="{Binding EBMBasicPerkSelection, Converter={StaticResource NullToVis}}">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                                <GroupBox.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                                        <Binding Path="EBMBasicPerkSelection"/>
+                                                        <Binding Path="EBMBasicPerkList"/>
+                                                    </MultiBinding>
+                                                </GroupBox.Visibility>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3228,8 +3238,13 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1"
-                                                      Visibility="{Binding EBMPhysicalPerkSelection, Converter={StaticResource NullToVis}}">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                                <GroupBox.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                                        <Binding Path="EBMPhysicalPerkSelection"/>
+                                                        <Binding Path="EBMPhysicalPerkList"/>
+                                                    </MultiBinding>
+                                                </GroupBox.Visibility>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3413,8 +3428,13 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1"
-                                                      Visibility="{Binding EBMMentalPerkSelection, Converter={StaticResource NullToVis}}">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                                <GroupBox.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                                        <Binding Path="EBMMentalPerkSelection"/>
+                                                        <Binding Path="EBMMentalPerkList"/>
+                                                    </MultiBinding>
+                                                </GroupBox.Visibility>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3598,8 +3618,13 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1"
-                                                      Visibility="{Binding EBMSpiritualPerkSelection, Converter={StaticResource NullToVis}}">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                                <GroupBox.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                                        <Binding Path="EBMSpiritualPerkSelection"/>
+                                                        <Binding Path="EBMSpiritualPerkList"/>
+                                                    </MultiBinding>
+                                                </GroupBox.Visibility>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3783,8 +3808,13 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1"
-                                                      Visibility="{Binding EBMSkillPerkSelection, Converter={StaticResource NullToVis}}">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                                <GroupBox.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                                        <Binding Path="EBMSkillPerkSelection"/>
+                                                        <Binding Path="EBMSkillPerkList"/>
+                                                    </MultiBinding>
+                                                </GroupBox.Visibility>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -3968,8 +3998,13 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1"
-                                                      Visibility="{Binding EBMSupernaturalPerkSelection, Converter={StaticResource NullToVis}}">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                                <GroupBox.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                                        <Binding Path="EBMSupernaturalPerkSelection"/>
+                                                        <Binding Path="EBMSupernaturalPerkList"/>
+                                                    </MultiBinding>
+                                                </GroupBox.Visibility>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -4151,8 +4186,13 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1"
-                                                      Visibility="{Binding EBMItemPerkSelection, Converter={StaticResource NullToVis}}">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                                <GroupBox.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                                        <Binding Path="EBMItemPerkSelection"/>
+                                                        <Binding Path="EBMItemPerkList"/>
+                                                    </MultiBinding>
+                                                </GroupBox.Visibility>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -4336,8 +4376,13 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Purchase Details" Grid.Column="1"
-                                                      Visibility="{Binding EBMCompanionPerkSelection, Converter={StaticResource NullToVis}}">
+                                            <GroupBox Header="Purchase Details" Grid.Column="1">
+                                                <GroupBox.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                                        <Binding Path="EBMCompanionPerkSelection"/>
+                                                        <Binding Path="EBMCompanionPerkList"/>
+                                                    </MultiBinding>
+                                                </GroupBox.Visibility>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>
@@ -4521,8 +4566,13 @@
                                                 </Grid>
                                             </DockPanel>
 
-                                            <GroupBox Header="Drawback Details" Grid.Column="1"
-                                                      Visibility="{Binding EBMDrawbackSelection, Converter={StaticResource NullToVis}}">
+                                            <GroupBox Header="Drawback Details" Grid.Column="1">
+                                                <GroupBox.Visibility>
+                                                    <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                                        <Binding Path="EBMDrawbackSelection"/>
+                                                        <Binding Path="EBMDrawbackList"/>
+                                                    </MultiBinding>
+                                                </GroupBox.Visibility>
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="2*"/>

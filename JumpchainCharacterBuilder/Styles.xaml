@@ -6,6 +6,7 @@
     <convert:NullVisConverter x:Key="NullToVis"/>
     <convert:BoolResizeConverter x:Key="BoolToResize"/>
     <convert:UriVisConverter x:Key="UriToVis"/>
+    <convert:ListContainsVisConverter x:Key="ListContainsToVis"/>
 
     <Style TargetType="{x:Type Grid}">
         <Setter Property="ClipToBounds" Value="False"/>
