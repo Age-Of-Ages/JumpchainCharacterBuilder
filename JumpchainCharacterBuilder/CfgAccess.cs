@@ -45,7 +45,7 @@ namespace JumpchainCharacterBuilder
                     "Configuration file not found: Regenerating file with default settings."
                 });
 
-                File.Create(filePath);
+                using FileStream temp = File.Create(filePath);
 
                 WriteCfgFile(appSettings);
             }

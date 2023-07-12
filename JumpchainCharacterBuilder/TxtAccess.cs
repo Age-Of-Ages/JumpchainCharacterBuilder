@@ -56,7 +56,7 @@ namespace JumpchainCharacterBuilder
 
             if (!FileAccess.CheckFileExists(logPath))
             {
-                File.Create(logPath);
+                using FileStream temp = File.Create(logPath);
             }
 
             bool fileSizeWithinBounds = FileAccess.CheckFileLength(500, logPath);
