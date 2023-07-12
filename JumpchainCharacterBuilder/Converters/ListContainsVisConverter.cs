@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
@@ -11,15 +12,26 @@ namespace JumpchainCharacterBuilder.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var containedObject = values[0];
-            ICollection? list = values[1] as ICollection;
-            
-            if (containedObject != null && list != null)
+            List<ICollection?> list = new();
+
+            for (int i = 1; i < values.Length; i++)
             {
-                foreach (var item in list)
+                list.Add(values[i] as ICollection);
+            }
+
+            if (containedObject != null && list.Count > 0)
+            {
+                foreach (var subList in list)
                 {
-                    if (containedObject == item)
+                    if (subList != null)
                     {
-                        return Visibility.Visible;
+                        foreach (var item in subList)
+                        {
+                            if (containedObject == item)
+                            {
+                                return Visibility.Visible;
+                            }
+                        } 
                     }
                 }
             }

@@ -10,6 +10,7 @@ namespace JumpchainCharacterBuilder.ViewModel
     {
         // TODO - Implement themes.
         // TODO - (Eventually) make the whole UI dynamic.
+        // TODO - Convert all relevant element visibility checks to the new system.
         #region Fields
         [ObservableProperty]
         private SaveFile _loadedSave = new();
