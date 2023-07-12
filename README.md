@@ -38,10 +38,10 @@ The goal of this project is primarily to suit my own needs, but I have also made
    - Character sheets output, with all of the data stored in the Cosmic Passport feature (save for the Body-Mod) available to output.
    - Jump build output, which can output one or all builds for a given Jump, and which can additionally output the details given for the document itself.
    - Supplement output for Body-Mod, Warehouse, and Drawback Supplement data.
-7. Statistics (Incomplete)
+7. Statistics
    - Display statistics data for individual characters and the overall Jumper save file.
-   - Currently displays data such as completed Jumps and Gauntlets, various Purchase types bought, Addons, and a summary of points spent.
-   - Will eventually include a wider variety of data, such as per-category purchase data.
+   - Displays data such as completed Jumps and Gauntlets, various Purchase types bought, Addons, and a summary of points spent.
+   - Additionally displays per-category data for Perks and Items.
 8. Jumpchain Options
    - Configure defaults for newly created Jumps. 
    - Select Body-Mod, Warehouse, and Drawback Supplement used, and configure options for each. 
