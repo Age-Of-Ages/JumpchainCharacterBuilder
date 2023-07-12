@@ -3063,8 +3063,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MovePhysicalAttributeUp()
         {
             int index = CurrentPhysicalAttributeIndex;
-            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeSelection);
-            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeSelection) - 1;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeList[index]);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeList[index - 1]);
 
             CurrentPhysicalAttributeList.SwapCollectionItems(index, index - 1);
             CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
@@ -3081,8 +3081,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MovePhysicalAttributeDown()
         {
             int index = CurrentPhysicalAttributeIndex;
-            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeSelection);
-            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeSelection) + 1;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeList[index]);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeList[index + 1]);
 
             CurrentPhysicalAttributeList.SwapCollectionItems(index, index + 1);
             CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
@@ -3129,8 +3129,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveMentalAttributeUp()
         {
             int index = CurrentMentalAttributeIndex;
-            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeSelection);
-            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeSelection) - 1;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeList[index]);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeList[index - 1]);
 
             CurrentMentalAttributeList.SwapCollectionItems(index, index - 1);
             CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
@@ -3147,8 +3147,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveMentalAttributeDown()
         {
             int index = CurrentMentalAttributeIndex;
-            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeSelection);
-            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeSelection) + 1;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeList[index]);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeList[index + 1]);
 
             CurrentMentalAttributeList.SwapCollectionItems(index, index + 1);
             CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
@@ -3195,8 +3195,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveSupernaturalAttributeUp()
         {
             int index = CurrentSupernaturalAttributeIndex;
-            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeSelection);
-            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeSelection) - 1;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeList[index]);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeList[index - 1]);
 
             CurrentSupernaturalAttributeList.SwapCollectionItems(index, index - 1);
             CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
@@ -3213,8 +3213,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveSupernaturalAttributeDown()
         {
             int index = CurrentSupernaturalAttributeIndex;
-            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeSelection);
-            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeSelection) + 1;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeList[index]);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeList[index + 1]);
 
             CurrentSupernaturalAttributeList.SwapCollectionItems(index, index + 1);
             CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
@@ -3267,8 +3267,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MovePhysicalSkillUp()
         {
             int index = CurrentPhysicalSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillSelection) - 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillList[index - 1]);
 
             CurrentPhysicalSkillList.SwapCollectionItems(index, index - 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
@@ -3285,8 +3285,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MovePhysicalSkillDown()
         {
             int index = CurrentPhysicalSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillSelection) + 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillList[index + 1]);
 
             CurrentPhysicalSkillList.SwapCollectionItems(index, index + 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
@@ -3333,8 +3333,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveMentalSkillUp()
         {
             int index = CurrentMentalSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillSelection) - 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillList[index - 1]);
 
             CurrentMentalSkillList.SwapCollectionItems(index, index - 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
@@ -3351,8 +3351,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveMentalSkillDown()
         {
             int index = CurrentMentalSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillSelection) + 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillList[index + 1]);
 
             CurrentMentalSkillList.SwapCollectionItems(index, index + 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
@@ -3402,8 +3402,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveSocialSkillUp()
         {
             int index = CurrentSocialSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillSelection) - 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillList[index - 1]);
 
             CurrentSocialSkillList.SwapCollectionItems(index, index - 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
@@ -3420,8 +3420,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveSocialSkillDown()
         {
             int index = CurrentSocialSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillSelection) + 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillList[index + 1]);
 
             CurrentSocialSkillList.SwapCollectionItems(index, index + 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
@@ -3471,8 +3471,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveTechnologicalSkillUp()
         {
             int index = CurrentTechnologicalSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillSelection) - 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillList[index - 1]);
 
             CurrentTechnologicalSkillList.SwapCollectionItems(index, index - 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
@@ -3489,8 +3489,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveTechnologicalSkillDown()
         {
             int index = CurrentTechnologicalSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillSelection) + 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillList[index + 1]);
 
             CurrentTechnologicalSkillList.SwapCollectionItems(index, index + 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
@@ -3537,8 +3537,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveSupernaturalSkillUp()
         {
             int index = CurrentSupernaturalSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillSelection) - 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillList[index - 1]);
 
             CurrentSupernaturalSkillList.SwapCollectionItems(index, index - 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
@@ -3555,8 +3555,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void MoveSupernaturalSkillDown()
         {
             int index = CurrentSupernaturalSkillIndex;
-            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillSelection);
-            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillSelection) + 1;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillList[index]);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillList[index + 1]);
 
             CurrentSupernaturalSkillList.SwapCollectionItems(index, index + 1);
             CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
