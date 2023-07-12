@@ -406,14 +406,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 }
                 ItemStipend = JumpSelection.Build[CharacterSelectionIndex].ItemStipend;
 
-                if (BuildTabIndex == 1)
-                {
-                    LoadAllPurchaseLists();
-                }
-                else if (BuildTabIndex == 2)
-                {
-                    LoadImportOptionList();
-                }
+                LoadAllPurchaseLists();
+                LoadImportOptionList();
 
                 LoadDrawbackList();
                 LoadScenarioList();

@@ -1,11 +1,9 @@
 ﻿<UserControl x:Class="JumpchainCharacterBuilder.Views.CosmicPassportView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:JumpchainCharacterBuilder.Views"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
-             xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:CosmicPassportViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="757" d:DesignWidth="950">
@@ -420,51 +418,72 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
                                             
-                                            <StackPanel>
-                                                <ListView ItemsSource="{Binding CurrentPhysicalAttributeList}"
-                                                          SelectedItem="{Binding CurrentPhysicalAttributeSelection}"
-                                                          SelectedIndex="{Binding CurrentPhysicalAttributeIndex}"
-                                                          Width="300" Height="500"
-                                                          Margin="0,5,0,0">
-                                                    <ListView.View>
-                                                        <GridView>
-                                                            <GridView.Columns>
-                                                                <GridViewColumn Header="Attribute Name" Width="150"
-                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                DisplayMemberBinding="{Binding Name}"/>
-                                                                <GridViewColumn Header="Attribute Rank" Width="150" 
-                                                                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                                                DisplayMemberBinding="{Binding DisplayRank}"/>
-                                                            </GridView.Columns>
-                                                        </GridView>
-                                                    </ListView.View>
-                                                </ListView>
+                                            <ListView ItemsSource="{Binding CurrentPhysicalAttributeList}"
+                                                      SelectedItem="{Binding CurrentPhysicalAttributeSelection}"
+                                                      SelectedIndex="{Binding CurrentPhysicalAttributeIndex}"
+                                                      Width="300" Height="480"
+                                                      Margin="0,5,0,0">
+                                                <ListView.View>
+                                                    <GridView>
+                                                        <GridView.Columns>
+                                                            <GridViewColumn Header="Attribute Name" Width="150"
+                                                                            CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                            DisplayMemberBinding="{Binding Name}"/>
+                                                            <GridViewColumn Header="Attribute Rank" Width="150" 
+                                                                            CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                            DisplayMemberBinding="{Binding DisplayRank}"/>
+                                                        </GridView.Columns>
+                                                    </GridView>
+                                                </ListView.View>
+                                            </ListView>
 
-                                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                    <Button Content="New Attribute" 
-                                                    Command="{Binding NewPhysicalAttributeCommand}"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Top"
-                                                    Style="{DynamicResource DataGridButton}"
-                                                    Grid.Row="1"/>
+                                                <Button Content="New" 
+                                                        Command="{Binding NewPhysicalAttributeCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"/>
 
-                                                    <Button Content="Delete Attribute"
-                                                    Command="{Binding DeletePhysicalAttributeCommand}"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Bottom"
-                                                    Style="{DynamicResource DataGridButton}"
-                                                    Grid.Column="2"/>
-                                                </Grid>
-                                            </StackPanel>
+                                                <Button Content="Delete"
+                                                        Command="{Binding DeletePhysicalAttributeCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"/>
 
-                                            <GroupBox Grid.Column="2" Header="Attribute Details">
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MovePhysicalAttributeUpCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MovePhysicalAttributeDownCommand}"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+                                            </Grid>
+                                            
+                                            <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Attribute Details">
                                                 <GroupBox.Visibility>
                                                     <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                         <Binding Path="CurrentPhysicalAttributeSelection"/>
@@ -521,12 +540,15 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
                                             
-                                            <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentMentalAttributeList}"
                                                           SelectedItem="{Binding CurrentMentalAttributeSelection}"
                                                           SelectedIndex="{Binding CurrentMentalAttributeIndex}"
-                                                          Width="300" Height="500"
+                                                          Width="300" Height="480"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
                                                         <GridView>
@@ -542,30 +564,48 @@
                                                     </ListView.View>
                                                 </ListView>
 
-                                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                    <Button Content="New Attribute" 
-                                                            Command="{Binding NewMentalAttributeCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Top"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Row="1"/>
+                                                <Button Content="New" 
+                                                        Command="{Binding NewMentalAttributeCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"/>
 
-                                                    <Button Content="Delete Attribute"
-                                                            Command="{Binding DeleteMentalAttributeCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Bottom"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Column="2"/>
-                                                </Grid>
-                                            </StackPanel>
+                                                <Button Content="Delete"
+                                                        Command="{Binding DeleteMentalAttributeCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"/>
 
-                                            <GroupBox Grid.Column="2" Header="Attribute Details">
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveMentalAttributeUpCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveMentalAttributeDownCommand}"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+                                            </Grid>
+
+                                            <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Attribute Details">
                                                 <GroupBox.Visibility>
                                                     <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                         <Binding Path="CurrentMentalAttributeSelection"/>
@@ -622,12 +662,15 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
                                             
-                                            <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentSupernaturalAttributeList}"
                                                           SelectedItem="{Binding CurrentSupernaturalAttributeSelection}"
                                                           SelectedIndex="{Binding CurrentSupernaturalAttributeIndex}"
-                                                          Width="300" Height="500"
+                                                          Width="300" Height="480"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
                                                         <GridView>
@@ -642,31 +685,49 @@
                                                         </GridView>
                                                     </ListView.View>
                                                 </ListView>
-                                                
-                                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
 
-                                                    <Button Content="New Attribute" 
-                                                            Command="{Binding NewSupernaturalAttributeCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Top"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Row="1"/>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                    <Button Content="Delete Attribute"
-                                                            Command="{Binding DeleteSupernaturalAttributeCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Bottom"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Column="2"/>
-                                                </Grid>
-                                            </StackPanel>
+                                                <Button Content="New" 
+                                                        Command="{Binding NewSupernaturalAttributeCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"/>
 
-                                            <GroupBox Grid.Column="2" Header="Attribute Details">
+                                                <Button Content="Delete"
+                                                        Command="{Binding DeleteSupernaturalAttributeCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"/>
+
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveSupernaturalAttributeUpCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveSupernaturalAttributeDownCommand}"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+                                            </Grid>
+
+                                            <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Attribute Details">
                                                 <GroupBox.Visibility>
                                                     <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                         <Binding Path="CurrentSupernaturalAttributeSelection"/>
@@ -946,12 +1007,15 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
 
-                                            <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentPhysicalSkillList}"
                                                           SelectedItem="{Binding CurrentPhysicalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentPhysicalSkillIndex}"
-                                                          Width="300" Height="500"
+                                                          Width="300" Height="480"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
                                                         <GridView>
@@ -967,28 +1031,46 @@
                                                     </ListView.View>
                                                 </ListView>
 
-                                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                    <Button Content="New Skill" 
-                                                    Command="{Binding NewPhysicalSkillCommand}"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Top"
-                                                    Style="{DynamicResource DataGridButton}"
-                                                    Grid.Row="1"/>
+                                                <Button Content="New" 
+                                                        Command="{Binding NewPhysicalSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"/>
 
-                                                    <Button Content="Delete Skill"
-                                                    Command="{Binding DeletePhysicalSkillCommand}"
-                                                    HorizontalAlignment="Right"
-                                                    VerticalAlignment="Bottom"
-                                                    Style="{DynamicResource DataGridButton}"
-                                                    Grid.Column="2"/>
-                                                </Grid>
-                                            </StackPanel>
+                                                <Button Content="Delete"
+                                                        Command="{Binding DeletePhysicalSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"/>
+
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MovePhysicalSkillUpCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MovePhysicalSkillDownCommand}"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+                                            </Grid>
 
                                             <GroupBox Grid.Column="2" Header="Skill Details">
                                                 <GroupBox.Visibility>
@@ -1047,12 +1129,15 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
 
-                                            <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentMentalSkillList}"
                                                           SelectedItem="{Binding CurrentMentalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentMentalSkillIndex}"
-                                                          Width="300" Height="500"
+                                                          Width="300" Height="480"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
                                                         <GridView>
@@ -1068,28 +1153,47 @@
                                                     </ListView.View>
                                                 </ListView>
 
-                                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                    <Button Content="New Skill" 
-                                                            Command="{Binding NewMentalSkillCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Top"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Row="1"/>
+                                                <Button Content="New" 
+                                                        Command="{Binding NewMentalSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"/>
 
-                                                    <Button Content="Delete Skill"
-                                                            Command="{Binding DeleteMentalSkillCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Bottom"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Column="2"/>
-                                                </Grid>
-                                            </StackPanel>
+                                                <Button Content="Delete"
+                                                        Command="{Binding DeleteMentalSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"/>
+
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveMentalSkillUpCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveMentalSkillDownCommand}"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+                                            </Grid>
+
 
                                             <GroupBox Grid.Column="2" Header="Skill Details">
                                                 <GroupBox.Visibility>
@@ -1148,12 +1252,15 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
 
-                                            <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentSocialSkillList}"
                                                           SelectedItem="{Binding CurrentSocialSkillSelection}"
                                                           SelectedIndex="{Binding CurrentSocialSkillIndex}"
-                                                          Width="300" Height="500"
+                                                          Width="300" Height="480"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
                                                         <GridView>
@@ -1169,28 +1276,46 @@
                                                     </ListView.View>
                                                 </ListView>
 
-                                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                    <Button Content="New Skill" 
-                                                            Command="{Binding NewSocialSkillCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Top"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Row="1"/>
+                                                <Button Content="New" 
+                                                        Command="{Binding NewSocialSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"/>
 
-                                                    <Button Content="Delete Skill"
-                                                            Command="{Binding DeleteSocialSkillCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Bottom"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Column="2"/>
-                                                </Grid>
-                                            </StackPanel>
+                                                <Button Content="Delete"
+                                                        Command="{Binding DeleteSocialSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"/>
+
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveSocialSkillUpCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveSocialSkillDownCommand}"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+                                            </Grid>
 
                                             <GroupBox Grid.Column="2" Header="Skill Details">
                                                 <GroupBox.Visibility>
@@ -1249,12 +1374,15 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
 
-                                            <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentTechnologicalSkillList}"
                                                           SelectedItem="{Binding CurrentTechnologicalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentTechnologicalSkillIndex}"
-                                                          Width="300" Height="500"
+                                                          Width="300" Height="480"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
                                                         <GridView>
@@ -1270,28 +1398,47 @@
                                                     </ListView.View>
                                                 </ListView>
 
-                                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                    <Button Content="New Skill" 
-                                                            Command="{Binding NewTechnologicalSkillCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Top"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Row="1"/>
+                                                <Button Content="New" 
+                                                        Command="{Binding NewTechnologicalSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"/>
 
-                                                    <Button Content="Delete Skill"
-                                                            Command="{Binding DeleteTechnologicalSkillCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Bottom"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Column="2"/>
-                                                </Grid>
-                                            </StackPanel>
+                                                <Button Content="Delete"
+                                                        Command="{Binding DeleteTechnologicalSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"/>
+
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveTechnologicalSkillUpCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveTechnologicalSkillDownCommand}"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+                                            </Grid>
+
 
                                             <GroupBox Grid.Column="2" Header="Skill Details">
                                                 <GroupBox.Visibility>
@@ -1350,12 +1497,15 @@
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="6*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
 
-                                            <StackPanel>
                                                 <ListView ItemsSource="{Binding CurrentSupernaturalSkillList}"
                                                           SelectedItem="{Binding CurrentSupernaturalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentSupernaturalSkillIndex}"
-                                                          Width="300" Height="500"
+                                                          Width="300" Height="480"
                                                           Margin="0,5,0,0">
                                                     <ListView.View>
                                                         <GridView>
@@ -1371,28 +1521,47 @@
                                                     </ListView.View>
                                                 </ListView>
 
-                                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                        <ColumnDefinition Width="Auto"/>
-                                                    </Grid.ColumnDefinitions>
+                                            <Grid Grid.Row="1">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                    <Button Content="New Skill" 
-                                                            Command="{Binding NewSupernaturalSkillCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Top"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Row="1"/>
+                                                <Button Content="New" 
+                                                        Command="{Binding NewSupernaturalSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"/>
 
-                                                    <Button Content="Delete Skill"
-                                                            Command="{Binding DeleteSupernaturalSkillCommand}"
-                                                            HorizontalAlignment="Right"
-                                                            VerticalAlignment="Bottom"
-                                                            Style="{DynamicResource DataGridButton}"
-                                                            Grid.Column="2"/>
-                                                </Grid>
-                                            </StackPanel>
+                                                <Button Content="Delete"
+                                                        Command="{Binding DeleteSupernaturalSkillCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"/>
+
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveSupernaturalSkillUpCommand}"
+                                                        HorizontalAlignment="Left"
+                                                        VerticalAlignment="Top"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveSupernaturalSkillDownCommand}"
+                                                        HorizontalAlignment="Right"
+                                                        VerticalAlignment="Bottom"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+                                            </Grid>
+
 
                                             <GroupBox Grid.Column="2" Header="Skill Details">
                                                 <GroupBox.Visibility>
@@ -1668,12 +1837,15 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="2*"/>
                         </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="6*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
 
-                        <StackPanel>
                             <ListView ItemsSource="{Binding CurrentBoosterList}"
                                       SelectedItem="{Binding CurrentBoosterSelection}"
                                       SelectedIndex="{Binding CurrentBoosterIndex}"
-                                      Width="300" Height="500"
+                                      Width="300" Height="480"
                                       Margin="0,5,0,0">
                                 <ListView.View>
                                     <GridView>
@@ -1689,30 +1861,34 @@
                                 </ListView.View>
                             </ListView>
 
-                            <Grid Grid.Row="1" Margin="0,10,0,0">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                        <Grid Grid.Row="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                                <Button Content="New Attribute" 
-                                        Command="{Binding NewBoosterCommand}"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Top"
-                                        Style="{DynamicResource DataGridButton}"
-                                        Grid.Row="1"/>
+                            <Button Content="New" 
+                                    Command="{Binding NewBoosterCommand}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Style="{DynamicResource DataGridButton}"/>
 
-                                <Button Content="Delete Attribute"
-                                        Command="{Binding DeleteBoosterCommand}"
-                                        HorizontalAlignment="Right"
-                                        VerticalAlignment="Bottom"
-                                        Style="{DynamicResource DataGridButton}"
-                                        Grid.Column="2"/>
-                            </Grid>
-                        </StackPanel>
+                            <Button Content="Delete"
+                                    Command="{Binding DeleteBoosterCommand}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Bottom"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"/>
+                        </Grid>
 
-                        <GroupBox Grid.Column="2" Header="Attribute Details">
+
+                        <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Attribute Details">
                             <GroupBox.Visibility>
                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                     <Binding Path="CurrentBoosterSelection"/>

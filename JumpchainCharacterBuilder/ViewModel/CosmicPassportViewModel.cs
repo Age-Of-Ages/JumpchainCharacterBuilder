@@ -447,6 +447,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<ProfileAttribute> _currentPhysicalAttributeList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePhysicalAttributeCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePhysicalAttributeUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePhysicalAttributeDownCommand))]
         private ProfileAttribute _currentPhysicalAttributeSelection = new();
         [ObservableProperty]
         private int _currentPhysicalAttributeIndex = 0;
@@ -454,6 +456,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<ProfileAttribute> _currentMentalAttributeList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteMentalAttributeCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveMentalAttributeUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveMentalAttributeDownCommand))]
         private ProfileAttribute _currentMentalAttributeSelection = new();
         [ObservableProperty]
         private int _currentMentalAttributeIndex = 0;
@@ -461,6 +465,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<ProfileAttribute> _currentSupernaturalAttributeList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSupernaturalAttributeCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSupernaturalAttributeUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSupernaturalAttributeDownCommand))]
         private ProfileAttribute _currentSupernaturalAttributeSelection = new();
         [ObservableProperty]
         private int _currentSupernaturalAttributeIndex = 0;
@@ -469,6 +475,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<ProfileAttribute> _currentPhysicalSkillList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePhysicalSkillCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePhysicalSkillUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePhysicalSkillDownCommand))]
         private ProfileAttribute _currentPhysicalSkillSelection = new();
         [ObservableProperty]
         private int _currentPhysicalSkillIndex = 0;
@@ -476,6 +484,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<ProfileAttribute> _currentMentalSkillList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteMentalSkillCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveMentalSkillUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveMentalSkillDownCommand))]
         private ProfileAttribute _currentMentalSkillSelection = new();
         [ObservableProperty]
         private int _currentMentalSkillIndex = 0;
@@ -483,6 +493,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<ProfileAttribute> _currentSocialSkillList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSocialSkillCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSocialSkillUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSocialSkillDownCommand))]
         private ProfileAttribute _currentSocialSkillSelection = new();
         [ObservableProperty]
         private int _currentSocialSkillIndex = 0;
@@ -490,6 +502,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<ProfileAttribute> _currentTechnologicalSkillList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteTechnologicalSkillCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveTechnologicalSkillUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveTechnologicalSkillDownCommand))]
         private ProfileAttribute _currentTechnologicalSkillSelection = new();
         [ObservableProperty]
         private int _currentTechnologicalSkillIndex = 0;
@@ -497,6 +511,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<ProfileAttribute> _currentSupernaturalSkillList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSupernaturalSkillCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSupernaturalSkillUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSupernaturalSkillDownCommand))]
         private ProfileAttribute _currentSupernaturalSkillSelection = new();
         [ObservableProperty]
         private int _currentSupernaturalSkillIndex = 0;
@@ -3043,6 +3059,42 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeletePhysicalAttribute() => CurrentPhysicalAttributeList.Any() && CurrentPhysicalAttributeIndex != -1;
 
+        [RelayCommand(CanExecute = nameof(CanMovePhysicalAttributeUp))]
+        private void MovePhysicalAttributeUp()
+        {
+            int index = CurrentPhysicalAttributeIndex;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeSelection);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeSelection) - 1;
+
+            CurrentPhysicalAttributeList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
+            CurrentPhysicalAttributeIndex = index - 1;
+
+            DeletePhysicalAttributeCommand.NotifyCanExecuteChanged();
+            MovePhysicalAttributeUpCommand.NotifyCanExecuteChanged();
+            MovePhysicalAttributeDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMovePhysicalAttributeUp() => CurrentPhysicalAttributeIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMovePhysicalAttributeDown))]
+        private void MovePhysicalAttributeDown()
+        {
+            int index = CurrentPhysicalAttributeIndex;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeSelection);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentPhysicalAttributeSelection) + 1;
+
+            CurrentPhysicalAttributeList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
+            CurrentPhysicalAttributeIndex = index + 1;
+
+            DeletePhysicalAttributeCommand.NotifyCanExecuteChanged();
+            MovePhysicalAttributeUpCommand.NotifyCanExecuteChanged();
+            MovePhysicalAttributeDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMovePhysicalAttributeDown() => CurrentPhysicalAttributeIndex < CurrentPhysicalAttributeList.Count - 1;
+
         [RelayCommand]
         private void NewMentalAttribute()
         {
@@ -3073,6 +3125,42 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeleteMentalAttribute() => CurrentMentalAttributeList.Any() && CurrentMentalAttributeIndex != -1;
 
+        [RelayCommand(CanExecute = nameof(CanMoveMentalAttributeUp))]
+        private void MoveMentalAttributeUp()
+        {
+            int index = CurrentMentalAttributeIndex;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeSelection);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeSelection) - 1;
+
+            CurrentMentalAttributeList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
+            CurrentMentalAttributeIndex = index - 1;
+
+            DeleteMentalAttributeCommand.NotifyCanExecuteChanged();
+            MoveMentalAttributeUpCommand.NotifyCanExecuteChanged();
+            MoveMentalAttributeDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveMentalAttributeUp() => CurrentMentalAttributeIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveMentalAttributeDown))]
+        private void MoveMentalAttributeDown()
+        {
+            int index = CurrentMentalAttributeIndex;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeSelection);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentMentalAttributeSelection) + 1;
+
+            CurrentMentalAttributeList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
+            CurrentMentalAttributeIndex = index + 1;
+
+            DeleteMentalAttributeCommand.NotifyCanExecuteChanged();
+            MoveMentalAttributeUpCommand.NotifyCanExecuteChanged();
+            MoveMentalAttributeDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveMentalAttributeDown() => CurrentMentalAttributeIndex < CurrentMentalAttributeList.Count - 1;
+
         [RelayCommand]
         private void NewSupernaturalAttribute()
         {
@@ -3102,6 +3190,42 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         private bool CanDeleteSupernaturalAttribute() => CurrentSupernaturalAttributeList.Any() && CurrentSupernaturalAttributeIndex != -1;
+
+        [RelayCommand(CanExecute = nameof(CanMoveSupernaturalAttributeUp))]
+        private void MoveSupernaturalAttributeUp()
+        {
+            int index = CurrentSupernaturalAttributeIndex;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeSelection);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeSelection) - 1;
+
+            CurrentSupernaturalAttributeList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
+            CurrentSupernaturalAttributeIndex = index - 1;
+
+            DeleteSupernaturalAttributeCommand.NotifyCanExecuteChanged();
+            MoveSupernaturalAttributeUpCommand.NotifyCanExecuteChanged();
+            MoveSupernaturalAttributeDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSupernaturalAttributeUp() => CurrentSupernaturalAttributeIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveSupernaturalAttributeDown))]
+        private void MoveSupernaturalAttributeDown()
+        {
+            int index = CurrentSupernaturalAttributeIndex;
+            int indexList1 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeSelection);
+            int indexList2 = CharacterSelection.Attributes.IndexOf(CurrentSupernaturalAttributeSelection) + 1;
+
+            CurrentSupernaturalAttributeList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.Attributes.SwapListItems(indexList1, indexList2);
+            CurrentSupernaturalAttributeIndex = index + 1;
+
+            DeleteSupernaturalAttributeCommand.NotifyCanExecuteChanged();
+            MoveSupernaturalAttributeUpCommand.NotifyCanExecuteChanged();
+            MoveSupernaturalAttributeDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSupernaturalAttributeDown() => CurrentSupernaturalAttributeIndex < CurrentSupernaturalAttributeList.Count - 1;
 
         [RelayCommand]
         private void RefreshSkills() => AttributeCalculationClass.SkillCalculation(CharacterSelection,
@@ -3139,6 +3263,42 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeletePhysicalSkill() => CurrentPhysicalSkillList.Any() && CurrentPhysicalSkillIndex != -1;
 
+        [RelayCommand(CanExecute = nameof(CanMovePhysicalSkillUp))]
+        private void MovePhysicalSkillUp()
+        {
+            int index = CurrentPhysicalSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillSelection) - 1;
+
+            CurrentPhysicalSkillList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentPhysicalSkillIndex = index - 1;
+
+            DeletePhysicalSkillCommand.NotifyCanExecuteChanged();
+            MovePhysicalSkillUpCommand.NotifyCanExecuteChanged();
+            MovePhysicalSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMovePhysicalSkillUp() => CurrentPhysicalSkillIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMovePhysicalSkillDown))]
+        private void MovePhysicalSkillDown()
+        {
+            int index = CurrentPhysicalSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentPhysicalSkillSelection) + 1;
+
+            CurrentPhysicalSkillList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentPhysicalSkillIndex = index + 1;
+
+            DeletePhysicalSkillCommand.NotifyCanExecuteChanged();
+            MovePhysicalSkillUpCommand.NotifyCanExecuteChanged();
+            MovePhysicalSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMovePhysicalSkillDown() => CurrentPhysicalSkillIndex < CurrentPhysicalSkillList.Count - 1;
+
         [RelayCommand]
         private void NewMentalSkill()
         {
@@ -3168,6 +3328,42 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         private bool CanDeleteMentalSkill() => CurrentMentalSkillList.Any() && CurrentMentalSkillIndex != -1;
+
+        [RelayCommand(CanExecute = nameof(CanMoveMentalSkillUp))]
+        private void MoveMentalSkillUp()
+        {
+            int index = CurrentMentalSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillSelection) - 1;
+
+            CurrentMentalSkillList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentMentalSkillIndex = index - 1;
+
+            DeleteMentalSkillCommand.NotifyCanExecuteChanged();
+            MoveMentalSkillUpCommand.NotifyCanExecuteChanged();
+            MoveMentalSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveMentalSkillUp() => CurrentMentalSkillIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveMentalSkillDown))]
+        private void MoveMentalSkillDown()
+        {
+            int index = CurrentMentalSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentMentalSkillSelection) + 1;
+
+            CurrentMentalSkillList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentMentalSkillIndex = index + 1;
+
+            DeleteMentalSkillCommand.NotifyCanExecuteChanged();
+            MoveMentalSkillUpCommand.NotifyCanExecuteChanged();
+            MoveMentalSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveMentalSkillDown() => CurrentMentalSkillIndex < CurrentMentalSkillList.Count - 1;
 
         [RelayCommand]
         private void NewSocialSkill()
@@ -3202,6 +3398,42 @@ namespace JumpchainCharacterBuilder.ViewModel
             return CurrentSocialSkillList.Any() && CurrentSocialSkillIndex != -1;
         }
 
+        [RelayCommand(CanExecute = nameof(CanMoveSocialSkillUp))]
+        private void MoveSocialSkillUp()
+        {
+            int index = CurrentSocialSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillSelection) - 1;
+
+            CurrentSocialSkillList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentSocialSkillIndex = index - 1;
+
+            DeleteSocialSkillCommand.NotifyCanExecuteChanged();
+            MoveSocialSkillUpCommand.NotifyCanExecuteChanged();
+            MoveSocialSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSocialSkillUp() => CurrentSocialSkillIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveSocialSkillDown))]
+        private void MoveSocialSkillDown()
+        {
+            int index = CurrentSocialSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSocialSkillSelection) + 1;
+
+            CurrentSocialSkillList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentSocialSkillIndex = index + 1;
+
+            DeleteSocialSkillCommand.NotifyCanExecuteChanged();
+            MoveSocialSkillUpCommand.NotifyCanExecuteChanged();
+            MoveSocialSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSocialSkillDown() => CurrentSocialSkillIndex < CurrentSocialSkillList.Count - 1;
+
         [RelayCommand]
         private void NewTechnologicalSkill()
         {
@@ -3235,6 +3467,42 @@ namespace JumpchainCharacterBuilder.ViewModel
             return CurrentTechnologicalSkillList.Any() && CurrentTechnologicalSkillIndex != -1;
         }
 
+        [RelayCommand(CanExecute = nameof(CanMoveTechnologicalSkillUp))]
+        private void MoveTechnologicalSkillUp()
+        {
+            int index = CurrentTechnologicalSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillSelection) - 1;
+
+            CurrentTechnologicalSkillList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentTechnologicalSkillIndex = index - 1;
+
+            DeleteTechnologicalSkillCommand.NotifyCanExecuteChanged();
+            MoveTechnologicalSkillUpCommand.NotifyCanExecuteChanged();
+            MoveTechnologicalSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveTechnologicalSkillUp() => CurrentTechnologicalSkillIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveTechnologicalSkillDown))]
+        private void MoveTechnologicalSkillDown()
+        {
+            int index = CurrentTechnologicalSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentTechnologicalSkillSelection) + 1;
+
+            CurrentTechnologicalSkillList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentTechnologicalSkillIndex = index + 1;
+
+            DeleteTechnologicalSkillCommand.NotifyCanExecuteChanged();
+            MoveTechnologicalSkillUpCommand.NotifyCanExecuteChanged();
+            MoveTechnologicalSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveTechnologicalSkillDown() => CurrentTechnologicalSkillIndex < CurrentTechnologicalSkillList.Count - 1;
+
         [RelayCommand]
         private void NewSupernaturalSkill()
         {
@@ -3264,6 +3532,42 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         private bool CanDeleteSupernaturalSkill() => CurrentSupernaturalSkillList.Any() && CurrentSupernaturalSkillIndex != -1;
+
+        [RelayCommand(CanExecute = nameof(CanMoveSupernaturalSkillUp))]
+        private void MoveSupernaturalSkillUp()
+        {
+            int index = CurrentSupernaturalSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillSelection) - 1;
+
+            CurrentSupernaturalSkillList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentSupernaturalSkillIndex = index - 1;
+
+            DeleteSupernaturalSkillCommand.NotifyCanExecuteChanged();
+            MoveSupernaturalSkillUpCommand.NotifyCanExecuteChanged();
+            MoveSupernaturalSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSupernaturalSkillUp() => CurrentSupernaturalSkillIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveSupernaturalSkillDown))]
+        private void MoveSupernaturalSkillDown()
+        {
+            int index = CurrentSupernaturalSkillIndex;
+            int indexList1 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillSelection);
+            int indexList2 = CharacterSelection.Skills.IndexOf(CurrentSupernaturalSkillSelection) + 1;
+
+            CurrentSupernaturalSkillList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.Skills.SwapListItems(indexList1, indexList2);
+            CurrentSupernaturalSkillIndex = index + 1;
+
+            DeleteSupernaturalSkillCommand.NotifyCanExecuteChanged();
+            MoveSupernaturalSkillUpCommand.NotifyCanExecuteChanged();
+            MoveSupernaturalSkillDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSupernaturalSkillDown() => CurrentSupernaturalSkillIndex < CurrentSupernaturalSkillList.Count - 1;
 
         [RelayCommand]
         private void NewBooster()
@@ -3317,8 +3621,6 @@ namespace JumpchainCharacterBuilder.ViewModel
                 CurrentBoosterList.RemoveAt(CurrentBoosterIndex);
 
                 CurrentBoosterIndex = 0;
-
-
 
                 DeleteBoosterCommand.NotifyCanExecuteChanged();
             }
