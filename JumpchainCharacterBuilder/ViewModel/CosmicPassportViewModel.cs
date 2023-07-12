@@ -2491,7 +2491,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         private bool CanDeleteEssence() => EBMEssenceSelection != null && EBMEssenceList.Any();
-        
+
         [RelayCommand]
         private void NewEBMPerk()
         {

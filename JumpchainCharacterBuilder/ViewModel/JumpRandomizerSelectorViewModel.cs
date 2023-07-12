@@ -1,16 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using JumpchainCharacterBuilder.Attributes;
-using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -49,7 +43,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             InactiveJumpRandomizerLists = new(RandomizeListAccess.ReadJumpListFile());
             ActiveJumpRandomizerList = new();
-            
+
             if (InactiveJumpRandomizerLists.Any())
             {
                 ActiveJumpRandomizerList = InactiveJumpRandomizerLists.First();

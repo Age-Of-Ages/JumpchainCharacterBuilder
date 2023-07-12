@@ -3,14 +3,9 @@ using CommunityToolkit.Mvvm.Input;
 using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Model;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -45,7 +40,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (value != null)
             {
                 JumpRandomizerEntryList = new(value.ListEntries);
-                
+
                 if (value.ListEntries.Any())
                 {
                     JumpRandomizerEntrySelection = value.ListEntries.First();
@@ -78,7 +73,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Constructor
         public JumpRandomizerListViewModel()
         {
-            
+
         }
 
         public JumpRandomizerListViewModel(IDialogService dialogService)
@@ -122,7 +117,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ListName = $"Jump randomizer list #{InactiveJumpRandomizerLists.Count + 1}"
             };
-            
+
             InactiveJumpRandomizerLists.Add(newList);
 
             ActiveJumpRandomizerList = InactiveJumpRandomizerLists.Last();

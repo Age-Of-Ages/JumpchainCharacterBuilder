@@ -1,12 +1,6 @@
 ﻿using JumpchainCharacterBuilder.Model;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace JumpchainCharacterBuilder
 {
@@ -18,7 +12,7 @@ namespace JumpchainCharacterBuilder
             int index1;
             int index2;
 
-            
+
 
             return XmlAccess.ReadObject(filePath);
         }

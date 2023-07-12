@@ -47,6 +47,14 @@ The goal of this project is primarily to suit my own needs, but I have also made
    - Select Body-Mod, Warehouse, and Drawback Supplement used, and configure options for each. 
    - These options depend on the specific selections made, and can include various modes for certain Supplements, or on which Jump the Jumper took the Supplement.
    - Add your own user-defined Perk and Item categories, for sorting and displaying your Jumper's purchases.
+9. Input Formatter
+   - Correctly format text copied from PDF files to remove unwanted line breaks automatically, for easier pasting into various Jump build fields.
+   - Can choose to remove or leave intended line breaks (blank lines) in.
+10. Jump Randomizer
+   - Create any number of lists of Jumps in the Jump Randomizer Settings.
+   - Jumps can have a name, a weight to determine likelihood of selection, and a link to the Jump document.
+   - Use the Random Jump Selector to pick one or more randomly selected Jumps from these lists.
+   - Jump lists are not per-save and will be available for all Jumper saves.
 
 
 ## Use Instructions

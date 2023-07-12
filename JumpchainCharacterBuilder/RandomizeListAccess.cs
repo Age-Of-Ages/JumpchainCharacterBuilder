@@ -3,9 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace JumpchainCharacterBuilder
 {
@@ -106,7 +104,7 @@ namespace JumpchainCharacterBuilder
                             jumpWeight = 0;
                         }
 
-                        if (Uri.IsWellFormedUriString(splitString[2], UriKind.Absolute) && Uri.TryCreate(splitString[2], UriKind.Absolute, out Uri? result) && 
+                        if (Uri.IsWellFormedUriString(splitString[2], UriKind.Absolute) && Uri.TryCreate(splitString[2], UriKind.Absolute, out Uri? result) &&
                                                                                         (result.Scheme == Uri.UriSchemeHttp || result.Scheme == Uri.UriSchemeHttps))
                         {
                             jumpUri = new(splitString[2], UriKind.Absolute);

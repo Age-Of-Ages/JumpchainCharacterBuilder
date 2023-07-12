@@ -31,7 +31,7 @@ namespace JumpchainCharacterBuilder.Converters
                             {
                                 return Visibility.Visible;
                             }
-                        } 
+                        }
                     }
                 }
             }

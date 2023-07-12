@@ -17,7 +17,7 @@ namespace JumpchainCharacterBuilder.Views
             InitializeComponent();
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
-                this.DataContext = App.Current.Services.GetService<AboutViewModel>(); 
+                this.DataContext = App.Current.Services.GetService<AboutViewModel>();
             }
         }
 

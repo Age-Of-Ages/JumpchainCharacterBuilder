@@ -5,13 +5,11 @@ using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Runtime.CompilerServices;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -665,7 +663,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Constructor
         public JumpchainOptionsViewModel()
         {
-            
+
         }
 
         public JumpchainOptionsViewModel(IDialogService dialogService)
