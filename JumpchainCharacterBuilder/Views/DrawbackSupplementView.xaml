@@ -170,8 +170,13 @@
                                 Grid.Row="2"/>
                     </Grid>
 
-                    <GroupBox Header="House Rule details" Grid.Column="1"
-                              Visibility="{Binding HouseRuleSelection, Converter={StaticResource NullToVis}}">
+                    <GroupBox Header="House Rule details" Grid.Column="1">
+                        <GroupBox.Visibility>
+                            <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                <Binding Path="HouseRuleSelection"/>
+                                <Binding Path="HouseRuleList"/>
+                            </MultiBinding>
+                        </GroupBox.Visibility>
                         <Grid>
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>
@@ -276,8 +281,13 @@
                                 Grid.Row="2"/>
                     </Grid>
 
-                    <GroupBox Header="Drawback details" Grid.Column="2" Grid.ColumnSpan="2"
-                              Visibility="{Binding DrawbackSelection, Converter={StaticResource NullToVis}}">
+                    <GroupBox Header="Drawback details" Grid.Column="2" Grid.ColumnSpan="2">
+                        <GroupBox.Visibility>
+                            <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                <Binding Path="DrawbackSelection"/>
+                                <Binding Path="DrawbackList"/>
+                            </MultiBinding>
+                        </GroupBox.Visibility>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>

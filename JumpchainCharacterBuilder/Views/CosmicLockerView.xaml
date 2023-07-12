@@ -58,8 +58,13 @@
             </TabControl.ContentTemplate>
         </TabControl>
 
-        <GroupBox Header="Item Details" Grid.Row="1" Grid.Column="1" Background="White"
-                  Visibility="{Binding ItemSelection, Converter={StaticResource NullToVis}}">
+        <GroupBox Header="Item Details" Grid.Row="1" Grid.Column="1" Background="White">
+            <GroupBox.Visibility>
+                <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                    <Binding Path="ItemSelection"/>
+                    <Binding Path="CurrentItemList"/>
+                </MultiBinding>
+            </GroupBox.Visibility>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="2*"/>

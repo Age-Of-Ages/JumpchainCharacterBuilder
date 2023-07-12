@@ -341,8 +341,20 @@
                                 Grid.Row="2"/>
                     </Grid>
 
-                    <GroupBox Header="Purchase Details" Grid.Column="2"
-                              Visibility="{Binding PurchaseSelection, Converter={StaticResource NullToVis}}">
+                    <GroupBox Header="Purchase Details" Grid.Column="2">
+                        <GroupBox.Visibility>
+                            <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                <Binding Path="PurchaseSelection"/>
+                                <Binding Path="BasicsPurchaseList"/>
+                                <Binding Path="UtilitiesPurchaseList"/>
+                                <Binding Path="CosmeticPurchaseList"/>
+                                <Binding Path="FacilitiesPurchaseList"/>
+                                <Binding Path="ExtensionsPurchaseList"/>
+                                <Binding Path="EquipmentPurchaseList"/>
+                                <Binding Path="CompanionsPurchaseList"/>
+                                <Binding Path="MiscPurchaseList"/>
+                            </MultiBinding>
+                        </GroupBox.Visibility>
                         <Grid>
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>
@@ -391,8 +403,13 @@
                         </ListView.View>
                     </ListView>
 
-                    <GroupBox Header="Addition Details" Grid.Column="1"
-                              Visibility="{Binding AdditionSelection, Converter={StaticResource NullToVis}}">
+                    <GroupBox Header="Addition Details" Grid.Column="1">
+                        <GroupBox.Visibility>
+                            <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                <Binding Path="AdditionSelection"/>
+                                <Binding Path="AdditionList"/>
+                            </MultiBinding>
+                        </GroupBox.Visibility>
                         <Grid>
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>
@@ -495,8 +512,13 @@
                                 Grid.Row="2"/>
                     </Grid>
 
-                    <GroupBox Header="Limitation Details" Grid.Column="2"
-                              Visibility="{Binding LimitationSelection, Converter={StaticResource NullToVis}}">
+                    <GroupBox Header="Limitation Details" Grid.Column="2">
+                        <GroupBox.Visibility>
+                            <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                                <Binding Path="LimitationSelection"/>
+                                <Binding Path="LimitationList"/>
+                            </MultiBinding>
+                        </GroupBox.Visibility>
                         <Grid>
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>
