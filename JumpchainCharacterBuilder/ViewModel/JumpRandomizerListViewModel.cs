@@ -62,7 +62,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 JumpRandomizerEntrySelection.JumpUri = new(value);
             }
-            else if (value == "")
+            else if (value == "" || value == "about:Blank")
             {
                 JumpRandomizerEntrySelection.JumpUri = new("About:Blank");
             }
