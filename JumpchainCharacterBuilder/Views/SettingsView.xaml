@@ -8,7 +8,7 @@
         xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModel:SettingsViewModel, IsDesignTimeCreatable=True}"
-        Title="Input Formatter" Height="400" Width="400"
+        Title="Application Settings" Height="400" Width="400"
         Cursor="" 
         WindowStyle="SingleBorderWindow" 
         Background="white" 
