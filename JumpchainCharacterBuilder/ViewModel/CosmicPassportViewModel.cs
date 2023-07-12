@@ -526,7 +526,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnCharacterAltFormSelectionChanged(AltForm value) => LoadAltFormTraits();
 
-        partial void OnPerkTabIndexChanged(int value) => PerkTabChanged();
+        partial void OnPerkTabNameChanged(string value) => PerkTabChanged();
 
         partial void OnLoadedBodyModSupplementChanged(Options.BodyModSupplements value)
         {
@@ -1200,7 +1200,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCurrentPerkList()
         {
-            if (PerkTabName != "" && InactivePerkLists[CharacterSelection].ContainsKey(PerkTabName))
+            if (!string.IsNullOrWhiteSpace(PerkTabName) && InactivePerkLists[CharacterSelection].ContainsKey(PerkTabName))
             {
                 CurrentPerkList = new(InactivePerkLists[CharacterSelection][PerkTabName]);
             }

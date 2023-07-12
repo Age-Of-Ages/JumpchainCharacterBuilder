@@ -336,7 +336,8 @@
                     </Grid.ColumnDefinitions>
 
                     <TabControl ItemsSource="{Binding ActivePerkLists}"
-                                SelectedItem="{Binding PerkTabName, Mode=OneWay}" 
+                                SelectedValue="{Binding PerkTabName}" 
+                                SelectedValuePath="Key"
                                 SelectedIndex="{Binding PerkTabIndex}">
                         <TabControl.ItemTemplate>
                             <DataTemplate>
