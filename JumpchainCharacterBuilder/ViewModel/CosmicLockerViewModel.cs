@@ -46,7 +46,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         #region Properties
 
-        partial void OnItemTabIndexChanged(int value) => LockerTabChanged();
+        partial void OnItemTabNameChanged(string value) => LockerTabChanged();
 
         partial void OnCharacterSelectionChanged(Character value)
         {
@@ -170,7 +170,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCurrentItemList()
         {
-            if (ItemTabName != "" && InactiveItemLists[CharacterSelection].ContainsKey(ItemTabName))
+            if (!string.IsNullOrWhiteSpace(ItemTabName) && InactiveItemLists[CharacterSelection].ContainsKey(ItemTabName))
             {
                 CurrentItemList = new(InactiveItemLists[CharacterSelection][ItemTabName]);
             }

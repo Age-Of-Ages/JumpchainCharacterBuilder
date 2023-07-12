@@ -29,7 +29,8 @@
         </StackPanel>
 
         <TabControl ItemsSource="{Binding ActiveItemLists}"
-                    SelectedItem="{Binding ItemTabName, Mode=OneWay}" 
+                    SelectedValue="{Binding ItemTabName}" 
+                    SelectedValuePath="Key"
                     SelectedIndex="{Binding ItemTabIndex}"
                     Grid.Row="1">
             <TabControl.ItemTemplate>
