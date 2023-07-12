@@ -1438,7 +1438,7 @@
                                     <TextBlock Text=" : 1"/>
                                 </StackPanel>
 
-                                <TextBlock Text="WP earned" Margin="0,15,0,0"/>
+                                <TextBlock Text="BP earned" Margin="0,15,0,0"/>
                                 <TextBox Text="{Binding BodyModPointsGained, Mode=OneWay}" IsReadOnly="True"
                                          Width="40"/>
                             </StackPanel>
