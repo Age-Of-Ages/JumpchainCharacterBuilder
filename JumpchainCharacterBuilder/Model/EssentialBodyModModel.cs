@@ -37,6 +37,33 @@ namespace JumpchainCharacterBuilder.Model
             StandardAccess
         }
 
+        public enum EPAccessModifier
+        {
+            None,
+            Cumulative,
+            RetroCumulative
+        }
+
+        public enum UnbalancedVariantMode
+        {
+            None,
+            Harmonized,
+            VeryHarmonized,
+            PerfectlyHarmonized
+        }
+
+        public enum Limiters
+        {
+            None,
+            EverydayHero,
+            StreetLevel,
+            MidLevel,
+            BodyMod,
+            ScalingI,
+            ScalingII,
+            Vanishing
+        }
+
         /// <summary>
         /// Represents the starting budget for the selected Body Mod Supplement.
         /// </summary>
@@ -68,23 +95,41 @@ namespace JumpchainCharacterBuilder.Model
         private EPAccessModes _ePAccessMode = new();
 
         /// <summary>
-        /// Represents whether the above mode should be given the Cumulative
-        /// modifier or not.
+        /// Represents if the Unlockable modifier has been selected for the Essence Mode.
         /// </summary>
         [ObservableProperty]
-        private bool _cumulativeAccess = false;
+        private bool _unlockableEssenceModifier = false;
 
         /// <summary>
-        /// Represents whether the Tempered By Suffering option has been selected.
+        /// Represents whether investment should be limited to the values allowed by the selected Access Mode
+        /// and cumulative/retroactive if those options are selected.
+        /// </summary>
+        [ObservableProperty]
+        private bool _limitInvestment = true;
+
+        /// <summary>
+        /// Represents what modifier the EP Access Mode should be given, if any.
+        /// </summary>
+        [ObservableProperty]
+        private EPAccessModifier _ePAccessModifier = new();
+
+        /// <summary>
+        /// Represents if the Training Allowance Variant Mode has been selected.
+        /// </summary>
+        [ObservableProperty]
+        private bool _trainingAllowance = false;
+
+        /// <summary>
+        /// Represents if the Tempered By Suffering Variant Mode has been selected.
         /// </summary>
         [ObservableProperty]
         private bool _temperedBySuffering = false;
 
         /// <summary>
-        /// Represents the unbalanced mode selection of the Body Mod.
+        /// Represents what Unbalanced Mode should be used, if any.
         /// </summary>
         [ObservableProperty]
-        private string _unbalancedMode = "";
+        private UnbalancedVariantMode _unbalancedMode = new();
 
         /// <summary>
         /// Represents the description of the selected Unbalanced Mode.
@@ -96,7 +141,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the limiters selection of the Body Mod.
         /// </summary>
         [ObservableProperty]
-        private string _limiters = "";
+        private Limiters _limiters = new();
 
         /// <summary>
         /// Represents the description of the selected Limiter.

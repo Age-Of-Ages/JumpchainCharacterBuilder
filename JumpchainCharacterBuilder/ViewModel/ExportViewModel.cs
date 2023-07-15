@@ -12,6 +12,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class ExportViewModel : ViewModelBase
     {
+        // TODO - Update the Essential Body Mod export to use the new updated options.
         #region Fields
         private readonly IDialogService _dialogService;
 
