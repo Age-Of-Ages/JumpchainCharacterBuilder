@@ -381,13 +381,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (value != null)
             {
                 ListValidationClass.CheckBuildCount(JumpSelection, CharacterSelectionIndex);
-                if (BuildTabIndex == 0)
-                {
-                    LoadOriginSelection();
-                    LoadMiscOriginList();
-                    Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
-                }
-                else if (BuildTabIndex == 3 || BuildTabIndex == 4)
+
+                LoadOriginSelection();
+                LoadMiscOriginList();
+
+                if (BuildTabIndex == 0 || BuildTabIndex == 3 || BuildTabIndex == 4)
                 {
                     Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
                 }
