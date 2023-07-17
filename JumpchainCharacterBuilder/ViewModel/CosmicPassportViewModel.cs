@@ -112,6 +112,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _drawbackBP = 0;
         [ObservableProperty]
         private int _questBP = 0;
+        [ObservableProperty]
+        private int _gauntletBP = 0;
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteBodyModPurchaseCommand))]
@@ -1310,6 +1312,36 @@ namespace JumpchainCharacterBuilder.ViewModel
                         JumpBPGained = 0;
                     }
 
+                    if (LoadedSave.EssentialBodyMod.EPAccessModifier != EssentialBodyMod.EPAccessModifiers.RetroCumulative &&
+                        LoadedSave.EssentialBodyMod.TemperedBySuffering)
+                    {
+                        int delay = CharacterSelection.BodyMod.SupplementDelay - 1;
+                        if (delay < 0)
+                        {
+                            delay = 0;
+                        }
+                        int gauntletBonus = 0;
+
+                        foreach (Jump jump in LoadedSave.JumpList)
+                        {
+                            if (jump.JumpNumber > delay)
+                            {
+                                break;
+                            }
+
+                            if (jump.IsGauntlet)
+                            {
+                                gauntletBonus += 100;
+                            }
+                        }
+
+                        GauntletBP = gauntletBonus;
+                    }
+                    else
+                    {
+                        GauntletBP = 0;
+                    }
+
                     if (LoadedSave.EssentialBodyMod.InvestmentAllowed)
                     {
                         CalculateInvestedCP(CharacterSelectionIndex);
@@ -1685,6 +1717,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case Options.BodyModSupplements.EssentialBodyMod:
                     TotalBP = LoadedSave.EssentialBodyMod.Budget;
                     TotalBP += JumpBPGained;
+                    TotalBP += GauntletBP;
                     TotalBP += BPBought;
                     TotalBP += DrawbackBP;
                     TotalBP += QuestBP;

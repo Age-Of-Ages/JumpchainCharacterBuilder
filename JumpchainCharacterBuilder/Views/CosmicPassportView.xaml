@@ -3160,6 +3160,10 @@
                                                     HorizontalAlignment="Left"
                                                     VerticalAlignment="Center"
                                                     Style="{DynamicResource DataGridButton}"/>
+
+                                            <TextBlock Text="Gauntlet EP Total" Margin="0,24,0,0"/>
+                                            <TextBox Text="{Binding GauntletBP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                     Width="40"/>
                                         </StackPanel>
 
                                         <StackPanel Grid.Column="2" Margin="0,3,0,0">
