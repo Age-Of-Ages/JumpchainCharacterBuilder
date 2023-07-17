@@ -3998,10 +3998,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                                     output.Add("Advancement Mode: " + LoadedSave.EssentialBodyMod.AdvancementMode.ToString());
 
                                     line = "EP Access Mode: " + epAccessMode;
-                                    if (LoadedSave.EssentialBodyMod.CumulativeAccess)
-                                    {
-                                        line += " (Cumulative)";
-                                    }
+                                    //if (LoadedSave.EssentialBodyMod.CumulativeAccess)
+                                    //{
+                                    //    line += " (Cumulative)";
+                                    //}
 
                                     output.Add(line);
 

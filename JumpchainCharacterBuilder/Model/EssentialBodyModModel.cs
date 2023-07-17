@@ -37,14 +37,14 @@ namespace JumpchainCharacterBuilder.Model
             StandardAccess
         }
 
-        public enum EPAccessModifier
+        public enum EPAccessModifiers
         {
             None,
             Cumulative,
             RetroCumulative
         }
 
-        public enum UnbalancedVariantMode
+        public enum UnbalancedVariantModes
         {
             None,
             Harmonized,
@@ -111,7 +111,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents what modifier the EP Access Mode should be given, if any.
         /// </summary>
         [ObservableProperty]
-        private EPAccessModifier _ePAccessModifier = new();
+        private EPAccessModifiers _ePAccessModifier = new();
 
         /// <summary>
         /// Represents if the Training Allowance Variant Mode has been selected.
@@ -129,7 +129,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents what Unbalanced Mode should be used, if any.
         /// </summary>
         [ObservableProperty]
-        private UnbalancedVariantMode _unbalancedMode = new();
+        private UnbalancedVariantModes _unbalancedVariantMode = new();
 
         /// <summary>
         /// Represents the description of the selected Unbalanced Mode.
@@ -138,10 +138,10 @@ namespace JumpchainCharacterBuilder.Model
         private string _unbalancedModeDescription = "";
 
         /// <summary>
-        /// Represents the limiters selection of the Body Mod.
+        /// Represents the limiter selection of the Body Mod.
         /// </summary>
         [ObservableProperty]
-        private Limiters _limiters = new();
+        private Limiters _limiter = new();
 
         /// <summary>
         /// Represents the description of the selected Limiter.

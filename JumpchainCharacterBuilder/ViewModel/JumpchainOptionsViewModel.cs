@@ -90,11 +90,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _pRInvestmentRatio = 25;
 
         [ObservableProperty]
-        private bool _genericBodyModSelected = true;
+        private bool _genericBodyModSelected = false;
         [ObservableProperty]
         private bool _sBBodyModSelected = false;
         [ObservableProperty]
-        private bool _essentialBodyModSelected = false;
+        private bool _essentialBodyModSelected = true;
 
         [ObservableProperty]
         private int _sBBodyModBudget = 1000;
@@ -110,11 +110,37 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private EssentialBodyMod.EssenceModes _eBMEssenceModeSelection = new();
         [ObservableProperty]
+        private bool _eBMUnlockableEssenceModifierAvailable = false;
+        [ObservableProperty]
+        private bool _eBMUnlockableEssenceModifier = false;
+        [ObservableProperty]
         private EssentialBodyMod.AdvancementModes _eBMAdvancementModeSelection = new();
         [ObservableProperty]
         private EssentialBodyMod.EPAccessModes _eBMEPAccessModeSelection = new();
         [ObservableProperty]
+        private bool _eBMEPAccessModifiersAvailable = false;
+        [ObservableProperty]
+        private EssentialBodyMod.EPAccessModifiers _eBMEPAccessModifier = new();
+        [ObservableProperty]
+        private bool _eBMTrainingAllowanceAvailable = true;
+        [ObservableProperty]
+        private bool _eBMTrainingAllowance = false;
+        [ObservableProperty]
+        private bool _eBMTemperedBySufferingAvailable = true;
+        [ObservableProperty]
+        private bool _eBMTemperedBySuffering = false;
+        [ObservableProperty]
+        private EssentialBodyMod.UnbalancedVariantModes _eBMUnbalancedMode = new();
+        [ObservableProperty]
+        private string _eBMUnbalancedModeDescription = "";
+        [ObservableProperty]
+        private EssentialBodyMod.Limiters _eBMLimiter = new();
+        [ObservableProperty]
+        private string _eBMLimiterDescription = "";
+        [ObservableProperty]
         private bool _eBMInvestmentAllowed = false;
+        [ObservableProperty]
+        private bool _eBMLimitInvestment = true;
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [Range(1, int.MaxValue, ErrorMessage = "Ratio cannot be lower than 1:1.")]
@@ -408,7 +434,21 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnEBMEssenceModeSelectionChanged(EssentialBodyMod.EssenceModes value) => LoadedSave.EssentialBodyMod.EssenceMode = value;
+        partial void OnEBMEssenceModeSelectionChanged(EssentialBodyMod.EssenceModes value)
+        {
+            LoadedSave.EssentialBodyMod.EssenceMode = value;
+
+            if (value != EssentialBodyMod.EssenceModes.NoEssence)
+            {
+                EBMUnlockableEssenceModifierAvailable = true;
+            }
+            else
+            {
+                EBMUnlockableEssenceModifierAvailable = false;
+            }
+        }
+
+        partial void OnEBMUnlockableEssenceModifierChanged(bool value) => LoadedSave.EssentialBodyMod.UnlockableEssenceModifier = value;
 
         partial void OnEBMAdvancementModeSelectionChanged(EssentialBodyMod.AdvancementModes value)
         {
@@ -419,18 +459,33 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case EssentialBodyMod.AdvancementModes.Standard:
                     LoadedSave.EssentialBodyMod.IncrementalBudget = 0;
                     LoadedSave.EssentialBodyMod.IncrementalInterval = 1;
+
+                    if (EBMEPAccessModeSelection == EssentialBodyMod.EPAccessModes.NoAccess)
+                    {
+                        EBMTrainingAllowanceAvailable = true;
+                    }
+                    else
+                    {
+                        EBMTrainingAllowanceAvailable = false;
+                    }
                     break;
                 case EssentialBodyMod.AdvancementModes.Meteoric:
                     LoadedSave.EssentialBodyMod.IncrementalBudget = 100;
                     LoadedSave.EssentialBodyMod.IncrementalInterval = 1;
+
+                    EBMTrainingAllowanceAvailable = false;
                     break;
                 case EssentialBodyMod.AdvancementModes.Heroic:
                     LoadedSave.EssentialBodyMod.IncrementalBudget = 50;
                     LoadedSave.EssentialBodyMod.IncrementalInterval = 1;
+
+                    EBMTrainingAllowanceAvailable = false;
                     break;
                 case EssentialBodyMod.AdvancementModes.Questing:
                     LoadedSave.EssentialBodyMod.IncrementalBudget = 0;
                     LoadedSave.EssentialBodyMod.IncrementalInterval = 1;
+
+                    EBMTrainingAllowanceAvailable = false;
                     break;
                 default:
                     break;
@@ -444,14 +499,55 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (EBMEPAccessModeSelection == EssentialBodyMod.EPAccessModes.NoAccess)
             {
                 EBMInvestmentAllowed = false;
+                EBMEPAccessModifiersAvailable = false;
+                
+                if (EBMAdvancementModeSelection == EssentialBodyMod.AdvancementModes.Standard)
+                {
+                    EBMTrainingAllowanceAvailable = true;
+                }
+                else
+                {
+                    EBMTrainingAllowanceAvailable = false;
+                }
             }
             else
             {
                 EBMInvestmentAllowed = true;
+                EBMEPAccessModifiersAvailable = true;
+                EBMTrainingAllowanceAvailable = false;
             }
 
         }
+
+        partial void OnEBMEPAccessModifierChanged(EssentialBodyMod.EPAccessModifiers value)
+        {
+            LoadedSave.EssentialBodyMod.EPAccessModifier = value;
+
+            if (value != EssentialBodyMod.EPAccessModifiers.RetroCumulative)
+            {
+                EBMTemperedBySufferingAvailable = true;
+            }
+            else
+            {
+                EBMTemperedBySufferingAvailable = false;
+            }
+        }
+
+        partial void OnEBMTrainingAllowanceChanged(bool value) => LoadedSave.EssentialBodyMod.TrainingAllowance = value;
+
+        partial void OnEBMTemperedBySufferingChanged(bool value) => LoadedSave.EssentialBodyMod.TemperedBySuffering = value;
+
+        partial void OnEBMUnbalancedModeChanged(EssentialBodyMod.UnbalancedVariantModes value) => LoadedSave.EssentialBodyMod.UnbalancedVariantMode = value;
+
+        partial void OnEBMUnbalancedModeDescriptionChanged(string value) => LoadedSave.EssentialBodyMod.UnbalancedModeDescription = value;
+
+        partial void OnEBMLimiterChanged(EssentialBodyMod.Limiters value) => LoadedSave.EssentialBodyMod.Limiter = value;
+
+        partial void OnEBMLimiterDescriptionChanged(string value) => LoadedSave.EssentialBodyMod.LimiterDescription = value;
+
         partial void OnEBMInvestmentAllowedChanged(bool value) => LoadedSave.EssentialBodyMod.InvestmentAllowed = value;
+
+        partial void OnEBMLimitInvestmentChanged(bool value) => LoadedSave.EssentialBodyMod.LimitInvestment = value;
 
         partial void OnEBMInvestmentRatioChanged(int value)
         {
@@ -658,6 +754,36 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {"Standard", EssentialBodyMod.EPAccessModes.StandardAccess}
             };
 
+        public Dictionary<string, EssentialBodyMod.EPAccessModifiers> EBMEPAccessModifierList { get; } =
+            new()
+            {
+                {"None", EssentialBodyMod.EPAccessModifiers.None },
+                {"Cumulative", EssentialBodyMod.EPAccessModifiers.Cumulative },
+                {"Retroactive Cumulative", EssentialBodyMod.EPAccessModifiers.RetroCumulative }
+            };
+
+        public Dictionary<string, EssentialBodyMod.UnbalancedVariantModes> EBMUnbalancedVariantModeList { get; } =
+            new()
+            {
+                {"None", EssentialBodyMod.UnbalancedVariantModes.None },
+                {"Harmonized Essence", EssentialBodyMod.UnbalancedVariantModes.Harmonized },
+                {"Very Harmonized Essence", EssentialBodyMod.UnbalancedVariantModes.VeryHarmonized },
+                {"Perfectly Harmonized Essence", EssentialBodyMod.UnbalancedVariantModes.PerfectlyHarmonized }
+            };
+
+        public Dictionary<string, EssentialBodyMod.Limiters> EBMLimiterList { get; } =
+            new()
+            {
+                {"None", EssentialBodyMod.Limiters.None },
+                {"Everyday Hero Limiter", EssentialBodyMod.Limiters.EverydayHero },
+                {"Street Level Limiter", EssentialBodyMod.Limiters.StreetLevel },
+                {"Mid Level Limiter", EssentialBodyMod.Limiters.MidLevel },
+                {"Body Mod Limiter", EssentialBodyMod.Limiters.BodyMod },
+                {"Scaling Limiter I", EssentialBodyMod.Limiters.ScalingI },
+                {"Scaling Limiter II", EssentialBodyMod.Limiters.ScalingII },
+                {"Vanishing Limiter", EssentialBodyMod.Limiters.Vanishing }
+            };
+
         #endregion
 
         #region Constructor
@@ -725,8 +851,53 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             EBMStartingModeSelection = LoadedSave.EssentialBodyMod.StartingMode;
             EBMEssenceModeSelection = LoadedSave.EssentialBodyMod.EssenceMode;
+            EBMUnlockableEssenceModifier = LoadedSave.EssentialBodyMod.UnlockableEssenceModifier;
             EBMAdvancementModeSelection = LoadedSave.EssentialBodyMod.AdvancementMode;
             EBMEPAccessModeSelection = LoadedSave.EssentialBodyMod.EPAccessMode;
+            EBMEPAccessModifier = LoadedSave.EssentialBodyMod.EPAccessModifier;
+            EBMTrainingAllowance = LoadedSave.EssentialBodyMod.TrainingAllowance;
+            EBMTemperedBySuffering = LoadedSave.EssentialBodyMod.TemperedBySuffering;
+            EBMUnbalancedMode = LoadedSave.EssentialBodyMod.UnbalancedVariantMode;
+            EBMUnbalancedModeDescription = LoadedSave.EssentialBodyMod.UnbalancedModeDescription;
+            EBMLimiter = LoadedSave.EssentialBodyMod.Limiter;
+            EBMLimiterDescription = LoadedSave.EssentialBodyMod.LimiterDescription;
+            EBMLimitInvestment = LoadedSave.EssentialBodyMod.LimitInvestment;
+
+            if (EBMEssenceModeSelection != EssentialBodyMod.EssenceModes.NoEssence)
+            {
+                EBMUnlockableEssenceModifierAvailable = true;
+            }
+            else
+            {
+                EBMUnlockableEssenceModifierAvailable = false;
+            }
+            if (EBMAdvancementModeSelection == EssentialBodyMod.AdvancementModes.Standard && EBMEPAccessModeSelection == EssentialBodyMod.EPAccessModes.NoAccess)
+            {
+                EBMTrainingAllowanceAvailable = true;
+            }
+            else
+            {
+                EBMTrainingAllowanceAvailable = false;
+            }
+            if (EBMEPAccessModeSelection == EssentialBodyMod.EPAccessModes.NoAccess)
+            {
+                EBMInvestmentAllowed = false;
+                EBMEPAccessModifiersAvailable = false;
+            }
+            else
+            {
+                EBMInvestmentAllowed = true;
+                EBMEPAccessModifiersAvailable = true;
+            }
+            if (EBMEPAccessModifier != EssentialBodyMod.EPAccessModifiers.RetroCumulative)
+            {
+                EBMTemperedBySufferingAvailable = true;
+            }
+            else
+            {
+                EBMTemperedBySufferingAvailable = false;
+            }
+
 
             GBMBudget = LoadedSave.GenericBodyMod.Budget;
             GBMIncrementalBudget = LoadedSave.GenericBodyMod.IncrementalBudget;
