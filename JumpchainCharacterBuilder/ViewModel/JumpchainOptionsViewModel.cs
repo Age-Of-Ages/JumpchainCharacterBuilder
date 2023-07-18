@@ -199,6 +199,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<string> _userPerkCategories = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePerkCategoryCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePerkCategoryUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MovePerkCategoryDownCommand))]
         [NotifyDataErrorInfo]
         [UniqueName(nameof(CompiledPerkCategories))]
         private string _userPerkCategorySelection = "";
@@ -208,6 +210,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<string> _userItemCategories = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteItemCategoryCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveItemCategoryUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveItemCategoryDownCommand))]
         [NotifyDataErrorInfo]
         [UniqueName(nameof(CompiledItemCategories))]
         private string _userItemCategorySelection = "";
@@ -1035,10 +1039,39 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeletePerkCategory()
+        private bool CanDeletePerkCategory() => UserPerkCategorySelection != "" && UserPerkCategorySelection != null && UserPerkCategoryIndex != -1;
+
+        [RelayCommand(CanExecute = nameof(CanMovePerkCategoryUp))]
+        private void MovePerkCategoryUp()
         {
-            return UserPerkCategorySelection != "" && UserPerkCategorySelection != null && UserPerkCategoryIndex != -1;
+            int index = UserPerkCategoryIndex;
+
+            UserPerkCategories.SwapCollectionItems(index, index - 1);
+            LoadedSave.UserPerkCategoryList.SwapListItems(index, index - 1);
+            UserPerkCategoryIndex = index - 1;
+
+            DeletePerkCategoryCommand.NotifyCanExecuteChanged();
+            MovePerkCategoryUpCommand.NotifyCanExecuteChanged();
+            MovePerkCategoryDownCommand.NotifyCanExecuteChanged();
         }
+
+        private bool CanMovePerkCategoryUp() => UserPerkCategoryIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMovePerkCategoryDown))]
+        private void MovePerkCategoryDown()
+        {
+            int index = UserPerkCategoryIndex;
+
+            UserPerkCategories.SwapCollectionItems(index, index + 1);
+            LoadedSave.UserPerkCategoryList.SwapListItems(index, index + 1);
+            UserPerkCategoryIndex = index + 1;
+
+            DeletePerkCategoryCommand.NotifyCanExecuteChanged();
+            MovePerkCategoryUpCommand.NotifyCanExecuteChanged();
+            MovePerkCategoryDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMovePerkCategoryDown() => UserPerkCategoryIndex < UserPerkCategories.Count - 1;
 
         [RelayCommand]
         private void NewItemCategory()
@@ -1088,10 +1121,39 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private bool CanDeleteItemCategory()
+        private bool CanDeleteItemCategory() => UserItemCategorySelection != "" && UserItemCategorySelection != null && UserItemCategoryIndex != -1;
+
+        [RelayCommand(CanExecute = nameof(CanMoveItemCategoryUp))]
+        private void MoveItemCategoryUp()
         {
-            return UserItemCategorySelection != "" && UserItemCategorySelection != null && UserItemCategoryIndex != -1;
+            int index = UserItemCategoryIndex;
+
+            UserItemCategories.SwapCollectionItems(index, index - 1);
+            LoadedSave.UserItemCategoryList.SwapListItems(index, index - 1);
+            UserItemCategoryIndex = index - 1;
+
+            DeleteItemCategoryCommand.NotifyCanExecuteChanged();
+            MoveItemCategoryUpCommand.NotifyCanExecuteChanged();
+            MoveItemCategoryDownCommand.NotifyCanExecuteChanged();
         }
+
+        private bool CanMoveItemCategoryUp() => UserItemCategoryIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveItemCategoryDown))]
+        private void MoveItemCategoryDown()
+        {
+            int index = UserItemCategoryIndex;
+
+            UserItemCategories.SwapCollectionItems(index, index + 1);
+            LoadedSave.UserItemCategoryList.SwapListItems(index, index + 1);
+            UserItemCategoryIndex = index + 1;
+
+            DeleteItemCategoryCommand.NotifyCanExecuteChanged();
+            MoveItemCategoryUpCommand.NotifyCanExecuteChanged();
+            MoveItemCategoryDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveItemCategoryDown() => UserItemCategoryIndex < UserItemCategories.Count - 1;
         #endregion
     }
 }

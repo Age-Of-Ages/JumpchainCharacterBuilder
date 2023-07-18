@@ -15,6 +15,7 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class CosmicPassportViewModel : ViewModelBase
     {
         // TODO - Improve the attribute type/category system, as the current implementation is definitely kind of rough.
+        // TODO - Implement Booster reordering.
         #region Fields
         private readonly IDialogService _dialogService;
 
