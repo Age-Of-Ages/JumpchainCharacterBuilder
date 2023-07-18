@@ -637,7 +637,120 @@ namespace JumpchainCharacterBuilder.ViewModel
         partial void OnBodyModPointsInvestedChanged(int value)
         {
             BodyModPointsGained = value / BodyModInvestmentRatio;
-            JumpSelection.Build[CharacterSelectionIndex].BodyModInvestment = value;
+
+            if (LoadedBodyModSupplement == Options.BodyModSupplements.EssentialBodyMod && LoadedSave.EssentialBodyMod.LimitInvestment)
+            {
+                int jumpInvestmentTotal = 0;
+
+                if (LoadedSave.EssentialBodyMod.EPAccessMode == EssentialBodyMod.EPAccessModes.LesserAccess)
+                {
+                    switch (LoadedSave.EssentialBodyMod.EPAccessModifier)
+                    {
+                        case EssentialBodyMod.EPAccessModifiers.None:
+                            if (BodyModPointsGained > 50)
+                            {
+                                BodyModPointsInvested = 50 * BodyModInvestmentRatio;
+                            }
+                            break;
+                        case EssentialBodyMod.EPAccessModifiers.Cumulative:
+                            int currentJumpIndex = JumpList.IndexOf(JumpSelection);
+                            List<Jump> jumps = JumpList.Where(x => (x.JumpNumber >= CharacterSelection.BodyMod.SupplementDelay && JumpList.IndexOf(x) < currentJumpIndex)).ToList();
+
+                            foreach (Jump jump in jumps)
+                            {
+                                ListValidationClass.CheckBuildCount(jump, CharacterSelectionIndex);
+
+                                jumpInvestmentTotal += 50;
+                                jumpInvestmentTotal -= jump.Build[CharacterSelectionIndex].BodyModInvestment / BodyModInvestmentRatio;
+                            }
+
+                            jumpInvestmentTotal += 50;
+
+                            if (jumpInvestmentTotal < BodyModPointsGained)
+                            {
+                                BodyModPointsInvested = jumpInvestmentTotal * BodyModInvestmentRatio;
+                            }
+                            break;
+                        case EssentialBodyMod.EPAccessModifiers.RetroCumulative:
+                            foreach (Jump jump in JumpList)
+                            {
+                                jumpInvestmentTotal += 50;
+
+                                if (jump == JumpSelection)
+                                {
+                                    break;
+                                }
+
+                                ListValidationClass.CheckBuildCount(jump, CharacterSelectionIndex);
+
+                                jumpInvestmentTotal -= jump.Build[CharacterSelectionIndex].BodyModInvestment / BodyModInvestmentRatio;
+                            }
+
+                            if (jumpInvestmentTotal < BodyModPointsGained)
+                            {
+                                BodyModPointsInvested = jumpInvestmentTotal * BodyModInvestmentRatio;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else if (LoadedSave.EssentialBodyMod.EPAccessMode == EssentialBodyMod.EPAccessModes.StandardAccess)
+                {
+                    switch (LoadedSave.EssentialBodyMod.EPAccessModifier)
+                    {
+                        case EssentialBodyMod.EPAccessModifiers.None:
+                            if (BodyModPointsGained > 100)
+                            {
+                                BodyModPointsInvested = 100 * BodyModInvestmentRatio;
+                            }
+                            break;
+                        case EssentialBodyMod.EPAccessModifiers.Cumulative:
+                            int currentJumpIndex = JumpList.IndexOf(JumpSelection);
+                            List<Jump> jumps = JumpList.Where(x => (x.JumpNumber >= CharacterSelection.BodyMod.SupplementDelay && JumpList.IndexOf(x) < currentJumpIndex)).ToList();
+
+                            foreach (Jump jump in jumps)
+                            {
+                                ListValidationClass.CheckBuildCount(jump, CharacterSelectionIndex);
+
+                                jumpInvestmentTotal += 100;
+                                jumpInvestmentTotal -= jump.Build[CharacterSelectionIndex].BodyModInvestment / BodyModInvestmentRatio;
+                            }
+
+                            jumpInvestmentTotal += 100;
+
+                            if (jumpInvestmentTotal < BodyModPointsGained)
+                            {
+                                BodyModPointsInvested = jumpInvestmentTotal * BodyModInvestmentRatio;
+                            }
+                            break;
+                        case EssentialBodyMod.EPAccessModifiers.RetroCumulative:
+                            foreach (Jump jump in JumpList)
+                            {
+                                jumpInvestmentTotal += 100;
+
+                                if (jump == JumpSelection)
+                                {
+                                    break;
+                                }
+
+                                ListValidationClass.CheckBuildCount(jump, CharacterSelectionIndex);
+
+                                jumpInvestmentTotal -= jump.Build[CharacterSelectionIndex].BodyModInvestment / BodyModInvestmentRatio;
+                            }
+
+                            if (jumpInvestmentTotal < BodyModPointsGained)
+                            {
+                                BodyModPointsInvested = jumpInvestmentTotal * BodyModInvestmentRatio;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            JumpSelection.Build[CharacterSelectionIndex].BodyModInvestment = BodyModPointsInvested;
         }
 
         partial void OnIsGauntletChanged(bool value) => JumpSelection.IsGauntlet = value;

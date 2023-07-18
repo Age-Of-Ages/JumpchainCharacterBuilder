@@ -140,7 +140,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _eBMInvestmentAllowed = false;
         [ObservableProperty]
-        private bool _eBMLimitInvestment = true;
+        private bool _eBMLimitInvestment = false;
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [Range(1, int.MaxValue, ErrorMessage = "Ratio cannot be lower than 1:1.")]

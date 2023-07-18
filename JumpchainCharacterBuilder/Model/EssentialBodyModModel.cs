@@ -105,7 +105,7 @@ namespace JumpchainCharacterBuilder.Model
         /// and cumulative/retroactive if those options are selected.
         /// </summary>
         [ObservableProperty]
-        private bool _limitInvestment = true;
+        private bool _limitInvestment = false;
 
         /// <summary>
         /// Represents what modifier the EP Access Mode should be given, if any.
