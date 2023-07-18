@@ -46,7 +46,7 @@ namespace JumpchainCharacterBuilder
                     {
                         foreach (DrawbackSupplementPurchase drawback in drawbackSupplement.Purchases)
                         {
-                            if (drawback.Revoke == 0 || drawback.Revoke > jumpIndex)
+                            if (drawback.Revoke == 0 || drawback.Revoke > jump.JumpNumber)
                             {
                                 if (jumpIndex >= drawback.Suspend.Count)
                                 {
@@ -78,7 +78,7 @@ namespace JumpchainCharacterBuilder
                 {
                     foreach (DrawbackSupplementPurchase drawback in drawbackSupplement.Purchases)
                     {
-                        if (drawback.Revoke == 0 || drawback.Revoke > jumpIndex)
+                        if (drawback.Revoke == 0 || drawback.Revoke > jump.JumpNumber)
                         {
                             if (jumpIndex >= drawback.Suspend.Count)
                             {

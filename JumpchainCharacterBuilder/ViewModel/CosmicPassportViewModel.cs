@@ -89,11 +89,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         private Options.BodyModSupplements _loadedBodyModSupplement = Options.BodyModSupplements.Generic;
 
         [ObservableProperty]
-        private bool _genericBodyModSelected = false;
+        private bool _genericBodyModSelected = true;
         [ObservableProperty]
         private bool _sBBodyModSelected = false;
         [ObservableProperty]
-        private bool _essentialBodyModSelected = true;
+        private bool _essentialBodyModSelected = false;
 
         [ObservableProperty]
         private bool _bodyModPurchasesAllowed = true;
