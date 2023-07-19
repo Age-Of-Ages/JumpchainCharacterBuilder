@@ -1317,6 +1317,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                         LoadedSave.EssentialBodyMod.TemperedBySuffering)
                     {
                         int delay = CharacterSelection.BodyMod.SupplementDelay - 1;
+                        int joinedJumpNumber = CharacterSelection.FirstJump;
+
                         if (delay < 0)
                         {
                             delay = 0;
@@ -1325,7 +1327,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                         foreach (Jump jump in LoadedSave.JumpList)
                         {
-                            if (jump.JumpNumber > delay)
+                            if (jump.JumpNumber > delay && jump.JumpNumber >= joinedJumpNumber)
                             {
                                 break;
                             }

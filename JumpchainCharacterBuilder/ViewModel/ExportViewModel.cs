@@ -1146,6 +1146,41 @@ namespace JumpchainCharacterBuilder.ViewModel
             return result;
         }
 
+        private int CalculateGauntletBP(int characterIndex)
+        {
+            if (LoadedSave.EssentialBodyMod.EPAccessModifier != EssentialBodyMod.EPAccessModifiers.RetroCumulative &&
+                LoadedSave.EssentialBodyMod.TemperedBySuffering)
+            {
+                int delay = CharacterList[characterIndex].BodyMod.SupplementDelay - 1;
+                int joinedJumpNumber = CharacterList[characterIndex].FirstJump;
+
+                if (delay < 0)
+                {
+                    delay = 0;
+                }
+                int gauntletBonus = 0;
+
+                foreach (Jump jump in LoadedSave.JumpList)
+                {
+                    if (jump.JumpNumber > delay)
+                    {
+                        break;
+                    }
+
+                    if (jump.IsGauntlet && jump.JumpNumber >= joinedJumpNumber)
+                    {
+                        gauntletBonus += 100;
+                    }
+                }
+
+                return gauntletBonus;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
         private void ExportBuild(Jump jump, int characterIndex)
         {
             JumpBuild build = jump.Build[characterIndex];
@@ -3387,6 +3422,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             int jumpBP = 0;
             int investmentBP = 0;
             int questBP = 0;
+            int gauntletBP = 0;
 
             List<Purchase> bodyModAddons = new();
 
@@ -3418,12 +3454,14 @@ namespace JumpchainCharacterBuilder.ViewModel
                     drawbackBP = CalculateDrawbackBP(character.BodyMod);
                     investmentBP = CalculateInvestmentBP(characterIndex);
                     questBP = CalculateQuestBP(characterIndex);
+                    gauntletBP = CalculateGauntletBP(characterIndex);
 
                     budget = LoadedSave.EssentialBodyMod.Budget;
                     budget += drawbackBP;
                     budget += jumpBP;
                     budget += investmentBP;
                     budget += questBP;
+                    budget += gauntletBP;
                     break;
                 default:
                     break;
@@ -3941,7 +3979,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                                         {"Per-Jump EP gained", jumpBP },
                                         {"Investment EP", investmentBP },
                                         {"Drawback EP", drawbackBP },
-                                        {"Quest EP", questBP }
+                                        {"Quest EP", questBP },
+                                        {"Gauntlet EP", gauntletBP }
                                     };
 
                                     output.Add(FormatPointSummary(LoadedSave.EssentialBodyMod.Budget, additionalValues, currencyAbbreviation));
@@ -3960,6 +3999,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                     string essenceMode = "";
                                     string epAccessMode = "";
+                                    string epAccessModifier = "";
+                                    string unbalancedVariantMode = "";
+                                    string limiter = "";
 
                                     switch (LoadedSave.EssentialBodyMod.EssenceMode)
                                     {
@@ -3992,18 +4034,112 @@ namespace JumpchainCharacterBuilder.ViewModel
                                         default:
                                             break;
                                     }
+                                    if (LoadedSave.EssentialBodyMod.EPAccessMode != EssentialBodyMod.EPAccessModes.NoAccess)
+                                    {
+                                        switch (LoadedSave.EssentialBodyMod.EPAccessModifier)
+                                        {
+                                            case EssentialBodyMod.EPAccessModifiers.Cumulative:
+                                                epAccessModifier = " (Cumulative)";
+                                                break;
+                                            case EssentialBodyMod.EPAccessModifiers.RetroCumulative:
+                                                epAccessModifier = " (Retroactive Cumulative)";
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                    switch (LoadedSave.EssentialBodyMod.UnbalancedVariantMode)
+                                    {
+                                        case EssentialBodyMod.UnbalancedVariantModes.Harmonized:
+                                            unbalancedVariantMode = "Harmonized Essence";
+                                            break;
+                                        case EssentialBodyMod.UnbalancedVariantModes.VeryHarmonized:
+                                            unbalancedVariantMode = "Very Harmonized Essence";
+                                            break;
+                                        case EssentialBodyMod.UnbalancedVariantModes.PerfectlyHarmonized:
+                                            unbalancedVariantMode = "Perfectly Harmonized Essence";
+                                            break;
+                                        default:
+                                            break;
+                                    }
+                                    switch (LoadedSave.EssentialBodyMod.Limiter)
+                                    {
+                                        case EssentialBodyMod.Limiters.EverydayHero:
+                                            limiter = "Everyday Hero Limiter";
+                                            break;
+                                        case EssentialBodyMod.Limiters.StreetLevel:
+                                            limiter = "Street Level Limiter";
+                                            break;
+                                        case EssentialBodyMod.Limiters.MidLevel:
+                                            limiter = "Mid Level Limiter";
+                                            break;
+                                        case EssentialBodyMod.Limiters.BodyMod:
+                                            limiter = "Body Mod Limiter";
+                                            break;
+                                        case EssentialBodyMod.Limiters.ScalingI:
+                                            limiter = "Scaling Limiter I";
+                                            break;
+                                        case EssentialBodyMod.Limiters.ScalingII:
+                                            limiter = "Scaling Limiter II";
+                                            break;
+                                        case EssentialBodyMod.Limiters.Vanishing:
+                                            limiter = "Vanishing Limiter";
+                                            break;
+                                        default:
+                                            break;
+                                    }
 
                                     output.Add("Starting Mode: " + LoadedSave.EssentialBodyMod.StartingMode.ToString());
-                                    output.Add("Essence Mode: " + essenceMode);
+                                    if (LoadedSave.EssentialBodyMod.UnlockableEssenceModifier)
+                                    {
+                                        output.Add("Essence Mode: " + essenceMode + " (Unlockable Modifier selected)");
+                                    }
+                                    else
+                                    {
+                                        output.Add("Essence Mode: " + essenceMode);
+                                    }
+
                                     output.Add("Advancement Mode: " + LoadedSave.EssentialBodyMod.AdvancementMode.ToString());
+                                    output.Add("EP Access Mode: " + epAccessMode + epAccessModifier);
 
-                                    line = "EP Access Mode: " + epAccessMode;
-                                    //if (LoadedSave.EssentialBodyMod.CumulativeAccess)
-                                    //{
-                                    //    line += " (Cumulative)";
-                                    //}
+                                    if (LoadedSave.EssentialBodyMod.AdvancementMode == EssentialBodyMod.AdvancementModes.Standard && 
+                                        LoadedSave.EssentialBodyMod.EPAccessMode == EssentialBodyMod.EPAccessModes.NoAccess && 
+                                        LoadedSave.EssentialBodyMod.TrainingAllowance)
+                                    {
+                                        output.Add("Training Allowance Variant Mode selected");
+                                    }
 
-                                    output.Add(line);
+                                    if ((LoadedSave.EssentialBodyMod.EPAccessMode == EssentialBodyMod.EPAccessModes.NoAccess ||
+                                        LoadedSave.EssentialBodyMod.EPAccessModifier != EssentialBodyMod.EPAccessModifiers.RetroCumulative) &&
+                                        LoadedSave.EssentialBodyMod.TemperedBySuffering)
+                                    {
+                                        output.Add("Tempered by Suffering Variant Mode selected");
+                                    }
+
+
+                                    if (!string.IsNullOrWhiteSpace(unbalancedVariantMode))
+                                    {
+                                        FormatBlankLine(output);
+
+                                        output.Add("Unbalanced Variant Mode: " + unbalancedVariantMode);
+
+                                        if (!string.IsNullOrWhiteSpace(LoadedSave.EssentialBodyMod.UnbalancedModeDescription))
+                                        {
+                                            output.Add("Unbalanced Mode Description: " + LoadedSave.EssentialBodyMod.UnbalancedModeDescription);
+                                        }
+                                    }
+
+                                    if (!string.IsNullOrWhiteSpace(limiter))
+                                    {
+                                        FormatBlankLine(output);
+
+                                        output.Add("Limiter: " + limiter);
+
+                                        if (!string.IsNullOrWhiteSpace(LoadedSave.EssentialBodyMod.LimiterDescription))
+                                        {
+                                            output.Add("Limiter Description: " + LoadedSave.EssentialBodyMod.LimiterDescription);
+                                        }
+                                    }
 
                                     FormatBlankLine(output);
 
