@@ -192,6 +192,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _warehousePointsInvested = 0;
         [ObservableProperty]
         private int _warehousePointsGained = 0;
+        [ObservableProperty]
+        private bool _pRUnlimitedSelected = false;
+        [ObservableProperty]
+        private int _pRUnlimitedRemainingInvestment = 0;
 
         [ObservableProperty]
         private bool _bodyModInvestmentAllowed = false;
@@ -630,8 +634,27 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnWarehousePointsInvestedChanged(int value)
         {
-            WarehousePointsGained = value / WarehouseInvestmentRatio;
-            JumpSelection.Build[0].WarehouseInvestment = value;
+            if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality && 
+                LoadedSave.PersonalReality.CoreMode == PersonalReality.CoreModes.Unlimited)
+            {
+                int unlimitedModeSubtotal = value;
+                int postUnlimitedSubtotal = 0;
+
+                if (unlimitedModeSubtotal > 100)
+                {
+                    postUnlimitedSubtotal = unlimitedModeSubtotal - 100;
+                    unlimitedModeSubtotal = 100;
+                }
+
+                WarehousePointsGained = unlimitedModeSubtotal + (postUnlimitedSubtotal / WarehouseInvestmentRatio);
+                JumpSelection.Build[0].WarehouseInvestment = value;
+                PRUnlimitedRemainingInvestment = 100 - unlimitedModeSubtotal;
+            }
+            else
+            {
+                WarehousePointsGained = value / WarehouseInvestmentRatio;
+                JumpSelection.Build[0].WarehouseInvestment = value;
+            }
         }
 
         partial void OnBodyModPointsInvestedChanged(int value)
@@ -883,6 +906,16 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 LoadedDrawbackSupplement = LoadedOptions.DrawbackSupplementSetting;
                 LoadedWarehouseSupplement = LoadedOptions.CosmicWarehouseSetting;
+                if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality && 
+                    LoadedSave.PersonalReality.CoreMode == PersonalReality.CoreModes.Unlimited)
+                {
+                    PRUnlimitedSelected = true;
+                }
+                else
+                {
+                    PRUnlimitedSelected = false;
+                }
+
                 LoadedBodyModSupplement = LoadedOptions.BodyModSetting;
 
                 CreateJumpList();
@@ -915,6 +948,16 @@ namespace JumpchainCharacterBuilder.ViewModel
                 else if (m.Value == "Warehouse")
                 {
                     LoadedWarehouseSupplement = LoadedOptions.CosmicWarehouseSetting;
+
+                    if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality &&
+                    LoadedSave.PersonalReality.CoreMode == PersonalReality.CoreModes.Unlimited)
+                    {
+                        PRUnlimitedSelected = true;
+                    }
+                    else
+                    {
+                        PRUnlimitedSelected = false;
+                    }
                 }
                 else if (m.Value == "Body Mod")
                 {
@@ -1419,7 +1462,28 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
 
             WarehousePointsInvested = JumpSelection.Build[0].WarehouseInvestment;
-            WarehousePointsGained = WarehousePointsInvested / WarehouseInvestmentRatio;
+
+            if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality && 
+                LoadedSave.PersonalReality.CoreMode == PersonalReality.CoreModes.Unlimited)
+            {
+                int unlimitedModeSubtotal = WarehousePointsInvested;
+                int postUnlimitedSubtotal = 0;
+
+                if (unlimitedModeSubtotal > 100)
+                {
+                    postUnlimitedSubtotal = unlimitedModeSubtotal - 100;
+                    unlimitedModeSubtotal = 100;
+                }
+
+                WarehousePointsGained = unlimitedModeSubtotal + (postUnlimitedSubtotal / WarehouseInvestmentRatio);
+                PRUnlimitedRemainingInvestment = 100 - unlimitedModeSubtotal;
+                PRUnlimitedSelected = true;
+            }
+            else
+            {
+                WarehousePointsGained = WarehousePointsInvested / WarehouseInvestmentRatio;
+                PRUnlimitedSelected = false;
+            }
         }
 
         private void LoadBodyModInvestment()

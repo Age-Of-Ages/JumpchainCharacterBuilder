@@ -1413,6 +1413,12 @@
                                 <TextBlock Text="WP earned" Margin="0,15,0,0"/>
                                 <TextBox Text="{Binding WarehousePointsGained, Mode=OneWay}" IsReadOnly="True"
                                          Width="40"/>
+
+                                <TextBlock Text="WP available at 1:1 ratio" Margin="0,15,0,0"
+                                           Visibility="{Binding PRUnlimitedSelected, Converter={StaticResource BoolToVis}}"/>
+                                <TextBox Text="{Binding PRUnlimitedRemainingInvestment, Mode=OneWay}" IsReadOnly="True"
+                                         Width="40"
+                                         Visibility="{Binding PRUnlimitedSelected, Converter={StaticResource BoolToVis}}"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>

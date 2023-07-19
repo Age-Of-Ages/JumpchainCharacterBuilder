@@ -53,6 +53,7 @@ namespace JumpchainCharacterBuilder.Model
         public PersonalReality()
         {
             InvestmentRatio = 25;
+            InvestmentAllowed = true;
         }
     }
 }

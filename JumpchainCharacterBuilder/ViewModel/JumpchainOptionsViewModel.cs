@@ -15,7 +15,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class JumpchainOptionsViewModel : ViewModelBase
     {
-        // TODO - Implement EBM options correctly.
         #region Fields
         private readonly IDialogService _dialogService;
 
@@ -83,7 +82,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private string _pRCoreModeDescription = "";
         [ObservableProperty]
-        private bool _pRInvestmentAllowed = false;
+        private bool _pRInvestmentAllowed = true;
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [Range(1, int.MaxValue, ErrorMessage = "Ratio cannot be lower than 1:1.")]
