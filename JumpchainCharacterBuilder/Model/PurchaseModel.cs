@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace JumpchainCharacterBuilder.Model
 {
@@ -73,6 +74,13 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private bool _bodyModAddition = false;
+
+        /// <summary>
+        /// Represents if this purchase is temporary and lost after the end of the Jump.
+        /// Temporary purchases are not included in Cosmic Passport Perk list.
+        /// </summary>
+        [ObservableProperty]
+        private bool _isTemporary = false;
 
         /// <summary>
         /// Represents the description of the purchase.

@@ -501,7 +501,8 @@
                             </StackPanel>
 
                             <StackPanel Margin="0,1,0,0" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <CheckBox Content="Body-Mod Addition" IsChecked="{Binding PurchaseSelection.BodyModAddition}" Margin="5,17,0,0"/>
+                                <CheckBox Content="Body-Mod Addition" IsChecked="{Binding PurchaseSelection.BodyModAddition}" Margin="0,17,0,0"/>
+                                <CheckBox Content="Purchase is temporary" IsChecked="{Binding PurchaseSelection.IsTemporary}" Margin="0,10,0,0"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">

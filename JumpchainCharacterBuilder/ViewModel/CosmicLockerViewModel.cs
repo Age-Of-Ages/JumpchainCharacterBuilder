@@ -140,7 +140,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                     foreach (Purchase purchase in build.Purchase)
                     {
-                        if (jump.PurchaseTypes[purchase.TypeIndex].IsItemType)
+                        if (jump.PurchaseTypes[purchase.TypeIndex].IsItemType && !purchase.IsTemporary)
                         {
                             InactiveItemLists[CharacterList[charIndex]][purchase.Category].Add(purchase);
 
