@@ -461,6 +461,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 BankUsage = JumpSelection.Build[CharacterSelectionIndex].BankUsage;
 
                 LoadCurrentPointBank();
+                LoadBodyModInvestment();
             }
         }
 
