@@ -522,9 +522,9 @@
                                                         <ListView.View>
                                                             <GridView>
                                                                 <GridView.Columns>
-                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="115"/>
+                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="100"/>
                                                                     <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding SourcePurchase}" Width="110"/>
-                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="50"/>
+                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="65"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -644,9 +644,9 @@
                                                         <ListView.View>
                                                             <GridView>
                                                                 <GridView.Columns>
-                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="115"/>
+                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="100"/>
                                                                     <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding SourcePurchase}" Width="110"/>
-                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="50"/>
+                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="65"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -766,9 +766,9 @@
                                                         <ListView.View>
                                                             <GridView>
                                                                 <GridView.Columns>
-                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="115"/>
+                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="100"/>
                                                                     <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding SourcePurchase}" Width="110"/>
-                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="50"/>
+                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="65"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -1111,9 +1111,9 @@
                                                         <ListView.View>
                                                             <GridView>
                                                                 <GridView.Columns>
-                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="115"/>
+                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="100"/>
                                                                     <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding SourcePurchase}" Width="110"/>
-                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="50"/>
+                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="65"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -1234,9 +1234,9 @@
                                                         <ListView.View>
                                                             <GridView>
                                                                 <GridView.Columns>
-                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="115"/>
+                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="100"/>
                                                                     <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding SourcePurchase}" Width="110"/>
-                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="50"/>
+                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="65"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -1356,9 +1356,9 @@
                                                         <ListView.View>
                                                             <GridView>
                                                                 <GridView.Columns>
-                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="115"/>
+                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="100"/>
                                                                     <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding SourcePurchase}" Width="110"/>
-                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="50"/>
+                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="65"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -1479,9 +1479,9 @@
                                                         <ListView.View>
                                                             <GridView>
                                                                 <GridView.Columns>
-                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="115"/>
+                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="100"/>
                                                                     <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding SourcePurchase}" Width="110"/>
-                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="50"/>
+                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="65"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -1602,9 +1602,9 @@
                                                         <ListView.View>
                                                             <GridView>
                                                                 <GridView.Columns>
-                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="115"/>
+                                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="100"/>
                                                                     <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding SourcePurchase}" Width="110"/>
-                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="50"/>
+                                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="65"/>
                                                                 </GridView.Columns>
                                                             </GridView>
                                                         </ListView.View>
@@ -1927,9 +1927,9 @@
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
-                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="115"/>
+                                                    <GridViewColumn Header="Jump" DisplayMemberBinding="{Binding SourceJump}" Width="100"/>
                                                     <GridViewColumn Header="Purchase" DisplayMemberBinding="{Binding SourcePurchase}" Width="110"/>
-                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="50"/>
+                                                    <GridViewColumn Header="Rank" DisplayMemberBinding="{Binding SourceRank}" Width="65"/>
                                                 </GridView.Columns>
                                             </GridView>
                                         </ListView.View>
