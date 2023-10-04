@@ -25,5 +25,10 @@ namespace JumpchainCharacterBuilder.Model
         {
             JumpName = jumpName;
         }
+
+        public DrawbackSuspendModel()
+        {
+            
+        }
     }
 }

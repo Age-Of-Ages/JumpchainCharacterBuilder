@@ -70,40 +70,13 @@ namespace JumpchainCharacterBuilder.ViewModel
         #endregion
 
         #region Properties
-
-        partial void OnDrawbackSelectionIndexChanging(int value)
-        {
-            // TODO - Put the suspend objects in the DrawbackSelection so that this extra bit isn't necessary.
-            if (value != -1 && DrawbackSelection != null)
-            {
-                int count = DrawbackSuspendList.Count;
-                if (count <= DrawbackSelection.Suspend.Count)
-                {
-                    for (int i = 0; i < count; i++)
-                    {
-                        DrawbackSelection.Suspend[i] = DrawbackSuspendList[i].Suspended;
-                    }
-                }
-            }
-        }
-
         partial void OnDrawbackSelectionChanged(DrawbackSupplementPurchase value)
         {
             if (value != null)
             {
-                if (DrawbackSuspendList.Count != LoadedSave.JumpList.Count)
-                {
-                    LoadSuspendJumpNames();
-                }
                 ListValidationClass.CheckDrawbackSuspendCount(DrawbackSelection, LoadedSave.JumpList.Count);
 
-                int count = DrawbackSelection.Suspend.Count;
-
-                for (int i = 0; i < count; i++)
-                {
-                    DrawbackSuspendList[i].Suspended = DrawbackSelection.Suspend[i];
-                }
-
+                LoadDrawbackSuspends();
                 UpdatePointValues();
             }
         }
@@ -230,17 +203,20 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private void LoadSuspendJumpNames()
+        private void LoadDrawbackSuspends()
         {
             DrawbackSuspendList.Clear();
 
-            foreach (Jump jump in LoadedSave.JumpList)
+            DrawbackSuspendList = new(DrawbackSelection.SuspendList);
+
+            LoadSuspendJumpNames();
+        }
+
+        private void LoadSuspendJumpNames()
+        {
+            for (int i = 0; i < DrawbackSuspendList.Count; i++)
             {
-                DrawbackSuspendList.Add(new DrawbackSuspendModel(jump.Name));
-                if (DrawbackSuspendList.Count - 1 >= LoadedSave.JumpList.IndexOf(jump))
-                {
-                    DrawbackSuspendList.Last().Suspended = DrawbackSuspendList[LoadedSave.JumpList.IndexOf(jump)].Suspended;
-                }
+                DrawbackSuspendList[i].JumpName = LoadedSave.JumpList[i].Name;
             }
         }
 

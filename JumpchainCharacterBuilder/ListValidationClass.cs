@@ -85,12 +85,15 @@ namespace JumpchainCharacterBuilder
 
         public static void CheckDrawbackSuspendCount(DrawbackSupplementPurchase drawback, int jumpCount)
         {
-            if (drawback.Suspend.Count < jumpCount)
+            if (drawback.SuspendList.Count < jumpCount)
             {
-                int index = drawback.Suspend.Count;
+                int index = drawback.SuspendList.Count;
                 for (int i = index; i < jumpCount; i++)
                 {
-                    drawback.Suspend.Add(false);
+                    drawback.SuspendList.Add(new()
+                    {
+                        Suspended = false
+                    });
                 }
             }
         }

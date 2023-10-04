@@ -1417,27 +1417,27 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case Options.DrawbackSupplements.Generic:
                     foreach (DrawbackSupplementPurchase drawback in LoadedSave.GenericDrawbackSupplement.Purchases)
                     {
-                        if (drawback.Suspend.Count >= jumpIndex + 1)
+                        if (drawback.SuspendList.Count >= jumpIndex + 1)
                         {
-                            drawback.Suspend.RemoveAt(jumpIndex);
+                            drawback.SuspendList.RemoveAt(jumpIndex);
                         }
                     }
                     break;
                 case Options.DrawbackSupplements.UDS:
                     foreach (DrawbackSupplementPurchase drawback in LoadedSave.UniversalDrawbackSupplement.Purchases)
                     {
-                        if (drawback.Suspend.Count >= jumpIndex + 1)
+                        if (drawback.SuspendList.Count >= jumpIndex + 1)
                         {
-                            drawback.Suspend.RemoveAt(jumpIndex);
+                            drawback.SuspendList.RemoveAt(jumpIndex);
                         }
                     }
                     break;
                 case Options.DrawbackSupplements.UU:
                     foreach (DrawbackSupplementPurchase drawback in LoadedSave.UUSupplement.Purchases)
                     {
-                        if (drawback.Suspend.Count >= jumpIndex + 1)
+                        if (drawback.SuspendList.Count >= jumpIndex + 1)
                         {
-                            drawback.Suspend.RemoveAt(jumpIndex);
+                            drawback.SuspendList.RemoveAt(jumpIndex);
                         }
                     }
                     break;
