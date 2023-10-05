@@ -422,7 +422,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 }
                 DrawbackList.RemoveAt(index);
 
-                DrawbackSelection = DrawbackList.First();
+                if (DrawbackList.Any())
+                {
+                    DrawbackSelection = DrawbackList.First();
+                }
 
                 DeleteDrawbackCommand.NotifyCanExecuteChanged();
                 MoveDrawbackDownCommand.NotifyCanExecuteChanged();
