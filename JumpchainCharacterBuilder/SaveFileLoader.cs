@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
+using System.Numerics;
 
 namespace JumpchainCharacterBuilder
 {
@@ -19,6 +20,10 @@ namespace JumpchainCharacterBuilder
             if (newSave.SaveVersion < 1.1)
             {
                 newSave = SaveMigration.SaveModify(newSave);
+            }
+            if (newSave.SaveVersion < 1.3)
+            {
+                newSave = SaveMigration.SaveUpdate(filePath, newSave.SaveVersion, newSave);
             }
 
             ReplaceSave(saveFile, newSave);
