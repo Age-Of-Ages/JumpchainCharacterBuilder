@@ -107,7 +107,7 @@
             </GroupBox.Visibility>
             <StackPanel Margin="5,3,5,0">
                 <TextBlock Text="Jump name"/>
-                <TextBox Text="{Binding JumpRandomizerEntrySelection.JumpName, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                <TextBox Text="{Binding JumpSelectionName, ValidatesOnNotifyDataErrors=True}" Width="120"/>
 
                 <TextBlock Text="Jump weight" Margin="0,15,0,0"/>
                 <TextBlock Text="Determines how likely a Jump is to be selected" TextWrapping="Wrap"/>

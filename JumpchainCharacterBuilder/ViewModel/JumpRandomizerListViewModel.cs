@@ -29,6 +29,12 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [ObservableProperty]
         [NotifyDataErrorInfo]
+        [ListTags(ErrorMessage = "Jump Randomizer entry names may not start with # or contain the following characters: " +
+                                 "[, ], |")]
+        private string _jumpSelectionName = "";
+
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
         [ValidURI(ErrorMessage = "Jump document URI is not well formed.")]
         private string _jumpSelectionUri = "About:Blank";
 
@@ -52,7 +58,16 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                JumpSelectionName = value.JumpName;
                 JumpSelectionUri = value.JumpUri.ToString();
+            }
+        }
+
+        partial void OnJumpSelectionNameChanged(string value)
+        {
+            if(!GetErrors(nameof(JumpSelectionName)).Any())
+            {
+                JumpRandomizerEntrySelection.JumpName = value;
             }
         }
 
