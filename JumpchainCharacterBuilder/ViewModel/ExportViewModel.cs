@@ -481,7 +481,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (document.Name != "")
             {
-                output.Add("Supplement name: " + document.Name);
+                output.Add("Document name: " + document.Name);
             }
             if (document.Version != "")
             {
@@ -548,6 +548,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             char rightBracket = LoadedExportOptions.BudgetEnclosingFormat[1];
             char budgetSeparator = LoadedExportOptions.BudgetSeparatorFormat;
             string currencyAbbreviation = "";
+            string output = "";
 
             foreach (string key in budgetLastHalves.Keys)
             {
@@ -580,10 +581,26 @@ namespace JumpchainCharacterBuilder.ViewModel
                 };
             }
 
-            return $"{budgetLastHalves["Choice Points"]} " +
-                $"{budgetLastHalves["Warehouse Points"]} " +
-                $"{budgetLastHalves["Companion Choice Points"]} " +
-                $"{budgetLastHalves["Companion Choice Points"]}";
+            if (values["Choice Points"] != 0)
+            {
+                output += $"{budgetLastHalves["Choice Points"]} ";
+            }
+            if (values["Warehouse Points"] != 0)
+            {
+                output += $"{budgetLastHalves["Warehouse Points"]} ";
+            }
+            if (values["Companion Choice Points"] != 0)
+            {
+                output += $"{budgetLastHalves["Companion Choice Points"]} ";
+            }
+            if (values["Item Choice Points"] != 0)
+            {
+                output += $"{budgetLastHalves["Item Choice Points"]} ";
+            }
+
+            output = output.Remove(output.Length - 1, 1);
+
+            return output;
         }
 
         private void FormatPricedDataLine(string name, string description, string budgetLastHalf, List<string> output, int cost = 1, string reward = "")
