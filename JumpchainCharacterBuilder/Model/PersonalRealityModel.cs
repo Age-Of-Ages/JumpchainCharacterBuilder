@@ -54,6 +54,7 @@ namespace JumpchainCharacterBuilder.Model
         {
             InvestmentRatio = 25;
             InvestmentAllowed = true;
+            Budget = 1500;
         }
     }
 }
