@@ -516,7 +516,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {
                     line += $" - {value.Value} ({value.Key})";
                 }
-                else
+                else if (value.Value > 0)
                 {
                     line += $" + {value.Value} ({value.Key})";
                 }
