@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
@@ -9,6 +10,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Text.Json.Serialization;
+using System.Xml.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -27,6 +30,22 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveJumpUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveJumpDownCommand))]
         private Jump _jumpSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _jumpName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _jumpVersion = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _jumpAuthor = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _jumpSource = "";
         [ObservableProperty]
         private int _jumpSelectionIndex = 0;
         [ObservableProperty]
@@ -55,10 +74,26 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteOriginCommand))]
         private OriginDetail _originEditSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _originEditName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _originEditDescription = "";
+        [ObservableProperty]
         private int _originEditSelectionIndex = 0;
 
         [ObservableProperty]
         private OriginDetail _miscOriginDetailSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _miscOriginDetailName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _miscOriginDetailDescription = "";
         [ObservableProperty]
         private int _miscOriginDetailIndex = 0;
         [ObservableProperty]
@@ -83,6 +118,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private Currency _currencySelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currencyName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currencyAbbreviation = "";
+        [ObservableProperty]
         private int _currencySelectionIndex = 0;
         [ObservableProperty]
         private ObservableCollection<Currency> _currencyList = new();
@@ -90,6 +133,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePurchaseTypeCommand))]
         private PurchaseType _purchaseTypeSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _purchaseTypeName = "";
         [ObservableProperty]
         private int _purchaseTypeSelectionIndex = 0;
         [ObservableProperty]
@@ -119,6 +166,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MovePurchaseDownCommand))]
         private Purchase _purchaseSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _purchaseName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _purchaseDescription = "";
+        [ObservableProperty]
         private int _purchaseSelectionIndex = 0;
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteCurrencyCommand))]
@@ -134,6 +189,18 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveDrawbackDownCommand))]
         private Drawback _drawbackSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _drawbackName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _drawbackDescription = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _drawbackReward = "";
+        [ObservableProperty]
         private int _drawbackSelectionIndex = 0;
         [ObservableProperty]
         private ObservableCollection<Drawback> _drawbackList = new();
@@ -144,12 +211,32 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveScenarioDownCommand))]
         private Drawback _scenarioSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _scenarioName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _scenarioDescription = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _scenarioReward = "";
+        [ObservableProperty]
         private int _scenarioSelectionIndex = 0;
         [ObservableProperty]
         private ObservableCollection<Drawback> _scenarioList = new();
 
         [ObservableProperty]
         private CompanionPurchase _importOptionSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _importOptionName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _importOptionDescription = "";
         [ObservableProperty]
         private int _importOptionSelectionIndex = 0;
         [ObservableProperty]
@@ -475,6 +562,15 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
+        partial void OnOriginEditSelectionChanged(OriginDetail value)
+        {
+            if (value != null)
+            {
+                OriginEditName = value.Name;
+                OriginEditDescription = value.Description;
+            }
+        }
+
         partial void OnOriginSelectionIndexChanged(int value)
         {
             if (OriginSelectionIndex != -1)
@@ -484,7 +580,25 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
 
-        partial void OnMiscOriginDetailSelectionChanged(OriginDetail value) => Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+        partial void OnMiscOriginDetailSelectionChanged(OriginDetail value)
+        {
+            Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+
+            if (value != null)
+            {
+                MiscOriginDetailName = value.Name;
+                MiscOriginDetailDescription = value.Description;
+            }
+        }
+
+        partial void OnCurrencySelectionChanged(Currency value)
+        {
+            if (value != null)
+            {
+                CurrencyName = value.CurrencyName;
+                CurrencyAbbreviation = value.CurrencyAbbreviation;
+            }
+        }
 
         partial void OnMiscOriginTypeSelectionChanged(string value)
         {
@@ -523,6 +637,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadCurrentPurchaseList();
 
                 IsItemType = PurchaseTypeSelection.IsItemType;
+
+                PurchaseTypeName = value.Type;
             }
         }
 
@@ -592,16 +708,41 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnDrawbackSelectionChanged(Drawback value) => Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+        partial void OnDrawbackSelectionChanged(Drawback value)
+        {
+            Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+
+            if (value != null)
+            {
+                DrawbackName = value.Name;
+                DrawbackDescription = value.Description;
+                DrawbackReward = value.Reward;
+            }
+            
+        }
 
 
-        partial void OnScenarioSelectionChanged(Drawback value) => Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+        partial void OnScenarioSelectionChanged(Drawback value)
+        {
+            Budget = SetBudget(JumpSelection.PurchaseTypes[0]);
+
+            if (value != null)
+            {
+                ScenarioName = value.Name;
+                ScenarioDescription = value.Description;
+                ScenarioReward = value.Reward;
+            }
+
+        }
 
         partial void OnImportOptionSelectionChanged(CompanionPurchase value)
         {
             if (value != null)
             {
                 LoadImportCharacterList();
+
+                ImportOptionName = value.Name;
+                ImportOptionDescription = value.Description;
             }
         }
 
@@ -890,6 +1031,174 @@ namespace JumpchainCharacterBuilder.ViewModel
                 PurchaseAttributeSelection.Name = value;
             }
         }
+
+        partial void OnJumpNameChanged(string value)
+        {
+            if (!GetErrors(nameof(JumpName)).Any() && JumpSelection != null)
+            {
+                JumpSelection.Name = value;
+            }
+        }
+
+        partial void OnJumpAuthorChanged(string value)
+        {
+            if (!GetErrors(nameof(JumpAuthor)).Any() && JumpSelection != null)
+            {
+                JumpSelection.Author = value;
+            }
+        }
+
+        partial void OnJumpVersionChanged(string value)
+        {
+            if (!GetErrors(nameof(JumpVersion)).Any() && JumpSelection != null)
+            {
+                JumpSelection.Version = value;
+            }
+        }
+
+        partial void OnJumpSourceChanged(string value)
+        {
+            if (!GetErrors(nameof(JumpSource)).Any() && JumpSelection != null)
+            {
+                JumpSelection.Source = value;
+            }
+        }
+
+        partial void OnOriginEditNameChanged(string value)
+        {
+            if (!GetErrors(nameof(OriginEditName)).Any() && OriginEditSelection != null)
+            {
+                OriginEditSelection.Name = value;
+            }
+        }
+
+        partial void OnOriginEditDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(OriginEditDescription)).Any() && OriginEditSelection != null)
+            {
+                OriginEditSelection.Description = value;
+            }
+        }
+
+        partial void OnMiscOriginDetailNameChanged(string value)
+        {
+            if (!GetErrors(nameof(MiscOriginDetailName)).Any() && MiscOriginDetailSelection != null)
+            {
+                MiscOriginDetailSelection.Name = value;
+            }
+        }
+
+        partial void OnMiscOriginDetailDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(MiscOriginDetailDescription)).Any() && MiscOriginDetailSelection != null)
+            {
+                MiscOriginDetailSelection.Description = value;
+            }
+        }
+
+        partial void OnCurrencyNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrencyName)).Any() && CurrencySelection != null)
+            {
+                CurrencySelection.CurrencyName = value;
+            }
+        }
+
+        partial void OnCurrencyAbbreviationChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrencyAbbreviation)).Any() && CurrencySelection != null)
+            {
+                CurrencySelection.CurrencyAbbreviation = value;
+            }
+        }
+
+        partial void OnPurchaseTypeNameChanged(string value)
+        {
+            if (!GetErrors(nameof(PurchaseTypeName)).Any() && PurchaseTypeSelection != null)
+            {
+                PurchaseTypeSelection.Type = value;
+            }
+        }
+
+        partial void OnPurchaseNameChanged(string value)
+        {
+            if (!GetErrors(nameof(PurchaseName)).Any() && PurchaseSelection != null)
+            {
+                PurchaseSelection.Name = value;
+            }
+        }
+
+        partial void OnPurchaseDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(PurchaseDescription)).Any() && PurchaseSelection != null)
+            {
+                PurchaseSelection.Description = value;
+            }
+        }
+
+        partial void OnDrawbackNameChanged(string value)
+        {
+            if (!GetErrors(nameof(DrawbackName)).Any() && DrawbackSelection != null)
+            {
+                DrawbackSelection.Name = value;
+            }
+        }
+
+        partial void OnDrawbackDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(DrawbackDescription)).Any() && DrawbackSelection != null)
+            {
+                DrawbackSelection.Description = value;
+            }
+        }
+
+        partial void OnDrawbackRewardChanged(string value)
+        {
+            if (!GetErrors(nameof(DrawbackReward)).Any() && DrawbackSelection != null)
+            {
+                DrawbackSelection.Reward = value;
+            }
+        }
+
+        partial void OnScenarioNameChanged(string value)
+        {
+            if (!GetErrors(nameof(ScenarioName)).Any() && ScenarioSelection != null)
+            {
+                ScenarioSelection.Name = value;
+            }
+        }
+
+        partial void OnScenarioDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(ScenarioDescription)).Any() && ScenarioSelection != null)
+            {
+                ScenarioSelection.Description = value;
+            }
+        }
+
+        partial void OnScenarioRewardChanged(string value)
+        {
+            if (!GetErrors(nameof(ScenarioReward)).Any() && ScenarioSelection != null)
+            {
+                ScenarioSelection.Reward = value;
+            }
+        }
+
+        partial void OnImportOptionNameChanged(string value)
+        {
+            if (!GetErrors(nameof(ImportOptionName)).Any() && ImportOptionSelection != null)
+            {
+                ImportOptionSelection.Name = value;
+            }
+        }
+
+        partial void OnImportOptionDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(ImportOptionDescription)).Any() && ImportOptionSelection != null)
+            {
+                ImportOptionSelection.Description = value;
+            }
+        }
         #endregion
 
         public JumpchainOverviewViewModel()
@@ -1056,6 +1365,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             ItemFreebieThreshold = JumpSelection.OriginItemFreebieThreshold;
             SkipJumpNumber = JumpSelection.SkipNumber;
             IsGauntlet = JumpSelection.IsGauntlet;
+
+            JumpName = JumpSelection.Name;
+            JumpVersion = JumpSelection.Version;
+            JumpAuthor = JumpSelection.Author;
+            JumpSource = JumpSelection.Source;
 
             if (LoadedOptions.AllowPointBank)
             {
@@ -1233,6 +1547,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             CategorySelection = PurchaseSelection.Category;
             PurchaseOriginIndex = PurchaseSelection.AssociatedOriginIndex;
+
+            PurchaseName = PurchaseSelection.Name;
+            PurchaseDescription = PurchaseSelection.Description;
 
             if (PurchaseSelection.Attributes.Any())
             {

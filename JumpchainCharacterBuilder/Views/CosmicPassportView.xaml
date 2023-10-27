@@ -56,11 +56,11 @@
 
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding CharacterSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterName, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
 
                                 <TextBlock Text="Alias" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding CharacterSelection.Alias, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterAlias, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
 
                                 <TextBlock Text="True age" Margin="0,5,0,0"/>
@@ -68,11 +68,11 @@
                                          Width="50" IsReadOnly="True"/>
 
                                 <TextBlock Text="Gender" Margin="0,15,0,0"/>
-                                <TextBox Text="{Binding CharacterSelection.Gender, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterGender, ValidatesOnNotifyDataErrors=True}"
                                          Width="75"/>
 
                                 <TextBlock Text="Home world/setting" Margin="0,15,0,0"/>
-                                <TextBox Text="{Binding CharacterSelection.Homeworld, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterHomeworld, ValidatesOnNotifyDataErrors=True}"
                                          Width="75"/>
                             </StackPanel>
 
@@ -99,11 +99,11 @@
 
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Species"/>
-                                <TextBox Text="{Binding CharacterSelection.Species, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterSpecies, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
 
                                 <TextBlock Text="Race" Margin="0,15,0,0"/>
-                                <TextBox Text="{Binding CharacterSelection.Race, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterRace, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
                             </StackPanel>
 
@@ -161,7 +161,7 @@
 
                     <GroupBox Header="Personality" Grid.Row="2">
                         <Grid>
-                            <TextBox Text="{Binding CharacterSelection.Personality, ValidatesOnNotifyDataErrors=True}"
+                            <TextBox Text="{Binding CharacterPersonality, ValidatesOnNotifyDataErrors=True}"
                                      Width="290" Height="200"
                                      Margin="5,3,0,0"
                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -171,7 +171,7 @@
 
                     <GroupBox Header="Physical Description" Grid.Column="1" Grid.Row="2">
                         <Grid>
-                            <TextBox Text="{Binding CharacterSelection.PhysicalDescription, ValidatesOnNotifyDataErrors=True}"
+                            <TextBox Text="{Binding CharacterPhysicalDescription, ValidatesOnNotifyDataErrors=True}"
                                      Width="290" Height="200"
                                      Margin="5,3,0,0"
                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -180,17 +180,80 @@
                     </GroupBox>
 
                     <GroupBox Header="Traits" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                        <DataGrid ItemsSource="{Binding CharacterTraitList}"
-                                  SelectionUnit="Cell"
-                                  Margin="5">
-                            <DataGrid.Columns>
-                                <DataGridTextColumn Header="Likes" Binding="{Binding Like}" Width="*"/>
-                                <DataGridTextColumn Header="Dislikes" Binding="{Binding Dislike}" Width="*"/>
-                                <DataGridTextColumn Header="Hobbies" Binding="{Binding Hobby}" Width="*"/>
-                                <DataGridTextColumn Header="Quirks" Binding="{Binding Quirk}" Width="*"/>
-                                <DataGridTextColumn Header="Goals" Binding="{Binding Goal}" Width="*"/>
-                            </DataGrid.Columns>
-                        </DataGrid>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="4*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <ListView ItemsSource="{Binding CharacterTraitList}"
+                                      SelectedItem="{Binding CharacterTraitSelection}"
+                                      Margin="5">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.Columns>
+                                            <GridViewColumn Header="Likes" Width="122">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=Like}" Style="{DynamicResource GridViewText}"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="Dislikes" Width="122">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=Dislike}" Style="{DynamicResource GridViewText}"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="Hobbies" Width="122">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=Hobby}" Style="{DynamicResource GridViewText}"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="Quirks" Width="122">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=Quirk}" Style="{DynamicResource GridViewText}"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                            <GridViewColumn Header="Goals" Width="122">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Path=Goal}" Style="{DynamicResource GridViewText}"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                            
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5" VerticalAlignment="Center">
+                                <StackPanel Orientation="Vertical">
+                                    <TextBlock Text="Like"/>
+                                    <TextBox Text="{Binding Like, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                    <TextBlock Text="Dislike"/>
+                                    <TextBox Text="{Binding Dislike, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Vertical" Margin="100,0,0,0">
+                                    <TextBlock Text="Hobby"/>
+                                    <TextBox Text="{Binding Hobby, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                    <TextBlock Text="Quirk"/>
+                                    <TextBox Text="{Binding Quirk, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                </StackPanel>
+                                
+                                <StackPanel Orientation="Vertical" Margin="100,0,0,0">
+                                    <TextBlock Text="Goal"/>
+                                    <TextBox Text="{Binding Goal, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                        
                     </GroupBox>
 
                     <Grid Grid.Row="2" Grid.Column="2">
@@ -277,15 +340,15 @@
 
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding CharacterAltFormSelection.AltFormName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AltFormName, ValidatesOnNotifyDataErrors=True}"
                                          Width="120"/>
 
                                 <TextBlock Text="Species/Race" Margin="0,15,0,0"/>
-                                <TextBox Text="{Binding CharacterAltFormSelection.AltFormSpecies, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AltFormSpecies, ValidatesOnNotifyDataErrors=True}"
                                          Width="120"/>
 
                                 <TextBlock Text="Description" Margin="0,15,0,0"/>
-                                <TextBox Text="{Binding CharacterAltFormSelection.AltFormDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AltFormDescription, ValidatesOnNotifyDataErrors=True}"
                                          Width="275"
                                          Height="200"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -293,14 +356,31 @@
                             </StackPanel>
 
                             <StackPanel Margin="0,3,0,0" Grid.Column="1">
-                                <DataGrid ItemsSource="{Binding AltFormStrengthWeaknessList}"
-                                          SelectionUnit="Cell"
+                                <ListView ItemsSource="{Binding AltFormStrengthWeaknessList}"
+                                          SelectedItem="{Binding AltFormStrengthWeaknessSelection}"
+                                          Margin="5"
                                           Height="250">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Strengths" Binding="{Binding Strength, ValidatesOnNotifyDataErrors=True}" Width="*"/>
-                                        <DataGridTextColumn Header="Weaknesses" Binding="{Binding Weakness, ValidatesOnNotifyDataErrors=True}" Width="*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Strengths" Width="146">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Path=Strength}" Style="{DynamicResource GridViewText}"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                                <GridViewColumn Header="Weaknesses" Width="146">
+                                                    <GridViewColumn.CellTemplate>
+                                                        <DataTemplate>
+                                                            <TextBlock Text="{Binding Path=Weakness}" Style="{DynamicResource GridViewText}"/>
+                                                        </DataTemplate>
+                                                    </GridViewColumn.CellTemplate>
+                                                </GridViewColumn>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -321,6 +401,13 @@
                                             Command="{Binding DeleteStrengthWeaknessRowCommand}"
                                             Style="{DynamicResource DataGridButton}" VerticalAlignment="Top" HorizontalAlignment="Right"/>
                                 </Grid>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                                    <TextBlock Text="Strength"/>
+                                    <TextBox Text="{Binding AltFormStrength, ValidatesOnNotifyDataErrors=True}" Width="75" Margin="5,0,0,0"/>
+                                    <TextBlock Text="Weakness" Margin="25,0,0,0"/>
+                                    <TextBox Text="{Binding AltFormWeakness, ValidatesOnNotifyDataErrors=True}" Width="75" Margin="5,0,0,0"/>
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -378,15 +465,14 @@
 
                             <StackPanel Margin="5,3,0,0">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding PerkSelection.Name}"
+                                <TextBox Text="{Binding PerkName}"
                                      Width="120"/>
 
                                 <TextBlock Text="Source Jump" Margin="0,15,0,0"/>
-                                <TextBox Text="{Binding PerkSelection.SourceJump}"
-                                     Width="120"/>
+                                <TextBox Text="{Binding PerkSelection.SourceJump}" IsReadOnly="True" Width="120"/>
 
                                 <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                <TextBox Text="{Binding PerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PerkDescription, ValidatesOnNotifyDataErrors=True}"
                                      Width="295"
                                      Height="290"
                                      Style="{DynamicResource LargeTextBox}"/>
@@ -492,7 +578,7 @@
                                                 </GroupBox.Visibility>
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Attribute Name"/>
-                                                    <TextBox Text="{Binding CurrentPhysicalAttributeSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding CurrentPhysicalAttributeName, ValidatesOnNotifyDataErrors=True}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Attribute Rank" Margin="0,15,0,0"/>
@@ -614,7 +700,7 @@
                                                 </GroupBox.Visibility>
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Attribute Name"/>
-                                                    <TextBox Text="{Binding CurrentMentalAttributeSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding CurrentMentalAttributeName, ValidatesOnNotifyDataErrors=True}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Attribute Rank" Margin="0,15,0,0"/>
@@ -736,7 +822,7 @@
                                                 </GroupBox.Visibility>
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Attribute Name"/>
-                                                    <TextBox Text="{Binding CurrentSupernaturalAttributeSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding CurrentSupernaturalAttributeName, ValidatesOnNotifyDataErrors=True}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Attribute Rank" Margin="0,15,0,0"/>
@@ -1081,7 +1167,7 @@
                                                 </GroupBox.Visibility>
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
-                                                    <TextBox Text="{Binding CurrentPhysicalSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding CurrentPhysicalSkillName, ValidatesOnNotifyDataErrors=True}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Skill Rank" Margin="0,15,0,0"/>
@@ -1204,7 +1290,7 @@
                                                 </GroupBox.Visibility>
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
-                                                    <TextBox Text="{Binding CurrentMentalSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding CurrentMentalSkillName, ValidatesOnNotifyDataErrors=True}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Skill Rank" Margin="0,15,0,0"/>
@@ -1326,7 +1412,7 @@
                                                 </GroupBox.Visibility>
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
-                                                    <TextBox Text="{Binding CurrentSocialSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding CurrentSocialSkillName, ValidatesOnNotifyDataErrors=True}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Skill Rank" Margin="0,15,0,0"/>
@@ -1449,7 +1535,7 @@
                                                 </GroupBox.Visibility>
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
-                                                    <TextBox Text="{Binding CurrentTechnologicalSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding CurrentTechnologicalSkillName, ValidatesOnNotifyDataErrors=True}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Skill Rank" Margin="0,15,0,0"/>
@@ -1572,7 +1658,7 @@
                                                 </GroupBox.Visibility>
                                                 <StackPanel Margin="5,3,0,0">
                                                     <TextBlock Text="Skill Name"/>
-                                                    <TextBox Text="{Binding CurrentSupernaturalSkillSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding CurrentSupernaturalSkillName, ValidatesOnNotifyDataErrors=True}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Skill Rank" Margin="0,15,0,0"/>
@@ -1903,11 +1989,11 @@
 
                                 <StackPanel Margin="5,3,0,0">
                                     <TextBlock Text="Attribute Name"/>
-                                    <TextBox Text="{Binding CurrentBoosterSelection.BoosterName, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding CurrentBoosterName, ValidatesOnNotifyDataErrors=True}"
                                              Width="120"/>
 
                                     <TextBlock Text="Attribute Description" Margin="0,15,0,0"/>
-                                    <TextBox Text="{Binding CurrentBoosterSelection.BoosterDescription, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding CurrentBoosterDescription, ValidatesOnNotifyDataErrors=True}"
                                              Width="250" Height="200"
                                              Style="{DynamicResource LargeTextBox}"/>
 
@@ -2041,11 +2127,11 @@
                                 <GroupBox Header="Description" Grid.Row="1">
                                     <StackPanel>
                                         <TextBlock Text="Supplement Name"/>
-                                        <TextBox Text="{Binding LoadedSave.GenericBodyMod.Name, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding GenericBodyModName, ValidatesOnNotifyDataErrors=True}"
                                                  Width="120"/>
 
                                         <TextBlock Text="Supplement Description" Margin="0,15,0,0"/>
-                                        <TextBox Text="{Binding LoadedSave.GenericBodyMod.FullDescription, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding GenericBodyModFullDescription, ValidatesOnNotifyDataErrors=True}"
                                                  Width="320"
                                                  Height="220"
                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -2346,7 +2432,7 @@
                                     <Grid>
                                         <StackPanel Margin="5,3,0,0">
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding BodyModDrawbackSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModDrawbackName, ValidatesOnNotifyDataErrors=True}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -2354,7 +2440,7 @@
                                                      Width="40"/>
 
                                             <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                            <TextBox Text="{Binding BodyModDrawbackSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModDrawbackDescription, ValidatesOnNotifyDataErrors=True}"
                                                      Width="290"
                                                      Height="300"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -2397,7 +2483,7 @@
                                     <Grid>
                                         <StackPanel Margin="5,3,0,0">
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding BodyModAdditionSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionName, ValidatesOnNotifyDataErrors=True}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Source Jump" Margin="0,15,0,0"/>
@@ -2406,7 +2492,7 @@
                                                      IsReadOnly="True"/>
 
                                             <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                            <TextBox Text="{Binding BodyModAdditionSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionDescription, ValidatesOnNotifyDataErrors=True}"
                                                      Width="290"
                                                      Height="300"
                                                      Style="{DynamicResource LargeTextBox}"/>
@@ -2513,7 +2599,7 @@
                                                       Width="120" 
                                                       HorizontalAlignment="Left"/>
 
-                                            <TextBox Text="{Binding CharacterSelection.BodyMod.AnomalousDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding SBBodyModAnomalousDescription, ValidatesOnNotifyDataErrors=True}"
                                                      Width="170" Height="100"
                                                      Margin="0,15,0,0" VerticalAlignment="Top"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -2531,9 +2617,8 @@
                                 <GroupBox Header="Section details" Grid.Column="1">
                                     <Grid>
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
                                             <ColumnDefinition Width="3*"/>
-                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="3*"/>
                                         </Grid.ColumnDefinitions>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="3*"/>
@@ -2541,37 +2626,87 @@
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
 
-                                        <DataGrid ItemsSource="{Binding CharacterSelection.BodyMod.BaseFormDetails, ValidatesOnNotifyDataErrors=True}"
+                                        <ListView ItemsSource="{Binding CharacterSelection.BodyMod.BaseFormDetails}"
+                                                  SelectedItem="{Binding CharacterBaseFormDetailSelection}"
                                                   Margin="0,10,0,0"
-                                                  Height="250" Width="500" 
-                                                  HorizontalAlignment="Center" VerticalAlignment="Top"
-                                                  Grid.ColumnSpan="3">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Header="Section" Binding="{Binding Category}" Width="*" IsReadOnly="True"/>
-                                                <DataGridTextColumn Header="Selection" Binding="{Binding Name, ValidatesOnNotifyDataErrors=True}" Width="*"/>
-                                                <DataGridTextColumn Header="Description" Binding="{Binding Description, ValidatesOnNotifyDataErrors=True}" Width="2*" 
-                                                                    ElementStyle="{DynamicResource DataGridDescriptionColumn}"
-                                                                    EditingElementStyle="{DynamicResource DataGridEditDescriptionColumn}"/>
-                                                <DataGridTextColumn Header="Cost" Binding="{Binding Cost, ValidatesOnNotifyDataErrors=True}" Width="*"/>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
+                                                  Height="250"
+                                                  HorizontalAlignment="Center" VerticalAlignment="Top">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.Columns>
+                                                        <GridViewColumn Header="Section" Width="110"
+                                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                        DisplayMemberBinding="{Binding Category}"/>
+                                                        <GridViewColumn Header="Selection" Width="155" 
+                                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                        DisplayMemberBinding="{Binding Name}"/>
+                                                        <GridViewColumn Header="Cost" Width="75" 
+                                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                        DisplayMemberBinding="{Binding DisplayCost}"/>
+                                                    </GridView.Columns>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
 
-                                        <DataGrid ItemsSource="{Binding SBExtraBitsList}"
+                                        <GroupBox Header="Base form detail selection" Grid.Column="1">
+                                            <StackPanel Margin="5,3,0,0">
+                                                <TextBlock Text="Category"/>
+                                                <TextBox Text="{Binding CharacterBaseFormDetailSelection.Category}" IsReadOnly="True" Width="120"/>
+
+                                                <TextBlock Text="Name" Margin="0,10,0,0"/>
+                                                <TextBox Text="{Binding CharacterBaseFormDetailName, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+
+                                                <TextBlock Text="Cost" Margin="0,10,0,0"/>
+                                                <TextBox Text="{Binding CharacterBaseFormDetailSelection.Cost}" Width="40"/>
+                                                
+                                                <TextBlock Text="Description" Margin="0,10,0,0"/>
+                                                <TextBox Text="{Binding CharacterBaseFormDetailDescription, ValidatesOnNotifyDataErrors=True}"
+                                                         Width="250" Height="85"
+                                                         VerticalAlignment="Top"
+                                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                                         Tag="Insert Base form detail description."/>
+                                            </StackPanel>
+                                        </GroupBox>
+
+                                        <ListView ItemsSource="{Binding SBExtraBitsList}"
                                                   SelectedIndex="{Binding SBExtraBitsIndex}"
-                                                  Height="250" Width="500"
+                                                  SelectedItem="{Binding SBExtraBitsSelection}"
+                                                  Margin="0,10,0,0"
+                                                  Height="250"
                                                   HorizontalAlignment="Center" VerticalAlignment="Top"
-                                                  Grid.Row="1" Grid.ColumnSpan="3"
-                                                  Margin="0,10,0,0">
-                                            <DataGrid.Columns>
-                                                <DataGridTextColumn Header="Name" Binding="{Binding Name, ValidatesOnNotifyDataErrors=True}" Width="*"/>
-                                                <DataGridTextColumn Header="Description" Binding="{Binding Description, ValidatesOnNotifyDataErrors=True}" Width="2*" 
-                                                                    ElementStyle="{DynamicResource DataGridDescriptionColumn}"
-                                                                    EditingElementStyle="{DynamicResource DataGridEditDescriptionColumn}"/>
-                                                <DataGridTextColumn Header="Cost" Binding="{Binding Cost, ValidatesOnNotifyDataErrors=True}" Width="*"/>
-                                            </DataGrid.Columns>
-                                        </DataGrid>
+                                                  Grid.Row="1">
+                                            <ListView.View>
+                                                <GridView>
+                                                    <GridView.Columns>
+                                                        <GridViewColumn Header="Name" Width="220"
+                                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                        DisplayMemberBinding="{Binding Name}"/>
+                                                        <GridViewColumn Header="Cost" Width="120" 
+                                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                                        DisplayMemberBinding="{Binding DisplayCost}"/>
+                                                    </GridView.Columns>
+                                                </GridView>
+                                            </ListView.View>
+                                        </ListView>
+                                        
+                                        <GroupBox Header="Base form detail selection" Grid.Column="1" Grid.Row="1">
+                                            <StackPanel Margin="5,3,0,0">
+                                                <TextBlock Text="Name"/>
+                                                <TextBox Text="{Binding SBExtraBitsName, ValidatesOnNotifyDataErrors=True}" Width="120"/>
 
-                                        <Grid Grid.Row="2" Grid.Column="1">
+                                                <TextBlock Text="Cost" Margin="0,10,0,0"/>
+                                                <TextBox Text="{Binding SBExtraBitsSelection.Cost}" Width="40"/>
+
+                                                <TextBlock Text="Description" Margin="0,10,0,0"/>
+                                                <TextBox Text="{Binding SBExtraBitsDescription, ValidatesOnNotifyDataErrors=True}"
+                                                         Width="250" Height="125"
+                                                         VerticalAlignment="Top"
+                                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                                         Tag="Insert Base form detail description."/>
+                                            </StackPanel>
+                                        </GroupBox>
+                                        
+                                        <Grid Grid.Row="2">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
@@ -2626,7 +2761,7 @@
                                                       Width="120" 
                                                       HorizontalAlignment="Left"/>
 
-                                            <TextBox Text="{Binding CharacterSelection.BodyMod.AffinityDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding SBBodyModAffinityDescription, ValidatesOnNotifyDataErrors=True}"
                                                      Width="170" Height="100"
                                                      Margin="0,15,0,0" VerticalAlignment="Top"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -2736,7 +2871,7 @@
 
                                             <StackPanel Margin="5,3,0,0">
                                                 <TextBlock Text="Name"/>
-                                                <TextBox Text="{Binding SBAugmentSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                <TextBox Text="{Binding SBAugmentName, ValidatesOnNotifyDataErrors=True}"
                                                      Width="120"/>
 
                                                 <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -2756,7 +2891,7 @@
                                                 </StackPanel>
 
                                                 <TextBlock Text="Description" Margin="0,10,0,0"/>
-                                                <TextBox Text="{Binding SBAugmentSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                <TextBox Text="{Binding SBAugmentDescription, ValidatesOnNotifyDataErrors=True}"
                                                          Width="330"
                                                          Height="175"
                                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -2940,7 +3075,7 @@
                                         
                                         <StackPanel Margin="5,3,0,0">
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding SBBodyModPowerSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding SBBodyModPowerName, ValidatesOnNotifyDataErrors=True}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -2959,7 +3094,7 @@
                                                       HorizontalAlignment="Left"/>
 
                                             <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                            <TextBox Text="{Binding SBBodyModPowerSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding SBBodyModPowerDescription, ValidatesOnNotifyDataErrors=True}"
                                                      Width="290"
                                                      Height="300"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -3093,7 +3228,7 @@
                                     <Grid>
                                         <StackPanel Margin="5,3,0,0">
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding BodyModAdditionSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionName, ValidatesOnNotifyDataErrors=True}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Source Jump" Margin="0,15,0,0"/>
@@ -3102,7 +3237,7 @@
                                                      IsReadOnly="True"/>
 
                                             <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                            <TextBox Text="{Binding BodyModAdditionSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionDescription, ValidatesOnNotifyDataErrors=True}"
                                                      Width="290"
                                                      Height="300"
                                                      Style="{DynamicResource LargeTextBox}"/>
@@ -3254,10 +3389,10 @@
                                     </GroupBox.Visibility>
                                     <StackPanel Margin="5,3,0,0">
                                         <TextBlock Text="Name"/>
-                                        <TextBox Text="{Binding EBMEssenceSelection.Name, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                        <TextBox Text="{Binding EBMEssenceName, ValidatesOnNotifyDataErrors=True}" Width="120"/>
 
                                         <TextBlock Text="Description" Margin="0,10,0,0"/>
-                                        <TextBox Text="{Binding EBMEssenceSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding EBMEssenceDescription, ValidatesOnNotifyDataErrors=True}"
                                                  Width="270" Height="240"
                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                  Tag="Insert Essence description."/>
@@ -3346,7 +3481,7 @@
 
                                                     <StackPanel Margin="5,3,0,0">
                                                         <TextBlock Text="Name"/>
-                                                        <TextBox Text="{Binding EBMBasicPerkSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMBasicPerkName, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="120"/>
 
                                                         <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -3359,7 +3494,7 @@
                                                                   Margin="0,10,0,0"/>
 
                                                         <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                                        <TextBox Text="{Binding EBMBasicPerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMBasicPerkDescription, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="290"
                                                                  Height="300"
                                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -3541,7 +3676,7 @@
 
                                                     <StackPanel Margin="5,3,0,0">
                                                         <TextBlock Text="Name"/>
-                                                        <TextBox Text="{Binding EBMPhysicalPerkSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMPhysicalPerkName, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="120"/>
 
                                                         <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -3554,7 +3689,7 @@
                                                                   Margin="0,10,0,0"/>
 
                                                         <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                                        <TextBox Text="{Binding EBMPhysicalPerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMPhysicalPerkDescription, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="290"
                                                                  Height="300"
                                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -3736,7 +3871,7 @@
 
                                                     <StackPanel Margin="5,3,0,0">
                                                         <TextBlock Text="Name"/>
-                                                        <TextBox Text="{Binding EBMMentalPerkSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMMentalPerkName, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="120"/>
 
                                                         <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -3749,7 +3884,7 @@
                                                                   Margin="0,10,0,0"/>
 
                                                         <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                                        <TextBox Text="{Binding EBMMentalPerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMMentalPerkDescription, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="290"
                                                                  Height="300"
                                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -3931,7 +4066,7 @@
 
                                                     <StackPanel Margin="5,3,0,0">
                                                         <TextBlock Text="Name"/>
-                                                        <TextBox Text="{Binding EBMSpiritualPerkSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMSpiritualPerkName, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="120"/>
 
                                                         <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -3944,7 +4079,7 @@
                                                                   Margin="0,10,0,0"/>
 
                                                         <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                                        <TextBox Text="{Binding EBMSpiritualPerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMSpiritualPerkDescription, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="290"
                                                                  Height="300"
                                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -4126,7 +4261,7 @@
 
                                                     <StackPanel Margin="5,3,0,0">
                                                         <TextBlock Text="Name"/>
-                                                        <TextBox Text="{Binding EBMSkillPerkSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMSkillPerkName, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="120"/>
 
                                                         <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -4139,7 +4274,7 @@
                                                                   Margin="0,10,0,0"/>
 
                                                         <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                                        <TextBox Text="{Binding EBMSkillPerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMSkillPerkDescription, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="290"
                                                                  Height="300"
                                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -4321,7 +4456,7 @@
 
                                                     <StackPanel Margin="5,3,0,0">
                                                         <TextBlock Text="Name"/>
-                                                        <TextBox Text="{Binding EBMSupernaturalPerkSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMSupernaturalPerkName, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="120"/>
 
                                                         <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -4334,7 +4469,7 @@
                                                                   Margin="0,10,0,0"/>
 
                                                         <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                                        <TextBox Text="{Binding EBMSupernaturalPerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMSupernaturalPerkDescription, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="290"
                                                                  Height="300"
                                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -4514,7 +4649,7 @@
 
                                                     <StackPanel Margin="5,3,0,0">
                                                         <TextBlock Text="Name"/>
-                                                        <TextBox Text="{Binding EBMItemPerkSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMItemPerkName, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="120"/>
 
                                                         <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -4527,7 +4662,7 @@
                                                                   Margin="0,10,0,0"/>
 
                                                         <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                                        <TextBox Text="{Binding EBMItemPerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMItemPerkDescription, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="290"
                                                                  Height="300"
                                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -4709,7 +4844,7 @@
 
                                                     <StackPanel Margin="5,3,0,0">
                                                         <TextBlock Text="Name"/>
-                                                        <TextBox Text="{Binding EBMCompanionPerkSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMCompanionPerkName, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="120"/>
 
                                                         <TextBlock Text="Cost" Margin="0,15,0,0"/>
@@ -4722,7 +4857,7 @@
                                                                   Margin="0,10,0,0"/>
 
                                                         <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                                        <TextBox Text="{Binding EBMCompanionPerkSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMCompanionPerkDescription, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="290"
                                                                  Height="300"
                                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -4904,7 +5039,7 @@
 
                                                     <StackPanel Margin="5,3,0,0">
                                                         <TextBlock Text="Name"/>
-                                                        <TextBox Text="{Binding EBMDrawbackSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMDrawbackName, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="120"/>
 
                                                         <TextBlock Text="Value" Margin="0,15,0,0"/>
@@ -4912,7 +5047,7 @@
                                                                  Width="40"/>
 
                                                         <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                                        <TextBox Text="{Binding EBMDrawbackSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding EBMDrawbackDescription, ValidatesOnNotifyDataErrors=True}"
                                                                  Width="290"
                                                                  Height="300"
                                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -4953,7 +5088,7 @@
                                     <Grid>
                                         <StackPanel Margin="5,3,0,0">
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding BodyModAdditionSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionName, ValidatesOnNotifyDataErrors=True}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Source Jump" Margin="0,15,0,0"/>
@@ -4962,7 +5097,7 @@
                                                      IsReadOnly="True"/>
 
                                             <TextBlock Text="Description" Margin="0,50,0,0"/>
-                                            <TextBox Text="{Binding BodyModAdditionSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionDescription, ValidatesOnNotifyDataErrors=True}"
                                                      Width="290"
                                                      Height="300"
                                                      Style="{DynamicResource LargeTextBox}"/>

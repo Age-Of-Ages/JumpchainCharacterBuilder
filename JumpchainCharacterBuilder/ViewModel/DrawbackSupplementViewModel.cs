@@ -1,12 +1,14 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -34,6 +36,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveDrawbackDownCommand))]
         private DrawbackSupplementPurchase _drawbackSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _drawbackName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _drawbackDescription = "";
+        [ObservableProperty]
         private int _drawbackSelectionIndex = 0;
 
         [ObservableProperty]
@@ -43,6 +53,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveHouseRuleUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveHouseRuleDownCommand))]
         private HouseRuleModel _houseRuleSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _houseRuleName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _houseRuleDescription = "";
         [ObservableProperty]
         private int _houseRuleSelectionIndex = 0;
 
@@ -59,12 +77,20 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<DrawbackSuspendModel> _drawbackSuspendList = new();
 
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _uUMode = "";
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _uUModeDescription = "";
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _uURiskLevel = "";
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _uURiskLevelDescription = "";
 
         #endregion
@@ -78,16 +104,84 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 LoadDrawbackSuspends();
                 UpdatePointValues();
+
+                DrawbackName = value.Name;
+                DrawbackDescription = value.Description;
             }
         }
 
-        partial void OnUUModeChanged(string value) => LoadedSave.UUSupplement.Mode = value;
+        partial void OnHouseRuleSelectionChanged(HouseRuleModel value)
+        {
+            if (value != null)
+            {
+                HouseRuleName = value.HouseRuleName;
+                HouseRuleDescription = value.HouseRuleDescription;
+            }
+        }
 
-        partial void OnUUModeDescriptionChanged(string value) => LoadedSave.UUSupplement.ModeDescription = value;
+        partial void OnUUModeChanged(string value)
+        {
+            if (!GetErrors(nameof(UUMode)).Any())
+            {
+                LoadedSave.UUSupplement.Mode = value;
+            }
+        }
 
-        partial void OnUURiskLevelChanged(string value) => LoadedSave.UUSupplement.RiskLevel = value;
+        partial void OnUUModeDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(UUModeDescription)).Any())
+            {
+                LoadedSave.UUSupplement.ModeDescription = value;
+            }
+        }
 
-        partial void OnUURiskLevelDescriptionChanged(string value) => LoadedSave.UUSupplement.RiskLevelDescription = value;
+        partial void OnUURiskLevelChanged(string value)
+        {
+            if (!GetErrors(nameof(UURiskLevel)).Any())
+            {
+                LoadedSave.UUSupplement.RiskLevel = value;
+            }
+        }
+
+        partial void OnUURiskLevelDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(UURiskLevelDescription)).Any())
+            {
+                LoadedSave.UUSupplement.RiskLevelDescription = value;
+            }
+        }
+
+        partial void OnHouseRuleNameChanged(string value)
+        {
+            if (!GetErrors(nameof(HouseRuleName)).Any() && HouseRuleSelection != null)
+            {
+                HouseRuleSelection.HouseRuleName = value;
+            }
+        }
+
+        partial void OnHouseRuleDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(HouseRuleDescription)).Any() && HouseRuleSelection != null)
+            {
+                HouseRuleSelection.HouseRuleDescription = value;
+            }
+        }
+
+        partial void OnDrawbackNameChanged(string value)
+        {
+            if (!GetErrors(nameof(DrawbackName)).Any() && DrawbackSelection != null)
+            {
+                DrawbackSelection.Name = value;
+            }
+        }
+
+        partial void OnDrawbackDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(DrawbackDescription)).Any() && DrawbackSelection != null)
+            {
+                DrawbackSelection.Description = value;
+            }
+        }
         #endregion
 
         #region Constructor

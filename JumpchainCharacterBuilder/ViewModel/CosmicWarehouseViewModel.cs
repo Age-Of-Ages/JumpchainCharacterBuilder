@@ -1,11 +1,13 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -53,8 +55,12 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _patientJumperWP = 0;
 
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _genericName = "";
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _genericDescription = "";
 
         [ObservableProperty]
@@ -95,6 +101,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MovePurchaseUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MovePurchaseDownCommand))]
         private SupplementPurchase _purchaseSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _purchaseName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _purchaseDescription = "";
 
         [ObservableProperty]
         private ObservableCollection<SupplementDrawbackModel> _limitationList = new();
@@ -104,12 +118,28 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveLimitationDownCommand))]
         private SupplementDrawbackModel _limitationSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _limitationName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _limitationDescription = "";
+        [ObservableProperty]
         private int _limitationSelectionIndex = 0;
 
         [ObservableProperty]
         private ObservableCollection<Purchase> _additionList = new();
         [ObservableProperty]
         private Purchase _additionSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _additionName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _additionDescription = "";
         [ObservableProperty]
         private int _additionSelectionIndex = new();
 
@@ -131,7 +161,98 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnPurchasesTabIndexChanged(int value) => PurchaseTabChanged();
 
-        partial void OnPurchaseSelectionChanged(SupplementPurchase value) => CalculateBudget();
+        partial void OnPurchaseSelectionChanged(SupplementPurchase value)
+        {
+            CalculateBudget();
+
+            if (value != null)
+            {
+                PurchaseName = value.Name;
+                PurchaseDescription = value.Description;
+            }
+        }
+
+        partial void OnLimitationSelectionChanged(SupplementDrawbackModel value)
+        {
+            if (value != null)
+            {
+                LimitationName = value.Name;
+                LimitationDescription = value.Description;
+            }
+        }
+
+        partial void OnAdditionSelectionChanged(Purchase value)
+        {
+            if (value != null)
+            {
+                AdditionName = value.Name;
+                AdditionDescription = value.Description;
+            }
+        }
+
+        partial void OnPurchaseNameChanged(string value)
+        {
+            if (!GetErrors(nameof(PurchaseName)).Any() && PurchaseSelection != null)
+            {
+                PurchaseSelection.Name = value;
+            }
+        }
+
+        partial void OnPurchaseDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(PurchaseDescription)).Any() && PurchaseSelection != null)
+            {
+                PurchaseSelection.Description = value;
+            }
+        }
+
+        partial void OnLimitationNameChanged(string value)
+        {
+            if (!GetErrors(nameof(LimitationName)).Any() && LimitationSelection != null)
+            {
+                LimitationSelection.Name = value;
+            }
+        }
+
+        partial void OnLimitationDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(LimitationDescription)).Any() && LimitationSelection != null)
+            {
+                LimitationSelection.Description = value;
+            }
+        }
+
+        partial void OnAdditionNameChanged(string value)
+        {
+            if (!GetErrors(nameof(AdditionName)).Any() && AdditionSelection != null)
+            {
+                AdditionSelection.Name = value;
+            }
+        }
+
+        partial void OnAdditionDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(AdditionDescription)).Any() && AdditionSelection != null)
+            {
+                AdditionSelection.Description = value;
+            }
+        }
+
+        partial void OnGenericNameChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericName)).Any())
+            {
+                LoadedSave.GenericWarehouse.Name = value;
+            }
+        }
+
+        partial void OnGenericDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericDescription)).Any())
+            {
+                LoadedSave.GenericWarehouse.FullDescription = value;
+            }
+        }
 
         #endregion
 

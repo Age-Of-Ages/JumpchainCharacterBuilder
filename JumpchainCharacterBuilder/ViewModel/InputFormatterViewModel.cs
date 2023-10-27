@@ -62,6 +62,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             temporaryString = RemoveDoubleSpacesRegex().Replace(temporaryString, " ");
             temporaryString = RemoveParagraphStartSpacesRegex().Replace(temporaryString, "");
 
+            temporaryString = XmlFilterRegex().Replace(temporaryString, "");
+
             OutputString = temporaryString;
         }
 
@@ -76,6 +78,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [GeneratedRegex("(?<=\\n) ")]
         private static partial Regex RemoveParagraphStartSpacesRegex();
+
+        [GeneratedRegex("[^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD]", RegexOptions.Compiled)]
+        private static partial Regex XmlFilterRegex();
         #endregion
     }
 }

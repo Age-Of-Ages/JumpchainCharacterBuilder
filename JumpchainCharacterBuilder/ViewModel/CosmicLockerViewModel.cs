@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
@@ -42,6 +43,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<Purchase> _currentItemList = new();
         [ObservableProperty]
         private Purchase _itemSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _itemName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _itemDescription = "";
         #endregion
 
         #region Properties
@@ -53,6 +62,31 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (value != null)
             {
                 CharacterChanged();
+            }
+        }
+
+        partial void OnItemSelectionChanged(Purchase value)
+        {
+            if (value != null)
+            {
+                ItemName = value.Name;
+                ItemDescription = value.Description;
+            }
+        }
+
+        partial void OnItemNameChanged(string value)
+        {
+            if (!GetErrors(nameof(ItemName)).Any() && ItemSelection != null)
+            {
+                ItemSelection.Description = value;
+            }
+        }
+
+        partial void OnItemDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(ItemDescription)).Any() && ItemSelection != null)
+            {
+                ItemSelection.Description = value;
             }
         }
 

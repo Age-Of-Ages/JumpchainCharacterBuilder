@@ -74,7 +74,7 @@
 
                 <StackPanel Margin="5,3,0,0">
                     <TextBlock Text="Name"/>
-                    <TextBox Text="{Binding ItemSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                    <TextBox Text="{Binding ItemName, ValidatesOnNotifyDataErrors=True}"
                              Width="120"/>
 
                     <TextBlock Text="Source Jump" Margin="0,15,0,0"/>
@@ -82,7 +82,7 @@
                              Width="120"/>
 
                     <TextBlock Text="Description" Margin="0,50,0,0"/>
-                    <TextBox Text="{Binding ItemSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                    <TextBox Text="{Binding ItemDescription, ValidatesOnNotifyDataErrors=True}"
                              Width="290"
                              Height="200"
                              Style="{DynamicResource LargeTextBox}"/>

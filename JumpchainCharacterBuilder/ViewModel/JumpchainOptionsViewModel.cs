@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -70,6 +71,27 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _personalRealitySelected = false;
 
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericWarehouseName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericWarehouseVersion = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericWarehouseAuthor = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericWarehouseSource = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericWarehouseFullDescription = "";
+
+        [ObservableProperty]
         private PersonalReality.CoreModes _pRCoreModeSelection = new();
         [ObservableProperty]
         private bool _pRPatientJumper = false;
@@ -80,6 +102,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [Range(0, int.MaxValue, ErrorMessage = "Supplements cannot be taken on a negative Jump #.")]
         private int _pRSupplementDelay = 0;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _pRCoreModeDescription = "";
         [ObservableProperty]
         private bool _pRInvestmentAllowed = true;
@@ -94,6 +118,27 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _sBBodyModSelected = false;
         [ObservableProperty]
         private bool _essentialBodyModSelected = true;
+
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericBodyModName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericBodyModVersion = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericBodyModAuthor = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericBodyModSource = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericBodyModFullDescription = "";
 
         [ObservableProperty]
         private int _sBBodyModBudget = 1000;
@@ -131,10 +176,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private EssentialBodyMod.UnbalancedVariantModes _eBMUnbalancedMode = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _eBMUnbalancedModeDescription = "";
         [ObservableProperty]
         private EssentialBodyMod.Limiters _eBMLimiter = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _eBMLimiterDescription = "";
         [ObservableProperty]
         private bool _eBMInvestmentAllowed = false;
@@ -202,6 +251,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MovePerkCategoryDownCommand))]
         [NotifyDataErrorInfo]
         [UniqueName(nameof(CompiledPerkCategories))]
+        [XmlFilter]
         private string _userPerkCategorySelection = "";
         [ObservableProperty]
         private int _userPerkCategoryIndex = 0;
@@ -213,6 +263,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveItemCategoryDownCommand))]
         [NotifyDataErrorInfo]
         [UniqueName(nameof(CompiledItemCategories))]
+        [XmlFilter]
         private string _userItemCategorySelection = "";
         [ObservableProperty]
         private int _userItemCategoryIndex = 0;
@@ -392,7 +443,13 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnPRCoreModeDescriptionChanged(string value) => LoadedSave.PersonalReality.CoreModeDescription = value;
+        partial void OnPRCoreModeDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(PRCoreModeDescription)).Any())
+            {
+                LoadedSave.PersonalReality.CoreModeDescription = value;
+            }
+        }
 
         partial void OnPRInvestmentAllowedChanged(bool value) => LoadedSave.PersonalReality.InvestmentAllowed = value;
 
@@ -542,11 +599,24 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnEBMUnbalancedModeChanged(EssentialBodyMod.UnbalancedVariantModes value) => LoadedSave.EssentialBodyMod.UnbalancedVariantMode = value;
 
-        partial void OnEBMUnbalancedModeDescriptionChanged(string value) => LoadedSave.EssentialBodyMod.UnbalancedModeDescription = value;
+        partial void OnEBMUnbalancedModeDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMUnbalancedModeDescription)).Any())
+            {
+                LoadedSave.EssentialBodyMod.UnbalancedModeDescription = value;
+            }
+        }
 
         partial void OnEBMLimiterChanged(EssentialBodyMod.Limiters value) => LoadedSave.EssentialBodyMod.Limiter = value;
 
-        partial void OnEBMLimiterDescriptionChanged(string value) => LoadedSave.EssentialBodyMod.LimiterDescription = value;
+        partial void OnEBMLimiterDescriptionChanged(string value)
+        {
+
+            if (!GetErrors(nameof(EBMLimiterDescription)).Any())
+            {
+                LoadedSave.EssentialBodyMod.LimiterDescription = value;
+            }
+        }
 
         partial void OnEBMInvestmentAllowedChanged(bool value) => LoadedSave.EssentialBodyMod.InvestmentAllowed = value;
 
@@ -620,13 +690,16 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnUserPerkCategorySelectionChanging(string value)
         {
-            List<string> tempList = UserPerkCategories.ToList();
+            if (!GetErrors(nameof(UserPerkCategorySelection)).Any())
+            {
+                List<string> tempList = UserPerkCategories.ToList();
 
-            tempList[UserPerkCategoryIndex] = value;
+                tempList[UserPerkCategoryIndex] = value;
 
-            tempList.AddRange(LoadedSave.BasePerkCategoryList);
+                tempList.AddRange(LoadedSave.BasePerkCategoryList);
 
-            CompiledPerkCategories = new(tempList);
+                CompiledPerkCategories = new(tempList);
+            }
         }
 
         partial void OnUserPerkCategorySelectionChanged(string value)
@@ -660,13 +733,17 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnUserItemCategorySelectionChanging(string value)
         {
-            List<string> tempList = UserItemCategories.ToList();
 
-            tempList[UserItemCategoryIndex] = value;
+            if (!GetErrors(nameof(UserItemCategorySelection)).Any())
+            {
+                List<string> tempList = UserItemCategories.ToList();
 
-            tempList.AddRange(LoadedSave.BaseItemCategoryList);
+                tempList[UserItemCategoryIndex] = value;
 
-            CompiledItemCategories = new(tempList);
+                tempList.AddRange(LoadedSave.BaseItemCategoryList);
+
+                CompiledItemCategories = new(tempList);
+            }
         }
 
         partial void OnUserItemCategorySelectionChanged(string value)
@@ -687,6 +764,86 @@ namespace JumpchainCharacterBuilder.ViewModel
                         ChangePurchaseCategory(oldCategory, value);
                     }
                 }
+            }
+        }
+
+        partial void OnGenericWarehouseNameChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericWarehouseName)).Any())
+            {
+                LoadedSave.GenericWarehouse.Name = value;
+            }
+        }
+
+        partial void OnGenericWarehouseAuthorChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericWarehouseAuthor)).Any())
+            {
+                LoadedSave.GenericWarehouse.Author = value;
+            }
+        }
+
+        partial void OnGenericWarehouseVersionChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericWarehouseVersion)).Any())
+            {
+                LoadedSave.GenericWarehouse.Version = value;
+            }
+        }
+
+        partial void OnGenericWarehouseSourceChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericWarehouseSource)).Any())
+            {
+                LoadedSave.GenericWarehouse.Source = value;
+            }
+        }
+
+        partial void OnGenericWarehouseFullDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericWarehouseFullDescription)).Any())
+            {
+                LoadedSave.GenericWarehouse.FullDescription = value;
+            }
+        }
+
+        partial void OnGenericBodyModNameChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericBodyModName)).Any())
+            {
+                LoadedSave.GenericBodyMod.Name = value;
+            }
+        }
+
+        partial void OnGenericBodyModAuthorChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericBodyModAuthor)).Any())
+            {
+                LoadedSave.GenericBodyMod.Author = value;
+            }
+        }
+
+        partial void OnGenericBodyModVersionChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericBodyModVersion)).Any())
+            {
+                LoadedSave.GenericBodyMod.Version = value;
+            }
+        }
+
+        partial void OnGenericBodyModSourceChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericBodyModSource)).Any())
+            {
+                LoadedSave.GenericBodyMod.Source = value;
+            }
+        }
+
+        partial void OnGenericBodyModFullDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericBodyModFullDescription)).Any())
+            {
+                LoadedSave.GenericBodyMod.FullDescription = value;
             }
         }
 
@@ -840,6 +997,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             BodyModSelection = LoadedOptions.BodyModSetting;
             DrawbackSupplementSelection = LoadedOptions.DrawbackSupplementSetting;
 
+            GenericWarehouseName = LoadedSave.GenericWarehouse.Name;
+            GenericWarehouseAuthor = LoadedSave.GenericWarehouse.Author;
+            GenericWarehouseVersion = LoadedSave.GenericWarehouse.Version;
+            GenericWarehouseSource = LoadedSave.GenericWarehouse.Source;
+            GenericWarehouseFullDescription = LoadedSave.GenericWarehouse.FullDescription;
+
             PRCoreModeSelection = LoadedSave.PersonalReality.CoreMode;
             PRPatientJumper = LoadedSave.PersonalReality.PatientJumper;
             PRPatientJumperCountFirstJump = LoadedSave.PersonalReality.PatientJumperCountFirstJump;
@@ -847,6 +1010,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             PRCoreModeDescription = LoadedSave.PersonalReality.CoreModeDescription;
             PRInvestmentAllowed = LoadedSave.PersonalReality.InvestmentAllowed;
             PRInvestmentRatio = LoadedSave.PersonalReality.InvestmentRatio;
+
+            GenericBodyModName = LoadedSave.GenericBodyMod.Name;
+            GenericBodyModAuthor = LoadedSave.GenericBodyMod.Author;
+            GenericBodyModVersion = LoadedSave.GenericBodyMod.Version;
+            GenericBodyModSource = LoadedSave.GenericBodyMod.Source;
+            GenericBodyModFullDescription = LoadedSave.GenericBodyMod.FullDescription;
 
             SBBodyModBudget = LoadedSave.SBBodyMod.Budget;
             SBBodyModInvestmentAllowed = LoadedSave.SBBodyMod.InvestmentAllowed;

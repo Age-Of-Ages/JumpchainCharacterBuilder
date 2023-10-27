@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
@@ -9,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -32,10 +34,64 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteCharacterCommand))]
         private Character _characterSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterAlias = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterGender = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterHomeworld = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterSpecies = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterRace = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterPersonality = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterPhysicalDescription = "";
+        [ObservableProperty]
         private int _characterSelectionIndex = 0;
 
         [ObservableProperty]
         private ObservableCollection<Trait> _characterTraitList = new();
+        [ObservableProperty]
+        private Trait _characterTraitSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _like = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _dislike = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _hobby = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _quirk = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _goal = "";
 
         [ObservableProperty]
         private int _passportTabIndex = 0;
@@ -65,10 +121,32 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteStrengthWeaknessRowCommand))]
         private AltForm _characterAltFormSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _altFormName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _altFormSpecies = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _altFormDescription = "";
+        [ObservableProperty]
         private int _characterAltFormSelectionIndex = 0;
 
         [ObservableProperty]
         private ObservableCollection<AltFormTraitModel> _altFormStrengthWeaknessList = new();
+        [ObservableProperty]
+        private AltFormTraitModel _altFormStrengthWeaknessSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _altFormStrength = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _altFormWeakness = "";
 
         [ObservableProperty]
         private ObservableCollection<string> _perkTabList = new();
@@ -85,6 +163,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<Purchase> _currentPerkList = new();
         [ObservableProperty]
         private Purchase _perkSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _perkName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _perkDescription = "";
 
         [ObservableProperty]
         private Options.BodyModSupplements _loadedBodyModSupplement = Options.BodyModSupplements.Generic;
@@ -98,6 +184,16 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [ObservableProperty]
         private bool _bodyModPurchasesAllowed = true;
+
+
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericBodyModName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _genericBodyModFullDescription = "";
 
         [ObservableProperty]
         private int _totalBP = 0;
@@ -123,15 +219,39 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteSBPowerTraitCommand))]
         private SupplementPurchase _bodyModPurchaseSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _bodyModPurchaseName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _bodyModPurchaseDescription = "";
+        [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteBodyModDrawbackCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveBodyModDrawbackUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveBodyModDrawbackDownCommand))]
         private SupplementDrawbackModel _bodyModDrawbackSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _bodyModDrawbackName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _bodyModDrawbackDescription = "";
 
         [ObservableProperty]
         private ObservableCollection<Purchase> _bodyModAdditionList = new();
         [ObservableProperty]
         private Purchase _bodyModAdditionSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _bodyModAdditionName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _bodyModAdditionDescription = "";
         [ObservableProperty]
         private int _bodyModAdditionSelectionIndex = new();
 
@@ -160,6 +280,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _sBBodyModAnomalousStipend = 0;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _sBBodyModAnomalousDescription = "";
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -167,12 +289,31 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _sBBodyModSupplementDelay = 0;
         [ObservableProperty]
         private int _sBBodyModGauntlets = 0;
-
+        [ObservableProperty]
+        private SupplementPurchase _characterBaseFormDetailSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterBaseFormDetailName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _characterBaseFormDetailDescription = "";
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _sBExtraBitsList = new();
         [ObservableProperty]
+        private SupplementPurchase _sBExtraBitsSelection = new();
+        [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSBExtraBitsCommand))]
         private int _sBExtraBitsIndex = 0;
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _sBExtraBitsName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _sBExtraBitsDescription = "";
 
         [ObservableProperty]
         private Dictionary<string, int> _sBBodyModAffinity = new()
@@ -187,17 +328,35 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _sBBodyModAffinityCost = 0;
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
         private string _sBBodyModAffinityDescription = "";
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteAugmentTraitCommand))]
         private AugmentPurchase _sBAugmentSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _sBAugmentName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _sBAugmentDescription = "";
 
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _sBBodyModPowerList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSBPowerTraitCommand))]
         private SupplementPurchase _sBBodyModPowerSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _sBBodyModPowerName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _sBBodyModPowerDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSBPowerCommand))]
         private int _sBBodyModPowerIndex = 0;
@@ -242,12 +401,28 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEssenceCommand))]
         private EBMEssence _eBMEssenceSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMEssenceName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMEssenceDescription = "";
+        [ObservableProperty]
         private int _eBMEssenceIndex = 0;
 
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMBasicPerkList = new();
         [ObservableProperty]
         private SupplementPurchase _eBMBasicPerkSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMBasicPerkName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMBasicPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMBasicPerkIndex = 0;
@@ -257,6 +432,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMPhysicalPerkSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMPhysicalPerkName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMPhysicalPerkDescription = "";
+        [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMPhysicalPerkIndex = 0;
         [ObservableProperty]
@@ -264,6 +447,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMMentalPerkSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMMentalPerkName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMMentalPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMMentalPerkIndex = 0;
@@ -273,6 +464,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMSpiritualPerkSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMSpiritualPerkName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMSpiritualPerkDescription = "";
+        [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMSpiritualPerkIndex = 0;
         [ObservableProperty]
@@ -280,6 +479,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMSkillPerkSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMSkillPerkName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMSkillPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMSkillPerkIndex = 0;
@@ -289,6 +496,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMSupernaturalPerkSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMSupernaturalPerkName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMSupernaturalPerkDescription = "";
+        [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMSupernaturalPerkIndex = 0;
         [ObservableProperty]
@@ -296,6 +511,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMItemPerkSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMItemPerkName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMItemPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMItemPerkIndex = 0;
@@ -305,6 +528,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMCompanionPerkSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMCompanionPerkName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMCompanionPerkDescription = "";
+        [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMCompanionPerkIndex = 0;
 
@@ -312,6 +543,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<SupplementDrawbackModel> _eBMDrawbackList = new();
         [ObservableProperty]
         private SupplementDrawbackModel _eBMDrawbackSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMDrawbackName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _eBMDrawbackDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMDrawbackCommand))]
         private int _eBMDrawbackIndex = 0;
@@ -454,6 +693,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MovePhysicalAttributeDownCommand))]
         private ProfileAttribute _currentPhysicalAttributeSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentPhysicalAttributeName = "";
+        [ObservableProperty]
         private int _currentPhysicalAttributeIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentMentalAttributeList = new();
@@ -463,6 +706,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveMentalAttributeDownCommand))]
         private ProfileAttribute _currentMentalAttributeSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentMentalAttributeName = "";
+        [ObservableProperty]
         private int _currentMentalAttributeIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentSupernaturalAttributeList = new();
@@ -471,6 +718,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveSupernaturalAttributeUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveSupernaturalAttributeDownCommand))]
         private ProfileAttribute _currentSupernaturalAttributeSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentSupernaturalAttributeName = "";
         [ObservableProperty]
         private int _currentSupernaturalAttributeIndex = 0;
 
@@ -482,6 +733,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MovePhysicalSkillDownCommand))]
         private ProfileAttribute _currentPhysicalSkillSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentPhysicalSkillName = "";
+        [ObservableProperty]
         private int _currentPhysicalSkillIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentMentalSkillList = new();
@@ -490,6 +745,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveMentalSkillUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveMentalSkillDownCommand))]
         private ProfileAttribute _currentMentalSkillSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentMentalSkillName = "";
         [ObservableProperty]
         private int _currentMentalSkillIndex = 0;
         [ObservableProperty]
@@ -500,6 +759,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveSocialSkillDownCommand))]
         private ProfileAttribute _currentSocialSkillSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentSocialSkillName = "";
+        [ObservableProperty]
         private int _currentSocialSkillIndex = 0;
         [ObservableProperty]
         private ObservableCollection<ProfileAttribute> _currentTechnologicalSkillList = new();
@@ -508,6 +771,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveTechnologicalSkillUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveTechnologicalSkillDownCommand))]
         private ProfileAttribute _currentTechnologicalSkillSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentTechnologicalSkillName = "";
         [ObservableProperty]
         private int _currentTechnologicalSkillIndex = 0;
         [ObservableProperty]
@@ -518,6 +785,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(MoveSupernaturalSkillDownCommand))]
         private ProfileAttribute _currentSupernaturalSkillSelection = new();
         [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentSupernaturalSkillName = "";
+        [ObservableProperty]
         private int _currentSupernaturalSkillIndex = 0;
 
         [ObservableProperty]
@@ -525,6 +796,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteBoosterCommand))]
         private Booster _currentBoosterSelection = new();
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentBoosterName = "";
+        [ObservableProperty]
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _currentBoosterDescription = "";
         [ObservableProperty]
         private int _currentBoosterIndex = 0;
         #endregion
@@ -540,18 +819,63 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadAltForms(value);
 
                 CharacterChanged(CharacterSelectionIndex);
+
+                CharacterName = value.Name;
+                CharacterAlias = value.Alias;
+                CharacterGender = value.Gender;
+                CharacterSpecies = value.Species;
+                CharacterHomeworld = value.Homeworld;
+                CharacterRace = value.Race;
+                CharacterPersonality = value.Personality;
+                CharacterPhysicalDescription = value.PhysicalDescription;
+            }
+        }
+
+        partial void OnCharacterTraitSelectionChanged(Trait value)
+        {
+            if (value != null)
+            {
+                Like = value.Like;
+                Dislike = value.Dislike;
+                Hobby = value.Hobby;
+                Quirk = value.Quirk;
+                Goal = value.Goal;
             }
         }
 
         partial void OnCharacterAltFormSelectionChanged(AltForm value) => LoadAltFormTraits();
 
+        partial void OnAltFormStrengthWeaknessSelectionChanged(AltFormTraitModel value)
+        {
+            if (value != null)
+            {
+                AltFormStrength = value.Strength;
+                AltFormWeakness = value.Weakness;
+            }
+        }
+
         partial void OnPerkTabNameChanged(string value) => PerkTabChanged();
+
+        partial void OnPerkSelectionChanged(Purchase value)
+        {
+            if (value != null)
+            {
+                PerkName = value.Name;
+                PerkDescription = value.Description;
+            }
+        }
 
         partial void OnLoadedBodyModSupplementChanged(Options.BodyModSupplements value)
         {
             LoadBodyModTabs();
 
             ClearAttributeList();
+
+            if (value == Options.BodyModSupplements.Generic)
+            {
+                GenericBodyModName = LoadedSave.GenericBodyMod.Name;
+                GenericBodyModFullDescription = LoadedSave.GenericBodyMod.FullDescription;
+            }
         }
 
         partial void OnSBBodyModSupplementDelayChanged(int value)
@@ -574,6 +898,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                BodyModPurchaseName = value.Name;
+                BodyModPurchaseDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -593,6 +920,24 @@ namespace JumpchainCharacterBuilder.ViewModel
             else
             {
                 ClearAttributeList();
+            }
+        }
+
+        partial void OnBodyModDrawbackSelectionChanged(SupplementDrawbackModel value)
+        {
+            if (value != null)
+            {
+                BodyModDrawbackName = value.Name;
+                BodyModDrawbackDescription = value.Description;
+            }
+        }
+
+        partial void OnBodyModAdditionSelectionChanged(Purchase value)
+        {
+            if (value != null)
+            {
+                BodyModAdditionName = value.Name;
+                BodyModAdditionDescription = value.Description;
             }
         }
 
@@ -620,7 +965,13 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnSBBodyModAnomalousDescriptionChanged(string value) => CharacterSelection.BodyMod.AnomalousDescription = value;
+        partial void OnSBBodyModAnomalousDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(SBBodyModAnomalousDescription)).Any())
+            {
+                CharacterSelection.BodyMod.AnomalousDescription = value;
+            }
+        }
 
         partial void OnSBBodyModAffinityIndexChanged(int value)
         {
@@ -635,12 +986,21 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnSBBodyModAffinityDescriptionChanged(string value) => CharacterSelection.BodyMod.AffinityDescription = value;
+        partial void OnSBBodyModAffinityDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(SBBodyModAffinityDescription)).Any())
+            {
+                CharacterSelection.BodyMod.AffinityDescription = value;
+            }
+        }
 
         partial void OnSBAugmentSelectionChanged(AugmentPurchase value)
         {
             if (value != null)
             {
+                SBAugmentName = value.Name;
+                SBAugmentDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -668,6 +1028,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             if (value != null)
             {
+                SBBodyModPowerName = value.Name;
+                SBBodyModPowerDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -690,6 +1053,15 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
+        partial void OnEBMEssenceSelectionChanged(EBMEssence value)
+        {
+            if (value != null)
+            {
+                EBMEssenceName = value.Name;
+                EBMEssenceDescription = value.Description;
+            }
+        }
+
         partial void OnEBMSupplementDelayChanged(int value)
         {
             if (!GetErrors(nameof(EBMSupplementDelay)).Any())
@@ -707,6 +1079,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                EBMBasicPerkName = value.Name;
+                EBMBasicPerkDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -734,6 +1109,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                EBMPhysicalPerkName = value.Name;
+                EBMPhysicalPerkDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -760,6 +1138,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                EBMMentalPerkName = value.Name;
+                EBMMentalPerkDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -786,6 +1167,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                EBMSpiritualPerkName = value.Name;
+                EBMSpiritualPerkDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -812,6 +1196,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                EBMSkillPerkName = value.Name;
+                EBMSkillPerkDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -838,6 +1225,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                EBMSupernaturalPerkName = value.Name;
+                EBMSupernaturalPerkDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -864,6 +1254,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                EBMItemPerkName = value.Name;
+                EBMItemPerkDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -890,6 +1283,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
+                EBMCompanionPerkName = value.Name;
+                EBMCompanionPerkDescription = value.Description;
+
                 if (value.Attributes.Any())
                 {
                     PurchaseAttributeList.Clear();
@@ -913,6 +1309,15 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         partial void OnEBMPurchaseTabIndexChanged(int value) => ClearAttributeList();
+
+        partial void OnEBMDrawbackSelectionChanged(SupplementDrawbackModel value)
+        {
+            if (value != null)
+            {
+                EBMDrawbackName = value.Name;
+                EBMDrawbackDescription = value.Description;
+            }
+        }
 
         partial void OnPurchaseAttributeSelectionChanged(PurchaseAttribute value)
         {
@@ -982,6 +1387,625 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (PurchaseAttributeSelection != null && value != null)
             {
                 PurchaseAttributeSelection.Name = value;
+            }
+        }
+
+        partial void OnCharacterNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterName)).Any() && CharacterSelection != null)
+            {
+                CharacterSelection.Name = value;
+            }
+        }
+
+        partial void OnCharacterAliasChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterAlias)).Any() && CharacterSelection != null)
+            {
+                CharacterSelection.Alias = value;
+            }
+        }
+
+        partial void OnCharacterGenderChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterGender)).Any() && CharacterSelection != null)
+            {
+                CharacterSelection.Gender = value;
+            }
+        }
+
+        partial void OnCharacterSpeciesChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterSpecies)).Any() && CharacterSelection != null)
+            {
+                CharacterSelection.Species = value;
+            }
+        }
+
+        partial void OnCharacterHomeworldChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterHomeworld)).Any() && CharacterSelection != null)
+            {
+                CharacterSelection.Homeworld = value;
+            }
+        }
+
+        partial void OnCharacterRaceChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterRace)).Any() && CharacterSelection != null)
+            {
+                CharacterSelection.Race = value;
+            }
+        }
+
+        partial void OnCharacterPersonalityChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterPersonality)).Any() && CharacterSelection != null)
+            {
+                CharacterSelection.Personality = value;
+            }
+        }
+
+        partial void OnCharacterPhysicalDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterPhysicalDescription)).Any() && CharacterSelection != null)
+            {
+                CharacterSelection.PhysicalDescription = value;
+            }
+        }
+
+        partial void OnLikeChanged(string value)
+        {
+            if (!GetErrors(nameof(Like)).Any() && CharacterTraitSelection != null)
+            {
+                CharacterTraitSelection.Like = value;
+            }
+        }
+
+        partial void OnDislikeChanged(string value)
+        {
+            if (!GetErrors(nameof(Dislike)).Any() && CharacterTraitSelection != null)
+            {
+                CharacterTraitSelection.Dislike = value;
+            }
+        }
+
+        partial void OnHobbyChanged(string value)
+        {
+            if (!GetErrors(nameof(Hobby)).Any() && CharacterTraitSelection != null)
+            {
+                CharacterTraitSelection.Hobby = value;
+            }
+        }
+
+        partial void OnQuirkChanged(string value)
+        {
+            if (!GetErrors(nameof(Quirk)).Any() && CharacterTraitSelection != null)
+            {
+                CharacterTraitSelection.Quirk = value;
+            }
+        }
+
+        partial void OnGoalChanged(string value)
+        {
+            if (!GetErrors(nameof(Goal)).Any() && CharacterTraitSelection != null)
+            {
+                CharacterTraitSelection.Goal = value;
+            }
+        }
+
+        partial void OnAltFormNameChanged(string value)
+        {
+            if (!GetErrors(nameof(AltFormName)).Any() && CharacterAltFormSelection != null)
+            {
+                CharacterAltFormSelection.AltFormName = value;
+            }
+        }
+
+        partial void OnAltFormSpeciesChanged(string value)
+        {
+            if (!GetErrors(nameof(AltFormSpecies)).Any() && CharacterAltFormSelection != null)
+            {
+                CharacterAltFormSelection.AltFormSpecies = value;
+            }
+        }
+
+        partial void OnAltFormDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(AltFormDescription)).Any() && CharacterAltFormSelection != null)
+            {
+                CharacterAltFormSelection.AltFormDescription = value;
+            }
+        }
+
+        partial void OnAltFormStrengthChanged(string value)
+        {
+            if (!GetErrors(nameof(AltFormStrength)).Any() && AltFormStrengthWeaknessSelection != null)
+            {
+                AltFormStrengthWeaknessSelection.Strength = value;
+            }
+        }
+
+        partial void OnAltFormWeaknessChanged(string value)
+        {
+            if (!GetErrors(nameof(AltFormWeakness)).Any() && AltFormStrengthWeaknessSelection != null)
+            {
+                AltFormStrengthWeaknessSelection.Weakness = value;
+            }
+        }
+
+        partial void OnPerkNameChanged(string value)
+        {
+            if (!GetErrors(nameof(PerkName)).Any() && PerkSelection != null)
+            {
+                PerkSelection.Name = value;
+            }
+        }
+
+        partial void OnPerkDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(PerkDescription)).Any() && PerkSelection != null)
+            {
+                PerkSelection.Description = value;
+            }
+        }
+
+        partial void OnGenericBodyModNameChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericBodyModName)).Any())
+            {
+                LoadedSave.GenericBodyMod.Name = value;
+            }
+        }
+
+        partial void OnGenericBodyModFullDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(GenericBodyModFullDescription)).Any())
+            {
+                LoadedSave.GenericBodyMod.FullDescription = value;
+            }
+        }
+
+        partial void OnBodyModPurchaseNameChanged(string value)
+        {
+            if (!GetErrors(nameof(BodyModPurchaseName)).Any() && BodyModPurchaseSelection != null)
+            {
+                BodyModPurchaseSelection.Name = value;
+            }
+        }
+
+        partial void OnBodyModPurchaseDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(BodyModPurchaseDescription)).Any() && BodyModPurchaseSelection != null)
+            {
+                BodyModPurchaseSelection.Description = value;
+            }
+        }
+
+        partial void OnBodyModDrawbackNameChanged(string value)
+        {
+            if (!GetErrors(nameof(BodyModDrawbackName)).Any() && BodyModDrawbackSelection != null)
+            {
+                BodyModDrawbackSelection.Name = value;
+            }
+        }
+
+        partial void OnBodyModDrawbackDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(BodyModDrawbackDescription)).Any() && BodyModDrawbackSelection != null)
+            {
+                BodyModDrawbackSelection.Description = value;
+            }
+        }
+
+        partial void OnBodyModAdditionNameChanged(string value)
+        {
+            if (!GetErrors(nameof(BodyModAdditionName)).Any() && BodyModAdditionSelection != null)
+            {
+                BodyModAdditionSelection.Name = value;
+            }
+        }
+
+        partial void OnBodyModAdditionDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(BodyModAdditionDescription)).Any() && BodyModAdditionSelection != null)
+            {
+                BodyModAdditionSelection.Description = value;
+            }
+        }
+
+        partial void OnCharacterBaseFormDetailSelectionChanged(SupplementPurchase value)
+        {
+            if (value != null)
+            {
+                CharacterBaseFormDetailName = value.Name;
+                CharacterBaseFormDetailDescription = value.Description;
+            }
+        }
+
+        partial void OnCharacterBaseFormDetailNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterBaseFormDetailName)).Any() && CharacterBaseFormDetailSelection != null)
+            {
+                CharacterBaseFormDetailSelection.Name = value;
+            }
+        }
+
+        partial void OnCharacterBaseFormDetailDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(CharacterBaseFormDetailDescription)).Any() && CharacterBaseFormDetailSelection != null)
+            {
+                CharacterBaseFormDetailSelection.Description = value;
+            }
+        }
+
+        partial void OnSBExtraBitsSelectionChanged(SupplementPurchase value)
+        {
+            if (value != null)
+            {
+                SBExtraBitsName = value.Name;
+                SBExtraBitsDescription = value.Description;
+            }
+        }
+
+        partial void OnSBExtraBitsNameChanged(string value)
+        {
+            if (!GetErrors(nameof(SBExtraBitsName)).Any() && SBExtraBitsSelection != null)
+            {
+                SBExtraBitsSelection.Name = value;
+            }
+        }
+
+        partial void OnSBExtraBitsDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(SBExtraBitsDescription)).Any() && SBExtraBitsSelection != null)
+            {
+                SBExtraBitsSelection.Description = value;
+            }
+        }
+
+        partial void OnSBAugmentNameChanged(string value)
+        {
+            if (!GetErrors(nameof(SBAugmentName)).Any() && SBAugmentSelection != null)
+            {
+                SBAugmentSelection.Name = value;
+            }
+        }
+
+        partial void OnSBAugmentDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(SBAugmentDescription)).Any() && SBAugmentSelection != null)
+            {
+                SBAugmentSelection.Description = value;
+            }
+        }
+
+        partial void OnSBBodyModPowerNameChanged(string value)
+        {
+            if (!GetErrors(nameof(SBBodyModPowerName)).Any() && SBBodyModPowerSelection != null)
+            {
+                SBBodyModPowerSelection.Name = value;
+            }
+        }
+
+        partial void OnSBBodyModPowerDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(SBBodyModPowerDescription)).Any() && SBBodyModPowerSelection != null)
+            {
+                SBBodyModPowerSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMEssenceNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMEssenceName)).Any() && EBMEssenceSelection != null)
+            {
+                EBMEssenceSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMEssenceDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMEssenceDescription)).Any() && EBMEssenceSelection != null)
+            {
+                EBMEssenceSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMBasicPerkNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMBasicPerkName)).Any() && EBMBasicPerkSelection != null)
+            {
+                EBMBasicPerkSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMBasicPerkDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMBasicPerkDescription)).Any() && EBMBasicPerkSelection != null)
+            {
+                EBMBasicPerkSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMPhysicalPerkNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMPhysicalPerkName)).Any() && EBMPhysicalPerkSelection != null)
+            {
+                EBMPhysicalPerkSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMPhysicalPerkDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMPhysicalPerkDescription)).Any() && EBMPhysicalPerkSelection != null)
+            {
+                EBMPhysicalPerkSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMMentalPerkNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMMentalPerkName)).Any() && EBMMentalPerkSelection != null)
+            {
+                EBMMentalPerkSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMMentalPerkDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMMentalPerkDescription)).Any() && EBMMentalPerkSelection != null)
+            {
+                EBMMentalPerkSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMSpiritualPerkNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMSpiritualPerkName)).Any() && EBMSpiritualPerkSelection != null)
+            {
+                EBMSpiritualPerkSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMSpiritualPerkDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMSpiritualPerkDescription)).Any() && EBMSpiritualPerkSelection != null)
+            {
+                EBMSpiritualPerkSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMSkillPerkNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMSkillPerkName)).Any() && EBMSkillPerkSelection != null)
+            {
+                EBMSkillPerkSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMSkillPerkDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMSkillPerkDescription)).Any() && EBMSkillPerkSelection != null)
+            {
+                EBMSkillPerkSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMSupernaturalPerkNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMSupernaturalPerkName)).Any() && EBMSupernaturalPerkSelection != null)
+            {
+                EBMSupernaturalPerkSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMSupernaturalPerkDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMSupernaturalPerkDescription)).Any() && EBMSupernaturalPerkSelection != null)
+            {
+                EBMSupernaturalPerkSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMItemPerkNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMItemPerkName)).Any() && EBMItemPerkSelection != null)
+            {
+                EBMItemPerkSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMItemPerkDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMItemPerkDescription)).Any() && EBMItemPerkSelection != null)
+            {
+                EBMItemPerkSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMCompanionPerkNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMCompanionPerkName)).Any() && EBMCompanionPerkSelection != null)
+            {
+                EBMCompanionPerkSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMCompanionPerkDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMCompanionPerkDescription)).Any() && EBMCompanionPerkSelection != null)
+            {
+                EBMCompanionPerkSelection.Description = value;
+            }
+        }
+
+        partial void OnEBMDrawbackNameChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMDrawbackName)).Any() && EBMDrawbackSelection != null)
+            {
+                EBMDrawbackSelection.Name = value;
+            }
+        }
+
+        partial void OnEBMDrawbackDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(EBMDrawbackDescription)).Any() && EBMDrawbackSelection != null)
+            {
+                EBMDrawbackSelection.Description = value;
+            }
+        }
+
+        partial void OnCurrentPhysicalAttributeSelectionChanged(ProfileAttribute value)
+        {
+            if (value != null)
+            {
+                CurrentPhysicalAttributeName = value.Name;
+            }
+        }
+
+        partial void OnCurrentPhysicalAttributeNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentPhysicalAttributeName)).Any() && CurrentPhysicalAttributeSelection != null)
+            {
+                CurrentPhysicalAttributeSelection.Name = value;
+            }
+        }
+
+        partial void OnCurrentMentalAttributeSelectionChanged(ProfileAttribute value)
+        {
+            if (value != null)
+            {
+                CurrentMentalAttributeName = value.Name;
+            }
+        }
+
+        partial void OnCurrentMentalAttributeNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentMentalAttributeName)).Any() && CurrentPhysicalAttributeSelection != null)
+            {
+                CurrentPhysicalAttributeSelection.Name = value;
+            }
+        }
+
+        partial void OnCurrentSupernaturalAttributeSelectionChanged(ProfileAttribute value)
+        {
+            if (value != null)
+            {
+                CurrentSupernaturalAttributeName = value.Name;
+            }
+        }
+
+        partial void OnCurrentSupernaturalAttributeNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentSupernaturalAttributeName)).Any() && CurrentSupernaturalAttributeSelection != null)
+            {
+                CurrentSupernaturalAttributeSelection.Name = value;
+            }
+        }
+
+        partial void OnCurrentPhysicalSkillSelectionChanged(ProfileAttribute value)
+        {
+            if (value != null)
+            {
+                CurrentPhysicalAttributeName = value.Name;
+            }
+        }
+
+        partial void OnCurrentPhysicalSkillNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentPhysicalSkillName)).Any() && CurrentPhysicalSkillSelection != null)
+            {
+                CurrentPhysicalSkillSelection.Name = value;
+            }
+        }
+
+        partial void OnCurrentMentalSkillSelectionChanged(ProfileAttribute value)
+        {
+            if (value != null)
+            {
+                CurrentMentalSkillName = value.Name;
+            }
+        }
+
+        partial void OnCurrentMentalSkillNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentMentalSkillName)).Any() && CurrentMentalSkillSelection != null)
+            {
+                CurrentMentalSkillSelection.Name = value;
+            }
+        }
+
+        partial void OnCurrentSocialSkillSelectionChanged(ProfileAttribute value)
+        {
+            if (value != null)
+            {
+                CurrentSocialSkillName = value.Name;
+            }
+        }
+
+        partial void OnCurrentSocialSkillNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentSocialSkillName)).Any() && CurrentSocialSkillSelection != null)
+            {
+                CurrentSocialSkillSelection.Name = value;
+            }
+        }
+
+        partial void OnCurrentTechnologicalSkillSelectionChanged(ProfileAttribute value)
+        {
+            if (value != null)
+            {
+                CurrentTechnologicalSkillName = value.Name;
+            }
+        }
+
+        partial void OnCurrentTechnologicalSkillNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentTechnologicalSkillName)).Any() && CurrentTechnologicalSkillSelection != null)
+            {
+                CurrentTechnologicalSkillSelection.Name = value;
+            }
+        }
+
+        partial void OnCurrentSupernaturalSkillSelectionChanged(ProfileAttribute value)
+        {
+            if (value != null)
+            {
+                CurrentSupernaturalSkillName = value.Name;
+            }
+        }
+
+        partial void OnCurrentSupernaturalSkillNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentSupernaturalSkillName)).Any() && CurrentSupernaturalSkillSelection != null)
+            {
+                CurrentSupernaturalSkillSelection.Name = value;
+            }
+        }
+
+        partial void OnCurrentBoosterSelectionChanged(Booster value)
+        {
+            if (value != null)
+            {
+                CurrentBoosterName = value.BoosterName;
+                CurrentBoosterDescription = value.BoosterDescription;
+            }
+        }
+
+        partial void OnCurrentBoosterNameChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentBoosterName)).Any() && CurrentBoosterSelection != null)
+            {
+                CurrentBoosterSelection.BoosterName = value;
+            }
+        }
+
+        partial void OnCurrentBoosterDescriptionChanged(string value)
+        {
+            if (!GetErrors(nameof(CurrentBoosterDescription)).Any() && CurrentBoosterSelection != null)
+            {
+                CurrentBoosterSelection.BoosterDescription = value;
             }
         }
         #endregion
@@ -1154,6 +2178,15 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (CharacterAltFormSelection != null)
             {
                 AltFormStrengthWeaknessList = new(CharacterAltFormSelection.StrengthWeaknessRow);
+
+                if (AltFormStrengthWeaknessList.Any())
+                {
+                    AltFormStrengthWeaknessSelection = AltFormStrengthWeaknessList.First();
+                }
+
+                AltFormName = CharacterAltFormSelection.AltFormName;
+                AltFormSpecies = CharacterAltFormSelection.AltFormSpecies;
+                AltFormDescription = CharacterAltFormSelection.AltFormDescription;
             }
 
             NewStrengthWeaknessRowCommand.NotifyCanExecuteChanged();

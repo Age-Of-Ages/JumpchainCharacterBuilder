@@ -199,7 +199,7 @@
 
                             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding MiscOriginDetailSelection.Name, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding MiscOriginDetailName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
 
                                 <TextBlock Text="Cost" Margin="0,10,0,0"/>
@@ -210,7 +210,7 @@
 
                             <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
-                                <TextBox Text="{Binding MiscOriginDetailSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding MiscOriginDetailDescription, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Width="400" Height="200"
                                          Tag="Insert Origin Detail description."/>
@@ -316,7 +316,7 @@
 
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Origin Name"/>
-                                <TextBox Text="{Binding OriginEditSelection.Name, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding OriginEditName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
                             </StackPanel>
                             
@@ -329,7 +329,7 @@
                             
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Origin Description"/>
-                                <TextBox Text="{Binding OriginEditSelection.Description, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding OriginEditDescription, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="400"
                                          Height="100"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -476,7 +476,7 @@
 
                             <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding PurchaseSelection.Name, ValidatesOnNotifyDataErrors=True}" Width="100"/>
+                                <TextBox Text="{Binding PurchaseName, ValidatesOnNotifyDataErrors=True}" Width="100"/>
                                 <TextBlock Text="Cost" Margin="0,15,0,0"/>
                                 <TextBox Text="{Binding PurchaseSelection.Cost, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
@@ -507,7 +507,7 @@
 
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
-                                <TextBox Text="{Binding PurchaseSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PurchaseDescription, ValidatesOnNotifyDataErrors=True}"
                                          Width="400" Height="200"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Purchase description."/>
@@ -696,7 +696,7 @@
 
                             <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding ImportOptionSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ImportOptionName, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
                                 <TextBlock Text="Cost" Margin="0,15,0,0"/>
                                 <TextBox Text="{Binding ImportOptionSelection.Cost, ValidatesOnNotifyDataErrors=True}"
@@ -711,7 +711,7 @@
 
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
-                                <TextBox Text="{Binding ImportOptionSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ImportOptionDescription, ValidatesOnNotifyDataErrors=True}"
                                          Width="400"
                                          Height="200"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -880,7 +880,7 @@
 
                             <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding DrawbackSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackName, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
                                 <TextBlock Text="Value" Margin="0,15,0,0"/>
                                 <TextBox Text="{Binding DrawbackSelection.Value, ValidatesOnNotifyDataErrors=True}"
@@ -890,7 +890,7 @@
 
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
-                                <TextBox Text="{Binding DrawbackSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackDescription, ValidatesOnNotifyDataErrors=True}"
                                          Width="400" Height="200"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Drawback description here."/>
@@ -898,7 +898,7 @@
 
                             <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Margin="0,75,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Reward"/>
-                                <TextBox Text="{Binding DrawbackSelection.Reward, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackReward, ValidatesOnNotifyDataErrors=True}"
                                          x:Name="DrawbackRewardBox"
                                          Width="400" Height="200"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -1014,7 +1014,7 @@
 
                             <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding ScenarioSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ScenarioName, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
                                 <TextBlock Text="Value" Margin="0,15,0,0"/>
                                 <TextBox Text="{Binding ScenarioSelection.Value, ValidatesOnNotifyDataErrors=True}"
@@ -1024,7 +1024,7 @@
 
                             <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Description"/>
-                                <TextBox Text="{Binding ScenarioSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ScenarioDescription, ValidatesOnNotifyDataErrors=True}"
                                          Width="400"
                                          Height="200"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -1033,7 +1033,7 @@
 
                             <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Margin="0,75,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Reward"/>
-                                <TextBox Text="{Binding ScenarioSelection.Reward, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ScenarioReward, ValidatesOnNotifyDataErrors=True}"
                                          Width="400"
                                          Height="200"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -1061,19 +1061,19 @@
 
                     <StackPanel Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <TextBlock Text="Jump Name"/>
-                        <TextBox Text="{Binding JumpSelection.Name, ValidatesOnNotifyDataErrors=True}" 
+                        <TextBox Text="{Binding JumpName, ValidatesOnNotifyDataErrors=True}" 
                                  Width="150"/>
 
                         <TextBlock Text="Jump Version"/>
-                        <TextBox Text="{Binding JumpSelection.Version, ValidatesOnNotifyDataErrors=True}" 
+                        <TextBox Text="{Binding JumpVersion, ValidatesOnNotifyDataErrors=True}" 
                                  Width="150"/>
 
                         <TextBlock Text="Author"/>
-                        <TextBox Text="{Binding JumpSelection.Author, ValidatesOnNotifyDataErrors=True}" 
+                        <TextBox Text="{Binding JumpAuthor, ValidatesOnNotifyDataErrors=True}" 
                                  Width="150"/>
 
                         <TextBlock Text="Source"/>
-                        <TextBox Text="{Binding JumpSelection.Source, ValidatesOnNotifyDataErrors=True}" 
+                        <TextBox Text="{Binding JumpSource, ValidatesOnNotifyDataErrors=True}" 
                                  Width="150"/>
 
                         <TextBlock Text="Jump #"/>
@@ -1210,12 +1210,12 @@
 
                             <StackPanel Margin="3,5,0,0">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding CurrencySelection.CurrencyName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CurrencyName, ValidatesOnNotifyDataErrors=True}"
                                          Width="100" 
                                          HorizontalAlignment="Left"/>
 
                                 <TextBlock Text="Abbreviation" Margin="0,10,0,0"/>
-                                <TextBox Text="{Binding CurrencySelection.CurrencyAbbreviation, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CurrencyAbbreviation, ValidatesOnNotifyDataErrors=True}"
                                          Width="30" 
                                          HorizontalAlignment="Left"/>
 
@@ -1267,7 +1267,7 @@
 
                             <StackPanel Margin="3,5,0,0">
                                 <TextBlock Text="Currency Name"/>
-                                <TextBox Text="{Binding CurrencySelection.CurrencyName, Mode=OneWay}"
+                                <TextBox Text="{Binding CurrencyName, Mode=OneWay}"
                                          Width="100" 
                                          HorizontalAlignment="Left"
                                          IsReadOnly="True"/>
@@ -1341,7 +1341,7 @@
 
                             <StackPanel Margin="3,5,0,0">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding PurchaseTypeSelection.Type, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PurchaseTypeName, ValidatesOnNotifyDataErrors=True}"
                                          Width="100" 
                                          HorizontalAlignment="Left"/>
 
