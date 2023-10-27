@@ -10,8 +10,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text.Json.Serialization;
-using System.Xml.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -718,7 +716,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 DrawbackDescription = value.Description;
                 DrawbackReward = value.Reward;
             }
-            
+
         }
 
 
@@ -774,7 +772,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnWarehousePointsInvestedChanged(int value)
         {
-            if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality && 
+            if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality &&
                 LoadedSave.PersonalReality.CoreMode == PersonalReality.CoreModes.Unlimited)
             {
                 int unlimitedModeSubtotal = value;
@@ -1214,7 +1212,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 LoadedDrawbackSupplement = LoadedOptions.DrawbackSupplementSetting;
                 LoadedWarehouseSupplement = LoadedOptions.CosmicWarehouseSetting;
-                if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality && 
+                if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality &&
                     LoadedSave.PersonalReality.CoreMode == PersonalReality.CoreModes.Unlimited)
                 {
                     PRUnlimitedSelected = true;
@@ -1779,7 +1777,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             WarehousePointsInvested = JumpSelection.Build[0].WarehouseInvestment;
 
-            if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality && 
+            if (LoadedWarehouseSupplement == Options.CosmicWarehouseSupplements.PersonalReality &&
                 LoadedSave.PersonalReality.CoreMode == PersonalReality.CoreModes.Unlimited)
             {
                 int unlimitedModeSubtotal = WarehousePointsInvested;

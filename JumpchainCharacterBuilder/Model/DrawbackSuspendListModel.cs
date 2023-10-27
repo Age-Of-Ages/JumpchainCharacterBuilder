@@ -28,7 +28,7 @@ namespace JumpchainCharacterBuilder.Model
 
         public DrawbackSuspendModel()
         {
-            
+
         }
     }
 }

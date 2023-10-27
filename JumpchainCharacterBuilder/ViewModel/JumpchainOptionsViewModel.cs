@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -560,7 +559,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 EBMInvestmentAllowed = false;
                 EBMEPAccessModifiersAvailable = false;
-                
+
                 if (EBMAdvancementModeSelection == EssentialBodyMod.AdvancementModes.Standard)
                 {
                     EBMTrainingAllowanceAvailable = true;

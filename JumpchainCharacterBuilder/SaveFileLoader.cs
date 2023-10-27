@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using System.Numerics;
 
 namespace JumpchainCharacterBuilder
 {

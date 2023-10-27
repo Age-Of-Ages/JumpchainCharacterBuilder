@@ -65,7 +65,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnJumpSelectionNameChanged(string value)
         {
-            if(!GetErrors(nameof(JumpSelectionName)).Any())
+            if (!GetErrors(nameof(JumpSelectionName)).Any())
             {
                 JumpRandomizerEntrySelection.JumpName = value;
             }

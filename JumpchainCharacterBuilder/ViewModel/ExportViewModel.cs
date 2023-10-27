@@ -4118,8 +4118,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                                     output.Add("Advancement Mode: " + LoadedSave.EssentialBodyMod.AdvancementMode.ToString());
                                     output.Add("EP Access Mode: " + epAccessMode + epAccessModifier);
 
-                                    if (LoadedSave.EssentialBodyMod.AdvancementMode == EssentialBodyMod.AdvancementModes.Standard && 
-                                        LoadedSave.EssentialBodyMod.EPAccessMode == EssentialBodyMod.EPAccessModes.NoAccess && 
+                                    if (LoadedSave.EssentialBodyMod.AdvancementMode == EssentialBodyMod.AdvancementModes.Standard &&
+                                        LoadedSave.EssentialBodyMod.EPAccessMode == EssentialBodyMod.EPAccessModes.NoAccess &&
                                         LoadedSave.EssentialBodyMod.TrainingAllowance)
                                     {
                                         output.Add("Training Allowance Variant Mode selected");
