@@ -447,7 +447,11 @@ namespace JumpchainCharacterBuilder
 
                         if (attribute.ModRank != RankList.None)
                         {
-                            attributeList.Add(new(attribute.ModRank));
+                            attributeList.Add(new(attribute.ModRank)
+                            {
+                                SourceJump = "Profile",
+                                SourcePurchase = "Mod Rank"
+                            });
                             attributeList = attributeList.OrderByDescending(x => (int)x.Rank).ToList();
                         }
 
@@ -474,7 +478,11 @@ namespace JumpchainCharacterBuilder
 
                         if (attribute.ModRank != RankList.None)
                         {
-                            attributeList.Add(new(attribute.ModRank));
+                            attributeList.Add(new(attribute.ModRank)
+                            {
+                                SourceJump = "Profile",
+                                SourcePurchase = "Mod Rank"
+                            });
                             attributeList = attributeList.OrderByDescending(x => (int)x.Rank).ToList();
                         }
 
@@ -501,7 +509,11 @@ namespace JumpchainCharacterBuilder
 
                         if (attribute.ModRank != RankList.None)
                         {
-                            attributeList.Add(new(attribute.ModRank));
+                            attributeList.Add(new(attribute.ModRank)
+                            {
+                                SourceJump = "Profile",
+                                SourcePurchase = "Mod Rank"
+                            });
                             attributeList = attributeList.OrderByDescending(x => (int)x.Rank).ToList();
                         }
 
@@ -820,7 +832,11 @@ namespace JumpchainCharacterBuilder
 
                         if (skill.ModRank != RankList.None)
                         {
-                            skillList.Add(new(skill.ModRank));
+                            skillList.Add(new(skill.ModRank)
+                            {
+                                SourceJump = "Profile",
+                                SourcePurchase = "Mod Rank"
+                            });
                             skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
                         }
 
@@ -847,7 +863,11 @@ namespace JumpchainCharacterBuilder
 
                         if (skill.ModRank != RankList.None)
                         {
-                            skillList.Add(new(skill.ModRank));
+                            skillList.Add(new(skill.ModRank)
+                            {
+                                SourceJump = "Profile",
+                                SourcePurchase = "Mod Rank"
+                            });
                             skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
                         }
 
@@ -874,7 +894,11 @@ namespace JumpchainCharacterBuilder
 
                         if (skill.ModRank != RankList.None)
                         {
-                            skillList.Add(new(skill.ModRank));
+                            skillList.Add(new(skill.ModRank)
+                            {
+                                SourceJump = "Profile",
+                                SourcePurchase = "Mod Rank"
+                            });
                             skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
                         }
 
@@ -901,7 +925,11 @@ namespace JumpchainCharacterBuilder
 
                         if (skill.ModRank != RankList.None)
                         {
-                            skillList.Add(new(skill.ModRank));
+                            skillList.Add(new(skill.ModRank)
+                            {
+                                SourceJump = "Profile",
+                                SourcePurchase = "Mod Rank"
+                            });
                             skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
                         }
 
@@ -928,7 +956,11 @@ namespace JumpchainCharacterBuilder
 
                         if (skill.ModRank != RankList.None)
                         {
-                            skillList.Add(new(skill.ModRank));
+                            skillList.Add(new(skill.ModRank)
+                            {
+                                SourceJump = "Profile",
+                                SourcePurchase = "Mod Rank"
+                            });
                             skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
                         }
 
