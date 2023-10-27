@@ -78,7 +78,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (!GetErrors(nameof(ItemName)).Any() && ItemSelection != null)
             {
-                ItemSelection.Description = value;
+                ItemSelection.Name = value;
             }
         }
 
