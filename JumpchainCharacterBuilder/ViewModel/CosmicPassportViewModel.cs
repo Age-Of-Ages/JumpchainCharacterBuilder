@@ -1881,9 +1881,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnCurrentMentalAttributeNameChanged(string value)
         {
-            if (!GetErrors(nameof(CurrentMentalAttributeName)).Any() && CurrentPhysicalAttributeSelection != null)
+            if (!GetErrors(nameof(CurrentMentalAttributeName)).Any() && CurrentMentalAttributeSelection != null)
             {
-                CurrentPhysicalAttributeSelection.Name = value;
+                CurrentMentalAttributeSelection.Name = value;
             }
         }
 
@@ -1907,7 +1907,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (value != null)
             {
-                CurrentPhysicalAttributeName = value.Name;
+                CurrentPhysicalSkillName = value.Name;
             }
         }
 
