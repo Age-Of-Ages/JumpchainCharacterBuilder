@@ -4888,7 +4888,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             ExportWarehouse(CharacterList[0], LoadedOptions.CosmicWarehouseSetting);
             ExportDrawbackSupplement(LoadedOptions.DrawbackSupplementSetting);
 
-            _dialogService.NotificationDialog("Export complete, your builds is located in the 'Exports' folder.");
+            _dialogService.NotificationDialog("Export complete, your builds are located in the 'Exports' folder.");
         }
 
         [RelayCommand(CanExecute = nameof(CanMoveBuildSectionUp))]
