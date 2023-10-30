@@ -3,5 +3,7 @@
     public interface IDialogService
     {
         bool ConfirmDialog(string message);
+
+        void NotificationDialog(string message);
     }
 }

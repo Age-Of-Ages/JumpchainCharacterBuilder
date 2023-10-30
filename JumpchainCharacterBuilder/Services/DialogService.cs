@@ -9,5 +9,7 @@ namespace JumpchainCharacterBuilder.Services
         {
             return MessageBox.Show(message, "Confirm action", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes;
         }
+
+        public void NotificationDialog(string message) => MessageBox.Show(message, "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
     }
 }

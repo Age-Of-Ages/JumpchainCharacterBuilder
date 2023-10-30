@@ -4776,6 +4776,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ExportBuild(JumpSelection, CharacterList.IndexOf(character));
             }
+
+            _dialogService.NotificationDialog("Export complete, your builds are located in 'Exports/Builds' and 'Exports/Jump Details'.");
         }
 
         [RelayCommand]
@@ -4796,6 +4798,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {
                     ExportBuild(JumpSelection, CharacterSelectionIndex);
                 }
+
+                _dialogService.NotificationDialog("Export complete, your builds are located in 'Exports/Builds'.");
             }
         }
 
@@ -4805,6 +4809,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (CharacterSelection != null)
             {
                 ExportProfile(CharacterSelection, CharacterSelectionIndex);
+
+                _dialogService.NotificationDialog("Export complete, your profile is located in 'Exports/Profiles'.");
             }
         }
 
@@ -4815,10 +4821,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ExportProfile(character, CharacterList.IndexOf(character));
             }
+
+            _dialogService.NotificationDialog("Export complete, your profiles are located in 'Exports/Profiles'.");
         }
 
         [RelayCommand]
-        private void ExportAllWarehouseData() => ExportWarehouse(CharacterList[0], LoadedOptions.CosmicWarehouseSetting);
+        private void ExportAllWarehouseData()
+        {
+            ExportWarehouse(CharacterList[0], LoadedOptions.CosmicWarehouseSetting);
+
+            _dialogService.NotificationDialog("Export complete, your Warehouse build is located in 'Exports/Warehouse'.");
+        }
 
         [RelayCommand]
         private void ExportBodyModData()
@@ -4826,6 +4839,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (CharacterSelection != null)
             {
                 ExportBodyMod(CharacterSelection, LoadedOptions.BodyModSetting);
+
+                _dialogService.NotificationDialog("Export complete, your Body Mod build is located in 'Exports/Body Mods'.");
             }
         }
 
@@ -4836,10 +4851,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ExportBodyMod(character, LoadedOptions.BodyModSetting);
             }
+
+            _dialogService.NotificationDialog("Export complete, your Body Mod builds are located in 'Exports/Body Mods'.");
         }
 
         [RelayCommand]
-        private void ExportDrawbackSupplementData() => ExportDrawbackSupplement(LoadedOptions.DrawbackSupplementSetting);
+        private void ExportDrawbackSupplementData()
+        {
+            ExportDrawbackSupplement(LoadedOptions.DrawbackSupplementSetting);
+
+            _dialogService.NotificationDialog("Export complete, your Drawback Supplement build is located in 'Exports/Universal Drawbacks'.");
+        }
 
         [RelayCommand]
         private void ExportAllData()
@@ -4865,6 +4887,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             ExportWarehouse(CharacterList[0], LoadedOptions.CosmicWarehouseSetting);
             ExportDrawbackSupplement(LoadedOptions.DrawbackSupplementSetting);
+
+            _dialogService.NotificationDialog("Export complete, your builds is located in the 'Exports' folder.");
         }
 
         [RelayCommand(CanExecute = nameof(CanMoveBuildSectionUp))]
