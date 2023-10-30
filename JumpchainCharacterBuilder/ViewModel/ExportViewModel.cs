@@ -1259,11 +1259,11 @@ namespace JumpchainCharacterBuilder.ViewModel
                     {
                         if (drawback.Revoke == 0 || drawback.Revoke > jump.JumpNumber)
                         {
-                            if (jumpIndex >= drawback.Suspend.Count)
+                            if (jumpIndex >= drawback.SuspendList.Count)
                             {
                                 ListValidationClass.CheckDrawbackSuspendCount(drawback, jumpIndex + 1);
                             }
-                            if (!drawback.Suspend[jumpIndex])
+                            if (!drawback.SuspendList[jumpIndex].Suspended)
                             {
                                 if (drawback.ApplyGauntlet)
                                 {
@@ -1291,11 +1291,11 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {
                     if (drawback.Revoke == 0 || drawback.Revoke > jump.JumpNumber)
                     {
-                        if (jumpIndex >= drawback.Suspend.Count)
+                        if (jumpIndex >= drawback.SuspendList.Count)
                         {
                             ListValidationClass.CheckDrawbackSuspendCount(drawback, jumpIndex + 1);
                         }
-                        if (!drawback.Suspend[jumpIndex])
+                        if (!drawback.SuspendList[jumpIndex].Suspended)
                         {
                             drawbackSupplementCP += drawback.ValueChoicePoints;
                             drawbackSupplementItemCP += drawback.ValueItemPoints;
