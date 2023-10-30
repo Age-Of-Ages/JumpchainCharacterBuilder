@@ -2150,6 +2150,15 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (character != null)
             {
                 CharacterTraitList = new(character.TraitRow);
+
+                if (CharacterTraitList.Any())
+                {
+                    CharacterTraitSelection = CharacterTraitList.First();
+                }
+                else
+                {
+                    CharacterTraitSelection = new();
+                }
             }
 
             DeleteTraitRowCommand.NotifyCanExecuteChanged();
