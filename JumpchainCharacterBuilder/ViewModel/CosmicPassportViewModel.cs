@@ -19,6 +19,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         // TODO - Implement Booster reordering.
         #region Fields
         private readonly IDialogService _dialogService;
+        [ObservableProperty]
+        private bool _spellCheckEnabled = true;
 
         [ObservableProperty]
         private SaveFile _loadedSave = new();
@@ -2077,10 +2079,14 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 AppSettings = m.Value;
                 LoadDisplaySettings();
+
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
             });
             Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
             {
                 LoadDisplaySettings();
+
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
             });
             Messenger.Register<CategoryChangedMessage>(this, (r, m) =>
             {

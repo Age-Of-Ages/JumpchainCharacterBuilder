@@ -17,6 +17,8 @@ namespace JumpchainCharacterBuilder.ViewModel
     {
         #region Fields
         private readonly IDialogService _dialogService;
+        [ObservableProperty]
+        private bool _spellCheckEnabled = true;
 
         [ObservableProperty]
         private SaveFile _loadedSave = new();
@@ -967,6 +969,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
             {
                 AppSettings = m.Value;
+
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+            });
+            Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
+            {
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
             });
 
             _dialogService = dialogService;

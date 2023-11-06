@@ -19,7 +19,8 @@ namespace JumpchainCharacterBuilder
                 {"HeightFormat", appSettings.HeightFormat.ToString() },
                 {"Theme", appSettings.Theme },
                 {"CanResizeWindow", appSettings.CanResizeWindow.ToString() },
-                {"ConfirmSaveOnClose", appSettings.ConfirmSaveOnClose.ToString() }
+                {"ConfirmSaveOnClose", appSettings.ConfirmSaveOnClose.ToString() },
+                {"SpellCheckEnabled", appSettings.SpellCheckEnabled.ToString() }
             };
 
             settings.Add("# Application settings");
@@ -58,7 +59,8 @@ namespace JumpchainCharacterBuilder
                     {"WeightFormat", "Pounds" },
                     {"Theme", "Light" },
                     {"CanResizeWindow", "False" },
-                    {"ConfirmSaveOnClose", "True" }
+                    {"ConfirmSaveOnClose", "True" },
+                    {"SpellCheckEnabled", "True" }
                 };
                 string[] splitString;
                 string settingKey;
@@ -118,6 +120,15 @@ namespace JumpchainCharacterBuilder
                 else
                 {
                     appSettings.ConfirmSaveOnClose = false;
+                }
+
+                if (settingsDictionary["SpellCheckEnabled"] == "True")
+                {
+                    appSettings.SpellCheckEnabled = true;
+                }
+                else
+                {
+                    appSettings.SpellCheckEnabled = false;
                 }
             }
         }

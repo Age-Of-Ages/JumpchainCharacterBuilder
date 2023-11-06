@@ -21,6 +21,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _canResizeWindow = false;
         [ObservableProperty]
         private bool _confirmSaveOnClose = true;
+        [ObservableProperty]
+        private bool _spellCheckEnabled = true;
         #endregion
 
         #region Properties 
@@ -48,6 +50,13 @@ namespace JumpchainCharacterBuilder.ViewModel
         partial void OnConfirmSaveOnCloseChanged(bool value)
         {
             AppSettings.ConfirmSaveOnClose = value;
+            Messenger.Send(new SettingsChangedMessage(true));
+            CfgAccess.WriteCfgFile(AppSettings);
+        }
+
+        partial void OnSpellCheckEnabledChanged(bool value)
+        {
+            AppSettings.SpellCheckEnabled = value;
             Messenger.Send(new SettingsChangedMessage(true));
             CfgAccess.WriteCfgFile(AppSettings);
         }
@@ -85,6 +94,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             CanResizeWindow = AppSettings.CanResizeWindow;
             ConfirmSaveOnClose = AppSettings.ConfirmSaveOnClose;
+            SpellCheckEnabled = AppSettings.SpellCheckEnabled;
         }
 
         #endregion

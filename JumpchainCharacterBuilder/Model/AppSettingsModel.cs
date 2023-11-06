@@ -55,5 +55,11 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private bool _confirmSaveOnClose = true;
+
+        /// <summary>
+        /// Represents if the application-wide spellcheck should be enabled or not.
+        /// </summary>
+        [ObservableProperty]
+        private bool _spellCheckEnabled = true;
     }
 }

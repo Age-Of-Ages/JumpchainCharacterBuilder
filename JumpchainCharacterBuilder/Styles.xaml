@@ -79,7 +79,7 @@
         <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="AcceptsReturn" Value="True"/>
         <Setter Property="AcceptsTab" Value="True"/>
-        <Setter Property="SpellCheck.IsEnabled" Value="True"/>
+        <Setter Property="SpellCheck.IsEnabled" Value="{Binding SpellCheckEnabled}"/>
     </Style>
 
     <Style TargetType="{x:Type TextBox}">
@@ -87,7 +87,7 @@
         <Setter Property="MaxLength" Value="100"/>
         <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ValidationTemplate}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="SpellCheck.IsEnabled" Value="True"/>
+        <Setter Property="SpellCheck.IsEnabled" Value="{Binding SpellCheckEnabled}"/>
     </Style>
 
     <Style x:Key="DataGridDescriptionColumn"
@@ -95,7 +95,7 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ValidationTemplate}"/>
         <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="SpellCheck.IsEnabled" Value="True"/>
+        <Setter Property="SpellCheck.IsEnabled" Value="{Binding SpellCheckEnabled}"/>
     </Style>
 
     <Style x:Key="DataGridEditDescriptionColumn" 
@@ -106,7 +106,7 @@
         <Setter Property="HorizontalAlignment" Value="Stretch"/>
         <Setter Property="AcceptsReturn" Value="True"/>
         <Setter Property="AcceptsTab" Value="True"/>
-        <Setter Property="SpellCheck.IsEnabled" Value="True"/>
+        <Setter Property="SpellCheck.IsEnabled" Value="{Binding SpellCheckEnabled}"/>
     </Style>
 
     <Style x:Key="DataGridButton"

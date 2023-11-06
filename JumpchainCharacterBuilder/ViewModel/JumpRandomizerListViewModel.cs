@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
+using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -13,6 +15,10 @@ namespace JumpchainCharacterBuilder.ViewModel
     {
         #region Fields
         private readonly IDialogService _dialogService;
+        [ObservableProperty]
+        private bool _spellCheckEnabled = true;
+        [ObservableProperty]
+        private AppSettingsModel _appSettings = new();
 
         [ObservableProperty]
         private ObservableCollection<JumpRandomizerList> _inactiveJumpRandomizerLists = new();
@@ -93,6 +99,17 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         public JumpRandomizerListViewModel(IDialogService dialogService)
         {
+            Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
+            {
+                AppSettings = m.Value;
+
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+            });
+            Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
+            {
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+            });
+
             LoadJumpLists();
 
             _dialogService = dialogService;

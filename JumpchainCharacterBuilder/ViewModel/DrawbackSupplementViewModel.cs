@@ -14,13 +14,16 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class DrawbackSupplementViewModel : ViewModelBase
     {
         #region Fields
-
         private readonly IDialogService _dialogService;
+        [ObservableProperty]
+        private bool _spellCheckEnabled = true;
 
         [ObservableProperty]
         private SaveFile _loadedSave = new();
         [ObservableProperty]
         private Options _loadedOptions = new();
+        [ObservableProperty]
+        private AppSettingsModel _appSettings = new();
         [ObservableProperty]
         private Options.DrawbackSupplements _loadedSupplement = Options.DrawbackSupplements.Generic;
 
@@ -215,6 +218,16 @@ namespace JumpchainCharacterBuilder.ViewModel
                     LoadSupplementData();
                     LoadSuspendJumpNames();
                 }
+            });
+            Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
+            {
+                AppSettings = m.Value;
+
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+            });
+            Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
+            {
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
             });
 
             _dialogService = dialogService;

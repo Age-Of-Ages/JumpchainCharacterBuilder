@@ -1,4 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Messages;
+using JumpchainCharacterBuilder.Model;
 using System.Text.RegularExpressions;
 
 namespace JumpchainCharacterBuilder.ViewModel
@@ -6,6 +9,11 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class InputFormatterViewModel : ViewModelBase
     {
         #region Fields
+        [ObservableProperty]
+        private AppSettingsModel _appSettings = new();
+        [ObservableProperty]
+        private bool _spellCheckEnabled = true;
+
         [ObservableProperty]
         private string _inputString = "";
 
@@ -38,7 +46,19 @@ namespace JumpchainCharacterBuilder.ViewModel
         #endregion
 
         #region Constructor
+        public InputFormatterViewModel()
+        {
+            Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
+            {
+                AppSettings = m.Value;
 
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+            });
+            Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
+            {
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+            });
+        }
 
         #endregion
 

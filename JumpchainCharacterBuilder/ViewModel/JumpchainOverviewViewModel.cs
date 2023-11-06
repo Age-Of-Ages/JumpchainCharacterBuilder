@@ -24,6 +24,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private Options _loadedOptions = new();
         [ObservableProperty]
+        private AppSettingsModel _appSettings = new();
+        [ObservableProperty]
+        private bool _spellCheckEnabled = true;
+
+        [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteJumpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveJumpUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveJumpDownCommand))]
@@ -1282,6 +1287,16 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 LoadPurchaseCategoryList();
                 LoadCurrentPurchaseData();
+            });
+            Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
+            {
+                AppSettings = m.Value;
+
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+            });
+            Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
+            {
+                SpellCheckEnabled = AppSettings.SpellCheckEnabled;
             });
 
             CreateJumpList();
