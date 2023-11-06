@@ -1225,6 +1225,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             LoadedSave.UserPerkCategoryList.SwapListItems(index, index - 1);
             UserPerkCategoryIndex = index - 1;
 
+            UpdateCategories(perks: true);
+            Messenger.Send(new CategoryChangedMessage(true));
+
             DeletePerkCategoryCommand.NotifyCanExecuteChanged();
             MovePerkCategoryUpCommand.NotifyCanExecuteChanged();
             MovePerkCategoryDownCommand.NotifyCanExecuteChanged();
@@ -1240,6 +1243,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             UserPerkCategories.SwapCollectionItems(index, index + 1);
             LoadedSave.UserPerkCategoryList.SwapListItems(index, index + 1);
             UserPerkCategoryIndex = index + 1;
+
+            UpdateCategories(perks: true);
+            Messenger.Send(new CategoryChangedMessage(true));
 
             DeletePerkCategoryCommand.NotifyCanExecuteChanged();
             MovePerkCategoryUpCommand.NotifyCanExecuteChanged();
@@ -1307,6 +1313,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             LoadedSave.UserItemCategoryList.SwapListItems(index, index - 1);
             UserItemCategoryIndex = index - 1;
 
+            UpdateCategories(perks: false);
+            Messenger.Send(new CategoryChangedMessage(true));
+
             DeleteItemCategoryCommand.NotifyCanExecuteChanged();
             MoveItemCategoryUpCommand.NotifyCanExecuteChanged();
             MoveItemCategoryDownCommand.NotifyCanExecuteChanged();
@@ -1322,6 +1331,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             UserItemCategories.SwapCollectionItems(index, index + 1);
             LoadedSave.UserItemCategoryList.SwapListItems(index, index + 1);
             UserItemCategoryIndex = index + 1;
+
+            UpdateCategories(perks: false);
+            Messenger.Send(new CategoryChangedMessage(true));
 
             DeleteItemCategoryCommand.NotifyCanExecuteChanged();
             MoveItemCategoryUpCommand.NotifyCanExecuteChanged();

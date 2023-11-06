@@ -400,27 +400,30 @@ namespace JumpchainCharacterBuilder
                 ListValidationClass.CheckBuildCount(jump, characterIndex);
                 foreach (Purchase purchase in jump.Build[characterIndex].Purchase)
                 {
-                    foreach (PurchaseAttribute attribute in purchase.Attributes)
+                    if (!purchase.IsTemporary)
                     {
-                        if (attribute.Type == "Attribute")
+                        foreach (PurchaseAttribute attribute in purchase.Attributes)
                         {
-                            switch (attribute.Category)
+                            if (attribute.Type == "Attribute")
                             {
-                                case "Physical":
-                                    physicalAttributeSources.Add(attribute);
-                                    break;
-                                case "Mental":
-                                    mentalAttributeSources.Add(attribute);
-                                    break;
-                                case "Supernatural":
-                                    supernaturalAttributeSources.Add(attribute);
-                                    break;
-                                default:
-                                    break;
-                            }
+                                switch (attribute.Category)
+                                {
+                                    case "Physical":
+                                        physicalAttributeSources.Add(attribute);
+                                        break;
+                                    case "Mental":
+                                        mentalAttributeSources.Add(attribute);
+                                        break;
+                                    case "Supernatural":
+                                        supernaturalAttributeSources.Add(attribute);
+                                        break;
+                                    default:
+                                        break;
+                                }
 
-                            attribute.SourcePurchase = purchase.Name;
-                            attribute.SourceJump = jump.Name;
+                                attribute.SourcePurchase = purchase.Name;
+                                attribute.SourceJump = jump.Name;
+                            }
                         }
                     }
                 }
@@ -777,33 +780,36 @@ namespace JumpchainCharacterBuilder
                 ListValidationClass.CheckBuildCount(jump, characterIndex);
                 foreach (Purchase purchase in jump.Build[characterIndex].Purchase)
                 {
-                    foreach (PurchaseAttribute attribute in purchase.Attributes)
+                    if (!purchase.IsTemporary)
                     {
-                        if (attribute.Type == "Skill")
+                        foreach (PurchaseAttribute attribute in purchase.Attributes)
                         {
-                            switch (attribute.Category)
+                            if (attribute.Type == "Skill")
                             {
-                                case "Physical":
-                                    physicalSkillSources.Add(attribute);
-                                    break;
-                                case "Mental":
-                                    mentalSkillSources.Add(attribute);
-                                    break;
-                                case "Social":
-                                    socialSkillSources.Add(attribute);
-                                    break;
-                                case "Technological":
-                                    technologicalSkillSources.Add(attribute);
-                                    break;
-                                case "Supernatural":
-                                    supernaturalSkillSources.Add(attribute);
-                                    break;
-                                default:
-                                    break;
-                            }
+                                switch (attribute.Category)
+                                {
+                                    case "Physical":
+                                        physicalSkillSources.Add(attribute);
+                                        break;
+                                    case "Mental":
+                                        mentalSkillSources.Add(attribute);
+                                        break;
+                                    case "Social":
+                                        socialSkillSources.Add(attribute);
+                                        break;
+                                    case "Technological":
+                                        technologicalSkillSources.Add(attribute);
+                                        break;
+                                    case "Supernatural":
+                                        supernaturalSkillSources.Add(attribute);
+                                        break;
+                                    default:
+                                        break;
+                                }
 
-                            attribute.SourcePurchase = purchase.Name;
-                            attribute.SourceJump = jump.Name;
+                                attribute.SourcePurchase = purchase.Name;
+                                attribute.SourceJump = jump.Name;
+                            }
                         }
                     }
                 }
@@ -1101,14 +1107,17 @@ namespace JumpchainCharacterBuilder
                 ListValidationClass.CheckBuildCount(jump, characterIndex);
                 foreach (Purchase purchase in jump.Build[characterIndex].Purchase)
                 {
-                    foreach (PurchaseAttribute attribute in purchase.Attributes)
+                    if (!purchase.IsTemporary)
                     {
-                        if (attribute.Type == "Booster")
+                        foreach (PurchaseAttribute attribute in purchase.Attributes)
                         {
-                            boosterSources.Add(attribute);
+                            if (attribute.Type == "Booster")
+                            {
+                                boosterSources.Add(attribute);
 
-                            attribute.SourcePurchase = purchase.Name;
-                            attribute.SourceJump = jump.Name;
+                                attribute.SourcePurchase = purchase.Name;
+                                attribute.SourceJump = jump.Name;
+                            }
                         }
                     }
                 }
