@@ -3068,7 +3068,6 @@ namespace JumpchainCharacterBuilder.ViewModel
                     }
                 }
 
-                CharacterSelection = CharacterList.First();
                 CharacterSelectionIndex = 0;
 
                 DeleteCharacterCommand.NotifyCanExecuteChanged();
