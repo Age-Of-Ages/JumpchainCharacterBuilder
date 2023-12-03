@@ -1199,6 +1199,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void ExportBuild(Jump jump, int characterIndex)
         {
+            ListValidationClass.CheckBuildCount(jump, CharacterList.Count - 1);
+
             JumpBuild build = jump.Build[characterIndex];
             DrawbackSupplementUniversal drawbackSupplement = new();
             int jumpIndex = LoadedSave.JumpList.IndexOf(jump);
