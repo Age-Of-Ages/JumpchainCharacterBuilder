@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!--Base Solid Brushes-->
+    <SolidColorBrush x:Key="Background">#121212</SolidColorBrush>
+    <SolidColorBrush x:Key="BackgroundHighlight">#232323</SolidColorBrush>
+
+    <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
+
+
+    <SolidColorBrush x:Key="Menu.Static.Background" Color="#232323"/>
+    <SolidColorBrush x:Key="Menu.Static.Border" Color="#232323"/>
+    <SolidColorBrush x:Key="Menu.Static.Foreground" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="Menu.Static.Separator" Color="#A8A8A8"/>
+    <SolidColorBrush x:Key="Menu.Disabled.Foreground" Color="#7A7A7A"/>
+    <SolidColorBrush x:Key="MenuItem.Selected.Background" Color="#3D124C69"/>
+    <SolidColorBrush x:Key="MenuItem.Selected.Border" Color="#FF124C69"/>
+    <SolidColorBrush x:Key="MenuItem.Highlight.Background" Color="#3D124C69"/>
+    <SolidColorBrush x:Key="MenuItem.Highlight.Border" Color="#FF124C69"/>
+    <SolidColorBrush x:Key="MenuItem.Highlight.Disabled.Background" Color="#0AFFFFFF"/>
+    <SolidColorBrush x:Key="MenuItem.Highlight.Disabled.Border" Color="#21FFFFFF"/>
+    
+    <SolidColorBrush x:Key="TabItem.Static.Background" Color="#252525"/>
+    <SolidColorBrush x:Key="TabItem.Static.Border" Color="#ACACAC"/>
+    <SolidColorBrush x:Key="TabItem.MouseOver.Background" Color="#767E87"/>
+    <SolidColorBrush x:Key="TabItem.MouseOver.Border" Color="#99A5B0"/>
+    <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#121212"/>
+    <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#52585E"/>
+    <SolidColorBrush x:Key="TabItem.Disabled.Background" Color="#1A1A1A"/>
+    <SolidColorBrush x:Key="TabItem.Disabled.Border" Color="#252525"/>
+</ResourceDictionary>

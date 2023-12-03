@@ -8,8 +8,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-        // TODO - Implement themes.
-        // TODO - (Eventually) make the whole UI dynamic.
         #region Fields
         [ObservableProperty]
         private SaveFile _loadedSave = new();
@@ -44,6 +42,23 @@ namespace JumpchainCharacterBuilder.ViewModel
             Messenger.Send(new SettingsLoadedMessage(AppSettings));
 
             ResizeAllowed = AppSettings.CanResizeWindow;
+        }
+
+        #endregion
+
+        #region Methods
+        private string LoadTheme()
+        {
+            string output = CfgAccess.ReadSingleSetting("Theme");
+
+            if (output != "Error")
+            {
+                return output;
+            }
+            else
+            {
+                return "Light";
+            }
         }
 
         #endregion

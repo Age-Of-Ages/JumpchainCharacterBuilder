@@ -7,9 +7,9 @@
              xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
-             d:DataContext="{d:DesignInstance Type=viewModel:TopMenuViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="20" d:DesignWidth="950">
-    <Menu>
+             d:DataContext="{d:DesignInstance Type=viewModel:TopMenuViewModel, IsDesignTimeCreatable=True}">
+
+    <Menu Background="{DynamicResource BackgroundHighlight}" Foreground="{DynamicResource TextColor}">
         <MenuItem Header="_File">
             <MenuItem Header="_New Jumper" Command="{Binding NewJumperCommand}"/>
             <MenuItem Header="_Save Jumper" Command="{Binding SaveJumperCommand}"/>
@@ -19,13 +19,12 @@
             <MenuItem Header="_Quit" Command="{Binding QuitCommand}"/>
         </MenuItem>
         <MenuItem Header="Theme">
-            <MenuItem Header="(NOT IMPLEMENTED)"/>
-            <MenuItem Header="Light" Command="{Binding SwitchThemeCommand}" CommandParameter="Light" 
+            <MenuItem Header="Light" Command="{Binding SwitchThemeCommand}" CommandParameter="Light" Click="ThemeChangeLight_Click"
                       IsChecked="{Binding LightThemeSelected}"/>
-            <MenuItem Header="Dark" Command="{Binding SwitchThemeCommand}" CommandParameter="Dark" 
+            <MenuItem Header="Dark" Command="{Binding SwitchThemeCommand}" CommandParameter="Dark" Click="ThemeChangeDark_Click"
                       IsChecked="{Binding DarkThemeSelected}"/>
         </MenuItem>
-        <MenuItem Header="Input Formatter" Click="InputFormatter_Click"/>
+        <MenuItem Template="{DynamicResource MenuItemTemplate1}" Header="Input Formatter" Click="InputFormatter_Click"/>
         <MenuItem Header="Jump Randomizer">
             <MenuItem Header="Random Jump Selector" Click="JumpRandomizer_Click"/>
             <MenuItem Header="Jump Randomizer Settings" Click="JumpRandomizerSettings_Click"/>

@@ -70,6 +70,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
             {
                 AppSettings = m.Value;
+
+                LoadTheme();
             });
             Messenger.Register<SaveCommandMessage>(this, (r, m) =>
             {
@@ -153,6 +155,11 @@ namespace JumpchainCharacterBuilder.ViewModel
                 saveFileLoader.LoadSave(openFileDialog.FileName, LoadedSave);
                 SaveFileName = openFileDialog.SafeFileName;
             }
+        }
+
+        private void LoadTheme()
+        {
+            Theme = AppSettings.Theme;
         }
 
         #endregion

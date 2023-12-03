@@ -133,6 +133,64 @@ namespace JumpchainCharacterBuilder
             }
         }
 
+        public static string ReadSingleSetting(string settingSelection)
+        {
+            string filePath = Path.Combine(Environment.CurrentDirectory, "Configuration.cfg");
+            string result = "Error";
+
+            if (!FileAccess.CheckFileExists(filePath))
+            {
+                TxtAccess.WriteLog(new()
+                {
+                    "Configuration file not found: Regenerating file with default settings."
+                });
+
+                using FileStream temp = File.Create(filePath);
+
+                AppSettingsModel appSettings = new();
+
+                WriteCfgFile(appSettings);
+            }
+
+            List<string> settings = File.ReadLines(filePath).ToList();
+            Dictionary<string, string> settingsDictionary = new()
+            {
+                {"HeightFormat", "FeetInches" },
+                {"WeightFormat", "Pounds" },
+                {"Theme", "Light" },
+                {"CanResizeWindow", "False" },
+                {"ConfirmSaveOnClose", "True" },
+                {"SpellCheckEnabled", "True" }
+            };
+            string[] splitString;
+            string settingKey;
+            string settingValue;
+
+            foreach (string line in settings)
+            {
+                if (CfgSplitRegex().IsMatch(line) && line[0] != '#' && line != "")
+                {
+                    splitString = line.Split(" = ");
+
+                    settingKey = splitString[0];
+                    settingValue = splitString[1];
+
+                    if (settingsDictionary.ContainsKey(settingKey))
+                    {
+                        settingsDictionary[settingKey] = settingValue;
+                    }
+                }
+
+            }
+
+            if (settingsDictionary.ContainsKey(settingSelection))
+            {
+                result = settingsDictionary[settingSelection];
+            }
+
+            return result;
+        }
+
         [GeneratedRegex(".+ = .+")]
         private static partial Regex CfgSplitRegex();
     }
