@@ -19,6 +19,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _resizeAllowed = false;
 
+        [ObservableProperty]
+        private bool _saveSucceeded = true;
+
         #endregion
 
         #region Properties
@@ -37,6 +40,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 ResizeAllowed = AppSettings.CanResizeWindow;
             });
+            Messenger.Register<SaveSucceededMessage>(this, (r, m) =>
+            {
+                SaveSucceeded = m.Value;
+            });
 
             Messenger.Send(new SaveDataSendMessage(LoadedSave));
 
@@ -52,6 +59,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [RelayCommand]
         private void TriggerSave()
         {
+            SaveSucceeded = false;
+
             Messenger.Send(new SaveCommandMessage(true));
         }
 
