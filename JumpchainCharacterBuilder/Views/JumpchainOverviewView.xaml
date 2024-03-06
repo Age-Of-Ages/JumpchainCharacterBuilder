@@ -22,7 +22,8 @@
 
         <ListView ItemsSource="{Binding JumpList}"
                   SelectedItem="{Binding JumpSelection}"
-                  SelectedIndex="{Binding JumpSelectionIndex}">
+                  SelectedIndex="{Binding JumpSelectionIndex}"
+                  SelectionChanged="JumpList_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
