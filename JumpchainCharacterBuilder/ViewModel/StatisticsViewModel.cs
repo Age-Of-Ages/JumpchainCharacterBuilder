@@ -413,12 +413,14 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {
                     OverallDrawbackPointsEarned += drawback.Value;
                     CharacterDrawbackPointsEarned += drawback.Value;
+                    OverallDrawbacksTaken++;
                 }
 
                 foreach (Drawback scenario in build.ScenarioSelection)
                 {
                     OverallScenarioPointsEarned += scenario.Value;
                     CharacterScenarioPointsEarned += scenario.Value;
+                    OverallScenariosTaken++;
                 }
             }
             else
