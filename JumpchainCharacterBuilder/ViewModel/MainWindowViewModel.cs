@@ -94,6 +94,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             Messenger.Send(new SaveCommandMessage(true));
         }
 
+        [RelayCommand]
+        private void OpenHotkey()
+        {
+            Messenger.Send(new LoadCommandMessage(true));
+        }
         #endregion
     }
 }

@@ -75,6 +75,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 SavePrompt(false);
             });
+            Messenger.Register<LoadCommandMessage>(this, (r, m) =>
+            {
+                LoadPrompt();
+            });
 
             _dialogService = dialogService;
         }

@@ -23,6 +23,8 @@
     <Window.InputBindings>
         <KeyBinding Command="{Binding SaveHotkeyCommand}"
                     Key="S" Modifiers="Ctrl"/>
+        <KeyBinding Command="{Binding OpenHotkeyCommand}"
+                    Key="O" Modifiers="Ctrl"/>
     </Window.InputBindings>
 
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
