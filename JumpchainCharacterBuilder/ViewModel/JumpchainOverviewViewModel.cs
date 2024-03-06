@@ -458,7 +458,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (JumpList.Count > 0)
             {
-                JumpSelection = JumpList.Last();
+                JumpSelection = AppSettings.FocusNewestJumpOnLoad ? JumpList.Last() : JumpList.First();
             }
             else
             {
@@ -1234,7 +1234,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 if (JumpList.Any())
                 {
-                    JumpSelection = JumpList.Last();
+                    JumpSelection = AppSettings.FocusNewestJumpOnLoad ? JumpList.Last() : JumpList.First();
                     LoadJumpSelection();
                 }
 
@@ -1319,7 +1319,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             CalculateJumpNumber(LoadedSave.JumpList);
 
-            JumpSelectionIndex = JumpList.Count - 1;
+            JumpSelectionIndex = AppSettings.FocusNewestJumpOnLoad ? JumpList.Count - 1 : 0;
         }
 
         private static void CalculateJumpNumber(List<Jump> jumps)

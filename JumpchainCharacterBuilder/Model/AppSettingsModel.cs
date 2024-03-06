@@ -61,5 +61,11 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private bool _spellCheckEnabled = true;
+
+        /// <summary>
+        /// Represents if the application should skip to and display the newest Jump when a save is loaded.
+        /// </summary>
+        [ObservableProperty]
+        private bool _focusNewestJumpOnLoad = true;
     }
 }
