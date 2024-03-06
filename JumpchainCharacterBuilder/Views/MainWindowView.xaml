@@ -20,6 +20,11 @@
         SizeToContent="WidthAndHeight"
         Closing="Window_Closing">
 
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding SaveHotkeyCommand}"
+                    Key="S" Modifiers="Ctrl"/>
+    </Window.InputBindings>
+
     <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid Height="800" Width="950">
             <DockPanel>

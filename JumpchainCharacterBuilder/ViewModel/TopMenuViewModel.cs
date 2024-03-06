@@ -73,17 +73,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             });
             Messenger.Register<SaveCommandMessage>(this, (r, m) =>
             {
-                if (_dialogService != null && AppSettings.ConfirmSaveOnClose)
-                {
-                    if (_dialogService.ConfirmDialog("Save current Jumper data before closing?"))
-                    {
-                        SavePrompt(false);
-                    }
-                    else
-                    {
-                        Messenger.Send(new SaveSucceededMessage(true));
-                    }
-                }
+                SavePrompt(false);
             });
 
             _dialogService = dialogService;
