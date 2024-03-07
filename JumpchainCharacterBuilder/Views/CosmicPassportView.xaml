@@ -1971,6 +1971,21 @@
                                     VerticalAlignment="Bottom"
                                     Style="{DynamicResource DataGridButton}"
                                     Grid.Column="2"/>
+
+                            <Button Content="Move Up" 
+                                    Command="{Binding MoveBoosterUpCommand}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Top"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Row="2"/>
+
+                            <Button Content="Move Down"
+                                    Command="{Binding MoveBoosterDownCommand}"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Bottom"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"
+                                    Grid.Row="2"/>
                         </Grid>
 
 
