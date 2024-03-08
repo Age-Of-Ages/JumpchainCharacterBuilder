@@ -1,5 +1,6 @@
 ﻿using JumpchainCharacterBuilder.Model;
 using System.Collections.Generic;
+using System.Windows.Media.Animation;
 
 namespace JumpchainCharacterBuilder
 {
@@ -19,8 +20,10 @@ namespace JumpchainCharacterBuilder
         {
             int budget = 0;
             int importStipend = 0;
-            int purchaseExpenses = 0;
             int currencyIndex = purchaseType.CurrencyIndex;
+            int purchaseTypeIndex = jump.PurchaseTypes.IndexOf(purchaseType);
+            List<int> purchaseTypeStipends = new();
+            List<int> purchaseTypeExpenses = new();
 
             int drawbackSupplementCP = 0;
             int drawbackSupplementItemCP = 0;
@@ -31,6 +34,12 @@ namespace JumpchainCharacterBuilder
             int supplementValueModifier = isGauntlet && drawbackSupplement.HalvedPointsDuringGauntlets ? 2 : 1;
 
             bool drawbackApply;
+
+            for (int i = 0; i < jump.PurchaseTypes.Count; i++)
+            {
+                purchaseTypeStipends.Add(0);
+                purchaseTypeExpenses.Add(0);
+            }
 
             if (currencyIndex == 0)
             {
@@ -89,176 +98,91 @@ namespace JumpchainCharacterBuilder
             budget += jumpBuild.BankUsage;
             budget -= jumpBuild.BankedPoints;
 
-            if (currencyIndex == 0 && purchaseType.Type != "Items")
+            if (characterIndex == 0)
             {
-                int itemExpenses = 0;
-                if (characterIndex == 0)
+                if (!isGauntlet)
                 {
-                    if (!isGauntlet)
-                    {
-                        budget += jump.Currencies[currencyIndex].CurrencyBudget;
-                    }
-                    budget += (jumpBuild.PointStipend[currencyIndex] + importStipend);
-                    if (supplementPointsAllowed)
-                    {
-                        itemExpenses -= drawbackSupplementItemCP;
-                    }
+                    budget += jump.Currencies[currencyIndex].CurrencyBudget;
                 }
-                else
-                {
-                    budget += jumpBuild.PointStipend[currencyIndex] + importStipend;
-                }
-
-                budget += BudgetHelpers.CalculateDrawbackTotals(jumpBuild.DrawbackSelection);
-                budget += BudgetHelpers.CalculateDrawbackTotals(jumpBuild.ScenarioSelection);
-
-                foreach (Purchase purchase in jumpBuild.Purchase)
-                {
-                    bool originMatches = jump.OriginDiscounts && purchase.AssociatedOriginIndex == jumpBuild.OriginIndex && jumpBuild.OriginIndex != 0;
-
-                    if (purchase.TypeIndex == 1)
-                    {
-                        BudgetHelpers.CalculatePurchaseCost(purchase, ref itemExpenses, originMatches, jump.OriginItemFreebieThreshold);
-                    }
-                    else if (purchase.TypeIndex == 0 || jump.PurchaseTypes[purchase.TypeIndex].CurrencyIndex == 0)
-                    {
-                        BudgetHelpers.CalculatePurchaseCost(purchase, ref purchaseExpenses, originMatches, jump.OriginPerkFreebieThreshold);
-                    }
-                }
-                itemExpenses -= jumpBuild.ItemStipend;
-                if (itemExpenses < 0)
-                {
-                    itemExpenses = 0;
-                }
-                budget -= itemExpenses;
-                budget -= purchaseExpenses;
-
-                if (jumpBuild.Species != null)
-                {
-                    budget -= jumpBuild.Species.Cost;
-                }
-                if (jumpBuild.Location != null)
-                {
-                    budget -= jumpBuild.Location.Cost;
-                }
-                budget -= jumpBuild.AgeCost;
-                budget -= jumpBuild.GenderCost;
-                if (originIndex != 0)
-                {
-                    budget -= jump.OriginDetails[originIndex].Cost;
-                }
-
-                if (jumpBuild.MiscOriginDetails.Count > 0)
-                {
-                    foreach (OriginDetail originDetail in jumpBuild.MiscOriginDetails)
-                    {
-                        budget -= originDetail.Cost;
-                    }
-                }
-
-                budget -= BudgetHelpers.CalculateCompanionPurchasesCost(jumpBuild.CompanionPurchase);
-
-                return budget;
-            }
-            else if (currencyIndex == 0 && purchaseType.Type == "Items")
-            {
-                if (characterIndex == 0)
-                {
-                    if (!isGauntlet)
-                    {
-                        budget += jump.Currencies[currencyIndex].CurrencyBudget;
-                    }
-                    budget += (jumpBuild.PointStipend[currencyIndex] + jumpBuild.ItemStipend + importStipend);
-                    if (supplementPointsAllowed)
-                    {
-                        budget += drawbackSupplementItemCP;
-                    }
-                }
-                else
-                {
-                    budget += jumpBuild.PointStipend[currencyIndex] + jumpBuild.ItemStipend + importStipend;
-                }
-
-                budget += BudgetHelpers.CalculateDrawbackTotals(jumpBuild.DrawbackSelection);
-                budget += BudgetHelpers.CalculateDrawbackTotals(jumpBuild.ScenarioSelection);
-
-                foreach (Purchase purchase in jumpBuild.Purchase)
-                {
-                    bool originMatches = jump.OriginDiscounts && purchase.AssociatedOriginIndex == jumpBuild.OriginIndex && jumpBuild.OriginIndex != 0;
-
-                    if (purchase.TypeIndex == 1)
-                    {
-                        BudgetHelpers.CalculatePurchaseCost(purchase, ref purchaseExpenses, originMatches, jump.OriginItemFreebieThreshold);
-                    }
-                    else if (purchase.TypeIndex == 0 || jump.PurchaseTypes[purchase.TypeIndex].CurrencyIndex == 0)
-                    {
-                        BudgetHelpers.CalculatePurchaseCost(purchase, ref purchaseExpenses, originMatches, jump.OriginPerkFreebieThreshold);
-                    }
-                }
-                budget -= purchaseExpenses;
-
-                if (jumpBuild.Species != null)
-                {
-                    budget -= jumpBuild.Species.Cost;
-                }
-                if (jumpBuild.Location != null)
-                {
-                    budget -= jumpBuild.Location.Cost;
-                }
-                budget -= jumpBuild.AgeCost;
-                budget -= jumpBuild.GenderCost;
-                if (originIndex != 0)
-                {
-                    budget -= jump.OriginDetails[originIndex].Cost;
-                }
-
-                if (jumpBuild.MiscOriginDetails.Count > 0)
-                {
-                    foreach (OriginDetail originDetail in jumpBuild.MiscOriginDetails)
-                    {
-                        budget -= originDetail.Cost;
-                    }
-                }
-
-                budget -= BudgetHelpers.CalculateCompanionPurchasesCost(jumpBuild.CompanionPurchase);
-
-                return budget;
+                budget += jumpBuild.PointStipend[currencyIndex] + (currencyIndex == 0 ? importStipend : 0);
+                purchaseTypeExpenses[1] -= drawbackSupplementItemCP;
             }
             else
             {
-                if (characterIndex == 0)
+                budget += jumpBuild.PointStipend[currencyIndex] + (currencyIndex == 0 ? importStipend : 0);
+            }
+
+            for (int i = 0; i < jumpBuild.PurchaseTypeStipends.Count; i++)
+            {
+                purchaseTypeStipends[i] = jumpBuild.PurchaseTypeStipends[i];
+            }
+            budget += purchaseTypeStipends[purchaseTypeIndex];
+
+            if (currencyIndex == 0)
+            {
+                budget += BudgetHelpers.CalculateDrawbackTotals(jumpBuild.DrawbackSelection);
+                budget += BudgetHelpers.CalculateDrawbackTotals(jumpBuild.ScenarioSelection);
+            }
+
+            foreach (Purchase purchase in jumpBuild.Purchase)
+            {
+
+                if (jump.PurchaseTypes[purchase.TypeIndex].CurrencyIndex == currencyIndex)
                 {
-                    if (!isGauntlet)
-                    {
-                        budget += jump.Currencies[currencyIndex].CurrencyBudget;
-                    }
-                    budget += (jumpBuild.PointStipend[currencyIndex]);
+                    int originFreebieThreshold = jump.PurchaseTypes[purchase.TypeIndex].IsItemType ? jump.OriginItemFreebieThreshold : jump.OriginPerkFreebieThreshold;
+                    bool originMatches = jump.OriginDiscounts && purchase.AssociatedOriginIndex == jumpBuild.OriginIndex && jumpBuild.OriginIndex != 0;
+
+                    purchaseTypeExpenses[purchase.TypeIndex] += BudgetHelpers.CalculatePurchaseCost(purchase, originMatches, originFreebieThreshold);
+                }
+            }
+
+            for (int i = 0; i < purchaseTypeExpenses.Count; i++)
+            {
+                if (purchaseTypeIndex == i)
+                {
+                    budget -= purchaseTypeExpenses[i];
                 }
                 else
                 {
-                    budget += jumpBuild.PointStipend[currencyIndex];
-                }
-
-                foreach (Purchase purchase in jumpBuild.Purchase)
-                {
-                    if (jump.PurchaseTypes[purchase.TypeIndex].CurrencyIndex == purchaseType.CurrencyIndex)
+                    purchaseTypeExpenses[i] -= purchaseTypeStipends[i];
+                    if (purchaseTypeExpenses[i] < 0)
                     {
-                        bool originMatches = jump.OriginDiscounts && purchase.AssociatedOriginIndex == jumpBuild.OriginIndex && jumpBuild.OriginIndex != 0;
+                        purchaseTypeExpenses[i] = 0;
+                    }
 
-                        if (jump.PurchaseTypes[purchase.TypeIndex].IsItemType)
-                        {
-                            BudgetHelpers.CalculatePurchaseCost(purchase, ref purchaseExpenses, originMatches, jump.OriginItemFreebieThreshold);
-                        }
-                        else
-                        {
-                            BudgetHelpers.CalculatePurchaseCost(purchase, ref purchaseExpenses, originMatches, jump.OriginPerkFreebieThreshold);
-                        }
+                    if (jump.PurchaseTypes[i].CurrencyIndex == currencyIndex)
+                    {
+                        budget -= purchaseTypeExpenses[i];
                     }
                 }
-                budget -= purchaseExpenses;
-                return budget;
             }
 
+            if (jumpBuild.Species != null)
+            {
+                budget -= jumpBuild.Species.Cost;
+            }
+            if (jumpBuild.Location != null)
+            {
+                budget -= jumpBuild.Location.Cost;
+            }
+            budget -= jumpBuild.AgeCost;
+            budget -= jumpBuild.GenderCost;
+            if (originIndex != 0)
+            {
+                budget -= jump.OriginDetails[originIndex].Cost;
+            }
+
+            if (jumpBuild.MiscOriginDetails.Count > 0)
+            {
+                foreach (OriginDetail originDetail in jumpBuild.MiscOriginDetails)
+                {
+                    budget -= originDetail.Cost;
+                }
+            }
+
+            budget -= BudgetHelpers.CalculateCompanionPurchasesCost(jumpBuild.CompanionPurchase);
+
+            return budget;
         }
 
         public static int WarehouseBudgetCalculation(WarehouseUniversal warehouse, int totalWP)
@@ -604,13 +528,15 @@ namespace JumpchainCharacterBuilder
 
     public static class BudgetHelpers
     {
-        public static void CalculatePurchaseCost(Purchase purchase, ref int sectionSubtotal, bool originMatches, int freebieThreshold)
+        public static int CalculatePurchaseCost(Purchase purchase, bool originMatches, int freebieThreshold)
         {
+            int returnCost = 0;
+
             if (!purchase.FreebieEnabled)
             {
                 if (purchase.DiscountEnabled)
                 {
-                    sectionSubtotal += (purchase.Cost / 2);
+                    returnCost += (purchase.Cost / 2);
                     purchase.DisplayCost = purchase.Cost / 2;
                 }
                 else
@@ -619,12 +545,12 @@ namespace JumpchainCharacterBuilder
                     {
                         if (purchase.Cost > freebieThreshold)
                         {
-                            sectionSubtotal += (purchase.Cost / 2);
+                            returnCost += (purchase.Cost / 2);
                             purchase.DisplayCost = purchase.Cost / 2;
                         }
                         else if (purchase.Cost < 0)
                         {
-                            sectionSubtotal += purchase.Cost;
+                            returnCost += purchase.Cost;
                             purchase.DisplayCost = purchase.Cost;
                         }
                         else
@@ -634,7 +560,7 @@ namespace JumpchainCharacterBuilder
                     }
                     else
                     {
-                        sectionSubtotal += purchase.Cost;
+                        returnCost += purchase.Cost;
                         purchase.DisplayCost = purchase.Cost;
                     }
                 }
@@ -643,6 +569,8 @@ namespace JumpchainCharacterBuilder
             {
                 purchase.DisplayCost = 0;
             }
+
+            return returnCost;  
         }
 
         public static int CalculateDrawbackTotals(List<Drawback> drawbacks)

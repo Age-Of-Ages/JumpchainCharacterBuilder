@@ -66,6 +66,16 @@ namespace JumpchainCharacterBuilder
             }
         }
 
+        public static void CheckPurchaseTypeStipendCount(JumpBuild build, int typeCount)
+        {
+            int difference = typeCount - build.PurchaseTypeStipends.Count;
+
+            for (int i = 0; i < difference; i++)
+            {
+                build.PurchaseTypeStipends.Add(0);
+            }
+        }
+
         public static void CheckImportListCount(SaveFile saveFile, Jump jump, int characterIndex)
         {
             JumpBuild jumpBuild = jump.Build[characterIndex];

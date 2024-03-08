@@ -7,6 +7,7 @@ namespace JumpchainCharacterBuilder
 {
     public static partial class SaveMigration
     {
+        // TODO - Implement migration for 1.3.3, to fix Item stipends being moved to purchase types.
         public static SaveFile SaveUpdate(string filePath, double saveVersion, SaveFile saveFile)
         {
             List<string> saveStrings = TxtAccess.ReadText(filePath);

@@ -1248,15 +1248,6 @@
                         </ListView.View>
                     </ListView>
 
-                    <StackPanel Grid.Row="3" Grid.Column="1"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Top">
-                        <TextBlock Text="Item Stipend"/>
-                        <TextBox Text="{Binding ItemStipend, ValidatesOnNotifyDataErrors=True}"
-                                 Width="40"
-                                 HorizontalAlignment="Left"/>
-                    </StackPanel>
-
                     <GroupBox Header="Stipend details" Grid.Row="4" Grid.Column="1">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
@@ -1297,9 +1288,12 @@
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="225"
+                                    <GridViewColumn Header="Name" Width="115"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding Type}"/>
+                                    <GridViewColumn Header="Currency" Width="110"
+                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                    DisplayMemberBinding="{Binding CurrencyName}"/>
                                 </GridView.Columns>
                             </GridView>
                         </ListView.View>
@@ -1366,7 +1360,7 @@
                                     </ComboBox.Style>
                                 </ComboBox>
 
-                                <CheckBox Content="Item Purchase Type" IsChecked="{Binding IsItemType}" Margin="0,20,0,0">
+                                <CheckBox Content="Item Purchase Type" IsChecked="{Binding IsItemType}" Margin="0,10,0,0">
                                     <CheckBox.Style>
                                         <Style TargetType="{x:Type CheckBox}">
                                             <Style.Triggers>
@@ -1380,6 +1374,11 @@
                                         </Style>
                                     </CheckBox.Style>
                                 </CheckBox>
+
+                                <TextBlock Text="Per-character type Stipend" Margin="0,10,0,0"/>
+                                <TextBox Text="{Binding PurchaseTypeStipend, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40"
+                                         HorizontalAlignment="Left"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>

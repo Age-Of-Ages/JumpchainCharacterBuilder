@@ -1903,11 +1903,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                     if (type.Type == "Items")
                                     {
-                                        budget[0] += build.ItemStipend;
+                                        budget[0] += build.PurchaseTypeStipends[1];
 
-                                        if (build.ItemStipend > 0)
+                                        if (build.PurchaseTypeStipends[1] > 0)
                                         {
-                                            line += $" Stipend: {leftBracket}+{build.ItemStipend}{budgetSeparator}{budget[type.CurrencyIndex]}" +
+                                            line += $" Stipend: {leftBracket}+{build.PurchaseTypeStipends[1]}{budgetSeparator}{budget[type.CurrencyIndex]}" +
                                                     $"{currencyAbbreviation}{rightBracket}";
                                         }
 
@@ -1945,7 +1945,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 {
                                     if (type.Type == "Items")
                                     {
-                                        budget[0] += build.ItemStipend;
+                                        budget[0] += build.PurchaseTypeStipends[1];
                                     }
                                     foreach (Purchase purchase in build.Purchase)
                                     {

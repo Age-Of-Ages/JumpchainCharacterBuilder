@@ -17,10 +17,10 @@ namespace JumpchainCharacterBuilder.Model
         private List<int> _pointStipend = new();
 
         /// <summary>
-        /// Represents Item-specific stipend.
+        /// Represents character-specific purchase type stipends.
         /// </summary>
         [ObservableProperty]
-        private int _itemStipend = 0;
+        private List<int> _purchaseTypeStipends = new();
 
         /// <summary>
         /// Represents the chosen Origin index.
@@ -129,6 +129,9 @@ namespace JumpchainCharacterBuilder.Model
         {
             PointStipend.Add(0);
 
+            PurchaseTypeStipends.Add(0);
+            PurchaseTypeStipends.Add(0);
+
             Location = new("No Location", "Location", 0, "");
             Species = new("Human", "Species", 0, "");
 
@@ -138,7 +141,8 @@ namespace JumpchainCharacterBuilder.Model
         public JumpBuild(int itemStipend)
         {
             PointStipend.Add(0);
-            ItemStipend = itemStipend;
+            PurchaseTypeStipends.Add(0);
+            PurchaseTypeStipends.Add(itemStipend);
 
             Location = new("No Location", "Location", 0, "");
             Species = new("Human", "Species", 0, "");
