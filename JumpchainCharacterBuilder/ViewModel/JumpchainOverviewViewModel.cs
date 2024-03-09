@@ -13,7 +13,6 @@ using System.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
-    // TODO - Implement ability to add a stipend for a specific purchase type regardless of currency chosen.
     public partial class JumpchainOverviewViewModel : ViewModelBase
     {
         #region Fields

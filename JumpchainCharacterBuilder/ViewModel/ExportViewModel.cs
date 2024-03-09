@@ -1197,6 +1197,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
+        // TODO - Update build export to account for the new purchase type stipend system.
         private void ExportBuild(Jump jump, int characterIndex)
         {
             ListValidationClass.CheckBuildCount(jump, CharacterList.Count - 1);
@@ -1233,6 +1234,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             List<int> budget = new();
             List<int> stipend;
+            List<int> purchaseTypeStipends = new();
             int sectionSubtotal;
 
             int importStipend = 0;
@@ -1244,6 +1246,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             bool isGauntlet = jump.IsGauntlet;
             bool supplementPointsAllowed = true;
             bool halvedSupplementPoints = false;
+
+            for (int i = 0; i < jump.PurchaseTypes.Count; i++)
+            {
+                purchaseTypeStipends.Add(build.PurchaseTypeStipends[i]);
+            }
+
             if (isGauntlet && !drawbackSupplement.AllowedDuringGauntlets)
             {
                 supplementPointsAllowed = false;
@@ -1854,7 +1862,17 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                 if (!type.IsItemType)
                                 {
-                                    output.Add(FormatSectionTitle(type.Type));
+                                    line = type.Type;
+
+                                    if (build.PurchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)] > 0)
+                                    {
+                                        budget[type.CurrencyIndex] += purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)];
+
+                                        line += $" | Stipend: {leftBracket}+{build.PurchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)]}{budgetSeparator}{budget[type.CurrencyIndex]}" +
+                                                $"{currencyAbbreviation}{rightBracket}";
+                                    }
+
+                                    output.Add(FormatSectionTitle(line));
 
                                     foreach (Purchase purchase in build.Purchase)
                                     {
@@ -1868,6 +1886,14 @@ namespace JumpchainCharacterBuilder.ViewModel
                                             FormatPricedDataLine(purchase.Name, purchase.Description, budgetLastHalf, output, purchase.DisplayCost);
                                         }
                                     }
+
+                                    if (sectionSubtotal < purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)])
+                                    {
+                                        budget[type.CurrencyIndex] -= purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)] - sectionSubtotal;
+
+                                        FormatBlankLine(output);
+                                        output.Add($"Unspent stipend: {purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)] - sectionSubtotal}{currencyAbbreviation}");
+                                    }
                                 }
                             }
                         }
@@ -1875,14 +1901,24 @@ namespace JumpchainCharacterBuilder.ViewModel
                         {
                             foreach (PurchaseType type in jump.PurchaseTypes)
                             {
+                                sectionSubtotal = 0;
+
                                 if (!type.IsItemType)
                                 {
+                                    budget[type.CurrencyIndex] += purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)];
+
                                     foreach (Purchase purchase in build.Purchase)
                                     {
                                         if (purchase.TypeIndex == jump.PurchaseTypes.IndexOf(type))
                                         {
                                             budget[type.CurrencyIndex] -= purchase.DisplayCost;
+                                            sectionSubtotal += purchase.DisplayCost;
                                         }
+                                    }
+
+                                    if (sectionSubtotal < purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)])
+                                    {
+                                        budget[type.CurrencyIndex] -= purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)] - sectionSubtotal;
                                     }
                                 }
                             }
@@ -1901,21 +1937,21 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 {
                                     line = type.Type;
 
+                                    if (build.PurchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)] > 0)
+                                    {
+                                        budget[type.CurrencyIndex] += build.PurchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)];
+
+                                        line += $" | Stipend: {leftBracket}+{build.PurchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)]}{budgetSeparator}{budget[type.CurrencyIndex]}" +
+                                                $"{currencyAbbreviation}{rightBracket}";
+                                    }
+
                                     if (type.Type == "Items")
                                     {
-                                        budget[0] += build.PurchaseTypeStipends[1];
-
-                                        if (build.PurchaseTypeStipends[1] > 0)
-                                        {
-                                            line += $" Stipend: {leftBracket}+{build.PurchaseTypeStipends[1]}{budgetSeparator}{budget[type.CurrencyIndex]}" +
-                                                    $"{currencyAbbreviation}{rightBracket}";
-                                        }
-
-                                        budget[0] += drawbackSupplementItemCP;
+                                        budget[type.CurrencyIndex] += drawbackSupplementItemCP;
 
                                         if (drawbackSupplementItemCP > 0)
                                         {
-                                            line += $" Universal Drawbacks: {leftBracket}+{drawbackSupplementItemCP}{budgetSeparator}{budget[type.CurrencyIndex]}" +
+                                            line += $" | Universal Drawbacks: {leftBracket}+{drawbackSupplementItemCP}{budgetSeparator}{budget[type.CurrencyIndex]}" +
                                                     $"{currencyAbbreviation}{rightBracket}";
                                         }
                                     }
@@ -1934,6 +1970,14 @@ namespace JumpchainCharacterBuilder.ViewModel
                                             FormatPricedDataLine(purchase.Name, purchase.Description, budgetLastHalf, output, purchase.DisplayCost);
                                         }
                                     }
+
+                                    if (sectionSubtotal < purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)])
+                                    {
+                                        budget[type.CurrencyIndex] -= purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)] - sectionSubtotal;
+
+                                        FormatBlankLine(output);
+                                        output.Add($"Unspent stipend: {purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)] - sectionSubtotal}{currencyAbbreviation}");
+                                    }
                                 }
                             }
                         }
@@ -1941,18 +1985,24 @@ namespace JumpchainCharacterBuilder.ViewModel
                         {
                             foreach (PurchaseType type in jump.PurchaseTypes)
                             {
+                                sectionSubtotal = 0;
+
                                 if (type.IsItemType)
                                 {
-                                    if (type.Type == "Items")
-                                    {
-                                        budget[0] += build.PurchaseTypeStipends[1];
-                                    }
+                                    budget[type.CurrencyIndex] += purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)];
+
                                     foreach (Purchase purchase in build.Purchase)
                                     {
                                         if (purchase.TypeIndex == jump.PurchaseTypes.IndexOf(type))
                                         {
                                             budget[type.CurrencyIndex] -= purchase.DisplayCost;
+                                            sectionSubtotal += purchase.DisplayCost;
                                         }
+                                    }
+
+                                    if (sectionSubtotal < purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)])
+                                    {
+                                        budget[type.CurrencyIndex] -= purchaseTypeStipends[jump.PurchaseTypes.IndexOf(type)] - sectionSubtotal;
                                     }
                                 }
                             }
