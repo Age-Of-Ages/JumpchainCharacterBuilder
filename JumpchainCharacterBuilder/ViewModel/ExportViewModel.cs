@@ -1197,7 +1197,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        // TODO - Update build export to account for the new purchase type stipend system.
         private void ExportBuild(Jump jump, int characterIndex)
         {
             ListValidationClass.CheckBuildCount(jump, CharacterList.Count - 1);
