@@ -96,7 +96,7 @@ namespace JumpchainCharacterBuilder
                         stipendString = jumpBuildStrings[stipendIndex];
 
                         stipendString = DeleteEmptySpace(stipendString);
-                        
+
                         if (!int.TryParse(tagRemovalRegex.Replace(stipendString, ""), out stipendValue))
                         {
                             stipendValue = 0;

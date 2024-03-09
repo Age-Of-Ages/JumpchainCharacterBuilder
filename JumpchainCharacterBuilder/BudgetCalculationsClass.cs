@@ -1,6 +1,5 @@
 ﻿using JumpchainCharacterBuilder.Model;
 using System.Collections.Generic;
-using System.Windows.Media.Animation;
 
 namespace JumpchainCharacterBuilder
 {
@@ -570,7 +569,7 @@ namespace JumpchainCharacterBuilder
                 purchase.DisplayCost = 0;
             }
 
-            return returnCost;  
+            return returnCost;
         }
 
         public static int CalculateDrawbackTotals(List<Drawback> drawbacks)

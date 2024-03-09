@@ -35,7 +35,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Constructor
         public MainWindowViewModel()
         {
-            
+
         }
 
         public MainWindowViewModel(IDialogService dialogService)
