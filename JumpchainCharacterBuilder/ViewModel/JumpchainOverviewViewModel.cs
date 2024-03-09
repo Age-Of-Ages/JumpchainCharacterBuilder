@@ -1375,7 +1375,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadJumpSelection()
         {
-            CharacterSelectionIndex = 0;
+            ListValidationClass.CheckBuildCount(JumpSelection, CharacterList.Count - 1);
 
             LoadMiscOriginTypes();
             LoadCurrencies();
@@ -1389,6 +1389,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             CreateCharacterList();
             LoadWarehouseInvestment();
             LoadBodyModInvestment();
+
+            CharacterSelectionIndex = 0;
 
             OriginDiscountsSelection = JumpSelection.OriginDiscounts;
             PerkFreebieThreshold = JumpSelection.OriginPerkFreebieThreshold;

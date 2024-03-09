@@ -7,15 +7,12 @@ namespace JumpchainCharacterBuilder
 {
     public static partial class SaveMigration
     {
-        // TODO - Implement migration for 1.3.3, to fix Item stipends being moved to purchase types.
         public static SaveFile SaveUpdate(string filePath, double saveVersion, SaveFile saveFile)
         {
             List<string> saveStrings = TxtAccess.ReadText(filePath);
             List<(int, int)> indexList = new();
             (int, int) currentIndexes;
             List<string> innerStringList = new();
-
-            int deleteLength = 0;
 
             if (saveVersion < 1.3)
             {
@@ -54,23 +51,7 @@ namespace JumpchainCharacterBuilder
 
                     for (int i = 0; i < innerStringList.Count; i++)
                     {
-                        deleteLength = 0;
-
-                        for (int x = 0; x < innerStringList[i].Length; x++)
-                        {
-                            if (innerStringList[i][x] == ' ')
-                            {
-                                deleteLength++;
-                            }
-                            else if (innerStringList[i][x] == '<')
-                            {
-                                break;
-                            }
-                        }
-                        if (deleteLength > 0)
-                        {
-                            innerStringList[i] = innerStringList[i].Remove(0, deleteLength);
-                        }
+                        DeleteEmptySpace(innerStringList[i]);
 
                         innerStringList[i] = suspendRegex.Replace(innerStringList[i], "");
 
@@ -84,6 +65,48 @@ namespace JumpchainCharacterBuilder
                         }
                     }
                 }
+
+                saveFile.SaveVersion = 1.3;
+            }
+            else if (saveVersion < 1.4)
+            {
+                List<(int, int)> jumpListIndexes;
+                List<(int, int)> jumpBuildIndexes;
+                List<string> jumpBuildStrings;
+
+                int stipendIndex;
+                string stipendString;
+                int stipendValue;
+                Regex tagRemovalRegex = TagRemovalRegex();
+
+                jumpListIndexes = FindAllXmlTagIndexes("Jump", saveStrings);
+
+                for (int i = 0; i < jumpListIndexes.Count; i++)
+                {
+                    innerStringList = saveStrings.GetRange(jumpListIndexes[i].Item1, jumpListIndexes[i].Item2 - jumpListIndexes[i].Item1 + 1);
+
+                    jumpBuildIndexes = FindAllXmlTagIndexes("JumpBuild", innerStringList);
+
+                    for (int x = 0; x < jumpBuildIndexes.Count; x++)
+                    {
+                        jumpBuildStrings = innerStringList.GetRange(jumpBuildIndexes[x].Item1, jumpBuildIndexes[x].Item2 - jumpBuildIndexes[x].Item1 + 1);
+
+                        stipendIndex = FindSingleTag("ItemStipend", jumpBuildStrings);
+
+                        stipendString = jumpBuildStrings[stipendIndex];
+
+                        stipendString = DeleteEmptySpace(stipendString);
+                        
+                        if (!int.TryParse(tagRemovalRegex.Replace(stipendString, ""), out stipendValue))
+                        {
+                            stipendValue = 0;
+                        }
+
+                        saveFile.JumpList[i].Build[x].PurchaseTypeStipends[1] = stipendValue;
+                    }
+                }
+
+                saveFile.SaveVersion = 1.4;
             }
 
             return saveFile;
@@ -178,7 +201,7 @@ namespace JumpchainCharacterBuilder
         {
             int index = -1;
 
-            Regex regex = new($"<(?:.+){tagName}>.+</(?:.+){tagName}>");
+            Regex regex = new($" +<(?<=.+){tagName}>.+</(?<=.+){tagName}>");
 
             foreach (string line in saveStrings)
             {
@@ -191,6 +214,29 @@ namespace JumpchainCharacterBuilder
             }
 
             return index;
+        }
+
+        private static string DeleteEmptySpace(string line)
+        {
+            int deleteLength = 0;
+
+            for (int x = 0; x < line.Length; x++)
+            {
+                if (line[x] == ' ')
+                {
+                    deleteLength++;
+                }
+                else if (line[x] == '<')
+                {
+                    break;
+                }
+            }
+            if (deleteLength > 0)
+            {
+                line = line.Remove(0, deleteLength);
+            }
+
+            return line;
         }
 
         [GeneratedRegex("<.+?>", RegexOptions.Compiled)]

@@ -71,12 +71,6 @@ namespace JumpchainCharacterBuilder.Model
         private bool _originDiscounts = false;
 
         /// <summary>
-        /// Represents the default Item Stipend.
-        /// </summary>
-        [ObservableProperty]
-        private int _defaultItemStipend = 100;
-
-        /// <summary>
         /// Represents the value below which a purchase is automatically free
         /// in origin discounts mode if the origins match.
         /// </summary>
@@ -156,8 +150,6 @@ namespace JumpchainCharacterBuilder.Model
             OriginDetails.Add(new OriginDetail("No Origin", "Origin", 0, ""));
             PurchaseTypes.Add(new PurchaseType("Perks", 0, false));
             PurchaseTypes.Add(new PurchaseType("Items", 0, true));
-
-            DefaultItemStipend = itemStipend;
 
             OriginDiscounts = originDiscounts;
             OriginPerkFreebieThreshold = perkFreebieThreshold;
