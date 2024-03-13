@@ -1202,6 +1202,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 UserPerkCategories.Remove(category);
                 CompiledPerkCategories.Remove(category);
+                LoadedSave.UserPerkCategoryList.Remove(category);
 
                 UpdateCategories(perks: true);
 
@@ -1290,6 +1291,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 UserItemCategories.Remove(category);
                 CompiledItemCategories.Remove(category);
+                LoadedSave.UserItemCategoryList.Remove(category);
 
                 UpdateCategories(perks: true);
 

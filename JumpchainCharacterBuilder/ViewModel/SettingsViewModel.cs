@@ -23,6 +23,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _confirmSaveOnClose = true;
         [ObservableProperty]
         private bool _spellCheckEnabled = true;
+        [ObservableProperty]
+        private bool _focusNewestJumpOnLoad = true;
         #endregion
 
         #region Properties 
@@ -61,6 +63,13 @@ namespace JumpchainCharacterBuilder.ViewModel
             CfgAccess.WriteCfgFile(AppSettings);
         }
 
+        partial void OnFocusNewestJumpOnLoadChanged(bool value)
+        {
+            AppSettings.FocusNewestJumpOnLoad = value;
+            Messenger.Send(new SettingsChangedMessage(true));
+            CfgAccess.WriteCfgFile(AppSettings);
+        }
+
         public Dictionary<string, AppSettingsModel.HeightFormats> HeightFormatList { get; } =
             new()
             {
@@ -95,6 +104,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             CanResizeWindow = AppSettings.CanResizeWindow;
             ConfirmSaveOnClose = AppSettings.ConfirmSaveOnClose;
             SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+            FocusNewestJumpOnLoad = AppSettings.FocusNewestJumpOnLoad;
         }
 
         #endregion

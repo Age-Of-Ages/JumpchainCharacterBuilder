@@ -48,6 +48,13 @@ namespace JumpchainCharacterBuilder
             var viewModel = (MainWindowViewModel)DataContext;
 
             viewModel.TriggerSaveCommand.Execute(this);
+
+            bool saveSucceeded = viewModel.SaveSucceeded;
+
+            if (!saveSucceeded)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

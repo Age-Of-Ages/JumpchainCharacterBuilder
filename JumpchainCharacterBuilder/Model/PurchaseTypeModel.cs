@@ -20,6 +20,12 @@ namespace JumpchainCharacterBuilder.Model
         private int _currencyIndex = 0;
 
         /// <summary>
+        /// Represents the name of the currency used by the Purchase Type.
+        /// </summary>
+        [ObservableProperty]
+        private string _currencyName = "";
+
+        /// <summary>
         /// Represents whether this purchase type is considered an
         /// Item or not. This determines which categories are available
         /// for purchases using this type.

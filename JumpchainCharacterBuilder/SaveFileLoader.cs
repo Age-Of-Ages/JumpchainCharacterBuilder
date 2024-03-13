@@ -24,6 +24,10 @@ namespace JumpchainCharacterBuilder
             {
                 newSave = SaveMigration.SaveUpdate(filePath, newSave.SaveVersion, newSave);
             }
+            if (newSave.SaveVersion < 1.4)
+            {
+                newSave = SaveMigration.SaveUpdate(filePath, newSave.SaveVersion, newSave);
+            }
 
             ReplaceSave(saveFile, newSave);
         }

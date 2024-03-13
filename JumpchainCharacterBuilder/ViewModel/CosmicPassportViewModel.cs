@@ -16,7 +16,6 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class CosmicPassportViewModel : ViewModelBase
     {
         // TODO - Improve the attribute type/category system, as the current implementation is definitely kind of rough.
-        // TODO - Implement Booster reordering.
         #region Fields
         private readonly IDialogService _dialogService;
         [ObservableProperty]
@@ -796,6 +795,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<Booster> _currentBoosterList = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteBoosterCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveBoosterUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveBoosterDownCommand))]
         private Booster _currentBoosterSelection = new();
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -4709,6 +4710,78 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         private bool CanDeleteBooster() => CurrentBoosterList.Any() && CurrentBoosterIndex != -1;
+
+        [RelayCommand(CanExecute = nameof(CanMoveBoosterUp))]
+        private void MoveBoosterUp()
+        {
+            int index = CurrentBoosterIndex;
+            int dependencyIndex;
+
+            CurrentBoosterList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.Boosters.SwapListItems(index, index - 1);
+            CurrentBoosterIndex = index - 1;
+
+            foreach (Booster booster in CurrentBoosterList)
+            {
+                if (booster != CurrentBoosterSelection)
+                {
+                    if (index < CurrentBoosterList.IndexOf(booster))
+                    {
+                        dependencyIndex = index;
+
+                        booster.BoosterDependencies.SwapListItems(dependencyIndex, dependencyIndex - 1);
+                    }
+                    else if (index - 1 > CurrentBoosterList.IndexOf(booster))
+                    {
+                        dependencyIndex = index - 1;
+
+                        booster.BoosterDependencies.SwapListItems(dependencyIndex, dependencyIndex - 1);
+                    }
+                }
+            }
+
+            DeleteBoosterCommand.NotifyCanExecuteChanged();
+            MoveBoosterUpCommand.NotifyCanExecuteChanged();
+            MoveBoosterDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveBoosterUp() => CurrentBoosterIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveBoosterDown))]
+        private void MoveBoosterDown()
+        {
+            int index = CurrentBoosterIndex;
+            int dependencyIndex;
+
+            CurrentBoosterList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.Boosters.SwapListItems(index, index + 1);
+            CurrentBoosterIndex = index + 1;
+
+            foreach (Booster booster in CurrentBoosterList)
+            {
+                if (booster != CurrentBoosterSelection)
+                {
+                    if (index > CurrentBoosterList.IndexOf(booster))
+                    {
+                        dependencyIndex = index - 1;
+
+                        booster.BoosterDependencies.SwapListItems(dependencyIndex, dependencyIndex + 1);
+                    }
+                    else if (index + 1 < CurrentBoosterList.IndexOf(booster))
+                    {
+                        dependencyIndex = index;
+
+                        booster.BoosterDependencies.SwapListItems(dependencyIndex, dependencyIndex + 1);
+                    }
+                }
+            }
+
+            DeleteBoosterCommand.NotifyCanExecuteChanged();
+            MoveBoosterUpCommand.NotifyCanExecuteChanged();
+            MoveBoosterDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveBoosterDown() => CurrentBoosterIndex < CurrentBoosterList.Count - 1;
 
         [RelayCommand]
         private void RefreshBoosters()

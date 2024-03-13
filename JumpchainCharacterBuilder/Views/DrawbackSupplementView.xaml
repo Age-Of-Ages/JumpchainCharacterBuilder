@@ -323,7 +323,7 @@
                             </StackPanel>
 
                             <StackPanel Grid.Column="1" Margin="0,3,0,0">
-                                <TextBlock Text="Revoke after Jump #"/>
+                                <TextBlock Text="Revoke at Jump #"/>
                                 <TextBox Text="{Binding DrawbackSelection.Revoke}"
                                          Width="40"/>
 

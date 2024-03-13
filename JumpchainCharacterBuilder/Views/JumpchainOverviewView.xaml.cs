@@ -20,5 +20,12 @@ namespace JumpchainCharacterBuilder.Views
         }
 
         public JumpchainOverviewViewModel JumpchainOverviewViewModel => (JumpchainOverviewViewModel)DataContext;
+
+        private void JumpList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ListView? listView = sender as ListView;
+
+            listView?.ScrollIntoView(listView.SelectedItem);
+        }
     }
 }

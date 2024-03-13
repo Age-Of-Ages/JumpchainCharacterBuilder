@@ -21,7 +21,14 @@
         Foreground="{DynamicResource TextColor}"
         ResizeMode="{Binding ResizeAllowed, Converter={StaticResource BoolToResize}}" 
         Closing="Window_Closing">
-
+    
+    <Window.InputBindings>
+        <KeyBinding Command="{Binding SaveHotkeyCommand}"
+                    Key="S" Modifiers="Ctrl"/>
+        <KeyBinding Command="{Binding OpenHotkeyCommand}"
+                    Key="O" Modifiers="Ctrl"/>
+    </Window.InputBindings>
+    
     <Grid>
         <DockPanel>
             <local:TopMenuView DockPanel.Dock="Top"/>

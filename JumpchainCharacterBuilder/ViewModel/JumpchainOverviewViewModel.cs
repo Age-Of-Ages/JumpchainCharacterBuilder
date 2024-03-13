@@ -13,7 +13,6 @@ using System.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
-    // TODO - Implement ability to add a stipend for a specific purchase type regardless of currency chosen.
     public partial class JumpchainOverviewViewModel : ViewModelBase
     {
         #region Fields
@@ -156,7 +155,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _currencyStipend = 0;
         [ObservableProperty]
-        private int _itemStipend = 0;
+        private int _purchaseTypeStipend = 0;
 
         [ObservableProperty]
         private ObservableCollection<ObservableCollection<Purchase>> _purchaseList = new();
@@ -458,7 +457,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (JumpList.Count > 0)
             {
-                JumpSelection = JumpList.Last();
+                JumpSelection = AppSettings.FocusNewestJumpOnLoad ? JumpList.Last() : JumpList.First();
             }
             else
             {
@@ -494,7 +493,13 @@ namespace JumpchainCharacterBuilder.ViewModel
                         CurrencyStipend = JumpSelection.Build[CharacterSelectionIndex].PointStipend[StipendSelectionIndex];
                     }
                 }
-                ItemStipend = JumpSelection.Build[CharacterSelectionIndex].ItemStipend;
+
+                ListValidationClass.CheckPurchaseTypeStipendCount(JumpSelection.Build[CharacterSelectionIndex], JumpSelection.PurchaseTypes.Count);
+
+                if (PurchaseTypeSelectionIndex != -1)
+                {
+                    PurchaseTypeStipend = JumpSelection.Build[CharacterSelectionIndex].PurchaseTypeStipends[PurchaseTypeSelectionIndex];
+                }
 
                 LoadAllPurchaseLists();
                 LoadImportOptionList();
@@ -642,6 +647,12 @@ namespace JumpchainCharacterBuilder.ViewModel
                 IsItemType = PurchaseTypeSelection.IsItemType;
 
                 PurchaseTypeName = value.Type;
+
+                ListValidationClass.CheckPurchaseTypeStipendCount(JumpSelection.Build[CharacterSelectionIndex], JumpSelection.PurchaseTypes.Count);
+
+                PurchaseTypeStipend = JumpSelection.Build[CharacterSelectionIndex].PurchaseTypeStipends[PurchaseTypeSelectionIndex];
+
+                value.CurrencyName = CurrencyList[value.CurrencyIndex].CurrencyName;
             }
         }
 
@@ -650,6 +661,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (value >= 0 && PurchaseTypeSelectionIndex >= 2)
             {
                 PurchaseTypeSelection.CurrencyIndex = value;
+                PurchaseTypeSelection.CurrencyName = CurrencyList[value].CurrencyName;
             }
         }
 
@@ -673,11 +685,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnItemStipendChanged(int value)
+        partial void OnPurchaseTypeStipendChanged(int value)
         {
-            if (value != JumpSelection.Build[CharacterSelectionIndex].ItemStipend)
+            if (value != JumpSelection.Build[CharacterSelectionIndex].PurchaseTypeStipends[PurchaseTypeSelectionIndex])
             {
-                JumpSelection.Build[CharacterSelectionIndex].ItemStipend = value;
+                JumpSelection.Build[CharacterSelectionIndex].PurchaseTypeStipends[PurchaseTypeSelectionIndex] = value;
             }
         }
 
@@ -1104,6 +1116,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (!GetErrors(nameof(CurrencyName)).Any() && CurrencySelection != null)
             {
                 CurrencySelection.CurrencyName = value;
+
+                foreach (PurchaseType purchaseType in PurchaseTypeList)
+                {
+                    purchaseType.CurrencyName = CurrencyList[purchaseType.CurrencyIndex].CurrencyName;
+                }
             }
         }
 
@@ -1234,7 +1251,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 if (JumpList.Any())
                 {
-                    JumpSelection = JumpList.Last();
+                    JumpSelection = AppSettings.FocusNewestJumpOnLoad ? JumpList.Last() : JumpList.First();
                     LoadJumpSelection();
                 }
 
@@ -1319,7 +1336,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             CalculateJumpNumber(LoadedSave.JumpList);
 
-            JumpSelectionIndex = JumpList.Count - 1;
+            JumpSelectionIndex = AppSettings.FocusNewestJumpOnLoad ? JumpList.Count - 1 : 0;
         }
 
         private static void CalculateJumpNumber(List<Jump> jumps)
@@ -1358,7 +1375,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadJumpSelection()
         {
-            CharacterSelectionIndex = 0;
+            ListValidationClass.CheckBuildCount(JumpSelection, CharacterList.Count - 1);
 
             LoadMiscOriginTypes();
             LoadCurrencies();
@@ -1372,6 +1389,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             CreateCharacterList();
             LoadWarehouseInvestment();
             LoadBodyModInvestment();
+
+            CharacterSelectionIndex = 0;
 
             OriginDiscountsSelection = JumpSelection.OriginDiscounts;
             PerkFreebieThreshold = JumpSelection.OriginPerkFreebieThreshold;
