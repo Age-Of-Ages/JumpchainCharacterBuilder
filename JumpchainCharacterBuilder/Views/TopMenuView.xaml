@@ -24,7 +24,7 @@
             <MenuItem Header="Dark" Command="{Binding SwitchThemeCommand}" CommandParameter="Dark" Click="ThemeChangeDark_Click"
                       IsChecked="{Binding DarkThemeSelected}"/>
         </MenuItem>
-        <MenuItem Template="{DynamicResource MenuItemTemplate1}" Header="Input Formatter" Click="InputFormatter_Click"/>
+        <MenuItem Header="Input Formatter" Click="InputFormatter_Click"/>
         <MenuItem Header="Jump Randomizer">
             <MenuItem Header="Random Jump Selector" Click="JumpRandomizer_Click"/>
             <MenuItem Header="Jump Randomizer Settings" Click="JumpRandomizerSettings_Click"/>
