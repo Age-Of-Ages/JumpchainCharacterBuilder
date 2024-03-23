@@ -10,9 +10,9 @@
         d:DataContext="{d:DesignInstance Type=viewModel:MainWindowViewModel, IsDesignTimeCreatable=True}"
         Title="Jumpchain Character Builder" 
         Height="800" 
-        MinHeight="200"
+        MinHeight="700"
         Width="950" 
-        MinWidth="200"
+        MinWidth="750"
         Cursor="" 
         WindowStyle="SingleBorderWindow" 
         Background="{DynamicResource Background}" 
@@ -34,7 +34,7 @@
             <local:TopMenuView DockPanel.Dock="Top"/>
 
             <Grid>
-                <TabControl TabStripPlacement="Top" Background="{DynamicResource Background}" Foreground="{DynamicResource TextColor}">
+                <TabControl TabStripPlacement="Top">
                     <TabItem Style="{DynamicResource MainTabItem}" Header="Jumpchain Overview">
                         <local:JumpchainOverviewView/>
                     </TabItem>

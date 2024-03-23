@@ -4,8 +4,12 @@ using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace JumpchainCharacterBuilder
@@ -91,6 +95,73 @@ namespace JumpchainCharacterBuilder
 
 
             TxtAccess.WriteLog(exceptionData);
+        }
+
+        public static void ResizeGridViewColumns(ListView listView, List<int> indexesToStretch)
+        {
+            if (listView.View is GridView gridView)
+            {
+                ScrollViewer scrollViewer = GetChildOfType<ScrollViewer>(listView);
+                Visibility? scrollbarVisibility = scrollViewer?.ComputedVerticalScrollBarVisibility;
+
+                double availableWidth;
+
+                if (scrollbarVisibility == Visibility.Visible)
+                {
+                    availableWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth - 10;
+                }
+                else
+                {
+                    availableWidth = listView.ActualWidth - 10;
+                }
+
+                List<GridViewColumn> autoSizeColumns = new();
+
+                for (int i = 0; i < gridView.Columns.Count; i++)
+                {
+                    if (indexesToStretch.Contains(i))
+                    {
+                        autoSizeColumns.Add(gridView.Columns[i]);
+                    }
+                    else
+                    {
+                        availableWidth -= gridView.Columns[i].Width;
+                    }
+                }
+
+                int sizeSplit = autoSizeColumns.Count;
+
+                if (availableWidth < 0)
+                {
+                    availableWidth = 0;
+                }
+
+                foreach (GridViewColumn column in autoSizeColumns)
+                {
+                    column.Width = availableWidth / sizeSplit;
+                }
+            }
+        }
+
+        public static T GetChildOfType<T>(DependencyObject dependencyObject) 
+            where T : DependencyObject
+        {
+            if (dependencyObject == null)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(dependencyObject); i++)
+            {
+                var target = VisualTreeHelper.GetChild(dependencyObject, i);
+
+                var output = target as T ?? GetChildOfType<T>(target);
+                if (output != null)
+                {
+                    return output;
+                }
+            }
+            return null;
         }
     }
 }

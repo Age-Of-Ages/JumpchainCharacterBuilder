@@ -16,6 +16,7 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class CosmicPassportViewModel : ViewModelBase
     {
         // TODO - Improve the attribute type/category system, as the current implementation is definitely kind of rough.
+        // TODO - Implement a feature to search Perks/Items, for Name, Description, or both.
         #region Fields
         private readonly IDialogService _dialogService;
         [ObservableProperty]

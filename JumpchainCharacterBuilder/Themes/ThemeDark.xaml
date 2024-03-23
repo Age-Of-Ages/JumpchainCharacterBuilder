@@ -7,6 +7,7 @@
 
     <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
 
+    <SolidColorBrush x:Key="TextBox.Static.Background" Color="#232323"/>
 
     <SolidColorBrush x:Key="Menu.Static.Background" Color="#232323"/>
     <SolidColorBrush x:Key="Menu.Static.Border" Color="#232323"/>
@@ -27,5 +28,67 @@
     <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#121212"/>
     <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#52585E"/>
     <SolidColorBrush x:Key="TabItem.Disabled.Background" Color="#1A1A1A"/>
-    <SolidColorBrush x:Key="TabItem.Disabled.Border" Color="#252525"/>
+    <SolidColorBrush x:Key="TabItem.Disabled.Border" Color="#404040"/>
+
+    <SolidColorBrush x:Key="ScrollBar.Static.Background" Color="#404040"/>
+    <SolidColorBrush x:Key="ScrollBar.Static.Border" Color="#404040"/>
+    <SolidColorBrush x:Key="ScrollBar.Static.Glyph" Color="#303030"/>
+    <SolidColorBrush x:Key="ScrollBar.Static.Thumb" Color="#6E6E6E"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Background" Color="#6E6E6E"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Border" Color="#6E6E6E"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Glyph" Color="#000000"/>
+    <SolidColorBrush x:Key="ScrollBar.MouseOver.Thumb" Color="#656565"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Background" Color="#969696"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Border" Color="#606060"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Thumb" Color="#606060"/>
+    <SolidColorBrush x:Key="ScrollBar.Pressed.Glyph" Color="#828282"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Background" Color="#828282"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Border" Color="#828282"/>
+    <SolidColorBrush x:Key="ScrollBar.Disabled.Glyph" Color="#828282"/>
+
+    <SolidColorBrush x:Key="ComboBox.Static.Border" Color="#5C5C5C"/>
+    <SolidColorBrush x:Key="ComboBox.Static.Glyph" Color="#4C4C4C"/>
+    <SolidColorBrush x:Key="ComboBox.Static.Editable.Background" Color="#2C2C2C"/>
+    <SolidColorBrush x:Key="ComboBox.Static.Editable.Border" Color="#3C3C3C"/>
+    <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBox.Static.Editable.Button.Border" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBox.MouseOver.Border" Color="#03145F"/>
+    <SolidColorBrush x:Key="ComboBox.MouseOver.Glyph" Color="#FF000000"/>
+    <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Background" Color="#3C3C3C"/>
+    <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Border" Color="#03145F"/>
+    <SolidColorBrush x:Key="ComboBox.MouseOver.Editable.Button.Border" Color="#03145F"/>
+    <SolidColorBrush x:Key="ComboBox.Pressed.Border" Color="#041B81"/>
+    <SolidColorBrush x:Key="ComboBox.Pressed.Glyph" Color="#4C4C4C"/>
+    <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Background" Color="#2C2C2C"/>
+    <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Border" Color="#041B81"/>
+    <SolidColorBrush x:Key="ComboBox.Pressed.Editable.Button.Border" Color="#041B81"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Background" Color="#2C2C2C"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Border" Color="#4C4C4C"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Glyph" Color="#5C5C5C"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Background" Color="#5C5C5C"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Border" Color="#5C5C5C"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Background" Color="Transparent"/>
+    <SolidColorBrush x:Key="ComboBox.Disabled.Editable.Button.Border" Color="Transparent"/>
+
+    <!--Linear Gradient Brushes-->
+    <LinearGradientBrush x:Key="ComboBox.Static.Background" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#474747" Offset="0.0"/>
+        <GradientStop Color="#404040" Offset="1.0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ComboBox.MouseOver.Background" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#454545" Offset="0.0"/>
+        <GradientStop Color="#404040" Offset="1.0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ComboBox.MouseOver.Editable.Button.Background" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#434343" Offset="0.0"/>
+        <GradientStop Color="#393939" Offset="1.0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ComboBox.Pressed.Background" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#414141" Offset="0.0"/>
+        <GradientStop Color="#373737" Offset="1.0"/>
+    </LinearGradientBrush>
+    <LinearGradientBrush x:Key="ComboBox.Pressed.Editable.Button.Background" EndPoint="0,1" StartPoint="0,0">
+        <GradientStop Color="#393939" Offset="0.0"/>
+        <GradientStop Color="#353535" Offset="1.0"/>
+    </LinearGradientBrush>
 </ResourceDictionary>
