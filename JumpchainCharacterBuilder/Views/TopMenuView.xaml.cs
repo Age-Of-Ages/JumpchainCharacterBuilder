@@ -85,10 +85,12 @@ namespace JumpchainCharacterBuilder.Views
         private void ThemeChange(string currentTheme)
         {
             ResourceDictionary dictionary = App.Current.Resources;
-            dictionary.MergedDictionaries.Clear();
-            dictionary.MergedDictionaries.Add(new() { Source = new("/PresentationFramework.Aero2;component/themes/Aero2.NormalColor.xaml", UriKind.RelativeOrAbsolute) });
-            dictionary.MergedDictionaries.Add(new() { Source = new("Styles.xaml", UriKind.RelativeOrAbsolute) });
+            //dictionary.MergedDictionaries.Clear();
+            //dictionary.MergedDictionaries.Add(new() { Source = new("/PresentationFramework.Aero2;component/themes/Aero2.NormalColor.xaml", UriKind.RelativeOrAbsolute) });
+            //dictionary.MergedDictionaries.Add(new() { Source = new("Styles.xaml", UriKind.RelativeOrAbsolute) });
 
+            dictionary.MergedDictionaries.RemoveAt(2);
+            
             if (currentTheme == "Light")
             {
                 dictionary.MergedDictionaries.Add(new() { Source = new("Themes/ThemeLight.xaml", UriKind.RelativeOrAbsolute) });

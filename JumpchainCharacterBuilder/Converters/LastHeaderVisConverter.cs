@@ -15,10 +15,8 @@ namespace JumpchainCharacterBuilder.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            GridViewColumnHeader currentColumn = (GridViewColumnHeader)values[1];
-            GridViewColumnCollection columnList = (GridViewColumnCollection)values[0];
-
-            if (columnList != null && currentColumn != null)
+            if (values[0] is GridViewColumnCollection columnList && 
+                values[1] is GridViewColumnHeader currentColumn)
             {
                 int currentIndex = columnList.IndexOf(currentColumn.Column);
                 bool indexMatches = currentIndex == 0;

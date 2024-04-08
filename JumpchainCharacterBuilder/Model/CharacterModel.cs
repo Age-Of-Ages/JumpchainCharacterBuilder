@@ -105,10 +105,34 @@ namespace JumpchainCharacterBuilder.Model
         private int _firstJump = 1;
 
         /// <summary>
-        /// Represents all of the character's traits.
+        /// Represents the character's Likes.
         /// </summary>
         [ObservableProperty]
-        private List<Trait> _traitRow = new();
+        private string _likes = "";
+
+        /// <summary>
+        /// Represents the character's Dislikes.
+        /// </summary>
+        [ObservableProperty]
+        private string _dislikes = "";
+
+        /// <summary>
+        /// Represents the character's Hobbies.
+        /// </summary>
+        [ObservableProperty]
+        private string _hobbies = "";
+
+        /// <summary>
+        /// Represents the character's Quirks.
+        /// </summary>
+        [ObservableProperty]
+        private string _quirks = "";
+
+        /// <summary>
+        /// Represents the character's Goals.
+        /// </summary>
+        [ObservableProperty]
+        private string _goals = "";
 
         /// <summary>
         /// Represents the list of character's Alt-forms.

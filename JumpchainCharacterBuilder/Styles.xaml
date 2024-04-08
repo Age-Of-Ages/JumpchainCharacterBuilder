@@ -25,6 +25,7 @@
     <Style TargetType="{x:Type TabControl}">
         <Setter Property="Background" Value="{DynamicResource Background}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource MainTabItem}"/>
     </Style>
 
     <Style TargetType="{x:Type DataGrid}">

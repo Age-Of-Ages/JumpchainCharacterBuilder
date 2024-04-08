@@ -8,7 +8,7 @@
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:JumpchainOverviewViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="743" d:DesignWidth="934">
+             d:DesignHeight="714" d:DesignWidth="928">
 
     
     <Grid>
@@ -81,12 +81,12 @@
         </Grid>
 
         <TabControl Grid.Column="1" Grid.RowSpan="2" SelectedIndex="{Binding BuildTabIndex}" >
-            <!--<TabControl.Visibility>
+            <TabControl.Visibility>
                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                     <Binding Path="JumpSelection"/>
                     <Binding Path="JumpList"/>
                 </MultiBinding>
-            </TabControl.Visibility>-->
+            </TabControl.Visibility>
             <TabItem Header="Origins" Style="{DynamicResource MainTabItem}">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -175,12 +175,12 @@
                     </ListView>
 
                     <GroupBox Header="Details" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="MiscOriginDetailSelection"/>
                                 <Binding Path="MiscOriginDetailList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid Margin="8,0,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.1*"/>
@@ -299,12 +299,12 @@
                     </DockPanel>
 
                     <GroupBox Header="Origin Details" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="OriginEditSelection"/>
                                 <Binding Path="OriginList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid Margin="8,0,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -339,12 +339,12 @@
                     </GroupBox>
 
                     <GroupBox Header="Type Details" Grid.Row="3" Grid.Column="1">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="MiscOriginTypeSelection"/>
                                 <Binding Path="MiscOriginTypeList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -447,12 +447,12 @@
                     </DockPanel>
                     
                     <GroupBox Header="Purchase Details" Grid.Column="1" Grid.RowSpan="4">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="PurchaseSelection"/>
                                 <Binding Path="CurrentLoadedPurchaseList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid Margin="8,0,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="4*" MaxWidth="250"/>
@@ -523,14 +523,10 @@
 
                                     <Button Content="New Trait" 
                                             Command="{Binding NewPurchaseTraitCommand}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
                                             Style="{DynamicResource DataGridButton}"/>
 
                                     <Button Content="Delete Trait"
                                             Command="{Binding DeletePurchaseTraitCommand}"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Center"
                                             Style="{DynamicResource DataGridButton}"
                                             Grid.Column="2"/>
                                 </Grid>
@@ -540,7 +536,7 @@
                                           SelectedIndex="{Binding PurchaseAttributeIndex}"
                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                           ScrollViewer.ScrollChanged="ListView_ScrollChanged"
-                                          Tag="0" DockPanel.Dock="Left">
+                                          Tag="0">
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
@@ -555,12 +551,12 @@
 
                             <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" 
                                       Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,8,0,0">
-                                <!--<GroupBox.Visibility>
+                                <GroupBox.Visibility>
                                     <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                         <Binding Path="PurchaseAttributeSelection"/>
                                         <Binding Path="PurchaseAttributeList"/>
                                     </MultiBinding>
-                                </GroupBox.Visibility>-->
+                                </GroupBox.Visibility>
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <TextBlock Text="Name"/>
                                     <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -666,12 +662,12 @@
                     </DockPanel>
 
                     <GroupBox Header="Import Option Details" Grid.Column="1" Grid.RowSpan="2">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="ImportOptionSelection"/>
                                 <Binding Path="ImportOptionList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid Margin="8,0,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="3*" MaxWidth="250"/>
@@ -740,12 +736,12 @@
 
                             <GroupBox Header="Import Details" Grid.Row="2" Grid.Column="1" 
                                       Grid.ColumnSpan="2" Grid.RowSpan="2">
-                                <!--<GroupBox.Visibility>
+                                <GroupBox.Visibility>
                                     <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                         <Binding Path="ImportCharacterSelection"/>
                                         <Binding Path="ImportCharacterList"/>
                                     </MultiBinding>
-                                </GroupBox.Visibility>-->
+                                </GroupBox.Visibility>
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <TextBlock Text="Name"/>
                                     <TextBox Text="{Binding ImportCharacterSelection.CompanionName}"
@@ -841,12 +837,12 @@
                     </DockPanel>
 
                     <GroupBox Header="Drawback Details" Grid.Column="1" Grid.RowSpan="4">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="DrawbackSelection"/>
                                 <Binding Path="DrawbackList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid Margin="0,8,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -959,12 +955,12 @@
                     </DockPanel>
                         
                     <GroupBox Header="Scenario Details" Grid.Column="1" Grid.RowSpan="4">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="ScenarioSelection"/>
                                 <Binding Path="ScenarioList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid Margin="0,8,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -1145,17 +1141,14 @@
                             </ListView.View>
                         </ListView>
                     </DockPanel>
-                    
-
-                    
 
                     <GroupBox Header="Currency details" Grid.Row="3">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="CurrencySelection"/>
                                 <Binding Path="CurrencyList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid>
 
                             <StackPanel>
@@ -1171,8 +1164,6 @@
                                 <TextBox Text="{Binding CurrencySelection.CurrencyBudget, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
                             </StackPanel>
-                            
-                            
                         </Grid>
                     </GroupBox>
 
@@ -1197,12 +1188,12 @@
                     </ListView>
 
                     <GroupBox Header="Stipend details" Grid.Row="3" Grid.Column="1">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="CurrencySelection"/>
                                 <Binding Path="CurrencyList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid>
                             <StackPanel>
                                 <TextBlock Text="Currency Name"/>
@@ -1268,12 +1259,12 @@
                     </DockPanel>
                     
                     <GroupBox Header="Purchase Type details" Grid.Row="3" Grid.Column="2">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="PurchaseTypeSelection"/>
                                 <Binding Path="PurchaseTypeList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="2*"/>

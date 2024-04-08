@@ -2506,99 +2506,64 @@ namespace JumpchainCharacterBuilder.ViewModel
                                             }
                                             break;
                                         case "Traits":
-                                            List<string> likes = new();
-                                            List<string> dislikes = new();
-                                            List<string> hobbies = new();
-                                            List<string> quirks = new();
-                                            List<string> goals = new();
-
                                             output.Add(FormatSectionTitle("Traits"));
 
                                             FormatBlankLine(output);
 
-                                            foreach (Trait row in character.TraitRow)
-                                            {
-                                                if (row.Like != "")
-                                                {
-                                                    likes.Add(row.Like);
-                                                }
-                                                if (row.Dislike != "")
-                                                {
-                                                    dislikes.Add(row.Dislike);
-                                                }
-                                                if (row.Hobby != "")
-                                                {
-                                                    hobbies.Add(row.Hobby);
-                                                }
-                                                if (row.Quirk != "")
-                                                {
-                                                    quirks.Add(row.Quirk);
-                                                }
-                                                if (row.Goal != "")
-                                                {
-                                                    goals.Add(row.Goal);
-                                                }
-                                            }
-
-                                            if (likes.Any())
+                                            if (character.Likes != "")
                                             {
                                                 output.Add(FormatSectionTitle("Likes"));
 
                                                 FormatBlankLine(output);
 
-                                                foreach (string like in likes)
-                                                {
-                                                    output.Add(like);
-                                                }
+                                                output.Add(character.Likes);
                                             }
 
-                                            if (dislikes.Any())
+                                            FormatBlankLine(output);
+
+                                            if (character.Dislikes != "")
                                             {
                                                 output.Add(FormatSectionTitle("Dislikes"));
 
                                                 FormatBlankLine(output);
 
-                                                foreach (string dislike in dislikes)
-                                                {
-                                                    output.Add(dislike);
-                                                }
+                                                output.Add(character.Dislikes);
                                             }
 
-                                            if (hobbies.Any())
-                                            {
-                                                output.Add(FormatSectionTitle("Hobbies"));
+                                            FormatBlankLine(output);
 
-                                                FormatBlankLine(output);
-
-                                                foreach (string hobby in hobbies)
-                                                {
-                                                    output.Add(hobby);
-                                                }
-                                            }
-
-                                            if (quirks.Any())
+                                            if (character.Quirks != "")
                                             {
                                                 output.Add(FormatSectionTitle("Quirks"));
 
                                                 FormatBlankLine(output);
 
-                                                foreach (string quirk in quirks)
-                                                {
-                                                    output.Add(quirk);
-                                                }
+                                                output.Add(character.Quirks);
                                             }
 
-                                            if (goals.Any())
+                                            FormatBlankLine(output);
+
+                                            if (character.Hobbies != "")
+                                            {
+                                                output.Add(FormatSectionTitle("Hobbies"));
+
+                                                FormatBlankLine(output);
+
+                                                output.Add(character.Hobbies);
+                                            }
+
+                                            FormatBlankLine(output);
+
+                                            if (character.Goals != "")
                                             {
                                                 output.Add(FormatSectionTitle("Goals"));
 
                                                 FormatBlankLine(output);
 
-                                                foreach (string goal in goals)
-                                                {
-                                                    output.Add(goal);
-                                                }
+                                                output.Add(character.Goals);
                                             }
+
+                                            FormatBlankLine(output);
                                             break;
                                         default:
                                             break;
@@ -2668,16 +2633,13 @@ namespace JumpchainCharacterBuilder.ViewModel
                                         FormatBlankLine(output);
                                     }
 
-                                    foreach (AltFormTraitModel row in form.StrengthWeaknessRow)
+                                    if (form.Strengths != "")
                                     {
-                                        if (row.Strength != "")
-                                        {
-                                            strengths.Add(row.Strength);
-                                        }
-                                        if (row.Weakness != "")
-                                        {
-                                            weaknesses.Add(row.Weakness);
-                                        }
+                                        strengths.Add(form.Strengths);
+                                    }
+                                    if (form.Weaknesses != "")
+                                    {
+                                        weaknesses.Add(form.Weaknesses);
                                     }
 
                                     if (strengths.Any())

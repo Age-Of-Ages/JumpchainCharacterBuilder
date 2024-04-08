@@ -70,29 +70,25 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _characterSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<Trait> _characterTraitList = new();
-        [ObservableProperty]
-        private Trait _characterTraitSelection = new();
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _likes = "";
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [XmlFilter]
-        private string _like = "";
+        private string _dislikes = "";
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [XmlFilter]
-        private string _dislike = "";
+        private string _hobbies = "";
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [XmlFilter]
-        private string _hobby = "";
+        private string _quirks = "";
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [XmlFilter]
-        private string _quirk = "";
-        [ObservableProperty]
-        [NotifyDataErrorInfo]
-        [XmlFilter]
-        private string _goal = "";
+        private string _goals = "";
 
         [ObservableProperty]
         private int _passportTabIndex = 0;
@@ -118,8 +114,6 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<AltForm> _characterAltFormList = new();
         [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(NewStrengthWeaknessRowCommand))]
-        [NotifyCanExecuteChangedFor(nameof(DeleteStrengthWeaknessRowCommand))]
         private AltForm _characterAltFormSelection = new();
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -137,17 +131,13 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _characterAltFormSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<AltFormTraitModel> _altFormStrengthWeaknessList = new();
-        [ObservableProperty]
-        private AltFormTraitModel _altFormStrengthWeaknessSelection = new();
+        [NotifyDataErrorInfo]
+        [XmlFilter]
+        private string _altFormStrengths = "";
         [ObservableProperty]
         [NotifyDataErrorInfo]
         [XmlFilter]
-        private string _altFormStrength = "";
-        [ObservableProperty]
-        [NotifyDataErrorInfo]
-        [XmlFilter]
-        private string _altFormWeakness = "";
+        private string _altFormWeaknesses = "";
 
         [ObservableProperty]
         private ObservableCollection<string> _perkTabList = new();
@@ -834,28 +824,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnCharacterTraitSelectionChanged(Trait value)
-        {
-            if (value != null)
-            {
-                Like = value.Like;
-                Dislike = value.Dislike;
-                Hobby = value.Hobby;
-                Quirk = value.Quirk;
-                Goal = value.Goal;
-            }
-        }
-
         partial void OnCharacterAltFormSelectionChanged(AltForm value) => LoadAltFormTraits();
-
-        partial void OnAltFormStrengthWeaknessSelectionChanged(AltFormTraitModel value)
-        {
-            if (value != null)
-            {
-                AltFormStrength = value.Strength;
-                AltFormWeakness = value.Weakness;
-            }
-        }
 
         partial void OnPerkTabNameChanged(string value) => PerkTabChanged();
 
@@ -1457,43 +1426,43 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnLikeChanged(string value)
+        partial void OnLikesChanged(string value)
         {
-            if (!GetErrors(nameof(Like)).Any() && CharacterTraitSelection != null)
+            if (!GetErrors(nameof(Likes)).Any() && CharacterSelection != null)
             {
-                CharacterTraitSelection.Like = value;
+                CharacterSelection.Likes = value;
             }
         }
 
-        partial void OnDislikeChanged(string value)
+        partial void OnDislikesChanged(string value)
         {
-            if (!GetErrors(nameof(Dislike)).Any() && CharacterTraitSelection != null)
+            if (!GetErrors(nameof(Dislikes)).Any() && CharacterSelection != null)
             {
-                CharacterTraitSelection.Dislike = value;
+                CharacterSelection.Dislikes = value;
             }
         }
 
-        partial void OnHobbyChanged(string value)
+        partial void OnHobbiesChanged(string value)
         {
-            if (!GetErrors(nameof(Hobby)).Any() && CharacterTraitSelection != null)
+            if (!GetErrors(nameof(Hobbies)).Any() && CharacterSelection != null)
             {
-                CharacterTraitSelection.Hobby = value;
+                CharacterSelection.Hobbies = value;
             }
         }
 
-        partial void OnQuirkChanged(string value)
+        partial void OnQuirksChanged(string value)
         {
-            if (!GetErrors(nameof(Quirk)).Any() && CharacterTraitSelection != null)
+            if (!GetErrors(nameof(Quirks)).Any() && CharacterSelection != null)
             {
-                CharacterTraitSelection.Quirk = value;
+                CharacterSelection.Quirks = value;
             }
         }
 
-        partial void OnGoalChanged(string value)
+        partial void OnGoalsChanged(string value)
         {
-            if (!GetErrors(nameof(Goal)).Any() && CharacterTraitSelection != null)
+            if (!GetErrors(nameof(Goals)).Any() && CharacterSelection != null)
             {
-                CharacterTraitSelection.Goal = value;
+                CharacterSelection.Goals = value;
             }
         }
 
@@ -1521,19 +1490,19 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnAltFormStrengthChanged(string value)
+        partial void OnAltFormStrengthsChanged(string value)
         {
-            if (!GetErrors(nameof(AltFormStrength)).Any() && AltFormStrengthWeaknessSelection != null)
+            if (!GetErrors(nameof(AltFormStrengths)).Any() && CharacterAltFormSelection != null)
             {
-                AltFormStrengthWeaknessSelection.Strength = value;
+                CharacterAltFormSelection.Strengths = value;
             }
         }
 
-        partial void OnAltFormWeaknessChanged(string value)
+        partial void OnAltFormWeaknessesChanged(string value)
         {
-            if (!GetErrors(nameof(AltFormWeakness)).Any() && AltFormStrengthWeaknessSelection != null)
+            if (!GetErrors(nameof(AltFormWeaknesses)).Any() && CharacterAltFormSelection != null)
             {
-                AltFormStrengthWeaknessSelection.Weakness = value;
+                CharacterAltFormSelection.Weaknesses = value;
             }
         }
 
@@ -2153,23 +2122,14 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCharacterTraits(Character character)
         {
-            CharacterTraitList.Clear();
-
             if (character != null)
             {
-                CharacterTraitList = new(character.TraitRow);
-
-                if (CharacterTraitList.Any())
-                {
-                    CharacterTraitSelection = CharacterTraitList.First();
-                }
-                else
-                {
-                    CharacterTraitSelection = new();
-                }
+                Likes = character.Likes;
+                Dislikes = character.Dislikes;
+                Quirks = character.Quirks;
+                Hobbies = character.Hobbies;
+                Goals = character.Goals;
             }
-
-            DeleteTraitRowCommand.NotifyCanExecuteChanged();
         }
 
         private void LoadAltForms(Character character)
@@ -2189,24 +2149,15 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadAltFormTraits()
         {
-            AltFormStrengthWeaknessList.Clear();
-
             if (CharacterAltFormSelection != null)
             {
-                AltFormStrengthWeaknessList = new(CharacterAltFormSelection.StrengthWeaknessRow);
-
-                if (AltFormStrengthWeaknessList.Any())
-                {
-                    AltFormStrengthWeaknessSelection = AltFormStrengthWeaknessList.First();
-                }
+                AltFormStrengths = CharacterAltFormSelection.Strengths;
+                AltFormWeaknesses = CharacterAltFormSelection.Weaknesses;
 
                 AltFormName = CharacterAltFormSelection.AltFormName;
                 AltFormSpecies = CharacterAltFormSelection.AltFormSpecies;
                 AltFormDescription = CharacterAltFormSelection.AltFormDescription;
             }
-
-            NewStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
-            DeleteStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
         }
 
         private void LoadAllPerkLists()
@@ -3081,28 +3032,6 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool CanDeleteCharacter() => CharacterList.Any() && CharacterSelectionIndex > 0;
 
         [RelayCommand]
-        private void NewTraitRow()
-        {
-            Trait trait = new();
-
-            CharacterTraitList.Add(trait);
-            CharacterSelection.TraitRow.Add(trait);
-
-            DeleteTraitRowCommand.NotifyCanExecuteChanged();
-        }
-
-        [RelayCommand(CanExecute = nameof(CanDeleteTraitRow))]
-        private void DeleteTraitRow()
-        {
-            CharacterTraitList.Remove(CharacterTraitList.Last());
-            CharacterSelection.TraitRow.Remove(CharacterSelection.TraitRow.Last());
-
-            DeleteTraitRowCommand.NotifyCanExecuteChanged();
-        }
-
-        private bool CanDeleteTraitRow() => CharacterTraitList.Any();
-
-        [RelayCommand]
         private void RefreshPassports()
         {
             LoadCharacterTraits(CharacterSelection);
@@ -3135,8 +3064,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             CharacterAltFormSelectionIndex = CharacterAltFormList.Count - 1;
 
             DeleteAltFormCommand.NotifyCanExecuteChanged();
-            NewStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
-            DeleteStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(CanDeleteAltForm))]
@@ -3157,42 +3084,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 }
 
                 DeleteAltFormCommand.NotifyCanExecuteChanged();
-                NewStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
-                DeleteStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
             }
         }
 
         private bool CanDeleteAltForm() => CharacterAltFormList.Any() && CharacterAltFormSelection != null;
-
-        [RelayCommand(CanExecute = nameof(CanNewStrengthWeaknessRow))]
-        private void NewStrengthWeaknessRow()
-        {
-            if (CharacterAltFormSelection != null)
-            {
-                AltFormTraitModel row = new();
-
-                AltFormStrengthWeaknessList.Add(row);
-                CharacterAltFormSelection.StrengthWeaknessRow.Add(row);
-
-                DeleteStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
-            }
-        }
-
-        private bool CanNewStrengthWeaknessRow() => CharacterAltFormSelection != null;
-
-        [RelayCommand(CanExecute = nameof(CanDeleteStrengthWeaknessRow))]
-        private void DeleteStrengthWeaknessRow()
-        {
-            if (CharacterAltFormSelection != null)
-            {
-                AltFormStrengthWeaknessList.Remove(AltFormStrengthWeaknessList.Last());
-                CharacterAltFormSelection.StrengthWeaknessRow.Remove(CharacterAltFormSelection.StrengthWeaknessRow.Last());
-
-                DeleteStrengthWeaknessRowCommand.NotifyCanExecuteChanged();
-            }
-        }
-
-        private bool CanDeleteStrengthWeaknessRow() => AltFormStrengthWeaknessList.Any();
 
         [RelayCommand]
         private void RefreshBP() => LoadBodyModDetails();
