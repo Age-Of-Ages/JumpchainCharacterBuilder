@@ -325,12 +325,12 @@
                     </DockPanel>
 
                     <GroupBox Grid.Column="1" Header="Alt-Form Details">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="CharacterAltFormSelection"/>
                                 <Binding Path="CharacterAltFormList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid Margin="4,0,4,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" MaxWidth="250"/>
@@ -423,12 +423,12 @@
                     </TabControl>
 
                     <GroupBox Header="Perk Details" Grid.Column="1">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="PerkSelection"/>
                                 <Binding Path="CurrentPerkList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid Margin="4,0,4,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -527,12 +527,12 @@
                                             </DockPanel>
 
                                             <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Attribute Details">
-                                                <!--<GroupBox.Visibility>
+                                                <GroupBox.Visibility>
                                                     <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                         <Binding Path="CurrentPhysicalAttributeSelection"/>
                                                         <Binding Path="CurrentPhysicalAttributeList"/>
                                                     </MultiBinding>
-                                                </GroupBox.Visibility>-->
+                                                </GroupBox.Visibility>
                                                 <Grid Margin="4,0,4,0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
@@ -659,12 +659,12 @@
                                             </DockPanel>
 
                                             <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Attribute Details">
-                                                <!--<GroupBox.Visibility>
+                                                <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="CurrentMentalAttributeSelection"/>
                                                             <Binding Path="CurrentMentalAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                 <Grid Margin="4,0,4,0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
@@ -791,12 +791,12 @@
                                             </DockPanel>
 
                                             <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Attribute Details">
-                                                <!--<GroupBox.Visibility>
+                                                <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="CurrentSupernaturalAttributeSelection"/>
                                                             <Binding Path="CurrentSupernaturalAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                 <Grid Margin="4,0,4,0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
@@ -1012,12 +1012,12 @@
                                             </DockPanel>
 
                                             <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Skill Details">
-                                                <!--<GroupBox.Visibility>
+                                                <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="CurrentPhysicalSkillSelection"/>
                                                             <Binding Path="CurrentPhysicalSkillList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                 <Grid Margin="4,0,4,0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
@@ -1144,12 +1144,12 @@
                                             </DockPanel>
 
                                             <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Skill Details">
-                                                <!--<GroupBox.Visibility>
+                                                <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="CurrentMentalSkillSelection"/>
                                                             <Binding Path="CurrentMentalSkillList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                 <Grid Margin="4,0,4,0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
@@ -1276,12 +1276,12 @@
                                             </DockPanel>
 
                                             <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Skill Details">
-                                                <!--<GroupBox.Visibility>
+                                                <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="CurrentSocialSkillSelection"/>
                                                             <Binding Path="CurrentSocialSkillList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                 <Grid Margin="4,0,4,0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
@@ -1408,12 +1408,12 @@
                                             </DockPanel>
 
                                             <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Skill Details">
-                                                <!--<GroupBox.Visibility>
+                                                <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="CurrentTechnologicalSkillSelection"/>
                                                             <Binding Path="CurrentTechnologicalSkillList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                 <Grid Margin="4,0,4,0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
@@ -1540,12 +1540,12 @@
                                             </DockPanel>
 
                                             <GroupBox Grid.Column="2" Grid.RowSpan="2" Header="Skill Details">
-                                                <!--<GroupBox.Visibility>
+                                                <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="CurrentSupernaturalSkillSelection"/>
                                                             <Binding Path="CurrentSupernaturalSkillList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                 <Grid Margin="4,0,4,0">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"/>
@@ -1754,12 +1754,12 @@
                         </DockPanel>
 
                         <GroupBox Grid.Column="2" Header="Attribute Details">
-                            <!--<GroupBox.Visibility>
+                            <GroupBox.Visibility>
                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                     <Binding Path="CurrentBoosterSelection"/>
                                     <Binding Path="CurrentBoosterList"/>
                                 </MultiBinding>
-                            </GroupBox.Visibility>-->
+                            </GroupBox.Visibility>
                             <Grid Margin="4,0,4,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MaxWidth="350"/>
@@ -1861,7 +1861,7 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <GroupBox Header="BP" Visibility="Visible">
+                                <GroupBox Header="BP" Visibility="{Binding BodyModPurchasesAllowed, Converter={StaticResource BoolToVis}}">
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*" MaxHeight="25"/>
@@ -1944,7 +1944,7 @@
                                 </GroupBox>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Purchases" Visibility="Visible">
+                        <TabItem Header="Purchases" Visibility="{Binding BodyModPurchasesAllowed, Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MaxWidth="400"/>
@@ -2010,12 +2010,12 @@
                                 </DockPanel>
 
                                 <GroupBox Header="Purchase Details" Grid.Column="1">
-                                    <!--<GroupBox.Visibility>
+                                    <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                             <Binding Path="BodyModPurchaseSelection"/>
                                             <Binding Path="GenericBodyModPurchaseList"/>
                                         </MultiBinding>
-                                    </GroupBox.Visibility>-->
+                                    </GroupBox.Visibility>
                                     <Grid Margin="8,0,0,0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*"/>
@@ -2087,12 +2087,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="PurchaseAttributeSelection"/>
                                                     <Binding Path="PurchaseAttributeList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                 <TextBlock Text="Name"/>
                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -2134,7 +2134,7 @@
                                 </GroupBox>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Drawbacks" Visibility="Visible">
+                        <TabItem Header="Drawbacks" Visibility="{Binding BodyModPurchasesAllowed, Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" MaxWidth="400"/>
@@ -2200,12 +2200,12 @@
                                 </DockPanel>
                                 
                                 <GroupBox Header="Drawback Details" Grid.Column="1">
-                                    <!--<GroupBox.Visibility>
+                                    <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                             <Binding Path="BodyModDrawbackSelection"/>
                                             <Binding Path="GenericBodyModDrawbackList"/>
                                         </MultiBinding>
-                                    </GroupBox.Visibility>-->
+                                    </GroupBox.Visibility>
                                     <Grid Margin="8,0,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" MaxWidth="500"/>
@@ -2262,12 +2262,12 @@
                                 </ListView>
 
                                 <GroupBox Header="Addition Details" Grid.Column="1">
-                                    <!--<GroupBox.Visibility>
+                                    <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                             <Binding Path="BodyModAdditionSelection"/>
                                             <Binding Path="BodyModAdditionList"/>
                                         </MultiBinding>
-                                    </GroupBox.Visibility>-->
+                                    </GroupBox.Visibility>
                                     <Grid Margin="8,0,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" MaxWidth="700"/>
@@ -2698,14 +2698,14 @@
                                     </GroupBox>
 
                                     <GroupBox Header="Augment Details" Grid.Column="1">
-                                        <!--<GroupBox.Visibility>
+                                        <GroupBox.Visibility>
                                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                 <Binding Path="SBAugmentSelection"/>
                                                 <Binding Path="CharacterSelection.BodyMod.BodyAugmentList"/>
                                                 <Binding Path="CharacterSelection.BodyMod.MindAugmentList"/>
                                                 <Binding Path="CharacterSelection.BodyMod.HeartAugmentList"/>
                                             </MultiBinding>
-                                        </GroupBox.Visibility>-->
+                                        </GroupBox.Visibility>
                                         <Grid>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*" MaxHeight="100"/>
@@ -2790,12 +2790,12 @@
                                             </DockPanel>
 
                                             <GroupBox Header="Trait Details" Grid.Column="1" Grid.Row="2">
-                                                <!--<GroupBox.Visibility>
+                                                <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="PurchaseAttributeSelection"/>
                                                             <Binding Path="PurchaseAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                     <TextBlock Text="Name"/>
                                                     <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -2895,12 +2895,12 @@
                                 </DockPanel>
 
                                 <GroupBox Header="Purchase Details" Grid.Column="1">
-                                    <!--<GroupBox.Visibility>
+                                    <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                             <Binding Path="SBBodyModPowerSelection"/>
                                             <Binding Path="SBBodyModPowerList"/>
                                         </MultiBinding>
-                                    </GroupBox.Visibility>-->
+                                    </GroupBox.Visibility>
                                     <Grid Margin="8,0,0,0">
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="1.2*"/>
@@ -2983,12 +2983,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="PurchaseAttributeSelection"/>
                                                     <Binding Path="PurchaseAttributeList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                 <TextBlock Text="Name"/>
                                                 <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -3055,12 +3055,12 @@
                                 </ListView>
 
                                 <GroupBox Header="Addition Details" Grid.Column="1">
-                                    <!--<GroupBox.Visibility>
+                                    <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                             <Binding Path="BodyModAdditionSelection"/>
                                             <Binding Path="BodyModAdditionList"/>
                                         </MultiBinding>
-                                    </GroupBox.Visibility>-->
+                                    </GroupBox.Visibility>
                                     <Grid Margin="8,0,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" MaxWidth="700"/>
@@ -3187,7 +3187,7 @@
                                 </GroupBox>
 
                                 <GroupBox Header="Essence Selection" Grid.Row="1" Grid.Column="1"
-                                          Visibility="Visible">
+                                          Visibility="{Binding EBMEssenceAllowed, Converter={StaticResource BoolToVis}}">
                                     <DockPanel>
                                         <Grid DockPanel.Dock="Bottom">
                                             <Grid.ColumnDefinitions>
@@ -3231,12 +3231,12 @@
                                 </GroupBox>
 
                                 <GroupBox Header="Essence Details" Grid.Row="1" Grid.Column="2">
-                                    <!--<GroupBox.Visibility>
+                                    <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                             <Binding Path="EBMEssenceSelection"/>
                                             <Binding Path="EBMEssenceList"/>
                                         </MultiBinding>
-                                    </GroupBox.Visibility>-->
+                                    </GroupBox.Visibility>
                                     <Grid>
                                         <Grid.RowDefinitions>
                                             <RowDefinition Height="*" MaxHeight="50"/>
@@ -3311,12 +3311,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Purchase Details" Grid.Column="1">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="EBMBasicPerkSelection"/>
                                                     <Binding Path="EBMBasicPerkList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <Grid Margin="8,0,0,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="1.1*"/>
@@ -3388,12 +3388,12 @@
                                                 </DockPanel>
 
                                                 <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                                    <!--<GroupBox.Visibility>
+                                                    <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="PurchaseAttributeSelection"/>
                                                             <Binding Path="PurchaseAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                         <TextBlock Text="Name"/>
                                                         <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -3484,12 +3484,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Purchase Details" Grid.Column="1">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="EBMPhysicalPerkSelection"/>
                                                     <Binding Path="EBMPhysicalPerkList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <Grid Margin="8,0,0,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="1.1*"/>
@@ -3561,12 +3561,12 @@
                                                 </DockPanel>
 
                                                 <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                                    <!--<GroupBox.Visibility>
+                                                    <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="PurchaseAttributeSelection"/>
                                                             <Binding Path="PurchaseAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                         <TextBlock Text="Name"/>
                                                         <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -3657,12 +3657,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Purchase Details" Grid.Column="1">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="EBMMentalPerkSelection"/>
                                                     <Binding Path="EBMMentalPerkList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <Grid Margin="8,0,0,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="1.1*"/>
@@ -3734,12 +3734,12 @@
                                                 </DockPanel>
 
                                                 <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                                    <!--<GroupBox.Visibility>
+                                                    <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="PurchaseAttributeSelection"/>
                                                             <Binding Path="PurchaseAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                         <TextBlock Text="Name"/>
                                                         <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -3830,12 +3830,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Purchase Details" Grid.Column="1">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="EBMSpiritualPerkSelection"/>
                                                     <Binding Path="EBMSpiritualPerkList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <Grid Margin="8,0,0,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="1.1*"/>
@@ -3907,12 +3907,12 @@
                                                 </DockPanel>
 
                                                 <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                                    <!--<GroupBox.Visibility>
+                                                    <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="PurchaseAttributeSelection"/>
                                                             <Binding Path="PurchaseAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                         <TextBlock Text="Name"/>
                                                         <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -4003,12 +4003,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Purchase Details" Grid.Column="1">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="EBMSkillPerkSelection"/>
                                                     <Binding Path="EBMSkillPerkList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <Grid Margin="8,0,0,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="1.1*"/>
@@ -4080,12 +4080,12 @@
                                                 </DockPanel>
 
                                                 <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                                    <!--<GroupBox.Visibility>
+                                                    <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="PurchaseAttributeSelection"/>
                                                             <Binding Path="PurchaseAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                         <TextBlock Text="Name"/>
                                                         <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -4176,12 +4176,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Purchase Details" Grid.Column="1">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="EBMSupernaturalPerkSelection"/>
                                                     <Binding Path="EBMSupernaturalPerkList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <Grid Margin="8,0,0,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="1.1*"/>
@@ -4253,12 +4253,12 @@
                                                 </DockPanel>
 
                                                 <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                                    <!--<GroupBox.Visibility>
+                                                    <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="PurchaseAttributeSelection"/>
                                                             <Binding Path="PurchaseAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                         <TextBlock Text="Name"/>
                                                         <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -4349,12 +4349,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Purchase Details" Grid.Column="1">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="EBMItemPerkSelection"/>
                                                     <Binding Path="EBMItemPerkList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <Grid Margin="8,0,0,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="1.1*"/>
@@ -4426,12 +4426,12 @@
                                                 </DockPanel>
 
                                                 <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                                    <!--<GroupBox.Visibility>
+                                                    <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="PurchaseAttributeSelection"/>
                                                             <Binding Path="PurchaseAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                         <TextBlock Text="Name"/>
                                                         <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -4522,12 +4522,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Purchase Details" Grid.Column="1">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="EBMCompanionPerkSelection"/>
                                                     <Binding Path="EBMCompanionPerkList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <Grid Margin="8,0,0,0">
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="1.1*"/>
@@ -4599,12 +4599,12 @@
                                                 </DockPanel>
 
                                                 <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" Margin="0,8,0,0">
-                                                    <!--<GroupBox.Visibility>
+                                                    <GroupBox.Visibility>
                                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                             <Binding Path="PurchaseAttributeSelection"/>
                                                             <Binding Path="PurchaseAttributeList"/>
                                                         </MultiBinding>
-                                                    </GroupBox.Visibility>-->
+                                                    </GroupBox.Visibility>
                                                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                                         <TextBlock Text="Name"/>
                                                         <ComboBox ItemsSource="{Binding CurrentAttributeList}"
@@ -4700,12 +4700,12 @@
                                         </DockPanel>
 
                                         <GroupBox Header="Drawback Details" Grid.Column="1">
-                                            <!--<GroupBox.Visibility>
+                                            <GroupBox.Visibility>
                                                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                                     <Binding Path="EBMDrawbackSelection"/>
                                                     <Binding Path="EBMDrawbackList"/>
                                                 </MultiBinding>
-                                            </GroupBox.Visibility>-->
+                                            </GroupBox.Visibility>
                                             <Grid Margin="8,0,0,0">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*" MaxWidth="500"/>
@@ -4764,12 +4764,12 @@
                                 </ListView>
 
                                 <GroupBox Header="Addition Details" Grid.Column="1">
-                                    <!--<GroupBox.Visibility>
+                                    <GroupBox.Visibility>
                                         <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                             <Binding Path="BodyModAdditionSelection"/>
                                             <Binding Path="BodyModAdditionList"/>
                                         </MultiBinding>
-                                    </GroupBox.Visibility>-->
+                                    </GroupBox.Visibility>
                                     <Grid Margin="8,0,0,0">
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="*" MaxWidth="700"/>
