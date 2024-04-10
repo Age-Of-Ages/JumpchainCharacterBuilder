@@ -431,8 +431,8 @@
                         </GroupBox.Visibility>
                         <Grid Margin="4,0,4,0">
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="*" MaxHeight="150"/>
+                                <RowDefinition Height="3*" MaxHeight="400"/>
                             </Grid.RowDefinitions>
 
                             <StackPanel>
