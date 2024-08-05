@@ -8,74 +8,74 @@
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:ExportViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="757" d:DesignWidth="950">
+             d:DesignHeight="714" d:DesignWidth="928">
 
-    <Grid Background="#FFD8D8D8">
+    <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20*"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Select what you want to export using the tabs below." HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock Text="Select what you want to export using the tabs below." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,4,0,4"/>
 
-        <TabControl Grid.Row="1" SelectedIndex="{Binding ExportTabIndex}">
+        <TabControl Grid.Row="1" SelectedIndex="{Binding ExportTabIndex}" Margin="0,8,0,0">
             <TabItem Header="Config">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MinWidth="300" MaxWidth="400"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" MinHeight="250" MaxHeight="300"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GroupBox Header="Basic Details">
-                        <StackPanel Margin="5,3,0,0">
+                    <GroupBox Header="Basic Details" Grid.Column="1">
+                        <StackPanel Margin="8,0,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <ComboBox ItemsSource="{Binding ExportModeList}"
                                           SelectedValue="{Binding ExportModeSelection}"
-                                          Width="75"/>
-                                <TextBlock Text="Export Mode" Margin="5,0,0,0"/>
+                                          Width="80"/>
+                                <TextBlock Text="Export Mode" Margin="4,0,0,0"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
                                 <ComboBox ItemsSource="{Binding SectionSeparatorOptions}"
                                           SelectedValue="{Binding LoadedExportOptions.SectionSeparator}"
-                                          Width="75"/>
-                                <TextBlock Text="Section Separator" Margin="5,0,0,0"/>
+                                          Width="80"/>
+                                <TextBlock Text="Section Separator" Margin="4,0,0,0"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
                                 <ComboBox ItemsSource="{Binding BudgetEnclosingOptions}"
                                           SelectedValue="{Binding LoadedExportOptions.BudgetEnclosingFormat}"
-                                          Width="75"/>
-                                <TextBlock Text="Budget Enclosing Characters" Margin="5,0,0,0"/>
+                                          Width="80"/>
+                                <TextBlock Text="Budget Enclosing Characters" Margin="4,0,0,0"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
                                 <ComboBox ItemsSource="{Binding BudgetSeparatorOptions}"
                                           SelectedValue="{Binding LoadedExportOptions.BudgetSeparatorFormat}"
-                                          Width="75"/>
-                                <TextBlock Text="Budget Separator" Margin="5,0,0,0"/>
+                                          Width="80"/>
+                                <TextBlock Text="Budget Separator" Margin="4,0,0,0"/>
                             </StackPanel>
 
-                            <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
+                            <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
                                 <ComboBox ItemsSource="{Binding BudgetOrderFormat}"
                                           SelectedIndex="{Binding LoadedExportOptions.BudgetFormat}"
-                                          Width="150"/>
-                                <TextBlock Text="Budget Format" Margin="5,0,0,0"/>
+                                          Width="140"/>
+                                <TextBlock Text="Budget Format" Margin="4,0,0,0"/>
                             </StackPanel>
 
                             <CheckBox Content="Reverse Name and [Cost/Budget] section order" IsChecked="{Binding LoadedExportOptions.ReverseBudgetFormat}"
-                                      Margin="0,15,0,0"/>
+                                      Margin="0,12,0,0"/>
                         </StackPanel>
                     </GroupBox>
 
-                    <GroupBox Header="Mode Configuration" Grid.Row="1" Grid.RowSpan="2"
-                              Visibility="{Binding ModeSelectedGeneric, Converter={StaticResource BoolToVis}}">
+                    <GroupBox Header="Mode Configuration" Grid.Row="1" Grid.Column="1"
+                              Visibility="{Binding ModeSelectedGeneric, Converter={StaticResource BoolToVis}}"
+                              Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                         <ListView ItemsSource="{Binding LoadedExportOptions.GenericFormattingOptions}">
                             <ListView.View>
                                 <GridView>
@@ -90,9 +90,9 @@
                             </ListView.View>
                         </ListView>
                     </GroupBox>
-                    <GroupBox Header="Mode Configuration" Grid.Row="1" Grid.RowSpan="2"
-                              Visibility="{Binding ModeSelectedBBCode, Converter={StaticResource BoolToVis}}">
-
+                    <GroupBox Header="Mode Configuration" Grid.Row="1" Grid.Column="1"
+                              Visibility="{Binding ModeSelectedBBCode, Converter={StaticResource BoolToVis}}"
+                              Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                         <ListView ItemsSource="{Binding LoadedExportOptions.BBCodeFormattingOptions}">
                             <ListView.View>
                                 <GridView>
@@ -107,8 +107,9 @@
                             </ListView.View>
                         </ListView>
                     </GroupBox>
-                    <GroupBox Header="Mode Configuration" Grid.Row="1" Grid.RowSpan="2"
-                              Visibility="{Binding ModeSelectedMarkdown, Converter={StaticResource BoolToVis}}">
+                    <GroupBox Header="Mode Configuration" Grid.Row="1" Grid.Column="1"
+                              Visibility="{Binding ModeSelectedMarkdown, Converter={StaticResource BoolToVis}}"
+                              Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                         <ListView ItemsSource="{Binding LoadedExportOptions.MarkdownFormattingOptions}">
                             <ListView.View>
                                 <GridView>
@@ -129,27 +130,25 @@
             <TabItem Header="Export All">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" MaxHeight="250"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MinWidth="350" MaxWidth="400"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
                     <GroupBox Header="Export" Grid.Column="1">
-                        <StackPanel Margin="5,3,0,0">
+                        <StackPanel Margin="8,0,0,0">
                             <TextBlock Text="Configure settings for exports in the other tabs."/>
-                            <TextBlock Text="Warning: This button performs a full export of all data." Margin="0,5,0,0"/>
+                            <TextBlock Text="Warning: This button performs a full export of all data." Margin="0,4,0,0"/>
                             <Button Content="Export all profile data"
                                     Command="{Binding ExportAllDataCommand}"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"/>
+                                    Margin="0,16,0,0"/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
@@ -158,8 +157,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -173,87 +171,100 @@
                         </StackPanel>
                     </GroupBox>
 
-                    <GroupBox Header="Profile Export Configuration" Grid.Row="1" Grid.RowSpan="2">
-                        <StackPanel Margin="5,3,0,0">
-                            <TextBlock Text="Section ordering" Margin="0,10,0,0"/>
-                            <ListView ItemsSource="{Binding ProfileSectionList}"
-                                      SelectedIndex="{Binding ProfileSectionSelectionIndex}">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding Enabled}"/>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
+                    <GroupBox Header="Profile Export Configuration" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                            <Button Content="Move Up" 
-                                    Command="{Binding MoveProfileSectionUpCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="0"/>
+                            <DockPanel Margin="0,0,4,0">
+                                <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
 
-                            <Button Content="Move Down"
-                                    Command="{Binding MoveProfileSectionDownCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"/>
+                                    <Button Content="Move Up" 
+                                            Command="{Binding MoveProfileSectionUpCommand}"
+                                            Style="{DynamicResource DataGridButton}"/>
 
-                            <TextBlock Text="Profile subsection ordering" Margin="0,10,0,0"/>
-                            <ListView ItemsSource="{Binding ProfileSubsectionList}"
-                                      SelectedIndex="{Binding ProfileSubsectionSelectionIndex}">
-                                <ListView.View>
-                                    <GridView>
-                                        <GridViewColumn>
-                                            <GridViewColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <CheckBox Content="{Binding Name}" IsChecked="{Binding Enabled}"/>
-                                                </DataTemplate>
-                                            </GridViewColumn.CellTemplate>
-                                        </GridViewColumn>
-                                    </GridView>
-                                </ListView.View>
-                            </ListView>
+                                    <Button Content="Move Down"
+                                            Command="{Binding MoveProfileSectionDownCommand}"
+                                            Style="{DynamicResource DataGridButton}"
+                                            Grid.Column="2"/>
+                                </Grid>
 
-                            <Button Content="Move Up" 
-                                    Command="{Binding MoveProfileSubsectionUpCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="0"/>
+                                <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
+                                <ListView ItemsSource="{Binding ProfileSectionList}"
+                                          SelectedIndex="{Binding ProfileSectionSelectionIndex}"
+                                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox Content="{Binding Name}" IsChecked="{Binding Enabled}"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </DockPanel>
 
-                            <Button Content="Move Down"
-                                    Command="{Binding MoveProfileSubsectionDownCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"/>
-                        </StackPanel>
+                            <DockPanel Grid.Column="1" Margin="4,0,0,0">
+                                <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Button Content="Move Up" 
+                                            Command="{Binding MoveProfileSubsectionUpCommand}"
+                                            Style="{DynamicResource DataGridButton}"/>
+
+                                    <Button Content="Move Down"
+                                            Command="{Binding MoveProfileSubsectionDownCommand}"
+                                            Style="{DynamicResource DataGridButton}"
+                                            Grid.Column="2"/>
+                                </Grid>
+                                
+                                <TextBlock Text="Profile subsection ordering" DockPanel.Dock="Top"/>
+                                <ListView ItemsSource="{Binding ProfileSubsectionList}"
+                                          SelectedIndex="{Binding ProfileSubsectionSelectionIndex}"
+                                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn>
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox Content="{Binding Name}" IsChecked="{Binding Enabled}"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </DockPanel>
+                        </Grid>
                     </GroupBox>
 
                     <GroupBox Header="Export" Grid.Column="1">
-                        <StackPanel Margin="5,3,0,0">
+                        <StackPanel Margin="8,0,0,0">
                             <Button Content="Export all profile data"
                                     Command="{Binding ExportAllProfileDataCommand}"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"/>
+                                    Margin="0,12,0,0"/>
 
                             <Button Content="Export all character profiles"
                                     Command="{Binding ExportAllCharacterProfilesCommand}"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"/>
+                                    Margin="0,12,0,0"/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
@@ -262,8 +273,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -275,20 +285,40 @@
                         <StackPanel>
                             <ContentControl Template="{DynamicResource CharacterSelector}"/>
 
-                            <TextBlock Text="Jump Selection" HorizontalAlignment="Center" Margin="0,15,0,0"/>
+                            <TextBlock Text="Jump Selection" HorizontalAlignment="Center" Margin="0,12,0,0"/>
                             <ComboBox ItemsSource="{Binding JumpList}" DisplayMemberPath="Name"
                                       SelectedItem="{Binding JumpSelection}"
                                       Width="120"/>
                         </StackPanel>
                     </GroupBox>
 
-                    <GroupBox Header="Jump Build Configuration" Grid.Row="1" Grid.RowSpan="2">
-                        <StackPanel Margin="5,3,0,0">
-                            <CheckBox Content="Export Companion Builds alongside Jumper's Build" IsChecked="{Binding LoadedExportOptions.CompanionBuilds}"/>
+                    <GroupBox Header="Jump Build Configuration" Grid.Row="1" Grid.Column="1">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
 
-                            <TextBlock Text="Section ordering" Margin="0,10,0,0"/>
+                                <Button Content="Move Up" 
+                                        Command="{Binding MoveBuildSectionUpCommand}"
+                                        Style="{DynamicResource DataGridButton}"/>
+
+                                <Button Content="Move Down"
+                                        Command="{Binding MoveBuildSectionDownCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"/>
+                            </Grid>
+
+                            <CheckBox IsChecked="{Binding LoadedExportOptions.CompanionBuilds}" DockPanel.Dock="Top">
+                                <TextBlock Text="Export Companion Builds alongside Jumper's Build" TextWrapping="Wrap"/>
+                            </CheckBox>
+
+                            <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding BuildSectionList}"
-                                      SelectedIndex="{Binding BuildSectionSelectionIndex}">
+                                      SelectedIndex="{Binding BuildSectionSelectionIndex}"
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>
@@ -301,39 +331,21 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-
-                            <Button Content="Move Up" 
-                                    Command="{Binding MoveBuildSectionUpCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="0"/>
-
-                            <Button Content="Move Down"
-                                    Command="{Binding MoveBuildSectionDownCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"/>
-                        </StackPanel>
+                        </DockPanel>
                     </GroupBox>
 
                     <GroupBox Header="Export" Grid.Column="1">
-                        <StackPanel Margin="5,3,0,0">
+                        <StackPanel Margin="8,0,0,0">
                             <Button Content="Export all Jump data"
                                     Command="{Binding ExportAllJumpDataCommand}"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"/>
+                                    Margin="0,12,0,0"/>
                             <Button Content="Export selected character build"
                                     Command="{Binding ExportSelectedBuildCommand}"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"/>
+                                    Margin="0,12,0,0"/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
@@ -342,8 +354,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -351,12 +362,30 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <GroupBox Header="Warehouse Configuration" Grid.RowSpan="2" Visibility="{Binding GenericWarehouseSelected,
-                                                                                                          Converter={StaticResource BoolToVis}}">
-                        <StackPanel Margin="5,3,0,0">
-                            <TextBlock Text="Section ordering" Margin="0,10,0,0"/>
+                    <GroupBox Header="Warehouse Configuration" Grid.Row="1" Grid.Column="1" Visibility="{Binding GenericWarehouseSelected, 
+                                                                                            Converter={StaticResource BoolToVis}}">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Content="Move Up" 
+                                        Command="{Binding MoveWarehouseSectionUpCommand}"
+                                        Style="{DynamicResource DataGridButton}"/>
+
+                                <Button Content="Move Down"
+                                        Command="{Binding MoveWarehouseSectionDownCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"/>
+                            </Grid>
+
+                            <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding GenericWarehouseSectionList}"
-                                      SelectedIndex="{Binding GenericWarehouseSectionSelectionIndex}">
+                                      SelectedIndex="{Binding GenericWarehouseSectionSelectionIndex}"
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>
@@ -369,29 +398,33 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-
-                            <Button Content="Move Up" 
-                                    Command="{Binding MoveWarehouseSectionUpCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="0"/>
-
-                            <Button Content="Move Down"
-                                    Command="{Binding MoveWarehouseSectionDownCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"/>
-                        </StackPanel>
+                        </DockPanel>
                     </GroupBox>
 
-                    <GroupBox Header="Warehouse Configuration" Grid.RowSpan="2" Visibility="{Binding PersonalRealitySelected,
+                    <GroupBox Header="Warehouse Configuration" Grid.Row="1" Grid.Column="1" Visibility="{Binding PersonalRealitySelected,
                                                                                                           Converter={StaticResource BoolToVis}}">
-                        <StackPanel Margin="5,3,0,0">
-                            <TextBlock Text="Section ordering" Margin="0,10,0,0"/>
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Content="Move Up" 
+                                        Command="{Binding MoveWarehouseSectionUpCommand}"
+                                        Style="{DynamicResource DataGridButton}"/>
+
+                                <Button Content="Move Down"
+                                        Command="{Binding MoveWarehouseSectionDownCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"/>
+                            </Grid>
+                            
+                            <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding PersonalRealitySectionList}"
-                                      SelectedIndex="{Binding PersonalRealitySectionSelectionIndex}">
+                                      SelectedIndex="{Binding PersonalRealitySectionSelectionIndex}"
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>
@@ -404,32 +437,16 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-
-                            <Button Content="Move Up" 
-                                    Command="{Binding MoveWarehouseSectionUpCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="0"/>
-
-                            <Button Content="Move Down"
-                                    Command="{Binding MoveWarehouseSectionDownCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"/>
-                        </StackPanel>
+                        </DockPanel>
                     </GroupBox>
 
                     <GroupBox Header="Export" Grid.Column="1">
-                        <StackPanel Margin="5,3,0,0">
+                        <StackPanel Margin="8,0,0,0">
                             <Button Content="Export all Warehouse data"
                                     Command="{Binding ExportAllWarehouseDataCommand}"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"/>
+                                    Margin="0,12,0,0"/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
@@ -438,8 +455,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -453,11 +469,30 @@
                         </StackPanel>
                     </GroupBox>
 
-                    <GroupBox Header="Body Mod Export Configuration" Grid.Row="1" Grid.RowSpan="2">
-                        <StackPanel Margin="5,3,0,0">
-                            <TextBlock Text="Section ordering" Margin="0,10,0,0"/>
+                    <GroupBox Header="Body Mod Export Configuration" Grid.Row="1" Grid.Column="1">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Button Content="Move Up" 
+                                        Command="{Binding MoveBodyModSectionUpCommand}"
+                                        Style="{DynamicResource DataGridButton}"/>
+
+                                <Button Content="Move Down"
+                                        Command="{Binding MoveBodyModSectionDownCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"/>
+                            </Grid>
+                            
+                            
+                            <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding BodyModSectionList}"
-                                      SelectedIndex="{Binding BodyModSectionSelectionIndex}">
+                                      SelectedIndex="{Binding BodyModSectionSelectionIndex}"
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>
@@ -470,40 +505,22 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-
-                            <Button Content="Move Up" 
-                                    Command="{Binding MoveBodyModSectionUpCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="0"/>
-
-                            <Button Content="Move Down"
-                                    Command="{Binding MoveBodyModSectionDownCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"/>
-                        </StackPanel>
+                        </DockPanel>
                     </GroupBox>
 
                     <GroupBox Header="Export" Grid.Column="1">
-                        <StackPanel Margin="5,3,0,0">
+                        <StackPanel Margin="8,0,0,0">
                             <Button Content="Export selected Body Mod"
                                     Command="{Binding ExportBodyModDataCommand}"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"/>
+                                    Margin="0,12,0,0"/>
 
                             <Button Content="Export all Body Mods"
                                     Command="{Binding ExportAllBodyModsCommand}"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"/>
+                                    Margin="0,12,0,0"/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
@@ -512,8 +529,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="3*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -521,11 +537,29 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <GroupBox Header="Body Mod Export Configuration" Grid.RowSpan="2">
-                        <StackPanel Margin="5,3,0,0">
-                            <TextBlock Text="Section ordering" Margin="0,10,0,0"/>
+                    <GroupBox Header="Body Mod Export Configuration" Grid.Row="1" Grid.Column="1">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Button Content="Move Up" 
+                                        Command="{Binding MoveDrawbackSupplementSectionUpCommand}"
+                                        Style="{DynamicResource DataGridButton}"/>
+
+                                <Button Content="Move Down"
+                                        Command="{Binding MoveDrawbackSupplementSectionDownCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"/>
+                            </Grid>
+
+                            <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding DrawbackSupplementSectionList}"
-                                      SelectedIndex="{Binding DrawbackSupplementSectionSelectionIndex}">
+                                      SelectedIndex="{Binding DrawbackSupplementSectionSelectionIndex}"
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>
@@ -538,32 +572,16 @@
                                     </GridView>
                                 </ListView.View>
                             </ListView>
-
-                            <Button Content="Move Up" 
-                                    Command="{Binding MoveDrawbackSupplementSectionUpCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="0"/>
-
-                            <Button Content="Move Down"
-                                    Command="{Binding MoveDrawbackSupplementSectionDownCommand}"
-                                    HorizontalAlignment="Center"
-                                    Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"/>
-                        </StackPanel>
+                        </DockPanel>
                     </GroupBox>
 
                     <GroupBox Header="Export" Grid.Column="1">
-                        <StackPanel Margin="5,3,0,0">
+                        <StackPanel Margin="8,0,0,0">
                             <Button Content="Export Drawback Supplement data"
                                     Command="{Binding ExportDrawbackSupplementDataCommand}"
                                     HorizontalAlignment="Center"
                                     Style="{DynamicResource DataGridButton}"
-                                    Grid.Column="0"
-                                    Grid.Row="2"
-                                    Margin="0,10,0,0"/>
+                                    Margin="0,12,0,0"/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
