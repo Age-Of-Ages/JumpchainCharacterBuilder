@@ -63,7 +63,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" MaxWidth="300"/>
                         <ColumnDefinition Width="*" MaxWidth="250"/>
-                        <ColumnDefinition Width="*" MaxWidth="200"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" MaxHeight="250"/>
@@ -184,7 +184,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" MaxWidth="300"/>
                         <ColumnDefinition Width="*" MaxWidth="250"/>
-                        <ColumnDefinition Width="*" MaxWidth="200"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" MaxHeight="250"/>
@@ -306,7 +306,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" MaxWidth="300"/>
                         <ColumnDefinition Width="*" MaxWidth="250"/>
-                        <ColumnDefinition Width="*" MaxWidth="200"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" MaxHeight="250"/>
@@ -428,7 +428,7 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" MaxWidth="300"/>
                         <ColumnDefinition Width="*" MaxWidth="250"/>
-                        <ColumnDefinition Width="*" MaxWidth="200"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" MaxHeight="250"/>
