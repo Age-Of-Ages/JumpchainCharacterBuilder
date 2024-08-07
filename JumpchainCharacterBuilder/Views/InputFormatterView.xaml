@@ -8,39 +8,40 @@
         xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModel:InputFormatterViewModel, IsDesignTimeCreatable=True}"
-        Title="Input Formatter" Height="400" Width="400"
+        Title="Input Formatter" Height="600" Width="400"
         Cursor="" 
         WindowStyle="SingleBorderWindow" 
-        Background="#FFD8D8D8" 
+        Background="{DynamicResource Background}" 
+        Foreground="{DynamicResource TextColor}"
         FontFamily="Lato" 
         FontSize="12" 
         ResizeMode="NoResize"
         ShowInTaskbar="False">
-    <Grid>
+    
+    <Grid Margin="8">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Margin="5,3,0,0">
-            <TextBlock Text="Input"/>
+        <DockPanel>
+            <TextBlock Text="Input" DockPanel.Dock="Top"/>
             <TextBox Text="{Binding InputString, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
-                     Width="375" Height="100"
+                     HorizontalAlignment="Stretch"
                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                      Tag="Input string to be formatted."/>
-        </StackPanel>
+        </DockPanel>
 
-        <StackPanel Grid.Row="1" Margin="5,0,0,0">
-            <CheckBox Content="Leave double line breaks in" IsChecked="{Binding LeaveDoubleLineBreaks}"/>
-        </StackPanel>
+        <CheckBox Content="Leave double line breaks in" IsChecked="{Binding LeaveDoubleLineBreaks}"
+                  VerticalAlignment="Center" Grid.Row="1"/>
 
-        <StackPanel Margin="5,3,0,0" Grid.Row="2">
-            <TextBlock Text="Output"/>
+        <DockPanel Grid.Row="2">
+            <TextBlock Text="Output" DockPanel.Dock="Top"/>
             <TextBox Text="{Binding OutputString}" IsReadOnly="True"
-                     Width="375" Height="100"
+                     HorizontalAlignment="Stretch"
                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                      Tag="Output text appears here."/>
-        </StackPanel>
+        </DockPanel>
     </Grid>
 </Window>
