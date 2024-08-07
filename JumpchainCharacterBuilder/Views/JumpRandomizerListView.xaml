@@ -77,7 +77,7 @@
             <ListView ItemsSource="{Binding JumpRandomizerEntryList}"
                       SelectedItem="{Binding JumpRandomizerEntrySelection}"
                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0,2">
+                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>
