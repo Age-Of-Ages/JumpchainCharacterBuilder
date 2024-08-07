@@ -11,7 +11,8 @@
         Title="About" Height="500" Width="600"
         Cursor="" 
         WindowStyle="SingleBorderWindow" 
-        Background="white" 
+        Background="{DynamicResource Background}" 
+        Foreground="{DynamicResource TextColor}"
         FontFamily="Lato" 
         FontSize="12" 
         ResizeMode="NoResize"
@@ -36,10 +37,10 @@
                 </Border>
 
                 <GroupBox Header="Program details" Grid.Column="1">
-                    <StackPanel Margin="5,3,0,0">
+                    <StackPanel Margin="4,0,0,0">
                         <TextBlock Text="Jumpchain Character Builder"/>
-                        <TextBlock Text="{Binding VersionString}" Margin="0,5,0,0"/>
-                        <TextBlock Margin="0,5,0,0">
+                        <TextBlock Text="{Binding VersionString}" Margin="0,4,0,0"/>
+                        <TextBlock Margin="0,4,0,0">
                             <Hyperlink x:Name="Github_Hyperlink" NavigateUri="https://github.com/Age-Of-Ages/JumpchainCharacterBuilder" 
                                        RequestNavigate="Github_RequestNavigate">
                                 Github Repository
@@ -49,10 +50,10 @@
                 </GroupBox>
 
                 <GroupBox Header="Made by" Grid.Row="1">
-                    <StackPanel Margin="5,3,0,0">
+                    <StackPanel Margin="4,0,4,0">
                         <TextBlock Text="(Spacebattles)"/>
                         <TextBlock Text="AgeOfAges"/>
-                        <TextBlock Text="(Github)" Margin="0,10,0,0"/>
+                        <TextBlock Text="(Github)" Margin="0,12,0,0"/>
                         <TextBlock Text="Age-Of-Ages"/>
                     </StackPanel>
                 </GroupBox>
@@ -60,12 +61,11 @@
         </TabItem>
         <TabItem Header="License">
             <Grid>
-                <StackPanel Margin="5,3,0,0">
+                <StackPanel Margin="4,0,4,0">
                     <TextBlock Text="Program License"/>
 
                     <TextBox Grid.Row="1" Text="{Binding JcbLicense}" IsReadOnly="True" Style="{DynamicResource LargeTextBox}"
-                             HorizontalAlignment="Stretch"
-                             Height="315"/>
+                             HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SpellCheck.IsEnabled="False"/>
                 </StackPanel>
             </Grid>
         </TabItem>
@@ -77,11 +77,13 @@
                 </Grid.RowDefinitions>
 
                 <ListView ItemsSource="{Binding DependencyLicenses.Keys}"
-                          SelectedItem="{Binding DependencyLicenseSelection}">
+                          SelectedItem="{Binding DependencyLicenseSelection}"
+                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                     <ListView.View>
                         <GridView>
                             <GridView.Columns>
-                                <GridViewColumn Header="Dependency" Width="590"
+                                <GridViewColumn Header="Dependency" Width="Auto"
                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                 DisplayMemberBinding="{Binding}"/>
                             </GridView.Columns>
@@ -89,11 +91,11 @@
                     </ListView.View>
                 </ListView>
 
-                <StackPanel Grid.Row="1" Margin="5,0,0,0">
+                <StackPanel Grid.Row="1">
                     <TextBlock Text="License"/>
                     <TextBox Text="{Binding DependencyLicenseString}" IsReadOnly="True" Style="{DynamicResource LargeTextBox}"
-                             HorizontalAlignment="Stretch"
-                             Height="280"/>
+                             HorizontalAlignment="Stretch" SpellCheck.IsEnabled="False"
+                             Height="275"/>
                 </StackPanel>
             </Grid>
         </TabItem>
