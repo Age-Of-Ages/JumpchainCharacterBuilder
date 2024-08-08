@@ -563,6 +563,7 @@
 
     <Style x:Key="LargeTextBox" 
            TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseTextBoxStyle}">
+        <Setter Property="MaxLength" Value="0"/>
         <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="AcceptsReturn" Value="True"/>
