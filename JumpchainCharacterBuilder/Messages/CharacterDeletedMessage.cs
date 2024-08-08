@@ -2,10 +2,7 @@
 
 namespace JumpchainCharacterBuilder.Messages
 {
-    public class CharacterDeletedMessage : ValueChangedMessage<bool>
+    public class CharacterDeletedMessage(bool value) : ValueChangedMessage<bool>(value)
     {
-        public CharacterDeletedMessage(bool value) : base(value)
-        {
-        }
     }
 }

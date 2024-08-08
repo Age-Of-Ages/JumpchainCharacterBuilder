@@ -12,7 +12,7 @@ namespace JumpchainCharacterBuilder
         public static void WriteCfgFile(AppSettingsModel appSettings)
         {
             string filePath = Path.Combine(Environment.CurrentDirectory, "Configuration.cfg");
-            List<string> settings = new();
+            List<string> settings = [];
             Dictionary<string, string> currentSettings = new()
             {
                 {"WeightFormat", appSettings.WeightFormat.ToString() },
@@ -41,10 +41,10 @@ namespace JumpchainCharacterBuilder
 
             if (!FileAccess.CheckFileExists(filePath))
             {
-                TxtAccess.WriteLog(new()
-                {
+                TxtAccess.WriteLog(
+                [
                     "Configuration file not found: Regenerating file with default settings."
-                });
+                ]);
 
                 using FileStream temp = File.Create(filePath);
 
@@ -140,10 +140,10 @@ namespace JumpchainCharacterBuilder
 
             if (!FileAccess.CheckFileExists(filePath))
             {
-                TxtAccess.WriteLog(new()
-                {
+                TxtAccess.WriteLog(
+                [
                     "Configuration file not found: Regenerating file with default settings."
-                });
+                ]);
 
                 using FileStream temp = File.Create(filePath);
 
@@ -183,9 +183,9 @@ namespace JumpchainCharacterBuilder
 
             }
 
-            if (settingsDictionary.ContainsKey(settingSelection))
+            if (settingsDictionary.TryGetValue(settingSelection, out string? value))
             {
-                result = settingsDictionary[settingSelection];
+                result = value;
             }
 
             return result;

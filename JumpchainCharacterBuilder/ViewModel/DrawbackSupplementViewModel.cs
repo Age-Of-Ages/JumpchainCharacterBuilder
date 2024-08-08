@@ -31,7 +31,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _uUSupplementSelected = false;
 
         [ObservableProperty]
-        private ObservableCollection<DrawbackSupplementPurchase> _drawbackList = new();
+        private ObservableCollection<DrawbackSupplementPurchase> _drawbackList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteDrawbackCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveDrawbackUpCommand))]
@@ -49,7 +49,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _drawbackSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<HouseRuleModel> _houseRuleList = new();
+        private ObservableCollection<HouseRuleModel> _houseRuleList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteHouseRuleCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveHouseRuleUpCommand))]
@@ -76,7 +76,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _wPGained = 0;
 
         [ObservableProperty]
-        private ObservableCollection<DrawbackSuspendModel> _drawbackSuspendList = new();
+        private ObservableCollection<DrawbackSuspendModel> _drawbackSuspendList = [];
 
         [ObservableProperty]
         [NotifyDataErrorInfo]

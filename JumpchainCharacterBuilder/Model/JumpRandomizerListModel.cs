@@ -15,6 +15,6 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the Jump entries contained within the list.
         /// </summary>
         [ObservableProperty]
-        private List<JumpRandomizerEntry> _listEntries = new();
+        private List<JumpRandomizerEntry> _listEntries = [];
     }
 }

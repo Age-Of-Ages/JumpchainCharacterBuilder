@@ -10,16 +10,16 @@ namespace JumpchainCharacterBuilder
         public static SaveFile SaveUpdate(string filePath, double saveVersion, SaveFile saveFile)
         {
             List<string> saveStrings = TxtAccess.ReadText(filePath);
-            List<(int, int)> indexList = new();
+            List<(int, int)> indexList = [];
             (int, int) currentIndexes;
-            List<string> innerStringList = new();
+            List<string> innerStringList = [];
 
             if (saveVersion < 1.3)
             {
                 Regex suspendRegex = TagRemovalRegex();
 
                 indexList = FindAllXmlTagIndexes("DrawbackSupplementPurchase", saveStrings);
-                List<DrawbackSupplementPurchase> drawbacks = new();
+                List<DrawbackSupplementPurchase> drawbacks = [];
 
                 switch (saveFile.Options.DrawbackSupplementSetting)
                 {
@@ -172,7 +172,7 @@ namespace JumpchainCharacterBuilder
 
         private static List<(int, int)> FindAllXmlTagIndexes(string tagName, List<string> saveStrings)
         {
-            List<(int, int)> openingClosingIndexes = new();
+            List<(int, int)> openingClosingIndexes = [];
             int currentClosingIndex = 0;
             bool completed = false;
 

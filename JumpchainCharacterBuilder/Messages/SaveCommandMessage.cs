@@ -2,10 +2,7 @@
 
 namespace JumpchainCharacterBuilder.Messages
 {
-    public class SaveCommandMessage : ValueChangedMessage<bool>
+    public class SaveCommandMessage(bool value) : ValueChangedMessage<bool>(value)
     {
-        public SaveCommandMessage(bool value) : base(value)
-        {
-        }
     }
 }

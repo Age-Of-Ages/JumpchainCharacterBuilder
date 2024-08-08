@@ -67,35 +67,35 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _genericDescription = "";
 
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _basicsPurchaseList = new();
+        private ObservableCollection<SupplementPurchase> _basicsPurchaseList = [];
         [ObservableProperty]
         private int _basicsPurchaseSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _utilitiesPurchaseList = new();
+        private ObservableCollection<SupplementPurchase> _utilitiesPurchaseList = [];
         [ObservableProperty]
         private int _utilitiesPurchaseSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _cosmeticPurchaseList = new();
+        private ObservableCollection<SupplementPurchase> _cosmeticPurchaseList = [];
         [ObservableProperty]
         private int _cosmeticPurchaseSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _facilitiesPurchaseList = new();
+        private ObservableCollection<SupplementPurchase> _facilitiesPurchaseList = [];
         [ObservableProperty]
         private int _facilitiesPurchaseSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _extensionsPurchaseList = new();
+        private ObservableCollection<SupplementPurchase> _extensionsPurchaseList = [];
         [ObservableProperty]
         private int _extensionsPurchaseSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _equipmentPurchaseList = new();
+        private ObservableCollection<SupplementPurchase> _equipmentPurchaseList = [];
         [ObservableProperty]
         private int _equipmentPurchaseSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _companionsPurchaseList = new();
+        private ObservableCollection<SupplementPurchase> _companionsPurchaseList = [];
         [ObservableProperty]
         private int _companionsPurchaseSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _miscPurchaseList = new();
+        private ObservableCollection<SupplementPurchase> _miscPurchaseList = [];
         [ObservableProperty]
         private int _miscPurchaseSelectionIndex = 0;
 
@@ -114,7 +114,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _purchaseDescription = "";
 
         [ObservableProperty]
-        private ObservableCollection<SupplementDrawbackModel> _limitationList = new();
+        private ObservableCollection<SupplementDrawbackModel> _limitationList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteLimitationCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveLimitationUpCommand))]
@@ -132,7 +132,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _limitationSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<Purchase> _additionList = new();
+        private ObservableCollection<Purchase> _additionList = [];
         [ObservableProperty]
         private Purchase _additionSelection = new();
         [ObservableProperty]

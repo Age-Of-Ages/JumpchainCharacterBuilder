@@ -42,7 +42,7 @@ namespace JumpchainCharacterBuilder
         /// <summary>
         /// Configures the services for the application.
         /// </summary>
-        private static IServiceProvider ConfigureServices()
+        private static ServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
 
@@ -72,7 +72,7 @@ namespace JumpchainCharacterBuilder
         {
             Exception exception = e.Exception;
 
-            List<string> exceptionData = new();
+            List<string> exceptionData = [];
 
             if (exception.InnerException != null)
             {
@@ -80,7 +80,7 @@ namespace JumpchainCharacterBuilder
 
                 string exceptionString = innerException.ToString();
 
-                exceptionString = Regex.Replace(exceptionString, @"[a-zA-Z]:\\.+(?=\\JumpchainCharacterBuilder)", "~LocalAppDir~");
+                exceptionString = ReplaceUserDirectoryRegex().Replace(exceptionString, "~LocalAppDir~");
 
                 exceptionData.Add(exceptionString);
             }
@@ -88,7 +88,7 @@ namespace JumpchainCharacterBuilder
             {
                 string exceptionString = exception.ToString();
 
-                exceptionString = Regex.Replace(exceptionString, @"[a-zA-Z]:\\.+(?=\\JumpchainCharacterBuilder)", "~LocalAppDir~");
+                exceptionString = ReplaceUserDirectoryRegex().Replace(exceptionString, "~LocalAppDir~");
 
                 exceptionData.Add(exceptionString);
             }
@@ -115,7 +115,7 @@ namespace JumpchainCharacterBuilder
                     availableWidth = listView.ActualWidth - 10;
                 }
 
-                List<GridViewColumn> autoSizeColumns = new();
+                List<GridViewColumn> autoSizeColumns = [];
 
                 for (int i = 0; i < gridView.Columns.Count; i++)
                 {
@@ -163,5 +163,8 @@ namespace JumpchainCharacterBuilder
             }
             return null;
         }
+
+        [GeneratedRegex(@"[a-zA-Z]:\\.+(?=\\JumpchainCharacterBuilder)")]
+        private static partial Regex ReplaceUserDirectoryRegex();
     }
 }

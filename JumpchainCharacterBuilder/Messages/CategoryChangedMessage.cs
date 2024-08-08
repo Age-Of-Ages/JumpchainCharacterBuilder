@@ -2,10 +2,7 @@
 
 namespace JumpchainCharacterBuilder.Messages
 {
-    public class CategoryChangedMessage : ValueChangedMessage<bool>
+    public class CategoryChangedMessage(bool value) : ValueChangedMessage<bool>(value)
     {
-        public CategoryChangedMessage(bool value) : base(value)
-        {
-        }
     }
 }

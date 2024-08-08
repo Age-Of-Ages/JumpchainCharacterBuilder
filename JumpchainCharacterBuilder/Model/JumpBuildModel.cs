@@ -14,13 +14,13 @@ namespace JumpchainCharacterBuilder.Model
         /// would usually come with.
         /// </summary>
         [ObservableProperty]
-        private List<int> _pointStipend = new();
+        private List<int> _pointStipend = [];
 
         /// <summary>
         /// Represents character-specific purchase type stipends.
         /// </summary>
         [ObservableProperty]
-        private List<int> _purchaseTypeStipends = new();
+        private List<int> _purchaseTypeStipends = [];
 
         /// <summary>
         /// Represents the chosen Origin index.
@@ -45,7 +45,7 @@ namespace JumpchainCharacterBuilder.Model
         /// types available.
         /// </summary>
         [ObservableProperty]
-        private List<OriginDetail> _miscOriginDetails = new();
+        private List<OriginDetail> _miscOriginDetails = [];
 
         /// <summary>
         /// Represents the chosen age.
@@ -75,25 +75,25 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the list of purchases made for this build.
         /// </summary>
         [ObservableProperty]
-        private List<Purchase> _purchase = new();
+        private List<Purchase> _purchase = [];
 
         /// <summary>
         /// Represents the list of Companion Purchase Options taken.
         /// </summary>
         [ObservableProperty]
-        private List<CompanionPurchase> _companionPurchase = new();
+        private List<CompanionPurchase> _companionPurchase = [];
 
         /// <summary>
         /// Represents the list of Drawbacks selected for this build.
         /// </summary>
         [ObservableProperty]
-        private List<Drawback> _drawbackSelection = new();
+        private List<Drawback> _drawbackSelection = [];
 
         /// <summary>
         /// Represents the list of Scenarios selected for this build.
         /// </summary>
         [ObservableProperty]
-        private List<Drawback> _scenarioSelection = new();
+        private List<Drawback> _scenarioSelection = [];
 
         /// <summary>
         /// Represents the number of points spent on Warehouse Investment.

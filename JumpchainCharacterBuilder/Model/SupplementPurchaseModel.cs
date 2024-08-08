@@ -56,7 +56,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents whatever special attributes come with the purchase.
         /// </summary>
         [ObservableProperty]
-        private List<PurchaseAttribute> _attributes = new();
+        private List<PurchaseAttribute> _attributes = [];
 
         public SupplementPurchase()
         {

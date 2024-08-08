@@ -57,13 +57,13 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the list of Supplement purchases.
         /// </summary>
         [ObservableProperty]
-        private List<SupplementPurchase> _purchases = new();
+        private List<SupplementPurchase> _purchases = [];
 
         /// <summary>
         /// Represents the list of Supplement Drawbacks/Limitations.
         /// </summary>
         [ObservableProperty]
-        private List<SupplementDrawbackModel> _limitations = new();
+        private List<SupplementDrawbackModel> _limitations = [];
 
     }
 }

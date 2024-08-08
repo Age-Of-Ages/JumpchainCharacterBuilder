@@ -12,7 +12,7 @@ namespace JumpchainCharacterBuilder
         public static List<JumpRandomizerList> ReadJumpListFile()
         {
             string filePath = Path.Combine(Environment.CurrentDirectory, "JumpList.txt");
-            List<JumpRandomizerList> output = new();
+            List<JumpRandomizerList> output = [];
 
             string categoryTag;
             string[] splitString;
@@ -21,18 +21,18 @@ namespace JumpchainCharacterBuilder
 
             if (!FileAccess.CheckFileExists(filePath))
             {
-                TxtAccess.WriteLog(new()
-                {
+                TxtAccess.WriteLog(
+                [
                     "Jump List for randomizer not found: Regenerating template file."
-                });
+                ]);
 
-                List<JumpRandomizerList> exampleList = new()
-                {
+                List<JumpRandomizerList> exampleList =
+                [
                     new()
                     {
                         ListName = "Example List"
                     }
-                };
+                ];
 
                 exampleList.First().ListEntries.Add(new()
                 {
@@ -82,12 +82,12 @@ namespace JumpchainCharacterBuilder
 
                         if (splitString.Length < 3)
                         {
-                            TxtAccess.WriteLog(new()
-                            {
+                            TxtAccess.WriteLog(
+                            [
                                 $"Entry in JumpList.txt at line {tempLines.IndexOf(line)} is incorrectly formatted or missing one or more required values.",
                                 "Skipping and moving on to the next line. Note: Data will be lost if list is saved in this state.",
                                 $"Incorrect data line: {line}"
-                            });
+                            ]);
 
                             continue;
                         }
@@ -96,10 +96,10 @@ namespace JumpchainCharacterBuilder
 
                         if (!int.TryParse(splitString[1], out int jumpWeight))
                         {
-                            TxtAccess.WriteLog(new()
-                            {
+                            TxtAccess.WriteLog(
+                            [
                                 $"Invalid weight value in JumpList.txt at line {tempLines.IndexOf(line)}"
-                            });
+                            ]);
 
                             jumpWeight = 0;
                         }
@@ -129,7 +129,7 @@ namespace JumpchainCharacterBuilder
 
         public static void WriteJumpListFile(List<JumpRandomizerList> randomizerJumpLists)
         {
-            List<string> lines = new();
+            List<string> lines = [];
             string line;
             string tempPath = Path.Combine(Environment.CurrentDirectory, "JumpList.temp");
             string filePath = Path.Combine(Environment.CurrentDirectory, "JumpList.txt");

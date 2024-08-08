@@ -30,7 +30,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private AppSettingsModel _appSettings = new();
 
         [ObservableProperty]
-        private ObservableCollection<Character> _characterList = new();
+        private ObservableCollection<Character> _characterList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteCharacterCommand))]
         private Character _characterSelection = new();
@@ -112,7 +112,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _usingKilograms = false;
 
         [ObservableProperty]
-        private ObservableCollection<AltForm> _characterAltFormList = new();
+        private ObservableCollection<AltForm> _characterAltFormList = [];
         [ObservableProperty]
         private AltForm _characterAltFormSelection = new();
         [ObservableProperty]
@@ -140,18 +140,18 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _altFormWeaknesses = "";
 
         [ObservableProperty]
-        private ObservableCollection<string> _perkTabList = new();
+        private ObservableCollection<string> _perkTabList = [];
         [ObservableProperty]
         private string _perkTabName = "";
         [ObservableProperty]
         private int _perkTabIndex = 0;
 
         [ObservableProperty]
-        private Dictionary<Character, Dictionary<string, List<Purchase>>> _inactivePerkLists = new();
+        private Dictionary<Character, Dictionary<string, List<Purchase>>> _inactivePerkLists = [];
         [ObservableProperty]
-        private Dictionary<string, List<Purchase>> _activePerkLists = new();
+        private Dictionary<string, List<Purchase>> _activePerkLists = [];
         [ObservableProperty]
-        private ObservableCollection<Purchase> _currentPerkList = new();
+        private ObservableCollection<Purchase> _currentPerkList = [];
         [ObservableProperty]
         private Purchase _perkSelection = new();
         [ObservableProperty]
@@ -232,7 +232,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _bodyModDrawbackDescription = "";
 
         [ObservableProperty]
-        private ObservableCollection<Purchase> _bodyModAdditionList = new();
+        private ObservableCollection<Purchase> _bodyModAdditionList = [];
         [ObservableProperty]
         private Purchase _bodyModAdditionSelection = new();
         [ObservableProperty]
@@ -247,12 +247,12 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _bodyModAdditionSelectionIndex = new();
 
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _genericBodyModPurchaseList = new();
+        private ObservableCollection<SupplementPurchase> _genericBodyModPurchaseList = [];
         [ObservableProperty]
         private int _genericBodyModPurchaseSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<SupplementDrawbackModel> _genericBodyModDrawbackList = new();
+        private ObservableCollection<SupplementDrawbackModel> _genericBodyModDrawbackList = [];
         [ObservableProperty]
         private int _genericBodyModDrawbackIndex = 0;
         [ObservableProperty]
@@ -291,7 +291,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [XmlFilter]
         private string _characterBaseFormDetailDescription = "";
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _sBExtraBitsList = new();
+        private ObservableCollection<SupplementPurchase> _sBExtraBitsList = [];
         [ObservableProperty]
         private SupplementPurchase _sBExtraBitsSelection = new();
         [ObservableProperty]
@@ -336,7 +336,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _sBAugmentDescription = "";
 
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _sBBodyModPowerList = new();
+        private ObservableCollection<SupplementPurchase> _sBBodyModPowerList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSBPowerTraitCommand))]
         private SupplementPurchase _sBBodyModPowerSelection = new();
@@ -352,15 +352,15 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteSBPowerCommand))]
         private int _sBBodyModPowerIndex = 0;
         [ObservableProperty]
-        private List<string> _sBBodyModPowerCategories = new()
-        {
+        private List<string> _sBBodyModPowerCategories =
+        [
             "Shapeshifting",
             "Variability",
             "Permanence",
             "Adaptability",
             "Quality of Life",
             "Gag Powers and Incentives"
-        };
+        ];
 
 
         [ObservableProperty]
@@ -387,7 +387,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _eBMMultiEssence = false;
 
         [ObservableProperty]
-        private ObservableCollection<EBMEssence> _eBMEssenceList = new();
+        private ObservableCollection<EBMEssence> _eBMEssenceList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEssenceCommand))]
         private EBMEssence _eBMEssenceSelection = new();
@@ -403,7 +403,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _eBMEssenceIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _eBMBasicPerkList = new();
+        private ObservableCollection<SupplementPurchase> _eBMBasicPerkList = [];
         [ObservableProperty]
         private SupplementPurchase _eBMBasicPerkSelection = new();
         [ObservableProperty]
@@ -418,7 +418,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMBasicPerkIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _eBMPhysicalPerkList = new();
+        private ObservableCollection<SupplementPurchase> _eBMPhysicalPerkList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMPhysicalPerkSelection = new();
@@ -434,7 +434,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMPhysicalPerkIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _eBMMentalPerkList = new();
+        private ObservableCollection<SupplementPurchase> _eBMMentalPerkList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMMentalPerkSelection = new();
@@ -450,7 +450,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMMentalPerkIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _eBMSpiritualPerkList = new();
+        private ObservableCollection<SupplementPurchase> _eBMSpiritualPerkList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMSpiritualPerkSelection = new();
@@ -466,7 +466,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMSpiritualPerkIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _eBMSkillPerkList = new();
+        private ObservableCollection<SupplementPurchase> _eBMSkillPerkList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMSkillPerkSelection = new();
@@ -482,7 +482,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMSkillPerkIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _eBMSupernaturalPerkList = new();
+        private ObservableCollection<SupplementPurchase> _eBMSupernaturalPerkList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMSupernaturalPerkSelection = new();
@@ -498,7 +498,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMSupernaturalPerkIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _eBMItemPerkList = new();
+        private ObservableCollection<SupplementPurchase> _eBMItemPerkList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMItemPerkSelection = new();
@@ -514,7 +514,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
         private int _eBMItemPerkIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<SupplementPurchase> _eBMCompanionPerkList = new();
+        private ObservableCollection<SupplementPurchase> _eBMCompanionPerkList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMCompanionPerkSelection = new();
@@ -531,7 +531,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _eBMCompanionPerkIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<SupplementDrawbackModel> _eBMDrawbackList = new();
+        private ObservableCollection<SupplementDrawbackModel> _eBMDrawbackList = [];
         [ObservableProperty]
         private SupplementDrawbackModel _eBMDrawbackSelection = new();
         [ObservableProperty]
@@ -547,23 +547,23 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _eBMDrawbackIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<PurchaseAttribute> _purchaseAttributeList = new();
+        private ObservableCollection<PurchaseAttribute> _purchaseAttributeList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteAugmentTraitCommand))]
         private PurchaseAttribute _purchaseAttributeSelection = new();
         [ObservableProperty]
         private int _purchaseAttributeIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<string> _availableAttributeTypeList = new();
+        private ObservableCollection<string> _availableAttributeTypeList = [];
         [ObservableProperty]
-        private ObservableCollection<string> _availableAttributeCategoryList = new();
+        private ObservableCollection<string> _availableAttributeCategoryList = [];
         [ObservableProperty]
         private string _attributeTypeSelection = "";
         [ObservableProperty]
         private string _attributeCategorySelection = "";
 
         [ObservableProperty]
-        private ObservableCollection<string> _currentAttributeList = new();
+        private ObservableCollection<string> _currentAttributeList = [];
         [ObservableProperty]
         private string _currentAttributeSelection = "";
 
@@ -677,7 +677,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         };
 
         [ObservableProperty]
-        private ObservableCollection<ProfileAttribute> _currentPhysicalAttributeList = new();
+        private ObservableCollection<ProfileAttribute> _currentPhysicalAttributeList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePhysicalAttributeCommand))]
         [NotifyCanExecuteChangedFor(nameof(MovePhysicalAttributeUpCommand))]
@@ -690,7 +690,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _currentPhysicalAttributeIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<ProfileAttribute> _currentMentalAttributeList = new();
+        private ObservableCollection<ProfileAttribute> _currentMentalAttributeList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteMentalAttributeCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveMentalAttributeUpCommand))]
@@ -703,7 +703,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _currentMentalAttributeIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<ProfileAttribute> _currentSupernaturalAttributeList = new();
+        private ObservableCollection<ProfileAttribute> _currentSupernaturalAttributeList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSupernaturalAttributeCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveSupernaturalAttributeUpCommand))]
@@ -717,7 +717,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _currentSupernaturalAttributeIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<ProfileAttribute> _currentPhysicalSkillList = new();
+        private ObservableCollection<ProfileAttribute> _currentPhysicalSkillList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePhysicalSkillCommand))]
         [NotifyCanExecuteChangedFor(nameof(MovePhysicalSkillUpCommand))]
@@ -730,7 +730,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _currentPhysicalSkillIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<ProfileAttribute> _currentMentalSkillList = new();
+        private ObservableCollection<ProfileAttribute> _currentMentalSkillList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteMentalSkillCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveMentalSkillUpCommand))]
@@ -743,7 +743,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _currentMentalSkillIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<ProfileAttribute> _currentSocialSkillList = new();
+        private ObservableCollection<ProfileAttribute> _currentSocialSkillList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSocialSkillCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveSocialSkillUpCommand))]
@@ -756,7 +756,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _currentSocialSkillIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<ProfileAttribute> _currentTechnologicalSkillList = new();
+        private ObservableCollection<ProfileAttribute> _currentTechnologicalSkillList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteTechnologicalSkillCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveTechnologicalSkillUpCommand))]
@@ -769,7 +769,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _currentTechnologicalSkillIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<ProfileAttribute> _currentSupernaturalSkillList = new();
+        private ObservableCollection<ProfileAttribute> _currentSupernaturalSkillList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSupernaturalSkillCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveSupernaturalSkillUpCommand))]
@@ -783,7 +783,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _currentSupernaturalSkillIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<Booster> _currentBoosterList = new();
+        private ObservableCollection<Booster> _currentBoosterList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteBoosterCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveBoosterUpCommand))]
@@ -2136,7 +2136,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             CharacterAltFormList.Clear();
 
-            if (character != null && character.AltForms.Any())
+            if (character != null && character.AltForms.Count != 0)
             {
                 CharacterAltFormList = new(character.AltForms);
 
@@ -2170,14 +2170,14 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             foreach (Character character in LoadedSave.CharacterList)
             {
-                InactivePerkLists.Add(character, new());
+                InactivePerkLists.Add(character, []);
             }
 
             foreach (string category in LoadedSave.PerkCategoryList)
             {
                 foreach (KeyValuePair<Character, Dictionary<string, List<Purchase>>> list in InactivePerkLists)
                 {
-                    list.Value.Add(category, new());
+                    list.Value.Add(category, []);
                 }
 
                 PerkTabList.Add(category);
@@ -2207,9 +2207,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadActivePerkLists()
         {
-            if (InactivePerkLists.ContainsKey(CharacterSelection))
+            if (InactivePerkLists.TryGetValue(CharacterSelection, out Dictionary<string, List<Purchase>>? value))
             {
-                ActivePerkLists = InactivePerkLists[CharacterSelection];
+                ActivePerkLists = value;
 
                 PerkTabIndex = 0;
 
@@ -2219,9 +2219,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCurrentPerkList()
         {
-            if (!string.IsNullOrWhiteSpace(PerkTabName) && InactivePerkLists[CharacterSelection].ContainsKey(PerkTabName))
+            if (!string.IsNullOrWhiteSpace(PerkTabName) && InactivePerkLists[CharacterSelection].TryGetValue(PerkTabName, out List<Purchase>? value))
             {
-                CurrentPerkList = new(InactivePerkLists[CharacterSelection][PerkTabName]);
+                CurrentPerkList = new(value);
             }
         }
 
@@ -2742,13 +2742,13 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadAttributeTypes()
         {
-            AvailableAttributeTypeList = new()
-            {
+            AvailableAttributeTypeList =
+            [
                 "Attribute",
                 "Skill",
                 "Booster",
                 "Special"
-            };
+            ];
         }
 
         private void ReloadAttributeCategories()

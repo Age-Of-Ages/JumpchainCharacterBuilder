@@ -2,10 +2,7 @@
 
 namespace JumpchainCharacterBuilder.Messages
 {
-    public class LoadCommandMessage : ValueChangedMessage<bool>
+    public class LoadCommandMessage(bool value) : ValueChangedMessage<bool>(value)
     {
-        public LoadCommandMessage(bool value) : base(value)
-        {
-        }
     }
 }

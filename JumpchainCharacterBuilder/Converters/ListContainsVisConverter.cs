@@ -12,7 +12,7 @@ namespace JumpchainCharacterBuilder.Converters
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             var containedObject = values[0];
-            List<ICollection?> list = new();
+            List<ICollection?> list = [];
 
             for (int i = 1; i < values.Length; i++)
             {

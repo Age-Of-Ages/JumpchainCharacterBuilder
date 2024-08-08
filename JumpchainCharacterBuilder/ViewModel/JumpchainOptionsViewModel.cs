@@ -245,7 +245,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _uUGauntletHalved = false;
 
         [ObservableProperty]
-        private ObservableCollection<string> _userPerkCategories = new();
+        private ObservableCollection<string> _userPerkCategories = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePerkCategoryCommand))]
         [NotifyCanExecuteChangedFor(nameof(MovePerkCategoryUpCommand))]
@@ -257,7 +257,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _userPerkCategoryIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<string> _userItemCategories = new();
+        private ObservableCollection<string> _userItemCategories = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteItemCategoryCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveItemCategoryUpCommand))]
@@ -270,9 +270,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _userItemCategoryIndex = 0;
 
         [ObservableProperty]
-        private List<string> _compiledPerkCategories = new();
+        private List<string> _compiledPerkCategories = [];
         [ObservableProperty]
-        private List<string> _compiledItemCategories = new();
+        private List<string> _compiledItemCategories = [];
 
         #endregion
 
@@ -1125,7 +1125,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void UpdateCategories(bool perks)
         {
-            List<string> compiledList = new();
+            List<string> compiledList = [];
 
             if (perks)
             {

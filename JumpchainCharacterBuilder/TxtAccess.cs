@@ -40,7 +40,7 @@ namespace JumpchainCharacterBuilder
 
         public static List<string> ReadText(string filePath)
         {
-            List<string> result = new();
+            List<string> result = [];
 
             if (FileAccess.CheckFileExists(filePath))
             {

@@ -57,13 +57,13 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents which Jumps this Drawback was suspended for.
         /// </summary>
         [ObservableProperty]
-        private List<bool> _suspend = new();
+        private List<bool> _suspend = [];
 
         /// <summary>
         /// Represents which Jumps this Drawback was suspended during.
         /// </summary>
         [ObservableProperty]
-        private List<DrawbackSuspendModel> _suspendList = new();
+        private List<DrawbackSuspendModel> _suspendList = [];
 
         /// <summary>
         /// Represents the Jump number that this Drawback was revoked

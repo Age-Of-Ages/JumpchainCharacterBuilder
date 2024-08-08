@@ -50,6 +50,6 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the list of Companion import details.
         /// </summary>
         [ObservableProperty]
-        private List<CompanionImportDetailClass> _companionImportDetails = new();
+        private List<CompanionImportDetailClass> _companionImportDetails = [];
     }
 }

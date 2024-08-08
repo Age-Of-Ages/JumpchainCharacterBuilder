@@ -138,14 +138,14 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the list of character's Alt-forms.
         /// </summary>
         [ObservableProperty]
-        private List<AltForm> _altForms = new();
+        private List<AltForm> _altForms = [];
 
         /// <summary>
         /// Represents the character's list of Attributes.
         /// </summary>
         [ObservableProperty]
-        private List<ProfileAttribute> _attributes = new()
-        {
+        private List<ProfileAttribute> _attributes =
+        [
             new ProfileAttribute("Strength", "Attribute", "Physical"),
             new ProfileAttribute("Endurance", "Attribute", "Physical"),
             new ProfileAttribute("Speed", "Attribute", "Physical"),
@@ -163,19 +163,19 @@ namespace JumpchainCharacterBuilder.Model
             new ProfileAttribute("Charisma", "Attribute", "Mental"),
             new ProfileAttribute("Luck", "Attribute", "Supernatural"),
             new ProfileAttribute("Magic", "Attribute", "Supernatural")
-        };
+        ];
 
         /// <summary>
         /// Represents the character's list of Skills.
         /// </summary>
         [ObservableProperty]
-        private List<ProfileAttribute> _skills = new();
+        private List<ProfileAttribute> _skills = [];
 
         /// <summary>
         /// Represents the character's training boosters.
         /// </summary>
         [ObservableProperty]
-        private List<Booster> _boosters = new();
+        private List<Booster> _boosters = [];
 
         /// <summary>
         /// Represents the character's Body Mod.

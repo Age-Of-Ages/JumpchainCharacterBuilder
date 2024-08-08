@@ -39,8 +39,8 @@ namespace JumpchainCharacterBuilder
 
         private void ReplaceSave(SaveFile existingSave, SaveFile newSave)
         {
-            existingSave.JumpList = new();
-            existingSave.CharacterList = new();
+            existingSave.JumpList = [];
+            existingSave.CharacterList = [];
             existingSave.Options = new();
             existingSave.GenericBodyMod = new();
             existingSave.SBBodyMod = new();
@@ -50,10 +50,10 @@ namespace JumpchainCharacterBuilder
             existingSave.GenericDrawbackSupplement = new();
             existingSave.UniversalDrawbackSupplement = new();
             existingSave.UUSupplement = new();
-            existingSave.ItemCategoryList = new();
-            existingSave.PerkCategoryList = new();
-            existingSave.UserPerkCategoryList = new();
-            existingSave.UserItemCategoryList = new();
+            existingSave.ItemCategoryList = [];
+            existingSave.PerkCategoryList = [];
+            existingSave.UserPerkCategoryList = [];
+            existingSave.UserItemCategoryList = [];
 
             existingSave.Options = newSave.Options;
             existingSave.GenericBodyMod = newSave.GenericBodyMod;

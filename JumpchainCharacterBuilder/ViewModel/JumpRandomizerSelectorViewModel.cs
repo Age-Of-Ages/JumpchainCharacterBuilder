@@ -19,15 +19,15 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _spellCheckEnabled = true;
 
         [ObservableProperty]
-        private ObservableCollection<JumpRandomizerList> _inactiveJumpRandomizerLists = new();
+        private ObservableCollection<JumpRandomizerList> _inactiveJumpRandomizerLists = [];
         [ObservableProperty]
         private JumpRandomizerList _activeJumpRandomizerList = new();
         [ObservableProperty]
-        private List<JumpRandomizerEntry> _activeJumpPool = new();
+        private List<JumpRandomizerEntry> _activeJumpPool = [];
         [ObservableProperty]
         private int _entriesToPull = 1;
         [ObservableProperty]
-        private ObservableCollection<JumpRandomizerEntry> _winningEntries = new();
+        private ObservableCollection<JumpRandomizerEntry> _winningEntries = [];
 
         #endregion
 
@@ -74,7 +74,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             ActiveJumpPool.Clear();
 
-            if (ActiveJumpRandomizerList.ListEntries.Any())
+            if (ActiveJumpRandomizerList.ListEntries.Count != 0)
             {
                 foreach (JumpRandomizerEntry entry in ActiveJumpRandomizerList.ListEntries)
                 {
@@ -90,9 +90,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             WinningEntries.Clear();
 
-            List<JumpRandomizerEntry> tempJumpPool = ActiveJumpPool.ToList();
+            List<JumpRandomizerEntry> tempJumpPool = [.. ActiveJumpPool];
 
-            if (tempJumpPool.Any())
+            if (tempJumpPool.Count != 0)
             {
                 if (tempJumpPool.Count >= EntriesToPull)
                 {

@@ -41,8 +41,8 @@ namespace JumpchainCharacterBuilder.Views
             {
                 if (listView.Tag is string indexString)
                 {
-                    List<string> indexStringList = indexString.Split(',').ToList();
-                    List<int> columnIndexes = new();
+                    List<string> indexStringList = [.. indexString.Split(',')];
+                    List<int> columnIndexes = [];
 
                     for (int i = 0; i < indexStringList.Count; i++)
                     {
@@ -60,8 +60,8 @@ namespace JumpchainCharacterBuilder.Views
             {
                 if (listView.Tag is string indexString)
                 {
-                    List<string> indexStringList = indexString.Split(',').ToList();
-                    List<int> columnIndexes = new();
+                    List<string> indexStringList = [.. indexString.Split(',')];
+                    List<int> columnIndexes = [];
 
                     for (int i = 0; i < indexStringList.Count; i++)
                     {
@@ -79,8 +79,8 @@ namespace JumpchainCharacterBuilder.Views
             {
                 if (listView.Tag is string indexString)
                 {
-                    List<string> indexStringList = indexString.Split(',').ToList();
-                    List<int> columnIndexes = new();
+                    List<string> indexStringList = [.. indexString.Split(',')];
+                    List<int> columnIndexes = [];
 
                     for (int i = 0; i < indexStringList.Count; i++)
                     {

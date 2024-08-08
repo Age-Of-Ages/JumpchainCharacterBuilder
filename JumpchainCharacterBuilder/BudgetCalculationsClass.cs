@@ -21,8 +21,8 @@ namespace JumpchainCharacterBuilder
             int importStipend = 0;
             int currencyIndex = purchaseType.CurrencyIndex;
             int purchaseTypeIndex = jump.PurchaseTypes.IndexOf(purchaseType);
-            List<int> purchaseTypeStipends = new();
-            List<int> purchaseTypeExpenses = new();
+            List<int> purchaseTypeStipends = [];
+            List<int> purchaseTypeExpenses = [];
 
             int drawbackSupplementCP = 0;
             int drawbackSupplementItemCP = 0;
