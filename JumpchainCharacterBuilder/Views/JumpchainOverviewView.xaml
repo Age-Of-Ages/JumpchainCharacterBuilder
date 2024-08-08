@@ -283,7 +283,7 @@
                         <ListView ItemsSource="{Binding MiscOriginTypeList}"
                                   SelectedItem="{Binding MiscOriginTypeSelection}"
                                   SelectedIndex="{Binding MiscOriginTypeSelectionIndex}"
-                                  Height="150" Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                   ScrollViewer.ScrollChanged="ListView_ScrollChanged"
                                   Tag="0">
                             <ListView.View>

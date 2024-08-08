@@ -59,7 +59,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ListView">
                     <Border Name="Border" BorderThickness="2" 
-                            Background="{DynamicResource Menu.Static.Background}" BorderBrush="{DynamicResource TabItem.Static.Background}">
+                            Background="{DynamicResource Menu.Static.Background}" BorderBrush="{DynamicResource Menu.Static.Border}">
                         <ScrollViewer Style="{DynamicResource {x:Static GridView.GridViewScrollViewerStyleKey}}">
                             <ItemsPresenter />
                         </ScrollViewer>
@@ -69,7 +69,7 @@
                             <Setter Property="ScrollViewer.CanContentScroll" Value="false" />
                         </Trigger>
                         <Trigger Property="IsEnabled" Value="false">
-                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource TabItem.Disabled.Background}"/>
+                            <Setter TargetName="Border" Property="Background" Value="{DynamicResource Menu.Disabled.Background}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -113,7 +113,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
                     <DockPanel>
-                        <Separator DockPanel.Dock="Left" x:Name="HeaderSeparator" Background="{DynamicResource TabItem.Static.Border}"
+                        <Separator DockPanel.Dock="Left" x:Name="HeaderSeparator" Background="{DynamicResource TabItem.Static.Background}"
                                    Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Width="2">
                             <Separator.Visibility>
                                 <MultiBinding Converter="{StaticResource HeaderCheckToVis}">
@@ -129,9 +129,81 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type ComboBoxItem}">
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Style x:Key="ComboBoxItemContainerStyle" TargetType="{x:Type ComboBoxItem}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Padding" Value="4,1"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="1"/>
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource FocusVisual}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+                    <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                        </Trigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsKeyboardFocused" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewHover.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewHover.Border}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewSelected.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewSelected.Border}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewSelectedHover.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewSelectedHover.Border}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                                <Condition Property="IsKeyboardFocused" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewSelectedNoFocus.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewSelectedNoFocus.Border}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="False"/>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewFocus.Border}"/>
+                        </MultiTrigger>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsSelected" Value="False"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Background" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewHoverFocus.Background}"/>
+                            <Setter Property="BorderBrush" TargetName="Bd" Value="{DynamicResource ComboBoxItem.ItemsviewHoverFocus.Border}"/>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
 
     <Style TargetType="{x:Type ComboBox}">
@@ -147,6 +219,7 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both"/>
         <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
         <Setter Property="Template" Value="{DynamicResource ComboBoxTemplate}"/>
+        <Setter Property="ItemContainerStyle" Value="{DynamicResource ComboBoxItemContainerStyle}"/>
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false"/>
@@ -170,7 +243,7 @@
                         </Grid.RowDefinitions>
 
                         <Border Grid.Row="0" BorderThickness="1" CornerRadius="2,2,0,0"
-                                BorderBrush="{DynamicResource Menu.Static.Border}" Background="{DynamicResource Menu.Static.Background}">
+                                BorderBrush="{DynamicResource Menu.Static.Border}" Background="{DynamicResource Header.Background}">
                             <ContentPresenter Margin="4" ContentSource="Header" RecognizesAccessKey="True"/>
                         </Border>
 
@@ -439,7 +512,7 @@
         <Setter Property="SpellCheck.IsEnabled" Value="{Binding SpellCheckEnabled}"/>
         <Setter Property="Background" Value="{DynamicResource BackgroundHighlight}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource TabItem.Disabled.Border}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource TextBox.Static.Border}"/>
 
         <Setter Property="Template">
             <Setter.Value>
@@ -456,10 +529,10 @@
                             <Setter Property="Opacity" TargetName="Border" Value="0.56"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource TabItem.Selected.Border}"/>
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource TextBox.Selected.Border}"/>
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource TabItem.MouseOver.Border}"/>
+                            <Setter Property="BorderBrush" TargetName="Border" Value="{DynamicResource TextBox.Highlight.Border}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -489,17 +562,11 @@
     </Style>
 
     <Style x:Key="LargeTextBox" 
-           TargetType="{x:Type TextBox}">
+           TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseTextBoxStyle}">
         <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
         <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ValidationTemplate}"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
         <Setter Property="AcceptsReturn" Value="True"/>
         <Setter Property="AcceptsTab" Value="True"/>
-        <Setter Property="SpellCheck.IsEnabled" Value="{Binding SpellCheckEnabled}"/>
-        <Setter Property="Background" Value="{DynamicResource BackgroundHighlight}"/>
-        <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource TabItem.Disabled.Border}"/>
     </Style>
 
     <Style x:Key="DataGridDescriptionColumn"
@@ -531,7 +598,7 @@
     </Style>
 
     <Style x:Key="TextBoxHintTemplate"
-       TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseTextBoxStyle}">
+           TargetType="{x:Type TextBox}" BasedOn="{StaticResource BaseTextBoxStyle}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
@@ -539,8 +606,9 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="2" Padding="2" BorderThickness="1">
                         <Grid>
-                            <TextBlock x:Name="HintText" Text="{TemplateBinding Tag}" Visibility="Collapsed" Foreground="Gray" Margin="2,0,0,0"/>
                             <ScrollViewer x:Name="PART_ContentHost"/>
+                            <TextBlock x:Name="HintText" Text="{TemplateBinding Tag}" Visibility="Collapsed" Foreground="{DynamicResource HintTextColor}" 
+                                       Margin="2,0,0,0" IsHitTestVisible="False"/>
                         </Grid>
                     </Border>
 
@@ -555,7 +623,7 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource TabItem.Selected.Border}"/>
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource TabItem.MouseOver.Border}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource TextBox.Highlight.Border}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -572,9 +640,9 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             CornerRadius="2" Padding="2" BorderThickness="1">
                         <Grid>
-                            <TextBlock x:Name="HintText" Text="{TemplateBinding Tag}" Visibility="Collapsed" Foreground="Gray" Margin="2,0,0,0"
-                                       TextWrapping="Wrap"/>
                             <ScrollViewer x:Name="PART_ContentHost"/>
+                            <TextBlock x:Name="HintText" Text="{TemplateBinding Tag}" Visibility="Collapsed" Foreground="{DynamicResource HintTextColor}" 
+                                       Margin="2,0,0,0" TextWrapping="Wrap" IsHitTestVisible="False"/>
                         </Grid>
                     </Border>
 
@@ -589,7 +657,7 @@
                             <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource TabItem.Selected.Border}"/>
                         </Trigger>
                         <Trigger Property="IsKeyboardFocused" Value="true">
-                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource TabItem.MouseOver.Border}"/>
+                            <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource TextBox.Highlight.Border}"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -598,13 +666,13 @@
     </Style>
 
     <Style x:Key="TitleBox" TargetType="{x:Type Label}">
-        <Setter Property="Background" Value="MediumBlue"/>
+        <Setter Property="Background" Value="{DynamicResource TitleBox.Background}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
         <Setter Property="Width" Value="50"/>
         <Setter Property="Margin" Value="-1"/>
     </Style>
     <Style x:Key="BudgetBox" TargetType="{x:Type Label}">
-        <Setter Property="Background" Value="CadetBlue"/>
+        <Setter Property="Background" Value="{DynamicResource BudgetBox.Background}"/>
         <Setter Property="Width" Value="40"/>
         <Setter Property="Margin" Value="-1"/>
     </Style>
@@ -685,8 +753,8 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
                     <Border x:Name="border" 
-                        Background="{DynamicResource ScrollBar.Static.Background}" BorderBrush="{DynamicResource ScrollBar.Static.Border}" 
-                        BorderThickness="1" SnapsToDevicePixels="true">
+                            Background="{DynamicResource ScrollBar.Static.Background}" BorderBrush="{DynamicResource ScrollBar.Static.Border}" 
+                            BorderThickness="1" SnapsToDevicePixels="true">
                         <ContentPresenter x:Name="contentPresenter" Focusable="False" 
                                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
                                       Margin="{TemplateBinding Padding}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
