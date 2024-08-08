@@ -6,7 +6,7 @@
     <SolidColorBrush x:Key="BackgroundHighlight">#232323</SolidColorBrush>
 
     <SolidColorBrush x:Key="TextColor">#FFFFFF</SolidColorBrush>
-    <SolidColorBrush x:Key="HintTextColor">LightGray</SolidColorBrush>
+    <SolidColorBrush x:Key="HintTextColor">#AAAAAA</SolidColorBrush>
 
     <SolidColorBrush x:Key="Header.Background">#303030</SolidColorBrush>
 
