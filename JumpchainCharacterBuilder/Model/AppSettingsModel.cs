@@ -42,13 +42,13 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the chosen interface theme.
         /// </summary>
         [ObservableProperty]
-        private string _theme = "Light";
+        private string _theme = "Dark";
 
         /// <summary>
         /// Represents if the window is allowed to be resized or not.
         /// </summary>
         [ObservableProperty]
-        private bool _canResizeWindow = false;
+        private bool _canResizeWindow = true;
 
         /// <summary>
         /// Represents if the application should ask the user to save their current data before closing.

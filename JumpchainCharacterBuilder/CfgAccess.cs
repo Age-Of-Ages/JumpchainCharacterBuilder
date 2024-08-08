@@ -157,8 +157,8 @@ namespace JumpchainCharacterBuilder
             {
                 {"HeightFormat", "FeetInches" },
                 {"WeightFormat", "Pounds" },
-                {"Theme", "Light" },
-                {"CanResizeWindow", "False" },
+                {"Theme", "Dark" },
+                {"CanResizeWindow", "True" },
                 {"ConfirmSaveOnClose", "True" },
                 {"SpellCheckEnabled", "True" }
             };

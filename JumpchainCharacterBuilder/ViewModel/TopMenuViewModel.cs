@@ -25,7 +25,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _saveFileName = "";
 
         [ObservableProperty]
-        private string _theme = "Light";
+        private string _theme = "Dark";
 
         [ObservableProperty]
         private bool _lightThemeSelected = true;
