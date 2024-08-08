@@ -32,6 +32,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(NewRandomizerEntryCommand))]
         [NotifyCanExecuteChangedFor(nameof(DeleteRandomizerEntryCommand))]
         private JumpRandomizerEntry _jumpRandomizerEntrySelection = new();
+        [ObservableProperty]
+        private ObservableCollection<JumpRandomizerEntry> _jumpRandomizerFilteredList = new();
+        [ObservableProperty]
+        private string _jumpRandomizerFilter = "";
 
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -57,6 +61,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {
                     JumpRandomizerEntrySelection = value.ListEntries.First();
                 }
+
+                FilterJumpList();
             }
         }
 
@@ -87,6 +93,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 JumpRandomizerEntrySelection.JumpUri = new("About:Blank");
             }
+        }
+
+        partial void OnJumpRandomizerFilterChanged(string value)
+        {
+            FilterJumpList();
         }
 
         #endregion
@@ -138,6 +149,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void SaveJumpLists()
         {
             RandomizeListAccess.WriteJumpListFile(InactiveJumpRandomizerLists.ToList());
+        }
+
+        private void FilterJumpList()
+        {
+            JumpRandomizerFilteredList = new(JumpRandomizerEntryList.Where(x => x.JumpName.Contains(JumpRandomizerFilter, System.StringComparison.CurrentCultureIgnoreCase)).ToList());
         }
         #endregion
 

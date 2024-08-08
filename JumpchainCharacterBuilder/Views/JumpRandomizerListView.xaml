@@ -21,8 +21,8 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.2*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*"/>
@@ -53,6 +53,14 @@
                 <TextBox Text="{Binding ActiveJumpRandomizerList.ListName, ValidatesOnNotifyDataErrors=True}" Width="120"
                          Margin="4,0,0,0"/>
             </StackPanel>
+
+            <StackPanel Margin="0,8,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Search list" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding JumpRandomizerFilter, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="240"
+                         Margin="4,0,0,0"/>
+            </StackPanel>
         </StackPanel>
 
         <DockPanel Grid.Row="1">
@@ -74,7 +82,7 @@
             </Grid>
 
 
-            <ListView ItemsSource="{Binding JumpRandomizerEntryList}"
+            <ListView ItemsSource="{Binding JumpRandomizerFilteredList}"
                       SelectedItem="{Binding JumpRandomizerEntrySelection}"
                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
