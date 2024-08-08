@@ -2,10 +2,7 @@
 
 namespace JumpchainCharacterBuilder.Messages
 {
-    public class JumpSelectionUpdateMessage : ValueChangedMessage<int>
+    public class JumpSelectionUpdateMessage(int value) : ValueChangedMessage<int>(value)
     {
-        public JumpSelectionUpdateMessage(int value) : base(value)
-        {
-        }
     }
 }

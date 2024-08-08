@@ -3,10 +3,7 @@ using JumpchainCharacterBuilder.Model;
 
 namespace JumpchainCharacterBuilder.Messages
 {
-    public class SaveDataSendMessage : ValueChangedMessage<SaveFile>
+    public class SaveDataSendMessage(SaveFile value) : ValueChangedMessage<SaveFile>(value)
     {
-        public SaveDataSendMessage(SaveFile value) : base(value)
-        {
-        }
     }
 }

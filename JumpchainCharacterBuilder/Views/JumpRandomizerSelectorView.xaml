@@ -8,14 +8,16 @@
         xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModel:JumpRandomizerSelectorViewModel, IsDesignTimeCreatable=True}"
-        Title="Random Jump Selector" Height="400" Width="400"
+        Title="Random Jump Selector" Height="600" Width="400"
         Cursor="" 
         WindowStyle="SingleBorderWindow" 
-        Background="White" 
+        Background="{DynamicResource Background}" 
+        Foreground="{DynamicResource TextColor}"
         FontFamily="Lato" 
         FontSize="12" 
         ResizeMode="NoResize"
         ShowInTaskbar="False">
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -23,12 +25,10 @@
             <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Button Content="Draw Random Jumps" Command="{Binding DrawCommand}" Style="{DynamicResource DataGridButton}"/>
             
-            <TextBox Text="{Binding EntriesToPull, ValidatesOnNotifyDataErrors=True}" Width="40" Margin="15,0,0,0" VerticalContentAlignment="Center"/>
+            <TextBox Text="{Binding EntriesToPull, ValidatesOnNotifyDataErrors=True}" Width="40" Margin="16,0,0,0"/>
             <TextBlock Text="# of Jumps to select" Margin="4,0,0,0" VerticalAlignment="Center"/>
         </StackPanel>
 
@@ -36,19 +36,19 @@
                   DisplayMemberPath="ListName"
                   SelectedItem="{Binding ActiveJumpRandomizerList}"
                   Width="120" Grid.Row="1"
-                  VerticalContentAlignment="Center"
                   VerticalAlignment="Center"/>
         
         <ListView ItemsSource="{Binding WinningEntries}"
-                  VerticalAlignment="Stretch"
-                  Grid.Row="2">
+                  Grid.Row="2"
+                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn Header="Jump name" Width="300"
+                        <GridViewColumn Header="Jump name" Width="Auto"
                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                         DisplayMemberBinding="{Binding JumpName}"/>
-                        <GridViewColumn Header="Link" Width="95">
+                        <GridViewColumn Header="Link" Width="75">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Visibility="{Binding JumpUri, Converter={StaticResource UriToVis}}">

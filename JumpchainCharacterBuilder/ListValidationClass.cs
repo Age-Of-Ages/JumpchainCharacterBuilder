@@ -25,7 +25,7 @@ namespace JumpchainCharacterBuilder
 
         public static void CheckMiscOriginCount(Jump jump, int characterIndex)
         {
-            List<OriginDetail> tempOriginList = new();
+            List<OriginDetail> tempOriginList = [];
             JumpBuild jumpBuild = jump.Build[characterIndex];
 
             foreach (string originCategory in jump.MiscOriginCategories)

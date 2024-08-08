@@ -3,10 +3,7 @@ using JumpchainCharacterBuilder.Model;
 
 namespace JumpchainCharacterBuilder.Messages
 {
-    public class SettingsLoadedMessage : ValueChangedMessage<AppSettingsModel>
+    public class SettingsLoadedMessage(AppSettingsModel value) : ValueChangedMessage<AppSettingsModel>(value)
     {
-        public SettingsLoadedMessage(AppSettingsModel value) : base(value)
-        {
-        }
     }
 }

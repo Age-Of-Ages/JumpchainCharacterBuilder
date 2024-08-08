@@ -4,8 +4,12 @@ using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace JumpchainCharacterBuilder
@@ -38,7 +42,7 @@ namespace JumpchainCharacterBuilder
         /// <summary>
         /// Configures the services for the application.
         /// </summary>
-        private static IServiceProvider ConfigureServices()
+        private static ServiceProvider ConfigureServices()
         {
             var services = new ServiceCollection();
 
@@ -68,7 +72,7 @@ namespace JumpchainCharacterBuilder
         {
             Exception exception = e.Exception;
 
-            List<string> exceptionData = new();
+            List<string> exceptionData = [];
 
             if (exception.InnerException != null)
             {
@@ -76,7 +80,7 @@ namespace JumpchainCharacterBuilder
 
                 string exceptionString = innerException.ToString();
 
-                exceptionString = Regex.Replace(exceptionString, @"[a-zA-Z]:\\.+(?=\\JumpchainCharacterBuilder)", "~LocalAppDir~");
+                exceptionString = ReplaceUserDirectoryRegex().Replace(exceptionString, "~LocalAppDir~");
 
                 exceptionData.Add(exceptionString);
             }
@@ -84,7 +88,7 @@ namespace JumpchainCharacterBuilder
             {
                 string exceptionString = exception.ToString();
 
-                exceptionString = Regex.Replace(exceptionString, @"[a-zA-Z]:\\.+(?=\\JumpchainCharacterBuilder)", "~LocalAppDir~");
+                exceptionString = ReplaceUserDirectoryRegex().Replace(exceptionString, "~LocalAppDir~");
 
                 exceptionData.Add(exceptionString);
             }
@@ -92,5 +96,75 @@ namespace JumpchainCharacterBuilder
 
             TxtAccess.WriteLog(exceptionData);
         }
+
+        public static void ResizeGridViewColumns(ListView listView, List<int> indexesToStretch)
+        {
+            if (listView.View is GridView gridView)
+            {
+                ScrollViewer scrollViewer = GetChildOfType<ScrollViewer>(listView);
+                Visibility? scrollbarVisibility = scrollViewer?.ComputedVerticalScrollBarVisibility;
+
+                double availableWidth;
+
+                if (scrollbarVisibility == Visibility.Visible)
+                {
+                    availableWidth = listView.ActualWidth - SystemParameters.VerticalScrollBarWidth - 10;
+                }
+                else
+                {
+                    availableWidth = listView.ActualWidth - 10;
+                }
+
+                List<GridViewColumn> autoSizeColumns = [];
+
+                for (int i = 0; i < gridView.Columns.Count; i++)
+                {
+                    if (indexesToStretch.Contains(i))
+                    {
+                        autoSizeColumns.Add(gridView.Columns[i]);
+                    }
+                    else
+                    {
+                        availableWidth -= gridView.Columns[i].Width;
+                    }
+                }
+
+                int sizeSplit = autoSizeColumns.Count;
+
+                if (availableWidth < 0)
+                {
+                    availableWidth = 0;
+                }
+
+                foreach (GridViewColumn column in autoSizeColumns)
+                {
+                    column.Width = availableWidth / sizeSplit;
+                }
+            }
+        }
+
+        public static T GetChildOfType<T>(DependencyObject dependencyObject) 
+            where T : DependencyObject
+        {
+            if (dependencyObject == null)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < VisualTreeHelper.GetChildrenCount(dependencyObject); i++)
+            {
+                var target = VisualTreeHelper.GetChild(dependencyObject, i);
+
+                var output = target as T ?? GetChildOfType<T>(target);
+                if (output != null)
+                {
+                    return output;
+                }
+            }
+            return null;
+        }
+
+        [GeneratedRegex(@"[a-zA-Z]:\\.+(?=\\JumpchainCharacterBuilder)")]
+        private static partial Regex ReplaceUserDirectoryRegex();
     }
 }

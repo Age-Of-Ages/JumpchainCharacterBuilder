@@ -25,7 +25,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _saveFileName = "";
 
         [ObservableProperty]
-        private string _theme = "Light";
+        private string _theme = "Dark";
 
         [ObservableProperty]
         private bool _lightThemeSelected = true;
@@ -70,6 +70,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
             {
                 AppSettings = m.Value;
+
+                LoadTheme();
             });
             Messenger.Register<SaveCommandMessage>(this, (r, m) =>
             {
@@ -164,6 +166,11 @@ namespace JumpchainCharacterBuilder.ViewModel
                 saveFileLoader.LoadSave(openFileDialog.FileName, LoadedSave);
                 SaveFileName = openFileDialog.SafeFileName;
             }
+        }
+
+        private void LoadTheme()
+        {
+            Theme = AppSettings.Theme;
         }
 
         #endregion

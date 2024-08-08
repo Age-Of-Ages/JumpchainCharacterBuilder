@@ -37,13 +37,13 @@ namespace JumpchainCharacterBuilder.Model
         /// final multiplier.
         /// </summary>
         [ObservableProperty]
-        private List<BoosterDependency> _boosterDependencies = new();
+        private List<BoosterDependency> _boosterDependencies = [];
 
         /// <summary>
         /// Represents the names of the purchases that contribute to this attribute.
         /// </summary>
         [ObservableProperty]
-        private List<AttributeSource> _sourceList = new();
+        private List<AttributeSource> _sourceList = [];
 
         public Booster()
         {

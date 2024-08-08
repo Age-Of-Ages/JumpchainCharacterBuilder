@@ -9,8 +9,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class MainWindowViewModel : ViewModelBase
     {
-        // TODO - Implement themes.
-        // TODO - (Eventually) make the whole UI dynamic.
         #region Fields
         private readonly IDialogService _dialogService;
 
@@ -61,6 +59,23 @@ namespace JumpchainCharacterBuilder.ViewModel
             ResizeAllowed = AppSettings.CanResizeWindow;
 
             _dialogService = dialogService;
+        }
+
+        #endregion
+
+        #region Methods
+        private string LoadTheme()
+        {
+            string output = CfgAccess.ReadSingleSetting("Theme");
+
+            if (output != "Error")
+            {
+                return output;
+            }
+            else
+            {
+                return "Light";
+            }
         }
 
         #endregion

@@ -8,75 +8,63 @@
         xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModel:JumpRandomizerListViewModel, IsDesignTimeCreatable=True}"
-        Title="Jump Randomizer Lists" Height="500" Width="400"
+        Title="Jump Randomizer Lists" Height="600" Width="400"
         Cursor="" 
         WindowStyle="SingleBorderWindow" 
-        Background="White" 
+        Background="{DynamicResource Background}" 
+        Foreground="{DynamicResource TextColor}"
         FontFamily="Lato" 
         FontSize="12" 
         ResizeMode="NoResize"
         Closing="Window_Closing"
         ShowInTaskbar="False">
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="0.7*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Grid.ColumnSpan="2">
-            <Button Content="New List" Command="{Binding NewRandomizerListCommand}" Style="{DynamicResource DataGridButton}"/>
-            <ComboBox ItemsSource="{Binding InactiveJumpRandomizerLists}"
-                      DisplayMemberPath="ListName"
-                      SelectedItem="{Binding ActiveJumpRandomizerList}"
-                      Margin="10,0,0,0" Width="120"
-                      VerticalContentAlignment="Center"/>
-            <Button Content="Delete List" Command="{Binding DeleteRandomizerListCommand}" Style="{DynamicResource DataGridButton}" 
-                    Margin="10,0,0,0"/>
+        <StackPanel Grid.ColumnSpan="2" Margin="0,4,0,0">
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <Button Content="New List" Command="{Binding NewRandomizerListCommand}" Style="{DynamicResource DataGridButton}"/>
+                <ComboBox ItemsSource="{Binding InactiveJumpRandomizerLists}"
+                          DisplayMemberPath="ListName"
+                          SelectedItem="{Binding ActiveJumpRandomizerList}"
+                          Margin="12,0,0,0" Width="120"/>
+                <Button Content="Delete List" Command="{Binding DeleteRandomizerListCommand}" Style="{DynamicResource DataGridButton}" 
+                        Margin="12,0,0,0"/>
 
-            <Button Content="Sort List" Command="{Binding SortJumpListCommand}" Style="{DynamicResource DataGridButton}" 
-                    Margin="10,0,0,0"/>
+                <Button Content="Sort List" Command="{Binding SortJumpListCommand}" Style="{DynamicResource DataGridButton}" 
+                        Margin="12,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Margin="0,8,0,0">
+                <TextBlock Text="List Name" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding ActiveJumpRandomizerList.ListName, ValidatesOnNotifyDataErrors=True}" Width="120"
+                         Margin="4,0,0,0"/>
+            </StackPanel>
+
+            <StackPanel Margin="0,8,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                <TextBlock Text="Search list" VerticalAlignment="Center"/>
+                <TextBox Text="{Binding JumpRandomizerFilter, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="240"
+                         Margin="4,0,0,0"/>
+            </StackPanel>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Grid.ColumnSpan="2" Grid.Row="1">
-            <TextBlock Text="List Name"/>
-            <TextBox Text="{Binding ActiveJumpRandomizerList.ListName, ValidatesOnNotifyDataErrors=True}" Width="120"
-                     Margin="5,0,0,0"/>
-        </StackPanel>
-
-        <StackPanel Grid.Row="2">
-            <ListView ItemsSource="{Binding JumpRandomizerEntryList}"
-                      SelectedItem="{Binding JumpRandomizerEntrySelection}"
-                      VerticalAlignment="Top"
-                      Height="350">
-                <ListView.View>
-                    <GridView>
-                        <GridView.Columns>
-                            <GridViewColumn Header="Jump name" Width="70"
-                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                        DisplayMemberBinding="{Binding JumpName}"/>
-                            <GridViewColumn Header="Weight" Width="50"
-                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                        DisplayMemberBinding="{Binding JumpWeight}"/>
-                            <GridViewColumn Header="Link" Width="75"
-                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                        DisplayMemberBinding="{Binding JumpUri}"/>
-                        </GridView.Columns>
-                    </GridView>
-                </ListView.View>
-            </ListView>
-
-            <Grid Margin="0,10,0,0">
+        <DockPanel Grid.Row="1">
+            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -84,36 +72,52 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Content="New Entry" 
-                    Command="{Binding NewRandomizerEntryCommand}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Style="{DynamicResource DataGridButton}"/>
+                        Command="{Binding NewRandomizerEntryCommand}"
+                        Style="{DynamicResource DataGridButton}"/>
 
                 <Button Content="Delete Entry"
-                    Command="{Binding DeleteRandomizerEntryCommand}"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Style="{DynamicResource DataGridButton}"
-                    Grid.Column="2"/>
+                        Command="{Binding DeleteRandomizerEntryCommand}"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"/>
             </Grid>
-        </StackPanel>
 
-        <GroupBox Header="Entry details" Grid.Row="2" Grid.Column="1">
+
+            <ListView ItemsSource="{Binding JumpRandomizerFilteredList}"
+                      SelectedItem="{Binding JumpRandomizerEntrySelection}"
+                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="Jump name" Width="Auto"
+                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                        DisplayMemberBinding="{Binding JumpName}"/>
+                            <GridViewColumn Header="Weight" Width="45"
+                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                        DisplayMemberBinding="{Binding JumpWeight}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+
+        <GroupBox Header="Entry details" Grid.Row="1" Grid.Column="1">
             <GroupBox.Visibility>
                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                     <Binding Path="JumpRandomizerEntrySelection"/>
                     <Binding Path="JumpRandomizerEntryList"/>
                 </MultiBinding>
             </GroupBox.Visibility>
-            <StackPanel Margin="5,3,5,0">
+            
+            <StackPanel>
                 <TextBlock Text="Jump name"/>
                 <TextBox Text="{Binding JumpSelectionName, ValidatesOnNotifyDataErrors=True}" Width="120"/>
 
-                <TextBlock Text="Jump weight" Margin="0,15,0,0"/>
+                <TextBlock Text="Jump weight" Margin="0,16,0,0"/>
                 <TextBlock Text="Determines how likely a Jump is to be selected" TextWrapping="Wrap"/>
                 <TextBox Text="{Binding JumpRandomizerEntrySelection.JumpWeight, ValidatesOnNotifyDataErrors=True}" Width="40"/>
 
-                <TextBlock Text="Jump Document Link (Optional)" Margin="0,15,0,0"/>
+                <TextBlock Text="Jump Document Link (Optional)" Margin="0,16,0,0" TextWrapping="Wrap"/>
                 <TextBox Text="{Binding JumpSelectionUri, ValidatesOnNotifyDataErrors=True}" Width="120"/>
             </StackPanel>
         </GroupBox>

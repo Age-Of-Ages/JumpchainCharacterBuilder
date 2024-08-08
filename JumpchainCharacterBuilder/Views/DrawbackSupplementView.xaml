@@ -8,48 +8,51 @@
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:DrawbackSupplementViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="757" d:DesignWidth="950">
+             d:DesignHeight="714" d:DesignWidth="928">
 
-    <Grid Background="#FFD8D8D8">
+    <Grid>
         <TabControl>
             <TabItem Header="Details">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="0.5*"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" MaxHeight="200"/>
+                        <RowDefinition Height="2*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <GroupBox Header="Point Totals">
                         <Grid>
-                            <StackPanel Margin="5,3,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel>
                                 <TextBlock Text="Choice Points"/>
                                 <TextBox Text="{Binding CPGained, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
-                                         HorizontalAlignment="Left"
                                          IsReadOnly="True"/>
 
-                                <TextBlock Text="Companion Points" Margin="0,15,0,0"/>
+                                <TextBlock Text="Companion Points" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding CPCompanionGained, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
-                                         HorizontalAlignment="Left"
                                          IsReadOnly="True"/>
+                            </StackPanel>
 
-                                <TextBlock Text="Item Points" Margin="0,15,0,0"/>
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="Item Points"/>
                                 <TextBox Text="{Binding CPItemGained, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
-                                         HorizontalAlignment="Left"
                                          IsReadOnly="True"/>
 
-                                <TextBlock Text="Warehouse Points" Margin="0,15,0,0"/>
+                                <TextBlock Text="Warehouse Points" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding WPGained, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
-                                         HorizontalAlignment="Left"
                                          IsReadOnly="True"/>
                             </StackPanel>
                         </Grid>
@@ -59,116 +62,121 @@
             <TabItem Header="Mode and Risk Level" Visibility="{Binding UUSupplementSelected, Converter={StaticResource BoolToVis}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*" MaxWidth="500"/>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*" MaxWidth="500"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" MaxHeight="400"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <GroupBox Header="Mode">
-                        <StackPanel Margin="5,3,0,0">
-                            <TextBlock Text="Jumpchain Mode"/>
-                            <TextBox Text="{Binding UUMode, ValidatesOnNotifyDataErrors=True}" Width="150"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" MaxHeight="100"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
 
-                            <TextBlock Text="Mode Description" Margin="0,15,0,0"/>
-                            <TextBox Text="{Binding UUModeDescription, ValidatesOnNotifyDataErrors=True}"
-                                     Width="300"
-                                     Height="200" HorizontalAlignment="Left"
+                            <StackPanel>
+                                <TextBlock Text="Jumpchain Mode"/>
+                                <TextBox Text="{Binding UUMode, ValidatesOnNotifyDataErrors=True}" Width="150"/>
+                            </StackPanel>
+
+                            <DockPanel Grid.Row="1">
+                                <TextBlock Text="Mode Description" DockPanel.Dock="Top"/>
+                                <TextBox Text="{Binding UUModeDescription, ValidatesOnNotifyDataErrors=True}"
+                                     HorizontalAlignment="Stretch"
                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                      Tag="Insert Mode description."/>
-                        </StackPanel>
+                            </DockPanel>
+                        </Grid>
                     </GroupBox>
 
                     <GroupBox Header="Risk Level" Grid.Column="2">
-                        <StackPanel Margin="5,3,0,0">
-                            <TextBlock Text="Jumpchain Risk Level"/>
-                            <TextBox Text="{Binding UURiskLevel, ValidatesOnNotifyDataErrors=True}" Width="150"/>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" MaxHeight="100"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <StackPanel>
+                                <TextBlock Text="Jumpchain Risk Level"/>
+                                <TextBox Text="{Binding UURiskLevel, ValidatesOnNotifyDataErrors=True}" Width="150"/>
+                            </StackPanel>
 
-                            <TextBlock Text="Risk Level Description" Margin="0,15,0,0"/>
-                            <TextBox Text="{Binding UURiskLevelDescription, ValidatesOnNotifyDataErrors=True}"
-                                     Width="300"
-                                     Height="200" HorizontalAlignment="Left"
+                            <DockPanel Grid.Row="1">
+                                <TextBlock Text="Risk Level Description" DockPanel.Dock="Top"/>
+                                <TextBox Text="{Binding UURiskLevelDescription, ValidatesOnNotifyDataErrors=True}"
+                                     HorizontalAlignment="Stretch"
                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                      Tag="Insert Risk Level description."/>
-                        </StackPanel>
+                            </DockPanel>
+                        </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
             <TabItem Header="House Rules">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="1.5*"/>
-                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="*" MaxWidth="400"/>
+                        <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="0.5*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
 
-                    <ListView ItemsSource="{Binding HouseRuleList}"
+                    <DockPanel Margin="4,0,4,0">
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*" MinHeight="12"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Button Content="Move Up" 
+                                    Command="{Binding MoveHouseRuleUpCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="0"
+                                    Grid.Row="2"/>
+
+                            <Button Content="Move Down"
+                                    Command="{Binding MoveHouseRuleDownCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"
+                                    Grid.Row="2"/>
+
+                            <Button Content="New Rule" 
+                                    Command="{Binding NewHouseRuleCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="0"
+                                    Grid.Row="0"/>
+
+                            <Button Content="Delete Rule"
+                                    Command="{Binding DeleteHouseRuleCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"
+                                    Grid.Row="0"/>
+                        </Grid>
+                        
+                        <ListView ItemsSource="{Binding HouseRuleList}"
                               SelectedItem="{Binding HouseRuleSelection}"
                               SelectedIndex="{Binding HouseRuleSelectionIndex}"
-                              Height="400" Width="Auto" HorizontalAlignment="Left" VerticalAlignment="Top">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="236"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding HouseRuleName}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
-
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-
-                        <Button Content="Move Up" 
-                                Command="{Binding MoveHouseRuleUpCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="0"
-                                Grid.Row="0"/>
-
-                        <Button Content="Move Down"
-                                Command="{Binding MoveHouseRuleDownCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Bottom"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="0"
-                                Grid.Row="2"/>
-
-                        <Button Content="New Rule" 
-                                Command="{Binding NewHouseRuleCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"
-                                Grid.Row="0"/>
-
-                        <Button Content="Delete Rule"
-                                Command="{Binding DeleteHouseRuleCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"
-                                Grid.Row="2"/>
-                    </Grid>
+                              Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Name" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding HouseRuleName}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
 
                     <GroupBox Header="House Rule details" Grid.Column="1">
                         <GroupBox.Visibility>
@@ -178,19 +186,27 @@
                             </MultiBinding>
                         </GroupBox.Visibility>
                         <Grid>
-                            <StackPanel Margin="5,3,0,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" MaxWidth="700"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" MaxHeight="75"/>
+                                <RowDefinition Height="2*" MaxHeight="300"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding HouseRuleName, ValidatesOnNotifyDataErrors=True}"
-                                         Width="100"
-                                         HorizontalAlignment="Left"/>
+                                         Width="100"/>
+                            </StackPanel>
 
-                                <TextBlock Text="Description" Margin="0,15,0,0"/>
+                            <DockPanel Grid.Row="1">
+                                <TextBlock Text="Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding HouseRuleDescription, ValidatesOnNotifyDataErrors=True}"
-                                         Width="300"
-                                         Height="200" HorizontalAlignment="Left"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert House Rule description."/>
-                            </StackPanel>
+                            </DockPanel>
                         </Grid>
                     </GroupBox>
                 </Grid>
@@ -198,155 +214,150 @@
             <TabItem Header="Drawbacks">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MaxWidth="500"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="4*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
 
-                    <ListView ItemsSource="{Binding DrawbackList}"
-                              SelectedItem="{Binding DrawbackSelection}"
-                              SelectedIndex="{Binding DrawbackSelectionIndex}"
-                              Height="570" Width="450" HorizontalAlignment="Left" VerticalAlignment="Top"
-                              Grid.ColumnSpan="2">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="128"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="CP" Width="64"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding ValueChoicePoints}"/>
-                                    <GridViewColumn Header="CP (Items)" Width="64"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding ValueItemPoints}"/>
-                                    <GridViewColumn Header="CP (Companions)" Width="128"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding ValueCompanionPoints}"/>
-                                    <GridViewColumn Header="WP" Width="64"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding ValueWarehousePoints}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DockPanel Margin="4,0,4,0">
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*" MinHeight="12"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="1">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                            <Button Content="Move Up" 
+                                    Command="{Binding MoveDrawbackUpCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="0"
+                                    Grid.Row="2"/>
 
-                        <Button Content="Move Up" 
-                                Command="{Binding MoveDrawbackUpCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="0"
-                                Grid.Row="0"/>
+                            <Button Content="Move Down"
+                                    Command="{Binding MoveDrawbackDownCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"
+                                    Grid.Row="2"/>
 
-                        <Button Content="Move Down"
-                                Command="{Binding MoveDrawbackDownCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Bottom"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="0"
-                                Grid.Row="2"/>
+                            <Button Content="New" 
+                                    Command="{Binding NewDrawbackCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="0"
+                                    Grid.Row="0"/>
 
-                        <Button Content="New" 
-                                Command="{Binding NewDrawbackCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"
-                                Grid.Row="0"/>
+                            <Button Content="Delete"
+                                    Command="{Binding DeleteDrawbackCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"
+                                    Grid.Row="0"/>
+                        </Grid>
 
-                        <Button Content="Delete"
-                                Command="{Binding DeleteDrawbackCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Bottom"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"
-                                Grid.Row="2"/>
-                    </Grid>
+                        <ListView ItemsSource="{Binding DrawbackList}"
+                                  SelectedItem="{Binding DrawbackSelection}"
+                                  SelectedIndex="{Binding DrawbackSelectionIndex}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Name" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="CP" Width="50"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding ValueChoicePoints}"/>
+                                        <GridViewColumn Header="CP (Items)" Width="60"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding ValueItemPoints}"/>
+                                        <GridViewColumn Header="CP (Companions)" Width="100"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding ValueCompanionPoints}"/>
+                                        <GridViewColumn Header="WP" Width="50"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding ValueWarehousePoints}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
 
-                    <GroupBox Header="Drawback details" Grid.Column="2" Grid.ColumnSpan="2">
+                    <GroupBox Header="Drawback details" Grid.Column="1">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="DrawbackSelection"/>
                                 <Binding Path="DrawbackList"/>
                             </MultiBinding>
                         </GroupBox.Visibility>
-                        <Grid>
+                        <Grid Margin="8,0,0,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*" MaxWidth="200"/>
+                                <ColumnDefinition Width="*" MaxWidth="250"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="1.1*" MaxHeight="100"/>
+                                <RowDefinition Height="3*" MaxHeight="300"/>
+                                <RowDefinition Height="2*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding DrawbackName, ValidatesOnNotifyDataErrors=True}"
-                                         Width="100"
-                                         HorizontalAlignment="Left"/>
+                                         Width="100"/>
+                            </StackPanel>
 
-                                <TextBlock Text="Value" Margin="0,15,0,0"/>
-                                <TextBlock Text="Choice Points" Margin="0,5,0,0"/>
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="Value"/>
+                                <TextBlock Text="Choice Points" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding DrawbackSelection.ValueChoicePoints, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
 
-                                <TextBlock Text="Choice Points (Items)" Margin="0,15,0,0"/>
+                                <TextBlock Text="Choice Points (Items)" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding DrawbackSelection.ValueItemPoints, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
 
-                                <TextBlock Text="Companion Points" Margin="0,15,0,0"/>
+                                <TextBlock Text="Companion Points" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding DrawbackSelection.ValueCompanionPoints, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
 
-                                <TextBlock Text="Warehouse Points" Margin="0,15,0,0"/>
+                                <TextBlock Text="Warehouse Points" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding DrawbackSelection.ValueWarehousePoints, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Column="1" Margin="0,3,0,0">
+                            <StackPanel Grid.Column="1">
                                 <TextBlock Text="Revoke at Jump #"/>
                                 <TextBox Text="{Binding DrawbackSelection.Revoke}"
                                          Width="40"/>
 
-                                <TextBlock Text="Suspend during Jump #" Margin="0,10,0,0"/>
+                                <CheckBox IsChecked="{Binding DrawbackSelection.ApplyGauntlet}"
+                                          Margin="0,12,0,0">
+                                    <TextBlock Text="Applies during Gauntlets (if allowed)" TextWrapping="Wrap"/>
+                                </CheckBox>
+                            </StackPanel>
+
+                            <DockPanel Grid.Column="1" Grid.Row="1">
+                                <TextBlock Text="Suspend during Jump #" DockPanel.Dock="Top"/>
                                 <DataGrid ItemsSource="{Binding DrawbackSuspendList}" 
-                                          Height="200">
+                                          HorizontalAlignment="Stretch">
                                     <DataGrid.Columns>
                                         <DataGridTextColumn Header="Jump name" Binding="{Binding JumpName}" Width="2*" IsReadOnly="True"/>
                                         <DataGridCheckBoxColumn Header="Suspend" Binding="{Binding Suspended}" Width="*"/>
                                     </DataGrid.Columns>
                                 </DataGrid>
+                            </DockPanel>
 
-                                <CheckBox Content="Applies during Gauntlets (if allowed)" IsChecked="{Binding DrawbackSelection.ApplyGauntlet}" Margin="0,5,0,0"/>
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="5,3,0,0">
-                                <TextBlock Text="Description"/>
+                            <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
+                                <TextBlock Text="Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding DrawbackDescription, ValidatesOnNotifyDataErrors=True}"
-                                         Width="400"
-                                         Height="200"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Drawback description."/>
-                            </StackPanel>
+                            </DockPanel>
                         </Grid>
                     </GroupBox>
                 </Grid>

@@ -2,10 +2,7 @@
 
 namespace JumpchainCharacterBuilder.Messages
 {
-    public class SettingsChangedMessage : ValueChangedMessage<bool>
+    public class SettingsChangedMessage(bool value) : ValueChangedMessage<bool>(value)
     {
-        public SettingsChangedMessage(bool value) : base(value)
-        {
-        }
     }
 }

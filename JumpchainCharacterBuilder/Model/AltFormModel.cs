@@ -28,10 +28,16 @@ namespace JumpchainCharacterBuilder.Model
         private string _altFormDescription = "";
 
         /// <summary>
-        /// Represents the list of this Alt-Form's strengths and weaknesses.
+        /// Represents the Alt-form's strengths.
         /// </summary>
         [ObservableProperty]
-        private List<AltFormTraitModel> _strengthWeaknessRow = new();
+        private string _strengths = "";
+
+        /// <summary>
+        /// Represents the Alt-form's weaknesses.
+        /// </summary>
+        [ObservableProperty]
+        private string _weaknesses = "";
 
         public AltForm()
         {

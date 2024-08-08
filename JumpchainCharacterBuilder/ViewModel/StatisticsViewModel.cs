@@ -25,10 +25,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private AppSettingsModel _appSettings = new();
         [ObservableProperty]
-        private ObservableCollection<Jump> _jumpList = new();
+        private ObservableCollection<Jump> _jumpList = [];
 
         [ObservableProperty]
-        private ObservableCollection<Character> _characterList = new();
+        private ObservableCollection<Character> _characterList = [];
         [ObservableProperty]
         private Character _characterSelection = new();
         [ObservableProperty]
@@ -97,14 +97,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _characterOneUps = 0;
 
         [ObservableProperty]
-        private ObservableCollection<PurchaseCategoryStatistics> _overallPerkCategoryTotals = new();
+        private ObservableCollection<PurchaseCategoryStatistics> _overallPerkCategoryTotals = [];
         [ObservableProperty]
-        private ObservableCollection<PurchaseCategoryStatistics> _overallItemCategoryTotals = new();
+        private ObservableCollection<PurchaseCategoryStatistics> _overallItemCategoryTotals = [];
 
         [ObservableProperty]
-        private ObservableCollection<PurchaseCategoryStatistics> _characterPerkCategoryTotals = new();
+        private ObservableCollection<PurchaseCategoryStatistics> _characterPerkCategoryTotals = [];
         [ObservableProperty]
-        private ObservableCollection<PurchaseCategoryStatistics> _characterItemCategoryTotals = new();
+        private ObservableCollection<PurchaseCategoryStatistics> _characterItemCategoryTotals = [];
 
         #endregion
 
@@ -390,7 +390,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                         characterPerks[purchase.Category].Total++;
                     }
 
-                    if (purchase.Attributes.Any())
+                    if (purchase.Attributes.Count != 0)
                     {
                         foreach (PurchaseAttribute attribute in purchase.Attributes)
                         {
@@ -456,7 +456,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                         overallPerks[purchase.Category].Total++;
                     }
 
-                    if (purchase.Attributes.Any())
+                    if (purchase.Attributes.Count != 0)
                     {
                         foreach (PurchaseAttribute attribute in purchase.Attributes)
                         {
@@ -521,7 +521,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                     characterPerks[purchase.Category].Total++;
                 }
 
-                if (purchase.Attributes.Any())
+                if (purchase.Attributes.Count != 0)
                 {
                     foreach (PurchaseAttribute attribute in purchase.Attributes)
                     {

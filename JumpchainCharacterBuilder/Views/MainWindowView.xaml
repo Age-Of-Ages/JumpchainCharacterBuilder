@@ -9,55 +9,58 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModel:MainWindowViewModel, IsDesignTimeCreatable=True}"
         Title="Jumpchain Character Builder" 
-        Height="auto" 
-        Width="auto" 
+        Height="800" 
+        MinHeight="700"
+        Width="950" 
+        MinWidth="750"
         Cursor="" 
         WindowStyle="SingleBorderWindow" 
-        Background="#FFD8D8D8" 
+        Background="{DynamicResource Background}" 
         FontFamily="Lato" 
-        FontSize="12" 
+        FontSize="12"
+        Foreground="{DynamicResource TextColor}"
         ResizeMode="{Binding ResizeAllowed, Converter={StaticResource BoolToResize}}" 
-        SizeToContent="WidthAndHeight"
         Closing="Window_Closing">
-
+    
     <Window.InputBindings>
         <KeyBinding Command="{Binding SaveHotkeyCommand}"
                     Key="S" Modifiers="Ctrl"/>
         <KeyBinding Command="{Binding OpenHotkeyCommand}"
                     Key="O" Modifiers="Ctrl"/>
     </Window.InputBindings>
+    
+    <Grid>
+        <DockPanel>
+            <local:TopMenuView DockPanel.Dock="Top"/>
 
-    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid Height="800" Width="950">
-            <DockPanel>
-                <local:TopMenuView DockPanel.Dock="Top"/>
-                <TabControl Margin="0,5,0,0">
-                    <TabItem Header="Jumpchain Overview">
+            <Grid>
+                <TabControl TabStripPlacement="Top">
+                    <TabItem Style="{DynamicResource MainTabItem}" Header="Jumpchain Overview">
                         <local:JumpchainOverviewView/>
                     </TabItem>
-                    <TabItem Header="Cosmic Passport">
+                    <TabItem Style="{DynamicResource MainTabItem}" Header="Cosmic Passport">
                         <local:CosmicPassportView/>
                     </TabItem>
-                    <TabItem Header="Cosmic Warehouse">
+                    <TabItem Style="{DynamicResource MainTabItem}" Header="Cosmic Warehouse">
                         <local:CosmicWarehouseView/>
                     </TabItem>
-                    <TabItem Header="Cosmic Locker">
+                    <TabItem Style="{DynamicResource MainTabItem}" Header="Cosmic Locker">
                         <local:CosmicLockerView/>
                     </TabItem>
-                    <TabItem Header="Drawback Supplement">
+                    <TabItem Style="{DynamicResource MainTabItem}" Header="Drawback Supplement">
                         <local:DrawbackSupplementView/>
                     </TabItem>
-                    <TabItem Header="Export">
+                    <TabItem Style="{DynamicResource MainTabItem}" Header="Export">
                         <local:ExportView/>
                     </TabItem>
-                    <TabItem Header="Statistics">
+                    <TabItem Style="{DynamicResource MainTabItem}" Header="Statistics">
                         <local:StatisticsView/>
                     </TabItem>
-                    <TabItem Header="Jumpchain Options">
+                    <TabItem Style="{DynamicResource MainTabItem}" Header="Jumpchain Options">
                         <local:JumpchainOptionsView/>
                     </TabItem>
                 </TabControl>
-            </DockPanel>
-        </Grid>
-    </ScrollViewer>
+            </Grid>
+        </DockPanel>
+    </Grid>
 </Window>

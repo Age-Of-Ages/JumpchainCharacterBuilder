@@ -49,12 +49,12 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the list of Drawback Supplement selections.
         /// </summary>
         [ObservableProperty]
-        private List<DrawbackSupplementPurchase> _purchases = new();
+        private List<DrawbackSupplementPurchase> _purchases = [];
 
         /// <summary>
         /// Represents the list of House Rules.
         /// </summary>
         [ObservableProperty]
-        private List<HouseRuleModel> _houseRules = new();
+        private List<HouseRuleModel> _houseRules = [];
     }
 }

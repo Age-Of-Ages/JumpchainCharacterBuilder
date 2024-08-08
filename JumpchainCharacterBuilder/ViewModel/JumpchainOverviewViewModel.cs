@@ -13,6 +13,7 @@ using System.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
+    // TODO - Creating a new Import Option doesn't automatically populate Companion list.
     public partial class JumpchainOverviewViewModel : ViewModelBase
     {
         #region Fields
@@ -51,7 +52,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _jumpSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<Jump> _jumpList = new();
+        private ObservableCollection<Jump> _jumpList = [];
 
         [ObservableProperty]
         private int _buildTabIndex = 0;
@@ -61,7 +62,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _characterSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<Character> _characterList = new();
+        private ObservableCollection<Character> _characterList = [];
 
         [ObservableProperty]
         private int _budget = 1000;
@@ -71,7 +72,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _originSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<OriginDetail> _originList = new();
+        private ObservableCollection<OriginDetail> _originList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteOriginCommand))]
         private OriginDetail _originEditSelection = new();
@@ -99,14 +100,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _miscOriginDetailIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<OriginDetail> _miscOriginDetailList = new();
+        private ObservableCollection<OriginDetail> _miscOriginDetailList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteTypeCommand))]
         private string _miscOriginTypeSelection = "";
         [ObservableProperty]
         private int _miscOriginTypeSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<string> _miscOriginTypeList = new();
+        private ObservableCollection<string> _miscOriginTypeList = [];
 
         [ObservableProperty]
         private bool _originDiscountsSelection = false;
@@ -130,7 +131,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _currencySelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<Currency> _currencyList = new();
+        private ObservableCollection<Currency> _currencyList = [];
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePurchaseTypeCommand))]
@@ -142,7 +143,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _purchaseTypeSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<PurchaseType> _purchaseTypeList = new();
+        private ObservableCollection<PurchaseType> _purchaseTypeList = [];
         [ObservableProperty]
         private Currency _purchaseTypeCurrencySelection = new();
         [ObservableProperty]
@@ -158,9 +159,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _purchaseTypeStipend = 0;
 
         [ObservableProperty]
-        private ObservableCollection<ObservableCollection<Purchase>> _purchaseList = new();
+        private ObservableCollection<ObservableCollection<Purchase>> _purchaseList = [];
         [ObservableProperty]
-        private ObservableCollection<Purchase> _currentLoadedPurchaseList = new();
+        private ObservableCollection<Purchase> _currentLoadedPurchaseList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePurchaseCommand))]
         [NotifyCanExecuteChangedFor(nameof(DeletePurchaseTraitCommand))]
@@ -181,7 +182,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteCurrencyCommand))]
         private string _categorySelection = "";
         [ObservableProperty]
-        private ObservableCollection<string> _categoryList = new();
+        private ObservableCollection<string> _categoryList = [];
         [ObservableProperty]
         private int _purchaseOriginIndex = 0;
 
@@ -205,7 +206,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _drawbackSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<Drawback> _drawbackList = new();
+        private ObservableCollection<Drawback> _drawbackList = [];
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteScenarioCommand))]
@@ -227,7 +228,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _scenarioSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<Drawback> _scenarioList = new();
+        private ObservableCollection<Drawback> _scenarioList = [];
 
         [ObservableProperty]
         private CompanionPurchase _importOptionSelection = new();
@@ -242,14 +243,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _importOptionSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<CompanionPurchase> _importOptionList = new();
+        private ObservableCollection<CompanionPurchase> _importOptionList = [];
 
         [ObservableProperty]
         private CompanionImportDetailClass _importCharacterSelection = new();
         [ObservableProperty]
         private int _importCharacterIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<CompanionImportDetailClass> _importCharacterList = new();
+        private ObservableCollection<CompanionImportDetailClass> _importCharacterList = [];
 
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -312,23 +313,23 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _currentBankTotal = 0;
 
         [ObservableProperty]
-        private ObservableCollection<PurchaseAttribute> _purchaseAttributeList = new();
+        private ObservableCollection<PurchaseAttribute> _purchaseAttributeList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePurchaseTraitCommand))]
         private PurchaseAttribute _purchaseAttributeSelection = new();
         [ObservableProperty]
         private int _purchaseAttributeIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<string> _availableAttributeTypeList = new();
+        private ObservableCollection<string> _availableAttributeTypeList = [];
         [ObservableProperty]
-        private ObservableCollection<string> _availableAttributeCategoryList = new();
+        private ObservableCollection<string> _availableAttributeCategoryList = [];
         [ObservableProperty]
         private string _attributeTypeSelection = "";
         [ObservableProperty]
         private string _attributeCategorySelection = "";
 
         [ObservableProperty]
-        private ObservableCollection<string> _currentAttributeList = new();
+        private ObservableCollection<string> _currentAttributeList = [];
         [ObservableProperty]
         private string _currentAttributeSelection = "";
 
@@ -1471,11 +1472,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (JumpSelection.Build.Count > CharacterSelectionIndex)
             {
-                ObservableCollection<OriginDetail> origins = new()
-                {
+                ObservableCollection<OriginDetail> origins =
+                [
                     JumpSelection.Build[CharacterSelectionIndex].Location,
                     JumpSelection.Build[CharacterSelectionIndex].Species
-                };
+                ];
 
                 ListValidationClass.CheckMiscOriginCount(JumpSelection, CharacterSelectionIndex);
 
@@ -1542,7 +1543,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             for (int i = 0; i < JumpSelection.PurchaseTypes.Count; i++)
             {
-                PurchaseList.Add(new ObservableCollection<Purchase>());
+                PurchaseList.Add([]);
             }
             foreach (Purchase purchase in JumpSelection.Build[CharacterSelectionIndex].Purchase)
             {
@@ -1583,7 +1584,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             PurchaseName = PurchaseSelection.Name;
             PurchaseDescription = PurchaseSelection.Description;
 
-            if (PurchaseSelection.Attributes.Any())
+            if (PurchaseSelection.Attributes.Count != 0)
             {
                 PurchaseAttributeList.Clear();
 
@@ -1685,10 +1686,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
             else
             {
-                ImportCharacterList = new()
-                {
+                ImportCharacterList =
+                [
                     new("Dummy Entry")
-                };
+                ];
             }
         }
 
@@ -1867,13 +1868,13 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadAttributeTypes()
         {
-            AvailableAttributeTypeList = new()
-            {
+            AvailableAttributeTypeList =
+            [
                 "Attribute",
                 "Skill",
                 "Booster",
                 "Special"
-            };
+            ];
         }
 
         private void ReloadAttributeCategories()

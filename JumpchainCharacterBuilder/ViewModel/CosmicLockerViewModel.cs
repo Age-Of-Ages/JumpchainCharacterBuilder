@@ -26,25 +26,25 @@ namespace JumpchainCharacterBuilder.ViewModel
         private AppSettingsModel _appSettings = new();
 
         [ObservableProperty]
-        private ObservableCollection<Character> _characterList = new();
+        private ObservableCollection<Character> _characterList = [];
         [ObservableProperty]
         private Character _characterSelection = new();
         [ObservableProperty]
         private int _characterSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<string> _itemTabList = new();
+        private ObservableCollection<string> _itemTabList = [];
         [ObservableProperty]
         private string _itemTabName = "";
         [ObservableProperty]
         private int _itemTabIndex = 0;
 
         [ObservableProperty]
-        private Dictionary<Character, Dictionary<string, List<Purchase>>> _inactiveItemLists = new();
+        private Dictionary<Character, Dictionary<string, List<Purchase>>> _inactiveItemLists = [];
         [ObservableProperty]
-        private Dictionary<string, List<Purchase>> _activeItemLists = new();
+        private Dictionary<string, List<Purchase>> _activeItemLists = [];
         [ObservableProperty]
-        private ObservableCollection<Purchase> _currentItemList = new();
+        private ObservableCollection<Purchase> _currentItemList = [];
         [ObservableProperty]
         private Purchase _itemSelection = new();
         [ObservableProperty]
@@ -167,14 +167,14 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             foreach (Character character in LoadedSave.CharacterList)
             {
-                InactiveItemLists.Add(character, new());
+                InactiveItemLists.Add(character, []);
             }
 
             foreach (string category in LoadedSave.ItemCategoryList)
             {
                 foreach (KeyValuePair<Character, Dictionary<string, List<Purchase>>> list in InactiveItemLists)
                 {
-                    list.Value.Add(category, new());
+                    list.Value.Add(category, []);
                 }
 
                 ItemTabList.Add(category);
@@ -206,9 +206,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadActiveItemLists()
         {
-            if (InactiveItemLists.ContainsKey(CharacterSelection))
+            if (InactiveItemLists.TryGetValue(CharacterSelection, out Dictionary<string, List<Purchase>>? value))
             {
-                ActiveItemLists = InactiveItemLists[CharacterSelection];
+                ActiveItemLists = value;
 
                 ItemTabIndex = 0;
 
@@ -218,9 +218,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCurrentItemList()
         {
-            if (!string.IsNullOrWhiteSpace(ItemTabName) && InactiveItemLists[CharacterSelection].ContainsKey(ItemTabName))
+            if (!string.IsNullOrWhiteSpace(ItemTabName) && InactiveItemLists[CharacterSelection].TryGetValue(ItemTabName, out List<Purchase>? value))
             {
-                CurrentItemList = new(InactiveItemLists[CharacterSelection][ItemTabName]);
+                CurrentItemList = new(value);
             }
         }
 

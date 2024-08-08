@@ -76,7 +76,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the names of the purchases that contribute to this attribute.
         /// </summary>
         [ObservableProperty]
-        private List<AttributeSource> _sourceList = new();
+        private List<AttributeSource> _sourceList = [];
 
         public ProfileAttribute()
         {

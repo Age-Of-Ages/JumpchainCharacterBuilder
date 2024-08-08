@@ -8,10 +8,42 @@
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:JumpchainOptionsViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="757" d:DesignWidth="950">
+             d:DesignHeight="714" d:DesignWidth="928"
+             SizeChanged="UserControl_SizeChanged">
     
-    <Grid Background="#FFD8D8D8">
-        <TabControl x:Name="OptionsTabMenu">
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="SplitTabState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="splitTabControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="combinedTabControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="CombinedTabState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="splitTabControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="combinedTabControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+        
+        
+        <TabControl x:Name="splitTabControl" Visibility="Visible">
             <TabItem Header="Main Options">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -20,205 +52,217 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1.5*"/>
-                        <RowDefinition Height="1.5*"/>
+                        <RowDefinition Height="*" MaxHeight="260"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
                     <GroupBox Header="Jump Defaults">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                            <StackPanel Margin="5,0,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Starting Choice Points"/>
                                 <TextBox Text="{Binding DefaultBudget, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40" HorizontalAlignment="Left"/>
+                                         Width="40"/>
 
-                                <TextBlock Text="Item Stipend" Margin="0,15,0,0"/>
+                                <TextBlock Text="Item Stipend" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding ItemStipend, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40" HorizontalAlignment="Left"/>
+                                         Width="40"/>
 
                                 <CheckBox Content="Origin Auto-discounts" IsChecked="{Binding OriginDiscounts, ValidatesOnNotifyDataErrors=True}"
-                                          Margin="0,25,0,0"/>
+                                          Margin="0,12,0,0"/>
+                            </StackPanel>
 
-                                <TextBlock Text="Perk Freebie threshold" Margin="0,15,0,0"/>
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="Perk Freebie threshold" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding PerkFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40" HorizontalAlignment="Left"/>
+                                         Width="40"/>
 
-                                <TextBlock Text="Item Freebie threshold" Margin="0,15,0,0"/>
+                                <TextBlock Text="Item Freebie threshold" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding ItemFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40" HorizontalAlignment="Left"/>
+                                         Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="Supplement Selection"
-                              Grid.Column="1">
+                    <GroupBox Header="Supplement Selection" Grid.Column="1">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Margin="5,0,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <StackPanel>
                                 <TextBlock Text="Cosmic Warehouse"/>
                                 <ComboBox ItemsSource="{Binding CosmicWarehouseList}"
                                           DisplayMemberPath="Key"
                                           SelectedValuePath="Value"
+                                          Width="140" HorizontalAlignment="Left"
                                           SelectedValue="{Binding CosmicWarehouseSelection}"/>
-
-                                <TextBlock Text="Body Mod" Margin="0,20,0,0"/>
+                            </StackPanel>
+                            
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="Body Mod"/>
                                 <ComboBox ItemsSource="{Binding BodyModList}"
                                           DisplayMemberPath="Key"
                                           SelectedValuePath="Value"
+                                          Width="140" HorizontalAlignment="Left"
                                           SelectedValue="{Binding BodyModSelection}"/>
+                            </StackPanel>
 
-                                <TextBlock Text="Drawback Supplement" Margin="0,20,0,0"/>
+                            <StackPanel Grid.Row="2">
+                                <TextBlock Text="Drawback Supplement"/>
                                 <ComboBox ItemsSource="{Binding DrawbackSupplementList}"
-                                          DisplayMemberPath="Key"
-                                          SelectedValuePath="Value"
-                                          SelectedValue="{Binding DrawbackSupplementSelection}"/>
+                                      DisplayMemberPath="Key"
+                                      SelectedValuePath="Value"
+                                      Width="140" HorizontalAlignment="Left"
+                                      SelectedValue="{Binding DrawbackSupplementSelection}"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
                     
-                    <GroupBox Header="Point Bank"
-                              Grid.Row="1">
+                    <GroupBox Header="Point Bank" Grid.Row="1">
                         <Grid>
-                            <StackPanel Margin="5,0,0,0">
-                                <CheckBox Content="Enable point bank mechanic" IsChecked="{Binding AllowPointBank}" Margin="0,5,0,0"/>
-                                <CheckBox Content="Allow Gauntlets to use point bank" IsChecked="{Binding AllowGauntletBank}" Margin="0,5,0,0"/>
-                                <CheckBox Content="Allow Supplemented Jumps to share points" IsChecked="{Binding AllowSupplementedJumpBankSharing}" Margin="0,5,0,0"/>
-                                
-                                <CheckBox Content="Allow Companions to use point bank mechanic" IsChecked="{Binding AllowCompanionsBank}" Margin="0,15,0,0"/>
+                            <StackPanel>
+                                <CheckBox Content="Enable point bank mechanic" IsChecked="{Binding AllowPointBank}"/>
+                                <CheckBox Content="Allow Gauntlets to use point bank" IsChecked="{Binding AllowGauntletBank}" Margin="0,8,0,0"/>
+                                <CheckBox IsChecked="{Binding AllowSupplementedJumpBankSharing}" Margin="0,8,0,0">
+                                    <TextBlock Text="Allow Supplemented Jumps to share points" TextWrapping="Wrap"/>
+                                </CheckBox>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBox Text="{Binding PointBankLimit, ValidatesOnNotifyDataErrors=True}" Width="40" />
-                                    <TextBlock Text="Point bank cap" Margin="5,0,0,0"/>
+                                <CheckBox IsChecked="{Binding AllowCompanionsBank}" Margin="0,16,0,0">
+                                    <TextBlock Text="Allow Companions to use point bank mechanic" TextWrapping="Wrap"/>
+                                </CheckBox>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,24,0,0">
+                                    <TextBox Text="{Binding PointBankLimit, ValidatesOnNotifyDataErrors=True}" Width="40"/>
+                                    <TextBlock Text="Point bank cap" Margin="4,0,0,0"/>
                                 </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Margin="0,15,0,0">
-                                    <TextBox Text="{Binding CompanionBankLimit, ValidatesOnNotifyDataErrors=True}" Width="40" />
-                                    <TextBlock Text="Point bank cap (Companions)" Margin="5,0,0,0"/>
+                                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                                    <TextBox Text="{Binding CompanionBankLimit, ValidatesOnNotifyDataErrors=True}" Width="40"/>
+                                    <TextBlock Text="Point bank cap (Companions)" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="User-defined Perk Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="1">
-                        <Grid>
-                            <StackPanel Margin="5,3,5,0">
-                                <ListView ItemsSource="{Binding UserPerkCategories}"
-                                          SelectedIndex="{Binding UserPerkCategoryIndex}"
-                                          Height="300"/>
+                    <GroupBox Header="User-defined Perk Categories" Grid.Row="1" Grid.Column="1">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" MinHeight="12"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                                <StackPanel Margin="0,10,0,0" HorizontalAlignment="Center">
-                                    <TextBlock Text="Category name"/>
-                                    <TextBox Text="{Binding UserPerkCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
-                                </StackPanel>
+                                <Button Content="New" 
+                                        Command="{Binding NewPerkCategoryCommand}"
+                                        Style="{DynamicResource DataGridButton}"/>
 
-                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+                                <Button Content="Delete"
+                                        Command="{Binding DeletePerkCategoryCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"/>
 
-                                    <Button Content="New" 
-                                            Command="{Binding NewPerkCategoryCommand}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
-                                            Style="{DynamicResource DataGridButton}"/>
+                                <Button Content="Move Up" 
+                                        Command="{Binding MovePerkCategoryUpCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Row="2"/>
 
-                                    <Button Content="Delete"
-                                            Command="{Binding DeletePerkCategoryCommand}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Bottom"
-                                            Style="{DynamicResource DataGridButton}"
-                                            Grid.Column="2"/>
-
-                                    <Button Content="Move Up" 
-                                            Command="{Binding MovePerkCategoryUpCommand}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
-                                            Style="{DynamicResource DataGridButton}"
-                                            Grid.Row="2"/>
-
-                                    <Button Content="Move Down"
-                                            Command="{Binding MovePerkCategoryDownCommand}"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Bottom"
-                                            Style="{DynamicResource DataGridButton}"
-                                            Grid.Column="2"
-                                            Grid.Row="2"/>
-                                </Grid>
-
+                                <Button Content="Move Down"
+                                        Command="{Binding MovePerkCategoryDownCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"
+                                        Grid.Row="2"/>
+                            </Grid>
+                            
+                            <StackPanel Margin="0,12,0,0" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                                <TextBlock Text="Category name"/>
+                                <TextBox Text="{Binding UserPerkCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
                             </StackPanel>
-                        </Grid>
+
+                            <ListView ItemsSource="{Binding UserPerkCategories}"
+                                      SelectedIndex="{Binding UserPerkCategoryIndex}"
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.Columns>
+                                            <GridViewColumn Header="Name" Width="Auto"
+                                                            CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                            DisplayMemberBinding="{Binding}"/>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
                     </GroupBox>
-                    
+
                     <GroupBox Header="User-defined Item Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
-                        <Grid>
-                            <StackPanel Margin="5,3,5,0">
-                                <ListView ItemsSource="{Binding UserItemCategories}"
-                                          SelectedIndex="{Binding UserItemCategoryIndex}"
-                                          Height="300"/>
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" MinHeight="12"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                                <StackPanel Margin="0,10,0,0" HorizontalAlignment="Center">
-                                    <TextBlock Text="Category name"/>
-                                    <TextBox Text="{Binding UserItemCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
-                                </StackPanel>
+                                <Button Content="New" 
+                                        Command="{Binding NewItemCategoryCommand}"
+                                        Style="{DynamicResource DataGridButton}"/>
 
-                                <Grid Grid.Row="1" Margin="0,10,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="Auto"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
+                                <Button Content="Delete"
+                                        Command="{Binding DeleteItemCategoryCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"/>
 
-                                    <Button Content="New" 
-                                            Command="{Binding NewItemCategoryCommand}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
-                                            Style="{DynamicResource DataGridButton}"/>
+                                <Button Content="Move Up" 
+                                        Command="{Binding MoveItemCategoryUpCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Row="2"/>
 
-                                    <Button Content="Delete"
-                                            Command="{Binding DeleteItemCategoryCommand}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Bottom"
-                                            Style="{DynamicResource DataGridButton}"
-                                            Grid.Column="2"/>
-
-                                    <Button Content="Move Up" 
-                                            Command="{Binding MoveItemCategoryUpCommand}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
-                                            Style="{DynamicResource DataGridButton}"
-                                            Grid.Row="2"/>
-
-                                    <Button Content="Move Down"
-                                            Command="{Binding MoveItemCategoryDownCommand}"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Bottom"
-                                            Style="{DynamicResource DataGridButton}"
-                                            Grid.Column="2"
-                                            Grid.Row="2"/>
-                                </Grid>
+                                <Button Content="Move Down"
+                                        Command="{Binding MoveItemCategoryDownCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"
+                                        Grid.Row="2"/>
+                            </Grid>
+                            
+                            <StackPanel Margin="0,12,0,0" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                                <TextBlock Text="Category name"/>
+                                <TextBox Text="{Binding UserItemCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
                             </StackPanel>
-                        </Grid>
+
+                            <ListView ItemsSource="{Binding UserItemCategories}"
+                                      SelectedIndex="{Binding UserItemCategoryIndex}"
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.Columns>
+                                            <GridViewColumn Header="Name" Width="Auto"
+                                                            CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                            DisplayMemberBinding="{Binding}"/>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
                     </GroupBox>
                 </Grid>
             </TabItem>
@@ -229,31 +273,23 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
 
                     <GroupBox Header="Basic details">
-                        <Grid>
-                            <StackPanel Margin="5,3,0,0">
-                                <TextBlock Text="Starting Budget"/>
-                                <TextBox Text="{Binding GWBudget}"
-                                         Width="40"
-                                         HorizontalAlignment="Left"/>
+                        <StackPanel>
+                            <TextBlock Text="Starting Budget"/>
+                            <TextBox Text="{Binding GWBudget}"
+                                     Width="40"/>
 
-                                <CheckBox Content="Are further purchases allowed?" IsChecked="{Binding GWPurchasesAllowed}"
-                                          Margin="0,15,0,0"/>
+                            <CheckBox Content="Are further purchases allowed?" IsChecked="{Binding GWPurchasesAllowed}"
+                                      Margin="0,16,0,0"/>
 
-                                <TextBlock Text="Supplement taken on Jump #" Margin="0,15,0,0"/>
-                                <TextBox Text="{Binding GWSupplementDelay}"
-                                         Width="40" HorizontalAlignment="Left"/>
-                            </StackPanel>
-                        </Grid>
+                            <TextBlock Text="Supplement taken on Jump #" Margin="0,16,0,0"/>
+                            <TextBox Text="{Binding GWSupplementDelay}"
+                                     Width="40"/>
+                        </StackPanel>
                     </GroupBox>
 
-                    <GroupBox Header="Document Details" Grid.Row="1">
+                    <GroupBox Header="Document Details" Grid.Column="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -261,57 +297,56 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="3*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel Margin="0,0,4,0">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding GenericWarehouseName, ValidatesOnNotifyDataErrors=True}"
-                                         Width="120"/>
+                                         HorizontalAlignment="Stretch"/>
 
-                                <TextBlock Text="Version" Margin="0,10,0,0"/>
+                                <TextBlock Text="Version" Margin="0,16,0,0"/>
                                 <TextBox Text="{Binding GenericWarehouseVersion, ValidatesOnNotifyDataErrors=True}"
-                                         Width="120"/>
+                                         HorizontalAlignment="Stretch"/>
 
                                 
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Margin="0,3,0,0">
+                            <StackPanel Grid.Column="1" Margin="4,0,0,0">
                                 <TextBlock Text="Author"/>
                                 <TextBox Text="{Binding GenericWarehouseAuthor, ValidatesOnNotifyDataErrors=True}"
-                                         Width="120"/>
+                                         HorizontalAlignment="Stretch"/>
 
-                                <TextBlock Text="Source" Margin="0,10,0,0"/>
+                                <TextBlock Text="Source" Margin="0,16,0,0"/>
                                 <TextBox Text="{Binding GenericWarehouseSource, ValidatesOnNotifyDataErrors=True}"
-                                         Width="120"/>
+                                         HorizontalAlignment="Stretch"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                                <TextBlock Text="Description"/>
+                            <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                                <TextBlock Text="Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding GenericWarehouseFullDescription, ValidatesOnNotifyDataErrors=True}"
-                                         Width="300"
-                                         Height="100"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Warehouse description."/>
-                            </StackPanel>
+                            </DockPanel>
                         </Grid>
                     </GroupBox>
 
                     <GroupBox Header="Purchase Details" Visibility="{Binding GWPurchasesAllowed, Converter={StaticResource BoolToVis}}"
-                      Grid.Column="1">
+                              Grid.Column="1">
                         <Grid>
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Per-Jump increase in budget"/>
                                 <TextBox Text="{Binding GWIncrementalBudget}"
-                                         Width="40"
-                                         HorizontalAlignment="Left"/>
+                                         Width="40"/>
 
-                                <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding GWInvestmentAllowed}" Margin="0,15,0,0"/>
+                                <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding GWInvestmentAllowed}" Margin="0,16,0,0"/>
 
-                                <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
+                                <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox Text="{Binding GWInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
-                                             Width="30"/>
-                                    <TextBlock Text=": 1"/>
+                                             Width="40"/>
+                                    <TextBlock Text=": 1" VerticalAlignment="Center" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -321,67 +356,63 @@
             <TabItem Header="Personal Reality Options" Visibility="{Binding PersonalRealitySelected, Converter={StaticResource BoolToVis}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.5*"/>
+                        <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GroupBox Header="Mode Selection">
+                    <GroupBox Header="Mode Selection" Grid.Column="1">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="1.5*"/>
+                                <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
-                            <StackPanel Margin="5,3,0,0" Grid.ColumnSpan="2">
+
+                            <StackPanel>
                                 <TextBlock Text="Mode (Core)"/>
                                 <ComboBox ItemsSource="{Binding PRCoreModeList}"
-                                  DisplayMemberPath="Key"
-                                  SelectedValuePath="Value"
-                                  SelectedValue="{Binding PRCoreModeSelection}"
-                                  Width="100" HorizontalAlignment="Left"/>
-
-                                <CheckBox Content="Patient Jumper Mode" IsChecked="{Binding PRPatientJumper}"
-                                  Margin="0,15,0,0"/>
-                                <CheckBox Content="Count first Jump for Patient Jumper" IsChecked="{Binding PRPatientJumperCountFirstJump}"
-                                  Margin="0,5,0,0"/>
-                            </StackPanel>
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                                <TextBlock Text="Mode Description"/>
-                                <TextBox Text="{Binding PRCoreModeDescription}" HorizontalAlignment="Left"
-                                 Width="300" Height="100" Style="{DynamicResource LargeTextBoxHintTemplate}"
-                                         Tag="Insert Mode description."/>
-                            </StackPanel>
-
-                            <StackPanel Grid.Column="1">
-                                <TextBlock Text="Supplement taken on Jump #"/>
+                                          DisplayMemberPath="Key"
+                                          SelectedValuePath="Value"
+                                          SelectedValue="{Binding PRCoreModeSelection}"
+                                          Width="100" HorizontalAlignment="Left"/>
+                                
+                                <TextBlock Text="Supplement taken on Jump #" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding PRSupplementDelay}"
-                                 Width="40" HorizontalAlignment="Left"/>
+                                         Width="40"/>
                             </StackPanel>
+
+                            <StackPanel Grid.Row="1">
+                                <CheckBox Content="Patient Jumper Mode" IsChecked="{Binding PRPatientJumper}"/>
+                                <CheckBox Content="Count first Jump for Patient Jumper" IsChecked="{Binding PRPatientJumperCountFirstJump}"
+                                          Margin="0,8,0,0"/>
+                            </StackPanel>
+                            
+                            <DockPanel Grid.Row="2">
+                                <TextBlock Text="Mode Description" DockPanel.Dock="Top"/>
+                                <TextBox Text="{Binding PRCoreModeDescription}"
+                                         HorizontalAlignment="Stretch" 
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Mode description."/>
+                            </DockPanel>
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="Investment Options" Grid.Column="1">
-                        <Grid>
-                            <StackPanel Margin="5,3,0,0">
-                                <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding PRInvestmentAllowed}"/>
+                    <GroupBox Header="Investment Options" Grid.Column="1" Grid.Row="1">
+                        <StackPanel>
+                            <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding PRInvestmentAllowed}"/>
 
-                                <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBox Text="{Binding PRInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
-                                     Width="30"/>
-                                    <TextBlock Text=": 1"/>
-                                </StackPanel>
+                            <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBox Text="{Binding PRInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40"/>
+                                <TextBlock Text=": 1" Margin="4,0,0,0" VerticalAlignment="Center"/>
                             </StackPanel>
-                        </Grid>
+                        </StackPanel>
                     </GroupBox>
                 </Grid>
             </TabItem>
@@ -392,27 +423,19 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="2*"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
 
                     <GroupBox Header="Basic details">
-                        <Grid>
-                            <StackPanel Margin="5,3,0,0">
-                                <TextBlock Text="Starting Budget"/>
-                                <TextBox Text="{Binding GBMBudget}"
-                                 Width="40"
-                                 HorizontalAlignment="Left"/>
+                        <StackPanel>
+                            <TextBlock Text="Starting Budget"/>
+                            <TextBox Text="{Binding GBMBudget}"
+                                     Width="40"/>
 
-                                <CheckBox Content="Are further purchases allowed?" IsChecked="{Binding GBMPurchasesAllowed}"
-                                  Margin="0,15,0,0"/>
-                            </StackPanel>
-                        </Grid>
+                            <CheckBox Content="Are further purchases allowed?" IsChecked="{Binding GBMPurchasesAllowed}"
+                                      Margin="0,16,0,0"/>
+                        </StackPanel>
                     </GroupBox>
 
-                    <GroupBox Header="Document Details" Grid.Row="1">
+                    <GroupBox Header="Document Details" Grid.Column="2">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -420,57 +443,56 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="3*"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel Margin="0,0,4,0">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding GenericBodyModName, ValidatesOnNotifyDataErrors=True}"
-                                         Width="120"/>
+                                         HorizontalAlignment="Stretch"/>
 
-                                <TextBlock Text="Version" Margin="0,10,0,0"/>
+                                <TextBlock Text="Version" Margin="0,16,0,0"/>
                                 <TextBox Text="{Binding GenericBodyModVersion, ValidatesOnNotifyDataErrors=True}"
-                                         Width="120"/>
+                                         HorizontalAlignment="Stretch"/>
 
 
                             </StackPanel>
-                            <StackPanel Grid.Column="1" Margin="0,3,0,0">
+                            <StackPanel Grid.Column="1" Margin="4,0,0,0">
                                 <TextBlock Text="Author"/>
                                 <TextBox Text="{Binding GenericBodyModAuthor, ValidatesOnNotifyDataErrors=True}"
-                                         Width="120"/>
+                                         HorizontalAlignment="Stretch"/>
 
-                                <TextBlock Text="Source" Margin="0,10,0,0"/>
+                                <TextBlock Text="Source" Margin="0,16,0,0"/>
                                 <TextBox Text="{Binding GenericBodyModSource, ValidatesOnNotifyDataErrors=True}"
-                                         Width="120"/>
+                                         HorizontalAlignment="Stretch"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
-                                <TextBlock Text="Description"/>
+                            <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                                <TextBlock Text="Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding GenericBodyModFullDescription, ValidatesOnNotifyDataErrors=True}"
-                                     Width="300"
-                                     Height="100"
-                                     Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         HorizontalAlignment="Stretch"
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Body Mod description."/>
-                            </StackPanel>
+                            </DockPanel>
                         </Grid>
                     </GroupBox>
                     
                     <GroupBox Header="Purchase Details" Visibility="{Binding GBMPurchasesAllowed, Converter={StaticResource BoolToVis}}"
-                      Grid.Column="1">
+                              Grid.Column="1">
                         <Grid>
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Per-Jump increase in budget"/>
                                 <TextBox Text="{Binding GBMIncrementalBudget}"
-                                 Width="40"
-                                 HorizontalAlignment="Left"/>
+                                         Width="40"/>
 
-                                <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding GBMInvestmentAllowed}" Margin="0,15,0,0"/>
+                                <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding GBMInvestmentAllowed}" Margin="0,16,0,0"/>
 
-                                <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
+                                <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox Text="{Binding GBMInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
-                                     Width="30"/>
-                                    <TextBlock Text=": 1"/>
+                                             Width="40"/>
+                                    <TextBlock Text=": 1" Margin="4,0,0,0" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -490,21 +512,20 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GroupBox Header="Basic details">
+                    <GroupBox Header="Basic details" Grid.Column="1">
                         <Grid>
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Starting Budget"/>
                                 <TextBox Text="{Binding SBBodyModBudget}"
-                                 Width="40"
-                                 HorizontalAlignment="Left"/>
+                                         Width="40"/>
 
-                                <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding SBBodyModInvestmentAllowed}" Margin="0,15,0,0"/>
+                                <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding SBBodyModInvestmentAllowed}" Margin="0,16,0,0"/>
 
-                                <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
+                                <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox Text="{Binding SBBodyModInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
-                                     Width="30"/>
-                                    <TextBlock Text=": 1"/>
+                                             Width="40"/>
+                                    <TextBlock Text=": 1" VerticalAlignment="Center" Margin="4,0,0,0"/>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
@@ -514,8 +535,8 @@
             <TabItem Header="Essential Body Mod Options" Visibility="{Binding EssentialBodyModSelected, Converter={StaticResource BoolToVis}}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="1.2*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="2*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -524,7 +545,7 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GroupBox Header="Basic details">
+                    <GroupBox Header="Basic details" Grid.Column="1">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -532,9 +553,10 @@
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
-                            
-                            <StackPanel Margin="5,3,0,0">
+
+                            <StackPanel>
                                 <TextBlock Text="Starting Mode"/>
                                 <ComboBox ItemsSource="{Binding EBMStartingModeList}"
                                           DisplayMemberPath="Key"
@@ -542,21 +564,25 @@
                                           SelectedValue="{Binding EBMStartingModeSelection}"
                                           Width="100" HorizontalAlignment="Left"/>
 
-                                <TextBlock Text="Essence Mode" Margin="0,15,0,0"/>
+                                <TextBlock Text="Essence Mode" Margin="0,8,0,0"/>
                                 <ComboBox ItemsSource="{Binding EBMEssenceModeList}"
                                           DisplayMemberPath="Key"
                                           SelectedValuePath="Value"
                                           SelectedValue="{Binding EBMEssenceModeSelection}"
                                           Width="100" HorizontalAlignment="Left"/>
+                            </StackPanel>
 
-                                <TextBlock Text="Advancement Mode" Margin="0,15,0,0"/>
+                            <StackPanel Grid.Row="1" Margin="0,8,0,0">
+                                <TextBlock Text="Advancement Mode"/>
                                 <ComboBox ItemsSource="{Binding EBMAdvancementModeList}"
                                           DisplayMemberPath="Key"
                                           SelectedValuePath="Value"
                                           SelectedValue="{Binding EBMAdvancementModeSelection}"
                                           Width="100" HorizontalAlignment="Left"/>
+                            </StackPanel>
 
-                                <TextBlock Text="EP Access Mode" Margin="0,15,0,0"/>
+                            <StackPanel Grid.Row="1" Grid.Column="1" Margin="0,8,0,0">
+                                <TextBlock Text="EP Access Mode"/>
                                 <ComboBox ItemsSource="{Binding EBMEPAccessModeList}"
                                           DisplayMemberPath="Key"
                                           SelectedValuePath="Value"
@@ -564,66 +590,85 @@
                                           Width="100" HorizontalAlignment="Left"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Column="1" Margin="0,3,0,0">
+                            <StackPanel Grid.Column="1">
                                 <CheckBox Content="Unlockable (Essence modifier)" IsChecked="{Binding EBMUnlockableEssenceModifier}"
                                           Visibility="{Binding EBMUnlockableEssenceModifierAvailable, Converter={StaticResource BoolToVis}}"/>
 
-                                <TextBlock Text="EP Access Modifier" Margin="0,15,0,0" 
-                                           Visibility="{Binding EBMEPAccessModifiersAvailable, Converter={StaticResource BoolToVis}}"/>
-                                <ComboBox ItemsSource="{Binding EBMEPAccessModifierList}"
-                                          DisplayMemberPath="Key"
-                                          SelectedValuePath="Value"
-                                          SelectedValue="{Binding EBMEPAccessModifier}"
-                                          Width="100" HorizontalAlignment="Left"
-                                          Visibility="{Binding EBMEPAccessModifiersAvailable, Converter={StaticResource BoolToVis}}"/>
-
                                 <CheckBox Content="Training Allowance" IsChecked="{Binding EBMTrainingAllowance}"
                                           Visibility="{Binding EBMTrainingAllowanceAvailable, Converter={StaticResource BoolToVis}}"
-                                          Margin="0,10,0,0"/>
+                                          Margin="0,12,0,0"/>
                                 <CheckBox Content="Tempered By Suffering" IsChecked="{Binding EBMTemperedBySuffering}"
                                           Visibility="{Binding EBMTemperedBySufferingAvailable, Converter={StaticResource BoolToVis}}"
-                                          Margin="0,10,0,0"/>
+                                          Margin="0,12,0,0"/>
 
                                 <CheckBox Content="Limit per-Jump Investment" IsChecked="{Binding EBMLimitInvestment}"
                                           Visibility="{Binding EBMInvestmentAllowed, Converter={StaticResource BoolToVis}}"
-                                          Margin="0,10,0,0"/>
+                                          Margin="0,12,0,0"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Grid.Row="1" Header="Unbalanced Variant Modes">
-                        <StackPanel Margin="5,3,0,0">
-                            <TextBlock Text="Mode Selection"/>
-                            <ComboBox ItemsSource="{Binding EBMUnbalancedVariantModeList}"
-                                      DisplayMemberPath="Key"
-                                      SelectedValuePath="Value"
-                                      SelectedValue="{Binding EBMUnbalancedMode}"
-                                      Width="120" HorizontalAlignment="Left"/>
+                    <GroupBox Grid.Row="1" Grid.Column="1" Header="Unbalanced Variant Modes">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
 
-                            <TextBlock Text="Mode Description" Margin="0,15,0,0"/>
-                            <TextBox Text="{Binding EBMUnbalancedModeDescription, ValidatesOnNotifyDataErrors=True}"
-                                     Width="300"
-                                     Height="100"
-                                     Style="{DynamicResource LargeTextBoxHintTemplate}"
-                                     Tag="Insert Mode description."/>
-                        </StackPanel>
+                            <StackPanel>
+                                <TextBlock Text="Mode Selection"/>
+                                <ComboBox ItemsSource="{Binding EBMUnbalancedVariantModeList}"
+                                          DisplayMemberPath="Key"
+                                          SelectedValuePath="Value"
+                                          SelectedValue="{Binding EBMUnbalancedMode}"
+                                          Width="120" HorizontalAlignment="Left"/>
+                            </StackPanel>
+
+                            <DockPanel Grid.Row="1">
+                                <TextBlock Text="Mode Description" DockPanel.Dock="Top"/>
+                                <TextBox Text="{Binding EBMUnbalancedModeDescription, ValidatesOnNotifyDataErrors=True}"
+                                         HorizontalAlignment="Stretch"
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Mode description."/>
+                            </DockPanel>
+                        </Grid>
                     </GroupBox>
 
-                    <GroupBox Grid.Row="2" Header="Limiters">
-                        <StackPanel Margin="5,3,0,0">
-                            <TextBlock Text="Limiter Selection"/>
-                            <ComboBox ItemsSource="{Binding EBMLimiterList}"
-                                      DisplayMemberPath="Key"
-                                      SelectedValuePath="Value"
-                                      SelectedValue="{Binding EBMLimiter}"
-                                      Width="120" HorizontalAlignment="Left"/>
+                    <GroupBox Grid.Row="2" Grid.Column="1" Header="Limiters">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
 
-                            <TextBlock Text="Limiter Description" Margin="0,15,0,0"/>
-                            <TextBox Text="{Binding EBMLimiterDescription, ValidatesOnNotifyDataErrors=True}"
-                                     Width="300"
-                                     Height="100"
-                                     Style="{DynamicResource LargeTextBoxHintTemplate}"
-                                     Tag="Insert Limiter description."/>
+                            <StackPanel>
+                                <TextBlock Text="Limiter Selection"/>
+                                <ComboBox ItemsSource="{Binding EBMLimiterList}"
+                                          DisplayMemberPath="Key"
+                                          SelectedValuePath="Value"
+                                          SelectedValue="{Binding EBMLimiter}"
+                                          Width="120" HorizontalAlignment="Left"/>
+                            </StackPanel>
+
+                            <DockPanel Grid.Row="1">
+                                <TextBlock Text="Limiter Description" DockPanel.Dock="Top"/>
+                                <TextBox Text="{Binding EBMLimiterDescription, ValidatesOnNotifyDataErrors=True}"
+                                         HorizontalAlignment="Stretch"
+                                         Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                         Tag="Insert Limiter description."/>
+                            </DockPanel>
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="EP Access details" Grid.Column="2" Visibility="{Binding EBMEPAccessModifiersAvailable, Converter={StaticResource BoolToVis}}">
+                        <StackPanel>
+                            <TextBlock Text="EP Access Modifier"/>
+                            <ComboBox ItemsSource="{Binding EBMEPAccessModifierList}"
+                                  DisplayMemberPath="Key"
+                                  SelectedValuePath="Value"
+                                  SelectedValue="{Binding EBMEPAccessModifier}"
+                                  Width="100" HorizontalAlignment="Left"/>
                         </StackPanel>
                     </GroupBox>
                 </Grid>
@@ -641,34 +686,745 @@
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <GroupBox Header="Gauntlet Settings" Visibility="{Binding GenericDrawbackSupplementSelected, Converter={StaticResource BoolToVis}}">
+                    <GroupBox Header="Gauntlet Settings" Grid.Column="1" 
+                              Visibility="{Binding GenericDrawbackSupplementSelected, Converter={StaticResource BoolToVis}}">
+                        <StackPanel>
+                            <CheckBox IsChecked="{Binding GenericDrawbackGauntletPoints}">
+                                <TextBlock Text="Do selected Drawbacks apply during Gauntlets?" TextWrapping="Wrap"/>
+                            </CheckBox>
+                            <CheckBox IsChecked="{Binding GenericDrawbackGauntletHalved}"
+                                      Margin="0,16,0,0">
+                                <TextBlock Text="Halve value of Drawbacks during Gauntlets" TextWrapping="Wrap"/>
+                            </CheckBox>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <GroupBox Header="Gauntlet Settings" Grid.Column="1" 
+                              Visibility="{Binding UDSSelected, Converter={StaticResource BoolToVis}}">
+                        <StackPanel>
+                            <CheckBox IsChecked="{Binding UDSGauntletPoints}">
+                                <TextBlock Text="Do selected Drawbacks apply during Gauntlets?" TextWrapping="Wrap"/>
+                            </CheckBox>
+                            <CheckBox IsChecked="{Binding UDSGauntletHalved}"
+                                      Margin="0,16,0,0">
+                                <TextBlock Text="Halve value of Drawbacks during Gauntlets" TextWrapping="Wrap"/>
+                            </CheckBox>
+                        </StackPanel>
+                    </GroupBox>
+                    
+                    <GroupBox Header="Gauntlet Settings" Grid.Column="1" 
+                              Visibility="{Binding UUSelected, Converter={StaticResource BoolToVis}}">
+                        <StackPanel>
+                            <CheckBox IsChecked="{Binding UUGauntletPoints}">
+                                <TextBlock Text="Do selected Drawbacks apply during Gauntlets?" TextWrapping="Wrap"/>
+                            </CheckBox>
+                            <CheckBox IsChecked="{Binding UUGauntletHalved}"
+                                      Margin="0,16,0,0">
+                                <TextBlock Text="Halve value of Drawbacks during Gauntlets" TextWrapping="Wrap"/>
+                            </CheckBox>
+                        </StackPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+
+        <TabControl x:Name="combinedTabControl" Visibility="Collapsed">
+            <TabItem Header="Main Options">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" MaxHeight="260"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Header="Jump Defaults">
                         <Grid>
-                            <StackPanel Margin="5,3,0,0">
-                                <CheckBox Content="Do selected Drawbacks apply during Gauntlets?" IsChecked="{Binding GenericDrawbackGauntletPoints}" 
-                                          Margin="0,15,0,0"/>
-                                <CheckBox Content="Halve value of Drawbacks during Gauntlets" IsChecked="{Binding GenericDrawbackGauntletHalved}"
-                                          Margin="0,15,0,0"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
+                                <TextBlock Text="Starting Choice Points"/>
+                                <TextBox Text="{Binding DefaultBudget, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40"/>
+
+                                <TextBlock Text="Item Stipend" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding ItemStipend, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40"/>
+
+                                <CheckBox Content="Origin Auto-discounts" IsChecked="{Binding OriginDiscounts, ValidatesOnNotifyDataErrors=True}"
+                                          Margin="0,12,0,0"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="Perk Freebie threshold" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding PerkFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40"/>
+
+                                <TextBlock Text="Item Freebie threshold" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding ItemFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
+                                         Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Gauntlet Settings" Visibility="{Binding UDSSelected, Converter={StaticResource BoolToVis}}">
+
+                    <GroupBox Header="Supplement Selection" Grid.Column="1">
                         <Grid>
-                            <StackPanel Margin="5,3,0,0">
-                                <CheckBox Content="Do selected Drawbacks apply during Gauntlets?" IsChecked="{Binding UDSGauntletPoints}" 
-                                          Margin="0,15,0,0"/>
-                                <CheckBox Content="Halve value of Drawbacks during Gauntlets" IsChecked="{Binding UDSGauntletHalved}"
-                                          Margin="0,15,0,0"/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <StackPanel>
+                                <TextBlock Text="Cosmic Warehouse"/>
+                                <ComboBox ItemsSource="{Binding CosmicWarehouseList}"
+                                          DisplayMemberPath="Key"
+                                          SelectedValuePath="Value"
+                                          Width="140" HorizontalAlignment="Left"
+                                          SelectedValue="{Binding CosmicWarehouseSelection}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="Body Mod"/>
+                                <ComboBox ItemsSource="{Binding BodyModList}"
+                                          DisplayMemberPath="Key"
+                                          SelectedValuePath="Value"
+                                          Width="140" HorizontalAlignment="Left"
+                                          SelectedValue="{Binding BodyModSelection}"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Row="2">
+                                <TextBlock Text="Drawback Supplement"/>
+                                <ComboBox ItemsSource="{Binding DrawbackSupplementList}"
+                                      DisplayMemberPath="Key"
+                                      SelectedValuePath="Value"
+                                      Width="140" HorizontalAlignment="Left"
+                                      SelectedValue="{Binding DrawbackSupplementSelection}"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
-                    <GroupBox Header="Gauntlet Settings" Visibility="{Binding UUSelected, Converter={StaticResource BoolToVis}}">
+
+                    <GroupBox Header="Point Bank" Grid.Row="1">
                         <Grid>
-                            <StackPanel Margin="5,3,0,0">
-                                <CheckBox Content="Do selected Drawbacks apply during Gauntlets?" IsChecked="{Binding UUGauntletPoints}" 
-                                          Margin="0,15,0,0"/>
-                                <CheckBox Content="Halve value of Drawbacks during Gauntlets" IsChecked="{Binding UUGauntletHalved}"
-                                          Margin="0,15,0,0"/>
+                            <StackPanel>
+                                <CheckBox Content="Enable point bank mechanic" IsChecked="{Binding AllowPointBank}"/>
+                                <CheckBox Content="Allow Gauntlets to use point bank" IsChecked="{Binding AllowGauntletBank}" Margin="0,8,0,0"/>
+                                <CheckBox IsChecked="{Binding AllowSupplementedJumpBankSharing}" Margin="0,8,0,0">
+                                    <TextBlock Text="Allow Supplemented Jumps to share points" TextWrapping="Wrap"/>
+                                </CheckBox>
+
+                                <CheckBox IsChecked="{Binding AllowCompanionsBank}" Margin="0,16,0,0">
+                                    <TextBlock Text="Allow Companions to use point bank mechanic" TextWrapping="Wrap"/>
+                                </CheckBox>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,24,0,0">
+                                    <TextBox Text="{Binding PointBankLimit, ValidatesOnNotifyDataErrors=True}" Width="40"/>
+                                    <TextBlock Text="Point bank cap" Margin="4,0,0,0"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,12,0,0">
+                                    <TextBox Text="{Binding CompanionBankLimit, ValidatesOnNotifyDataErrors=True}" Width="40"/>
+                                    <TextBlock Text="Point bank cap (Companions)" Margin="4,0,0,0"/>
+                                </StackPanel>
                             </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="User-defined Perk Categories" Grid.Row="1" Grid.Column="1">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" MinHeight="12"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Content="New" 
+                                        Command="{Binding NewPerkCategoryCommand}"
+                                        Style="{DynamicResource DataGridButton}"/>
+
+                                <Button Content="Delete"
+                                        Command="{Binding DeletePerkCategoryCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"/>
+
+                                <Button Content="Move Up" 
+                                        Command="{Binding MovePerkCategoryUpCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Row="2"/>
+
+                                <Button Content="Move Down"
+                                        Command="{Binding MovePerkCategoryDownCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"
+                                        Grid.Row="2"/>
+                            </Grid>
+
+                            <StackPanel Margin="0,12,0,0" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                                <TextBlock Text="Category name"/>
+                                <TextBox Text="{Binding UserPerkCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                            </StackPanel>
+
+                            <ListView ItemsSource="{Binding UserPerkCategories}"
+                                      SelectedIndex="{Binding UserPerkCategoryIndex}"
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.Columns>
+                                            <GridViewColumn Header="Name" Width="Auto"
+                                                            CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                            DisplayMemberBinding="{Binding}"/>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
+                    </GroupBox>
+
+                    <GroupBox Header="User-defined Item Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*" MinHeight="12"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+
+                                <Button Content="New" 
+                                        Command="{Binding NewItemCategoryCommand}"
+                                        Style="{DynamicResource DataGridButton}"/>
+
+                                <Button Content="Delete"
+                                        Command="{Binding DeleteItemCategoryCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"/>
+
+                                <Button Content="Move Up" 
+                                        Command="{Binding MoveItemCategoryUpCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Row="2"/>
+
+                                <Button Content="Move Down"
+                                        Command="{Binding MoveItemCategoryDownCommand}"
+                                        Style="{DynamicResource DataGridButton}"
+                                        Grid.Column="2"
+                                        Grid.Row="2"/>
+                            </Grid>
+
+                            <StackPanel Margin="0,12,0,0" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
+                                <TextBlock Text="Category name"/>
+                                <TextBox Text="{Binding UserItemCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                            </StackPanel>
+
+                            <ListView ItemsSource="{Binding UserItemCategories}"
+                                      SelectedIndex="{Binding UserItemCategoryIndex}"
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                <ListView.View>
+                                    <GridView>
+                                        <GridView.Columns>
+                                            <GridViewColumn Header="Name" Width="Auto"
+                                                            CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                            DisplayMemberBinding="{Binding}"/>
+                                        </GridView.Columns>
+                                    </GridView>
+                                </ListView.View>
+                            </ListView>
+                        </DockPanel>
+                    </GroupBox>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Supplement Options">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Header="Generic Warehouse Options" 
+                              Visibility="{Binding GenericWarehouseSelected, Converter={StaticResource BoolToVis}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <GroupBox Header="Basic details">
+                                <StackPanel>
+                                    <TextBlock Text="Starting Budget"/>
+                                    <TextBox Text="{Binding GWBudget}"
+                                             Width="40"/>
+
+                                    <CheckBox Content="Are further purchases allowed?" IsChecked="{Binding GWPurchasesAllowed}"
+                                              Margin="0,16,0,0"/>
+
+                                    <TextBlock Text="Supplement taken on Jump #" Margin="0,16,0,0"/>
+                                    <TextBox Text="{Binding GWSupplementDelay}"
+                                             Width="40"/>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Document Details" Grid.Column="2">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="3*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Margin="0,0,4,0">
+                                        <TextBlock Text="Name"/>
+                                        <TextBox Text="{Binding GenericWarehouseName, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"/>
+
+                                        <TextBlock Text="Version" Margin="0,16,0,0"/>
+                                        <TextBox Text="{Binding GenericWarehouseVersion, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"/>
+
+
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="4,0,0,0">
+                                        <TextBlock Text="Author"/>
+                                        <TextBox Text="{Binding GenericWarehouseAuthor, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"/>
+
+                                        <TextBlock Text="Source" Margin="0,16,0,0"/>
+                                        <TextBox Text="{Binding GenericWarehouseSource, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"/>
+                                    </StackPanel>
+
+                                    <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                                        <TextBlock Text="Description" DockPanel.Dock="Top"/>
+                                        <TextBox Text="{Binding GenericWarehouseFullDescription, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"
+                                                 Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                                 Tag="Insert Warehouse description."/>
+                                    </DockPanel>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Header="Purchase Details" Visibility="{Binding GWPurchasesAllowed, Converter={StaticResource BoolToVis}}"
+                                      Grid.Column="1">
+                                <Grid>
+                                    <StackPanel>
+                                        <TextBlock Text="Per-Jump increase in budget"/>
+                                        <TextBox Text="{Binding GWIncrementalBudget}"
+                                                 Width="40"/>
+
+                                        <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding GWInvestmentAllowed}" Margin="0,16,0,0"/>
+
+                                        <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Text="{Binding GWInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
+                                                     Width="40"/>
+                                            <TextBlock Text=": 1" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Personal Reality Options" Visibility="{Binding PersonalRealitySelected, Converter={StaticResource BoolToVis}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox Header="Mode Selection" Grid.Column="1">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="2*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel>
+                                        <TextBlock Text="Mode (Core)"/>
+                                        <ComboBox ItemsSource="{Binding PRCoreModeList}"
+                                                  DisplayMemberPath="Key"
+                                                  SelectedValuePath="Value"
+                                                  SelectedValue="{Binding PRCoreModeSelection}"
+                                                  Width="100" HorizontalAlignment="Left"/>
+
+                                        <TextBlock Text="Supplement taken on Jump #" Margin="0,8,0,0"/>
+                                        <TextBox Text="{Binding PRSupplementDelay}"
+                                                 Width="40"/>
+                                    </StackPanel>
+
+                                    <StackPanel Grid.Row="1">
+                                        <CheckBox Content="Patient Jumper Mode" IsChecked="{Binding PRPatientJumper}"/>
+                                        <CheckBox Content="Count first Jump for Patient Jumper" IsChecked="{Binding PRPatientJumperCountFirstJump}"
+                                                  Margin="0,8,0,0"/>
+                                    </StackPanel>
+
+                                    <DockPanel Grid.Row="2">
+                                        <TextBlock Text="Mode Description" DockPanel.Dock="Top"/>
+                                        <TextBox Text="{Binding PRCoreModeDescription}"
+                                                 HorizontalAlignment="Stretch" 
+                                                 Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                                 Tag="Insert Mode description."/>
+                                    </DockPanel>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Header="Investment Options" Grid.Column="1" Grid.Row="1">
+                                <StackPanel>
+                                    <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding PRInvestmentAllowed}"/>
+
+                                    <TextBlock Text="Rate of CP to WP" Margin="0,15,0,0"/>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBox Text="{Binding PRInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
+                                                 Width="40"/>
+                                        <TextBlock Text=": 1" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Generic Body Mod Options" Grid.Column="1" Visibility="{Binding GenericBodyModSelected, Converter={StaticResource BoolToVis}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <GroupBox Header="Basic details">
+                                <StackPanel>
+                                    <TextBlock Text="Starting Budget"/>
+                                    <TextBox Text="{Binding GBMBudget}"
+                                             Width="40"/>
+
+                                    <CheckBox Content="Are further purchases allowed?" IsChecked="{Binding GBMPurchasesAllowed}"
+                                              Margin="0,16,0,0"/>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Document Details" Grid.Column="2">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="2*"/>
+                                        <RowDefinition Height="3*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Margin="0,0,4,0">
+                                        <TextBlock Text="Name"/>
+                                        <TextBox Text="{Binding GenericBodyModName, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"/>
+
+                                        <TextBlock Text="Version" Margin="0,16,0,0"/>
+                                        <TextBox Text="{Binding GenericBodyModVersion, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"/>
+
+
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Margin="4,0,0,0">
+                                        <TextBlock Text="Author"/>
+                                        <TextBox Text="{Binding GenericBodyModAuthor, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"/>
+
+                                        <TextBlock Text="Source" Margin="0,16,0,0"/>
+                                        <TextBox Text="{Binding GenericBodyModSource, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"/>
+                                    </StackPanel>
+
+                                    <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                                        <TextBlock Text="Description" DockPanel.Dock="Top"/>
+                                        <TextBox Text="{Binding GenericBodyModFullDescription, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"
+                                                 Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                                 Tag="Insert Body Mod description."/>
+                                    </DockPanel>
+                                </Grid>
+                            </GroupBox>
+
+                            <GroupBox Header="Purchase Details" Visibility="{Binding GBMPurchasesAllowed, Converter={StaticResource BoolToVis}}"
+                              Grid.Column="1">
+                                <Grid>
+                                    <StackPanel>
+                                        <TextBlock Text="Per-Jump increase in budget"/>
+                                        <TextBox Text="{Binding GBMIncrementalBudget}"
+                                                 Width="40"/>
+
+                                        <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding GBMInvestmentAllowed}" Margin="0,16,0,0"/>
+
+                                        <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Text="{Binding GBMInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
+                                                     Width="40"/>
+                                            <TextBlock Text=": 1" Margin="4,0,0,0" VerticalAlignment="Center"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="SB Body Mod Options" Grid.Column="1" 
+                              Visibility="{Binding SBBodyModSelected, Converter={StaticResource BoolToVis}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox Header="Basic details" Grid.Column="1">
+                                <Grid>
+                                    <StackPanel>
+                                        <TextBlock Text="Starting Budget"/>
+                                        <TextBox Text="{Binding SBBodyModBudget}"
+                                                 Width="40"/>
+
+                                        <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding SBBodyModInvestmentAllowed}" Margin="0,16,0,0"/>
+
+                                        <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBox Text="{Binding SBBodyModInvestmentRatio, ValidatesOnNotifyDataErrors=True}"
+                                                     Width="40"/>
+                                            <TextBlock Text=": 1" VerticalAlignment="Center" Margin="4,0,0,0"/>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </GroupBox>
+                        </Grid>
+                    </GroupBox>
+                    
+                    <GroupBox Header="Essential Body Mod Options" Grid.Column="1" 
+                              Visibility="{Binding EssentialBodyModSelected, Converter={StaticResource BoolToVis}}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox Header="Basic details">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <StackPanel Grid.RowSpan="2">
+                                        <TextBlock Text="Starting Mode"/>
+                                        <ComboBox ItemsSource="{Binding EBMStartingModeList}"
+                                                  DisplayMemberPath="Key"
+                                                  SelectedValuePath="Value"
+                                                  SelectedValue="{Binding EBMStartingModeSelection}"
+                                                  Width="100" HorizontalAlignment="Left"/>
+
+                                        <TextBlock Text="Essence Mode" Margin="0,8,0,0"/>
+                                        <ComboBox ItemsSource="{Binding EBMEssenceModeList}"
+                                                  DisplayMemberPath="Key"
+                                                  SelectedValuePath="Value"
+                                                  SelectedValue="{Binding EBMEssenceModeSelection}"
+                                                  Width="100" HorizontalAlignment="Left"/>
+
+                                        <TextBlock Text="Advancement Mode" Margin="0,8,0,0"/>
+                                        <ComboBox ItemsSource="{Binding EBMAdvancementModeList}"
+                                                  DisplayMemberPath="Key"
+                                                  SelectedValuePath="Value"
+                                                  SelectedValue="{Binding EBMAdvancementModeSelection}"
+                                                  Width="100" HorizontalAlignment="Left"/>
+
+                                        <TextBlock Text="EP Access Mode" Margin="0,8,0,0"/>
+                                        <ComboBox ItemsSource="{Binding EBMEPAccessModeList}"
+                                                  DisplayMemberPath="Key"
+                                                  SelectedValuePath="Value"
+                                                  SelectedValue="{Binding EBMEPAccessModeSelection}"
+                                                  Width="100" HorizontalAlignment="Left"/>
+
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1">
+                                        <CheckBox Content="Unlockable (Essence modifier)" IsChecked="{Binding EBMUnlockableEssenceModifier}"
+                                                  Visibility="{Binding EBMUnlockableEssenceModifierAvailable, Converter={StaticResource BoolToVis}}"/>
+
+                                        <CheckBox Content="Training Allowance" IsChecked="{Binding EBMTrainingAllowance}"
+                                                  Visibility="{Binding EBMTrainingAllowanceAvailable, Converter={StaticResource BoolToVis}}"
+                                                  Margin="0,12,0,0"/>
+                                        <CheckBox Content="Tempered By Suffering" IsChecked="{Binding EBMTemperedBySuffering}"
+                                                  Visibility="{Binding EBMTemperedBySufferingAvailable, Converter={StaticResource BoolToVis}}"
+                                                  Margin="0,12,0,0"/>
+
+                                        <CheckBox Content="Limit per-Jump Investment" IsChecked="{Binding EBMLimitInvestment}"
+                                                  Visibility="{Binding EBMInvestmentAllowed, Converter={StaticResource BoolToVis}}"
+                                                  Margin="0,12,0,0"/>
+                                    </StackPanel>
+
+                                    <GroupBox Header="EP Access details" Grid.Column="1" Grid.Row="1" 
+                                              Visibility="{Binding EBMEPAccessModifiersAvailable, Converter={StaticResource BoolToVis}}">
+                                        <StackPanel>
+                                            <TextBlock Text="EP Access Modifier"/>
+                                            <ComboBox ItemsSource="{Binding EBMEPAccessModifierList}"
+                                                      DisplayMemberPath="Key"
+                                                      SelectedValuePath="Value"
+                                                      SelectedValue="{Binding EBMEPAccessModifier}"
+                                                      Width="100" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+                                    </GroupBox>
+                                </Grid>
+                            </GroupBox>
+
+                            <Grid Grid.Row="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <GroupBox Header="Unbalanced Variant Modes">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="2*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel>
+                                            <TextBlock Text="Mode Selection"/>
+                                            <ComboBox ItemsSource="{Binding EBMUnbalancedVariantModeList}"
+                                                  DisplayMemberPath="Key"
+                                                  SelectedValuePath="Value"
+                                                  SelectedValue="{Binding EBMUnbalancedMode}"
+                                                  Width="120" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+
+                                        <DockPanel Grid.Row="1">
+                                            <TextBlock Text="Mode Description" DockPanel.Dock="Top"/>
+                                            <TextBox Text="{Binding EBMUnbalancedModeDescription, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"
+                                                 Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                                 Tag="Insert Mode description."/>
+                                        </DockPanel>
+                                    </Grid>
+                                </GroupBox>
+
+                                <GroupBox Grid.Column="1" Header="Limiters">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="2*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <StackPanel>
+                                            <TextBlock Text="Limiter Selection"/>
+                                            <ComboBox ItemsSource="{Binding EBMLimiterList}"
+                                                  DisplayMemberPath="Key"
+                                                  SelectedValuePath="Value"
+                                                  SelectedValue="{Binding EBMLimiter}"
+                                                  Width="120" HorizontalAlignment="Left"/>
+                                        </StackPanel>
+
+                                        <DockPanel Grid.Row="1">
+                                            <TextBlock Text="Limiter Description" DockPanel.Dock="Top"/>
+                                            <TextBox Text="{Binding EBMLimiterDescription, ValidatesOnNotifyDataErrors=True}"
+                                                 HorizontalAlignment="Stretch"
+                                                 Style="{DynamicResource LargeTextBoxHintTemplate}"
+                                                 Tag="Insert Limiter description."/>
+                                        </DockPanel>
+                                    </Grid>
+                                </GroupBox>
+                            </Grid>
+                        </Grid>
+                    </GroupBox>
+                    
+                    <GroupBox Header="Drawback Supplement Options" Grid.Column="2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <GroupBox Header="Gauntlet Settings" Grid.Column="1" 
+                                      Visibility="{Binding GenericDrawbackSupplementSelected, Converter={StaticResource BoolToVis}}">
+                                <StackPanel>
+                                    <CheckBox IsChecked="{Binding GenericDrawbackGauntletPoints}">
+                                        <TextBlock Text="Do selected Drawbacks apply during Gauntlets?" TextWrapping="Wrap"/>
+                                    </CheckBox>
+                                    <CheckBox IsChecked="{Binding GenericDrawbackGauntletHalved}"
+                                              Margin="0,16,0,0">
+                                        <TextBlock Text="Halve value of Drawbacks during Gauntlets" TextWrapping="Wrap"/>
+                                    </CheckBox>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Gauntlet Settings" Grid.Column="1" 
+                                      Visibility="{Binding UDSSelected, Converter={StaticResource BoolToVis}}">
+                                <StackPanel>
+                                    <CheckBox IsChecked="{Binding UDSGauntletPoints}">
+                                        <TextBlock Text="Do selected Drawbacks apply during Gauntlets?" TextWrapping="Wrap"/>
+                                    </CheckBox>
+                                    <CheckBox IsChecked="{Binding UDSGauntletHalved}"
+                                              Margin="0,16,0,0">
+                                        <TextBlock Text="Halve value of Drawbacks during Gauntlets" TextWrapping="Wrap"/>
+                                    </CheckBox>
+                                </StackPanel>
+                            </GroupBox>
+
+                            <GroupBox Header="Gauntlet Settings" Grid.Column="1" 
+                                      Visibility="{Binding UUSelected, Converter={StaticResource BoolToVis}}">
+                                <StackPanel>
+                                    <CheckBox IsChecked="{Binding UUGauntletPoints}">
+                                        <TextBlock Text="Do selected Drawbacks apply during Gauntlets?" TextWrapping="Wrap"/>
+                                    </CheckBox>
+                                    <CheckBox IsChecked="{Binding UUGauntletHalved}"
+                                              Margin="0,16,0,0">
+                                        <TextBlock Text="Halve value of Drawbacks during Gauntlets" TextWrapping="Wrap"/>
+                                    </CheckBox>
+                                </StackPanel>
+                            </GroupBox>
                         </Grid>
                     </GroupBox>
                 </Grid>

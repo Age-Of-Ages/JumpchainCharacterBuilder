@@ -12,13 +12,13 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the available Augment levels.
         /// </summary>
         [ObservableProperty]
-        private List<int> _augmentLevelList = new()
-        {
+        private List<int> _augmentLevelList =
+        [
             0,
             1,
             2,
             3
-        };
+        ];
 
         /// <summary>
         /// Represents the chosen level of this Augment.

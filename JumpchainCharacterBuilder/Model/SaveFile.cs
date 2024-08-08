@@ -14,14 +14,14 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         [DataMember]
-        private List<Jump> _jumpList = new();
+        private List<Jump> _jumpList = [];
 
         /// <summary>
         /// A list of all characters stored in this save file, including the Jumper.
         /// </summary>
         [ObservableProperty]
         [DataMember]
-        private List<Character> _characterList = new();
+        private List<Character> _characterList = [];
 
         /// <summary>
         /// Stored user-selected options.
@@ -89,8 +89,8 @@ namespace JumpchainCharacterBuilder.Model
         /// <summary>
         /// Represents the base list of Perk categories.
         /// </summary>
-        public readonly List<string> BasePerkCategoryList = new()
-        {
+        public readonly List<string> BasePerkCategoryList =
+        [
             "Physical",
             "Mental",
             "Social",
@@ -101,13 +101,13 @@ namespace JumpchainCharacterBuilder.Model
             "Crafting",
             "Meta",
             "Other Perk"
-        };
+        ];
 
         /// <summary>
         /// Represents the base list of Item categories.
         /// </summary>
-        public readonly List<string> BaseItemCategoryList = new()
-        {
+        public readonly List<string> BaseItemCategoryList =
+        [
             "Weapons",
             "Armor",
             "Accessories",
@@ -124,29 +124,29 @@ namespace JumpchainCharacterBuilder.Model
             "Creatures",
             "Warehouse Addon",
             "Other Item"
-        };
+        ];
 
         /// <summary>
         /// Represents the users custom Perk categories
         /// </summary>
         [ObservableProperty]
         [DataMember]
-        private List<string> _userPerkCategoryList = new();
+        private List<string> _userPerkCategoryList = [];
 
         /// <summary>
         /// Represents the user's custom Item categories.
         /// </summary>
         [ObservableProperty]
         [DataMember]
-        private List<string> _userItemCategoryList = new();
+        private List<string> _userItemCategoryList = [];
 
         /// <summary>
         /// Represents the compiled list of Perk categories.
         /// </summary>
         [ObservableProperty]
         [DataMember]
-        private List<string> _perkCategoryList = new()
-        {
+        private List<string> _perkCategoryList =
+        [
             "Physical",
             "Mental",
             "Social",
@@ -157,15 +157,15 @@ namespace JumpchainCharacterBuilder.Model
             "Crafting",
             "Meta",
             "Other Perk"
-        };
+        ];
 
         /// <summary>
         /// Represents the compiled list of Item categories.
         /// </summary>
         [ObservableProperty]
         [DataMember]
-        private List<string> _itemCategoryList = new()
-        {
+        private List<string> _itemCategoryList =
+        [
             "Weapons",
             "Armor",
             "Accessories",
@@ -182,7 +182,7 @@ namespace JumpchainCharacterBuilder.Model
             "Creatures",
             "Warehouse Addon",
             "Other Item"
-        };
+        ];
 
         /// <summary>
         /// Represents the program version that this save was made on, for save-updating purposes.

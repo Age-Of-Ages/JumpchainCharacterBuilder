@@ -14,14 +14,14 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the list of available Origin options.
         /// </summary>
         [ObservableProperty]
-        private List<OriginDetail> _originDetails = new();
+        private List<OriginDetail> _originDetails = [];
 
         /// <summary>
         /// Represents the list of available misc. Origin categories.
         /// This does not require Location or Species as those are assumed.
         /// </summary>
         [ObservableProperty]
-        private List<string> _miscOriginCategories = new();
+        private List<string> _miscOriginCategories = [];
 
         /// <summary>
         /// Represents the number of days spent in a Jump.
@@ -90,19 +90,19 @@ namespace JumpchainCharacterBuilder.Model
         /// starting at 1.
         /// </summary>
         [ObservableProperty]
-        private List<JumpBuild> _build = new();
+        private List<JumpBuild> _build = [];
 
         /// <summary>
         /// Represents the name and abbreviation for a specific currency.
         /// </summary>
         [ObservableProperty]
-        private List<Currency> _currencies = new();
+        private List<Currency> _currencies = [];
 
         /// <summary>
         /// Represents the list of all purchase types used for the Jump.
         /// </summary>
         [ObservableProperty]
-        private List<PurchaseType> _purchaseTypes = new();
+        private List<PurchaseType> _purchaseTypes = [];
 
         /// <summary>
         /// Represents whether the Jump is a Gauntlet or not.

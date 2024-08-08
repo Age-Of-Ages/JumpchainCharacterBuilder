@@ -8,81 +8,116 @@
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:StatisticsViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="757" d:DesignWidth="950">
+             d:DesignHeight="714" d:DesignWidth="928"
+             SizeChanged="UserControl_SizeChanged">
 
-    <Grid Background="#FFD8D8D8">
+    <Grid>
+        <VisualStateManager.VisualStateGroups>
+            <VisualStateGroup>
+                <VisualState x:Name="TabState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="statTabControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="statSinglePage"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+
+                <VisualState x:Name="SinglePageState">
+                    <Storyboard>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="statTabControl"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="statSinglePage"
+                                                       Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}"/>
+                        </ObjectAnimationUsingKeyFrames>
+                    </Storyboard>
+                </VisualState>
+            </VisualStateGroup>
+        </VisualStateManager.VisualStateGroups>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Stretch">
-            <ContentControl Template="{DynamicResource CharacterSelector}"/>
+        <DockPanel HorizontalAlignment="Center">
+            <ContentControl Template="{DynamicResource CharacterSelector}" DockPanel.Dock="Left"/>
             <Button Content="Refresh all Statistics" 
-                    Command="{Binding RefreshStatisticsCommand}" Margin="15,10,0,10" VerticalAlignment="Bottom"
+                    Command="{Binding RefreshStatisticsCommand}"
+                    VerticalAlignment="Bottom"
+                    DockPanel.Dock="Right"
+                    Margin="12,0,0,0"
                     Style="{DynamicResource DataGridButton}"/>
-        </StackPanel>
+        </DockPanel>
 
-        <TabControl Grid.Row="1">
+        <TabControl Grid.Row="1" Margin="0,8,0,0" x:Name="statTabControl" Visibility="Visible">
             <TabItem Header="Overall">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" MaxHeight="250"/>
+                        <RowDefinition Height="1.4*"/>
                     </Grid.RowDefinitions>
 
-                    <GroupBox Header="Jump Summary" Margin="5,0,0,0">
+                    <GroupBox Header="Jump Summary">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Jumps completed"/>
-                                <TextBox Text="{Binding JumpsCompleted}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBox Text="{Binding JumpsCompleted}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Gauntlets completed" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding GauntletsCompleted}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Gauntlets completed" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding GauntletsCompleted}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Perks bought" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding OverallPerksBought}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Perks bought" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallPerksBought}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Items bought" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding OverallItemsBought}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
-
-                                <TextBlock Text="Drawbacks taken" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding OverallDrawbacksTaken}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Items bought" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallItemsBought}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
                             </StackPanel>
 
-                            <StackPanel Margin="5,3,0,0" Grid.Column="1">
+                            <StackPanel Grid.Column="1">
                                 <TextBlock Text="Scenarios taken"/>
-                                <TextBox Text="{Binding OverallScenariosTaken}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallScenariosTaken}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Body Mod Addons" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding OverallBodyModAddons}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Body Mod Addons" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallBodyModAddons}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Warehouse Addons" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding OverallWarehouseAddons}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Warehouse Addons" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallWarehouseAddons}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Drawbacks taken" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallDrawbacksTaken}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
                     <GroupBox Header="Per-category Perk totals" Grid.Row="1">
-                        <ListView ItemsSource="{Binding OverallPerkCategoryTotals}" Margin="4">
+                        <ListView ItemsSource="{Binding OverallPerkCategoryTotals}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
-                                        <GridViewColumn Header="Category" Width="145"
+                                        <GridViewColumn Header="Category" Width="Auto"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                         DisplayMemberBinding="{Binding Name}"/>
-                                        <GridViewColumn Header="Perk totals" Width="145"
+                                        <GridViewColumn Header="Perk totals" Width="75"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                         DisplayMemberBinding="{Binding Total}"/>
                                     </GridView.Columns>
@@ -92,14 +127,16 @@
                     </GroupBox>
 
                     <GroupBox Header="Per-category Item totals" Grid.Row="1" Grid.Column="1">
-                        <ListView ItemsSource="{Binding OverallItemCategoryTotals}" Margin="4">
+                        <ListView ItemsSource="{Binding OverallItemCategoryTotals}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
-                                        <GridViewColumn Header="Category" Width="145"
+                                        <GridViewColumn Header="Category" Width="Auto"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                         DisplayMemberBinding="{Binding Name}"/>
-                                        <GridViewColumn Header="Item totals" Width="145"
+                                        <GridViewColumn Header="Item totals" Width="75"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                         DisplayMemberBinding="{Binding Total}"/>
                                     </GridView.Columns>
@@ -108,47 +145,35 @@
                         </ListView>
                     </GroupBox>
 
-                    <GroupBox Header="Point Summary (All currencies)" Grid.Column="2" Margin="0,0,5,0">
+                    <GroupBox Header="Point Summary (All currencies)" Grid.Column="2" Grid.RowSpan="2">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Total points spent"/>
-                                <TextBox Text="{Binding OverallPointsSpent}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Points spent on Perks" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding OverallPerkPointsSpent}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Points spent on Perks" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallPerkPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Points spent on Items" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding OverallItemPointsSpent}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Points spent on Items" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallItemPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Points spent on Companion Imports" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding OverallCompanionPointsSpent}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
-                            </StackPanel>
+                                <TextBlock Text="Points spent on Companion Imports" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallCompanionPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                            <StackPanel Margin="5,3,0,0" Grid.Column="1">
-                                <TextBlock Text="Points earned from Drawbacks"/>
-                                <TextBox Text="{Binding OverallDrawbackPointsEarned}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Points earned from Drawbacks" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallDrawbackPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Points earned from Scenarios" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding OverallScenarioPointsEarned}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Points earned from Scenarios" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallScenarioPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="Misc. Stats" Grid.Row="2" Grid.Column="1">
+                    <GroupBox Header="Misc. Stats" Grid.Column="1">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="1-ups obtained"/>
-                                <TextBox Text="{Binding OverallOneUps}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallOneUps}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -157,87 +182,81 @@
             <TabItem Header="Per-character">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*" MaxHeight="250"/>
+                        <RowDefinition Height="1.4*"/>
                     </Grid.RowDefinitions>
 
-                    <GroupBox Header="Jump Summary" Margin="5,0,0,0">
+                    <GroupBox Header="Jump Summary">
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Perks bought"/>
-                                <TextBox Text="{Binding CharacterPerksBought}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterPerksBought}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Items bought" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding CharacterItemsBought}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Items bought" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding CharacterItemsBought}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Drawbacks taken" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding CharacterDrawbacksTaken}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Drawbacks taken" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding CharacterDrawbacksTaken}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
                             </StackPanel>
 
-                            <StackPanel Margin="5,3,0,0" Grid.Column="1">
+                            <StackPanel Grid.Column="1">
                                 <TextBlock Text="Scenarios taken"/>
-                                <TextBox Text="{Binding CharacterScenariosTaken}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterScenariosTaken}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Body Mod Addons" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding CharacterBodyModAddons}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Body Mod Addons" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding CharacterBodyModAddons}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Warehouse Addons" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding CharacterWarehouseAddons}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Warehouse Addons" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding CharacterWarehouseAddons}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
                     
-                    <GroupBox Header="Point Summary (All currencies)" Grid.Column="2" Margin="0,0,5,0">
+                    <GroupBox Header="Point Summary (All currencies)" Grid.Column="2" Grid.RowSpan="2">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Total points spent"/>
-                                <TextBox Text="{Binding CharacterPointsSpent}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Points spent on Perks" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding CharacterPerkPointsSpent}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Points spent on Perks" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterPerkPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Points spent on Items" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding CharacterItemPointsSpent}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Points spent on Items" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterItemPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Points spent on Companion Imports" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding CharacterCompanionPointsSpent}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
-                            </StackPanel>
+                                <TextBlock Text="Points spent on Companion Imports" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterCompanionPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                            <StackPanel Margin="5,3,0,0" Grid.Column="1">
-                                <TextBlock Text="Points earned from Drawbacks"/>
-                                <TextBox Text="{Binding CharacterDrawbackPointsEarned}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Points earned from Drawbacks" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterDrawbackPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
 
-                                <TextBlock Text="Points earned from Scenarios" Margin="0,5,0,0"/>
-                                <TextBox Text="{Binding CharacterScenarioPointsEarned}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBlock Text="Points earned from Scenarios" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterScenarioPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
                     <GroupBox Header="Per-category Perk totals" Grid.Row="1">
-                        <ListView ItemsSource="{Binding CharacterPerkCategoryTotals}" Margin="4">
+                        <ListView ItemsSource="{Binding CharacterPerkCategoryTotals}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
-                                        <GridViewColumn Header="Category" Width="145"
+                                        <GridViewColumn Header="Category" Width="Auto"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                         DisplayMemberBinding="{Binding Name}"/>
-                                        <GridViewColumn Header="Perk totals" Width="145"
+                                        <GridViewColumn Header="Perk totals" Width="75"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                         DisplayMemberBinding="{Binding Total}"/>
                                     </GridView.Columns>
@@ -247,14 +266,16 @@
                     </GroupBox>
 
                     <GroupBox Header="Per-category Item totals" Grid.Row="1" Grid.Column="1">
-                        <ListView ItemsSource="{Binding CharacterItemCategoryTotals}" Margin="4">
+                        <ListView ItemsSource="{Binding CharacterItemCategoryTotals}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
-                                        <GridViewColumn Header="Category" Width="145"
+                                        <GridViewColumn Header="Category" Width="Auto"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                         DisplayMemberBinding="{Binding Name}"/>
-                                        <GridViewColumn Header="Item totals" Width="145"
+                                        <GridViewColumn Header="Item totals" Width="75"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                         DisplayMemberBinding="{Binding Total}"/>
                                     </GridView.Columns>
@@ -263,21 +284,260 @@
                         </ListView>
                     </GroupBox>
 
-                    <GroupBox Header="Misc. Stats" Grid.Row="2" Grid.Column="1">
+                    <GroupBox Header="Misc. Stats" Grid.Column="1">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="1-ups obtained"/>
-                                <TextBox Text="{Binding CharacterOneUps}" IsReadOnly="True" Margin="0,5,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterOneUps}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
         </TabControl>
+        <Grid Grid.Row="1" Margin="0,16,0,0" Visibility="Collapsed" x:Name="statSinglePage">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Header="Overall">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" MaxHeight="250"/>
+                        <RowDefinition Height="1.4*"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Header="Jump Summary">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel>
+                                <TextBlock Text="Jumps completed"/>
+                                <TextBox Text="{Binding JumpsCompleted}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Gauntlets completed" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding GauntletsCompleted}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Perks bought" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallPerksBought}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Items bought" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallItemsBought}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="Scenarios taken"/>
+                                <TextBox Text="{Binding OverallScenariosTaken}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Body Mod Addons" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallBodyModAddons}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Warehouse Addons" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallWarehouseAddons}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Drawbacks taken" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding OverallDrawbacksTaken}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Per-category Perk totals" Grid.Row="1">
+                        <ListView ItemsSource="{Binding OverallPerkCategoryTotals}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Category" Width="Auto"
+                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Perk totals" Width="145"
+                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                        DisplayMemberBinding="{Binding Total}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </GroupBox>
+
+                    <GroupBox Header="Per-category Item totals" Grid.Row="1" Grid.Column="1">
+                        <ListView ItemsSource="{Binding OverallItemCategoryTotals}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Category" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Item totals" Width="75"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Total}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </GroupBox>
+
+                    <GroupBox Header="Point Summary (All currencies)" Grid.Column="2" Grid.RowSpan="2">
+                        <Grid>
+                            <StackPanel>
+                                <TextBlock Text="Total points spent"/>
+                                <TextBox Text="{Binding OverallPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points spent on Perks" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallPerkPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points spent on Items" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallItemPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points spent on Companion Imports" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallCompanionPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points earned from Drawbacks" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallDrawbackPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points earned from Scenarios" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding OverallScenarioPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Misc. Stats" Grid.Column="1">
+                        <Grid>
+                            <StackPanel>
+                                <TextBlock Text="1-ups obtained"/>
+                                <TextBox Text="{Binding OverallOneUps}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </GroupBox>
+
+            <GroupBox Grid.Column="1" Header="Per-character">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
+                        <ColumnDefinition Width="*" MaxWidth="300"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" MaxHeight="250"/>
+                        <RowDefinition Height="1.4*"/>
+                    </Grid.RowDefinitions>
+
+                    <GroupBox Header="Jump Summary">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <StackPanel>
+                                <TextBlock Text="Perks bought"/>
+                                <TextBox Text="{Binding CharacterPerksBought}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Items bought" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding CharacterItemsBought}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Drawbacks taken" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding CharacterDrawbacksTaken}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBlock Text="Scenarios taken"/>
+                                <TextBox Text="{Binding CharacterScenariosTaken}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Body Mod Addons" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding CharacterBodyModAddons}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Warehouse Addons" Margin="0,4,0,0"/>
+                                <TextBox Text="{Binding CharacterWarehouseAddons}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Point Summary (All currencies)" Grid.Column="2" Grid.RowSpan="2">
+                        <Grid>
+                            <StackPanel>
+                                <TextBlock Text="Total points spent"/>
+                                <TextBox Text="{Binding CharacterPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points spent on Perks" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterPerkPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points spent on Items" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterItemPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points spent on Companion Imports" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterCompanionPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points earned from Drawbacks" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterDrawbackPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+
+                                <TextBlock Text="Points earned from Scenarios" Margin="0,12,0,0"/>
+                                <TextBox Text="{Binding CharacterScenarioPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+
+                    <GroupBox Header="Per-category Perk totals" Grid.Row="1">
+                        <ListView ItemsSource="{Binding CharacterPerkCategoryTotals}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Category" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Perk totals" Width="75"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Total}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </GroupBox>
+
+                    <GroupBox Header="Per-category Item totals" Grid.Row="1" Grid.Column="1">
+                        <ListView ItemsSource="{Binding CharacterItemCategoryTotals}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Category" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Item totals" Width="75"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Total}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </GroupBox>
+
+                    <GroupBox Header="Misc. Stats" Grid.Column="1">
+                        <Grid>
+                            <StackPanel>
+                                <TextBlock Text="1-ups obtained"/>
+                                <TextBox Text="{Binding CharacterOneUps}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                            </StackPanel>
+                        </Grid>
+                    </GroupBox>
+                </Grid>
+            </GroupBox>
+        </Grid>
     </Grid>
 </UserControl>

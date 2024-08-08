@@ -5,14 +5,9 @@ using System.Reflection;
 
 namespace JumpchainCharacterBuilder.Attributes
 {
-    public sealed class UniqueNameAttribute : ValidationAttribute
+    public sealed class UniqueNameAttribute(string propertyName) : ValidationAttribute
     {
-        private readonly string _propertyName;
-
-        public UniqueNameAttribute(string propertyName)
-        {
-            _propertyName = propertyName;
-        }
+        private readonly string _propertyName = propertyName;
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {

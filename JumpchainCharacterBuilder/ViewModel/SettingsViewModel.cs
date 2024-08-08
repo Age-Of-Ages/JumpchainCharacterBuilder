@@ -18,7 +18,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private AppSettingsModel.WeightFormats _weightFormatSelection = AppSettingsModel.WeightFormats.Pounds;
 
         [ObservableProperty]
-        private bool _canResizeWindow = false;
+        private bool _canResizeWindow = true;
         [ObservableProperty]
         private bool _confirmSaveOnClose = true;
         [ObservableProperty]

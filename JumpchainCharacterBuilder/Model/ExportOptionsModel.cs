@@ -43,8 +43,8 @@ namespace JumpchainCharacterBuilder.Model
         /// Bool value is for if the section should be included in the export or not.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _buildSectionList = new()
-        {
+        private List<ExportFormatToggle> _buildSectionList =
+        [
             new("Bank Details", true),
             new("Point Summary", true),
             new("Jump Details", true),
@@ -61,7 +61,7 @@ namespace JumpchainCharacterBuilder.Model
             new("Drawbacks", true),
             new("Scenarios", true),
             new("Supplements", true)
-        };
+        ];
 
         /// <summary>
         /// Represents the list of export sections, for the purposes of ordering Character Profile Exports.
@@ -70,8 +70,8 @@ namespace JumpchainCharacterBuilder.Model
         /// Bool value is for if the section should be included in the export or not.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _profileSectionList = new()
-        {
+        private List<ExportFormatToggle> _profileSectionList =
+        [
             new("Profile", true),
             new("Alt Forms", true),
             new("Perks", true),
@@ -79,7 +79,7 @@ namespace JumpchainCharacterBuilder.Model
             new("Attributes", true),
             new("Skills", true),
             new("Learning Rates", true)
-        };
+        ];
 
         /// <summary>
         /// Represents the list of export sections, for the purposes of ordering Profile subsections in the export.
@@ -87,14 +87,14 @@ namespace JumpchainCharacterBuilder.Model
         /// Bool value is for if the section should be included in the export or not.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _profileSubsectionList = new()
-        {
+        private List<ExportFormatToggle> _profileSubsectionList =
+        [
             new("Biography", true),
             new("Physical Characteristics", true),
             new("Personality", true),
             new("Physical Description", true),
             new("Traits", true)
-        };
+        ];
 
         /// <summary>
         /// Represents the list of export sections, for the purposes of ordering Warehouse Exports.
@@ -102,14 +102,14 @@ namespace JumpchainCharacterBuilder.Model
         /// Bool value is for if the section should be included in the export or not.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _genericWarehouseSectionList = new()
-        {
+        private List<ExportFormatToggle> _genericWarehouseSectionList =
+        [
             new("Point Summary", true),
             new("Block Description", true),
             new("Purchases", true),
             new("Additions", true),
             new("Limitations", true)
-        };
+        ];
 
         /// <summary>
         /// Represents the list of export sections, for the purposes of ordering Warehouse Exports.
@@ -117,14 +117,14 @@ namespace JumpchainCharacterBuilder.Model
         /// Bool value is for if the section should be included in the export or not.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _personalRealitySectionList = new()
-        {
+        private List<ExportFormatToggle> _personalRealitySectionList =
+        [
             new("Point Summary", true),
             new("Core Mode", true),
             new("Purchases", true),
             new("Additions", true),
             new("Limitations", true)
-        };
+        ];
 
         /// <summary>
         /// Represents the list of export sections, for the purposes of ordering Body Mod Exports.
@@ -132,14 +132,14 @@ namespace JumpchainCharacterBuilder.Model
         /// Bool value is for if the section should be included in the export or not.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _bodyModSectionList = new()
-        {
+        private List<ExportFormatToggle> _bodyModSectionList =
+        [
             new("Point Summary", true),
             new("Supplement Details", true),
             new("Perks", true),
             new("Additions", true),
             new("Drawbacks", true)
-        };
+        ];
 
         /// <summary>
         /// Represents the list of export sections, for the purposes of ordering Drawback Supplement Exports.
@@ -147,13 +147,13 @@ namespace JumpchainCharacterBuilder.Model
         /// Bool value is for if the section should be included in the export or not.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _drawbackSupplementSectionList = new()
-        {
+        private List<ExportFormatToggle> _drawbackSupplementSectionList =
+        [
             new("Point Summary", true),
             new("Supplement Details", true),
             new("House Rules", true),
             new("Drawbacks", true)
-        };
+        ];
 
         /// <summary>
         /// Represents whether Companion's Builds should be exported alongside the Jumper's Build or not.
@@ -172,14 +172,14 @@ namespace JumpchainCharacterBuilder.Model
         /// 'Same-line Purchase Descriptions' only applies if Include Purchase Description is true.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _genericFormattingOptions = new()
-        {
+        private List<ExportFormatToggle> _genericFormattingOptions =
+        [
             new("Include Purchase Description", true),
             new("Same-line Purchase Descriptions", false),
             new("Include Currency Abbreviation", true),
             new("Include Section Separator", true),
             new("Include Origin Descriptions", true)
-        };
+        ];
 
         /// <summary>
         /// Represents the formatting options for exporting BBCode-formatted data.
@@ -187,8 +187,8 @@ namespace JumpchainCharacterBuilder.Model
         /// 'Same-line Purchase Descriptions' only applies if Spoiler Purchases is set to false and Include Purchase Description is true.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _bBCodeFormattingOptions = new()
-        {
+        private List<ExportFormatToggle> _bBCodeFormattingOptions =
+        [
             new("Bold Section Names", true),
             new("Italics Section Names", false),
             new("Underline Section Names", true),
@@ -203,7 +203,7 @@ namespace JumpchainCharacterBuilder.Model
             new("Section Separator Line", true),
             new("Include Origin Descriptions", true),
             new("Apply Section Formatting To Origin Details", true)
-        };
+        ];
 
         /// <summary>
         /// Represents the formatting options for exporting Markdown-formatted data.
@@ -211,8 +211,8 @@ namespace JumpchainCharacterBuilder.Model
         /// 'Include Purchase Description' only applies if List All Purchases In One Line is set to false.
         /// </summary>
         [ObservableProperty]
-        private List<ExportFormatToggle> _markdownFormattingOptions = new()
-        {
+        private List<ExportFormatToggle> _markdownFormattingOptions =
+        [
             new("Bold Section Names", true),
             new("Italics Section Names", false),
             new("Make Section Names Headings", true),
@@ -225,6 +225,6 @@ namespace JumpchainCharacterBuilder.Model
             new("Section Separator Line", true),
             new("Include Origin Descriptions", true),
             new("Apply Section Formatting To Origin Details", true)
-        };
+        ];
     }
 }

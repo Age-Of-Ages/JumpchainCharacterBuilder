@@ -25,14 +25,14 @@ namespace JumpchainCharacterBuilder.ViewModel
         private AppSettingsModel _appSettings = new();
 
         [ObservableProperty]
-        private ObservableCollection<Character> _characterList = new();
+        private ObservableCollection<Character> _characterList = [];
         [ObservableProperty]
         private Character _characterSelection = new();
         [ObservableProperty]
         private int _characterSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<Jump> _jumpList = new();
+        private ObservableCollection<Jump> _jumpList = [];
         [ObservableProperty]
         private Jump _jumpSelection = new();
 
@@ -40,12 +40,12 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _exportTabIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<string> _exportModeList = new()
-        {
+        private ObservableCollection<string> _exportModeList =
+        [
             "Generic",
             "BBCode",
             "Markdown"
-        };
+        ];
         [ObservableProperty]
         private string _exportModeSelection = "BBCode";
 
@@ -57,43 +57,43 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _modeSelectedMarkdown = false;
 
         [ObservableProperty]
-        private ObservableCollection<char> _sectionSeparatorOptions = new()
-        {
+        private ObservableCollection<char> _sectionSeparatorOptions =
+        [
             '=',
             '-',
             '_',
             '~'
-        };
+        ];
         [ObservableProperty]
-        private ObservableCollection<string> _budgetEnclosingOptions = new()
-        {
+        private ObservableCollection<string> _budgetEnclosingOptions =
+        [
             "[]",
             "()",
             "{}",
             "<>",
             "||"
-        };
+        ];
         [ObservableProperty]
-        private ObservableCollection<char> _budgetSeparatorOptions = new()
-        {
+        private ObservableCollection<char> _budgetSeparatorOptions =
+        [
             '/',
             '\\',
             '|',
             ':'
-        };
+        ];
         [ObservableProperty]
-        private ObservableCollection<string> _budgetOrderFormat = new()
-        {
+        private ObservableCollection<string> _budgetOrderFormat =
+        [
             "Name [Cost/Budget]",
             "Name [Cost/Section Subtotal]",
             "Name [Cost]",
             "Name [Budget]",
             "Name [Section Subtotal]"
-        };
+        ];
 
         [ObservableProperty]
-        private ObservableCollection<ExportFormatToggle> _buildSectionList = new()
-        {
+        private ObservableCollection<ExportFormatToggle> _buildSectionList =
+        [
             new("Bank Details", true),
             new("Point Summary", false),
             new("Jump Details", true),
@@ -110,15 +110,15 @@ namespace JumpchainCharacterBuilder.ViewModel
             new("Drawbacks", true),
             new("Scenarios", true),
             new("Supplements", true)
-        };
+        ];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(MoveBuildSectionUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveBuildSectionDownCommand))]
         private int _buildSectionSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<ExportFormatToggle> _profileSectionList = new()
-        {
+        private ObservableCollection<ExportFormatToggle> _profileSectionList =
+        [
             new("Profile", true),
             new("Alt Forms", true),
             new("Perks", true),
@@ -126,48 +126,48 @@ namespace JumpchainCharacterBuilder.ViewModel
             new("Attributes", true),
             new("Skills", true),
             new("Learning Rates", true)
-        };
+        ];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(MoveProfileSectionUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveProfileSectionDownCommand))]
         private int _profileSectionSelectionIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<ExportFormatToggle> _profileSubsectionList = new()
-        {
+        private ObservableCollection<ExportFormatToggle> _profileSubsectionList =
+        [
             new("Biography", true),
             new("Physical Characteristics", true),
             new("Personality", true),
             new("Physical Description", true),
             new("Traits", true)
-        };
+        ];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(MoveProfileSubsectionUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveProfileSubsectionDownCommand))]
         private int _profileSubsectionSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<ExportFormatToggle> _genericWarehouseSectionList = new()
-        {
+        private ObservableCollection<ExportFormatToggle> _genericWarehouseSectionList =
+        [
             new("Point Summary", true),
             new("Block Description", true),
             new("Purchases", true),
             new("Additions", true),
             new("Limitations", true)
-        };
+        ];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(MoveWarehouseSectionUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveWarehouseSectionDownCommand))]
         private int _genericWarehouseSectionSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<ExportFormatToggle> _personalRealitySectionList = new()
-        {
+        private ObservableCollection<ExportFormatToggle> _personalRealitySectionList =
+        [
             new("Point Summary", true),
             new("Core Mode", true),
             new("Purchases", true),
             new("Additions", true),
             new("Limitations", true)
-        };
+        ];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(MoveWarehouseSectionUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveWarehouseSectionDownCommand))]
@@ -179,27 +179,27 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _personalRealitySelected = false;
 
         [ObservableProperty]
-        private ObservableCollection<ExportFormatToggle> _bodyModSectionList = new()
-        {
+        private ObservableCollection<ExportFormatToggle> _bodyModSectionList =
+        [
             new("Point Summary", true),
             new("Supplement Details", true),
             new("Perks", true),
             new("Additions", true),
             new("Drawbacks", true)
-        };
+        ];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(MoveBodyModSectionUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveBodyModSectionDownCommand))]
         private int _bodyModSectionSelectionIndex = 0;
 
         [ObservableProperty]
-        private ObservableCollection<ExportFormatToggle> _drawbackSupplementSectionList = new()
-        {
+        private ObservableCollection<ExportFormatToggle> _drawbackSupplementSectionList =
+        [
             new("Point Summary", true),
             new("Supplement Details", true),
             new("House Rules", true),
             new("Drawbacks", true)
-        };
+        ];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(MoveDrawbackSupplementSectionUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveDrawbackSupplementSectionDownCommand))]
@@ -1228,12 +1228,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             string budgetLastHalf = "";
             string currencyAbbreviation;
 
-            List<string> output = new();
+            List<string> output = [];
             string line = "";
 
-            List<int> budget = new();
+            List<int> budget = [];
             List<int> stipend;
-            List<int> purchaseTypeStipends = new();
+            List<int> purchaseTypeStipends = [];
             int sectionSubtotal;
 
             int importStipend = 0;
@@ -2256,7 +2256,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             char sectionSeparator = LoadedExportOptions.SectionSeparator;
 
-            List<string> output = new();
+            List<string> output = [];
 
             if (jump.IsGauntlet)
             {
@@ -2305,17 +2305,17 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void ExportProfile(Character character, int characterIndex)
         {
-            Dictionary<string, List<Purchase>> perks = new();
-            Dictionary<string, List<Purchase>> items = new();
+            Dictionary<string, List<Purchase>> perks = [];
+            Dictionary<string, List<Purchase>> items = [];
 
             foreach (string perkCategory in LoadedSave.PerkCategoryList)
             {
-                perks.Add(perkCategory, new());
+                perks.Add(perkCategory, []);
             }
 
             foreach (string itemCategory in LoadedSave.ItemCategoryList)
             {
-                items.Add(itemCategory, new());
+                items.Add(itemCategory, []);
             }
 
             foreach (Jump jump in JumpList)
@@ -2338,7 +2338,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             char sectionSeparator = LoadedExportOptions.SectionSeparator;
 
-            List<string> output = new();
+            List<string> output = [];
             string line = "";
 
             FormatOpeningLines(output, $"{character.Name} Profile");
@@ -2506,99 +2506,64 @@ namespace JumpchainCharacterBuilder.ViewModel
                                             }
                                             break;
                                         case "Traits":
-                                            List<string> likes = new();
-                                            List<string> dislikes = new();
-                                            List<string> hobbies = new();
-                                            List<string> quirks = new();
-                                            List<string> goals = new();
-
                                             output.Add(FormatSectionTitle("Traits"));
 
                                             FormatBlankLine(output);
 
-                                            foreach (Trait row in character.TraitRow)
-                                            {
-                                                if (row.Like != "")
-                                                {
-                                                    likes.Add(row.Like);
-                                                }
-                                                if (row.Dislike != "")
-                                                {
-                                                    dislikes.Add(row.Dislike);
-                                                }
-                                                if (row.Hobby != "")
-                                                {
-                                                    hobbies.Add(row.Hobby);
-                                                }
-                                                if (row.Quirk != "")
-                                                {
-                                                    quirks.Add(row.Quirk);
-                                                }
-                                                if (row.Goal != "")
-                                                {
-                                                    goals.Add(row.Goal);
-                                                }
-                                            }
-
-                                            if (likes.Any())
+                                            if (character.Likes != "")
                                             {
                                                 output.Add(FormatSectionTitle("Likes"));
 
                                                 FormatBlankLine(output);
 
-                                                foreach (string like in likes)
-                                                {
-                                                    output.Add(like);
-                                                }
+                                                output.Add(character.Likes);
                                             }
 
-                                            if (dislikes.Any())
+                                            FormatBlankLine(output);
+
+                                            if (character.Dislikes != "")
                                             {
                                                 output.Add(FormatSectionTitle("Dislikes"));
 
                                                 FormatBlankLine(output);
 
-                                                foreach (string dislike in dislikes)
-                                                {
-                                                    output.Add(dislike);
-                                                }
+                                                output.Add(character.Dislikes);
                                             }
 
-                                            if (hobbies.Any())
-                                            {
-                                                output.Add(FormatSectionTitle("Hobbies"));
+                                            FormatBlankLine(output);
 
-                                                FormatBlankLine(output);
-
-                                                foreach (string hobby in hobbies)
-                                                {
-                                                    output.Add(hobby);
-                                                }
-                                            }
-
-                                            if (quirks.Any())
+                                            if (character.Quirks != "")
                                             {
                                                 output.Add(FormatSectionTitle("Quirks"));
 
                                                 FormatBlankLine(output);
 
-                                                foreach (string quirk in quirks)
-                                                {
-                                                    output.Add(quirk);
-                                                }
+                                                output.Add(character.Quirks);
                                             }
 
-                                            if (goals.Any())
+                                            FormatBlankLine(output);
+
+                                            if (character.Hobbies != "")
+                                            {
+                                                output.Add(FormatSectionTitle("Hobbies"));
+
+                                                FormatBlankLine(output);
+
+                                                output.Add(character.Hobbies);
+                                            }
+
+                                            FormatBlankLine(output);
+
+                                            if (character.Goals != "")
                                             {
                                                 output.Add(FormatSectionTitle("Goals"));
 
                                                 FormatBlankLine(output);
 
-                                                foreach (string goal in goals)
-                                                {
-                                                    output.Add(goal);
-                                                }
+                                                output.Add(character.Goals);
                                             }
+
+                                            FormatBlankLine(output);
                                             break;
                                         default:
                                             break;
@@ -2607,7 +2572,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                             }
                             break;
                         case "Alt Forms":
-                            if (character.AltForms.Any())
+                            if (character.AltForms.Count != 0)
                             {
                                 output.Add(FormatSectionTitle("Alt-Form Details"));
 
@@ -2615,8 +2580,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                 foreach (AltForm form in character.AltForms)
                                 {
-                                    List<string> strengths = new();
-                                    List<string> weaknesses = new();
+                                    List<string> strengths = [];
+                                    List<string> weaknesses = [];
 
                                     if (LoadedExportOptions.ExportMode == "BBCode" && LoadedExportOptions.BBCodeFormattingOptions[4].Enabled)
                                     {
@@ -2668,19 +2633,16 @@ namespace JumpchainCharacterBuilder.ViewModel
                                         FormatBlankLine(output);
                                     }
 
-                                    foreach (AltFormTraitModel row in form.StrengthWeaknessRow)
+                                    if (form.Strengths != "")
                                     {
-                                        if (row.Strength != "")
-                                        {
-                                            strengths.Add(row.Strength);
-                                        }
-                                        if (row.Weakness != "")
-                                        {
-                                            weaknesses.Add(row.Weakness);
-                                        }
+                                        strengths.Add(form.Strengths);
+                                    }
+                                    if (form.Weaknesses != "")
+                                    {
+                                        weaknesses.Add(form.Weaknesses);
                                     }
 
-                                    if (strengths.Any())
+                                    if (strengths.Count != 0)
                                     {
                                         output.Add("Strengths:");
 
@@ -2691,7 +2653,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                         FormatBlankLine(output);
                                     }
-                                    if (weaknesses.Any())
+                                    if (weaknesses.Count != 0)
                                     {
                                         output.Add("Weaknesses:");
 
@@ -2753,9 +2715,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                             FormatBlankLine(output);
 
-                            List<ProfileAttribute> physicalAttributes = new();
-                            List<ProfileAttribute> mentalAttributes = new();
-                            List<ProfileAttribute> supernaturalAttributes = new();
+                            List<ProfileAttribute> physicalAttributes = [];
+                            List<ProfileAttribute> mentalAttributes = [];
+                            List<ProfileAttribute> supernaturalAttributes = [];
 
                             foreach (ProfileAttribute attribute in character.Attributes)
                             {
@@ -2775,7 +2737,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 }
                             }
 
-                            if (physicalAttributes.Any())
+                            if (physicalAttributes.Count != 0)
                             {
                                 output.Add(FormatSectionTitle("Physical"));
 
@@ -2788,7 +2750,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 }
                             }
 
-                            if (mentalAttributes.Any())
+                            if (mentalAttributes.Count != 0)
                             {
                                 output.Add(FormatSectionTitle("Mental"));
 
@@ -2801,7 +2763,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 }
                             }
 
-                            if (supernaturalAttributes.Any())
+                            if (supernaturalAttributes.Count != 0)
                             {
                                 output.Add(FormatSectionTitle("Supernatural"));
 
@@ -2819,11 +2781,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                             FormatBlankLine(output);
 
-                            List<ProfileAttribute> physicalSkills = new();
-                            List<ProfileAttribute> mentalSkills = new();
-                            List<ProfileAttribute> socialSkills = new();
-                            List<ProfileAttribute> technologicalSkills = new();
-                            List<ProfileAttribute> supernaturalSkills = new();
+                            List<ProfileAttribute> physicalSkills = [];
+                            List<ProfileAttribute> mentalSkills = [];
+                            List<ProfileAttribute> socialSkills = [];
+                            List<ProfileAttribute> technologicalSkills = [];
+                            List<ProfileAttribute> supernaturalSkills = [];
 
                             foreach (ProfileAttribute skill in character.Skills)
                             {
@@ -2849,7 +2811,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 }
                             }
 
-                            if (physicalSkills.Any())
+                            if (physicalSkills.Count != 0)
                             {
                                 output.Add(FormatSectionTitle("Physical"));
 
@@ -2862,7 +2824,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 }
                             }
 
-                            if (mentalSkills.Any())
+                            if (mentalSkills.Count != 0)
                             {
                                 output.Add(FormatSectionTitle("Mental"));
 
@@ -2875,7 +2837,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 }
                             }
 
-                            if (socialSkills.Any())
+                            if (socialSkills.Count != 0)
                             {
                                 output.Add(FormatSectionTitle("Social"));
 
@@ -2888,7 +2850,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 }
                             }
 
-                            if (technologicalSkills.Any())
+                            if (technologicalSkills.Count != 0)
                             {
                                 output.Add(FormatSectionTitle("Technological"));
 
@@ -2901,7 +2863,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                                 }
                             }
 
-                            if (supernaturalSkills.Any())
+                            if (supernaturalSkills.Count != 0)
                             {
                                 output.Add(FormatSectionTitle("Supernatural"));
 
@@ -2973,9 +2935,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             int investmentWP = 0;
             int patientJumperWP = 0;
 
-            List<Purchase> warehouseAddons = new();
+            List<Purchase> warehouseAddons = [];
 
-            List<string> output = new();
+            List<string> output = [];
             string line;
 
             drawbackSupplementWP = drawbackSupplement.WPGained;
@@ -3236,14 +3198,14 @@ namespace JumpchainCharacterBuilder.ViewModel
                             case "Purchases":
                                 if (section.Enabled)
                                 {
-                                    List<SupplementPurchase> basics = new();
-                                    List<SupplementPurchase> utilities = new();
-                                    List<SupplementPurchase> cosmetic = new();
-                                    List<SupplementPurchase> facilities = new();
-                                    List<SupplementPurchase> extensions = new();
-                                    List<SupplementPurchase> equipment = new();
-                                    List<SupplementPurchase> companions = new();
-                                    List<SupplementPurchase> misc = new();
+                                    List<SupplementPurchase> basics = [];
+                                    List<SupplementPurchase> utilities = [];
+                                    List<SupplementPurchase> cosmetic = [];
+                                    List<SupplementPurchase> facilities = [];
+                                    List<SupplementPurchase> extensions = [];
+                                    List<SupplementPurchase> equipment = [];
+                                    List<SupplementPurchase> companions = [];
+                                    List<SupplementPurchase> misc = [];
 
                                     foreach (SupplementPurchase purchase in LoadedSave.PersonalReality.Purchases)
                                     {
@@ -3491,9 +3453,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             int questBP = 0;
             int gauntletBP = 0;
 
-            List<Purchase> bodyModAddons = new();
+            List<Purchase> bodyModAddons = [];
 
-            List<string> output = new();
+            List<string> output = [];
             string line;
 
             switch (loadedBodyMod)
@@ -3990,14 +3952,14 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case Options.BodyModSupplements.EssentialBodyMod:
                     currencyAbbreviation = FormatCurrencyAbbreviation("EP");
 
-                    List<SupplementPurchase> EBMBasicPerkList = new();
-                    List<SupplementPurchase> EBMPhysicalPerkList = new();
-                    List<SupplementPurchase> EBMMentalPerkList = new();
-                    List<SupplementPurchase> EBMSpiritualPerkList = new();
-                    List<SupplementPurchase> EBMSkillPerkList = new();
-                    List<SupplementPurchase> EBMSupernaturalPerkList = new();
-                    List<SupplementPurchase> EBMItemPerkList = new();
-                    List<SupplementPurchase> EBMCompanionPerkList = new();
+                    List<SupplementPurchase> EBMBasicPerkList = [];
+                    List<SupplementPurchase> EBMPhysicalPerkList = [];
+                    List<SupplementPurchase> EBMMentalPerkList = [];
+                    List<SupplementPurchase> EBMSpiritualPerkList = [];
+                    List<SupplementPurchase> EBMSkillPerkList = [];
+                    List<SupplementPurchase> EBMSupernaturalPerkList = [];
+                    List<SupplementPurchase> EBMItemPerkList = [];
+                    List<SupplementPurchase> EBMCompanionPerkList = [];
 
                     foreach (SupplementPurchase purchase in character.BodyMod.EBMPurchaseList)
                     {
@@ -4210,7 +4172,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                     FormatBlankLine(output);
 
-                                    if (character.BodyMod.EBMEssenceList.Any())
+                                    if (character.BodyMod.EBMEssenceList.Count != 0)
                                     {
                                         switch (LoadedSave.EssentialBodyMod.EssenceMode)
                                         {
@@ -4479,10 +4441,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {"Item Choice Points", 0}
             };
 
-            List<DrawbackSupplementPurchase> drawbacks = new();
-            List<HouseRuleModel> houseRules = new();
+            List<DrawbackSupplementPurchase> drawbacks = [];
+            List<HouseRuleModel> houseRules = [];
 
-            List<string> output = new();
+            List<string> output = [];
             string line;
 
             switch (loadedDrawbackSupplement)

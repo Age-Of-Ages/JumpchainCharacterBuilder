@@ -93,7 +93,7 @@ namespace JumpchainCharacterBuilder.Model
         /// also refer to things granted by it, like an Item or Perk that grants a 1-up.
         /// </summary>
         [ObservableProperty]
-        private List<PurchaseAttribute> _Attributes = new();
+        private List<PurchaseAttribute> _Attributes = [];
 
         /// <summary>
         /// Represents the Jump this was purchased in.

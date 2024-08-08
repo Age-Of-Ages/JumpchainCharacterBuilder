@@ -9,10 +9,9 @@ namespace JumpchainCharacterBuilder
 {
     public static partial class CfgAccess
     {
-        public static void WriteCfgFile(AppSettingsModel appSettings)
+        public static List<string> CreateCFGData(AppSettingsModel appSettings)
         {
-            string filePath = Path.Combine(Environment.CurrentDirectory, "Configuration.cfg");
-            List<string> settings = new();
+            List<string> settings = [];
             Dictionary<string, string> currentSettings = new()
             {
                 {"WeightFormat", appSettings.WeightFormat.ToString() },
@@ -32,6 +31,14 @@ namespace JumpchainCharacterBuilder
                 settings.Add(setting.Key + " = " + setting.Value);
             }
 
+            return settings;
+        }
+
+        public static void WriteCfgFile(AppSettingsModel appSettings)
+        {
+            string filePath = Path.Combine(Environment.CurrentDirectory, "Configuration.cfg");
+            List<string> settings = CreateCFGData(appSettings);
+
             File.WriteAllLines(filePath, settings);
         }
 
@@ -41,12 +48,14 @@ namespace JumpchainCharacterBuilder
 
             if (!FileAccess.CheckFileExists(filePath))
             {
-                TxtAccess.WriteLog(new()
-                {
+                TxtAccess.WriteLog(
+                [
                     "Configuration file not found: Regenerating file with default settings."
-                });
+                ]);
 
-                using FileStream temp = File.Create(filePath);
+                using (FileStream temp = File.Create(filePath))
+                {
+                }
 
                 WriteCfgFile(appSettings);
             }
@@ -131,6 +140,66 @@ namespace JumpchainCharacterBuilder
                     appSettings.SpellCheckEnabled = false;
                 }
             }
+        }
+
+        public static string ReadSingleSetting(string settingSelection)
+        {
+            string filePath = Path.Combine(Environment.CurrentDirectory, "Configuration.cfg");
+            string result = "Error";
+
+            if (!FileAccess.CheckFileExists(filePath))
+            {
+                TxtAccess.WriteLog(
+                [
+                    "Configuration file not found: Regenerating file with default settings."
+                ]);
+
+                using (FileStream temp = File.Create(filePath))
+                {
+                }
+
+                AppSettingsModel appSettings = new();
+
+                WriteCfgFile(appSettings);
+            }
+
+            List<string> settings = File.ReadLines(filePath).ToList();
+            Dictionary<string, string> settingsDictionary = new()
+            {
+                {"HeightFormat", "FeetInches" },
+                {"WeightFormat", "Pounds" },
+                {"Theme", "Dark" },
+                {"CanResizeWindow", "True" },
+                {"ConfirmSaveOnClose", "True" },
+                {"SpellCheckEnabled", "True" }
+            };
+            string[] splitString;
+            string settingKey;
+            string settingValue;
+
+            foreach (string line in settings)
+            {
+                if (CfgSplitRegex().IsMatch(line) && line[0] != '#' && line != "")
+                {
+                    splitString = line.Split(" = ");
+
+                    settingKey = splitString[0];
+                    settingValue = splitString[1];
+
+                    if (settingsDictionary.ContainsKey(settingKey))
+                    {
+                        settingsDictionary[settingKey] = settingValue;
+                    }
+                }
+
+            }
+
+            if (settingsDictionary.TryGetValue(settingSelection, out string? value))
+            {
+                result = value;
+            }
+
+            return result;
         }
 
         [GeneratedRegex(".+ = .+")]

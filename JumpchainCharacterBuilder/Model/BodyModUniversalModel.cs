@@ -12,13 +12,13 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents purchases for the Body Mod Supplement.
         /// </summary>
         [ObservableProperty]
-        private List<SupplementPurchase> _purchases = new();
+        private List<SupplementPurchase> _purchases = [];
 
         /// <summary>
         /// Represents the list of Supplement Drawbacks/Limitations.
         /// </summary>
         [ObservableProperty]
-        private List<SupplementDrawbackModel> _limitations = new();
+        private List<SupplementDrawbackModel> _limitations = [];
 
         /// <summary>
         /// Represents the number of Jumps before user took this Supplement.
@@ -49,7 +49,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the list of extra bits for the SB Body Mod.
         /// </summary>
         [ObservableProperty]
-        private List<SupplementPurchase> _extraBitsList = new();
+        private List<SupplementPurchase> _extraBitsList = [];
 
         /// <summary>
         /// Represents the number of points invested into Augments by
@@ -131,7 +131,7 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the list of Power purchases for the SB Body Mod.
         /// </summary>
         [ObservableProperty]
-        private List<SupplementPurchase> _sBPowerList = new();
+        private List<SupplementPurchase> _sBPowerList = [];
 
         /// <summary>
         /// Represents the number of Gauntlets finished before taking the SB Body Mod
@@ -158,19 +158,19 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the Essence(s) selected for the Essential Body Mod.
         /// </summary>
         [ObservableProperty]
-        private List<EBMEssence> _eBMEssenceList = new();
+        private List<EBMEssence> _eBMEssenceList = [];
 
         /// <summary>
         /// Represents the list of purchases for the EBM.
         /// </summary>
         [ObservableProperty]
-        private List<SupplementPurchase> _eBMPurchaseList = new();
+        private List<SupplementPurchase> _eBMPurchaseList = [];
 
         /// <summary>
         /// Represents the list of EBM Drawbacks.
         /// </summary>
         [ObservableProperty]
-        private List<SupplementDrawbackModel> _eBMDrawbackList = new();
+        private List<SupplementDrawbackModel> _eBMDrawbackList = [];
 
         public BodyModUniversal()
         {

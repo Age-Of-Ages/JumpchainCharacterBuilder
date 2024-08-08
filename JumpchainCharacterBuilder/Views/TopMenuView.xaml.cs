@@ -1,5 +1,6 @@
 ﻿using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
@@ -18,12 +19,14 @@ namespace JumpchainCharacterBuilder.Views
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
                 this.DataContext = App.Current.Services.GetService<TopMenuViewModel>();
+
+                ThemeChange(TopMenuViewModel.Theme);
             }
         }
 
         public TopMenuViewModel TopMenuViewModel => (TopMenuViewModel)DataContext;
 
-        private void InputFormatter_Click(object sender, System.Windows.RoutedEventArgs e)
+        private void InputFormatter_Click(object sender, RoutedEventArgs e)
         {
             if (!Application.Current.Windows.OfType<InputFormatterView>().Any())
             {
@@ -77,6 +80,35 @@ namespace JumpchainCharacterBuilder.Views
             };
 
             randomizerSettingsView.ShowDialog();
+        }
+
+        private void ThemeChange(string currentTheme)
+        {
+            ResourceDictionary dictionary = App.Current.Resources;
+            //dictionary.MergedDictionaries.Clear();
+            //dictionary.MergedDictionaries.Add(new() { Source = new("/PresentationFramework.Aero2;component/themes/Aero2.NormalColor.xaml", UriKind.RelativeOrAbsolute) });
+            //dictionary.MergedDictionaries.Add(new() { Source = new("Styles.xaml", UriKind.RelativeOrAbsolute) });
+
+            dictionary.MergedDictionaries.RemoveAt(2);
+            
+            if (currentTheme == "Light")
+            {
+                dictionary.MergedDictionaries.Add(new() { Source = new("Themes/ThemeLight.xaml", UriKind.RelativeOrAbsolute) });
+            }
+            else if (currentTheme == "Dark")
+            {
+                dictionary.MergedDictionaries.Add(new() { Source = new("Themes/ThemeDark.xaml", UriKind.RelativeOrAbsolute) });
+            }
+        }
+
+        private void ThemeChangeLight_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeChange("Light");
+        }
+
+        private void ThemeChangeDark_Click(object sender, RoutedEventArgs e)
+        {
+            ThemeChange("Dark");
         }
     }
 }

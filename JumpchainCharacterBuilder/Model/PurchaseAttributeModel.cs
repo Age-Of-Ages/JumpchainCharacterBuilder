@@ -57,46 +57,46 @@ namespace JumpchainCharacterBuilder.Model
         /// Represents the list of available Types. Special type is for 1-ups and other unique traits.
         /// </summary>
         [ObservableProperty]
-        private List<string> _typeList = new()
-        {
+        private List<string> _typeList =
+        [
             "Attribute",
             "Skill",
             "Booster",
             "Special"
-        };
+        ];
 
         /// <summary>
         /// Represents the list of available Categories for the Attribute Type.
         /// </summary>
         [ObservableProperty]
-        private List<string> _attributeCategoryList = new()
-        {
+        private List<string> _attributeCategoryList =
+        [
             "Physical",
             "Mental",
             "Supernatural"
-        };
+        ];
 
         /// <summary>
         /// Represents the list of available Categories for the Skill Type.
         /// </summary>
         [ObservableProperty]
-        private List<string> _skillCategoryList = new()
-        {
+        private List<string> _skillCategoryList =
+        [
             "Physical",
             "Mental",
             "Social",
             "Technological",
             "Supernatural"
-        };
+        ];
 
         /// <summary>
         /// Represents the list of available Categories for the Special Type.
         /// </summary>
         [ObservableProperty]
-        private List<string> _specialCategoryList = new()
-        {
+        private List<string> _specialCategoryList =
+        [
             "1-up"
-        };
+        ];
 
         public PurchaseAttribute()
         {

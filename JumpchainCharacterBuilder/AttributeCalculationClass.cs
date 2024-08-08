@@ -220,9 +220,9 @@ namespace JumpchainCharacterBuilder
         /// <param name="jumpList">Represents the list of Jumps to pull purchase attributes from.</param>
         public static void AttributeCalculation(Character character, int characterIndex, Options.BodyModSupplements bodyMod, List<Jump> jumpList)
         {
-            List<PurchaseAttribute> physicalAttributeSources = new();
-            List<PurchaseAttribute> mentalAttributeSources = new();
-            List<PurchaseAttribute> supernaturalAttributeSources = new();
+            List<PurchaseAttribute> physicalAttributeSources = [];
+            List<PurchaseAttribute> mentalAttributeSources = [];
+            List<PurchaseAttribute> supernaturalAttributeSources = [];
 
             switch (bodyMod)
             {
@@ -439,14 +439,14 @@ namespace JumpchainCharacterBuilder
             {
                 int attributeRankSum = 0;
                 bool checkedHighestRank = false;
-                List<PurchaseAttribute> attributeList = new();
+                List<PurchaseAttribute> attributeList = [];
 
                 attribute.SourceList.Clear();
 
                 switch (attribute.Category)
                 {
                     case "Physical":
-                        attributeList = physicalAttributes[attribute.Name].OrderByDescending(x => (int)x.Rank).ToList();
+                        attributeList = [.. physicalAttributes[attribute.Name].OrderByDescending(x => (int)x.Rank)];
 
                         if (attribute.ModRank != RankList.None)
                         {
@@ -455,7 +455,7 @@ namespace JumpchainCharacterBuilder
                                 SourceJump = "Profile",
                                 SourcePurchase = "Mod Rank"
                             });
-                            attributeList = attributeList.OrderByDescending(x => (int)x.Rank).ToList();
+                            attributeList = [.. attributeList.OrderByDescending(x => (int)x.Rank)];
                         }
 
                         foreach (PurchaseAttribute source in attributeList)
@@ -477,7 +477,7 @@ namespace JumpchainCharacterBuilder
                         }
                         break;
                     case "Mental":
-                        attributeList = mentalAttributes[attribute.Name].OrderByDescending(x => (int)x.Rank).ToList();
+                        attributeList = [.. mentalAttributes[attribute.Name].OrderByDescending(x => (int)x.Rank)];
 
                         if (attribute.ModRank != RankList.None)
                         {
@@ -486,7 +486,7 @@ namespace JumpchainCharacterBuilder
                                 SourceJump = "Profile",
                                 SourcePurchase = "Mod Rank"
                             });
-                            attributeList = attributeList.OrderByDescending(x => (int)x.Rank).ToList();
+                            attributeList = [.. attributeList.OrderByDescending(x => (int)x.Rank)];
                         }
 
                         foreach (PurchaseAttribute source in attributeList)
@@ -508,7 +508,7 @@ namespace JumpchainCharacterBuilder
                         }
                         break;
                     case "Supernatural":
-                        attributeList = supernaturalAttributes[attribute.Name].OrderByDescending(x => x.Rank).ToList();
+                        attributeList = [.. supernaturalAttributes[attribute.Name].OrderByDescending(x => x.Rank)];
 
                         if (attribute.ModRank != RankList.None)
                         {
@@ -517,7 +517,7 @@ namespace JumpchainCharacterBuilder
                                 SourceJump = "Profile",
                                 SourcePurchase = "Mod Rank"
                             });
-                            attributeList = attributeList.OrderByDescending(x => (int)x.Rank).ToList();
+                            attributeList = [.. attributeList.OrderByDescending(x => (int)x.Rank)];
                         }
 
                         foreach (PurchaseAttribute source in attributeList)
@@ -562,11 +562,11 @@ namespace JumpchainCharacterBuilder
         /// <param name="jumpList">Represents the list of Jumps to pull purchase attributes from.</param>
         public static void SkillCalculation(Character character, int characterIndex, Options.BodyModSupplements bodyMod, List<Jump> jumpList)
         {
-            List<PurchaseAttribute> physicalSkillSources = new();
-            List<PurchaseAttribute> mentalSkillSources = new();
-            List<PurchaseAttribute> socialSkillSources = new();
-            List<PurchaseAttribute> technologicalSkillSources = new();
-            List<PurchaseAttribute> supernaturalSkillSources = new();
+            List<PurchaseAttribute> physicalSkillSources = [];
+            List<PurchaseAttribute> mentalSkillSources = [];
+            List<PurchaseAttribute> socialSkillSources = [];
+            List<PurchaseAttribute> technologicalSkillSources = [];
+            List<PurchaseAttribute> supernaturalSkillSources = [];
 
             switch (bodyMod)
             {
@@ -827,14 +827,14 @@ namespace JumpchainCharacterBuilder
             {
                 int skillRankSum = 0;
                 bool checkedHighestRank = false;
-                List<PurchaseAttribute> skillList = new();
+                List<PurchaseAttribute> skillList = [];
 
                 skill.SourceList.Clear();
 
                 switch (skill.Category)
                 {
                     case "Physical":
-                        skillList = physicalSkills[skill.Name].OrderByDescending(x => (int)x.Rank).ToList();
+                        skillList = [.. physicalSkills[skill.Name].OrderByDescending(x => (int)x.Rank)];
 
                         if (skill.ModRank != RankList.None)
                         {
@@ -843,7 +843,7 @@ namespace JumpchainCharacterBuilder
                                 SourceJump = "Profile",
                                 SourcePurchase = "Mod Rank"
                             });
-                            skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
+                            skillList = [.. skillList.OrderByDescending(x => (int)x.Rank)];
                         }
 
                         foreach (PurchaseAttribute source in skillList)
@@ -865,7 +865,7 @@ namespace JumpchainCharacterBuilder
                         }
                         break;
                     case "Mental":
-                        skillList = mentalSkills[skill.Name].OrderByDescending(x => (int)x.Rank).ToList();
+                        skillList = [.. mentalSkills[skill.Name].OrderByDescending(x => (int)x.Rank)];
 
                         if (skill.ModRank != RankList.None)
                         {
@@ -874,7 +874,7 @@ namespace JumpchainCharacterBuilder
                                 SourceJump = "Profile",
                                 SourcePurchase = "Mod Rank"
                             });
-                            skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
+                            skillList = [.. skillList.OrderByDescending(x => (int)x.Rank)];
                         }
 
                         foreach (PurchaseAttribute source in skillList)
@@ -896,7 +896,7 @@ namespace JumpchainCharacterBuilder
                         }
                         break;
                     case "Social":
-                        skillList = socialSkills[skill.Name].OrderByDescending(x => (int)x.Rank).ToList();
+                        skillList = [.. socialSkills[skill.Name].OrderByDescending(x => (int)x.Rank)];
 
                         if (skill.ModRank != RankList.None)
                         {
@@ -905,7 +905,7 @@ namespace JumpchainCharacterBuilder
                                 SourceJump = "Profile",
                                 SourcePurchase = "Mod Rank"
                             });
-                            skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
+                            skillList = [.. skillList.OrderByDescending(x => (int)x.Rank)];
                         }
 
                         foreach (PurchaseAttribute source in skillList)
@@ -927,7 +927,7 @@ namespace JumpchainCharacterBuilder
                         }
                         break;
                     case "Technological":
-                        skillList = technologicalSkills[skill.Name].OrderByDescending(x => (int)x.Rank).ToList();
+                        skillList = [.. technologicalSkills[skill.Name].OrderByDescending(x => (int)x.Rank)];
 
                         if (skill.ModRank != RankList.None)
                         {
@@ -936,7 +936,7 @@ namespace JumpchainCharacterBuilder
                                 SourceJump = "Profile",
                                 SourcePurchase = "Mod Rank"
                             });
-                            skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
+                            skillList = [.. skillList.OrderByDescending(x => (int)x.Rank)];
                         }
 
                         foreach (PurchaseAttribute source in skillList)
@@ -958,7 +958,7 @@ namespace JumpchainCharacterBuilder
                         }
                         break;
                     case "Supernatural":
-                        skillList = supernaturalSkills[skill.Name].OrderByDescending(x => x.Rank).ToList();
+                        skillList = [.. supernaturalSkills[skill.Name].OrderByDescending(x => x.Rank)];
 
                         if (skill.ModRank != RankList.None)
                         {
@@ -967,7 +967,7 @@ namespace JumpchainCharacterBuilder
                                 SourceJump = "Profile",
                                 SourcePurchase = "Mod Rank"
                             });
-                            skillList = skillList.OrderByDescending(x => (int)x.Rank).ToList();
+                            skillList = [.. skillList.OrderByDescending(x => (int)x.Rank)];
                         }
 
                         foreach (PurchaseAttribute source in skillList)
@@ -1007,7 +1007,7 @@ namespace JumpchainCharacterBuilder
 
         public static void BoosterCalculation(Character character, int characterIndex, Options.BodyModSupplements bodyMod, List<Jump> jumpList)
         {
-            List<PurchaseAttribute> boosterSources = new();
+            List<PurchaseAttribute> boosterSources = [];
 
             switch (bodyMod)
             {
@@ -1130,11 +1130,11 @@ namespace JumpchainCharacterBuilder
             foreach (Booster booster in character.Boosters)
             {
                 int attributeMultiplierSum = 1;
-                List<PurchaseAttribute> attributeList = new();
+                List<PurchaseAttribute> attributeList = [];
 
                 booster.SourceList.Clear();
 
-                attributeList = boosterAttributes[booster.BoosterName].OrderByDescending(x => x.Value).ToList();
+                attributeList = [.. boosterAttributes[booster.BoosterName].OrderByDescending(x => x.Value)];
 
                 foreach (PurchaseAttribute source in attributeList)
                 {

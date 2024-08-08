@@ -8,152 +8,142 @@
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:JumpchainOverviewViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="757" d:DesignWidth="950">
+             d:DesignHeight="714" d:DesignWidth="928">
 
-    <Grid Background="#FFD8D8D8">
+    
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2.5*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding JumpList}"
-                  SelectedItem="{Binding JumpSelection}"
-                  SelectedIndex="{Binding JumpSelectionIndex}"
-                  SelectionChanged="JumpList_SelectionChanged">
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn Header="#" Width="30"
-                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                DisplayMemberBinding="{Binding JumpNumber}"/>
-                        <GridViewColumn Header="Name" Width="145" 
-                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Duration (Years)" Width="90" 
-                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                DisplayMemberBinding="{Binding DurationYears}"/>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
+        <DockPanel>
+            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" MinHeight="12"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <Button Content="Move Up" 
-                    Command="{Binding MoveJumpUpCommand}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Style="{DynamicResource DataGridButton}"
-                    Grid.Column="0"
-                    Grid.Row="0"/>
+                <Button Content="Move Up" 
+                        Command="{Binding MoveJumpUpCommand}"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="0"
+                        Grid.Row="2"/>
 
-            <Button Content="Move Down"
-                    Command="{Binding MoveJumpDownCommand}"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Bottom"
-                    Style="{DynamicResource DataGridButton}"
-                    Grid.Column="0"
-                    Grid.Row="2"/>
-            
-            <Button Content="New Jump" 
-                    Command="{Binding NewJumpCommand}"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Top"
-                    Style="{DynamicResource DataGridButton}"
-                    Grid.Column="2"
-                    Grid.Row="0"/>
+                <Button Content="Move Down"
+                        Command="{Binding MoveJumpDownCommand}"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"
+                        Grid.Row="2"/>
 
-            <Button Content="Delete Jump"
-                    Command="{Binding DeleteJumpCommand}"
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom"
-                    Style="{DynamicResource DataGridButton}"
-                    Grid.Column="2"
-                    Grid.Row="2"/>
-        </Grid>
+                <Button Content="New Jump" 
+                        Command="{Binding NewJumpCommand}"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="0"
+                        Grid.Row="0"/>
 
-        <TabControl Grid.Column="1" Grid.RowSpan="2" SelectedIndex="{Binding BuildTabIndex}" >
+                <Button Content="Delete Jump"
+                        Command="{Binding DeleteJumpCommand}"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"
+                        Grid.Row="0"/>
+            </Grid>
+
+            <ListView ItemsSource="{Binding JumpList}"
+                      SelectedItem="{Binding JumpSelection}"
+                      SelectedIndex="{Binding JumpSelectionIndex}"
+                      SelectionChanged="JumpList_SelectionChanged" Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="1">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="#" Width="33"
+                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                        DisplayMemberBinding="{Binding JumpNumber}"/>
+                            <GridViewColumn Header="Name" Width="Auto"
+                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                        DisplayMemberBinding="{Binding Name}"/>
+                            <GridViewColumn Header="Duration (Years)" Width="90" 
+                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                        DisplayMemberBinding="{Binding DurationYears}"/>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+
+        <TabControl Grid.Column="1" SelectedIndex="{Binding BuildTabIndex}" >
             <TabControl.Visibility>
                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                     <Binding Path="JumpSelection"/>
                     <Binding Path="JumpList"/>
                 </MultiBinding>
             </TabControl.Visibility>
-            <TabItem Header="Origins">
+            <TabItem Header="Origins" Style="{DynamicResource MainTabItem}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.1*"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="1.3*"/>
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="1.5*"/>
                     </Grid.RowDefinitions>
 
-                    <DockPanel Grid.Row="1">
-                        <ContentControl x:Name="BudgetPanel" Template="{DynamicResource BudgetPanel}" 
-                            DockPanel.Dock="Top"/>
-                        <ContentControl x:Name="CharacterSelector" Template="{DynamicResource CharacterSelector}" 
-                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
-                        <StackPanel DockPanel.Dock="Top" Margin="0,5,0,0"
-                                    HorizontalAlignment="Center" VerticalAlignment="Top">
-                            <TextBlock Text="Origin" HorizontalAlignment="Center"/>
-                            <ComboBox ItemsSource="{Binding OriginList}" DisplayMemberPath="Name"
-                                      SelectedItem="{Binding OriginSelection}"
-                                      SelectedIndex="{Binding OriginSelectionIndex}"
-                                      MinWidth="125"/>
-                        </StackPanel>
-                        <Grid DockPanel.Dock="Top" Margin="0,5,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="15*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Age" HorizontalAlignment="Center" MinWidth="45"/>
-                                <TextBox Text="{Binding Age, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="30" Margin="5,0,0,0"/>
-                                <TextBlock Text="Cost" HorizontalAlignment="Center"
-                                           MinWidth="25"
-                                           Margin="55,0,0,0"/>
-                                <TextBox Text="{Binding AgeCost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="30" Margin="5,0,0,0"/>
+                    <DockPanel Margin="0,12,0,0">
+                        <StackPanel DockPanel.Dock="Top">
+                            <ContentControl x:Name="BudgetPanel" Template="{DynamicResource BudgetPanel}"/>
+                            <ContentControl x:Name="CharacterSelector" Template="{DynamicResource CharacterSelector}" 
+                                            Margin="0,4,0,0"/>
+                            <StackPanel Margin="0,4,0,0"
+                                        HorizontalAlignment="Center" VerticalAlignment="Top">
+                                <TextBlock Text="Origin" HorizontalAlignment="Center"/>
+                                <ComboBox ItemsSource="{Binding OriginList}" DisplayMemberPath="Name"
+                                          SelectedItem="{Binding OriginSelection}"
+                                          SelectedIndex="{Binding OriginSelectionIndex}"
+                                          Width="125"/>
                             </StackPanel>
-                        </Grid>
-                        <Grid DockPanel.Dock="Top" Margin="0,5,0,0">
+                        </StackPanel>
+
+                        <Grid DockPanel.Dock="Top" Margin="4,4,0,0">
                             <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.2*"/>
+                                <ColumnDefinition Width="1.8*"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="15*"/>
+                                <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Gender" HorizontalAlignment="Center" MinWidth="45"/>
+                            <StackPanel VerticalAlignment="Center">
+                                <TextBlock Text="Age" VerticalAlignment="Center" MinWidth="25"/>
+                                <TextBlock Text="Gender" VerticalAlignment="Center" MinWidth="25" Margin="0,4,0,0"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="1">
+                                <TextBox Text="{Binding Age, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                         Width="30"/>
                                 <TextBox Text="{Binding Gender, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Margin="5,0,0,0" Width="70"/>
-                                <TextBlock Text="Cost" HorizontalAlignment="Center"
-                                           MinWidth="25"
-                                           Margin="15,0,0,0"/>
+                                         HorizontalAlignment="Stretch"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="2" VerticalAlignment="Center">
+                                <TextBlock Text="Cost" HorizontalAlignment="Center" Width="25"/>
+                                <TextBlock Text="Cost" HorizontalAlignment="Center" Width="25" Margin="0,4,0,0"/>
+                            </StackPanel>
+
+                            <StackPanel Grid.Column="3">
+                                <TextBox Text="{Binding AgeCost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                         Width="30"/>
                                 <TextBox Text="{Binding GenderCost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="30"
-                                         Margin="5,0,0,0"/>
+                                         Width="30"/>
                             </StackPanel>
                         </Grid>
                     </DockPanel>
@@ -161,14 +151,17 @@
                     <ListView ItemsSource="{Binding MiscOriginDetailList}"
                               SelectedItem="{Binding MiscOriginDetailSelection}"
                               SelectedIndex="{Binding MiscOriginDetailIndex}"
-                              Grid.Row="2" Margin="3,5,3,0">
+                              Grid.Row="1" Margin="4,4,4,0"
+                              Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                              ScrollViewer.ScrollChanged="ListView_ScrollChanged"
+                              Tag="1">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn Header="Type" Width="70"
+                                    <GridViewColumn Header="Type" Width="60"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding Category}"/>
-                                    <GridViewColumn Header="Name" Width="100" 
+                                    <GridViewColumn Header="Name" Width="Auto"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding Name}"/>
                                     <GridViewColumn Header="Cost" Width="45" 
@@ -179,65 +172,48 @@
                         </ListView.View>
                     </ListView>
 
-                    <GroupBox Header="Details" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="3" >
+                    <GroupBox Header="Details" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="MiscOriginDetailSelection"/>
                                 <Binding Path="MiscOriginDetailList"/>
                             </MultiBinding>
                         </GroupBox.Visibility>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.2*"/>
-                                <ColumnDefinition Width="5*"/>
-                                <ColumnDefinition Width="5*"/>
-                            </Grid.ColumnDefinitions>
+                        <Grid Margin="8,0,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="0.1*"/>
-                                <RowDefinition Height="5*"/>
-                                <RowDefinition Height="13*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="4*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel Grid.Row="1">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding MiscOriginDetailName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
+                            </StackPanel>
 
-                                <TextBlock Text="Cost" Margin="0,10,0,0"/>
+                            <StackPanel Grid.Row="2">
+                                <TextBlock Text="Cost"/>
                                 <TextBox Text="{Binding MiscOriginDetailSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="40" 
                                          HorizontalAlignment="Left"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Description"/>
+                            <DockPanel Grid.Row="3">
+                                <TextBlock Text="Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding MiscOriginDetailDescription, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
-                                         Width="400" Height="200"
+                                         HorizontalAlignment="Stretch"
                                          Tag="Insert Origin Detail description."/>
-                            </StackPanel>
+                            </DockPanel>
                         </Grid>
                     </GroupBox>
 
-                    <StackPanel Grid.Row="3">
-                        <TextBlock Text="Available Origins"/>
+                    <DockPanel Grid.Row="2" Margin="4,4,4,0">
+                        <TextBlock Text="Available Origins" DockPanel.Dock="Top"/>
 
-                        <ListView ItemsSource="{Binding OriginList}"
-                                  SelectedItem="{Binding OriginEditSelection}"
-                                  SelectedIndex="{Binding OriginEditSelectionIndex}"
-                                  Height="150">
-                            <ListView.View>
-                                <GridView>
-                                    <GridView.Columns>
-                                        <GridViewColumn Header="Origin" Width="225"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding Name}"/>
-                                    </GridView.Columns>
-                                </GridView>
-                            </ListView.View>
-                        </ListView>
-
-                        <Grid>
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -257,26 +233,31 @@
                                     Style="{DynamicResource DataGridButton}"
                                     Grid.Column="2"/>
                         </Grid>
-                    </StackPanel>
 
-                    <StackPanel Grid.Row="4">
-                        <TextBlock Text="Misc. Origin detail types"/>
-                        <ListView ItemsSource="{Binding MiscOriginTypeList}"
-                                  SelectedItem="{Binding MiscOriginTypeSelection}"
-                                  SelectedIndex="{Binding MiscOriginTypeSelectionIndex}"
-                                  Height="150">
+                        <ListView ItemsSource="{Binding OriginList}"
+                                  SelectedItem="{Binding OriginEditSelection}"
+                                  SelectedIndex="{Binding OriginEditSelectionIndex}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged"
+                                  Tag="0">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
-                                        <GridViewColumn Header="Type" Width="225"
+                                        <GridViewColumn Header="Origin" Width="Auto"
                                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                        DisplayMemberBinding="{Binding}"/>
+                                                        DisplayMemberBinding="{Binding Name}"/>
                                     </GridView.Columns>
                                 </GridView>
                             </ListView.View>
                         </ListView>
 
-                        <Grid>
+                        
+                    </DockPanel>
+
+                    <DockPanel Grid.Row="3" Margin="4,4,4,0">
+                        <TextBlock Text="Misc. Origin detail types" DockPanel.Dock="Top"/>
+
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
@@ -296,50 +277,66 @@
                                     Style="{DynamicResource DataGridButton}"
                                     Grid.Column="2"/>
                         </Grid>
-                    </StackPanel>
 
-                    <GroupBox Header="Origin Details" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+                        <ListView ItemsSource="{Binding MiscOriginTypeList}"
+                                  SelectedItem="{Binding MiscOriginTypeSelection}"
+                                  SelectedIndex="{Binding MiscOriginTypeSelectionIndex}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged"
+                                  Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Type" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+
+                    <GroupBox Header="Origin Details" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="OriginEditSelection"/>
                                 <Binding Path="OriginList"/>
                             </MultiBinding>
                         </GroupBox.Visibility>
-                        <Grid>
+                        <Grid Margin="8,0,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="3*"/>
+                                <RowDefinition Height="1.8*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel>
                                 <TextBlock Text="Origin Name"/>
                                 <TextBox Text="{Binding OriginEditName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
                             </StackPanel>
                             
-                            <StackPanel Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel Grid.Column="1" Margin="8,0,0,0">
                                 <TextBlock Text="Origin Cost"/>
                                 <TextBox Text="{Binding OriginEditSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
                                          HorizontalAlignment="Left"/>
                             </StackPanel>
                             
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Origin Description"/>
+                            <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
+                                <TextBlock Text="Origin Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding OriginEditDescription, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
-                                         Width="400"
-                                         Height="100"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Origin description."/>
-                            </StackPanel>
+                            </DockPanel>
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="Type Details" Grid.Row="4" Grid.Column="1">
+                    <GroupBox Header="Type Details" Grid.Row="3" Grid.Column="1">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="MiscOriginTypeSelection"/>
@@ -363,26 +360,25 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Jump Builds">
+            <TabItem Header="Jump Builds" Style="{DynamicResource MainTabItem}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.094*"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DockPanel Grid.Row="1">
-                        <ContentControl Template="{DynamicResource BudgetPanel}" 
-                            DockPanel.Dock="Top"/>
-                        <ContentControl Template="{DynamicResource CharacterSelector}" 
-                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
-                        <StackPanel DockPanel.Dock="Top" Margin="0,5,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <DockPanel Margin="0,12,0,0">
+                        <ContentControl Template="{DynamicResource BudgetPanel}" DockPanel.Dock="Top"/>
+                        <ContentControl Template="{DynamicResource CharacterSelector}" DockPanel.Dock="Top" 
+                                        Margin="0,4,0,0"/>
+                        <StackPanel Margin="0,4,0,0" 
+                                    HorizontalAlignment="Center" VerticalAlignment="Top">
                             <TextBlock Text="Purchase Type" HorizontalAlignment="Center"/>
                             <ComboBox x:Name="PurchaseListSelector" 
                                       ItemsSource="{Binding PurchaseTypeList}"
@@ -393,80 +389,73 @@
                         </StackPanel>
                     </DockPanel>
 
-                    <ListView ItemsSource="{Binding CurrentLoadedPurchaseList}"
-                              SelectedItem="{Binding PurchaseSelection}"
-                              SelectedIndex="{Binding PurchaseSelectionIndex}"
-                              Grid.Row="2" Grid.RowSpan="2"
-                              Margin="0,5,0,0">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="150"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="Cost" Width="70" 
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DockPanel Grid.Row="1" Grid.RowSpan="3" Margin="4,12,4,0">
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*" MinHeight="12"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                            <Button Content="Move Up" 
+                                    Command="{Binding MovePurchaseUpCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="0"
+                                    Grid.Row="2"/>
 
-                        <Button Content="Move Up" 
-                                Command="{Binding MovePurchaseUpCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="0"
-                                Grid.Row="1"/>
+                            <Button Content="Move Down"
+                                    Command="{Binding MovePurchaseDownCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"
+                                    Grid.Row="2"/>
 
-                        <Button Content="Move Down"
-                                Command="{Binding MovePurchaseDownCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"
-                                Grid.Row="1"/>
-                        
-                        <Button Content="New Purchase" 
-                                Command="{Binding NewPurchaseCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"/>
+                            <Button Content="New" 
+                                    Command="{Binding NewPurchaseCommand}"
+                                    Style="{DynamicResource DataGridButton}"/>
 
-                        <Button Content="Delete Purchase"
-                                Command="{Binding DeletePurchaseCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"/>
-                    </Grid>
+                            <Button Content="Delete"
+                                    Command="{Binding DeletePurchaseCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"/>
+                        </Grid>
 
-                    <GroupBox Header="Purchase Details" Grid.Column="1" Grid.RowSpan="5">
+                        <ListView ItemsSource="{Binding CurrentLoadedPurchaseList}"
+                                  SelectedItem="{Binding PurchaseSelection}"
+                                  SelectedIndex="{Binding PurchaseSelectionIndex}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Name" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Cost" Width="40" 
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding DisplayCost}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+                    
+                    <GroupBox Header="Purchase Details" Grid.Column="1" Grid.RowSpan="4">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="PurchaseSelection"/>
                                 <Binding Path="CurrentLoadedPurchaseList"/>
                             </MultiBinding>
                         </GroupBox.Visibility>
-                        <Grid Margin="5,3,0,0">
+                        <Grid Margin="8,0,0,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.5*"/>
-                                <ColumnDefinition Width="1.2*"/>
+                                <ColumnDefinition Width="4*" MaxWidth="250"/>
                                 <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="2*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
@@ -475,64 +464,50 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding PurchaseName, ValidatesOnNotifyDataErrors=True}" Width="100"/>
-                                <TextBlock Text="Cost" Margin="0,15,0,0"/>
+                                <TextBlock Text="Cost" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding PurchaseSelection.Cost, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40"
-                                         HorizontalAlignment="Left"/>
+                                         Width="40" HorizontalAlignment="Left"/>
 
-                                <CheckBox Content="Discounted" Margin="0,5,0,0"
+                                <CheckBox Content="Discounted" Margin="0,8,0,0"
                                           IsChecked="{Binding PurchaseSelection.DiscountEnabled, ValidatesOnNotifyDataErrors=True}"/>
-                                <CheckBox Content="Free" Margin="0,5,0,0"
+                                <CheckBox Content="Free" Margin="0,4,0,0"
                                           IsChecked="{Binding PurchaseSelection.FreebieEnabled, ValidatesOnNotifyDataErrors=True}"/>
                             </StackPanel>
 
-                            <StackPanel Margin="0,1,0,0" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel Grid.Column="1" Grid.ColumnSpan="2"
+                                        VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Category"/>
                                 <ComboBox ItemsSource="{Binding CategoryList}"
                                           SelectedItem="{Binding CategorySelection}"
-                                          Width="100"/>
-                                <TextBlock Text="Associated Origin" Margin="0,15,0,0"/>
+                                          MinWidth="100"/>
+
+                                <TextBlock Text="Associated Origin" Margin="0,8,0,0"/>
                                 <ComboBox ItemsSource="{Binding OriginList}"
                                           DisplayMemberPath="Name"
                                           SelectedIndex="{Binding PurchaseOriginIndex}"
-                                          Width="100"/>
+                                          MinWidth="100"/>
+
+                                <CheckBox Content="Body-Mod Addition" IsChecked="{Binding PurchaseSelection.BodyModAddition}" 
+                                          Margin="0,8,0,0"/>
+                                <CheckBox Content="Purchase is temporary" IsChecked="{Binding PurchaseSelection.IsTemporary}" 
+                                          Margin="0,4,0,0"/>
                             </StackPanel>
 
-                            <StackPanel Margin="0,1,0,0" Grid.Column="2" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <CheckBox Content="Body-Mod Addition" IsChecked="{Binding PurchaseSelection.BodyModAddition}" Margin="0,17,0,0"/>
-                                <CheckBox Content="Purchase is temporary" IsChecked="{Binding PurchaseSelection.IsTemporary}" Margin="0,10,0,0"/>
-                            </StackPanel>
-
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Description"/>
+                            <DockPanel Grid.Row="1" Grid.ColumnSpan="3">
+                                <TextBlock Text="Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding PurchaseDescription, ValidatesOnNotifyDataErrors=True}"
-                                         Width="400" Height="200"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Purchase description."/>
-                            </StackPanel>
+                            </DockPanel>
 
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Special Traits"/>
-                                <ListView ItemsSource="{Binding PurchaseAttributeList}"
-                                          SelectedItem="{Binding PurchaseAttributeSelection}"
-                                          SelectedIndex="{Binding PurchaseAttributeIndex}"
-                                          Width="200"
-                                          Height="200">
-                                    <ListView.View>
-                                        <GridView>
-                                            <GridView.Columns>
-                                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="60"/>
-                                                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="66"/>
-                                                <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category}" Width="76"/>
-                                            </GridView.Columns>
-                                        </GridView>
-                                    </ListView.View>
-                                </ListView>
+                            <DockPanel Grid.Row="2" Grid.RowSpan="2" Margin="0,8,0,0">
+                                <TextBlock Text="Special Traits" DockPanel.Dock="Top"/>
 
-                                <Grid Margin="0,10,0,0">
+                                <Grid DockPanel.Dock="Bottom" Margin="0,8,0,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
                                         <ColumnDefinition Width="*"/>
@@ -546,21 +521,34 @@
 
                                     <Button Content="New Trait" 
                                             Command="{Binding NewPurchaseTraitCommand}"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Center"
                                             Style="{DynamicResource DataGridButton}"/>
 
                                     <Button Content="Delete Trait"
                                             Command="{Binding DeletePurchaseTraitCommand}"
-                                            HorizontalAlignment="Right"
-                                            VerticalAlignment="Center"
                                             Style="{DynamicResource DataGridButton}"
                                             Grid.Column="2"/>
                                 </Grid>
-                            </StackPanel>
+                                
+                                <ListView ItemsSource="{Binding PurchaseAttributeList}"
+                                          SelectedItem="{Binding PurchaseAttributeSelection}"
+                                          SelectedIndex="{Binding PurchaseAttributeIndex}"
+                                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged"
+                                          Tag="0">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridView.Columns>
+                                                <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="Auto"/>
+                                                <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Type}" Width="60"/>
+                                                <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category}" Width="75"/>
+                                            </GridView.Columns>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
+                            </DockPanel>
 
-                            <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="2" 
-                                      Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0">
+                            <GroupBox Header="Trait Details" Grid.Row="2" Grid.Column="1" 
+                                      Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,8,0,0">
                                 <GroupBox.Visibility>
                                     <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                         <Binding Path="PurchaseAttributeSelection"/>
@@ -571,36 +559,36 @@
                                     <TextBlock Text="Name"/>
                                     <ComboBox ItemsSource="{Binding CurrentAttributeList}"
                                               SelectedValue="{Binding CurrentAttributeSelection}"
-                                              Width="100" HorizontalAlignment="Left"/>
+                                              MinWidth="100"/>
 
-                                    <TextBlock Text="Type" Margin="0,15,0,0"/>
+                                    <TextBlock Text="Type" Margin="0,12,0,0"/>
                                     <ComboBox ItemsSource="{Binding AvailableAttributeTypeList}" 
                                               SelectedValue="{Binding AttributeTypeSelection}"
-                                              Width="100" HorizontalAlignment="Left"/>
+                                              MinWidth="100"/>
 
-                                    <TextBlock Text="Category" Margin="0,15,0,0"/>
+                                    <TextBlock Text="Category" Margin="0,12,0,0"/>
                                     <ComboBox ItemsSource="{Binding AvailableAttributeCategoryList}" 
                                               SelectedValue="{Binding AttributeCategorySelection}"
-                                              Width="100" HorizontalAlignment="Left"/>
+                                              MinWidth="100"/>
 
                                     <StackPanel Visibility="{Binding AttributeBasicSelected, Converter={StaticResource BoolToVis}}"
-                                                Margin="0,15,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                                                Margin="0,12,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
                                         <TextBlock Text="Rank"/>
                                         <ComboBox ItemsSource="{Binding AttributeRankDictionary}"
                                                   DisplayMemberPath="Key"
                                                   SelectedValuePath="Value"
                                                   SelectedValue="{Binding PurchaseAttributeSelection.Rank}"
-                                                  Width="100" HorizontalAlignment="Left"/>
+                                                  MinWidth="100"/>
                                     </StackPanel>
                                     <StackPanel Visibility="{Binding AttributeBoosterSelected, Converter={StaticResource BoolToVis}}"
-                                                VerticalAlignment="Top" HorizontalAlignment="Left">
+                                                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,12,0,0">
                                         <TextBlock Text="Multiplier"/>
-                                        <TextBox Text="{Binding PurchaseAttributeSelection.Value, ValidatesOnNotifyDataErrors=True}" Width="40"/>
+                                        <TextBox Text="{Binding PurchaseAttributeSelection.Value, ValidatesOnNotifyDataErrors=True}" MinWidth="40"/>
                                     </StackPanel>
                                     <StackPanel Visibility="{Binding AttributeSpecialSelected, Converter={StaticResource BoolToVis}}" 
-                                                VerticalAlignment="Top" HorizontalAlignment="Left">
+                                                VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,12,0,0">
                                         <TextBlock Text="Value"/>
-                                        <TextBox Text="{Binding PurchaseAttributeSelection.Value, ValidatesOnNotifyDataErrors=True}" Width="40"/>
+                                        <TextBox Text="{Binding PurchaseAttributeSelection.Value, ValidatesOnNotifyDataErrors=True}" MinWidth="40"/>
                                     </StackPanel>
                                 </StackPanel>
                             </GroupBox>
@@ -608,83 +596,79 @@
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Companion Imports">
+            <TabItem Header="Companion Imports" Style="{DynamicResource MainTabItem}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.089*"/>
                         <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="1.5*"/>
-                        <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DockPanel Grid.Row="1">
-                        <ContentControl Template="{DynamicResource BudgetPanel}" 
-                            DockPanel.Dock="Top"/>
-                        <ContentControl Template="{DynamicResource CharacterSelector}" 
-                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                    <DockPanel Margin="0,12,0,0">
+                        <ContentControl Template="{DynamicResource BudgetPanel}" DockPanel.Dock="Top"/>
+                        <ContentControl Template="{DynamicResource CharacterSelector}" DockPanel.Dock="Top" 
+                                        Margin="0,4,0,0"/>
                     </DockPanel>
 
-                    <ListView ItemsSource="{Binding ImportOptionList}"
-                              SelectedItem="{Binding ImportOptionSelection}"
-                              SelectedIndex="{Binding ImportOptionSelectionIndex}"
-                              Grid.Row="2" Grid.RowSpan="2"
-                              Margin="0,5,0,0">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="150"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="Cost" Width="70" 
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding DisplayCost}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DockPanel Grid.Row="1" Margin="4,12,4,0">
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                            <Button Content="New Import" 
+                                    Command="{Binding NewImportCommand}"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource DataGridButton}"/>
 
-                        <Button Content="New Import" 
-                                Command="{Binding NewImportCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"/>
+                            <Button Content="Delete Import"
+                                    Command="{Binding DeleteImportCommand}"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"/>
+                        </Grid>
+                        <ListView ItemsSource="{Binding ImportOptionList}"
+                                  SelectedItem="{Binding ImportOptionSelection}"
+                                  SelectedIndex="{Binding ImportOptionSelectionIndex}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Name" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Cost" Width="70" 
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding DisplayCost}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
 
-                        <Button Content="Delete Import"
-                                Command="{Binding DeleteImportCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"/>
-                    </Grid>
-
-                    <GroupBox Header="Import Option Details" Grid.Column="1" Grid.RowSpan="5">
+                    <GroupBox Header="Import Option Details" Grid.Column="1" Grid.RowSpan="2">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="ImportOptionSelection"/>
                                 <Binding Path="ImportOptionList"/>
                             </MultiBinding>
                         </GroupBox.Visibility>
-                        <Grid Margin="5,3,0,0">
+                        <Grid Margin="8,0,0,0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.5*"/>
-                                <ColumnDefinition Width="1.2*"/>
+                                <ColumnDefinition Width="3*" MaxWidth="250"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
@@ -695,41 +679,41 @@
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding ImportOptionName, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
-                                <TextBlock Text="Cost" Margin="0,15,0,0"/>
+                                <TextBlock Text="Cost" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding ImportOptionSelection.Cost, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
                                          HorizontalAlignment="Left"/>
 
-                                <CheckBox Content="Discounted" Margin="0,5,0,0"
+                                <CheckBox Content="Discounted" Margin="0,8,0,0"
                                           IsChecked="{Binding ImportOptionSelection.DiscountEnabled, ValidatesOnNotifyDataErrors=True}"/>
-                                <CheckBox Content="Free" Margin="0,5,0,0"
+                                <CheckBox Content="Free" Margin="0,4,0,0"
                                           IsChecked="{Binding ImportOptionSelection.FreebieEnabled, ValidatesOnNotifyDataErrors=True}"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Description"/>
+                            <DockPanel Grid.Row="1" Grid.ColumnSpan="4">
+                                <TextBlock Text="Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding ImportOptionDescription, ValidatesOnNotifyDataErrors=True}"
-                                         Width="400"
-                                         Height="200"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Import option description."/>
-                            </StackPanel>
+                            </DockPanel>
 
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Grid.RowSpan="2" Margin="0,50,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Imported Companions"/>
+                            <DockPanel Grid.Row="2" Grid.RowSpan="2" Margin="0,8,0,0">
+                                <TextBlock Text="Imported Companions" DockPanel.Dock="Top"/>
 
                                 <ListView ItemsSource="{Binding ImportCharacterList}"
                                           SelectedItem="{Binding ImportCharacterSelection}"
                                           SelectedIndex="{Binding ImportCharacterIndex}"
-                                          Height="250">
+                                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">  
                                     <ListView.View>
                                         <GridView>
                                             <GridView.Columns>
-                                                <GridViewColumn Header="Name" Width="110"
+                                                <GridViewColumn Header="Name" Width="Auto"
                                                                 CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                                 DisplayMemberBinding="{Binding CompanionName}"/>
                                                 <GridViewColumn Header="Imported" Width="60">
@@ -746,10 +730,10 @@
                                         </GridView>
                                     </ListView.View>
                                 </ListView>
-                            </StackPanel>
+                            </DockPanel>
 
-                            <GroupBox Header="Import Details" Grid.Row="2" Grid.Column="2" 
-                                      Grid.ColumnSpan="2" Margin="0,50,0,0">
+                            <GroupBox Header="Import Details" Grid.Row="2" Grid.Column="1" 
+                                      Grid.ColumnSpan="2" Grid.RowSpan="2">
                                 <GroupBox.Visibility>
                                     <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                         <Binding Path="ImportCharacterSelection"/>
@@ -763,12 +747,11 @@
                                              IsReadOnly="True"/>
 
                                     <CheckBox Content="Imported" IsChecked="{Binding ImportCharacterSelection.CompanionSelected}"
-                                              Margin="0,10,0,0"/>
+                                              Margin="0,12,0,0"/>
 
-                                    <TextBlock Text="Stipend" Margin="0,10,0,0"/>
+                                    <TextBlock Text="Stipend" Margin="0,12,0,0"/>
                                     <TextBox Text="{Binding ImportCharacterSelection.CompanionOptionValue}"
-                                             Width="40"
-                                             HorizontalAlignment="Left"/>
+                                             Width="40"/>
                                 </StackPanel>
                             </GroupBox>
                         </Grid>
@@ -776,275 +759,242 @@
 
                 </Grid>
             </TabItem>
-            <TabItem Header="Drawbacks">
+            <TabItem Header="Drawbacks" Style="{DynamicResource MainTabItem}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.089*"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DockPanel Grid.Row="1">
+                    <DockPanel Margin="0,12,0,0">
                         <ContentControl Template="{DynamicResource BudgetPanel}" 
                             DockPanel.Dock="Top"/>
                         <ContentControl Template="{DynamicResource CharacterSelector}" 
-                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                            DockPanel.Dock="Top" Margin="0,4,0,0"/>
                     </DockPanel>
 
-                    <ListView ItemsSource="{Binding DrawbackList}"
-                              SelectedItem="{Binding DrawbackSelection}"
-                              SelectedIndex="{Binding DrawbackSelectionIndex}"
-                              Grid.Row="2" Grid.RowSpan="2"
-                              Margin="0,5,0,0">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="150"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="Value" Width="70" 
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding Value}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DockPanel Grid.Row="1" Grid.RowSpan="3" Margin="4,12,4,0">
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*" MinHeight="12"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                            <Button Content="Move Up" 
+                                    Command="{Binding MoveDrawbackUpCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="0"
+                                    Grid.Row="2"/>
 
-                        <Button Content="Move Up" 
-                                Command="{Binding MoveDrawbackUpCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="0"
-                                Grid.Row="1"/>
+                            <Button Content="Move Down"
+                                    Command="{Binding MoveDrawbackDownCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"
+                                    Grid.Row="2"/>
 
-                        <Button Content="Move Down"
-                                Command="{Binding MoveDrawbackDownCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"
-                                Grid.Row="1"/>
-                        
-                        <Button Content="New Drawback" 
-                                Command="{Binding NewDrawbackCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"/>
+                            <Button Content="New" 
+                                    Command="{Binding NewDrawbackCommand}"
+                                    Style="{DynamicResource DataGridButton}"/>
 
-                        <Button Content="Delete Drawback"
-                                Command="{Binding DeleteDrawbackCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"/>
-                    </Grid>
+                            <Button Content="Delete"
+                                    Command="{Binding DeleteDrawbackCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"/>
+                        </Grid>
 
-                    <GroupBox Header="Drawback Details" Grid.Column="1" Grid.RowSpan="5">
+                        <ListView ItemsSource="{Binding DrawbackList}"
+                                  SelectedItem="{Binding DrawbackSelection}"
+                                  SelectedIndex="{Binding DrawbackSelectionIndex}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Name" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Value" Width="70" 
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Value}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+
+                    <GroupBox Header="Drawback Details" Grid.Column="1" Grid.RowSpan="4">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="DrawbackSelection"/>
                                 <Binding Path="DrawbackList"/>
                             </MultiBinding>
                         </GroupBox.Visibility>
-                        <Grid Margin="5,3,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.5*"/>
-                                <ColumnDefinition Width="1.2*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                        <Grid Margin="0,8,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding DrawbackName, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
-                                <TextBlock Text="Value" Margin="0,15,0,0"/>
+                                <TextBlock Text="Value" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding DrawbackSelection.Value, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40"
-                                         HorizontalAlignment="Left"/>
+                                         Width="40"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Description"/>
+                            <DockPanel Grid.Row="1">
+                                <TextBlock Text="Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding DrawbackDescription, ValidatesOnNotifyDataErrors=True}"
-                                         Width="400" Height="200"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Drawback description here."/>
-                            </StackPanel>
+                            </DockPanel>
 
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Margin="0,75,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Reward"/>
+                            <DockPanel Grid.Row="2" Margin="0,12,0,0">
+                                <TextBlock Text="Reward" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding DrawbackReward, ValidatesOnNotifyDataErrors=True}"
                                          x:Name="DrawbackRewardBox"
-                                         Width="400" Height="200"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert reward description here. This data is only visible here so make sure that you add it as a Perk/Item if it has an effect that you want to store for later."/>
-                            </StackPanel>
+                            </DockPanel>
                         </Grid>
                     </GroupBox>
-
                 </Grid>
             </TabItem>
-            <TabItem Header="Scenarios">
+            <TabItem Header="Scenarios" Style="{DynamicResource MainTabItem}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" MaxWidth="250"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="0.089*"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="1.5*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
 
-                    <DockPanel Grid.Row="1">
+                    <DockPanel Margin="0,12,0,0">
                         <ContentControl Template="{DynamicResource BudgetPanel}" 
                             DockPanel.Dock="Top"/>
                         <ContentControl Template="{DynamicResource CharacterSelector}" 
-                            DockPanel.Dock="Top" Margin="0,5,0,0"/>
+                            DockPanel.Dock="Top" Margin="0,4,0,0"/>
                     </DockPanel>
 
-                    <ListView ItemsSource="{Binding ScenarioList}"
-                              SelectedItem="{Binding ScenarioSelection}"
-                              SelectedIndex="{Binding ScenarioSelectionIndex}"
-                              Grid.Row="2" Grid.RowSpan="2"
-                              Margin="0,5,0,0">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="150"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding Name}"/>
-                                    <GridViewColumn Header="Value" Width="70" 
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding Value}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DockPanel Grid.Row="1" Grid.RowSpan="3" Margin="4,12,4,0">
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*" MinHeight="12"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            
+                            <Button Content="Move Up" 
+                                    Command="{Binding MoveScenarioUpCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="0"
+                                    Grid.Row="2"/>
 
-                    <Grid Grid.Row="4">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                            <Button Content="Move Down"
+                                    Command="{Binding MoveScenarioDownCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"
+                                    Grid.Row="2"/>
+
+                            <Button Content="New" 
+                                    Command="{Binding NewScenarioCommand}"
+                                    Style="{DynamicResource DataGridButton}"/>
+
+                            <Button Content="Delete"
+                                    Command="{Binding DeleteScenarioCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"/>
+                        </Grid>
+
+                        <ListView ItemsSource="{Binding ScenarioList}"
+                                  SelectedItem="{Binding ScenarioSelection}"
+                                  SelectedIndex="{Binding ScenarioSelectionIndex}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Name" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Name}"/>
+                                        <GridViewColumn Header="Value" Width="70" 
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Value}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
                         
-                        <Button Content="Move Up" 
-                                Command="{Binding MoveScenarioUpCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="0"
-                                Grid.Row="1"/>
-
-                        <Button Content="Move Down"
-                                Command="{Binding MoveScenarioDownCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"
-                                Grid.Row="1"/>
-                        
-                        <Button Content="New Scenario" 
-                                Command="{Binding NewScenarioCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"/>
-
-                        <Button Content="Delete Scenario"
-                                Command="{Binding DeleteScenarioCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"/>
-                    </Grid>
-
-                    <GroupBox Header="Scenario Details" Grid.Column="1" Grid.RowSpan="5">
+                    <GroupBox Header="Scenario Details" Grid.Column="1" Grid.RowSpan="4">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="ScenarioSelection"/>
                                 <Binding Path="ScenarioList"/>
                             </MultiBinding>
                         </GroupBox.Visibility>
-                        <Grid Margin="5,3,0,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.5*"/>
-                                <ColumnDefinition Width="1.2*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
+                        <Grid Margin="0,8,0,0">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
                             </Grid.RowDefinitions>
 
-                            <StackPanel Margin="3,1,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding ScenarioName, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
-                                <TextBlock Text="Value" Margin="0,15,0,0"/>
+                                <TextBlock Text="Value" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding ScenarioSelection.Value, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40"
-                                         HorizontalAlignment="Left"/>
+                                         Width="40"/>
                             </StackPanel>
 
-                            <StackPanel Grid.Row="1" Grid.ColumnSpan="4" Grid.RowSpan="2" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Description"/>
+                            <DockPanel Grid.Row="1">
+                                <TextBlock Text="Description" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding ScenarioDescription, ValidatesOnNotifyDataErrors=True}"
-                                         Width="400"
-                                         Height="200"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
-                                         Tag="Insert Scenario description."/>
-                            </StackPanel>
+                                         Tag="Insert Scenario description here."/>
+                            </DockPanel>
 
-                            <StackPanel Grid.Row="2" Grid.ColumnSpan="4" Grid.RowSpan="2" Margin="0,75,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                                <TextBlock Text="Reward"/>
+                            <DockPanel Grid.Row="2" Margin="0,12,0,0">
+                                <TextBlock Text="Reward" DockPanel.Dock="Top"/>
                                 <TextBox Text="{Binding ScenarioReward, ValidatesOnNotifyDataErrors=True}"
-                                         Width="400"
-                                         Height="200"
+                                         HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
-                                         Tag="Insert reward description here. This data is only visible here so make sure that you add it as a Perk/Item if it has an effect that you want to store for later."/>
-                            </StackPanel>
+                                         Tag="Insert reward description here. This data is only visible here so make sure that you add it as a Perk/Item if it has an effect that you want to store for later."/>   
+                            </DockPanel>
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Jump Settings">
+            <TabItem Header="Jump Settings" Style="{DynamicResource MainTabItem}">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -1052,15 +1002,14 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1.2*"/>
-                        <RowDefinition Height="0.2*"/>
-                        <RowDefinition Height="1.2*"/>
-                        <RowDefinition Height="0.4*"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="1.3*"/>
+                        <RowDefinition Height="0.3*"/>
+                        <RowDefinition Height="1.1*"/>
+                        <RowDefinition Height="1.1*"/>
                     </Grid.RowDefinitions>
 
 
-                    <StackPanel Margin="5,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <StackPanel Margin="8,8,0,0">
                         <TextBlock Text="Jump Name"/>
                         <TextBox Text="{Binding JumpName, ValidatesOnNotifyDataErrors=True}" 
                                  Width="150"/>
@@ -1079,73 +1028,70 @@
 
                         <TextBlock Text="Jump #"/>
                         <TextBox Text="{Binding JumpSelection.JumpNumber, Mode=OneWay}"
-                                 Width="30" HorizontalAlignment="Left"
-                                 IsReadOnly="True"/>
-
-                        <CheckBox Content="Skip Jump number" IsChecked="{Binding SkipJumpNumber}" Margin="0,10,0,0"/>
-
-                        <CheckBox Content="Is this a Gauntlet?" IsChecked="{Binding IsGauntlet}" Margin="0,5,0,0"/>
+                                 Width="30" IsReadOnly="True"/>
                     </StackPanel>
                     
-                    <StackPanel Margin="5,5,0,0" Grid.Column="2">
-                        <TextBlock Text="Jump Duration" Margin="0,15,0,0" HorizontalAlignment="Center"/>
-                        <StackPanel Orientation="Horizontal" Margin="0,5,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
-                            <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <StackPanel Margin="0,8,0,0" Grid.Column="2">
+                        <TextBlock Text="Jump Duration" HorizontalAlignment="Center"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Years"/>
                                 <TextBox Text="{Binding JumpSelection.DurationYears, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Margin="10,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Vertical" Margin="12,0,0,0">
                                 <TextBlock Text="Months"/>
                                 <TextBox Text="{Binding JumpSelection.DurationMonths, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
                             </StackPanel>
-                            <StackPanel Orientation="Vertical" Margin="10,0,0,0" VerticalAlignment="Top" HorizontalAlignment="Left">
+                            <StackPanel Orientation="Vertical" Margin="12,0,0,0">
                                 <TextBlock Text="Days"/>
                                 <TextBox Text="{Binding JumpSelection.DurationDays, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
                             </StackPanel>
                         </StackPanel>
-                    </StackPanel>
 
-                    <StackPanel Grid.Column="1" Margin="5,22,0,0">
-                        <CheckBox Content="Origin Auto-Discounts" IsChecked="{Binding OriginDiscountsSelection}"/>
-                        <TextBlock Text="Perk Freebie Threshold" Margin="0,7,0,0"/>
-                        <TextBox Text="{Binding PerkFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
-                                 Width="30" HorizontalAlignment="Left"/>
-                        <TextBlock Text="Item Freebie Threshold" Margin="0,5,0,0"/>
-                        <TextBox Text="{Binding ItemFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
-                                 Width="30" HorizontalAlignment="Left"/>
-
-                        <GroupBox Header="Point Bank (Per-character)" Margin="0,10,0,0"
-                                 Visibility="{Binding PointBankAllowed, Converter={StaticResource BoolToVis}}">
+                        <GroupBox Header="Point Bank (Per-character)" Margin="0,12,0,0"
+                                  Visibility="{Binding PointBankAllowed, Converter={StaticResource BoolToVis}}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="1.15*"/>
                                 </Grid.ColumnDefinitions>
-                                
-                                <StackPanel>
-                                    <TextBlock Text="Banked Points" Margin="3,0,0,0"/>
-                                    <TextBox Text="{Binding BankedPoints, ValidatesOnNotifyDataErrors=True}"
-                                 Width="40" HorizontalAlignment="Left" Margin="3,0,0,0"/>
 
-                                    <TextBlock Text="Bank Usage" Margin="3,10,0,0"/>
+                                <StackPanel>
+                                    <TextBlock Text="Banked Points"/>
+                                    <TextBox Text="{Binding BankedPoints, ValidatesOnNotifyDataErrors=True}"
+                                             Width="40"/>
+
+                                    <TextBlock Text="Bank Usage" Margin="0,12,0,0"/>
                                     <TextBox Text="{Binding BankUsage, ValidatesOnNotifyDataErrors=True}"
-                                 Width="40" HorizontalAlignment="Left" Margin="3,0,0,0"/>
+                                             Width="40"/>
                                 </StackPanel>
 
-                                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                     <Border BorderBrush="Black" BorderThickness="3" CornerRadius="1">
                                         <Label Style="{DynamicResource TitleBox}" Content="Bank"/>
                                     </Border>
-                                    <Border Margin="-5,0,0,0" BorderBrush="Black" BorderThickness="3" CornerRadius="1">
+                                    <Border Margin="-12,0,0,0" BorderBrush="Black" BorderThickness="3" CornerRadius="1">
                                         <Label Style="{DynamicResource BudgetBox}" Content="{Binding CurrentBankTotal}"/>
                                     </Border>
                                 </StackPanel>
                             </Grid>
                         </GroupBox>
-                        
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Margin="0,8,0,0">
+                        <CheckBox Content="Origin Auto-Discounts" IsChecked="{Binding OriginDiscountsSelection}"/>
+                        <TextBlock Text="Perk Freebie Threshold" Margin="0,8,0,0"/>
+                        <TextBox Text="{Binding PerkFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
+                                 Width="40"/>
+                        <TextBlock Text="Item Freebie Threshold" Margin="0,4,0,0"/>
+                        <TextBox Text="{Binding ItemFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
+                                 Width="40"/>
+
+                        <CheckBox Content="Skip Jump number" IsChecked="{Binding SkipJumpNumber}" Margin="0,12,0,0"/>
+                        <CheckBox Content="Is this a Gauntlet?" IsChecked="{Binding IsGauntlet}" Margin="0,4,0,0"/>
                     </StackPanel>
 
                     <TextBlock Text="Currency options" 
@@ -1153,54 +1099,48 @@
                                VerticalAlignment="Bottom" 
                                HorizontalAlignment="Left"/>
 
-                    <ListView ItemsSource="{Binding CurrencyList}"
-                              SelectedItem="{Binding CurrencySelection}"
-                              SelectedIndex="{Binding CurrencySelectionIndex}"
-                              Grid.Row="2">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="90"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding CurrencyName}"/>
-                                    <GridViewColumn Header="Abbreviation" Width="75" 
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding CurrencyAbbreviation}"/>
-                                    <GridViewColumn Header="Budget" Width="55" 
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding CurrencyBudget}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DockPanel Grid.Row="2">
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <Grid Grid.Row="3">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                            <Button Content="New" 
+                                    Command="{Binding NewCurrencyCommand}"
+                                    Style="{DynamicResource DataGridButton}"/>
 
-                        <Button Content="New Currency" 
-                                Command="{Binding NewCurrencyCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"/>
+                            <Button Content="Delete"
+                                    Command="{Binding DeleteCurrencyCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"/>
+                        </Grid>
 
-                        <Button Content="Delete Currency"
-                                Command="{Binding DeleteCurrencyCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"/>
-                    </Grid>
+                        <ListView ItemsSource="{Binding CurrencyList}"
+                                  SelectedItem="{Binding CurrencySelection}"
+                                  SelectedIndex="{Binding CurrencySelectionIndex}"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Name" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding CurrencyName}"/>
+                                        <GridViewColumn Header="Abbreviation" Width="75" 
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding CurrencyAbbreviation}"/>
+                                        <GridViewColumn Header="Budget" Width="55" 
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding CurrencyBudget}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
 
-                    <GroupBox Header="Currency details" Grid.Row="4">
+                    <GroupBox Header="Currency details" Grid.Row="3">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="CurrencySelection"/>
@@ -1209,24 +1149,19 @@
                         </GroupBox.Visibility>
                         <Grid>
 
-                            <StackPanel Margin="3,5,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding CurrencyName, ValidatesOnNotifyDataErrors=True}"
-                                         Width="100" 
-                                         HorizontalAlignment="Left"/>
+                                         Width="100"/>
 
-                                <TextBlock Text="Abbreviation" Margin="0,10,0,0"/>
+                                <TextBlock Text="Abbreviation" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding CurrencyAbbreviation, ValidatesOnNotifyDataErrors=True}"
-                                         Width="30" 
-                                         HorizontalAlignment="Left"/>
+                                         Width="30"/>
 
-                                <TextBlock Text="Starting Budget" Margin="0,10,0,0"/>
+                                <TextBlock Text="Starting Budget" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding CurrencySelection.CurrencyBudget, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40" 
-                                         HorizontalAlignment="Left"/>
+                                         Width="40"/>
                             </StackPanel>
-                            
-                            
                         </Grid>
                     </GroupBox>
 
@@ -1236,11 +1171,13 @@
                     <ListView ItemsSource="{Binding CurrencyList}"
                               SelectedItem="{Binding CurrencySelection}"
                               SelectedIndex="{Binding StipendSelectionIndex}"
-                              Grid.Row="2" Grid.Column="1">
+                              Grid.Row="2" Grid.Column="1"
+                              Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                         <ListView.View>
                             <GridView>
                                 <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="225"
+                                    <GridViewColumn Header="Name" Width="Auto"
                                                     CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                                     DisplayMemberBinding="{Binding CurrencyName}"/>
                                 </GridView.Columns>
@@ -1248,7 +1185,7 @@
                         </ListView.View>
                     </ListView>
 
-                    <GroupBox Header="Stipend details" Grid.Row="4" Grid.Column="1">
+                    <GroupBox Header="Stipend details" Grid.Row="3" Grid.Column="1">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="CurrencySelection"/>
@@ -1256,21 +1193,16 @@
                             </MultiBinding>
                         </GroupBox.Visibility>
                         <Grid>
-
-                            <StackPanel Margin="3,5,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Currency Name"/>
                                 <TextBox Text="{Binding CurrencyName, Mode=OneWay}"
                                          Width="100" 
-                                         HorizontalAlignment="Left"
                                          IsReadOnly="True"/>
 
-                                <TextBlock Text="Stipend" Margin="0,10,0,0"/>
+                                <TextBlock Text="Stipend" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding CurrencyStipend, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40" 
-                                         HorizontalAlignment="Left"/>
+                                         Width="40"/>
                             </StackPanel>
-
-
                         </Grid>
                     </GroupBox>
 
@@ -1280,52 +1212,51 @@
                                VerticalAlignment="Bottom" 
                                HorizontalAlignment="Left"/>
 
-                    <ListView ItemsSource="{Binding PurchaseTypeList}"
-                              SelectedItem="{Binding PurchaseTypeSelection}"
-                              SelectedIndex="{Binding PurchaseTypeSelectionIndex}"
-                              Grid.Row="2" Grid.Column="2"
-                              x:Name="PurchaseTypeDataGrid">
-                        <ListView.View>
-                            <GridView>
-                                <GridView.Columns>
-                                    <GridViewColumn Header="Name" Width="115"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding Type}"/>
-                                    <GridViewColumn Header="Currency" Width="110"
-                                                    CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
-                                                    DisplayMemberBinding="{Binding CurrencyName}"/>
-                                </GridView.Columns>
-                            </GridView>
-                        </ListView.View>
-                    </ListView>
+                    <DockPanel Grid.Row="2" Grid.Column="2">
+                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
 
-                    <Grid Grid.Row="3" Grid.Column="2">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
+                            <Button Content="New Type" 
+                                    Command="{Binding NewPurchaseTypeCommand}"
+                                    Style="{DynamicResource DataGridButton}"/>
 
-                        <Button Content="New Type" 
-                                Command="{Binding NewPurchaseTypeCommand}"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"/>
+                            <Button Content="Delete Type"
+                                    Command="{Binding DeletePurchaseTypeCommand}"
+                                    Style="{DynamicResource DataGridButton}"
+                                    Grid.Column="2"/>
+                        </Grid>
 
-                        <Button Content="Delete Type"
-                                Command="{Binding DeletePurchaseTypeCommand}"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Center"
-                                Style="{DynamicResource DataGridButton}"
-                                Grid.Column="2"/>
-                    </Grid>
-
-                    <GroupBox Header="Purchase Type details" Grid.Row="4" Grid.Column="2">
+                        <ListView ItemsSource="{Binding PurchaseTypeList}"
+                                  SelectedItem="{Binding PurchaseTypeSelection}"
+                                  SelectedIndex="{Binding PurchaseTypeSelectionIndex}"
+                                  x:Name="PurchaseTypeDataGrid"
+                                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0,1">
+                            <ListView.View>
+                                <GridView>
+                                    <GridView.Columns>
+                                        <GridViewColumn Header="Name" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding Type}"/>
+                                        <GridViewColumn Header="Currency" Width="Auto"
+                                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                        DisplayMemberBinding="{Binding CurrencyName}"/>
+                                    </GridView.Columns>
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                    </DockPanel>
+                    
+                    <GroupBox Header="Purchase Type details" Grid.Row="3" Grid.Column="2">
                         <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="PurchaseTypeSelection"/>
@@ -1333,20 +1264,27 @@
                             </MultiBinding>
                         </GroupBox.Visibility>
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="2*"/>
+                                <RowDefinition Height="1.1*"/>
+                                <RowDefinition Height="2*"/>
+                            </Grid.RowDefinitions>
 
-                            <StackPanel Margin="3,5,0,0">
+                            <StackPanel>
                                 <TextBlock Text="Name"/>
                                 <TextBox Text="{Binding PurchaseTypeName, ValidatesOnNotifyDataErrors=True}"
-                                         Width="100" 
-                                         HorizontalAlignment="Left"/>
-
-                                <TextBlock Text="Currency" Margin="0,10,0,0"/>
+                                         Width="100"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="1">
+                                <TextBlock Text="Currency"/>
                                 <ComboBox ItemsSource="{Binding CurrencyList}"
                                           DisplayMemberPath="CurrencyName"
                                           SelectedItem="{Binding PurchaseTypeCurrencySelection}"
-                                          SelectedIndex="{Binding PurchaseTypeCurrencyIndex}">
+                                          SelectedIndex="{Binding PurchaseTypeCurrencyIndex}"
+                                          Width="125" HorizontalAlignment="Left">
                                     <ComboBox.Style>
-                                        <Style TargetType="{x:Type ComboBox}">
+                                        <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource {x:Type ComboBox}}">
                                             <Setter Property="IsEnabled" Value="True"/>
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding ElementName=PurchaseTypeDataGrid, Path=SelectedIndex}" Value="0">
@@ -1359,10 +1297,11 @@
                                         </Style>
                                     </ComboBox.Style>
                                 </ComboBox>
-
-                                <CheckBox Content="Item Purchase Type" IsChecked="{Binding IsItemType}" Margin="0,10,0,0">
+                            </StackPanel>
+                            <StackPanel Grid.Row="2">
+                                <CheckBox Content="Item Purchase Type" IsChecked="{Binding IsItemType}" Margin="0,4,0,0">
                                     <CheckBox.Style>
-                                        <Style TargetType="{x:Type CheckBox}">
+                                        <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
                                             <Style.Triggers>
                                                 <DataTrigger Binding="{Binding ElementName=PurchaseTypeDataGrid, Path=SelectedIndex}" Value="0">
                                                     <Setter Property="IsEnabled" Value="False"/>
@@ -1374,78 +1313,78 @@
                                         </Style>
                                     </CheckBox.Style>
                                 </CheckBox>
-
-                                <TextBlock Text="Per-character type Stipend" Margin="0,10,0,0"/>
+                            </StackPanel>
+                            <StackPanel Grid.Row="3">
+                                <TextBlock Text="Per-character type Stipend"/>
                                 <TextBox Text="{Binding PurchaseTypeStipend, ValidatesOnNotifyDataErrors=True}"
-                                         Width="40"
-                                         HorizontalAlignment="Left"/>
+                                         Width="40"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
                 </Grid>
             </TabItem>
-            <TabItem Header="Supplements">
+            <TabItem Header="Supplements" Style="{DynamicResource MainTabItem}">
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="1.2*" MaxWidth="150"/>
+                        <ColumnDefinition Width="1.2*" MaxWidth="150"/>
                         <ColumnDefinition Width="2*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="1.2*"/>
+                        <RowDefinition Height="2*" MaxHeight="225"/>
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="2*"/>
                     </Grid.RowDefinitions>
 
-                    <GroupBox Header="Warehouse Investment" Visibility="{Binding WarehouseInvestmentAllowed, Converter={StaticResource BoolToVis}}">
+                    <GroupBox Header="Warehouse Investment">
                         <Grid>
-                            <StackPanel Margin="5,3,0,0">
+                            <StackPanel>
                                 <TextBlock Text="CP invested"/>
                                 <TextBox Text="{Binding WarehousePointsInvested, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
 
-                                <TextBlock Text="CP to WP" Margin="0,15,0,0"/>
+                                <TextBlock Text="CP to WP" Margin="0,8,0,0"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox Text="{Binding WarehouseInvestmentRatio, Mode=OneWay}" IsReadOnly="True"
-                                             Width="40"/>
-                                    <TextBlock Text=" : 1"/>
+                                             Width="40" VerticalAlignment="Center"/>
+                                    <TextBlock Text=" : 1" VerticalAlignment="Center"/>
                                 </StackPanel>
 
-                                <TextBlock Text="WP earned" Margin="0,15,0,0"/>
+                                <TextBlock Text="WP earned" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding WarehousePointsGained, Mode=OneWay}" IsReadOnly="True"
                                          Width="40"/>
 
-                                <TextBlock Text="WP available at 1:1 ratio" Margin="0,15,0,0"
-                                           Visibility="{Binding PRUnlimitedSelected, Converter={StaticResource BoolToVis}}"/>
+                                <TextBlock Text="WP available at 1:1 ratio" Margin="0,8,0,0"
+                                           />
                                 <TextBox Text="{Binding PRUnlimitedRemainingInvestment, Mode=OneWay}" IsReadOnly="True"
                                          Width="40"
-                                         Visibility="{Binding PRUnlimitedSelected, Converter={StaticResource BoolToVis}}"/>
+                                         />
                             </StackPanel>
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="Body Mod Investment" Visibility="{Binding BodyModInvestmentAllowed, Converter={StaticResource BoolToVis}}" Grid.Column="1">
+                    <GroupBox Header="Body Mod Investment" Grid.Column="1">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
 
-                            <ContentControl Template="{DynamicResource CharacterSelector}" VerticalAlignment="Top"/>
+                            <ContentControl Template="{DynamicResource CharacterSelector}" HorizontalAlignment="Left"/>
 
-                            <StackPanel Margin="5,5,0,0" Grid.Row="1">
+                            <StackPanel Margin="0,8,0,0" Grid.Row="1">
                                 <TextBlock Text="CP invested"/>
                                 <TextBox Text="{Binding BodyModPointsInvested, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"/>
 
-                                <TextBlock Text="CP to Body Mod Points" Margin="0,15,0,0"/>
+                                <TextBlock Text="CP to Body Mod Points" Margin="0,8,0,0"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox Text="{Binding BodyModInvestmentRatio, Mode=OneWay}" IsReadOnly="True"
-                                             Width="40"/>
-                                    <TextBlock Text=" : 1"/>
+                                             Width="40" VerticalAlignment="Center"/>
+                                    <TextBlock Text=" : 1" VerticalAlignment="Center"/>
                                 </StackPanel>
 
-                                <TextBlock Text="BP earned" Margin="0,15,0,0"/>
+                                <TextBlock Text="BP earned" Margin="0,8,0,0"/>
                                 <TextBox Text="{Binding BodyModPointsGained, Mode=OneWay}" IsReadOnly="True"
                                          Width="40"/>
                             </StackPanel>

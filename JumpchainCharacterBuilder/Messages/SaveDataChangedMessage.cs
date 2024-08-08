@@ -2,10 +2,7 @@
 
 namespace JumpchainCharacterBuilder.Messages
 {
-    public class SaveDataChangedMessage : ValueChangedMessage<string>
+    public class SaveDataChangedMessage(string value) : ValueChangedMessage<string>(value)
     {
-        public SaveDataChangedMessage(string value) : base(value)
-        {
-        }
     }
 }
