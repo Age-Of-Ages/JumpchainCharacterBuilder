@@ -9,9 +9,8 @@ namespace JumpchainCharacterBuilder
 {
     public static partial class CfgAccess
     {
-        public static void WriteCfgFile(AppSettingsModel appSettings)
+        public static List<string> CreateCFGData(AppSettingsModel appSettings)
         {
-            string filePath = Path.Combine(Environment.CurrentDirectory, "Configuration.cfg");
             List<string> settings = [];
             Dictionary<string, string> currentSettings = new()
             {
@@ -32,6 +31,14 @@ namespace JumpchainCharacterBuilder
                 settings.Add(setting.Key + " = " + setting.Value);
             }
 
+            return settings;
+        }
+
+        public static void WriteCfgFile(AppSettingsModel appSettings)
+        {
+            string filePath = Path.Combine(Environment.CurrentDirectory, "Configuration.cfg");
+            List<string> settings = CreateCFGData(appSettings);
+
             File.WriteAllLines(filePath, settings);
         }
 
@@ -46,7 +53,9 @@ namespace JumpchainCharacterBuilder
                     "Configuration file not found: Regenerating file with default settings."
                 ]);
 
-                using FileStream temp = File.Create(filePath);
+                using (FileStream temp = File.Create(filePath))
+                {
+                }
 
                 WriteCfgFile(appSettings);
             }
@@ -145,7 +154,9 @@ namespace JumpchainCharacterBuilder
                     "Configuration file not found: Regenerating file with default settings."
                 ]);
 
-                using FileStream temp = File.Create(filePath);
+                using (FileStream temp = File.Create(filePath))
+                {
+                }
 
                 AppSettingsModel appSettings = new();
 
