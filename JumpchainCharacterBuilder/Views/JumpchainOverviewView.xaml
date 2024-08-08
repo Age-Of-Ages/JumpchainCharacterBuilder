@@ -16,71 +16,69 @@
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2.5*"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="9*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <ListView ItemsSource="{Binding JumpList}"
-                  SelectedItem="{Binding JumpSelection}"
-                  SelectedIndex="{Binding JumpSelectionIndex}"
-                  SelectionChanged="JumpList_SelectionChanged" Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="1">
-            <ListView.View>
-                <GridView>
-                    <GridView.Columns>
-                        <GridViewColumn Header="#" Width="33"
+        <DockPanel>
+            <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*" MinHeight="12"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Button Content="Move Up" 
+                        Command="{Binding MoveJumpUpCommand}"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="0"
+                        Grid.Row="2"/>
+
+                <Button Content="Move Down"
+                        Command="{Binding MoveJumpDownCommand}"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"
+                        Grid.Row="2"/>
+
+                <Button Content="New Jump" 
+                        Command="{Binding NewJumpCommand}"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="0"
+                        Grid.Row="0"/>
+
+                <Button Content="Delete Jump"
+                        Command="{Binding DeleteJumpCommand}"
+                        Style="{DynamicResource DataGridButton}"
+                        Grid.Column="2"
+                        Grid.Row="0"/>
+            </Grid>
+
+            <ListView ItemsSource="{Binding JumpList}"
+                      SelectedItem="{Binding JumpSelection}"
+                      SelectedIndex="{Binding JumpSelectionIndex}"
+                      SelectionChanged="JumpList_SelectionChanged" Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="1">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Header="#" Width="33"
                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                         DisplayMemberBinding="{Binding JumpNumber}"/>
-                        <GridViewColumn Header="Name" Width="Auto"
+                            <GridViewColumn Header="Name" Width="Auto"
                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                         DisplayMemberBinding="{Binding Name}"/>
-                        <GridViewColumn Header="Duration (Years)" Width="90" 
+                            <GridViewColumn Header="Duration (Years)" Width="90" 
                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                         DisplayMemberBinding="{Binding DurationYears}"/>
-                    </GridView.Columns>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
 
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-
-            <Button Content="Move Up" 
-                    Command="{Binding MoveJumpUpCommand}"
-                    Style="{DynamicResource DataGridButton}"
-                    Grid.Column="0"
-                    Grid.Row="2"/>
-
-            <Button Content="Move Down"
-                    Command="{Binding MoveJumpDownCommand}"
-                    Style="{DynamicResource DataGridButton}"
-                    Grid.Column="2"
-                    Grid.Row="2"/>
-            
-            <Button Content="New Jump" 
-                    Command="{Binding NewJumpCommand}"
-                    Style="{DynamicResource DataGridButton}"
-                    Grid.Column="0"
-                    Grid.Row="0"/>
-
-            <Button Content="Delete Jump"
-                    Command="{Binding DeleteJumpCommand}"
-                    Style="{DynamicResource DataGridButton}"
-                    Grid.Column="2"
-                    Grid.Row="0"/>
-        </Grid>
-
-        <TabControl Grid.Column="1" Grid.RowSpan="2" SelectedIndex="{Binding BuildTabIndex}" >
+        <TabControl Grid.Column="1" SelectedIndex="{Binding BuildTabIndex}" >
             <TabControl.Visibility>
                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
                     <Binding Path="JumpSelection"/>
