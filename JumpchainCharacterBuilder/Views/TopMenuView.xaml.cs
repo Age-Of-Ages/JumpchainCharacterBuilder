@@ -3,8 +3,11 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
+using System.Xml;
 
 namespace JumpchainCharacterBuilder.Views
 {

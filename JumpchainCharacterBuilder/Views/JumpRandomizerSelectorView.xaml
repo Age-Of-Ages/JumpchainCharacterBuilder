@@ -38,7 +38,7 @@
                   Width="120" Grid.Row="1"
                   VerticalAlignment="Center"/>
         
-        <ListView ItemsSource="{Binding WinningEntries}"
+        <ListView ItemsSource="{Binding WinningEntries}" x:Name="JumpListView"
                   Grid.Row="2"
                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                   ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
@@ -54,6 +54,13 @@
                                     <TextBlock Visibility="{Binding JumpUri, Converter={StaticResource UriToVis}}">
                                         <Hyperlink x:Name="JumpDocument_Hyperlink" NavigateUri="{Binding JumpUri}"
                                                    RequestNavigate="JumpDocument_RequestNavigate">
+                                            <Hyperlink.ContextMenu>
+                                                <ContextMenu>
+                                                    <MenuItem Header="Copy link" IsCheckable="False" 
+                                                              Command="{Binding Path=DataContext.CopyLinkCommand, Source={x:Reference JumpListView}}"
+                                                              CommandParameter="{Binding JumpUri}"/>
+                                                </ContextMenu>
+                                            </Hyperlink.ContextMenu>
                                             Jump Link
                                         </Hyperlink>
                                     </TextBlock>

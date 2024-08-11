@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -134,6 +135,12 @@ namespace JumpchainCharacterBuilder.ViewModel
             DrawJumpWinners();
         }
 
+        [RelayCommand]
+        private void CopyLink(Uri URI)
+        {
+            string uriString = URI.ToString();
+            Clipboard.SetText(uriString);
+        }
         #endregion
     }
 }

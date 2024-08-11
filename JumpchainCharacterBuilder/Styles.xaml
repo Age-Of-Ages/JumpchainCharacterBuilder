@@ -503,6 +503,67 @@
         <Setter Property="SnapsToDevicePixels" Value="True"/>
     </Style>
 
+    <Style TargetType="ContextMenu">
+        <Setter Property="Panel.Background" Value="{DynamicResource Background}"/>
+        <Setter Property="TextElement.Foreground" Value="{DynamicResource TextColor}"/>
+        <Setter Property="Control.VerticalContentAlignment" Value="{x:Static VerticalAlignment.Center}"/>
+        <Setter Property="Border.BorderThickness" Value="1,1,1,1"/>
+        <Setter Property="Border.BorderBrush" Value="{DynamicResource BackgroundHighlight}"/>
+        <Setter Property="Control.Padding" Value="2,2,2,2"/>
+        <Setter Property="Grid.IsSharedSizeScope" Value="True"/>
+        <Setter Property="ContextMenuService.HasDropShadow" Value="{DynamicResource {x:Static SystemParameters.DropShadowKey}}"/>
+        <Setter Property="ScrollViewer.PanningMode" Value="{x:Static PanningMode.Both}"/>
+        <Setter Property="Stylus.IsFlicksEnabled" Value="False"/>
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ContextMenu">
+                    <theme:SystemDropShadowChrome Color="#00FFFFFF" Name="Shdw" SnapsToDevicePixels="True">
+                        <Border BorderThickness="{TemplateBinding Border.BorderThickness}" BorderBrush="{TemplateBinding Border.BorderBrush}" Background="{TemplateBinding Panel.Background}" Name="ContextMenuBorder">
+                            <ScrollViewer Style="{DynamicResource {ComponentResourceKey TypeInTargetAssembly=FrameworkElement, ResourceId=MenuScrollViewer}}" Name="ContextMenuScrollViewer" Margin="1,0,1,0" Grid.ColumnSpan="2">
+                                <Grid RenderOptions.ClearTypeHint="Enabled">
+                                    <Canvas Width="0" Height="0" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                        <Rectangle Fill="{x:Null}" Name="OpaqueRect" Width="Auto" Height="Auto" />
+                                    </Canvas>
+                                    <Rectangle RadiusX="2" RadiusY="2" Fill="{DynamicResource Menu.Static.Background}" Width="28" Margin="1,2,1,2" HorizontalAlignment="Left" />
+                                    <Rectangle Fill="{DynamicResource Menu.Disabled.Background}" Width="1" Margin="29,2,0,2" HorizontalAlignment="Left" />
+                                    <Rectangle Fill="{DynamicResource MenuItem.Highlight.Background}" Width="1" Margin="30,2,0,2" HorizontalAlignment="Left" />
+                                    <ItemsPresenter Name="ItemsPresenter" Margin="{TemplateBinding Control.Padding}" SnapsToDevicePixels="{TemplateBinding UIElement.SnapsToDevicePixels}" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                                </Grid>
+                            </ScrollViewer>
+                        </Border>
+                    </theme:SystemDropShadowChrome>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="ContextMenuService.HasDropShadow" Value="True">
+                            <Setter Property="FrameworkElement.Margin" TargetName="Shdw">
+                                <Setter.Value>
+                                    <Thickness>0,0,5,5</Thickness>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="theme:SystemDropShadowChrome.Color" TargetName="Shdw">
+                                <Setter.Value>
+                                    <Color>#71000000</Color>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <Trigger Property="ScrollViewer.CanContentScroll" SourceName="ContextMenuScrollViewer" Value="False">
+                            <Setter Property="Canvas.Top" TargetName="OpaqueRect">
+                                <Setter.Value>
+                                    <Binding Path="VerticalOffset" ElementName="ContextMenuScrollViewer" />
+                                </Setter.Value>
+                            </Setter>
+                            <Setter Property="Canvas.Left" TargetName="OpaqueRect">
+                                <Setter.Value>
+                                    <Binding Path="HorizontalOffset" ElementName="ContextMenuScrollViewer" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
     <!--Keyed styles-->
     <Style x:Key="BaseTextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="TextWrapping" Value="NoWrap"/>
