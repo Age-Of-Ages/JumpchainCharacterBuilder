@@ -14,6 +14,7 @@ using System.Linq;
 namespace JumpchainCharacterBuilder.ViewModel
 {
     // TODO - Creating a new Import Option doesn't automatically populate Companion list.
+    // TODO - Fix bug with custom currency/purchase type stipend not calculating correctly. Encountered a bug where I was getting a massive negative value in the budget display for WC Jumper save in that situation.
     public partial class JumpchainOverviewViewModel : ViewModelBase
     {
         #region Fields
