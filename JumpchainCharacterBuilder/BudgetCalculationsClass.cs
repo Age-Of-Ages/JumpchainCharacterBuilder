@@ -92,10 +92,13 @@ namespace JumpchainCharacterBuilder
                 budget -= jumpBuild.WarehouseInvestment;
             }
 
-            budget -= jumpBuild.BodyModInvestment;
+            if (currencyIndex == 0)
+            {
+                budget -= jumpBuild.BodyModInvestment;
 
-            budget += jumpBuild.BankUsage;
-            budget -= jumpBuild.BankedPoints;
+                budget += jumpBuild.BankUsage;
+                budget -= jumpBuild.BankedPoints; 
+            }
 
             if (characterIndex == 0)
             {
@@ -156,30 +159,33 @@ namespace JumpchainCharacterBuilder
                 }
             }
 
-            if (jumpBuild.Species != null)
+            if (currencyIndex == 0)
             {
-                budget -= jumpBuild.Species.Cost;
-            }
-            if (jumpBuild.Location != null)
-            {
-                budget -= jumpBuild.Location.Cost;
-            }
-            budget -= jumpBuild.AgeCost;
-            budget -= jumpBuild.GenderCost;
-            if (originIndex != 0)
-            {
-                budget -= jump.OriginDetails[originIndex].Cost;
-            }
-
-            if (jumpBuild.MiscOriginDetails.Count > 0)
-            {
-                foreach (OriginDetail originDetail in jumpBuild.MiscOriginDetails)
+                if (jumpBuild.Species != null)
                 {
-                    budget -= originDetail.Cost;
+                    budget -= jumpBuild.Species.Cost;
                 }
-            }
+                if (jumpBuild.Location != null)
+                {
+                    budget -= jumpBuild.Location.Cost;
+                }
+                budget -= jumpBuild.AgeCost;
+                budget -= jumpBuild.GenderCost;
+                if (originIndex != 0)
+                {
+                    budget -= jump.OriginDetails[originIndex].Cost;
+                }
 
-            budget -= BudgetHelpers.CalculateCompanionPurchasesCost(jumpBuild.CompanionPurchase);
+                if (jumpBuild.MiscOriginDetails.Count > 0)
+                {
+                    foreach (OriginDetail originDetail in jumpBuild.MiscOriginDetails)
+                    {
+                        budget -= originDetail.Cost;
+                    }
+                }
+
+                budget -= BudgetHelpers.CalculateCompanionPurchasesCost(jumpBuild.CompanionPurchase); 
+            }
 
             return budget;
         }
