@@ -2255,6 +2255,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 JumpSelection.PurchaseTypes.RemoveAt(PurchaseTypeSelectionIndex);
 
+                foreach (JumpBuild build in JumpSelection.Build)
+                {
+                    build.PurchaseTypeStipends.RemoveAt(PurchaseTypeSelectionIndex);
+                }
+
                 LoadPurchaseTypes();
 
                 PurchaseTypeSelectionIndex = 0;
