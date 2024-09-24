@@ -2225,7 +2225,15 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void NewPurchaseType()
         {
-            JumpSelection.PurchaseTypes.Add(new($"Purchase Type {JumpSelection.PurchaseTypes.Count}", 0, false));
+            PurchaseType newType = new($"Purchase Type {JumpSelection.PurchaseTypes.Count}", 0, false);
+            newType.CurrencyName = CurrencyList[newType.CurrencyIndex].CurrencyName;
+
+            JumpSelection.PurchaseTypes.Add(newType);
+
+            foreach (JumpBuild build in JumpSelection.Build)
+            {
+                build.PurchaseTypeStipends.Add(0);
+            }
 
             LoadPurchaseTypes();
         }
