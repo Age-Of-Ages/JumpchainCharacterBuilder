@@ -59,7 +59,7 @@ namespace JumpchainCharacterBuilder
                 using FileStream temp = File.Create(logPath);
             }
 
-            bool fileSizeWithinBounds = FileAccess.CheckFileLength(500, logPath);
+            bool fileSizeWithinBounds = FileAccess.CheckFileLength(5000, logPath);
 
             if (!fileSizeWithinBounds)
             {
