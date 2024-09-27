@@ -33,8 +33,11 @@
                      Tag="Input string to be formatted."/>
         </DockPanel>
 
-        <CheckBox Content="Leave double line breaks in" IsChecked="{Binding LeaveDoubleLineBreaks}"
-                  VerticalAlignment="Center" Grid.Row="1"/>
+        <StackPanel Grid.Row="1" VerticalAlignment="Center">
+            <CheckBox Content="Leave double line breaks in" IsChecked="{Binding LeaveDoubleLineBreaks}"/>
+            <CheckBox Content="Remove all line breaks" IsChecked="{Binding RemoveAllLineBreaks}"
+                      Margin="0,8,0,0"/>
+        </StackPanel>
 
         <DockPanel Grid.Row="2">
             <TextBlock Text="Output" DockPanel.Dock="Top"/>

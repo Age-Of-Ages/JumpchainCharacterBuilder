@@ -23,6 +23,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private bool _leaveDoubleLineBreaks = false;
 
+        [ObservableProperty]
+        private bool _removeAllLineBreaks = false;
+
         #endregion
 
         #region Properties
@@ -40,6 +43,19 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnLeaveDoubleLineBreaksChanged(bool value)
         {
+            if (value)
+            {
+                RemoveAllLineBreaks = false;
+            }
+            FormatString();
+        }
+
+        partial void OnRemoveAllLineBreaksChanged(bool value)
+        {
+            if (value)
+            {
+                LeaveDoubleLineBreaks = false;
+            }
             FormatString();
         }
 
@@ -68,7 +84,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             string temporaryString;
 
             // Copying from PDF files can cause issues with line-breaks being inserted in incorrect places, so these need to be removed.
-            if (LeaveDoubleLineBreaks)
+            if (RemoveAllLineBreaks)
+            {
+                temporaryString = RemoveAllLineBreaksRegex().Replace(InputString, " "); 
+            }
+            else if (LeaveDoubleLineBreaks)
             {
                 temporaryString = RemoveLineBreaksNoDoubleRegex().Replace(InputString, " ");
             }
@@ -89,6 +109,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [GeneratedRegex("(\\r\\n)(?!\\r\\n)")]
         private static partial Regex RemoveLineBreaksRegex();
+
+        [GeneratedRegex("(\\r\\n)")]
+        private static partial Regex RemoveAllLineBreaksRegex();
 
         [GeneratedRegex("(?<!\\r\\n)(\\r\\n)(?!\\r\\n)")]
         private static partial Regex RemoveLineBreaksNoDoubleRegex();
