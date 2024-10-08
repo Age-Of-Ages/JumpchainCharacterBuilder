@@ -45,7 +45,7 @@ namespace JumpchainCharacterBuilder
                     cmdIndex++;
                     MenuItem ignoreItem = new()
                     {
-                        Header = "Ignore All",
+                        Header = "Ignore",
                         Command = EditingCommands.IgnoreSpellingError,
                         CommandTarget = textBoxTarget
                     };
