@@ -11,9 +11,13 @@
     <convert:UriVisConverter x:Key="UriToVis"/>
     <convert:ListContainsVisConverter x:Key="ListContainsToVis"/>
     <convert:HeaderCheckVisConverter x:Key="HeaderCheckToVis"/>
+    <MenuScrollingVisibilityConverter x:Key="MenuScrollingVisibilityConverter"/>
 
     <!--Geometry-->
     <Geometry x:Key="Checkmark">F1 M 10.0,1.2 L 4.7,9.1 L 4.5,9.1 L 0,5.2 L 1.3,3.5 L 4.3,6.1L 8.3,0 L 10.0,1.2 Z</Geometry>
+    <Geometry x:Key="DownArrow">M 0,0 L 3.5,4 L 7,0 Z</Geometry>
+    <Geometry x:Key="UpArrow">M 0,4 L 3.5,0 L 7,4 Z</Geometry>
+    <Geometry x:Key="RightArrow">M 0,0 L 4,3.5 L 0,7 Z</Geometry>
     
     <!--Universal styles-->
     <Style TargetType="{x:Type Grid}">
@@ -1362,10 +1366,6 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <MenuScrollingVisibilityConverter x:Key="MenuScrollingVisibilityConverter"/>
-    <Geometry x:Key="DownArrow">M 0,0 L 3.5,4 L 7,0 Z</Geometry>
-    <Geometry x:Key="UpArrow">M 0,4 L 3.5,0 L 7,4 Z</Geometry>
-    <Geometry x:Key="RightArrow">M 0,0 L 4,3.5 L 0,7 Z</Geometry>
     <Style x:Key="MenuScrollButton" BasedOn="{x:Null}" TargetType="{x:Type RepeatButton}">
         <Setter Property="ClickMode" Value="Hover"/>
         <Setter Property="Template">
