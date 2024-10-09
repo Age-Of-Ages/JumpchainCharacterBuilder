@@ -14,6 +14,7 @@ namespace JumpchainCharacterBuilder.Views
     /// <summary>
     /// Interaction logic for TopMenuUserControl.xaml
     /// </summary>
+    // TODO - Checkbox for theme is wrong on app load.
     public partial class TopMenuView : UserControl
     {
         public TopMenuView()
