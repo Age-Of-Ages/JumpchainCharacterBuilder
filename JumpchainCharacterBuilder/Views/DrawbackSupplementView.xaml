@@ -286,12 +286,12 @@
                     </DockPanel>
 
                     <GroupBox Header="Drawback details" Grid.Column="1">
-                        <GroupBox.Visibility>
+                        <!--<GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="DrawbackSelection"/>
                                 <Binding Path="DrawbackList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>
+                        </GroupBox.Visibility>-->
                         <Grid Margin="8,0,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" MaxWidth="200"/>
@@ -342,13 +342,24 @@
 
                             <DockPanel Grid.Column="1" Grid.Row="1">
                                 <TextBlock Text="Suspend during Jump #" DockPanel.Dock="Top"/>
-                                <DataGrid ItemsSource="{Binding DrawbackSuspendList}" 
-                                          HorizontalAlignment="Stretch">
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn Header="Jump name" Binding="{Binding JumpName}" Width="2*" IsReadOnly="True"/>
-                                        <DataGridCheckBoxColumn Header="Suspend" Binding="{Binding Suspended}" Width="*"/>
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                <ListView ItemsSource="{Binding DrawbackSuspendList}" 
+                                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                    <ListView.View>
+                                        <GridView>
+                                            <GridViewColumn Header="Jump name" Width="Auto"
+                                                            CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                                            DisplayMemberBinding="{Binding JumpName}"/>
+                                            <GridViewColumn Header="Suspend" Width="50">
+                                                <GridViewColumn.CellTemplate>
+                                                    <DataTemplate>
+                                                        <CheckBox IsChecked="{Binding Suspended}"/>
+                                                    </DataTemplate>
+                                                </GridViewColumn.CellTemplate>
+                                            </GridViewColumn>
+                                        </GridView>
+                                    </ListView.View>
+                                </ListView>
                             </DockPanel>
 
                             <DockPanel Grid.Row="2" Grid.ColumnSpan="2">

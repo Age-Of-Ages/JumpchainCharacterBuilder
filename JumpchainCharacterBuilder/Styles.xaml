@@ -33,24 +33,6 @@
         <Setter Property="ItemContainerStyle" Value="{DynamicResource MainTabItem}"/>
     </Style>
 
-    <Style TargetType="{x:Type DataGrid}">
-        <Setter Property="AutoGenerateColumns" Value="False"/>
-        <Setter Property="HeadersVisibility" Value="Column"/>
-        <Setter Property="SelectionUnit" Value="FullRow"/>
-        <Setter Property="SelectionMode" Value="Single"/>
-        <Setter Property="CanUserAddRows" Value="False"/>
-        <Setter Property="CanUserDeleteRows" Value="False"/>
-        <Setter Property="CanUserReorderColumns" Value="False"/>
-        <Setter Property="CanUserResizeColumns" Value="False"/>
-        <Setter Property="CanUserResizeRows" Value="False"/>
-        <Setter Property="CanUserSortColumns" Value="False"/>
-        <Setter Property="VirtualizingPanel.ScrollUnit" Value="Pixel"/>
-    </Style>
-    <Style TargetType="{x:Type DataGridCell}">
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-    </Style>
-
     <Style TargetType="{x:Type ListBox}">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
     </Style>
@@ -643,25 +625,6 @@
         <Setter Property="TextWrapping" Value="Wrap"/>
         <Setter Property="AcceptsReturn" Value="True"/>
         <Setter Property="AcceptsTab" Value="True"/>
-    </Style>
-
-    <Style x:Key="DataGridDescriptionColumn"
-           TargetType="{x:Type TextBlock}">
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ValidationTemplate}"/>
-        <Setter Property="HorizontalAlignment" Value="Left"/>
-        <Setter Property="SpellCheck.IsEnabled" Value="{Binding SpellCheckEnabled}"/>
-    </Style>
-
-    <Style x:Key="DataGridEditDescriptionColumn" 
-           TargetType="{x:Type TextBox}">
-        <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
-        <Setter Property="TextWrapping" Value="Wrap"/>
-        <Setter Property="Validation.ErrorTemplate" Value="{DynamicResource ValidationTemplate}"/>
-        <Setter Property="HorizontalAlignment" Value="Stretch"/>
-        <Setter Property="AcceptsReturn" Value="True"/>
-        <Setter Property="AcceptsTab" Value="True"/>
-        <Setter Property="SpellCheck.IsEnabled" Value="{Binding SpellCheckEnabled}"/>
     </Style>
 
     <Style x:Key="DataGridButton"
