@@ -286,12 +286,12 @@
                     </DockPanel>
 
                     <GroupBox Header="Drawback details" Grid.Column="1">
-                        <!--<GroupBox.Visibility>
+                        <GroupBox.Visibility>
                             <MultiBinding Converter="{StaticResource ListContainsToVis}">
                                 <Binding Path="DrawbackSelection"/>
                                 <Binding Path="DrawbackList"/>
                             </MultiBinding>
-                        </GroupBox.Visibility>-->
+                        </GroupBox.Visibility>
                         <Grid Margin="8,0,0,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" MaxWidth="200"/>
