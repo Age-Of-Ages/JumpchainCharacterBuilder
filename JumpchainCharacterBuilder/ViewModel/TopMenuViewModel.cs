@@ -171,6 +171,17 @@ namespace JumpchainCharacterBuilder.ViewModel
         private void LoadTheme()
         {
             Theme = AppSettings.Theme;
+
+            if (Theme == "Light")
+            {
+                LightThemeSelected = true;
+                DarkThemeSelected = false;
+            }
+            else if (Theme == "Dark")
+            {
+                LightThemeSelected = false;
+                DarkThemeSelected = true;
+            }
         }
 
         #endregion
