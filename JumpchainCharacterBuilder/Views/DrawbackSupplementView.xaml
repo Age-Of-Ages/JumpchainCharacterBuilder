@@ -80,12 +80,12 @@
 
                             <StackPanel>
                                 <TextBlock Text="Jumpchain Mode"/>
-                                <TextBox Text="{Binding UUMode, ValidatesOnNotifyDataErrors=True}" Width="150"/>
+                                <TextBox Text="{Binding UUMode, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
                             </StackPanel>
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Mode Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding UUModeDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding UUModeDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                      HorizontalAlignment="Stretch"
                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                      Tag="Insert Mode description."/>
@@ -102,12 +102,12 @@
                             
                             <StackPanel>
                                 <TextBlock Text="Jumpchain Risk Level"/>
-                                <TextBox Text="{Binding UURiskLevel, ValidatesOnNotifyDataErrors=True}" Width="150"/>
+                                <TextBox Text="{Binding UURiskLevel, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="150"/>
                             </StackPanel>
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Risk Level Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding UURiskLevelDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding UURiskLevelDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                      HorizontalAlignment="Stretch"
                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                      Tag="Insert Risk Level description."/>
@@ -196,13 +196,13 @@
 
                             <StackPanel>
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding HouseRuleName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding HouseRuleName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="100"/>
                             </StackPanel>
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding HouseRuleDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding HouseRuleDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert House Rule description."/>
@@ -306,26 +306,26 @@
 
                             <StackPanel>
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding DrawbackName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="100"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1">
                                 <TextBlock Text="Value"/>
                                 <TextBlock Text="Choice Points" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding DrawbackSelection.ValueChoicePoints, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackSelection.ValueChoicePoints, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
 
                                 <TextBlock Text="Choice Points (Items)" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding DrawbackSelection.ValueItemPoints, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackSelection.ValueItemPoints, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
 
                                 <TextBlock Text="Companion Points" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding DrawbackSelection.ValueCompanionPoints, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackSelection.ValueCompanionPoints, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
 
                                 <TextBlock Text="Warehouse Points" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding DrawbackSelection.ValueWarehousePoints, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackSelection.ValueWarehousePoints, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
 
@@ -364,7 +364,7 @@
 
                             <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding DrawbackDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Drawback description."/>

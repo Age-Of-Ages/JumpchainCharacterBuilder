@@ -75,31 +75,31 @@
 
                             <StackPanel>
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding CharacterName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1">
                                 <TextBlock Text="Alias"/>
-                                <TextBox Text="{Binding CharacterAlias, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterAlias, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"/>
                             </StackPanel>
                             
                             <StackPanel Grid.Row="2">
                                 <TextBlock Text="Gender" Grid.Row="3"/>
-                                <TextBox Text="{Binding CharacterGender, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterGender, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="75"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="3">
                                 <TextBlock Text="Home world/setting"/>
-                                <TextBox Text="{Binding CharacterHomeworld, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterHomeworld, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
                                 <TextBlock Text="Original age"/>
-                                <TextBox Text="{Binding CharacterSelection.Age, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterSelection.Age, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="50"/>
                             </StackPanel>
 
@@ -111,7 +111,7 @@
 
                             <StackPanel Grid.Row="2" Grid.Column="2">
                                 <TextBlock Text="Joined on Jump #"/>
-                                <TextBox Text="{Binding CharacterSelection.FirstJump, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterSelection.FirstJump, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
                         </Grid>
@@ -131,13 +131,13 @@
 
                             <StackPanel>
                                 <TextBlock Text="Species"/>
-                                <TextBox Text="{Binding CharacterSpecies, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterSpecies, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2">
                                 <TextBlock Text="Race"/>
-                                <TextBox Text="{Binding CharacterRace, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterRace, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"/>
                             </StackPanel>
 
@@ -145,23 +145,23 @@
                                 <Grid>
                                     <StackPanel Visibility="{Binding UsingFeetInches, Converter={StaticResource BoolToVis}}">
                                         <TextBlock Text="Feet"/>
-                                        <TextBox Text="{Binding CharacterSelection.HeightFeet, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding CharacterSelection.HeightFeet, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="40"/>
 
                                         <TextBlock Text="Inches" Margin="0,12,0,0"/>
-                                        <TextBox Text="{Binding CharacterSelection.HeightInches, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding CharacterSelection.HeightInches, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="40"/>
                                     </StackPanel>
 
                                     <StackPanel Visibility="{Binding UsingFeet, Converter={StaticResource BoolToVis}}">
                                         <TextBlock Text="Feet"/>
-                                        <TextBox Text="{Binding CharacterSelection.HeightFeet, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding CharacterSelection.HeightFeet, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="40"/>
                                     </StackPanel>
 
                                     <StackPanel Visibility="{Binding UsingMeters, Converter={StaticResource BoolToVis}}">
                                         <TextBlock Text="Meters"/>
-                                        <TextBox Text="{Binding CharacterSelection.HeightMeters, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding CharacterSelection.HeightMeters, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="40"/>
                                     </StackPanel>
                                 </Grid>
@@ -171,13 +171,13 @@
                                 <Grid>
                                     <StackPanel Visibility="{Binding UsingPounds, Converter={StaticResource BoolToVis}}">
                                         <TextBlock Text="Weight (Pounds)"/>
-                                        <TextBox Text="{Binding CharacterSelection.WeightPounds, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding CharacterSelection.WeightPounds, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                  Width="40"/>
                                     </StackPanel>
 
                                     <StackPanel Visibility="{Binding UsingKilograms, Converter={StaticResource BoolToVis}}">
                                         <TextBlock Text="Weight (Kilograms)"/>
-                                        <TextBox Text="{Binding CharacterSelection.WeightKilograms, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding CharacterSelection.WeightKilograms, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                  Width="40"/>
                                     </StackPanel>
                                 </Grid>
@@ -193,7 +193,7 @@
 
                         <GroupBox Header="Personality">
                             <Grid>
-                                <TextBox Text="{Binding CharacterPersonality, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterPersonality, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                      Margin="4,0,4,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                      Tag="Input personality details."/>
@@ -202,7 +202,7 @@
 
                         <GroupBox Header="Physical Description" Grid.Row="1">
                             <Grid>
-                                <TextBox Text="{Binding CharacterPhysicalDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CharacterPhysicalDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                      Margin="4,0,4,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                      Tag="Input physical characteristics."/>
@@ -225,14 +225,14 @@
                                 
                                 <DockPanel Margin="4,0,4,0">
                                     <TextBlock Text="Likes" DockPanel.Dock="Top"/>
-                                    <TextBox Text="{Binding Likes, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding Likes, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Style="{DynamicResource LargeTextBoxHintTemplate}" HorizontalAlignment="Stretch"
                                              Tag="Insert character Likes here."/>
                                 </DockPanel>
 
                                 <DockPanel Grid.Column="1" Margin="4,0,4,0">
                                     <TextBlock Text="Dislikes" DockPanel.Dock="Top"/>
-                                    <TextBox Text="{Binding Dislikes, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding Dislikes, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Style="{DynamicResource LargeTextBoxHintTemplate}" HorizontalAlignment="Stretch"
                                              Tag="Insert character Dislikes here."/>
                                 </DockPanel>
@@ -247,21 +247,21 @@
 
                                 <DockPanel Margin="4,0,4,0">
                                     <TextBlock Text="Quirks" DockPanel.Dock="Top"/>
-                                    <TextBox Text="{Binding Quirks, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding Quirks, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Style="{DynamicResource LargeTextBoxHintTemplate}" HorizontalAlignment="Stretch"
                                              Tag="Insert character Quirks here."/>
                                 </DockPanel>
 
                                 <DockPanel Grid.Column="1" Margin="4,0,4,0">
                                     <TextBlock Text="Hobbies" DockPanel.Dock="Top"/>
-                                    <TextBox Text="{Binding Hobbies, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding Hobbies, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Style="{DynamicResource LargeTextBoxHintTemplate}" HorizontalAlignment="Stretch"
                                              Tag="Insert character Hobbies here."/>
                                 </DockPanel>
 
                                 <DockPanel Grid.Column="2" Margin="4,0,4,0">
                                     <TextBlock Text="Goals" DockPanel.Dock="Top"/>
-                                    <TextBox Text="{Binding Goals, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding Goals, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Style="{DynamicResource LargeTextBoxHintTemplate}" HorizontalAlignment="Stretch"
                                              Tag="Insert character Goals here."/>
                                 </DockPanel>
@@ -345,19 +345,19 @@
 
                             <StackPanel>
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding AltFormName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AltFormName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="1">
                                 <TextBlock Text="Species/Race"/>
-                                <TextBox Text="{Binding AltFormSpecies, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AltFormSpecies, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"/>
                             </StackPanel>
 
                             <DockPanel Grid.Row="2">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding AltFormDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AltFormDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Alt-Form description."/>
@@ -366,7 +366,7 @@
 
                             <DockPanel Grid.Column="1" Grid.RowSpan="2" Margin="8,0,8,0">
                                 <TextBlock Text="Strengths" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding AltFormStrengths, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AltFormStrengths, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Alt-form strengths."/>
@@ -374,7 +374,7 @@
 
                             <DockPanel Grid.Column="2" Grid.RowSpan="2" Margin="8,0,8,0">
                                 <TextBlock Text="Weaknesses" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding AltFormWeaknesses, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AltFormWeaknesses, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Alt-form weaknesses."/>
@@ -437,7 +437,7 @@
 
                             <StackPanel>
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding PerkName}" Width="140"/>
+                                <TextBox Text="{Binding PerkName, UpdateSourceTrigger=PropertyChanged}" Width="140"/>
 
                                 <TextBlock Text="Source Jump" Margin="0,12,0,0"/>
                                 <TextBox Text="{Binding PerkSelection.SourceJump}" IsReadOnly="True" Width="140"/>
@@ -445,7 +445,7 @@
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding PerkDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBox}"/>
                             </DockPanel>
@@ -544,7 +544,7 @@
 
                                                     <StackPanel>
                                                         <TextBlock Text="Attribute Name"/>
-                                                        <TextBox Text="{Binding CurrentPhysicalAttributeName, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding CurrentPhysicalAttributeName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                                  Width="120"/>
                                                     </StackPanel>
 
@@ -676,7 +676,7 @@
 
                                                     <StackPanel>
                                                         <TextBlock Text="Attribute Name"/>
-                                                        <TextBox Text="{Binding CurrentMentalAttributeName, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding CurrentMentalAttributeName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                                  Width="120"/>
                                                     </StackPanel>
 
@@ -808,7 +808,7 @@
 
                                                     <StackPanel>
                                                         <TextBlock Text="Attribute Name"/>
-                                                        <TextBox Text="{Binding CurrentSupernaturalAttributeName, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding CurrentSupernaturalAttributeName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                                  Width="120"/>
                                                     </StackPanel>
 
@@ -1029,7 +1029,7 @@
 
                                                     <StackPanel>
                                                         <TextBlock Text="Skill Name"/>
-                                                        <TextBox Text="{Binding CurrentPhysicalSkillName, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding CurrentPhysicalSkillName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                                  Width="120"/>
                                                     </StackPanel>
 
@@ -1161,7 +1161,7 @@
 
                                                     <StackPanel>
                                                         <TextBlock Text="Skill Name"/>
-                                                        <TextBox Text="{Binding CurrentMentalSkillName, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding CurrentMentalSkillName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                                  Width="120"/>
                                                     </StackPanel>
 
@@ -1293,7 +1293,7 @@
 
                                                     <StackPanel>
                                                         <TextBlock Text="Skill Name"/>
-                                                        <TextBox Text="{Binding CurrentSocialSkillName, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding CurrentSocialSkillName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                                  Width="120"/>
                                                     </StackPanel>
 
@@ -1425,7 +1425,7 @@
 
                                                     <StackPanel>
                                                         <TextBlock Text="Skill Name"/>
-                                                        <TextBox Text="{Binding CurrentTechnologicalSkillName, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding CurrentTechnologicalSkillName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                                  Width="120"/>
                                                     </StackPanel>
 
@@ -1557,7 +1557,7 @@
 
                                                     <StackPanel>
                                                         <TextBlock Text="Skill Name"/>
-                                                        <TextBox Text="{Binding CurrentSupernaturalSkillName, ValidatesOnNotifyDataErrors=True}"
+                                                        <TextBox Text="{Binding CurrentSupernaturalSkillName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                                  Width="120"/>
                                                     </StackPanel>
 
@@ -1774,13 +1774,13 @@
 
                                 <StackPanel>
                                     <TextBlock Text="Attribute Name"/>
-                                    <TextBox Text="{Binding CurrentBoosterName, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding CurrentBoosterName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Width="120"/>
                                 </StackPanel>
 
                                 <DockPanel Grid.Row="1">
                                     <TextBlock Text="Attribute Description" DockPanel.Dock="Top"/>
-                                    <TextBox Text="{Binding CurrentBoosterDescription, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding CurrentBoosterDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              HorizontalAlignment="Stretch"
                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                              Tag="Insert Attribute description here."/>
@@ -1929,13 +1929,13 @@
 
                                         <StackPanel>
                                             <TextBlock Text="Supplement Name"/>
-                                            <TextBox Text="{Binding GenericBodyModName, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding GenericBodyModName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="120"/>
                                         </StackPanel>
 
                                         <DockPanel Grid.Row="1">
                                             <TextBlock Text="Supplement Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding GenericBodyModFullDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding GenericBodyModFullDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                      HorizontalAlignment="Stretch"
                                                      Tag="Insert Supplement description."/>
@@ -2029,11 +2029,11 @@
 
                                         <StackPanel>
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding BodyModPurchaseSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModPurchaseSelection.Name, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                            <TextBox Text="{Binding BodyModPurchaseSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModPurchaseSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="40"/>
                                         </StackPanel>
 
@@ -2045,7 +2045,7 @@
 
                                         <DockPanel Grid.Row="1">
                                             <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding BodyModPurchaseSelection.Description, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModPurchaseSelection.Description, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      HorizontalAlignment="Stretch"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                      Tag="Insert purchase description."/>
@@ -2218,17 +2218,17 @@
 
                                         <StackPanel>
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding BodyModDrawbackName, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModDrawbackName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                            <TextBox Text="{Binding BodyModDrawbackSelection.Value, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModDrawbackSelection.Value, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="40"/>
                                         </StackPanel>
 
                                         <DockPanel Grid.Row="1">
                                             <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding BodyModDrawbackDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModDrawbackDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      HorizontalAlignment="Stretch"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                      Tag="Insert Drawback description."/>
@@ -2280,18 +2280,18 @@
 
                                         <StackPanel>
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding BodyModAdditionName, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Source Jump" Margin="0,8,0,0"/>
-                                            <TextBox Text="{Binding BodyModAdditionSelection.SourceJump, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionSelection.SourceJump, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="120"
                                                      IsReadOnly="True"/>
                                         </StackPanel>
 
                                         <DockPanel Grid.Row="1">
                                             <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding BodyModAdditionDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      HorizontalAlignment="Stretch"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"/>
                                         </DockPanel>
@@ -2367,12 +2367,12 @@
                                 <GroupBox Header="Character-specific settings" Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Text="Supplement taken on Jump #"/>
-                                        <TextBox Text="{Binding SBBodyModSupplementDelay}"
+                                        <TextBox Text="{Binding SBBodyModSupplementDelay, UpdateSourceTrigger=PropertyChanged}"
                                                  Width="40"/>
 
                                         <TextBlock Text="Gauntlets taken before this Supplement" Margin="0,12,0,0"
                                                    TextWrapping="Wrap"/>
-                                        <TextBox Text="{Binding SBBodyModGauntlets}"
+                                        <TextBox Text="{Binding SBBodyModGauntlets, UpdateSourceTrigger=PropertyChanged}"
                                                  Width="40"/>
                                     </StackPanel>
                                 </GroupBox>
@@ -2410,7 +2410,7 @@
 
                                         <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
                                             <TextBlock Text="Anomalous Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding SBBodyModAnomalousDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding SBBodyModAnomalousDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      HorizontalAlignment="Stretch"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                      Tag="Insert Anomalous description."/>
@@ -2473,17 +2473,17 @@
                                                     <TextBox Text="{Binding CharacterBaseFormDetailSelection.Category}" IsReadOnly="True" Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding CharacterBaseFormDetailSelection.Cost}" Width="40"/>
+                                                    <TextBox Text="{Binding CharacterBaseFormDetailSelection.Cost, UpdateSourceTrigger=PropertyChanged}" Width="40"/>
                                                 </StackPanel>
 
                                                 <StackPanel Grid.Column="1">
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding CharacterBaseFormDetailName, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                                    <TextBox Text="{Binding CharacterBaseFormDetailName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="120"/>
                                                 </StackPanel>
 
                                                 <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding CharacterBaseFormDetailDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding CharacterBaseFormDetailDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              HorizontalAlignment="Stretch"
                                                              Tag="Insert Base form detail description."/>
@@ -2545,15 +2545,15 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding SBExtraBitsName, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                                    <TextBox Text="{Binding SBExtraBitsName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding SBExtraBitsSelection.Cost}" Width="40"/>
+                                                    <TextBox Text="{Binding SBExtraBitsSelection.Cost, UpdateSourceTrigger=PropertyChanged}" Width="40"/>
                                                 </StackPanel>
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding SBExtraBitsDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding SBExtraBitsDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                          HorizontalAlignment="Stretch"
                                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                          Tag="Insert Base form detail description."/>
@@ -2596,7 +2596,7 @@
 
                                         <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
                                             <TextBlock Text="Affinity Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding SBBodyModAffinityDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding SBBodyModAffinityDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      HorizontalAlignment="Stretch"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                      Tag="Insert Affinity description."/>
@@ -2719,11 +2719,11 @@
 
                                             <StackPanel>
                                                 <TextBlock Text="Name"/>
-                                                <TextBox Text="{Binding SBAugmentName, ValidatesOnNotifyDataErrors=True}"
+                                                <TextBox Text="{Binding SBAugmentName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                          Width="120"/>
 
                                                 <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                <TextBox Text="{Binding SBAugmentSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                                <TextBox Text="{Binding SBAugmentSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                          Width="40"/>
                                             </StackPanel>
 
@@ -2740,7 +2740,7 @@
 
                                             <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
                                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                <TextBox Text="{Binding SBAugmentDescription, ValidatesOnNotifyDataErrors=True}"
+                                                <TextBox Text="{Binding SBAugmentDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                          HorizontalAlignment="Stretch"
                                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                          Tag="Insert Augment description."/>
@@ -2914,11 +2914,11 @@
 
                                         <StackPanel>
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding SBBodyModPowerSelection.Name, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding SBBodyModPowerSelection.Name, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                            <TextBox Text="{Binding SBBodyModPowerSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding SBBodyModPowerSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="40"/>
                                         </StackPanel>
 
@@ -2936,7 +2936,7 @@
 
                                         <DockPanel Grid.Row="1">
                                             <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding SBBodyModPowerDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding SBBodyModPowerDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      HorizontalAlignment="Stretch"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                      Tag="Insert Power description."/>
@@ -3073,7 +3073,7 @@
 
                                         <StackPanel>
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding BodyModAdditionName, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Source Jump" Margin="0,8,0,0"/>
@@ -3084,7 +3084,7 @@
 
                                         <DockPanel Grid.Row="1">
                                             <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding BodyModAdditionDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      HorizontalAlignment="Stretch"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"/>
                                         </DockPanel>
@@ -3173,15 +3173,15 @@
                                 <GroupBox Header="Character-specific settings" Grid.Column="1">
                                     <StackPanel>
                                         <TextBlock Text="Supplement taken on Jump #"/>
-                                        <TextBox Text="{Binding EBMSupplementDelay}"
+                                        <TextBox Text="{Binding EBMSupplementDelay, UpdateSourceTrigger=PropertyChanged}"
                                                  Width="40"/>
 
                                         <TextBlock Text="Minor Quests completed" Margin="0,12,0,0"/>
-                                        <TextBox Text="{Binding EBMMinorQuests, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding EBMMinorQuests, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                  Width="40"/>
 
                                         <TextBlock Text="Major Quests completed" Margin="0,12,0,0"/>
-                                        <TextBox Text="{Binding EBMMajorQuests, ValidatesOnNotifyDataErrors=True}"
+                                        <TextBox Text="{Binding EBMMajorQuests, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                  Width="40"/>
                                     </StackPanel>
                                 </GroupBox>
@@ -3245,13 +3245,13 @@
 
                                         <StackPanel>
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding EBMEssenceName, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding EBMEssenceName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="120"/>
                                         </StackPanel>
 
                                         <DockPanel Grid.Row="1">
                                             <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding EBMEssenceDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding EBMEssenceDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                  HorizontalAlignment="Stretch"
                                                  Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                  Tag="Insert Essence description."/>
@@ -3330,11 +3330,11 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding EBMBasicPerkName, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMBasicPerkName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding EBMBasicPerkSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMBasicPerkSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="40"/>
                                                 </StackPanel>
 
@@ -3346,7 +3346,7 @@
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding EBMBasicPerkDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMBasicPerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              Tag="Insert Perk description."/>
@@ -3503,11 +3503,11 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding EBMPhysicalPerkName, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMPhysicalPerkName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding EBMPhysicalPerkSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMPhysicalPerkSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="40"/>
                                                 </StackPanel>
 
@@ -3519,7 +3519,7 @@
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding EBMPhysicalPerkDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMPhysicalPerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              Tag="Insert Perk description."/>
@@ -3676,11 +3676,11 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding EBMMentalPerkName, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMMentalPerkName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding EBMMentalPerkSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMMentalPerkSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="40"/>
                                                 </StackPanel>
 
@@ -3692,7 +3692,7 @@
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding EBMMentalPerkDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMMentalPerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              Tag="Insert Perk description."/>
@@ -3849,11 +3849,11 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding EBMSpiritualPerkName, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMSpiritualPerkName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding EBMSpiritualPerkSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMSpiritualPerkSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="40"/>
                                                 </StackPanel>
 
@@ -3865,7 +3865,7 @@
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding EBMSpiritualPerkDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMSpiritualPerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              Tag="Insert Perk description."/>
@@ -4022,11 +4022,11 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding EBMSkillPerkName, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMSkillPerkName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding EBMSkillPerkSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMSkillPerkSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="40"/>
                                                 </StackPanel>
 
@@ -4038,7 +4038,7 @@
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding EBMSkillPerkDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMSkillPerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              Tag="Insert Perk description."/>
@@ -4195,11 +4195,11 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding EBMSupernaturalPerkName, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMSupernaturalPerkName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding EBMSupernaturalPerkSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMSupernaturalPerkSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="40"/>
                                                 </StackPanel>
 
@@ -4211,7 +4211,7 @@
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding EBMSupernaturalPerkDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMSupernaturalPerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              Tag="Insert Perk description."/>
@@ -4368,11 +4368,11 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding EBMItemPerkName, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMItemPerkName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding EBMItemPerkSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMItemPerkSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="40"/>
                                                 </StackPanel>
 
@@ -4384,7 +4384,7 @@
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding EBMItemPerkDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMItemPerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              Tag="Insert Perk description."/>
@@ -4541,11 +4541,11 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding EBMCompanionPerkName, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMCompanionPerkName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding EBMCompanionPerkSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMCompanionPerkSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="40"/>
                                                 </StackPanel>
 
@@ -4557,7 +4557,7 @@
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding EBMCompanionPerkDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMCompanionPerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              Tag="Insert Perk description."/>
@@ -4718,17 +4718,17 @@
 
                                                 <StackPanel>
                                                     <TextBlock Text="Name"/>
-                                                    <TextBox Text="{Binding EBMDrawbackName, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMDrawbackName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="120"/>
 
                                                     <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                                    <TextBox Text="{Binding EBMDrawbackSelection.Value, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMDrawbackSelection.Value, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              Width="40"/>
                                                 </StackPanel>
 
                                                 <DockPanel Grid.Row="1">
                                                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                                    <TextBox Text="{Binding EBMDrawbackDescription, ValidatesOnNotifyDataErrors=True}"
+                                                    <TextBox Text="{Binding EBMDrawbackDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                              HorizontalAlignment="Stretch"
                                                              Style="{DynamicResource LargeTextBoxHintTemplate}"
                                                              Tag="Insert Drawback description."/>
@@ -4782,7 +4782,7 @@
 
                                         <StackPanel>
                                             <TextBlock Text="Name"/>
-                                            <TextBox Text="{Binding BodyModAdditionName, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="120"/>
 
                                             <TextBlock Text="Source Jump" Margin="0,8,0,0"/>
@@ -4793,7 +4793,7 @@
 
                                         <DockPanel Grid.Row="1">
                                             <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                            <TextBox Text="{Binding BodyModAdditionDescription, ValidatesOnNotifyDataErrors=True}"
+                                            <TextBox Text="{Binding BodyModAdditionDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      HorizontalAlignment="Stretch"
                                                      Style="{DynamicResource LargeTextBoxHintTemplate}"/>
                                         </DockPanel>

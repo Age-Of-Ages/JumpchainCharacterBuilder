@@ -128,9 +128,9 @@
                             </StackPanel>
 
                             <StackPanel Grid.Column="1">
-                                <TextBox Text="{Binding Age, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding Age, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="30"/>
-                                <TextBox Text="{Binding Gender, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding Gender, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"/>
                             </StackPanel>
 
@@ -140,9 +140,9 @@
                             </StackPanel>
 
                             <StackPanel Grid.Column="3">
-                                <TextBox Text="{Binding AgeCost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AgeCost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="30"/>
-                                <TextBox Text="{Binding GenderCost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding GenderCost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="30"/>
                             </StackPanel>
                         </Grid>
@@ -189,20 +189,20 @@
 
                             <StackPanel Grid.Row="1">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding MiscOriginDetailName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding MiscOriginDetailName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="100"/>
                             </StackPanel>
 
                             <StackPanel Grid.Row="2">
                                 <TextBlock Text="Cost"/>
-                                <TextBox Text="{Binding MiscOriginDetailSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding MiscOriginDetailSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40" 
                                          HorizontalAlignment="Left"/>
                             </StackPanel>
 
                             <DockPanel Grid.Row="3">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding MiscOriginDetailDescription, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding MiscOriginDetailDescription, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          HorizontalAlignment="Stretch"
                                          Tag="Insert Origin Detail description."/>
@@ -315,20 +315,20 @@
 
                             <StackPanel>
                                 <TextBlock Text="Origin Name"/>
-                                <TextBox Text="{Binding OriginEditName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding OriginEditName, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="100"/>
                             </StackPanel>
                             
                             <StackPanel Grid.Column="1" Margin="8,0,0,0">
                                 <TextBlock Text="Origin Cost"/>
-                                <TextBox Text="{Binding OriginEditSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding OriginEditSelection.Cost, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"
                                          HorizontalAlignment="Left"/>
                             </StackPanel>
                             
                             <DockPanel Grid.Row="1" Grid.ColumnSpan="2">
                                 <TextBlock Text="Origin Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding OriginEditDescription, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding OriginEditDescription, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Origin description."/>
@@ -353,7 +353,7 @@
 
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Type Name"/>
-                                <TextBox Text="{Binding MiscOriginTypeSelection, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding MiscOriginTypeSelection, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="100"/>
                             </StackPanel>
                         </Grid>
@@ -466,9 +466,9 @@
 
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding PurchaseName, ValidatesOnNotifyDataErrors=True}" Width="100"/>
+                                <TextBox Text="{Binding PurchaseName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="100"/>
                                 <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                <TextBox Text="{Binding PurchaseSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PurchaseSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40" HorizontalAlignment="Left"/>
 
                                 <CheckBox Content="Discounted" Margin="0,8,0,0"
@@ -498,7 +498,7 @@
 
                             <DockPanel Grid.Row="1" Grid.ColumnSpan="3">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding PurchaseDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PurchaseDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Purchase description."/>
@@ -681,10 +681,10 @@
 
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding ImportOptionName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ImportOptionName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="100"/>
                                 <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                <TextBox Text="{Binding ImportOptionSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ImportOptionSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"
                                          HorizontalAlignment="Left"/>
 
@@ -696,7 +696,7 @@
 
                             <DockPanel Grid.Row="1" Grid.ColumnSpan="4">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding ImportOptionDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ImportOptionDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Import option description."/>
@@ -742,7 +742,7 @@
                                 </GroupBox.Visibility>
                                 <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                     <TextBlock Text="Name"/>
-                                    <TextBox Text="{Binding ImportCharacterSelection.CompanionName}"
+                                    <TextBox Text="{Binding ImportCharacterSelection.CompanionName, UpdateSourceTrigger=PropertyChanged}"
                                              Width="120"
                                              IsReadOnly="True"/>
 
@@ -750,7 +750,7 @@
                                               Margin="0,12,0,0"/>
 
                                     <TextBlock Text="Stipend" Margin="0,12,0,0"/>
-                                    <TextBox Text="{Binding ImportCharacterSelection.CompanionOptionValue}"
+                                    <TextBox Text="{Binding ImportCharacterSelection.CompanionOptionValue, UpdateSourceTrigger=PropertyChanged}"
                                              Width="40"/>
                                 </StackPanel>
                             </GroupBox>
@@ -850,16 +850,16 @@
 
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding DrawbackName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="100"/>
                                 <TextBlock Text="Value" Margin="0,8,0,0"/>
-                                <TextBox Text="{Binding DrawbackSelection.Value, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackSelection.Value, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding DrawbackDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Drawback description here."/>
@@ -867,7 +867,7 @@
 
                             <DockPanel Grid.Row="2" Margin="0,12,0,0">
                                 <TextBlock Text="Reward" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding DrawbackReward, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding DrawbackReward, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          x:Name="DrawbackRewardBox"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
@@ -968,16 +968,16 @@
 
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding ScenarioName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ScenarioName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="100"/>
                                 <TextBlock Text="Value" Margin="0,8,0,0"/>
-                                <TextBox Text="{Binding ScenarioSelection.Value, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ScenarioSelection.Value, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding ScenarioDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ScenarioDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Scenario description here."/>
@@ -985,7 +985,7 @@
 
                             <DockPanel Grid.Row="2" Margin="0,12,0,0">
                                 <TextBlock Text="Reward" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding ScenarioReward, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding ScenarioReward, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert reward description here. This data is only visible here so make sure that you add it as a Perk/Item if it has an effect that you want to store for later."/>   
@@ -1011,19 +1011,19 @@
 
                     <StackPanel Margin="8,8,0,0">
                         <TextBlock Text="Jump Name"/>
-                        <TextBox Text="{Binding JumpName, ValidatesOnNotifyDataErrors=True}" 
+                        <TextBox Text="{Binding JumpName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="150"/>
 
                         <TextBlock Text="Jump Version"/>
-                        <TextBox Text="{Binding JumpVersion, ValidatesOnNotifyDataErrors=True}" 
+                        <TextBox Text="{Binding JumpVersion, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="150"/>
 
                         <TextBlock Text="Author"/>
-                        <TextBox Text="{Binding JumpAuthor, ValidatesOnNotifyDataErrors=True}" 
+                        <TextBox Text="{Binding JumpAuthor, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="150"/>
 
                         <TextBlock Text="Source"/>
-                        <TextBox Text="{Binding JumpSource, ValidatesOnNotifyDataErrors=True}" 
+                        <TextBox Text="{Binding JumpSource, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
                                  Width="150"/>
 
                         <TextBlock Text="Jump #"/>
@@ -1036,17 +1036,17 @@
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,0">
                             <StackPanel>
                                 <TextBlock Text="Years"/>
-                                <TextBox Text="{Binding JumpSelection.DurationYears, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding JumpSelection.DurationYears, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="12,0,0,0">
                                 <TextBlock Text="Months"/>
-                                <TextBox Text="{Binding JumpSelection.DurationMonths, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding JumpSelection.DurationMonths, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Margin="12,0,0,0">
                                 <TextBlock Text="Days"/>
-                                <TextBox Text="{Binding JumpSelection.DurationDays, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding JumpSelection.DurationDays, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
                         </StackPanel>
@@ -1061,11 +1061,11 @@
 
                                 <StackPanel>
                                     <TextBlock Text="Banked Points"/>
-                                    <TextBox Text="{Binding BankedPoints, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding BankedPoints, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Width="40"/>
 
                                     <TextBlock Text="Bank Usage" Margin="0,12,0,0"/>
-                                    <TextBox Text="{Binding BankUsage, ValidatesOnNotifyDataErrors=True}"
+                                    <TextBox Text="{Binding BankUsage, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Width="40"/>
                                 </StackPanel>
 
@@ -1084,10 +1084,10 @@
                     <StackPanel Grid.Column="1" Margin="0,8,0,0">
                         <CheckBox Content="Origin Auto-Discounts" IsChecked="{Binding OriginDiscountsSelection}"/>
                         <TextBlock Text="Perk Freebie Threshold" Margin="0,8,0,0"/>
-                        <TextBox Text="{Binding PerkFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
+                        <TextBox Text="{Binding PerkFreebieThreshold, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                  Width="40"/>
                         <TextBlock Text="Item Freebie Threshold" Margin="0,4,0,0"/>
-                        <TextBox Text="{Binding ItemFreebieThreshold, ValidatesOnNotifyDataErrors=True}"
+                        <TextBox Text="{Binding ItemFreebieThreshold, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                  Width="40"/>
 
                         <CheckBox Content="Skip Jump number" IsChecked="{Binding SkipJumpNumber}" Margin="0,12,0,0"/>
@@ -1155,11 +1155,11 @@
                                          Width="100"/>
 
                                 <TextBlock Text="Abbreviation" Margin="0,8,0,0"/>
-                                <TextBox Text="{Binding CurrencyAbbreviation, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CurrencyAbbreviation, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="30"/>
 
                                 <TextBlock Text="Starting Budget" Margin="0,8,0,0"/>
-                                <TextBox Text="{Binding CurrencySelection.CurrencyBudget, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CurrencySelection.CurrencyBudget, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
                         </Grid>
@@ -1200,7 +1200,7 @@
                                          IsReadOnly="True"/>
 
                                 <TextBlock Text="Stipend" Margin="0,8,0,0"/>
-                                <TextBox Text="{Binding CurrencyStipend, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CurrencyStipend, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
                         </Grid>
@@ -1316,7 +1316,7 @@
                             </StackPanel>
                             <StackPanel Grid.Row="3">
                                 <TextBlock Text="Per-character type Stipend"/>
-                                <TextBox Text="{Binding PurchaseTypeStipend, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PurchaseTypeStipend, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
                         </Grid>
@@ -1340,7 +1340,7 @@
                         <Grid>
                             <StackPanel>
                                 <TextBlock Text="CP invested"/>
-                                <TextBox Text="{Binding WarehousePointsInvested, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding WarehousePointsInvested, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
 
                                 <TextBlock Text="CP to WP" Margin="0,8,0,0"/>
@@ -1374,7 +1374,7 @@
 
                             <StackPanel Margin="0,8,0,0" Grid.Row="1">
                                 <TextBlock Text="CP invested"/>
-                                <TextBox Text="{Binding BodyModPointsInvested, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding BodyModPointsInvested, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
 
                                 <TextBlock Text="CP to Body Mod Points" Margin="0,8,0,0"/>

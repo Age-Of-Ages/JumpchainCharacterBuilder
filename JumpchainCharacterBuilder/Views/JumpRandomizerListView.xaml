@@ -50,7 +50,7 @@
                         VerticalAlignment="Center"
                         Margin="0,8,0,0">
                 <TextBlock Text="List Name" VerticalAlignment="Center"/>
-                <TextBox Text="{Binding ActiveJumpRandomizerList.ListName, ValidatesOnNotifyDataErrors=True}" Width="120"
+                <TextBox Text="{Binding ActiveJumpRandomizerList.ListName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="120"
                          Margin="4,0,0,0"/>
             </StackPanel>
 
@@ -111,14 +111,14 @@
             
             <StackPanel>
                 <TextBlock Text="Jump name"/>
-                <TextBox Text="{Binding JumpSelectionName, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                <TextBox Text="{Binding JumpSelectionName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="120"/>
 
                 <TextBlock Text="Jump weight" Margin="0,16,0,0"/>
                 <TextBlock Text="Determines how likely a Jump is to be selected" TextWrapping="Wrap"/>
-                <TextBox Text="{Binding JumpRandomizerEntrySelection.JumpWeight, ValidatesOnNotifyDataErrors=True}" Width="40"/>
+                <TextBox Text="{Binding JumpRandomizerEntrySelection.JumpWeight, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="40"/>
 
                 <TextBlock Text="Jump Document Link (Optional)" Margin="0,16,0,0" TextWrapping="Wrap"/>
-                <TextBox Text="{Binding JumpSelectionUri, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                <TextBox Text="{Binding JumpSelectionUri, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Width="120"/>
             </StackPanel>
         </GroupBox>
     </Grid>

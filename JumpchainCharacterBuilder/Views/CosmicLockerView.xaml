@@ -83,7 +83,7 @@
 
                 <StackPanel>
                     <TextBlock Text="Name"/>
-                    <TextBox Text="{Binding ItemName, ValidatesOnNotifyDataErrors=True}"
+                    <TextBox Text="{Binding ItemName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                              Width="120"/>
 
                     <TextBlock Text="Source Jump" Margin="0,12,0,0"/>
@@ -93,7 +93,7 @@
 
                 <DockPanel Grid.Row="1">
                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                    <TextBox Text="{Binding ItemDescription, ValidatesOnNotifyDataErrors=True}"
+                    <TextBox Text="{Binding ItemDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                              HorizontalAlignment="Stretch"
                              Style="{DynamicResource LargeTextBox}"/>
                 </DockPanel>

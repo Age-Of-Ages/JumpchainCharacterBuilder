@@ -91,13 +91,13 @@
 
                             <StackPanel>
                                 <TextBlock Text="Supplement Name"/>
-                                <TextBox Text="{Binding GenericName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding GenericName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="120"/>
                             </StackPanel>
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Supplement Details" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding GenericDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding GenericDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Warehouse description."/>
@@ -363,11 +363,11 @@
 
                             <StackPanel>
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding PurchaseName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PurchaseName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="120"/>
 
                                 <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                <TextBox Text="{Binding PurchaseSelection.Cost, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PurchaseSelection.Cost, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
 
@@ -379,7 +379,7 @@
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding PurchaseDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding PurchaseDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Purchase description."/>
@@ -431,7 +431,7 @@
 
                             <StackPanel>
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding AdditionName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AdditionName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="120"/>
 
                                 <TextBlock Text="Source Jump" Margin="0,12,0,0"/>
@@ -447,7 +447,7 @@
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding AdditionDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding AdditionDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBox}"/>
                             </DockPanel>
@@ -539,17 +539,17 @@
 
                             <StackPanel>
                                 <TextBlock Text="Name"/>
-                                <TextBox Text="{Binding LimitationName, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding LimitationName, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="120"/>
 
                                 <TextBlock Text="Cost" Margin="0,8,0,0"/>
-                                <TextBox Text="{Binding LimitationSelection.Value, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding LimitationSelection.Value, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
                             </StackPanel>
 
                             <DockPanel Grid.Row="1">
                                 <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                                <TextBox Text="{Binding LimitationDescription, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding LimitationDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                          HorizontalAlignment="Stretch"
                                          Style="{DynamicResource LargeTextBoxHintTemplate}"
                                          Tag="Insert Limitation description."/>
