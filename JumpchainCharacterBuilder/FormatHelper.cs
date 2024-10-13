@@ -48,7 +48,7 @@ namespace JumpchainCharacterBuilder
         {
             string output;
 
-            output = RemoveDoubleSpacesRegex().Replace(input, " ");
+            output = RemoveExcessSpacesRegex().Replace(input, " ");
             output = RemoveParagraphStartSpacesRegex().Replace(output, "");
 
             return output;
@@ -73,8 +73,8 @@ namespace JumpchainCharacterBuilder
         [GeneratedRegex("(?<!\\r\\n)(\\r\\n)(?!\\r\\n)")]
         private static partial Regex RemoveLineBreaksNoDoubleRegex();
 
-        [GeneratedRegex("  ")]
-        private static partial Regex RemoveDoubleSpacesRegex();
+        [GeneratedRegex(@"\s{2,}")]
+        private static partial Regex RemoveExcessSpacesRegex();
 
         [GeneratedRegex("(?<=\\n) ")]
         private static partial Regex RemoveParagraphStartSpacesRegex();
