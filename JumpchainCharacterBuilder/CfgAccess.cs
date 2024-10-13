@@ -19,7 +19,9 @@ namespace JumpchainCharacterBuilder
                 {"Theme", appSettings.Theme },
                 {"CanResizeWindow", appSettings.CanResizeWindow.ToString() },
                 {"ConfirmSaveOnClose", appSettings.ConfirmSaveOnClose.ToString() },
-                {"SpellCheckEnabled", appSettings.SpellCheckEnabled.ToString() }
+                {"SpellCheckEnabled", appSettings.SpellCheckEnabled.ToString() },
+                {"FormatterDeleteAllLineBreaks", appSettings.FormatterDeleteAllLineBreaks.ToString() },
+                {"FormatterLeaveDoubleLineBreaks", appSettings.FormatterLeaveDoubleLineBreaks.ToString() }
             };
 
             settings.Add("# Application settings");
@@ -69,7 +71,9 @@ namespace JumpchainCharacterBuilder
                     {"Theme", "Light" },
                     {"CanResizeWindow", "False" },
                     {"ConfirmSaveOnClose", "True" },
-                    {"SpellCheckEnabled", "True" }
+                    {"SpellCheckEnabled", "True" },
+                    {"FormatterDeleteAllLineBreaks", "False" },
+                    {"FormatterLeaveDoubleLineBreaks", "False" }
                 };
                 string[] splitString;
                 string settingKey;
@@ -139,6 +143,24 @@ namespace JumpchainCharacterBuilder
                 {
                     appSettings.SpellCheckEnabled = false;
                 }
+
+                if (settingsDictionary["FormatterDeleteAllLineBreaks"] == "True")
+                {
+                    appSettings.FormatterDeleteAllLineBreaks = true;
+                }
+                else
+                {
+                    appSettings.FormatterDeleteAllLineBreaks = false;
+                }
+
+                if (settingsDictionary["FormatterLeaveDoubleLineBreaks"] == "True")
+                {
+                    appSettings.FormatterLeaveDoubleLineBreaks = true;
+                }
+                else
+                {
+                    appSettings.FormatterLeaveDoubleLineBreaks = false;
+                }
             }
         }
 
@@ -171,7 +193,9 @@ namespace JumpchainCharacterBuilder
                 {"Theme", "Dark" },
                 {"CanResizeWindow", "True" },
                 {"ConfirmSaveOnClose", "True" },
-                {"SpellCheckEnabled", "True" }
+                {"SpellCheckEnabled", "True" },
+                {"FormatterDeleteAllLineBreaks", "False" },
+                {"FormatterLeaveDoubleLineBreaks", "False" }
             };
             string[] splitString;
             string settingKey;

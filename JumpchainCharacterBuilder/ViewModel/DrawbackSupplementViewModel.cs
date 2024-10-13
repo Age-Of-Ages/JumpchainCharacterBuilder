@@ -372,6 +372,20 @@ namespace JumpchainCharacterBuilder.ViewModel
         #endregion
 
         #region Commands
+        [RelayCommand]
+        public void FormatInput(string targetPropertyName)
+        {
+            string? oldString = PropertyAccess.GetString(this, targetPropertyName);
+            if (!string.IsNullOrWhiteSpace(oldString))
+            {
+                bool removeAllLineBreaks = AppSettings.FormatterDeleteAllLineBreaks;
+                bool leaveDoubleLineBreaks = AppSettings.FormatterLeaveDoubleLineBreaks;
+
+                string newString = FormatHelper.RemoveLineBreaks(oldString, removeAllLineBreaks, leaveDoubleLineBreaks);
+
+                GetType().GetProperty(targetPropertyName)?.SetValue(this, newString);
+            }
+        }
 
         [RelayCommand]
         private void NewHouseRule()

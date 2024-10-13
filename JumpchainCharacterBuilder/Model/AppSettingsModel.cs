@@ -67,5 +67,17 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private bool _focusNewestJumpOnLoad = true;
+
+        /// <summary>
+        /// Represents if the Input Formatter should delete ALL line breaks when formatting a string.
+        /// </summary>
+        [ObservableProperty]
+        private bool _formatterDeleteAllLineBreaks = false;
+
+        /// <summary>
+        /// Represents if the Input Formatter should leave double line breaks when formatting a string.
+        /// </summary>
+        [ObservableProperty]
+        private bool _formatterLeaveDoubleLineBreaks = false;
     }
 }

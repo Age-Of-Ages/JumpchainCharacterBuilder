@@ -2,7 +2,6 @@
 using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using System.Text.RegularExpressions;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -47,6 +46,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 RemoveAllLineBreaks = false;
             }
+            AppSettings.FormatterLeaveDoubleLineBreaks = value;
+            Messenger.Send(new SettingsChangedMessage(true));
+            CfgAccess.WriteCfgFile(AppSettings);
             FormatString();
         }
 
@@ -56,6 +58,9 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 LeaveDoubleLineBreaks = false;
             }
+            AppSettings.FormatterDeleteAllLineBreaks = value;
+            Messenger.Send(new SettingsChangedMessage(true));
+            CfgAccess.WriteCfgFile(AppSettings);
             FormatString();
         }
 
@@ -69,11 +74,19 @@ namespace JumpchainCharacterBuilder.ViewModel
                 AppSettings = m.Value;
 
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                RemoveAllLineBreaks = AppSettings.FormatterDeleteAllLineBreaks;
+                LeaveDoubleLineBreaks = AppSettings.FormatterLeaveDoubleLineBreaks;
             });
             Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
             {
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
             });
+
+            AppSettings = Messenger.Send<SettingsRequestMessage>();
+
+            SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+            RemoveAllLineBreaks = AppSettings.FormatterDeleteAllLineBreaks;
+            LeaveDoubleLineBreaks = AppSettings.FormatterLeaveDoubleLineBreaks;
         }
 
         #endregion
@@ -83,47 +96,13 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             string temporaryString;
 
-            // Copying from PDF files can cause issues with line-breaks being inserted in incorrect places, so these need to be removed.
-            if (RemoveAllLineBreaks)
-            {
-                temporaryString = RemoveAllLineBreaksRegex().Replace(InputString, " "); 
-            }
-            else if (LeaveDoubleLineBreaks)
-            {
-                temporaryString = RemoveLineBreaksNoDoubleRegex().Replace(InputString, " ");
-            }
-            else
-            {
-                temporaryString = RemoveLineBreaksRegex().Replace(InputString, " ");
-            }
-            // If a string with too many line-breaks is put through this formatter multiple times to fully correct it then extra spaces will appear.
-            // These should be removed to preserve the tidiness of the string.
-            // Intended line-breaks also leave spaces at the beginning of the paragraph, so these should be corrected.
-            temporaryString = RemoveDoubleSpacesRegex().Replace(temporaryString, " ");
-            temporaryString = RemoveParagraphStartSpacesRegex().Replace(temporaryString, "");
+            temporaryString = FormatHelper.RemoveLineBreaks(InputString, RemoveAllLineBreaks, LeaveDoubleLineBreaks);
 
-            temporaryString = XmlFilterRegex().Replace(temporaryString, "");
+            temporaryString = FormatHelper.RemoveSpaces(temporaryString);
+            temporaryString = FormatHelper.XmlSafeFormat(temporaryString);
 
             OutputString = temporaryString;
         }
-
-        [GeneratedRegex("(\\r\\n)(?!\\r\\n)")]
-        private static partial Regex RemoveLineBreaksRegex();
-
-        [GeneratedRegex("(\\r\\n)")]
-        private static partial Regex RemoveAllLineBreaksRegex();
-
-        [GeneratedRegex("(?<!\\r\\n)(\\r\\n)(?!\\r\\n)")]
-        private static partial Regex RemoveLineBreaksNoDoubleRegex();
-
-        [GeneratedRegex("  ")]
-        private static partial Regex RemoveDoubleSpacesRegex();
-
-        [GeneratedRegex("(?<=\\n) ")]
-        private static partial Regex RemoveParagraphStartSpacesRegex();
-
-        [GeneratedRegex("[^\x09\x0A\x0D\x20-\uD7FF\uE000-\uFFFD]", RegexOptions.Compiled)]
-        private static partial Regex XmlFilterRegex();
         #endregion
     }
 }

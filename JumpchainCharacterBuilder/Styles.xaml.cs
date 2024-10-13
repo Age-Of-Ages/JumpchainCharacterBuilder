@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -72,6 +73,22 @@ namespace JumpchainCharacterBuilder
                 textBoxTarget.ContextMenu.Items.Add(cutItem);
                 textBoxTarget.ContextMenu.Items.Add(copyItem);
                 textBoxTarget.ContextMenu.Items.Add(pasteItem);
+                string? binding = BindingOperations.GetBinding(textBoxTarget, TextBox.TextProperty).Path.Path;
+                if (binding != null)
+                {
+                    Separator separator3 = new();
+                    textBoxTarget.ContextMenu.Items.Add(separator3);
+
+                    MenuItem formatItem = new()
+                    {
+                        Header = "Format string",
+                        CommandParameter = binding
+                    };
+
+                    formatItem.SetBinding(MenuItem.CommandProperty, new Binding("FormatInputCommand"));
+
+                    textBoxTarget.ContextMenu.Items.Add(formatItem);
+                }
             }
         }
 
