@@ -19,60 +19,7 @@ namespace JumpchainCharacterBuilder
         {
             if (sender is TextBox textBoxTarget)
             {
-                int caretIndex, cmdIndex;
-                SpellingError spellingError;
-
-                textBoxTarget.ContextMenu = GetContextMenu();
-                caretIndex = textBoxTarget.CaretIndex;
-
-                cmdIndex = 0;
-                spellingError = textBoxTarget.GetSpellingError(caretIndex);
-                if (spellingError != null )
-                {
-                    foreach (string suggestion in spellingError.Suggestions)
-                    {
-                        MenuItem item = new()
-                        {
-                            Header = suggestion,
-                            FontWeight = FontWeights.Bold,
-                            Command = EditingCommands.CorrectSpellingError,
-                            CommandParameter = suggestion,
-                            CommandTarget = textBoxTarget
-                        };
-                        textBoxTarget.ContextMenu.Items.Insert(cmdIndex, item);
-                        cmdIndex++;
-                    }
-                    Separator separator1 = new();
-                    textBoxTarget.ContextMenu.Items.Insert(cmdIndex, separator1);
-                    cmdIndex++;
-                    MenuItem ignoreItem = new()
-                    {
-                        Header = "Ignore",
-                        Command = EditingCommands.IgnoreSpellingError,
-                        CommandTarget = textBoxTarget
-                    };
-                    textBoxTarget.ContextMenu.Items.Insert(cmdIndex, ignoreItem);
-                    cmdIndex++;
-                    Separator separator2 = new();
-                    textBoxTarget.ContextMenu.Items.Insert(cmdIndex, separator2);
-                }
-
-                MenuItem cutItem = new()
-                {
-                    Command = ApplicationCommands.Cut
-                };
-                MenuItem copyItem = new()
-                {
-                    Command = ApplicationCommands.Copy
-                };
-                MenuItem pasteItem = new()
-                {
-                    Command = ApplicationCommands.Paste
-                };
-
-                textBoxTarget.ContextMenu.Items.Add(cutItem);
-                textBoxTarget.ContextMenu.Items.Add(copyItem);
-                textBoxTarget.ContextMenu.Items.Add(pasteItem);
+                PopulateTextBoxContextMenu(textBoxTarget);
             }
         }
 
@@ -80,60 +27,8 @@ namespace JumpchainCharacterBuilder
         {
             if (sender is TextBox textBoxTarget)
             {
-                int caretIndex, cmdIndex;
-                SpellingError spellingError;
+                PopulateTextBoxContextMenu(textBoxTarget);
 
-                textBoxTarget.ContextMenu = GetContextMenu();
-                caretIndex = textBoxTarget.CaretIndex;
-
-                cmdIndex = 0;
-                spellingError = textBoxTarget.GetSpellingError(caretIndex);
-                if (spellingError != null)
-                {
-                    foreach (string suggestion in spellingError.Suggestions)
-                    {
-                        MenuItem item = new()
-                        {
-                            Header = suggestion,
-                            FontWeight = FontWeights.Bold,
-                            Command = EditingCommands.CorrectSpellingError,
-                            CommandParameter = suggestion,
-                            CommandTarget = textBoxTarget
-                        };
-                        textBoxTarget.ContextMenu.Items.Insert(cmdIndex, item);
-                        cmdIndex++;
-                    }
-                    Separator separator1 = new();
-                    textBoxTarget.ContextMenu.Items.Insert(cmdIndex, separator1);
-                    cmdIndex++;
-                    MenuItem ignoreItem = new()
-                    {
-                        Header = "Ignore",
-                        Command = EditingCommands.IgnoreSpellingError,
-                        CommandTarget = textBoxTarget
-                    };
-                    textBoxTarget.ContextMenu.Items.Insert(cmdIndex, ignoreItem);
-                    cmdIndex++;
-                    Separator separator2 = new();
-                    textBoxTarget.ContextMenu.Items.Insert(cmdIndex, separator2);
-                }
-
-                MenuItem cutItem = new()
-                {
-                    Command = ApplicationCommands.Cut
-                };
-                MenuItem copyItem = new()
-                {
-                    Command = ApplicationCommands.Copy
-                };
-                MenuItem pasteItem = new()
-                {
-                    Command = ApplicationCommands.Paste
-                };
-
-                textBoxTarget.ContextMenu.Items.Add(cutItem);
-                textBoxTarget.ContextMenu.Items.Add(copyItem);
-                textBoxTarget.ContextMenu.Items.Add(pasteItem);
                 string? binding = BindingOperations.GetBinding(textBoxTarget, TextBox.TextProperty).Path.Path;
                 if (binding != null)
                 {
@@ -156,7 +51,7 @@ namespace JumpchainCharacterBuilder
             }
         }
 
-        private ContextMenu GetContextMenu()
+        private static ContextMenu GetContextMenu()
         {
             ContextMenu menu = new();
             
@@ -165,6 +60,64 @@ namespace JumpchainCharacterBuilder
             menu.Style = contextMenuStyle;
 
             return menu;
+        }
+
+        private static void PopulateTextBoxContextMenu(TextBox textBoxTarget)
+        {
+            int caretIndex, cmdIndex;
+            SpellingError spellingError;
+
+            textBoxTarget.ContextMenu = GetContextMenu();
+            caretIndex = textBoxTarget.CaretIndex;
+
+            cmdIndex = 0;
+            spellingError = textBoxTarget.GetSpellingError(caretIndex);
+            if (spellingError != null)
+            {
+                foreach (string suggestion in spellingError.Suggestions)
+                {
+                    MenuItem item = new()
+                    {
+                        Header = suggestion,
+                        FontWeight = FontWeights.Bold,
+                        Command = EditingCommands.CorrectSpellingError,
+                        CommandParameter = suggestion,
+                        CommandTarget = textBoxTarget
+                    };
+                    textBoxTarget.ContextMenu.Items.Insert(cmdIndex, item);
+                    cmdIndex++;
+                }
+                Separator separator1 = new();
+                textBoxTarget.ContextMenu.Items.Insert(cmdIndex, separator1);
+                cmdIndex++;
+                MenuItem ignoreItem = new()
+                {
+                    Header = "Ignore",
+                    Command = EditingCommands.IgnoreSpellingError,
+                    CommandTarget = textBoxTarget
+                };
+                textBoxTarget.ContextMenu.Items.Insert(cmdIndex, ignoreItem);
+                cmdIndex++;
+                Separator separator2 = new();
+                textBoxTarget.ContextMenu.Items.Insert(cmdIndex, separator2);
+            }
+
+            MenuItem cutItem = new()
+            {
+                Command = ApplicationCommands.Cut
+            };
+            MenuItem copyItem = new()
+            {
+                Command = ApplicationCommands.Copy
+            };
+            MenuItem pasteItem = new()
+            {
+                Command = ApplicationCommands.Paste
+            };
+
+            textBoxTarget.ContextMenu.Items.Add(cutItem);
+            textBoxTarget.ContextMenu.Items.Add(copyItem);
+            textBoxTarget.ContextMenu.Items.Add(pasteItem);
         }
     }
 }
