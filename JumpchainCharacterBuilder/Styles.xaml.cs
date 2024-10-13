@@ -140,10 +140,13 @@ namespace JumpchainCharacterBuilder
                     Separator separator3 = new();
                     textBoxTarget.ContextMenu.Items.Add(separator3);
 
+                    bool textBoxFilled = !String.IsNullOrWhiteSpace(textBoxTarget.Text);
+
                     MenuItem formatItem = new()
                     {
                         Header = "Format string",
-                        CommandParameter = binding
+                        CommandParameter = binding,
+                        IsEnabled = textBoxFilled
                     };
 
                     formatItem.SetBinding(MenuItem.CommandProperty, new Binding("FormatInputCommand"));

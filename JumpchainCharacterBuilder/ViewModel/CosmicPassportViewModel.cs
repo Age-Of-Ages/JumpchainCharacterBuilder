@@ -2984,6 +2984,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 bool leaveDoubleLineBreaks = AppSettings.FormatterLeaveDoubleLineBreaks;
 
                 string newString = FormatHelper.RemoveLineBreaks(oldString, removeAllLineBreaks, leaveDoubleLineBreaks);
+                newString = FormatHelper.RemoveSpaces(newString);
+                newString = FormatHelper.XmlSafeFormat(newString);
 
                 GetType().GetProperty(targetPropertyName)?.SetValue(this, newString);
             }
