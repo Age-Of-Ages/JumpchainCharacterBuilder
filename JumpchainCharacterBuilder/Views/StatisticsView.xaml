@@ -149,22 +149,22 @@
                         <Grid>
                             <StackPanel>
                                 <TextBlock Text="Total points spent"/>
-                                <TextBox Text="{Binding OverallPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Perks" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallPerkPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallPerkPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Items" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallItemPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallItemPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Companion Imports" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallCompanionPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallCompanionPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points earned from Drawbacks" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallDrawbackPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallDrawbackPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points earned from Scenarios" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallScenarioPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallScenarioPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -226,22 +226,22 @@
                         <Grid>
                             <StackPanel>
                                 <TextBlock Text="Total points spent"/>
-                                <TextBox Text="{Binding CharacterPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Perks" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterPerkPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterPerkPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Items" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterItemPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterItemPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Companion Imports" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterCompanionPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterCompanionPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points earned from Drawbacks" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterDrawbackPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterDrawbackPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points earned from Scenarios" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterScenarioPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterScenarioPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -392,22 +392,22 @@
                         <Grid>
                             <StackPanel>
                                 <TextBlock Text="Total points spent"/>
-                                <TextBox Text="{Binding OverallPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Perks" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallPerkPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallPerkPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Items" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallItemPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallItemPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Companion Imports" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallCompanionPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallCompanionPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points earned from Drawbacks" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallDrawbackPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallDrawbackPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points earned from Scenarios" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding OverallScenarioPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding OverallScenarioPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
@@ -470,22 +470,22 @@
                         <Grid>
                             <StackPanel>
                                 <TextBlock Text="Total points spent"/>
-                                <TextBox Text="{Binding CharacterPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Perks" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterPerkPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterPerkPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Items" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterItemPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterItemPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points spent on Companion Imports" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterCompanionPointsSpent}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterCompanionPointsSpentString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points earned from Drawbacks" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterDrawbackPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterDrawbackPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
 
                                 <TextBlock Text="Points earned from Scenarios" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CharacterScenarioPointsEarned}" IsReadOnly="True" Margin="0,4,0,0" Width="40"/>
+                                <TextBox Text="{Binding CharacterScenarioPointsEarnedString}" IsReadOnly="True" Margin="0,4,0,0" Width="45"/>
                             </StackPanel>
                         </Grid>
                     </GroupBox>
