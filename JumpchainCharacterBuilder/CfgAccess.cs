@@ -16,6 +16,7 @@ namespace JumpchainCharacterBuilder
             {
                 {"WeightFormat", appSettings.WeightFormat.ToString() },
                 {"HeightFormat", appSettings.HeightFormat.ToString() },
+                {"BudgetThousandsSeparator", appSettings.BudgetThousandsSeparator.ToString() },
                 {"Theme", appSettings.Theme },
                 {"CanResizeWindow", appSettings.CanResizeWindow.ToString() },
                 {"ConfirmSaveOnClose", appSettings.ConfirmSaveOnClose.ToString() },
@@ -68,6 +69,7 @@ namespace JumpchainCharacterBuilder
                 {
                     {"HeightFormat", "FeetInches" },
                     {"WeightFormat", "Pounds" },
+                    {"BudgetThousandsSeparator", "None" },
                     {"Theme", "Light" },
                     {"CanResizeWindow", "False" },
                     {"ConfirmSaveOnClose", "True" },
@@ -113,6 +115,15 @@ namespace JumpchainCharacterBuilder
                 else
                 {
                     appSettings.WeightFormat = AppSettingsModel.WeightFormats.Pounds;
+                }
+
+                if (Enum.TryParse(settingsDictionary["BudgetThousandsSeparator"], true, out AppSettingsModel.ThousandsSeparatorFormats separatorFormat))
+                {
+                    appSettings.BudgetThousandsSeparator = separatorFormat;
+                }
+                else
+                {
+                    appSettings.BudgetThousandsSeparator = AppSettingsModel.ThousandsSeparatorFormats.None;
                 }
 
                 appSettings.Theme = settingsDictionary["Theme"];
@@ -190,6 +201,7 @@ namespace JumpchainCharacterBuilder
             {
                 {"HeightFormat", "FeetInches" },
                 {"WeightFormat", "Pounds" },
+                {"BudgetThousandsSeparator", "None" },
                 {"Theme", "Dark" },
                 {"CanResizeWindow", "True" },
                 {"ConfirmSaveOnClose", "True" },

@@ -69,11 +69,19 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _cPGained = 0;
         [ObservableProperty]
+        private string _cPGainedString = "";
+        [ObservableProperty]
         private int _cPCompanionGained = 0;
+        [ObservableProperty]
+        private string _cPCompanionGainedString = "";
         [ObservableProperty]
         private int _cPItemGained = 0;
         [ObservableProperty]
+        private string _cPItemGainedString = "";
+        [ObservableProperty]
         private int _wPGained = 0;
+        [ObservableProperty]
+        private string _wPGainedString = "";
 
         [ObservableProperty]
         private ObservableCollection<DrawbackSuspendModel> _drawbackSuspendList = [];
@@ -119,6 +127,26 @@ namespace JumpchainCharacterBuilder.ViewModel
                 HouseRuleName = value.HouseRuleName;
                 HouseRuleDescription = value.HouseRuleDescription;
             }
+        }
+
+        partial void OnCPGainedChanged(int value)
+        {
+            CPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPGained);
+        }
+
+        partial void OnCPCompanionGainedChanged(int value)
+        {
+            CPCompanionGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPCompanionGained);
+        }
+
+        partial void OnCPItemGainedChanged(int value)
+        {
+            CPItemGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPItemGained);
+        }
+
+        partial void OnWPGainedChanged(int value)
+        {
+            WPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, WPGained);
         }
 
         partial void OnUUModeChanged(string value)
@@ -224,10 +252,20 @@ namespace JumpchainCharacterBuilder.ViewModel
                 AppSettings = m.Value;
 
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                CPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPGained);
+                CPCompanionGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPCompanionGained);
+                CPItemGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPItemGained);
+                WPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, WPGained);
+
             });
             Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
             {
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                CPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPGained);
+                CPCompanionGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPCompanionGained);
+                CPItemGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPItemGained);
+                WPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, WPGained);
+
             });
 
             _dialogService = dialogService;

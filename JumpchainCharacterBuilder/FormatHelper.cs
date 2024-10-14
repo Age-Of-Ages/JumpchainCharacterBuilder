@@ -1,5 +1,7 @@
-﻿using System;
+﻿using JumpchainCharacterBuilder.Model;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Printing;
 using System.Text;
@@ -62,6 +64,34 @@ namespace JumpchainCharacterBuilder
         public static string XmlSafeFormat(string input)
         {
             return XmlFilterRegex().Replace(input, "");
+        }
+
+        public static string FormatBudgetString(AppSettingsModel.ThousandsSeparatorFormats thousandsSeparatorFormat, int budget)
+        {
+            NumberFormatInfo numberFormatInfo = thousandsSeparatorFormat switch
+            {
+                AppSettingsModel.ThousandsSeparatorFormats.None => new()
+                {
+                    NumberGroupSeparator = ""
+                },
+                AppSettingsModel.ThousandsSeparatorFormats.Comma => new()
+                {
+                    NumberGroupSeparator = ","
+                },
+                AppSettingsModel.ThousandsSeparatorFormats.Period => new()
+                {
+                    NumberGroupSeparator = "."
+                },
+                AppSettingsModel.ThousandsSeparatorFormats.Space => new()
+                {
+                    NumberGroupSeparator = " "
+                },
+                _ => new()
+                {
+                    NumberGroupSeparator = ""
+                },
+            };
+            return String.Format(numberFormatInfo, "{0:#,##0}", budget);
         }
 
         [GeneratedRegex("(\\r\\n)(?!\\r\\n)")]

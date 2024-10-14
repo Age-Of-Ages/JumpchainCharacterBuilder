@@ -42,28 +42,52 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _overallPointsSpent = 0;
         [ObservableProperty]
+        private string _overallPointsSpentString = "";
+        [ObservableProperty]
         private int _overallPerkPointsSpent = 0;
+        [ObservableProperty]
+        private string _overallPerkPointsSpentString = "";
         [ObservableProperty]
         private int _overallItemPointsSpent = 0;
         [ObservableProperty]
+        private string _overallItemPointsSpentString = "";
+        [ObservableProperty]
         private int _overallCompanionPointsSpent = 0;
+        [ObservableProperty]
+        private string _overallCompanionPointsSpentString = "";
         [ObservableProperty]
         private int _overallDrawbackPointsEarned = 0;
         [ObservableProperty]
+        private string _overallDrawbackPointsEarnedString = "";
+        [ObservableProperty]
         private int _overallScenarioPointsEarned = 0;
+        [ObservableProperty]
+        private string _overallScenarioPointsEarnedString = "";
 
         [ObservableProperty]
         private int _characterPointsSpent = 0;
         [ObservableProperty]
+        private string _characterPointsSpentString = "";
+        [ObservableProperty]
         private int _characterPerkPointsSpent = 0;
+        [ObservableProperty]
+        private string _characterPerkPointsSpentString = "";
         [ObservableProperty]
         private int _characterItemPointsSpent = 0;
         [ObservableProperty]
+        private string _characterItemPointsSpentString = "";
+        [ObservableProperty]
         private int _characterCompanionPointsSpent = 0;
+        [ObservableProperty]
+        private string _characterCompanionPointsSpentString = "";
         [ObservableProperty]
         private int _characterDrawbackPointsEarned = 0;
         [ObservableProperty]
+        private string _characterDrawbackPointsEarnedString = "";
+        [ObservableProperty]
         private int _characterScenarioPointsEarned = 0;
+        [ObservableProperty]
+        private string _characterScenarioPointsEarnedString = "";
 
         [ObservableProperty]
         private int _overallPerksBought = 0;
@@ -149,6 +173,66 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
+        partial void OnOverallPointsSpentChanged(int value)
+        {
+            OverallPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallPointsSpent);
+        }
+
+        partial void OnOverallPerkPointsSpentChanged(int value)
+        {
+            OverallPerkPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallPerkPointsSpent);
+        }
+
+        partial void OnOverallItemPointsSpentChanged(int value)
+        {
+            OverallItemPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallItemPointsSpent);
+        }
+
+        partial void OnOverallCompanionPointsSpentChanged(int value)
+        {
+            OverallCompanionPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallCompanionPointsSpent);
+        }
+
+        partial void OnOverallDrawbackPointsEarnedChanged(int value)
+        {
+            OverallDrawbackPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallDrawbackPointsEarned);
+        }
+
+        partial void OnOverallScenarioPointsEarnedChanged(int value)
+        {
+            OverallScenarioPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallScenarioPointsEarned);
+        }
+
+        partial void OnCharacterPointsSpentChanged(int value)
+        {
+            CharacterPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterPointsSpent);
+        }
+
+        partial void OnCharacterPerkPointsSpentChanged(int value)
+        {
+            CharacterPerkPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterPerkPointsSpent);
+        }
+
+        partial void OnCharacterItemPointsSpentChanged(int value)
+        {
+            CharacterItemPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterItemPointsSpent);
+        }
+
+        partial void OnCharacterCompanionPointsSpentChanged(int value)
+        {
+            CharacterCompanionPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterCompanionPointsSpent);
+        }
+
+        partial void OnCharacterDrawbackPointsEarnedChanged(int value)
+        {
+            CharacterDrawbackPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterDrawbackPointsEarned);
+        }
+
+        partial void OnCharacterScenarioPointsEarnedChanged(int value)
+        {
+            CharacterScenarioPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterScenarioPointsEarned);
+        }
+
         #endregion
 
         #region Constructor
@@ -189,10 +273,36 @@ namespace JumpchainCharacterBuilder.ViewModel
                 AppSettings = m.Value;
 
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                OverallPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallPointsSpent);
+                OverallPerkPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallPerkPointsSpent);
+                OverallItemPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallItemPointsSpent);
+                OverallCompanionPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallCompanionPointsSpent);
+                OverallDrawbackPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallDrawbackPointsEarned);
+                OverallScenarioPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallScenarioPointsEarned);
+                CharacterPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterPointsSpent);
+                CharacterPerkPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterPerkPointsSpent);
+                CharacterItemPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterItemPointsSpent);
+                CharacterCompanionPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterCompanionPointsSpent);
+                CharacterDrawbackPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterDrawbackPointsEarned);
+                CharacterScenarioPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterScenarioPointsEarned);
+
             });
             Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
             {
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                OverallPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallPointsSpent);
+                OverallPerkPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallPerkPointsSpent);
+                OverallItemPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallItemPointsSpent);
+                OverallCompanionPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallCompanionPointsSpent);
+                OverallDrawbackPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallDrawbackPointsEarned);
+                OverallScenarioPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, OverallScenarioPointsEarned);
+                CharacterPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterPointsSpent);
+                CharacterPerkPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterPerkPointsSpent);
+                CharacterItemPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterItemPointsSpent);
+                CharacterCompanionPointsSpentString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterCompanionPointsSpent);
+                CharacterDrawbackPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterDrawbackPointsEarned);
+                CharacterScenarioPointsEarnedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CharacterScenarioPointsEarned);
+
             });
 
             LoadCategoryList();

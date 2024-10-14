@@ -1882,27 +1882,27 @@
 
                                             <StackPanel>
                                                 <TextBlock Text="Total BP"/>
-                                                <TextBox Text="{Binding TotalBP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding TotalBPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
 
                                                 <TextBlock Text="Current Budget" Margin="0,12,0,0"/>
-                                                <TextBox Text="{Binding Budget, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding BudgetString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock Text="CP Invested"/>
-                                                <TextBox Text="{Binding CPInvested, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding CPInvestedString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
 
                                                 <TextBlock Text="BP from investment" Margin="0,12,0,0"/>
-                                                <TextBox Text="{Binding BPBought, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding BPBoughtString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="2">
                                                 <TextBlock Text="BP from Drawbacks"/>
-                                                <TextBox Text="{Binding DrawbackBP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding DrawbackBPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                      Width="40"/>
                                                 <TextBlock Text="Per-Jump BP total" Margin="0,12,0,0"/>
                                                 <TextBox Text="{Binding JumpBPGained, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
@@ -2337,27 +2337,27 @@
 
                                             <StackPanel>
                                                 <TextBlock Text="Total BP"/>
-                                                <TextBox Text="{Binding TotalBP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding TotalBPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
 
                                                 <TextBlock Text="Current Budget" Margin="0,12,0,0"/>
-                                                <TextBox Text="{Binding Budget, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding BudgetString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                      Width="40"/>
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock Text="CP Invested"/>
-                                                <TextBox Text="{Binding CPInvested, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding CPInvestedString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
 
                                                 <TextBlock Text="BP from investment" Margin="0,12,0,0"/>
-                                                <TextBox Text="{Binding BPBought, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding BPBoughtString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="2">
                                                 <TextBlock Text="Per-Jump BP total"/>
-                                                <TextBox Text="{Binding JumpBPGained, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding JumpBPGainedString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
                                             </StackPanel>
                                         </Grid>
@@ -3131,39 +3131,39 @@
 
                                             <StackPanel>
                                                 <TextBlock Text="Total EP"/>
-                                                <TextBox Text="{Binding TotalBP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding TotalBPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
 
                                                 <TextBlock Text="EP Budget" Margin="0,8,0,0"/>
-                                                <TextBox Text="{Binding Budget, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding BudgetString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="1">
                                                 <TextBlock Text="CP Invested"/>
-                                                <TextBox Text="{Binding CPInvested, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding CPInvestedString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
 
                                                 <TextBlock Text="EP from investment" Margin="0,8,0,0"/>
-                                                <TextBox Text="{Binding BPBought, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding BPBoughtString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                      Width="40"/>
 
                                                 <TextBlock Text="Per-Jump EP total" Margin="0,8,0,0"/>
-                                                <TextBox Text="{Binding JumpBPGained, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding JumpBPGainedString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
                                             </StackPanel>
 
                                             <StackPanel Grid.Column="2">
                                                 <TextBlock Text="Gauntlet EP Total"/>
-                                                <TextBox Text="{Binding GauntletBP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding GauntletBPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
 
                                                 <TextBlock Text="EP from Drawbacks" Margin="0,8,0,0"/>
-                                                <TextBox Text="{Binding DrawbackBP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding DrawbackBPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
 
                                                 <TextBlock Text="Quest EP Total" Margin="0,8,0,0"/>
-                                                <TextBox Text="{Binding QuestBP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                                <TextBox Text="{Binding QuestBPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                                          Width="40"/>
                                             </StackPanel>
                                         </Grid>

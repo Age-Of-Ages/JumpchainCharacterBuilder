@@ -43,19 +43,35 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _totalWP = 0;
         [ObservableProperty]
+        private string _totalWPString = "";
+        [ObservableProperty]
         private int _cPInvested = 0;
+        [ObservableProperty]
+        private string _cPInvestedString = "";
         [ObservableProperty]
         private int _jumpWPGained = 0;
         [ObservableProperty]
+        private string _jumpWPGainedString = "";
+        [ObservableProperty]
         private int _budget = 0;
+        [ObservableProperty]
+        private string _budgetString = "";
         [ObservableProperty]
         private int _wPBought = 0;
         [ObservableProperty]
+        private string _wPBoughtString = "";
+        [ObservableProperty]
         private int _drawbackWP = 0;
+        [ObservableProperty]
+        private string _drawbackWPString = "";
         [ObservableProperty]
         private int _limitationWP = 0;
         [ObservableProperty]
+        private string _limitationWPString = "";
+        [ObservableProperty]
         private int _patientJumperWP = 0;
+        [ObservableProperty]
+        private string _patientJumperWPString = "";
 
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -163,6 +179,46 @@ namespace JumpchainCharacterBuilder.ViewModel
         partial void OnWarehouseTabIndexChanged(int value) => WarehouseTabChanged();
 
         partial void OnPurchasesTabIndexChanged(int value) => PurchaseTabChanged();
+
+        partial void OnTotalWPChanged(int value)
+        {
+            TotalWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, TotalWP);
+        }
+
+        partial void OnCPInvestedChanged(int value)
+        {
+            CPInvestedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPInvested);
+        }
+
+        partial void OnJumpWPGainedChanged(int value)
+        {
+            JumpWPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, JumpWPGained);
+        }
+
+        partial void OnBudgetChanged(int value)
+        {
+            BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
+        }
+
+        partial void OnWPBoughtChanged(int value)
+        {
+            WPBoughtString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, WPBought);
+        }
+
+        partial void OnDrawbackWPChanged(int value)
+        {
+            DrawbackWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, DrawbackWP);
+        }
+
+        partial void OnLimitationWPChanged(int value)
+        {
+            LimitationWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, LimitationWP);
+        }
+
+        partial void OnPatientJumperWPChanged(int value)
+        {
+            PatientJumperWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, PatientJumperWP);
+        }
 
         partial void OnPurchaseSelectionChanged(SupplementPurchase value)
         {
@@ -292,10 +348,28 @@ namespace JumpchainCharacterBuilder.ViewModel
                 AppSettings = m.Value;
 
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                TotalWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, TotalWP);
+                CPInvestedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPInvested);
+                JumpWPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, JumpWPGained);
+                BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
+                WPBoughtString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, WPBought);
+                DrawbackWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, DrawbackWP);
+                LimitationWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, LimitationWP);
+                PatientJumperWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, PatientJumperWP);
+
             });
             Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
             {
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                TotalWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, TotalWP);
+                CPInvestedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPInvested);
+                JumpWPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, JumpWPGained);
+                BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
+                WPBoughtString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, WPBought);
+                DrawbackWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, DrawbackWP);
+                LimitationWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, LimitationWP);
+                PatientJumperWPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, PatientJumperWP);
+
             });
 
             _dialogService = dialogService;

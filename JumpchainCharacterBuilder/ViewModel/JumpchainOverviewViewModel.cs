@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
@@ -66,6 +67,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [ObservableProperty]
         private int _budget = 1000;
+        [ObservableProperty]
+        private string _budgetString = "1,000";
 
         [ObservableProperty]
         private OriginDetail _originSelection = new();
@@ -562,6 +565,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         partial void OnCharacterListChanged(ObservableCollection<Character> value) => CharacterSelection = CharacterList[0];
+
+        partial void OnBudgetChanged(int value)
+        {
+            BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
+        }
 
         partial void OnOriginSelectionChanged(OriginDetail value)
         {
@@ -1311,10 +1319,12 @@ namespace JumpchainCharacterBuilder.ViewModel
                 AppSettings = m.Value;
 
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
             });
             Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
             {
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
             });
 
             CreateJumpList();

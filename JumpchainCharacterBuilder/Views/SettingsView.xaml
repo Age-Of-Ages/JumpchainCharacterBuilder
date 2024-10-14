@@ -47,6 +47,12 @@
                               DisplayMemberPath="Key"
                               SelectedValuePath="Value"
                               SelectedValue="{Binding WeightFormatSelection}"/>
+                    
+                    <TextBlock Text="Budget Format" Margin="0,16,0,0"/>
+                    <ComboBox ItemsSource="{Binding ThousandsSeparatorFormatsList}"
+                              DisplayMemberPath="Key"
+                              SelectedValuePath="Value"
+                              SelectedValue="{Binding ThousandsSeparatorFormatSelection}"/>
                 </StackPanel>
             </Grid>
         </GroupBox>

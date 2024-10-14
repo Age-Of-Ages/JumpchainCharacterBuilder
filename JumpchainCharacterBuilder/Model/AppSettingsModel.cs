@@ -26,6 +26,14 @@ namespace JumpchainCharacterBuilder.Model
             Kilograms
         }
 
+        public enum ThousandsSeparatorFormats
+        {
+            None,
+            Comma,
+            Period,
+            Space
+        }
+
         /// <summary>
         /// Represents the user-preferred height display format.
         /// </summary>
@@ -37,6 +45,12 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private WeightFormats _weightFormat = WeightFormats.Pounds;
+
+        /// <summary>
+        /// Represents the chosen thousands separator for budget strings.
+        /// </summary>
+        [ObservableProperty]
+        private ThousandsSeparatorFormats _budgetThousandsSeparator = ThousandsSeparatorFormats.None;
 
         /// <summary>
         /// Represents the chosen interface theme.

@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
 using System.Collections.Generic;
+using System.Windows.Markup;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -16,6 +17,9 @@ namespace JumpchainCharacterBuilder.ViewModel
         private AppSettingsModel.HeightFormats _heightFormatSelection = AppSettingsModel.HeightFormats.FeetInches;
         [ObservableProperty]
         private AppSettingsModel.WeightFormats _weightFormatSelection = AppSettingsModel.WeightFormats.Pounds;
+
+        [ObservableProperty]
+        private AppSettingsModel.ThousandsSeparatorFormats _thousandsSeparatorFormatSelection = AppSettingsModel.ThousandsSeparatorFormats.None;
 
         [ObservableProperty]
         private bool _canResizeWindow = true;
@@ -38,6 +42,13 @@ namespace JumpchainCharacterBuilder.ViewModel
         partial void OnWeightFormatSelectionChanged(AppSettingsModel.WeightFormats value)
         {
             AppSettings.WeightFormat = value;
+            Messenger.Send(new SettingsChangedMessage(true));
+            CfgAccess.WriteCfgFile(AppSettings);
+        }
+
+        partial void OnThousandsSeparatorFormatSelectionChanged(AppSettingsModel.ThousandsSeparatorFormats value)
+        {
+            AppSettings.BudgetThousandsSeparator = value;
             Messenger.Send(new SettingsChangedMessage(true));
             CfgAccess.WriteCfgFile(AppSettings);
         }
@@ -85,6 +96,15 @@ namespace JumpchainCharacterBuilder.ViewModel
                 {"Kilograms", AppSettingsModel.WeightFormats.Kilograms}
             };
 
+        public Dictionary<string, AppSettingsModel.ThousandsSeparatorFormats> ThousandsSeparatorFormatsList { get; } =
+            new()
+            {
+                {"1500", AppSettingsModel.ThousandsSeparatorFormats.None},
+                {"1,500", AppSettingsModel.ThousandsSeparatorFormats.Comma },
+                {"1.500", AppSettingsModel.ThousandsSeparatorFormats.Period },
+                {"1 500", AppSettingsModel.ThousandsSeparatorFormats.Space }
+            };
+
         #endregion
 
         #region Constructor
@@ -100,6 +120,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             WeightFormatSelection = AppSettings.WeightFormat;
             HeightFormatSelection = AppSettings.HeightFormat;
+            ThousandsSeparatorFormatSelection = AppSettings.BudgetThousandsSeparator;
 
             CanResizeWindow = AppSettings.CanResizeWindow;
             ConfirmSaveOnClose = AppSettings.ConfirmSaveOnClose;

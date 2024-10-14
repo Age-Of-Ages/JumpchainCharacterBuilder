@@ -189,19 +189,35 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private int _totalBP = 0;
         [ObservableProperty]
+        private string _totalBPString = "0";
+        [ObservableProperty]
         private int _cPInvested = 0;
+        [ObservableProperty]
+        private string _cPInvestedString = "0";
         [ObservableProperty]
         private int _jumpBPGained = 0;
         [ObservableProperty]
+        private string _jumpBPGainedString = "0";
+        [ObservableProperty]
         private int _budget = 0;
+        [ObservableProperty]
+        private string _budgetString = "0";
         [ObservableProperty]
         private int _bPBought = 0;
         [ObservableProperty]
+        private string _bPBoughtString = "0";
+        [ObservableProperty]
         private int _drawbackBP = 0;
+        [ObservableProperty]
+        private string _drawbackBPString = "0";
         [ObservableProperty]
         private int _questBP = 0;
         [ObservableProperty]
+        private string _questBPString = "0";
+        [ObservableProperty]
         private int _gauntletBP = 0;
+        [ObservableProperty]
+        private string _gauntletBPString = "0";
 
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteBodyModPurchaseCommand))]
@@ -848,6 +864,46 @@ namespace JumpchainCharacterBuilder.ViewModel
                 GenericBodyModName = LoadedSave.GenericBodyMod.Name;
                 GenericBodyModFullDescription = LoadedSave.GenericBodyMod.FullDescription;
             }
+        }
+
+        partial void OnTotalBPChanged(int value)
+        {
+            TotalBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, TotalBP);
+        }
+
+        partial void OnCPInvestedChanged(int value)
+        {
+            CPInvestedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPInvested);
+        }
+
+        partial void OnJumpBPGainedChanged(int value)
+        {
+            JumpBPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, JumpBPGained);
+        }
+
+        partial void OnBudgetChanged(int value)
+        {
+            BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
+        }
+
+        partial void OnBPBoughtChanged(int value)
+        {
+            BPBoughtString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, BPBought);
+        }
+
+        partial void OnDrawbackBPChanged(int value)
+        {
+            DrawbackBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, DrawbackBP);
+        }
+
+        partial void OnQuestBPChanged(int value)
+        {
+            QuestBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, QuestBP);
+        }
+
+        partial void OnGauntletBPChanged(int value)
+        {
+            GauntletBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, GauntletBP);
         }
 
         partial void OnSBBodyModSupplementDelayChanged(int value)
@@ -2052,12 +2108,30 @@ namespace JumpchainCharacterBuilder.ViewModel
                 LoadDisplaySettings();
 
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                TotalBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, TotalBP);
+                CPInvestedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPInvested);
+                JumpBPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, JumpBPGained);
+                BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
+                BPBoughtString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, BPBought);
+                DrawbackBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, DrawbackBP);
+                QuestBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, QuestBP);
+                GauntletBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, GauntletBP);
+
+
             });
             Messenger.Register<SettingsChangedMessage>(this, (r, m) =>
             {
                 LoadDisplaySettings();
 
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
+                TotalBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, TotalBP);
+                CPInvestedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, CPInvested);
+                JumpBPGainedString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, JumpBPGained);
+                BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
+                BPBoughtString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, BPBought);
+                DrawbackBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, DrawbackBP);
+                QuestBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, QuestBP);
+                GauntletBPString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, GauntletBP);
             });
             Messenger.Register<CategoryChangedMessage>(this, (r, m) =>
             {

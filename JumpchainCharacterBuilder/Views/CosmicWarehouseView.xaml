@@ -47,35 +47,35 @@
 
                                 <StackPanel>
                                     <TextBlock Text="Total WP"/>
-                                    <TextBox Text="{Binding TotalWP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                    <TextBox Text="{Binding TotalWPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                              Width="40"/>
 
                                     <TextBlock Text="WP Budget" Margin="0,12,0,0"/>
-                                    <TextBox Text="{Binding Budget, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                    <TextBox Text="{Binding BudgetString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                              Width="40"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1">
                                     <TextBlock Text="CP Invested"/>
-                                    <TextBox Text="{Binding CPInvested, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                    <TextBox Text="{Binding CPInvestedString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                              Width="40"/>
 
                                     <TextBlock Text="WP from investment" Margin="0,12,0,0"/>
-                                    <TextBox Text="{Binding WPBought, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                    <TextBox Text="{Binding WPBoughtString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                              Width="40"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2">
                                     <TextBlock Text="Per-Jump WP total"/>
-                                    <TextBox Text="{Binding JumpWPGained, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                    <TextBox Text="{Binding JumpWPGainedString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                              Width="40"/>
 
                                     <TextBlock Text="WP from Drawbacks" Margin="0,12,0,0"/>
-                                    <TextBox Text="{Binding DrawbackWP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                    <TextBox Text="{Binding DrawbackWPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                              Width="40"/>
 
                                     <TextBlock Text="WP from Limitations" Margin="0,12,0,0"/>
-                                    <TextBox Text="{Binding LimitationWP, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
+                                    <TextBox Text="{Binding LimitationWPString, ValidatesOnNotifyDataErrors=True}" IsReadOnly="True"
                                              Width="40"/>
                                 </StackPanel>
                             </Grid>

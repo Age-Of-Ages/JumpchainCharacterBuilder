@@ -716,7 +716,7 @@
     <Style x:Key="BudgetBox" TargetType="{x:Type Label}">
         <Setter Property="Background" Value="{DynamicResource BudgetBox.Background}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
-        <Setter Property="Width" Value="40"/>
+        <Setter Property="Width" Value="45"/>
         <Setter Property="Margin" Value="-1"/>
     </Style>
 
@@ -1024,7 +1024,7 @@
                 <Label Style="{DynamicResource TitleBox}" Content="Budget"/>
             </Border>
             <Border Margin="-5,0,0,0">
-                <Label Style="{DynamicResource BudgetBox}" Content="{Binding Budget}"/>
+                <Label Style="{DynamicResource BudgetBox}" Content="{Binding BudgetString}"/>
             </Border>
         </StackPanel>
     </ControlTemplate>

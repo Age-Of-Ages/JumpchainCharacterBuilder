@@ -34,24 +34,24 @@
 
                             <StackPanel>
                                 <TextBlock Text="Choice Points"/>
-                                <TextBox Text="{Binding CPGained, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CPGainedString, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
                                          IsReadOnly="True"/>
 
                                 <TextBlock Text="Companion Points" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding CPCompanionGained, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CPCompanionGainedString, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
                                          IsReadOnly="True"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="1">
                                 <TextBlock Text="Item Points"/>
-                                <TextBox Text="{Binding CPItemGained, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding CPItemGainedString, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
                                          IsReadOnly="True"/>
 
                                 <TextBlock Text="Warehouse Points" Margin="0,12,0,0"/>
-                                <TextBox Text="{Binding WPGained, ValidatesOnNotifyDataErrors=True}"
+                                <TextBox Text="{Binding WPGainedString, ValidatesOnNotifyDataErrors=True}"
                                          Width="40"
                                          IsReadOnly="True"/>
                             </StackPanel>
