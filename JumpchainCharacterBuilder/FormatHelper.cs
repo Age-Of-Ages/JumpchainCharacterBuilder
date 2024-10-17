@@ -91,7 +91,7 @@ namespace JumpchainCharacterBuilder
                     NumberGroupSeparator = ""
                 },
             };
-            return String.Format(numberFormatInfo, "{0:#,##0}", budget);
+            return string.Format(numberFormatInfo, "{0:#,##0}", budget);
         }
 
         [GeneratedRegex("(\\r\\n)(?!\\r\\n)")]

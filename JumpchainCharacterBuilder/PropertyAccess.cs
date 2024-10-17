@@ -9,7 +9,7 @@ namespace JumpchainCharacterBuilder
 {
     public static class PropertyAccess
     {
-        public static Object? GetProperty(this Object? target, string propertyName)
+        public static object? GetProperty(this object? target, string propertyName)
         {
             foreach (string subString in propertyName.Split('.'))
             {
@@ -30,9 +30,9 @@ namespace JumpchainCharacterBuilder
             return target;
         }
 
-        public static string? GetString(this Object target, string propertyName)
+        public static string? GetString(this object target, string propertyName)
         {
-            Object? value = GetProperty(target, propertyName);
+            object? value = GetProperty(target, propertyName);
 
             if (value is string output)
             {
