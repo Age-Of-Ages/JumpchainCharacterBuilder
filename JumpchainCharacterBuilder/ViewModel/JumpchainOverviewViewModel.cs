@@ -2032,6 +2032,22 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
+        private void UpdateUniversalDrawbackSuspends(int oldIndex, int newIndex)
+        {
+            List<DrawbackSupplementPurchase> drawbacks = LoadedDrawbackSupplement switch
+            {
+                Options.DrawbackSupplements.Generic => LoadedSave.GenericDrawbackSupplement.Purchases,
+                Options.DrawbackSupplements.UDS => LoadedSave.UniversalDrawbackSupplement.Purchases,
+                Options.DrawbackSupplements.UU => LoadedSave.UUSupplement.Purchases,
+                _ => LoadedSave.GenericDrawbackSupplement.Purchases,
+            };
+
+            foreach (DrawbackSupplementPurchase drawback in drawbacks)
+            {
+                ListOperationsClass.SwapListItems(drawback.SuspendList, oldIndex, newIndex);
+            }
+        }
+
         #endregion
 
 
@@ -2113,6 +2129,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             JumpSelectionIndex = index - 1;
 
             CalculateJumpNumber(LoadedSave.JumpList);
+            UpdateUniversalDrawbackSuspends(index, index - 1);
         }
 
         private bool CanMoveJumpUp() => LoadedSave.JumpList.IndexOf(JumpSelection) > 0 && JumpSelection != null;
@@ -2128,6 +2145,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             JumpSelectionIndex = index + 1;
 
             CalculateJumpNumber(LoadedSave.JumpList);
+            UpdateUniversalDrawbackSuspends(index, index + 1);
         }
         private bool CanMoveJumpDown() => LoadedSave.JumpList.IndexOf(JumpSelection) < (JumpList.Count - 1) && JumpSelection != null;
 
