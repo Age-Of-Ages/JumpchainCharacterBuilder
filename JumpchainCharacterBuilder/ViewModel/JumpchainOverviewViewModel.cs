@@ -14,6 +14,7 @@ using System.Linq;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
+    // TODO - Creating a new Import Option doesn't automatically populate Companion list.
     public partial class JumpchainOverviewViewModel : ViewModelBase
     {
         #region Fields
@@ -2549,7 +2550,6 @@ namespace JumpchainCharacterBuilder.ViewModel
             JumpSelection.Build[CharacterSelectionIndex].CompanionPurchase.Add(new());
 
             LoadImportOptionList();
-            LoadImportCharacterList();
 
             DeleteImportCommand.NotifyCanExecuteChanged();
         }
