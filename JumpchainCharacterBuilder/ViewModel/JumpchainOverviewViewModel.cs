@@ -2550,6 +2550,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             JumpSelection.Build[CharacterSelectionIndex].CompanionPurchase.Add(new());
 
             LoadImportOptionList();
+            LoadImportCharacterList();
 
             DeleteImportCommand.NotifyCanExecuteChanged();
         }
