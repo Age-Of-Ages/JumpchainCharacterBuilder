@@ -106,8 +106,7 @@ namespace JumpchainCharacterBuilder
                 XmlResolver = null
             };
             using XmlReader reader = XmlReader.Create(filePath, settings);
-            SaveFile newSave = ser.ReadObject(reader) as SaveFile
-                               ?? throw new ArgumentNullException();
+            SaveFile newSave = ser.ReadObject(reader) as SaveFile ?? throw new ArgumentNullException();
             reader.Close();
             return newSave;
 

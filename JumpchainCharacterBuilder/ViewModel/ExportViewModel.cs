@@ -1229,7 +1229,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             string currencyAbbreviation;
 
             List<string> output = [];
-            string line = "";
+            string line;
 
             List<int> budget = [];
             List<int> stipend;

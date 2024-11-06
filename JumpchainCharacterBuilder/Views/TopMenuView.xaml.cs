@@ -3,11 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Markup;
-using System.Xml;
 
 namespace JumpchainCharacterBuilder.Views
 {
@@ -85,7 +82,7 @@ namespace JumpchainCharacterBuilder.Views
             randomizerSettingsView.ShowDialog();
         }
 
-        private void ThemeChange(string currentTheme)
+        private static void ThemeChange(string currentTheme)
         {
             ResourceDictionary dictionary = App.Current.Resources;
             //dictionary.MergedDictionaries.Clear();
@@ -93,7 +90,7 @@ namespace JumpchainCharacterBuilder.Views
             //dictionary.MergedDictionaries.Add(new() { Source = new("Styles.xaml", UriKind.RelativeOrAbsolute) });
 
             dictionary.MergedDictionaries.RemoveAt(2);
-            
+
             if (currentTheme == "Light")
             {
                 dictionary.MergedDictionaries.Add(new() { Source = new("Themes/ThemeLight.xaml", UriKind.RelativeOrAbsolute) });

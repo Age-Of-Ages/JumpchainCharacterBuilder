@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -15,7 +10,7 @@ namespace JumpchainCharacterBuilder.Converters
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            if (values[0] is GridViewColumnCollection columnList && 
+            if (values[0] is GridViewColumnCollection columnList &&
                 values[1] is GridViewColumnHeader currentColumn)
             {
                 int currentIndex = columnList.IndexOf(currentColumn.Column);

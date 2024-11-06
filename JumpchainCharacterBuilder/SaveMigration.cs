@@ -10,9 +10,9 @@ namespace JumpchainCharacterBuilder
         public static SaveFile SaveUpdate(string filePath, double saveVersion, SaveFile saveFile)
         {
             List<string> saveStrings = TxtAccess.ReadText(filePath);
-            List<(int, int)> indexList = [];
+            List<(int, int)> indexList;
             (int, int) currentIndexes;
-            List<string> innerStringList = [];
+            List<string> innerStringList;
 
             if (saveVersion < 1.3)
             {
@@ -76,7 +76,6 @@ namespace JumpchainCharacterBuilder
 
                 int stipendIndex;
                 string stipendString;
-                int stipendValue;
                 Regex tagRemovalRegex = TagRemovalRegex();
 
                 jumpListIndexes = FindAllXmlTagIndexes("Jump", saveStrings);
@@ -97,7 +96,7 @@ namespace JumpchainCharacterBuilder
 
                         stipendString = DeleteEmptySpace(stipendString);
 
-                        if (!int.TryParse(tagRemovalRegex.Replace(stipendString, ""), out stipendValue))
+                        if (!int.TryParse(tagRemovalRegex.Replace(stipendString, ""), out int stipendValue))
                         {
                             stipendValue = 0;
                         }

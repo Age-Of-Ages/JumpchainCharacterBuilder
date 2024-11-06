@@ -136,7 +136,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         [RelayCommand]
-        private void CopyLink(Uri URI)
+        private static void CopyLink(Uri URI)
         {
             string uriString = URI.ToString();
             Clipboard.SetText(uriString);

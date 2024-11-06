@@ -3,7 +3,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
 using System.Collections.Generic;
-using System.Windows.Markup;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {

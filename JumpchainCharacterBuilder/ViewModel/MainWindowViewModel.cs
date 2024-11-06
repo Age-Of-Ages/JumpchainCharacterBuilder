@@ -64,7 +64,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #endregion
 
         #region Methods
-        private string LoadTheme()
+        private static string LoadTheme()
         {
             string output = CfgAccess.ReadSingleSetting("Theme");
 

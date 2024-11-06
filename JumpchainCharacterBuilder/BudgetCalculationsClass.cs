@@ -97,7 +97,7 @@ namespace JumpchainCharacterBuilder
                 budget -= jumpBuild.BodyModInvestment;
 
                 budget += jumpBuild.BankUsage;
-                budget -= jumpBuild.BankedPoints; 
+                budget -= jumpBuild.BankedPoints;
             }
 
             if (characterIndex == 0)
@@ -184,7 +184,7 @@ namespace JumpchainCharacterBuilder
                     }
                 }
 
-                budget -= BudgetHelpers.CalculateCompanionPurchasesCost(jumpBuild.CompanionPurchase); 
+                budget -= BudgetHelpers.CalculateCompanionPurchasesCost(jumpBuild.CompanionPurchase);
             }
 
             return budget;

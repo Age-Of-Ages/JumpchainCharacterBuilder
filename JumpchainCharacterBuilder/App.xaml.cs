@@ -4,9 +4,6 @@ using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,7 +26,7 @@ namespace JumpchainCharacterBuilder
 
             DispatcherUnhandledException += DispatcherUnhandledExceptionLogging;
         }
-        
+
         /// <summary>
         /// Gets the current <see cref="App"/> instance in use
         /// </summary>
@@ -144,7 +141,7 @@ namespace JumpchainCharacterBuilder
             }
         }
 
-        public static T GetChildOfType<T>(DependencyObject dependencyObject) 
+        public static T GetChildOfType<T>(DependencyObject dependencyObject)
             where T : DependencyObject
         {
             if (dependencyObject == null)

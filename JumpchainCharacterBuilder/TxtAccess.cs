@@ -9,7 +9,7 @@ namespace JumpchainCharacterBuilder
     /// <summary>
     /// Controls write access to export to text files.
     /// </summary>
-    public static class TxtAccess
+    public static partial class TxtAccess
     {
         /// <summary>
         /// Write export data to a text file.
@@ -23,7 +23,7 @@ namespace JumpchainCharacterBuilder
             FileAccess.CheckSubdirectoryExists("Exports");
             FileAccess.CheckSubdirectoryExists(@"Exports\" + exportDirectory);
 
-            fileName = Regex.Replace(fileName, @"[^0-9a-zA-Z ]+", "");
+            fileName = FileNameCleanRegex().Replace(fileName, "");
 
             File.WriteAllLines(@$"{Environment.CurrentDirectory}\Exports\{exportDirectory}\{fileName}.txt", lines);
 
@@ -33,7 +33,7 @@ namespace JumpchainCharacterBuilder
         {
             FileAccess.CheckSubdirectoryExists(directory);
 
-            fileName = Regex.Replace(fileName, @"[^0-9a-zA-Z ]+", "");
+            fileName = FileNameCleanRegex().Replace(fileName, "");
 
             File.WriteAllLines(Path.Combine(Environment.CurrentDirectory, directory, fileName), lines);
         }
@@ -76,5 +76,8 @@ namespace JumpchainCharacterBuilder
                 File.AppendAllLines(logPath, lines);
             }
         }
+
+        [GeneratedRegex(@"[^0-9a-zA-Z ]+")]
+        private static partial Regex FileNameCleanRegex();
     }
 }
