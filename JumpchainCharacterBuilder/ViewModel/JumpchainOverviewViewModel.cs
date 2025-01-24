@@ -622,7 +622,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 if (value != null && value != MiscOriginTypeList[MiscOriginTypeSelectionIndex])
                 {
                     JumpSelection.MiscOriginCategories[MiscOriginTypeSelectionIndex] = value;
-                    LoadMiscOriginTypes();
+                    MiscOriginTypeList[MiscOriginTypeSelectionIndex] = value;
                 }
             }
         }

@@ -353,7 +353,7 @@
 
                             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
                                 <TextBlock Text="Type Name"/>
-                                <TextBox Text="{Binding MiscOriginTypeSelection, Mode=TwoWay, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                <TextBox Text="{Binding MiscOriginTypeSelection, Mode=TwoWay, ValidatesOnNotifyDataErrors=True}"
                                          Width="100"/>
                             </StackPanel>
                         </Grid>
