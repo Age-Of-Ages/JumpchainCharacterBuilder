@@ -188,7 +188,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                     foreach (Purchase purchase in build.Purchase)
                     {
-                        if (jump.PurchaseTypes[purchase.TypeIndex].IsItemType && !purchase.IsTemporary)
+                        if (jump.PurchaseTypes[purchase.TypeIndex].IsItemType && !purchase.IsTemporary && InactiveItemLists[CharacterList[charIndex]].ContainsKey(purchase.Category))
                         {
                             InactiveItemLists[CharacterList[charIndex]][purchase.Category].Add(purchase);
 

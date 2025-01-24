@@ -672,7 +672,28 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        partial void OnIsItemTypeChanged(bool value) => PurchaseTypeSelection.IsItemType = value;
+        partial void OnIsItemTypeChanged(bool value)
+        {
+            PurchaseTypeSelection.IsItemType = value;
+
+            foreach (JumpBuild build in JumpSelection.Build)
+            {
+                foreach (Purchase purchase in build.Purchase)
+                {
+                    if (purchase.TypeIndex == PurchaseTypeSelectionIndex)
+                    {
+                        if (value)
+                        {
+                            purchase.Category = "Other Item";
+                        }
+                        else
+                        {
+                            purchase.Category = "Other Perk";
+                        }
+                    }
+                }
+            }
+        }
 
         partial void OnStipendSelectionIndexChanged(int value)
         {
