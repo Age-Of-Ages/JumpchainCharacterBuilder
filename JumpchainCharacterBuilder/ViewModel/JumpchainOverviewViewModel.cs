@@ -2063,6 +2063,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             foreach (DrawbackSupplementPurchase drawback in drawbacks)
             {
+                ListValidationClass.CheckDrawbackSuspendCount(drawback, JumpList.Count);
                 ListOperationsClass.SwapListItems(drawback.SuspendList, oldIndex, newIndex);
             }
         }
