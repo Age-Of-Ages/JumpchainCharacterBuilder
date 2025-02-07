@@ -7,9 +7,11 @@
     <!--Converters-->
     <BooleanToVisibilityConverter x:Key="BoolToVis"/>
     <convert:NullVisConverter x:Key="NullToVis"/>
+    <convert:NullBoolConverter x:Key="NullToBool"/>
     <convert:BoolResizeConverter x:Key="BoolToResize"/>
     <convert:UriVisConverter x:Key="UriToVis"/>
     <convert:ListContainsVisConverter x:Key="ListContainsToVis"/>
+    <convert:ListContainsBoolConverter x:Key="ListContainsToBool"/>
     <convert:HeaderCheckVisConverter x:Key="HeaderCheckToVis"/>
     <MenuScrollingVisibilityConverter x:Key="MenuScrollingVisibilityConverter"/>
 
