@@ -36,6 +36,14 @@ namespace JumpchainCharacterBuilder.Model
 
         }
 
+        public Drawback(Drawback existingDrawback)
+        {
+            Name = existingDrawback.Name;
+            Value = existingDrawback.Value;
+            Description = existingDrawback.Description;
+            Reward = existingDrawback.Reward;
+        }
+
         public Drawback(string name)
         {
             Name = name;

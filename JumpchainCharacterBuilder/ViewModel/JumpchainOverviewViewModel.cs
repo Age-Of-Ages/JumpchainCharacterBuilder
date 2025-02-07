@@ -347,8 +347,6 @@ namespace JumpchainCharacterBuilder.ViewModel
         private Drawback? _drawbackCopyStorage;
         [ObservableProperty]
         private Drawback? _scenarioCopyStorage;
-        [ObservableProperty]
-        private OriginDetail? _originDetailCopyStorage;
 
         [ObservableProperty]
         private Dictionary<string, AttributeCalculationClass.RankList> _attributeRankDictionary = new()
@@ -2694,6 +2692,58 @@ namespace JumpchainCharacterBuilder.ViewModel
                 DeletePurchaseCommand.NotifyCanExecuteChanged();
                 MovePurchaseUpCommand.NotifyCanExecuteChanged();
                 MovePurchaseDownCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        [RelayCommand]
+        private void CopyDrawback()
+        {
+            if (DrawbackSelection != null)
+            {
+                DrawbackCopyStorage = new(DrawbackSelection);
+            }
+        }
+
+        [RelayCommand]
+        private void PasteDrawback()
+        {
+            if (DrawbackCopyStorage != null)
+            {
+                Drawback newDrawback = new(DrawbackCopyStorage);
+
+                JumpSelection.Build[CharacterSelectionIndex].DrawbackSelection.Add(newDrawback);
+
+                LoadDrawbackList();
+
+                DeleteDrawbackCommand.NotifyCanExecuteChanged();
+                MoveDrawbackUpCommand.NotifyCanExecuteChanged();
+                MoveDrawbackDownCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        [RelayCommand]
+        private void CopyScenario()
+        {
+            if (ScenarioSelection != null)
+            {
+                ScenarioCopyStorage = new(ScenarioSelection);
+            }
+        }
+
+        [RelayCommand]
+        private void PasteScenario()
+        {
+            if (ScenarioCopyStorage != null)
+            {
+                Drawback newScenario = new(ScenarioCopyStorage);
+
+                JumpSelection.Build[CharacterSelectionIndex].ScenarioSelection.Add(newScenario);
+
+                LoadScenarioList();
+
+                DeleteScenarioCommand.NotifyCanExecuteChanged();
+                MoveScenarioUpCommand.NotifyCanExecuteChanged();
+                MoveScenarioDownCommand.NotifyCanExecuteChanged();
             }
         }
 

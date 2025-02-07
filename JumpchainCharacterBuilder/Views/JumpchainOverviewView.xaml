@@ -825,6 +825,12 @@
                                   SelectedIndex="{Binding DrawbackSelectionIndex}"
                                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                   ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Copy" Command="{Binding CopyDrawbackCommand}"/>
+                                    <MenuItem Header="Paste" Command="{Binding PasteDrawbackCommand}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
@@ -943,6 +949,12 @@
                                   SelectedIndex="{Binding ScenarioSelectionIndex}"
                                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                   ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Copy" Command="{Binding CopyScenarioCommand}"/>
+                                    <MenuItem Header="Paste" Command="{Binding PasteScenarioCommand}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>

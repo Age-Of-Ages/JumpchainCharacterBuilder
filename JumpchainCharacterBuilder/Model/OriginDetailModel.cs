@@ -39,6 +39,14 @@ namespace JumpchainCharacterBuilder.Model
 
         }
 
+        public OriginDetail(OriginDetail existingOrigin)
+        {
+            Name = existingOrigin.Name;
+            Category = existingOrigin.Category;
+            Cost = existingOrigin.Cost;
+            Description = existingOrigin.Description;
+        }
+
         public OriginDetail(string category)
         {
             Category = category;
