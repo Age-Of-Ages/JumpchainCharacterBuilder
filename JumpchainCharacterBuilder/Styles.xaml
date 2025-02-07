@@ -491,7 +491,7 @@
     </Style>
 
 
-    <!--Keyed styles-->
+    <!--Keyed styles-->    
     <Style TargetType="{x:Type ContextMenu}" x:Key="ContextStyle">
         <Setter Property="Panel.Background" Value="{DynamicResource Background}"/>
         <Setter Property="TextElement.Foreground" Value="{DynamicResource TextColor}"/>

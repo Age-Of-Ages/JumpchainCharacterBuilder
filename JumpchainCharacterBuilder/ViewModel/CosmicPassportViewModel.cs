@@ -815,6 +815,12 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _currentBoosterDescription = "";
         [ObservableProperty]
         private int _currentBoosterIndex = 0;
+
+        [ObservableProperty]
+        private SupplementPurchase _supplementPurchaseCopyStorage = new();
+        [ObservableProperty]
+        private SupplementDrawbackModel _supplementDrawbackCopyStorage = new();
+
         #endregion
 
         #region Properties

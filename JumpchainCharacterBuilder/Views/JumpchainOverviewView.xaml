@@ -429,6 +429,12 @@
                                   SelectedIndex="{Binding PurchaseSelectionIndex}"
                                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                   ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                            <ListView.ContextMenu>
+                                <ContextMenu>
+                                    <MenuItem Header="Copy" Command="{Binding CopyPurchaseCommand}"/>
+                                    <MenuItem Header="Paste" Command="{Binding PastePurchaseCommand}"/>
+                                </ContextMenu>
+                            </ListView.ContextMenu>
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>

@@ -103,6 +103,15 @@ namespace JumpchainCharacterBuilder.Model
 
         }
 
+        public PurchaseAttribute(PurchaseAttribute existingAttribute)
+        {
+            Name = existingAttribute.Name;
+            Type = existingAttribute.Type;
+            Category = existingAttribute.Category;
+            Value = existingAttribute.Value;
+            Rank = existingAttribute.Rank;
+        }
+
         public PurchaseAttribute(AttributeCalculationClass.RankList rank)
         {
             Rank = rank;

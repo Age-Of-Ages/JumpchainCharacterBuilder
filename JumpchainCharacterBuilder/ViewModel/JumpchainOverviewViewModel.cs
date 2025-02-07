@@ -342,6 +342,15 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _attributeSpecialSelected = false;
 
         [ObservableProperty]
+        private Purchase? _purchaseCopyStorage;
+        [ObservableProperty]
+        private Drawback? _drawbackCopyStorage;
+        [ObservableProperty]
+        private Drawback? _scenarioCopyStorage;
+        [ObservableProperty]
+        private OriginDetail? _originDetailCopyStorage;
+
+        [ObservableProperty]
         private Dictionary<string, AttributeCalculationClass.RankList> _attributeRankDictionary = new()
         {
             { "N/A", AttributeCalculationClass.RankList.None },
@@ -2657,6 +2666,36 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         private bool CanDeletePurchaseTrait() => PurchaseAttributeList.Any() && PurchaseAttributeIndex != -1 && PurchaseSelection != null;
+
+        [RelayCommand]
+        private void CopyPurchase()
+        {
+            if (PurchaseSelection != null)
+            {
+                PurchaseCopyStorage = new(PurchaseSelection);
+            }
+        }
+
+        [RelayCommand]
+        private void PastePurchase()
+        {
+            if (PurchaseCopyStorage != null)
+            {
+                Purchase newPurchase = new(PurchaseCopyStorage);
+
+                JumpSelection.Build[CharacterSelectionIndex].Purchase.Add(newPurchase);
+                PurchaseList[newPurchase.TypeIndex].Add(newPurchase);
+
+                PurchaseSelection = CurrentLoadedPurchaseList.Last();
+                LoadCurrentPurchaseData();
+
+                Budget = SetBudget(PurchaseTypeList[PurchaseTypeSelectionIndex]);
+
+                DeletePurchaseCommand.NotifyCanExecuteChanged();
+                MovePurchaseUpCommand.NotifyCanExecuteChanged();
+                MovePurchaseDownCommand.NotifyCanExecuteChanged();
+            }
+        }
 
         #endregion
     }

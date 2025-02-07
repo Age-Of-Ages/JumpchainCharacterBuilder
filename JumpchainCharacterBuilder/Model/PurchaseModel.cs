@@ -112,6 +112,26 @@ namespace JumpchainCharacterBuilder.Model
 
         }
 
+        public Purchase(Purchase existingPurchase)
+        {
+            Name = existingPurchase.Name;
+            Cost = existingPurchase.Cost;
+            DisplayCost = existingPurchase.DisplayCost;
+            DiscountEnabled = existingPurchase.DiscountEnabled;
+            FreebieEnabled = existingPurchase.FreebieEnabled;
+            AssociatedOriginIndex = existingPurchase.AssociatedOriginIndex;
+            Category = existingPurchase.Category;
+            TypeIndex = existingPurchase.TypeIndex;
+            BodyModAddition = existingPurchase.BodyModAddition;
+            IsTemporary = existingPurchase.IsTemporary;
+            Description = existingPurchase.Description;
+
+            foreach (PurchaseAttribute attribute in existingPurchase.Attributes)
+            {
+                Attributes.Add(new(attribute));
+            }
+        }
+
         public Purchase(string name, int typeIndex, string category)
         {
             Name = name;
