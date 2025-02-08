@@ -63,6 +63,21 @@ namespace JumpchainCharacterBuilder.Model
 
         }
 
+        public SupplementPurchase(SupplementPurchase existingPurchase)
+        {
+            Name = existingPurchase.Name;
+            Cost = existingPurchase.Cost;
+            Discounted = existingPurchase.Discounted;
+            Freebie = existingPurchase.Freebie;
+            Category = existingPurchase.Category;
+            Description = existingPurchase.Description;
+
+            foreach (PurchaseAttribute attribute in existingPurchase.Attributes)
+            {
+                Attributes.Add(new(attribute));
+            }
+        }
+
         public SupplementPurchase(string name)
         {
             Name = name;

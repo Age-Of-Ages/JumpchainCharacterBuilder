@@ -34,6 +34,14 @@ namespace JumpchainCharacterBuilder.Model
 
         }
 
+        public SupplementDrawbackModel(SupplementDrawbackModel existingDrawback)
+        {
+            Name = existingDrawback.Name;
+            Description = existingDrawback.Description;
+            Category = existingDrawback.Category;
+            Value = existingDrawback.Value;
+        }
+
         public SupplementDrawbackModel(string name)
         {
             Name = name;

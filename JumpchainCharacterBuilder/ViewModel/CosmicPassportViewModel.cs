@@ -817,10 +817,17 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _currentBoosterIndex = 0;
 
         [ObservableProperty]
-        private SupplementPurchase _supplementPurchaseCopyStorage = new();
+        private SupplementPurchase? _supplementPurchaseCopyStorage;
         [ObservableProperty]
-        private SupplementDrawbackModel _supplementDrawbackCopyStorage = new();
-
+        private SupplementDrawbackModel? _supplementDrawbackCopyStorage;
+        [ObservableProperty]
+        private SupplementPurchase? _sBExtraBitsCopyStorage;
+        [ObservableProperty]
+        private SupplementPurchase? _sBPowersCopyStorage;
+        [ObservableProperty]
+        private SupplementPurchase? _eBMPurchaseCopyStorage;
+        [ObservableProperty]
+        private SupplementDrawbackModel? _eBMDrawbackCopyStorage;
         #endregion
 
         #region Properties
@@ -4781,6 +4788,270 @@ namespace JumpchainCharacterBuilder.ViewModel
             UpdateBoosterDependencyNames();
 
             AttributeCalculationClass.BoosterCalculation(CharacterSelection, CharacterSelectionIndex, LoadedBodyModSupplement, LoadedSave.JumpList);
+        }
+
+        [RelayCommand]
+        private void CopySupplementPurchase()
+        {
+            if (BodyModPurchaseSelection != null)
+            {
+                SupplementPurchaseCopyStorage = new(BodyModPurchaseSelection);
+            }
+        }
+
+        [RelayCommand]
+        private void PasteSupplementPurchase()
+        {
+            if (SupplementPurchaseCopyStorage != null)
+            {
+                SupplementPurchase newPurchase = new(SupplementPurchaseCopyStorage);
+
+                CharacterSelection.BodyMod.Purchases.Add(newPurchase);
+                GenericBodyModPurchaseList.Add(newPurchase);
+
+                GenericBodyModPurchaseSelectionIndex = GenericBodyModPurchaseList.Count - 1;
+
+                DeleteBodyModPurchaseCommand.NotifyCanExecuteChanged();
+                MoveBodyModPurchaseUpCommand.NotifyCanExecuteChanged();
+                MoveBodyModPurchaseDownCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        [RelayCommand]
+        private void CopySupplementDrawback()
+        {
+            if (BodyModDrawbackSelection != null)
+            {
+                SupplementDrawbackCopyStorage = new(BodyModDrawbackSelection);
+            }
+        }
+
+        [RelayCommand]
+        private void PasteSupplementDrawback()
+        {
+            if (SupplementDrawbackCopyStorage != null)
+            {
+                SupplementDrawbackModel newDrawback = new(SupplementDrawbackCopyStorage);
+
+                CharacterSelection.BodyMod.Limitations.Add(newDrawback);
+                GenericBodyModDrawbackList.Add(newDrawback);
+
+                GenericBodyModDrawbackIndex = GenericBodyModDrawbackList.Count - 1;
+            }
+        }
+
+        [RelayCommand]
+        private void CopySBExtraBits()
+        {
+            if (SBExtraBitsSelection != null)
+            {
+                SBExtraBitsCopyStorage = new(SBExtraBitsSelection);
+            }
+        }
+
+        [RelayCommand]
+        private void PasteSBExtraBits()
+        {
+            if (SBExtraBitsCopyStorage != null)
+            {
+                SupplementPurchase newPurchase = new(SBExtraBitsCopyStorage);
+
+                CharacterSelection.BodyMod.ExtraBitsList.Add(newPurchase);
+                SBExtraBitsList.Add(newPurchase);
+
+                SBExtraBitsIndex = SBExtraBitsList.Count - 1;
+
+                DeleteSBExtraBitsCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        [RelayCommand]
+        private void CopySBPower()
+        {
+            if (SBBodyModPowerSelection != null)
+            {
+                SBPowersCopyStorage = new(SBBodyModPowerSelection);
+            }
+        }
+
+        [RelayCommand]
+        private void PasteSBPower()
+        {
+            if (SBPowersCopyStorage != null)
+            {
+                SupplementPurchase newPurchase = new(SBPowersCopyStorage);
+
+                SBBodyModPowerList.Add(newPurchase);
+                CharacterSelection.BodyMod.SBPowerList.Add(newPurchase);
+
+                SBBodyModPowerIndex = SBBodyModPowerList.Count - 1;
+
+                DeleteSBPowerCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        [RelayCommand]
+        private void CopyEBMPurchase()
+        {
+            switch (EBMPurchaseTabIndex)
+            {
+                case 0:
+                    if (EBMBasicPerkSelection != null)
+                    {
+                        EBMPurchaseCopyStorage = new(EBMBasicPerkSelection);
+                    }
+                    break;
+                case 1:
+                    if (EBMPhysicalPerkSelection != null)
+                    {
+                        EBMPurchaseCopyStorage = new(EBMPhysicalPerkSelection);
+                    }
+                    break;
+                case 2:
+                    if (EBMMentalPerkSelection != null)
+                    {
+                        EBMPurchaseCopyStorage = new(EBMMentalPerkSelection);
+                    }
+                    break;
+                case 3:
+                    if (EBMSpiritualPerkSelection != null)
+                    {
+                        EBMPurchaseCopyStorage = new(EBMSpiritualPerkSelection);
+                    }
+                    break;
+                case 4:
+                    if (EBMSkillPerkSelection != null)
+                    {
+                        EBMPurchaseCopyStorage = new(EBMSkillPerkSelection);
+                    }
+                    break;
+                case 5:
+                    if (EBMSupernaturalPerkSelection != null)
+                    {
+                        EBMPurchaseCopyStorage = new(EBMSupernaturalPerkSelection);
+                    }
+                    break;
+                case 6:
+                    if (EBMItemPerkSelection != null)
+                    {
+                        EBMPurchaseCopyStorage = new(EBMItemPerkSelection);
+                    }
+                    break;
+                case 7:
+                    if (EBMCompanionPerkSelection != null)
+                    {
+                        EBMPurchaseCopyStorage = new(EBMCompanionPerkSelection);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        [RelayCommand]
+        private void PasteEBMPurchase()
+        {
+            if (EBMPurchaseCopyStorage != null)
+            {
+                SupplementPurchase newPurchase = new(EBMPurchaseCopyStorage);
+
+                switch (EBMPurchaseTabIndex)
+                {
+                    case 0:
+                        newPurchase.Category = "Basic";
+
+                        EBMBasicPerkList.Add(newPurchase);
+                        CharacterSelection.BodyMod.EBMPurchaseList.Add(newPurchase);
+
+                        EBMBasicPerkIndex = EBMBasicPerkList.Count - 1;
+                        break;
+                    case 1:
+                        newPurchase.Category = "Physical";
+
+                        EBMPhysicalPerkList.Add(newPurchase);
+                        CharacterSelection.BodyMod.EBMPurchaseList.Add(newPurchase);
+
+                        EBMPhysicalPerkIndex = EBMPhysicalPerkList.Count - 1;
+                        break;
+                    case 2:
+                        newPurchase.Category = "Mental";
+
+                        EBMMentalPerkList.Add(newPurchase);
+                        CharacterSelection.BodyMod.EBMPurchaseList.Add(newPurchase);
+
+                        EBMMentalPerkIndex = EBMMentalPerkList.Count - 1;
+                        break;
+                    case 3:
+                        newPurchase.Category = "Spiritual";
+
+                        EBMSpiritualPerkList.Add(newPurchase);
+                        CharacterSelection.BodyMod.EBMPurchaseList.Add(newPurchase);
+
+                        EBMSpiritualPerkIndex = EBMSpiritualPerkList.Count - 1;
+                        break;
+                    case 4:
+                        newPurchase.Category = "Skill";
+
+                        EBMSkillPerkList.Add(newPurchase);
+                        CharacterSelection.BodyMod.EBMPurchaseList.Add(newPurchase);
+
+                        EBMSkillPerkIndex = EBMSkillPerkList.Count - 1;
+                        break;
+                    case 5:
+                        newPurchase.Category = "Supernatural";
+
+                        EBMSupernaturalPerkList.Add(newPurchase);
+                        CharacterSelection.BodyMod.EBMPurchaseList.Add(newPurchase);
+
+                        EBMSupernaturalPerkIndex = EBMSupernaturalPerkList.Count - 1;
+                        break;
+                    case 6:
+                        newPurchase.Category = "Item";
+
+                        EBMItemPerkList.Add(newPurchase);
+                        CharacterSelection.BodyMod.EBMPurchaseList.Add(newPurchase);
+
+                        EBMItemPerkIndex = EBMItemPerkList.Count - 1;
+                        break;
+                    case 7:
+                        newPurchase.Category = "Companion";
+
+                        EBMCompanionPerkList.Add(newPurchase);
+                        CharacterSelection.BodyMod.EBMPurchaseList.Add(newPurchase);
+
+                        EBMCompanionPerkIndex = EBMCompanionPerkList.Count - 1;
+                        break;
+                    default:
+                        break;
+                }
+
+                DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        [RelayCommand]
+        private void CopyEBMDrawback()
+        {
+            if (EBMDrawbackSelection != null)
+            {
+                EBMDrawbackCopyStorage = new(EBMDrawbackSelection);
+            }
+        }
+
+        [RelayCommand]
+        private void PasteEBMDrawback()
+        {
+            if (EBMDrawbackCopyStorage != null)
+            {
+                SupplementDrawbackModel newDrawback = new(EBMDrawbackCopyStorage);
+
+                CharacterSelection.BodyMod.EBMDrawbackList.Add(newDrawback);
+                EBMDrawbackList.Add(newDrawback);
+
+                EBMDrawbackIndex = EBMDrawbackList.Count - 1;
+
+                DeleteEBMDrawbackCommand.NotifyCanExecuteChanged();
+            }
         }
         #endregion
     }

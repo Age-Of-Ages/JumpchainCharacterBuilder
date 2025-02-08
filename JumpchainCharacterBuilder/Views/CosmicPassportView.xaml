@@ -1994,6 +1994,19 @@
                                               SelectedIndex="{Binding GenericBodyModPurchaseSelectionIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                               ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                        <ListView.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Copy" Command="{Binding CopySupplementPurchaseCommand}">
+                                                    <MenuItem.IsEnabled>
+                                                        <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                            <Binding Path="BodyModPurchaseSelection"/>
+                                                            <Binding Path="GenericBodyModPurchaseList"/>
+                                                        </MultiBinding>
+                                                    </MenuItem.IsEnabled>
+                                                </MenuItem>
+                                                <MenuItem Header="Paste" Command="{Binding PasteSupplementPurchaseCommand}" IsEnabled="{Binding SupplementPurchaseCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                            </ContextMenu>
+                                        </ListView.ContextMenu>
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -2184,6 +2197,19 @@
                                               SelectedIndex="{Binding GenericBodyModDrawbackIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                               ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                        <ListView.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Copy" Command="{Binding CopySupplementDrawbackCommand}">
+                                                    <MenuItem.IsEnabled>
+                                                        <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                            <Binding Path="BodyModDrawbackSelection"/>
+                                                            <Binding Path="GenericBodyModDrawbackList"/>
+                                                        </MultiBinding>
+                                                    </MenuItem.IsEnabled>
+                                                </MenuItem>
+                                                <MenuItem Header="Paste" Command="{Binding PasteSupplementDrawbackCommand}" IsEnabled="{Binding SupplementDrawbackCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                            </ContextMenu>
+                                        </ListView.ContextMenu>
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -2516,6 +2542,19 @@
                                                       HorizontalAlignment="Stretch"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopySBExtraBitsCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="SBExtraBitsSelection"/>
+                                                                    <Binding Path="SBExtraBitsList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteSBExtraBitsCommand}" IsEnabled="{Binding SBExtraBitsCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
@@ -2876,6 +2915,19 @@
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                               ScrollViewer.ScrollChanged="ListView_ScrollChanged"
                                               Tag="0">
+                                        <ListView.ContextMenu>
+                                            <ContextMenu>
+                                                <MenuItem Header="Copy" Command="{Binding CopySBPowerCommand}">
+                                                    <MenuItem.IsEnabled>
+                                                        <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                            <Binding Path="SBBodyModPowerSelection"/>
+                                                            <Binding Path="SBBodyModPowerList"/>
+                                                        </MultiBinding>
+                                                    </MenuItem.IsEnabled>
+                                                </MenuItem>
+                                                <MenuItem Header="Paste" Command="{Binding PasteSBPowerCommand}" IsEnabled="{Binding SBPowersCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                            </ContextMenu>
+                                        </ListView.ContextMenu>
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -3295,6 +3347,19 @@
                                                       SelectedIndex="{Binding EBMBasicPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="EBMBasicPerkSelection"/>
+                                                                    <Binding Path="EBMBasicPerkList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteEBMPurchaseCommand}" IsEnabled="{Binding EBMPurchaseCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
@@ -3468,6 +3533,19 @@
                                                       SelectedIndex="{Binding EBMPhysicalPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="EBMPhysicalPerkSelection"/>
+                                                                    <Binding Path="EBMPhysicalPerkList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteEBMPurchaseCommand}" IsEnabled="{Binding EBMPurchaseCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
@@ -3641,6 +3719,19 @@
                                                       SelectedIndex="{Binding EBMMentalPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="EBMMentalPerkSelection"/>
+                                                                    <Binding Path="EBMMentalPerkList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteEBMPurchaseCommand}" IsEnabled="{Binding EBMPurchaseCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
@@ -3814,6 +3905,19 @@
                                                       SelectedIndex="{Binding EBMSpiritualPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="EBMSpiritualPerkSelection"/>
+                                                                    <Binding Path="EBMSpiritualPerkList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteEBMPurchaseCommand}" IsEnabled="{Binding EBMPurchaseCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
@@ -3987,6 +4091,19 @@
                                                       SelectedIndex="{Binding EBMSkillPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="EBMSkillPerkSelection"/>
+                                                                    <Binding Path="EBMSkillPerkList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteEBMPurchaseCommand}" IsEnabled="{Binding EBMPurchaseCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
@@ -4160,6 +4277,19 @@
                                                       SelectedIndex="{Binding EBMSupernaturalPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="EBMSupernaturalPerkSelection"/>
+                                                                    <Binding Path="EBMSupernaturalPerkList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteEBMPurchaseCommand}" IsEnabled="{Binding EBMPurchaseCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
@@ -4333,6 +4463,19 @@
                                                       SelectedIndex="{Binding EBMItemPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="EBMItemPerkSelection"/>
+                                                                    <Binding Path="EBMItemPerkList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteEBMPurchaseCommand}" IsEnabled="{Binding EBMPurchaseCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
@@ -4506,6 +4649,19 @@
                                                       SelectedIndex="{Binding EBMCompanionPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="EBMCompanionPerkSelection"/>
+                                                                    <Binding Path="EBMCompanionPerkList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteEBMPurchaseCommand}" IsEnabled="{Binding EBMPurchaseCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
@@ -4684,6 +4840,19 @@
                                                       SelectedIndex="{Binding EBMDrawbackIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                <ListView.ContextMenu>
+                                                    <ContextMenu>
+                                                        <MenuItem Header="Copy" Command="{Binding CopyEBMDrawbackCommand}">
+                                                            <MenuItem.IsEnabled>
+                                                                <MultiBinding Converter="{StaticResource ListContainsToBool}">
+                                                                    <Binding Path="EBMDrawbackSelection"/>
+                                                                    <Binding Path="EBMDrawbackList"/>
+                                                                </MultiBinding>
+                                                            </MenuItem.IsEnabled>
+                                                        </MenuItem>
+                                                        <MenuItem Header="Paste" Command="{Binding PasteEBMDrawbackCommand}" IsEnabled="{Binding EBMDrawbackCopyStorage, Converter={StaticResource NullToBool}}"/>
+                                                    </ContextMenu>
+                                                </ListView.ContextMenu>
                                                 <ListView.View>
                                                     <GridView>
                                                         <GridView.Columns>
