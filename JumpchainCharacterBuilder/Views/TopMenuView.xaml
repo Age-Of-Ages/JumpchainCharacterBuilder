@@ -12,9 +12,9 @@
     <Menu Background="{DynamicResource BackgroundHighlight}" Foreground="{DynamicResource TextColor}">
         <MenuItem Header="_File">
             <MenuItem Header="_New Jumper" Command="{Binding NewJumperCommand}"/>
-            <MenuItem Header="_Save Jumper" Command="{Binding SaveJumperCommand}"/>
+            <MenuItem Header="_Save Jumper" Command="{Binding SaveJumperCommand}" InputGestureText="Ctrl+S"/>
             <MenuItem Header="S_ave Jumper As" Command="{Binding SaveJumperAsCommand}"/>
-            <MenuItem Header="L_oad Jumper" Command="{Binding LoadJumperCommand}"/>
+            <MenuItem Header="L_oad Jumper" Command="{Binding LoadJumperCommand}" InputGestureText="Ctrl+O"/>
             <Separator/>
             <MenuItem Header="_Quit" Command="{Binding QuitCommand}"/>
         </MenuItem>
