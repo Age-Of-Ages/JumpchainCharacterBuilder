@@ -33,6 +33,7 @@
         <Setter Property="Background" Value="{DynamicResource Background}"/>
         <Setter Property="Foreground" Value="{DynamicResource TextColor}"/>
         <Setter Property="ItemContainerStyle" Value="{DynamicResource MainTabItem}"/>
+        <Setter Property="KeyboardNavigation.ControlTabNavigation" Value="Cycle"/>
     </Style>
 
     <Style TargetType="{x:Type ListBox}">
