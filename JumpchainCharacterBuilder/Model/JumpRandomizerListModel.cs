@@ -16,5 +16,20 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private List<JumpRandomizerEntry> _listEntries = [];
+
+        public JumpRandomizerList()
+        {
+            
+        }
+
+        public JumpRandomizerList(JumpRandomizerList existingList)
+        {
+            ListName = existingList.ListName;
+
+            foreach (JumpRandomizerEntry entry in existingList.ListEntries)
+            {
+                ListEntries.Add(new(entry));
+            }
+        }
     }
 }

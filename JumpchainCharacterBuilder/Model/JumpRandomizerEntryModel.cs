@@ -22,5 +22,17 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private Uri _jumpUri = new("About:Blank");
+
+        public JumpRandomizerEntry()
+        {
+            
+        }
+
+        public JumpRandomizerEntry(JumpRandomizerEntry old_entry)
+        {
+            JumpName = old_entry.JumpName;
+            JumpWeight = old_entry.JumpWeight;
+            JumpUri = old_entry.JumpUri;
+        }
     }
 }

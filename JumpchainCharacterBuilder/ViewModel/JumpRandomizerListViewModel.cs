@@ -176,6 +176,24 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         [RelayCommand(CanExecute = nameof(CanDeleteRandomizerList))]
+        private void DuplicateRandomizerList()
+        {
+            if (_dialogService.ConfirmDialog("Would you like to duplicate the current randomizer list?"))
+            {
+                JumpRandomizerList newList = new(ActiveJumpRandomizerList);
+
+                newList.ListName = newList.ListName + " Copy";
+
+                InactiveJumpRandomizerLists.Add(newList);
+
+                ActiveJumpRandomizerList = InactiveJumpRandomizerLists.Last();
+
+                NewRandomizerEntryCommand.NotifyCanExecuteChanged();
+                DeleteRandomizerEntryCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        [RelayCommand(CanExecute = nameof(CanDeleteRandomizerList))]
         private void DeleteRandomizerList()
         {
             if (_dialogService.ConfirmDialog("Are you sure that you want to delete this randomizer list?"))
