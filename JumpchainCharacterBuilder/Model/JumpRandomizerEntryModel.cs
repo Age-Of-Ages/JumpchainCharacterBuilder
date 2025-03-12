@@ -28,11 +28,11 @@ namespace JumpchainCharacterBuilder.Model
             
         }
 
-        public JumpRandomizerEntry(JumpRandomizerEntry old_entry)
+        public JumpRandomizerEntry(JumpRandomizerEntry existingEntry)
         {
-            JumpName = old_entry.JumpName;
-            JumpWeight = old_entry.JumpWeight;
-            JumpUri = old_entry.JumpUri;
+            JumpName = existingEntry.JumpName;
+            JumpWeight = existingEntry.JumpWeight;
+            JumpUri = existingEntry.JumpUri;
         }
     }
 }
