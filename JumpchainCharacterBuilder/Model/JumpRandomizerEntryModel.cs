@@ -25,7 +25,7 @@ namespace JumpchainCharacterBuilder.Model
 
         public JumpRandomizerEntry()
         {
-            
+
         }
 
         public JumpRandomizerEntry(JumpRandomizerEntry existingEntry)

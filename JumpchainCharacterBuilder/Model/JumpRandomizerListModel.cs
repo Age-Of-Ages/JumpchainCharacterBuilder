@@ -19,7 +19,7 @@ namespace JumpchainCharacterBuilder.Model
 
         public JumpRandomizerList()
         {
-            
+
         }
 
         public JumpRandomizerList(JumpRandomizerList existingList)
