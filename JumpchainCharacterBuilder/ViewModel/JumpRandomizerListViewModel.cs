@@ -131,7 +131,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Methods
         private void LoadJumpLists()
         {
-            InactiveJumpRandomizerLists = new(RandomizeListAccess.ReadJumpListFile());
+            InactiveJumpRandomizerLists = [.. RandomizeListAccess.ReadJumpListFile()];
 
             if (InactiveJumpRandomizerLists.Any())
             {
@@ -139,7 +139,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                 if (ActiveJumpRandomizerList.ListEntries.Count != 0)
                 {
-                    JumpRandomizerEntryList = new(ActiveJumpRandomizerList.ListEntries);
+                    JumpRandomizerEntryList = [.. ActiveJumpRandomizerList.ListEntries];
                     JumpRandomizerEntrySelection = ActiveJumpRandomizerList.ListEntries.First();
                 }
             }
@@ -154,7 +154,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void FilterJumpList()
         {
-            JumpRandomizerFilteredList = new(JumpRandomizerEntryList.Where(x => x.JumpName.Contains(JumpRandomizerFilter, System.StringComparison.CurrentCultureIgnoreCase)).ToList());
+            JumpRandomizerFilteredList = [.. JumpRandomizerEntryList.Where(x => x.JumpName.Contains(JumpRandomizerFilter, System.StringComparison.CurrentCultureIgnoreCase)).ToList()];
         }
         #endregion
 
@@ -182,7 +182,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 JumpRandomizerList newList = new(ActiveJumpRandomizerList);
 
-                newList.ListName = newList.ListName + " Copy";
+                newList.ListName += " Copy";
 
                 InactiveJumpRandomizerLists.Add(newList);
 
@@ -266,7 +266,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 List<JumpRandomizerEntry> tempList = [.. JumpRandomizerEntryList.OrderBy(x => x.JumpName)];
 
-                JumpRandomizerEntryList = new(tempList);
+                JumpRandomizerEntryList = [.. tempList];
                 ActiveJumpRandomizerList.ListEntries = tempList;
             }
         }

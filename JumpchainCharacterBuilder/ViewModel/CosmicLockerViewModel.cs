@@ -188,9 +188,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                     foreach (Purchase purchase in build.Purchase)
                     {
-                        if (jump.PurchaseTypes[purchase.TypeIndex].IsItemType && !purchase.IsTemporary && InactiveItemLists[CharacterList[charIndex]].ContainsKey(purchase.Category))
+                        if (jump.PurchaseTypes[purchase.TypeIndex].IsItemType && !purchase.IsTemporary && InactiveItemLists[CharacterList[charIndex]].TryGetValue(purchase.Category, out List<Purchase>? categoryList))
                         {
-                            InactiveItemLists[CharacterList[charIndex]][purchase.Category].Add(purchase);
+                            categoryList.Add(purchase);
 
                             purchase.SourceJump = jump.Name;
                             purchase.SourceCharacter = LoadedSave.CharacterList[charIndex].Name;
@@ -220,7 +220,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (!string.IsNullOrWhiteSpace(ItemTabName) && InactiveItemLists[CharacterSelection].TryGetValue(ItemTabName, out List<Purchase>? value))
             {
-                CurrentItemList = new(value);
+                CurrentItemList = [.. value];
             }
         }
 

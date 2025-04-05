@@ -1105,8 +1105,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCategories()
         {
-            UserPerkCategories = new(LoadedSave.UserPerkCategoryList);
-            UserItemCategories = new(LoadedSave.UserItemCategoryList);
+            UserPerkCategories = [.. LoadedSave.UserPerkCategoryList];
+            UserItemCategories = [.. LoadedSave.UserItemCategoryList];
 
             CompiledPerkCategories = LoadedSave.PerkCategoryList;
             CompiledItemCategories = LoadedSave.ItemCategoryList;
@@ -1133,7 +1133,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 compiledList.AddRange(UserPerkCategories);
 
                 LoadedSave.PerkCategoryList = compiledList;
-                CompiledPerkCategories = new(compiledList);
+                CompiledPerkCategories = [.. compiledList];
             }
             else
             {
@@ -1141,7 +1141,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 compiledList.AddRange(UserItemCategories);
 
                 LoadedSave.ItemCategoryList = compiledList;
-                CompiledItemCategories = new(compiledList);
+                CompiledItemCategories = [.. compiledList];
             }
         }
 

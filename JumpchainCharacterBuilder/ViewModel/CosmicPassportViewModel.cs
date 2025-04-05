@@ -2160,7 +2160,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCharacterList()
         {
-            CharacterList = new(LoadedSave.CharacterList);
+            CharacterList = [.. LoadedSave.CharacterList];
 
             if (CharacterList.Any())
             {
@@ -2225,7 +2225,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             if (character != null && character.AltForms.Count != 0)
             {
-                CharacterAltFormList = new(character.AltForms);
+                CharacterAltFormList = [.. character.AltForms];
 
                 CharacterAltFormSelection = CharacterAltFormList.Last();
                 CharacterAltFormSelectionIndex = CharacterAltFormList.Count - 1;
@@ -2308,7 +2308,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             if (!string.IsNullOrWhiteSpace(PerkTabName) && InactivePerkLists[CharacterSelection].TryGetValue(PerkTabName, out List<Purchase>? value))
             {
-                CurrentPerkList = new(value);
+                CurrentPerkList = [.. value];
             }
         }
 
@@ -2477,7 +2477,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                             break;
                     }
 
-                    EBMEssenceList = new(CharacterSelection.BodyMod.EBMEssenceList);
+                    EBMEssenceList = [.. CharacterSelection.BodyMod.EBMEssenceList];
                     break;
                 default:
                     break;
@@ -2500,13 +2500,13 @@ namespace JumpchainCharacterBuilder.ViewModel
             switch (LoadedBodyModSupplement)
             {
                 case Options.BodyModSupplements.Generic:
-                    GenericBodyModDrawbackList = new(CharacterSelection.BodyMod.Limitations);
+                    GenericBodyModDrawbackList = [.. CharacterSelection.BodyMod.Limitations];
 
                     CalculateDrawbackBP(CharacterSelection.BodyMod);
 
                     break;
                 case Options.BodyModSupplements.EssentialBodyMod:
-                    EBMDrawbackList = new(CharacterSelection.BodyMod.EBMDrawbackList);
+                    EBMDrawbackList = [.. CharacterSelection.BodyMod.EBMDrawbackList];
 
                     EBMDrawbackIndex = 0;
 
@@ -2524,14 +2524,14 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case Options.BodyModSupplements.Generic:
                     if (LoadedSave.GenericBodyMod.PurchasesAllowed)
                     {
-                        GenericBodyModPurchaseList = new(CharacterSelection.BodyMod.Purchases);
+                        GenericBodyModPurchaseList = [.. CharacterSelection.BodyMod.Purchases];
                     }
                     break;
                 case Options.BodyModSupplements.SBBodyMod:
                     SBBodyModGauntlets = CharacterSelection.BodyMod.GauntletsFinished;
                     SBBodyModAnomalousStipend = CharacterSelection.BodyMod.AnomalousLevel * 100;
 
-                    SBExtraBitsList = new(CharacterSelection.BodyMod.ExtraBitsList);
+                    SBExtraBitsList = [.. CharacterSelection.BodyMod.ExtraBitsList];
 
                     SBExtraBitsIndex = 0;
 
@@ -2559,7 +2559,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                     SBBodyModAffinityDescription = CharacterSelection.BodyMod.AffinityDescription;
 
-                    SBBodyModPowerList = new(CharacterSelection.BodyMod.SBPowerList);
+                    SBBodyModPowerList = [.. CharacterSelection.BodyMod.SBPowerList];
 
                     SBBodyModPowerIndex = 0;
                     break;

@@ -64,7 +64,7 @@ namespace JumpchainCharacterBuilder
             }
             else
             {
-                List<string> settings = File.ReadLines(filePath).ToList();
+                List<string> settings = [.. File.ReadLines(filePath)];
                 Dictionary<string, string> settingsDictionary = new()
                 {
                     {"HeightFormat", "FeetInches" },
@@ -196,7 +196,7 @@ namespace JumpchainCharacterBuilder
                 WriteCfgFile(appSettings);
             }
 
-            List<string> settings = File.ReadLines(filePath).ToList();
+            List<string> settings = [.. File.ReadLines(filePath)];
             Dictionary<string, string> settingsDictionary = new()
             {
                 {"HeightFormat", "FeetInches" },

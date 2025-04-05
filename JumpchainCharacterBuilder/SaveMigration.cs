@@ -232,7 +232,7 @@ namespace JumpchainCharacterBuilder
             }
             if (deleteLength > 0)
             {
-                line = line.Remove(0, deleteLength);
+                line = line[deleteLength..];
             }
 
             return line;

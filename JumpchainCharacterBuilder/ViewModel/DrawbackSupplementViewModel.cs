@@ -351,7 +351,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             DrawbackSuspendList.Clear();
 
-            DrawbackSuspendList = new(DrawbackSelection.SuspendList);
+            DrawbackSuspendList = [.. DrawbackSelection.SuspendList];
 
             LoadSuspendJumpNames();
         }

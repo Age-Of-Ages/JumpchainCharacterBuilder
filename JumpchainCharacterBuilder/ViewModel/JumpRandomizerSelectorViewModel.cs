@@ -60,7 +60,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Methods
         private void LoadJumpLists()
         {
-            InactiveJumpRandomizerLists = new(RandomizeListAccess.ReadJumpListFile());
+            InactiveJumpRandomizerLists = [.. RandomizeListAccess.ReadJumpListFile()];
             ActiveJumpRandomizerList = new();
 
             if (InactiveJumpRandomizerLists.Any())

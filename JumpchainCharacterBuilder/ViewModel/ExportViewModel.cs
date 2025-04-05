@@ -598,7 +598,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 output += $"{budgetLastHalves["Item Choice Points"]} ";
             }
 
-            output = output.Remove(output.Length - 1, 1);
+            output = output[..^1];
 
             return output;
         }

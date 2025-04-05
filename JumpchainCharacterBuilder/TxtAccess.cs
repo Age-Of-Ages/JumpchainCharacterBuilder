@@ -44,7 +44,7 @@ namespace JumpchainCharacterBuilder
 
             if (FileAccess.CheckFileExists(filePath))
             {
-                result = File.ReadLines(filePath).ToList();
+                result = [.. File.ReadLines(filePath)];
             }
 
             return result;
@@ -63,7 +63,7 @@ namespace JumpchainCharacterBuilder
 
             if (!fileSizeWithinBounds)
             {
-                List<string> tempLogs = File.ReadLines(logPath).ToList();
+                List<string> tempLogs = [.. File.ReadLines(logPath)];
 
                 tempLogs.AddRange(lines);
 
