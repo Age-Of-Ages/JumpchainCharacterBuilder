@@ -1593,26 +1593,29 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCurrentPurchaseData()
         {
-            CategorySelection = PurchaseSelection.Category;
-            PurchaseOriginIndex = PurchaseSelection.AssociatedOriginIndex;
-
-            PurchaseName = PurchaseSelection.Name;
-            PurchaseDescription = PurchaseSelection.Description;
-
-            if (PurchaseSelection.Attributes.Count != 0)
+            if (PurchaseSelection != null)
             {
-                PurchaseAttributeList.Clear();
+                CategorySelection = PurchaseSelection.Category;
+                PurchaseOriginIndex = PurchaseSelection.AssociatedOriginIndex;
 
-                foreach (PurchaseAttribute attribute in PurchaseSelection.Attributes)
+                PurchaseName = PurchaseSelection.Name;
+                PurchaseDescription = PurchaseSelection.Description;
+
+                if (PurchaseSelection.Attributes.Count != 0)
                 {
-                    PurchaseAttributeList.Add(attribute);
-                }
+                    PurchaseAttributeList.Clear();
 
-                PurchaseAttributeIndex = 0;
-            }
-            else
-            {
-                ClearAttributeList();
+                    foreach (PurchaseAttribute attribute in PurchaseSelection.Attributes)
+                    {
+                        PurchaseAttributeList.Add(attribute);
+                    }
+
+                    PurchaseAttributeIndex = 0;
+                }
+                else
+                {
+                    ClearAttributeList();
+                } 
             }
         }
 
@@ -2746,6 +2749,9 @@ namespace JumpchainCharacterBuilder.ViewModel
                     }
                 }
             }
+
+            LoadPurchaseCategoryList();
+            LoadCurrentPurchaseData();
         }
         #endregion
     }
