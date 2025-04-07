@@ -1338,7 +1338,7 @@
                                 </ComboBox>
                             </StackPanel>
                             <StackPanel Grid.Row="2">
-                                <CheckBox Content="Item Purchase Type" IsChecked="{Binding IsItemType}" Margin="0,4,0,0">
+                                <CheckBox Content="Item Purchase Type" IsChecked="{Binding IsItemType}" Command="{Binding ChangePurchaseItemTypeCommand}" Margin="0,4,0,0">
                                     <CheckBox.Style>
                                         <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource {x:Type CheckBox}}">
                                             <Style.Triggers>
