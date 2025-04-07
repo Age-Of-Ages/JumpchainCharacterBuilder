@@ -2375,6 +2375,9 @@ namespace JumpchainCharacterBuilder.ViewModel
                         CPInvested = 0;
                         BPBought = 0;
                     }
+
+                    GenericBodyModName = LoadedSave.GenericBodyMod.Name;
+                    GenericBodyModFullDescription = LoadedSave.GenericBodyMod.FullDescription;
                     break;
                 case Options.BodyModSupplements.SBBodyMod:
                     if (LoadedSave.SBBodyMod.InvestmentAllowed)
