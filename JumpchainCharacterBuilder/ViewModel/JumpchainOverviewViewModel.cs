@@ -1332,6 +1332,28 @@ namespace JumpchainCharacterBuilder.ViewModel
                 SpellCheckEnabled = AppSettings.SpellCheckEnabled;
                 BudgetString = FormatHelper.FormatBudgetString(AppSettings.BudgetThousandsSeparator, Budget);
             });
+            Messenger.Register<AddJumpToChainMessage>(this, (r, m) =>
+            {
+                if (m.Value != null)
+                {
+                    int budget = LoadedOptions.DefaultBudget;
+                    int itemStipend = LoadedOptions.DefaultItemStipend;
+                    bool originDiscounts = LoadedOptions.OriginDiscounts;
+                    int perkFreebieThreshold = LoadedOptions.DefaultPerkFreebieThreshold;
+                    int itemFreebieThreshold = LoadedOptions.DefaultItemFreebieThreshold;
+
+                    Jump jump = new(m.Value.JumpName, budget, itemStipend, originDiscounts, perkFreebieThreshold, itemFreebieThreshold);
+                    jump.Source = m.Value.JumpUri.ToString();
+
+                    LoadedSave.JumpList.Add(jump);
+                    JumpList.Add(jump);
+
+                    CalculateJumpNumber(LoadedSave.JumpList);
+
+                    JumpSelectionIndex = JumpList.Count - 1;
+                    BuildTabIndex = 5;
+                }
+            });
 
             CreateJumpList();
 

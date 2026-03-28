@@ -8,7 +8,7 @@
         xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModel:JumpRandomizerSelectorViewModel, IsDesignTimeCreatable=True}"
-        Title="Random Jump Selector" Height="600" Width="400"
+        Title="Random Jump Selector" Height="600" Width="500"
         Cursor="" 
         WindowStyle="SingleBorderWindow" 
         Background="{DynamicResource Background}" 
@@ -42,16 +42,22 @@
                   Grid.Row="2"
                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                   ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ResourceKey={x:Type ListViewItem}}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn Header="Jump name" Width="Auto"
                                         CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
                                         DisplayMemberBinding="{Binding JumpName}"/>
-                        <GridViewColumn Header="Link" Width="75">
+                        <GridViewColumn Header="Link" Width="65">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Visibility="{Binding JumpUri, Converter={StaticResource UriToVis}}">
+                                    <TextBlock Visibility="{Binding JumpUri, Converter={StaticResource UriToVis}}"
+                                               HorizontalAlignment="Center">
                                         <Hyperlink x:Name="JumpDocument_Hyperlink" NavigateUri="{Binding JumpUri}"
                                                    RequestNavigate="JumpDocument_RequestNavigate">
                                             <Hyperlink.ContextMenu>
@@ -64,6 +70,14 @@
                                             Jump Link
                                         </Hyperlink>
                                     </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Add to Chain" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Create" HorizontalAlignment="Center" Command="{Binding Path=DataContext.AddJumpToChainCommand, Source={x:Reference JumpListView}}" 
+                                            CommandParameter="{Binding}"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

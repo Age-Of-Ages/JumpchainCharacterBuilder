@@ -1,8 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
+using JumpchainCharacterBuilder.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +16,8 @@ namespace JumpchainCharacterBuilder.ViewModel
     public partial class JumpRandomizerSelectorViewModel : ViewModelBase
     {
         #region Fields
+        private readonly IDialogService _dialogService;
+
         [ObservableProperty]
         private AppSettingsModel _appSettings = new();
         [ObservableProperty]
@@ -42,6 +46,11 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Constructor
         public JumpRandomizerSelectorViewModel()
         {
+            
+        }
+
+        public JumpRandomizerSelectorViewModel(IDialogService dialogService)
+        {
             Messenger.Register<SettingsLoadedMessage>(this, (r, m) =>
             {
                 AppSettings = m.Value;
@@ -54,6 +63,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             });
 
             LoadJumpLists();
+
+            _dialogService = dialogService;
         }
         #endregion
 
@@ -140,6 +151,16 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             string uriString = URI.ToString();
             Clipboard.SetText(uriString);
+        }
+
+
+        [RelayCommand]
+        private void AddJumpToChain(JumpRandomizerEntry entry)
+        {
+            if (_dialogService.ConfirmDialog("Add Jump to Jumpchain Overview?"))
+            {
+                Messenger.Send(new AddJumpToChainMessage(entry));
+            }
         }
         #endregion
     }
