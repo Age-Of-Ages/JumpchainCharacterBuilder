@@ -13,6 +13,7 @@
     <convert:ListContainsVisConverter x:Key="ListContainsToVis"/>
     <convert:ListContainsBoolConverter x:Key="ListContainsToBool"/>
     <convert:HeaderCheckVisConverter x:Key="HeaderCheckToVis"/>
+    <convert:PathAbbreviationMiddleConverter x:Key="PathAbbreviateMiddle"/>
     <MenuScrollingVisibilityConverter x:Key="MenuScrollingVisibilityConverter"/>
 
     <!--Geometry-->

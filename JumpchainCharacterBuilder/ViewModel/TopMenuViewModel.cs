@@ -6,6 +6,9 @@ using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
 using Microsoft.Win32;
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Windows;
 
@@ -23,6 +26,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [ObservableProperty]
         private string _saveFileName = "";
+        [ObservableProperty]
+        private ObservableCollection<string> _recentlyAccessedFilePaths = [];
 
         [ObservableProperty]
         private string _theme = "Dark";
@@ -31,6 +36,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _lightThemeSelected = true;
         [ObservableProperty]
         private bool _darkThemeSelected = false;
+
 
         #endregion
 
@@ -72,6 +78,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 AppSettings = m.Value;
 
                 LoadTheme();
+                LoadRecentFilePaths();
             });
             Messenger.Register<SaveCommandMessage>(this, (r, m) =>
             {
@@ -116,6 +123,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                         XmlAccess.WriteObject(filePath, LoadedSave);
 
                         Messenger.Send(new SaveSucceededMessage(true));
+                        AddNewRecentFile(filePath);
                     }
                     else
                     {
@@ -130,6 +138,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                         SaveFileName = saveFileDialog.SafeFileName;
 
                         Messenger.Send(new SaveSucceededMessage(true));
+                        AddNewRecentFile(saveFileDialog.FileName);
                     }
                 }
             }
@@ -141,6 +150,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                     SaveFileName = saveFileDialog.SafeFileName;
 
                     Messenger.Send(new SaveSucceededMessage(true));
+                    AddNewRecentFile(saveFileDialog.FileName);
                 }
             }
         }
@@ -165,6 +175,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 SaveFileLoader saveFileLoader = new();
                 saveFileLoader.LoadSave(openFileDialog.FileName, LoadedSave);
                 SaveFileName = openFileDialog.SafeFileName;
+
+                AddNewRecentFile(openFileDialog.FileName);
             }
         }
 
@@ -181,6 +193,57 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 LightThemeSelected = false;
                 DarkThemeSelected = true;
+            }
+        }
+
+        private void LoadRecentFilePaths()
+        {
+            RecentlyAccessedFilePaths = [];
+
+            foreach (string path in AppSettings.RecentlyAccessedFilePaths)
+            {
+                RecentlyAccessedFilePaths.Add(path);
+            }
+        }
+
+        private void AddNewRecentFile(string filePath)
+        {
+            if (RecentlyAccessedFilePaths.Count >= 5)
+            {
+                RecentlyAccessedFilePaths.RemoveAt(4);
+            }
+            RecentlyAccessedFilePaths.Remove(filePath);
+            RecentlyAccessedFilePaths.Insert(0, filePath);
+
+            AppSettings.RecentlyAccessedFilePaths = [];
+
+            foreach (string path in RecentlyAccessedFilePaths)
+            {
+                AppSettings.RecentlyAccessedFilePaths.Add(path);
+            }
+
+            Messenger.Send(new SettingsChangedMessage(true));
+            CfgAccess.WriteCfgFile(AppSettings);
+        }
+
+        private void LoadRecentFile(string filePath)
+        {
+            if (!FileAccess.CheckFileExists(filePath))
+            {
+                _dialogService.NotificationDialog("Save not found, removing from list.");
+                RecentlyAccessedFilePaths.Remove(filePath);
+            }
+            else
+            {
+                if (_dialogService.ConfirmDialog("Would you like to save your current Jumper data before loading new data? (Unsaved data will be lost)"))
+                {
+                    SavePrompt(false);
+                }
+                SaveFileLoader saveFileLoader = new();
+                saveFileLoader.LoadSave(filePath, LoadedSave);
+                SaveFileName = Path.GetFileName(filePath);
+
+                AddNewRecentFile(filePath);
             }
         }
 
@@ -207,6 +270,9 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         [RelayCommand]
         private void LoadJumper() => LoadPrompt();
+
+        [RelayCommand]
+        private void OpenRecentFile(string filePath) => LoadRecentFile(filePath);
 
         [RelayCommand]
         private static void Quit() => Application.Current.Shutdown();

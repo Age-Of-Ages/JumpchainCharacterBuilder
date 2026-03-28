@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using System;
+using System.Collections.Generic;
 
 namespace JumpchainCharacterBuilder.Model
 {
@@ -93,5 +95,9 @@ namespace JumpchainCharacterBuilder.Model
         /// </summary>
         [ObservableProperty]
         private bool _formatterLeaveDoubleLineBreaks = false;
+
+
+        [ObservableProperty]
+        private List<String> _recentlyAccessedFilePaths = [];
     }
 }

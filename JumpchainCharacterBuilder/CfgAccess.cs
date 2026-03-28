@@ -11,6 +11,7 @@ namespace JumpchainCharacterBuilder
         public static List<string> CreateCFGData(AppSettingsModel appSettings)
         {
             List<string> settings = [];
+
             Dictionary<string, string> currentSettings = new()
             {
                 {"WeightFormat", appSettings.WeightFormat.ToString() },
@@ -31,6 +32,18 @@ namespace JumpchainCharacterBuilder
             foreach (KeyValuePair<string, string> setting in currentSettings)
             {
                 settings.Add(setting.Key + " = " + setting.Value);
+            }
+
+            settings.Add("");
+            settings.Add("# Below lines are for recently accessed save file paths.");
+            settings.Add("");
+
+            if (appSettings.RecentlyAccessedFilePaths.Count > 0)
+            {
+                for (int i = 0; i < appSettings.RecentlyAccessedFilePaths.Count; i++)
+                {
+                    settings.Add("RecentSave" + (i + 1) + " = " + appSettings.RecentlyAccessedFilePaths[i]);
+                }
             }
 
             return settings;
@@ -74,7 +87,12 @@ namespace JumpchainCharacterBuilder
                     {"ConfirmSaveOnClose", "True" },
                     {"SpellCheckEnabled", "True" },
                     {"FormatterDeleteAllLineBreaks", "False" },
-                    {"FormatterLeaveDoubleLineBreaks", "False" }
+                    {"FormatterLeaveDoubleLineBreaks", "False" },
+                    {"RecentSave1", "None" },
+                    {"RecentSave2", "None" },
+                    {"RecentSave3", "None" },
+                    {"RecentSave4", "None" },
+                    {"RecentSave5", "None" }
                 };
                 string[] splitString;
                 string settingKey;
@@ -171,6 +189,18 @@ namespace JumpchainCharacterBuilder
                 {
                     appSettings.FormatterLeaveDoubleLineBreaks = false;
                 }
+
+                List<string> tempFilePaths = [];
+
+                for (int i = 1; i < 6; i++)
+                {
+                    if (settingsDictionary["RecentSave" + i] != "None")
+                    {
+                        tempFilePaths.Add(settingsDictionary["RecentSave" + i]);
+                    }
+                }
+
+                appSettings.RecentlyAccessedFilePaths = tempFilePaths;
             }
         }
 
@@ -206,7 +236,12 @@ namespace JumpchainCharacterBuilder
                 {"ConfirmSaveOnClose", "True" },
                 {"SpellCheckEnabled", "True" },
                 {"FormatterDeleteAllLineBreaks", "False" },
-                {"FormatterLeaveDoubleLineBreaks", "False" }
+                {"FormatterLeaveDoubleLineBreaks", "False" },
+                {"RecentSave1", "None" },
+                {"RecentSave2", "None" },
+                {"RecentSave3", "None" },
+                {"RecentSave4", "None" },
+                {"RecentSave5", "None" }
             };
             string[] splitString;
             string settingKey;
