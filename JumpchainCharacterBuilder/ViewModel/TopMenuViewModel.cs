@@ -222,8 +222,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 AppSettings.RecentlyAccessedFilePaths.Add(path);
             }
 
-            Messenger.Send(new SettingsChangedMessage(true));
             CfgAccess.WriteCfgFile(AppSettings);
+            Messenger.Send(new SettingsChangedMessage(true));
         }
 
         private void LoadRecentFile(string filePath)
@@ -232,6 +232,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 _dialogService.NotificationDialog("Save not found, removing from list.");
                 RecentlyAccessedFilePaths.Remove(filePath);
+                AppSettings.RecentlyAccessedFilePaths.Remove(filePath);
+
+                CfgAccess.WriteCfgFile(AppSettings);
+                Messenger.Send(new SettingsChangedMessage(true));
             }
             else
             {
