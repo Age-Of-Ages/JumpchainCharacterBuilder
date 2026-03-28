@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Windows;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -2752,6 +2753,15 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             LoadPurchaseCategoryList();
             LoadCurrentPurchaseData();
+        }
+
+        [RelayCommand]
+        private void CopySource()
+        {
+            if (!string.IsNullOrWhiteSpace(JumpSource))
+            {
+                Clipboard.SetText(JumpSource);
+            }
         }
         #endregion
     }

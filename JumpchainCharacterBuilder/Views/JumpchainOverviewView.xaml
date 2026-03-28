@@ -1062,8 +1062,11 @@
                                  Width="150"/>
 
                         <TextBlock Text="Source"/>
-                        <TextBox Text="{Binding JumpSource, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
-                                 Width="150"/>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBox Text="{Binding JumpSource, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}" 
+                                    Width="150"/>
+                            <Button Content="Copy" Margin="4,0,0,0" Command="{Binding CopySourceCommand}"/>
+                        </StackPanel>
 
                         <TextBlock Text="Jump #"/>
                         <TextBox Text="{Binding JumpSelection.JumpNumber, Mode=OneWay}"
