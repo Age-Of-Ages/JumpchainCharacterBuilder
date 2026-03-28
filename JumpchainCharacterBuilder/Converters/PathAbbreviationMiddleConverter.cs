@@ -51,9 +51,9 @@ namespace JumpchainCharacterBuilder.Converters
                 }
             }
 
-            string folderPath = String.Join("\\", folderNames);
+            string folderPath = string.Join("\\", folderNames);
 
-            return String.Join("\\", driveLetter, folderPath, fileName);
+            return string.Join("\\", driveLetter, folderPath, fileName);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
