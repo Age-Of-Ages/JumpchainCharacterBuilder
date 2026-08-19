@@ -16,10 +16,6 @@ namespace JumpchainCharacterBuilder
 
             SaveFile newSave = XmlAccess.ReadObject(filePath);
 
-            if (newSave.SaveVersion < 1.1)
-            {
-                newSave = SaveMigration.SaveModify(newSave);
-            }
             if (newSave.SaveVersion < 1.3)
             {
                 newSave = SaveMigration.SaveUpdate(filePath, newSave.SaveVersion, newSave);
@@ -52,8 +48,6 @@ namespace JumpchainCharacterBuilder
             existingSave.UUSupplement = new();
             existingSave.ItemCategoryList = [];
             existingSave.PerkCategoryList = [];
-            existingSave.UserPerkCategoryList = [];
-            existingSave.UserItemCategoryList = [];
 
             existingSave.Options = newSave.Options;
             existingSave.GenericBodyMod = newSave.GenericBodyMod;
@@ -68,8 +62,6 @@ namespace JumpchainCharacterBuilder
             existingSave.CharacterList = newSave.CharacterList;
             existingSave.ItemCategoryList = newSave.ItemCategoryList;
             existingSave.PerkCategoryList = newSave.PerkCategoryList;
-            existingSave.UserItemCategoryList = newSave.UserItemCategoryList;
-            existingSave.UserPerkCategoryList = newSave.UserPerkCategoryList;
 
             existingSave.SaveVersion = newSave.SaveVersion;
 

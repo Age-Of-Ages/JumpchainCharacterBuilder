@@ -151,7 +151,7 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="User-defined Perk Categories" Grid.Row="1" Grid.Column="1">
+                    <GroupBox Header="Perk Categories" Grid.Row="1" Grid.Column="1">
                         <DockPanel>
                             <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
                                 <Grid.ColumnDefinitions>
@@ -188,11 +188,11 @@
                             
                             <StackPanel Margin="0,12,0,0" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
                                 <TextBlock Text="Category name"/>
-                                <TextBox Text="{Binding UserPerkCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                <TextBox Text="{Binding PerkCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
                             </StackPanel>
 
-                            <ListView ItemsSource="{Binding UserPerkCategories}"
-                                      SelectedIndex="{Binding UserPerkCategoryIndex}"
+                            <ListView ItemsSource="{Binding PerkCategories}"
+                                      SelectedIndex="{Binding PerkCategoryIndex}"
                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                                 <ListView.View>
@@ -208,7 +208,7 @@
                         </DockPanel>
                     </GroupBox>
 
-                    <GroupBox Header="User-defined Item Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
+                    <GroupBox Header="Item Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
                         <DockPanel>
                             <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
                                 <Grid.ColumnDefinitions>
@@ -245,11 +245,11 @@
                             
                             <StackPanel Margin="0,12,0,0" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
                                 <TextBlock Text="Category name"/>
-                                <TextBox Text="{Binding UserItemCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                <TextBox Text="{Binding ItemCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
                             </StackPanel>
 
-                            <ListView ItemsSource="{Binding UserItemCategories}"
-                                      SelectedIndex="{Binding UserItemCategoryIndex}"
+                            <ListView ItemsSource="{Binding ItemCategories}"
+                                      SelectedIndex="{Binding ItemCategoryIndex}"
                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                                 <ListView.View>
@@ -836,7 +836,7 @@
                         </Grid>
                     </GroupBox>
 
-                    <GroupBox Header="User-defined Perk Categories" Grid.Row="1" Grid.Column="1">
+                    <GroupBox Header="Perk Categories" Grid.Row="1" Grid.Column="1">
                         <DockPanel>
                             <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
                                 <Grid.ColumnDefinitions>
@@ -873,11 +873,11 @@
 
                             <StackPanel Margin="0,12,0,0" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
                                 <TextBlock Text="Category name"/>
-                                <TextBox Text="{Binding UserPerkCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                <TextBox Text="{Binding PerkCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
                             </StackPanel>
 
-                            <ListView ItemsSource="{Binding UserPerkCategories}"
-                                      SelectedIndex="{Binding UserPerkCategoryIndex}"
+                            <ListView ItemsSource="{Binding PerkCategories}"
+                                      SelectedIndex="{Binding PerkCategoryIndex}"
                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                                 <ListView.View>
@@ -893,7 +893,7 @@
                         </DockPanel>
                     </GroupBox>
 
-                    <GroupBox Header="User-defined Item Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
+                    <GroupBox Header="Item Categories" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2">
                         <DockPanel>
                             <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
                                 <Grid.ColumnDefinitions>
@@ -930,11 +930,11 @@
 
                             <StackPanel Margin="0,12,0,0" HorizontalAlignment="Center" DockPanel.Dock="Bottom">
                                 <TextBlock Text="Category name"/>
-                                <TextBox Text="{Binding UserItemCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
+                                <TextBox Text="{Binding ItemCategorySelection, ValidatesOnNotifyDataErrors=True}" Width="120"/>
                             </StackPanel>
 
-                            <ListView ItemsSource="{Binding UserItemCategories}"
-                                      SelectedIndex="{Binding UserItemCategoryIndex}"
+                            <ListView ItemsSource="{Binding ItemCategories}"
+                                      SelectedIndex="{Binding ItemCategoryIndex}"
                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                                       ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
                                 <ListView.View>

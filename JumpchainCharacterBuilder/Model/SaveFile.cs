@@ -87,61 +87,7 @@ namespace JumpchainCharacterBuilder.Model
         private UUSupplement _uUSupplement = new();
 
         /// <summary>
-        /// Represents the base list of Perk categories.
-        /// </summary>
-        public readonly List<string> BasePerkCategoryList =
-        [
-            "Physical",
-            "Mental",
-            "Social",
-            "Stealth",
-            "Magical",
-            "Spiritual",
-            "Technological",
-            "Crafting",
-            "Meta",
-            "Other Perk"
-        ];
-
-        /// <summary>
-        /// Represents the base list of Item categories.
-        /// </summary>
-        public readonly List<string> BaseItemCategoryList =
-        [
-            "Weapons",
-            "Armor",
-            "Accessories",
-            "Clothing",
-            "Misc. Equipment",
-            "Tools",
-            "Materials",
-            "Food",
-            "Media",
-            "Wealth",
-            "Vehicles",
-            "Properties",
-            "Businesses",
-            "Creatures",
-            "Warehouse Addon",
-            "Other Item"
-        ];
-
-        /// <summary>
-        /// Represents the users custom Perk categories
-        /// </summary>
-        [ObservableProperty]
-        [DataMember]
-        private List<string> _userPerkCategoryList = [];
-
-        /// <summary>
-        /// Represents the user's custom Item categories.
-        /// </summary>
-        [ObservableProperty]
-        [DataMember]
-        private List<string> _userItemCategoryList = [];
-
-        /// <summary>
-        /// Represents the compiled list of Perk categories.
+        /// Represents the list of Perk categories.
         /// </summary>
         [ObservableProperty]
         [DataMember]
@@ -160,7 +106,7 @@ namespace JumpchainCharacterBuilder.Model
         ];
 
         /// <summary>
-        /// Represents the compiled list of Item categories.
+        /// Represents the list of Item categories.
         /// </summary>
         [ObservableProperty]
         [DataMember]

@@ -245,34 +245,29 @@ namespace JumpchainCharacterBuilder.ViewModel
         private bool _uUGauntletHalved = false;
 
         [ObservableProperty]
-        private ObservableCollection<string> _userPerkCategories = [];
+        private ObservableCollection<string> _perkCategories = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeletePerkCategoryCommand))]
         [NotifyCanExecuteChangedFor(nameof(MovePerkCategoryUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MovePerkCategoryDownCommand))]
         [NotifyDataErrorInfo]
-        [UniqueName(nameof(CompiledPerkCategories))]
+        [UniqueName(nameof(PerkCategories))]
         [XmlFilter]
-        private string _userPerkCategorySelection = "";
+        private string _perkCategorySelection = "";
         [ObservableProperty]
-        private int _userPerkCategoryIndex = 0;
+        private int _perkCategoryIndex = 0;
         [ObservableProperty]
-        private ObservableCollection<string> _userItemCategories = [];
+        private ObservableCollection<string> _itemCategories = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteItemCategoryCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveItemCategoryUpCommand))]
         [NotifyCanExecuteChangedFor(nameof(MoveItemCategoryDownCommand))]
         [NotifyDataErrorInfo]
-        [UniqueName(nameof(CompiledItemCategories))]
+        [UniqueName(nameof(ItemCategories))]
         [XmlFilter]
-        private string _userItemCategorySelection = "";
+        private string _itemCategorySelection = "";
         [ObservableProperty]
-        private int _userItemCategoryIndex = 0;
-
-        [ObservableProperty]
-        private List<string> _compiledPerkCategories = [];
-        [ObservableProperty]
-        private List<string> _compiledItemCategories = [];
+        private int _itemCategoryIndex = 0;
 
         #endregion
 
@@ -681,88 +676,71 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         partial void OnUUGauntletHalvedChanged(bool value) => LoadedSave.UUSupplement.HalvedPointsDuringGauntlets = value;
 
-        partial void OnUserPerkCategoryIndexChanged(int value)
+        partial void OnPerkCategoryIndexChanged(int value)
         {
-            if (value != -1 && UserPerkCategories.Any())
+            if (value != -1 && PerkCategories.Any())
             {
-                UserPerkCategorySelection = UserPerkCategories[value];
+                PerkCategorySelection = PerkCategories[value];
             }
         }
 
-        partial void OnUserPerkCategorySelectionChanging(string value)
+        partial void OnPerkCategorySelectionChanged(string value)
         {
-            if (!GetErrors(nameof(UserPerkCategorySelection)).Any())
+            int index = PerkCategoryIndex;
+            string oldCategory = LoadedSave.PerkCategoryList[index];
+
+            if (!GetErrors(nameof(PerkCategorySelection)).Any())
             {
-                List<string> tempList = UserPerkCategories.ToList();
-
-                tempList[UserPerkCategoryIndex] = value;
-
-                tempList.AddRange(LoadedSave.BasePerkCategoryList);
-
-                CompiledPerkCategories = new(tempList);
-            }
-        }
-
-        partial void OnUserPerkCategorySelectionChanged(string value)
-        {
-            int index = UserPerkCategoryIndex;
-            string oldCategory = LoadedSave.UserPerkCategoryList[index];
-
-            if (!GetErrors(nameof(UserPerkCategorySelection)).Any())
-            {
-                if (value != null && UserPerkCategoryIndex != -1)
+                if (value != null && PerkCategoryIndex != -1)
                 {
-                    if (UserPerkCategories[index] != value)
+                    if (PerkCategories[index] != value)
                     {
-                        LoadedSave.UserPerkCategoryList[index] = value;
-                        UserPerkCategories[index] = value;
+                        if (PerkCategories[index] == "Other Perk")
+                        {
+                            PerkCategorySelection = "Other Perk";
+                        }
+                        else
+                        {
+                            LoadedSave.PerkCategoryList[index] = value;
+                            PerkCategories[index] = value;
 
-                        UpdateCategories(perks: true);
-                        ChangePurchaseCategory(oldCategory, value);
+                            ChangePurchaseCategory(oldCategory, value);
+                        }
                     }
                 }
             }
         }
 
-        partial void OnUserItemCategoryIndexChanged(int value)
+        partial void OnItemCategoryIndexChanged(int value)
         {
-            if (value != -1 && UserItemCategories.Any())
+            if (value != -1 && ItemCategories.Any())
             {
-                UserItemCategorySelection = UserItemCategories[value];
+                ItemCategorySelection = ItemCategories[value];
             }
         }
 
-        partial void OnUserItemCategorySelectionChanging(string value)
+        partial void OnItemCategorySelectionChanged(string value)
         {
+            int index = ItemCategoryIndex;
+            string oldCategory = LoadedSave.ItemCategoryList[index];
 
-            if (!GetErrors(nameof(UserItemCategorySelection)).Any())
+            if (!GetErrors(nameof(ItemCategorySelection)).Any())
             {
-                List<string> tempList = UserItemCategories.ToList();
-
-                tempList[UserItemCategoryIndex] = value;
-
-                tempList.AddRange(LoadedSave.BaseItemCategoryList);
-
-                CompiledItemCategories = new(tempList);
-            }
-        }
-
-        partial void OnUserItemCategorySelectionChanged(string value)
-        {
-            int index = UserItemCategoryIndex;
-            string oldCategory = LoadedSave.UserItemCategoryList[index];
-
-            if (!GetErrors(nameof(UserItemCategorySelection)).Any())
-            {
-                if (value != null && UserItemCategoryIndex != -1)
+                if (value != null && ItemCategoryIndex != -1)
                 {
-                    if (UserItemCategories[index] != value)
+                    if (ItemCategories[index] != value)
                     {
-                        LoadedSave.UserItemCategoryList[index] = value;
-                        UserItemCategories[index] = value;
+                        if (ItemCategories[index] == "Other Item")
+                        {
+                            ItemCategorySelection = "Other Item";
+                        }
+                        else
+                        {
+                            LoadedSave.ItemCategoryList[index] = value;
+                            ItemCategories[index] = value;
 
-                        UpdateCategories(perks: false);
-                        ChangePurchaseCategory(oldCategory, value);
+                            ChangePurchaseCategory(oldCategory, value);
+                        }
                     }
                 }
             }
@@ -1105,43 +1083,18 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private void LoadCategories()
         {
-            UserPerkCategories = [.. LoadedSave.UserPerkCategoryList];
-            UserItemCategories = [.. LoadedSave.UserItemCategoryList];
+            PerkCategories = [.. LoadedSave.PerkCategoryList];
+            ItemCategories = [.. LoadedSave.ItemCategoryList];
 
-            CompiledPerkCategories = LoadedSave.PerkCategoryList;
-            CompiledItemCategories = LoadedSave.ItemCategoryList;
-
-            if (UserPerkCategories.Any())
+            if (PerkCategories.Any())
             {
-                UserPerkCategoryIndex = 0;
-                UserPerkCategorySelection = UserPerkCategories[UserPerkCategoryIndex];
+                PerkCategoryIndex = 0;
+                PerkCategorySelection = PerkCategories[PerkCategoryIndex];
             }
-            if (UserItemCategories.Any())
+            if (ItemCategories.Any())
             {
-                UserItemCategoryIndex = 0;
-                UserItemCategorySelection = UserItemCategories[UserItemCategoryIndex];
-            }
-        }
-
-        private void UpdateCategories(bool perks)
-        {
-            List<string> compiledList = [];
-
-            if (perks)
-            {
-                compiledList.AddRange(LoadedSave.BasePerkCategoryList);
-                compiledList.AddRange(UserPerkCategories);
-
-                LoadedSave.PerkCategoryList = compiledList;
-                CompiledPerkCategories = [.. compiledList];
-            }
-            else
-            {
-                compiledList.AddRange(LoadedSave.BaseItemCategoryList);
-                compiledList.AddRange(UserItemCategories);
-
-                LoadedSave.ItemCategoryList = compiledList;
-                CompiledItemCategories = [.. compiledList];
+                ItemCategoryIndex = 0;
+                ItemCategorySelection = ItemCategories[ItemCategoryIndex];
             }
         }
 
@@ -1195,12 +1148,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 category = $"Custom Category #{count}";
             }
 
-            UserPerkCategories.Add(category);
-            LoadedSave.UserPerkCategoryList.Add(category);
+            PerkCategories.Add(category);
+            LoadedSave.PerkCategoryList.Add(category);
 
-            UpdateCategories(perks: true);
-
-            UserPerkCategoryIndex = UserPerkCategories.Count - 1;
+            PerkCategoryIndex = PerkCategories.Count - 1;
 
             Messenger.Send(new CategoryChangedMessage(true));
 
@@ -1213,37 +1164,33 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (_dialogService.ConfirmDialog("Are you sure that you want to delete this category? " +
                 "This will reset all Perks using this to the default."))
             {
-                string category = UserPerkCategorySelection;
+                string category = PerkCategorySelection;
 
                 ChangePurchaseCategory(category, "Other Perk");
 
-                UserPerkCategories.Remove(category);
-                CompiledPerkCategories.Remove(category);
-                LoadedSave.UserPerkCategoryList.Remove(category);
+                PerkCategories.Remove(category);
+                LoadedSave.PerkCategoryList.Remove(category);
 
-                UpdateCategories(perks: true);
-
-                if (UserPerkCategories.Any())
+                if (PerkCategories.Any())
                 {
-                    UserPerkCategoryIndex = 0;
+                    PerkCategoryIndex = 0;
                 }
 
                 DeletePerkCategoryCommand.NotifyCanExecuteChanged();
             }
         }
 
-        private bool CanDeletePerkCategory() => UserPerkCategorySelection != "" && UserPerkCategorySelection != null && UserPerkCategoryIndex != -1;
+        private bool CanDeletePerkCategory() => PerkCategorySelection != "" && PerkCategorySelection != null && PerkCategorySelection != "Other Perk" && PerkCategoryIndex != -1;
 
         [RelayCommand(CanExecute = nameof(CanMovePerkCategoryUp))]
         private void MovePerkCategoryUp()
         {
-            int index = UserPerkCategoryIndex;
+            int index = PerkCategoryIndex;
 
-            UserPerkCategories.SwapCollectionItems(index, index - 1);
-            LoadedSave.UserPerkCategoryList.SwapListItems(index, index - 1);
-            UserPerkCategoryIndex = index - 1;
+            PerkCategories.SwapCollectionItems(index, index - 1);
+            LoadedSave.PerkCategoryList.SwapListItems(index, index - 1);
+            PerkCategoryIndex = index - 1;
 
-            UpdateCategories(perks: true);
             Messenger.Send(new CategoryChangedMessage(true));
 
             DeletePerkCategoryCommand.NotifyCanExecuteChanged();
@@ -1251,18 +1198,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             MovePerkCategoryDownCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMovePerkCategoryUp() => UserPerkCategoryIndex > 0;
+        private bool CanMovePerkCategoryUp() => PerkCategoryIndex > 0;
 
         [RelayCommand(CanExecute = nameof(CanMovePerkCategoryDown))]
         private void MovePerkCategoryDown()
         {
-            int index = UserPerkCategoryIndex;
+            int index = PerkCategoryIndex;
 
-            UserPerkCategories.SwapCollectionItems(index, index + 1);
-            LoadedSave.UserPerkCategoryList.SwapListItems(index, index + 1);
-            UserPerkCategoryIndex = index + 1;
+            PerkCategories.SwapCollectionItems(index, index + 1);
+            LoadedSave.PerkCategoryList.SwapListItems(index, index + 1);
+            PerkCategoryIndex = index + 1;
 
-            UpdateCategories(perks: true);
             Messenger.Send(new CategoryChangedMessage(true));
 
             DeletePerkCategoryCommand.NotifyCanExecuteChanged();
@@ -1270,7 +1216,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MovePerkCategoryDownCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMovePerkCategoryDown() => UserPerkCategoryIndex < UserPerkCategories.Count - 1;
+        private bool CanMovePerkCategoryDown() => PerkCategoryIndex < PerkCategories.Count - 1;
 
         [RelayCommand]
         private void NewItemCategory()
@@ -1284,12 +1230,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                 category = $"Custom Category #{count}";
             }
 
-            UserItemCategories.Add(category);
-            LoadedSave.UserItemCategoryList.Add(category);
+            ItemCategories.Add(category);
+            LoadedSave.ItemCategoryList.Add(category);
 
-            UpdateCategories(perks: false);
-
-            UserItemCategoryIndex = UserItemCategories.Count - 1;
+            ItemCategoryIndex = ItemCategories.Count - 1;
 
             Messenger.Send(new CategoryChangedMessage(true));
 
@@ -1302,37 +1246,33 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (_dialogService.ConfirmDialog("Are you sure that you want to delete this category? " +
                 "This will reset all Items using this to the default."))
             {
-                string category = UserItemCategorySelection;
+                string category = ItemCategorySelection;
 
                 ChangePurchaseCategory(category, "Other Item");
 
-                UserItemCategories.Remove(category);
-                CompiledItemCategories.Remove(category);
-                LoadedSave.UserItemCategoryList.Remove(category);
+                ItemCategories.Remove(category);
+                LoadedSave.ItemCategoryList.Remove(category);
 
-                UpdateCategories(perks: true);
-
-                if (UserItemCategories.Any())
+                if (ItemCategories.Any())
                 {
-                    UserItemCategoryIndex = 0;
+                    ItemCategoryIndex = 0;
                 }
 
                 DeleteItemCategoryCommand.NotifyCanExecuteChanged();
             }
         }
 
-        private bool CanDeleteItemCategory() => UserItemCategorySelection != "" && UserItemCategorySelection != null && UserItemCategoryIndex != -1;
+        private bool CanDeleteItemCategory() => ItemCategorySelection != "" && ItemCategorySelection != null && ItemCategorySelection != "Other Item" && ItemCategoryIndex != -1;
 
         [RelayCommand(CanExecute = nameof(CanMoveItemCategoryUp))]
         private void MoveItemCategoryUp()
         {
-            int index = UserItemCategoryIndex;
+            int index = ItemCategoryIndex;
 
-            UserItemCategories.SwapCollectionItems(index, index - 1);
-            LoadedSave.UserItemCategoryList.SwapListItems(index, index - 1);
-            UserItemCategoryIndex = index - 1;
+            ItemCategories.SwapCollectionItems(index, index - 1);
+            LoadedSave.ItemCategoryList.SwapListItems(index, index - 1);
+            ItemCategoryIndex = index - 1;
 
-            UpdateCategories(perks: false);
             Messenger.Send(new CategoryChangedMessage(true));
 
             DeleteItemCategoryCommand.NotifyCanExecuteChanged();
@@ -1340,18 +1280,17 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveItemCategoryDownCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMoveItemCategoryUp() => UserItemCategoryIndex > 0;
+        private bool CanMoveItemCategoryUp() => ItemCategoryIndex > 0;
 
         [RelayCommand(CanExecute = nameof(CanMoveItemCategoryDown))]
         private void MoveItemCategoryDown()
         {
-            int index = UserItemCategoryIndex;
+            int index = ItemCategoryIndex;
 
-            UserItemCategories.SwapCollectionItems(index, index + 1);
-            LoadedSave.UserItemCategoryList.SwapListItems(index, index + 1);
-            UserItemCategoryIndex = index + 1;
+            ItemCategories.SwapCollectionItems(index, index + 1);
+            LoadedSave.ItemCategoryList.SwapListItems(index, index + 1);
+            ItemCategoryIndex = index + 1;
 
-            UpdateCategories(perks: false);
             Messenger.Send(new CategoryChangedMessage(true));
 
             DeleteItemCategoryCommand.NotifyCanExecuteChanged();
@@ -1359,7 +1298,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             MoveItemCategoryDownCommand.NotifyCanExecuteChanged();
         }
 
-        private bool CanMoveItemCategoryDown() => UserItemCategoryIndex < UserItemCategories.Count - 1;
+        private bool CanMoveItemCategoryDown() => ItemCategoryIndex < ItemCategories.Count - 1;
         #endregion
     }
 }

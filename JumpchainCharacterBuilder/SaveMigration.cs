@@ -113,16 +113,6 @@ namespace JumpchainCharacterBuilder
 
         public static SaveFile SaveModify(SaveFile save)
         {
-            if (save.SaveVersion < 1.1)
-            {
-                if (save.PerkCategoryList.Contains("Blacksmithing"))
-                {
-                    save.UserPerkCategoryList.Add("Blacksmithing");
-                }
-
-                save.SaveVersion = 1.1;
-            }
-
             return save;
         }
 
