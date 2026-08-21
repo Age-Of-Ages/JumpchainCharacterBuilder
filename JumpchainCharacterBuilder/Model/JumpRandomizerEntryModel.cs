@@ -23,6 +23,12 @@ namespace JumpchainCharacterBuilder.Model
         [ObservableProperty]
         private Uri _jumpUri = new("About:Blank");
 
+        /// <summary>
+        /// Represents if this particular entry is for a Jumpdoc file in a folder.
+        /// </summary>
+        [ObservableProperty]
+        private bool _isFileEntry = false;
+
         public JumpRandomizerEntry()
         {
 
