@@ -8,6 +8,7 @@ using JumpchainCharacterBuilder.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Windows;
 
@@ -33,13 +34,33 @@ namespace JumpchainCharacterBuilder.ViewModel
         private int _entriesToPull = 1;
         [ObservableProperty]
         private ObservableCollection<JumpRandomizerEntry> _winningEntries = [];
+        [ObservableProperty]
+        private ObservableCollection<JumpRandomizerEntry> _winningFileEntries = [];
+
+        [ObservableProperty]
+        private bool _fileRandomizerMode = false;
 
         #endregion
 
         #region Properties
         partial void OnActiveJumpRandomizerListChanged(JumpRandomizerList value)
         {
-            PopulateJumpPool();
+            if (value != null)
+            {
+                PopulateJumpPool();
+            }
+        }
+
+        partial void OnFileRandomizerModeChanged(bool value)
+        {
+            if (value)
+            {
+                LoadJumpFolderLists();
+            }
+            else
+            {
+                LoadJumpLists();
+            }
         }
         #endregion
 
@@ -82,6 +103,28 @@ namespace JumpchainCharacterBuilder.ViewModel
             PopulateJumpPool();
         }
 
+        private void LoadJumpFolderLists()
+        {
+            FileAccess.CheckSubdirectoryExists("Randomizer");
+
+            List<string> subdirectories = [.. FileAccess.GetSubdirectories("Randomizer")];
+            InactiveJumpRandomizerLists.Clear();
+
+            InactiveJumpRandomizerLists.Add(new() { ListName = "All Subdirectories" });
+
+            foreach (string directory in subdirectories)
+            {
+                InactiveJumpRandomizerLists.Add(new() { ListName = directory });
+            }
+
+            ActiveJumpRandomizerList = new();
+
+            if (InactiveJumpRandomizerLists.Any())
+            {
+                ActiveJumpRandomizerList = InactiveJumpRandomizerLists.First();
+            }
+        }
+
         private void PopulateJumpPool()
         {
             ActiveJumpPool.Clear();
@@ -98,9 +141,37 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
+        private void PopulateJumpFilePool()
+        {
+            ActiveJumpPool.Clear();
+            List<string> filePaths;
+
+            string relativeFolderPath = ActiveJumpRandomizerList.ListName;
+            if (relativeFolderPath == "All Subdirectories")
+            {
+                filePaths = FileAccess.GetAllFiles("Randomizer", extension: "pdf", recursive: true);
+            }
+            else
+            {
+                filePaths = FileAccess.GetAllFiles(Path.Combine("Randomizer", relativeFolderPath), extension: "pdf", recursive: true);
+            }
+
+            foreach (string path in filePaths)
+            {
+                ActiveJumpPool.Add(new()
+                {
+                    IsFileEntry = true,
+                    JumpName = Path.GetFileName(path),
+                    FilePath = Path.GetFullPath(path)
+                });
+            }
+        }
+
         private void DrawJumpWinners()
         {
-            WinningEntries.Clear();
+            ObservableCollection<JumpRandomizerEntry> winnerCollection = FileRandomizerMode ? WinningFileEntries : WinningEntries;
+
+            winnerCollection.Clear();
 
             List<JumpRandomizerEntry> tempJumpPool = [.. ActiveJumpPool];
 
@@ -115,14 +186,14 @@ namespace JumpchainCharacterBuilder.ViewModel
                     {
                         winnerIndex = rng.Next(tempJumpPool.Count);
 
-                        WinningEntries.Add(tempJumpPool[winnerIndex]);
+                        winnerCollection.Add(tempJumpPool[winnerIndex]);
 
                         tempJumpPool.RemoveAt(winnerIndex);
                     }
                 }
                 else
                 {
-                    WinningEntries.Add(new()
+                    winnerCollection.Add(new()
                     {
                         JumpName = "Not enough entries available."
                     });
@@ -143,6 +214,10 @@ namespace JumpchainCharacterBuilder.ViewModel
         [RelayCommand]
         private void Draw()
         {
+            if (FileRandomizerMode)
+            {
+                PopulateJumpFilePool();
+            }
             DrawJumpWinners();
         }
 
@@ -160,6 +235,15 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (_dialogService.ConfirmDialog("Add Jump to Jumpchain Overview?"))
             {
                 Messenger.Send(new AddJumpToChainMessage(entry));
+            }
+        }
+
+        [RelayCommand]
+        private void OpenJumpFileLocation(string filePath)
+        {
+            if (FileAccess.CheckFileExists(filePath))
+            {
+                ExplorerAccess.OpenFolderToFile(filePath);
             }
         }
         #endregion

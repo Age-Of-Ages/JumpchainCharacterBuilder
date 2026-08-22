@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
@@ -48,7 +49,34 @@ namespace JumpchainCharacterBuilder
             {
                 directory.CreateSubdirectory(subDirectory);
             }
+        }
 
+
+        public static List<string> GetSubdirectories(string parentDirectory)
+        {
+            List<string> outputList = [];
+
+            CheckSubdirectoryExists(parentDirectory);
+
+            List<string?> directoryNames = [.. Directory.GetDirectories(parentDirectory).Select(Path.GetFileName)];
+            foreach (string? directoryName in directoryNames)
+            {
+                if (!string.IsNullOrEmpty(directoryName))
+                {
+                    outputList.Add(directoryName);
+                }
+            }
+
+            return outputList;
+        }
+
+        public static List<string> GetAllFiles(string targetDirectory, string extension = "", bool recursive = false)
+        {
+            CheckSubdirectoryExists(targetDirectory);
+            string fileExtension = string.IsNullOrEmpty(extension) ? "*" : extension;
+            SearchOption searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
+            
+            return [.. Directory.EnumerateFiles(targetDirectory, "*." + fileExtension, searchOption)];
         }
     }
 }

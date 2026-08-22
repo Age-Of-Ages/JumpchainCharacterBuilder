@@ -29,6 +29,12 @@ namespace JumpchainCharacterBuilder.Model
         [ObservableProperty]
         private bool _isFileEntry = false;
 
+        /// <summary>
+        /// Represents the link to the Jump document.
+        /// </summary>
+        [ObservableProperty]
+        private string _filePath = "";
+
         public JumpRandomizerEntry()
         {
 

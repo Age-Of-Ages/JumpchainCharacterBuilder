@@ -6,6 +6,8 @@
 
     <!--Converters-->
     <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    <convert:NegatedBoolToHiddenVisConverter x:Key="NegatedBoolToHiddenVis"/>
+    <convert:BoolToHiddenVisConverter x:Key="BoolToHiddenVis"/>
     <convert:NullVisConverter x:Key="NullToVis"/>
     <convert:NullBoolConverter x:Key="NullToBool"/>
     <convert:BoolResizeConverter x:Key="BoolToResize"/>
@@ -14,6 +16,7 @@
     <convert:ListContainsBoolConverter x:Key="ListContainsToBool"/>
     <convert:HeaderCheckVisConverter x:Key="HeaderCheckToVis"/>
     <convert:PathAbbreviationMiddleConverter x:Key="PathAbbreviateMiddle"/>
+    <convert:StringToVisConverter x:Key="StringToVis"/>
     <MenuScrollingVisibilityConverter x:Key="MenuScrollingVisibilityConverter"/>
 
     <!--Geometry-->

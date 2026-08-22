@@ -32,16 +32,21 @@
             <TextBlock Text="# of Jumps to select" Margin="4,0,0,0" VerticalAlignment="Center"/>
         </StackPanel>
 
-        <ComboBox ItemsSource="{Binding InactiveJumpRandomizerLists}"
-                  DisplayMemberPath="ListName"
-                  SelectedItem="{Binding ActiveJumpRandomizerList}"
-                  Width="120" Grid.Row="1"
-                  VerticalAlignment="Center"/>
-        
+        <StackPanel Grid.Row="1">
+            <CheckBox Content="File Randomizer Mode" IsChecked="{Binding FileRandomizerMode}"
+                      HorizontalAlignment="Center"/>
+
+            <ComboBox ItemsSource="{Binding InactiveJumpRandomizerLists}"
+                      DisplayMemberPath="ListName"
+                      SelectedItem="{Binding ActiveJumpRandomizerList}"
+                      Width="120" Margin="0,4,0,0"/>
+        </StackPanel>
+
         <ListView ItemsSource="{Binding WinningEntries}" x:Name="JumpListView"
                   Grid.Row="2"
                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                  Visibility="{Binding FileRandomizerMode, Converter={StaticResource NegatedBoolToHiddenVis}}">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ResourceKey={x:Type ListViewItem}}">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -69,6 +74,49 @@
                                             </Hyperlink.ContextMenu>
                                             Jump Link
                                         </Hyperlink>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Add to Chain" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Create" HorizontalAlignment="Center" Command="{Binding Path=DataContext.AddJumpToChainCommand, Source={x:Reference JumpListView}}" 
+                                            CommandParameter="{Binding}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <ListView ItemsSource="{Binding WinningFileEntries}" x:Name="JumpFileListView"
+          Grid.Row="2"
+          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+          Visibility="{Binding FileRandomizerMode, Converter={StaticResource BoolToHiddenVis}}">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource ResourceKey={x:Type ListViewItem}}">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Jump name" Width="Auto"
+                                CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                DisplayMemberBinding="{Binding JumpName}"/>
+                        <GridViewColumn Header="File" Width="80">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Visibility="{Binding FilePath, Converter={StaticResource StringToVis}}"
+                                       HorizontalAlignment="Center">
+                                <Hyperlink x:Name="JumpDocument_Hyperlink"
+                                           Command="{Binding Path=DataContext.OpenJumpFileLocationCommand, RelativeSource={RelativeSource AncestorType=ListView}}"
+                                           CommandParameter="{Binding FilePath}">
+                                    File Location
+                                </Hyperlink>
                                     </TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
