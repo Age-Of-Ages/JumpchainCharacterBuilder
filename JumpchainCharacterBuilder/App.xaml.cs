@@ -95,6 +95,25 @@ namespace JumpchainCharacterBuilder
             TxtAccess.WriteLog(exceptionData);
         }
 
+        public static void ListViewResizeEvent(object sender)
+        {
+            if (sender is ListView listView && listView.Tag != null)
+            {
+                if (listView.Tag is string indexString)
+                {
+                    List<string> indexStringList = [.. indexString.Split(',')];
+                    List<int> columnIndexes = [];
+
+                    for (int i = 0; i < indexStringList.Count; i++)
+                    {
+                        columnIndexes.Add(int.Parse(indexStringList[i]));
+                    }
+
+                    ResizeGridViewColumns(listView, columnIndexes);
+                }
+            }
+        }
+
         public static void ResizeGridViewColumns(ListView listView, List<int> indexesToStretch)
         {
             if (listView.View is GridView gridView)
