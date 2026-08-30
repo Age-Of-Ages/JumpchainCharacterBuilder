@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:JumpchainCharacterBuilder.Views"
              xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:ExportViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="714" d:DesignWidth="928">
@@ -199,7 +200,9 @@
                                 <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                                 <ListView ItemsSource="{Binding ProfileSectionList}"
                                           SelectedIndex="{Binding ProfileSectionSelectionIndex}"
-                                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn>
@@ -235,7 +238,9 @@
                                 <TextBlock Text="Profile subsection ordering" DockPanel.Dock="Top"/>
                                 <ListView ItemsSource="{Binding ProfileSubsectionList}"
                                           SelectedIndex="{Binding ProfileSubsectionSelectionIndex}"
-                                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                          Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                     <ListView.View>
                                         <GridView>
                                             <GridViewColumn>
@@ -318,7 +323,9 @@
                             <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding BuildSectionList}"
                                       SelectedIndex="{Binding BuildSectionSelectionIndex}"
-                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>
@@ -385,7 +392,9 @@
                             <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding GenericWarehouseSectionList}"
                                       SelectedIndex="{Binding GenericWarehouseSectionSelectionIndex}"
-                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>
@@ -424,7 +433,9 @@
                             <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding PersonalRealitySectionList}"
                                       SelectedIndex="{Binding PersonalRealitySectionSelectionIndex}"
-                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>
@@ -492,7 +503,9 @@
                             <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding BodyModSectionList}"
                                       SelectedIndex="{Binding BodyModSectionSelectionIndex}"
-                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>
@@ -559,7 +572,9 @@
                             <TextBlock Text="Section ordering" DockPanel.Dock="Top"/>
                             <ListView ItemsSource="{Binding DrawbackSupplementSectionList}"
                                       SelectedIndex="{Binding DrawbackSupplementSectionSelectionIndex}"
-                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                      Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridViewColumn>

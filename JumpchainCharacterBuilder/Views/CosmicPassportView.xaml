@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:CosmicPassportViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="714" d:DesignWidth="928">
@@ -510,7 +511,9 @@
                                                           SelectedItem="{Binding CurrentPhysicalAttributeSelection}"
                                                           SelectedIndex="{Binding CurrentPhysicalAttributeIndex}"
                                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
@@ -642,7 +645,9 @@
                                                           SelectedItem="{Binding CurrentMentalAttributeSelection}"
                                                           SelectedIndex="{Binding CurrentMentalAttributeIndex}"
                                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
@@ -774,7 +779,9 @@
                                                           SelectedItem="{Binding CurrentSupernaturalAttributeSelection}"
                                                           SelectedIndex="{Binding CurrentSupernaturalAttributeIndex}"
                                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
@@ -995,7 +1002,9 @@
                                                           SelectedItem="{Binding CurrentPhysicalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentPhysicalSkillIndex}"
                                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
@@ -1127,7 +1136,9 @@
                                                           SelectedItem="{Binding CurrentMentalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentMentalSkillIndex}"
                                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
@@ -1259,7 +1270,9 @@
                                                           SelectedItem="{Binding CurrentSocialSkillSelection}"
                                                           SelectedIndex="{Binding CurrentSocialSkillIndex}"
                                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
@@ -1391,7 +1404,9 @@
                                                           SelectedItem="{Binding CurrentTechnologicalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentTechnologicalSkillIndex}"
                                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
@@ -1523,7 +1538,9 @@
                                                           SelectedItem="{Binding CurrentSupernaturalSkillSelection}"
                                                           SelectedIndex="{Binding CurrentSupernaturalSkillIndex}"
                                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                     <ListView.View>
                                                         <GridView>
                                                             <GridView.Columns>
@@ -1737,7 +1754,9 @@
                                       SelectedItem="{Binding CurrentBoosterSelection}"
                                       SelectedIndex="{Binding CurrentBoosterIndex}"
                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0,1">
+                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0,1"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridView.Columns>
@@ -1993,7 +2012,9 @@
                                               SelectedItem="{Binding BodyModPurchaseSelection}"
                                               SelectedIndex="{Binding GenericBodyModPurchaseSelectionIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="Copy" Command="{Binding CopySupplementPurchaseCommand}">
@@ -2196,7 +2217,9 @@
                                               SelectedItem="{Binding BodyModDrawbackSelection}"
                                               SelectedIndex="{Binding GenericBodyModDrawbackIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="Copy" Command="{Binding CopySupplementDrawbackCommand}">
@@ -3811,7 +3834,9 @@
                                                               SelectedItem="{Binding PurchaseAttributeSelection}"
                                                               SelectedIndex="{Binding PurchaseAttributeIndex}"
                                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                         <ListView.View>
                                                             <GridView>
                                                                 <GridView.Columns>

@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:JumpchainCharacterBuilder.Views"
              xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:JumpchainOptionsViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="714" d:DesignWidth="928"
@@ -194,7 +195,9 @@
                             <ListView ItemsSource="{Binding PerkCategories}"
                                       SelectedIndex="{Binding PerkCategoryIndex}"
                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridView.Columns>
@@ -251,7 +254,9 @@
                             <ListView ItemsSource="{Binding ItemCategories}"
                                       SelectedIndex="{Binding ItemCategoryIndex}"
                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridView.Columns>
@@ -879,7 +884,9 @@
                             <ListView ItemsSource="{Binding PerkCategories}"
                                       SelectedIndex="{Binding PerkCategoryIndex}"
                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridView.Columns>
@@ -936,7 +943,9 @@
                             <ListView ItemsSource="{Binding ItemCategories}"
                                       SelectedIndex="{Binding ItemCategoryIndex}"
                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                 <ListView.View>
                                     <GridView>
                                         <GridView.Columns>

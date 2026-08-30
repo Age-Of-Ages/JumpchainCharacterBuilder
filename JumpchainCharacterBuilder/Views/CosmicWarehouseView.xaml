@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:JumpchainCharacterBuilder.Views"
              xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:CosmicWarehouseViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="714" d:DesignWidth="928">
@@ -157,7 +158,9 @@
                                           SelectedItem="{Binding PurchaseSelection}"
                                           SelectedIndex="{Binding BasicsPurchaseSelectionIndex}"
                                           Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                          ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                          dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                          dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -179,7 +182,9 @@
                                               SelectedItem="{Binding PurchaseSelection}"
                                               SelectedIndex="{Binding UtilitiesPurchaseSelectionIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -202,7 +207,9 @@
                                               SelectedItem="{Binding PurchaseSelection}"
                                               SelectedIndex="{Binding CosmeticPurchaseSelectionIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -225,7 +232,9 @@
                                               SelectedItem="{Binding PurchaseSelection}"
                                               SelectedIndex="{Binding FacilitiesPurchaseSelectionIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -248,7 +257,9 @@
                                               SelectedItem="{Binding PurchaseSelection}"
                                               SelectedIndex="{Binding ExtensionsPurchaseSelectionIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -271,7 +282,9 @@
                                               SelectedItem="{Binding PurchaseSelection}"
                                               SelectedIndex="{Binding EquipmentPurchaseSelectionIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -294,7 +307,9 @@
                                               SelectedItem="{Binding PurchaseSelection}"
                                               SelectedIndex="{Binding CompanionsPurchaseSelectionIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -317,7 +332,9 @@
                                               SelectedItem="{Binding PurchaseSelection}"
                                               SelectedIndex="{Binding MiscPurchaseSelectionIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.View>
                                             <GridView>
                                                 <GridView.Columns>
@@ -504,7 +521,9 @@
                                   SelectedItem="{Binding LimitationSelection}"
                                   SelectedIndex="{Binding LimitationSelectionIndex}"
                                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                  dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                  dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                             <ListView.View>
                                 <GridView>
                                     <GridView.Columns>
