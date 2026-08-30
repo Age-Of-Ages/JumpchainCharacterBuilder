@@ -431,7 +431,9 @@
                                   SelectedItem="{Binding PurchaseSelection}"
                                   SelectedIndex="{Binding PurchaseSelectionIndex}"
                                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                  dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                  dd:DragDrop.DropHandler="{Binding}">
                             <ListView.ContextMenu>
                                 <ContextMenu>
                                     <MenuItem Header="Copy" Command="{Binding CopyPurchaseCommand}">

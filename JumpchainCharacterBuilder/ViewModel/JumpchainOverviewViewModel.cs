@@ -2111,17 +2111,55 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case Jump jump:
                     if (dropInfo.TargetCollection == JumpList)
                     {
-                        int source_index = JumpList.IndexOf(jump);
-                        int target_index = dropInfo.InsertIndex;
+                        int sourceIndex = JumpList.IndexOf(jump);
+                        int targetIndex = dropInfo.InsertIndex;
 
                         base.Drop(dropInfo);
 
-                        LoadedSave.JumpList.Move(jump, target_index);
+                        LoadedSave.JumpList.Move(jump, targetIndex);
 
-                        JumpSelectionIndex = target_index;
+                        JumpSelectionIndex = targetIndex;
 
                         CalculateJumpNumber(LoadedSave.JumpList);
-                        MoveUniversalDrawbackSuspends(source_index, target_index);
+                        MoveUniversalDrawbackSuspends(sourceIndex, targetIndex);
+                    }
+                    break;
+                case Purchase purchase:
+                    if (dropInfo.TargetCollection == CurrentLoadedPurchaseList)
+                    {
+                        int dropIndex = dropInfo.InsertIndex;
+
+                        if (dropIndex < CurrentLoadedPurchaseList.Count - 1)
+                        {
+                            Purchase nextPurchase = CurrentLoadedPurchaseList[dropIndex];
+                            int nextPurchaseIndex = JumpSelection.Build[CharacterSelectionIndex].Purchase.IndexOf(nextPurchase);
+
+                            JumpSelection.Build[CharacterSelectionIndex].Purchase.Move(purchase, nextPurchaseIndex);
+                        }
+                        else
+                        {
+                            Purchase previousPurchase = CurrentLoadedPurchaseList[dropIndex - 1];
+                            int previousPurchaseIndex = JumpSelection.Build[CharacterSelectionIndex].Purchase.IndexOf(previousPurchase);
+
+                            JumpSelection.Build[CharacterSelectionIndex].Purchase.Move(purchase, previousPurchaseIndex + 1);
+                        }
+
+                        base.Drop(dropInfo);
+
+                        PurchaseSelectionIndex = dropIndex;
+
+                        MovePurchaseUpCommand.NotifyCanExecuteChanged();
+                        MovePurchaseDownCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                case Drawback drawback:
+                    if (dropInfo.TargetCollection == DrawbackList)
+                    {
+
+                    }
+                    else if (dropInfo.TargetCollection == ScenarioList)
+                    {
+
                     }
                     break;
                 default:
