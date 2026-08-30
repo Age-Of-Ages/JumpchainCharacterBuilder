@@ -2146,7 +2146,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                         base.Drop(dropInfo);
 
-                        PurchaseSelectionIndex = dropIndex;
+                        PurchaseSelectionIndex = CurrentLoadedPurchaseList.IndexOf(purchase);
 
                         MovePurchaseUpCommand.NotifyCanExecuteChanged();
                         MovePurchaseDownCommand.NotifyCanExecuteChanged();
@@ -2155,11 +2155,29 @@ namespace JumpchainCharacterBuilder.ViewModel
                 case Drawback drawback:
                     if (dropInfo.TargetCollection == DrawbackList)
                     {
+                        int targetIndex = dropInfo.InsertIndex;
 
+                        base.Drop(dropInfo);
+
+                        JumpSelection.Build[CharacterSelectionIndex].DrawbackSelection.Move(drawback, targetIndex);
+
+                        DrawbackSelectionIndex = DrawbackList.IndexOf(drawback);
+
+                        MoveDrawbackUpCommand.NotifyCanExecuteChanged();
+                        MoveDrawbackDownCommand.NotifyCanExecuteChanged();
                     }
                     else if (dropInfo.TargetCollection == ScenarioList)
                     {
+                        int targetIndex = dropInfo.InsertIndex;
 
+                        base.Drop(dropInfo);
+
+                        JumpSelection.Build[CharacterSelectionIndex].ScenarioSelection.Move(drawback, targetIndex);
+
+                        ScenarioSelectionIndex = ScenarioList.IndexOf(drawback);
+
+                        MoveScenarioUpCommand.NotifyCanExecuteChanged();
+                        MoveScenarioDownCommand.NotifyCanExecuteChanged();
                     }
                     break;
                 default:
