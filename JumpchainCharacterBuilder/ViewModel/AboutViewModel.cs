@@ -20,7 +20,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private Dictionary<string, string> _dependencyLicenses = new()
         {
             {"Community Toolkit", "" },
-            {"Dependency Injection", "" }
+            {"Dependency Injection", "" },
+            {"Gong WPF DragDrop", "" }
         };
 
         [ObservableProperty]
@@ -63,9 +64,11 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             List<string> diLicenseList = TxtAccess.ReadText(Path.Combine(Environment.CurrentDirectory, "Licenses", "Microsoft.Extensions.DependencyInjection License.txt"));
             List<string> toolkitLicenseList = TxtAccess.ReadText(Path.Combine(Environment.CurrentDirectory, "Licenses", "CommunityToolkit.Mvvm License.txt"));
+            List<string> dragdropLicenceList = TxtAccess.ReadText(Path.Combine(Environment.CurrentDirectory, "Licenses", "gong-wpf-dragdrop License.txt"));
 
             DependencyLicenses["Dependency Injection"] = FormatLicenseString(diLicenseList);
             DependencyLicenses["Community Toolkit"] = FormatLicenseString(toolkitLicenseList);
+            DependencyLicenses["Gong WPF DragDrop"] = FormatLicenseString(dragdropLicenceList);
 
             DependencyLicenseSelection = DependencyLicenses.First().Key;
         }
