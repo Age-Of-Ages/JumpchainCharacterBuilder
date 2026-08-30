@@ -2118,7 +2118,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                         LoadedSave.JumpList.Move(jump, targetIndex);
 
-                        JumpSelectionIndex = targetIndex;
+                        JumpSelectionIndex = JumpList.IndexOf(jump);
 
                         CalculateJumpNumber(LoadedSave.JumpList);
                         MoveUniversalDrawbackSuspends(sourceIndex, targetIndex);
