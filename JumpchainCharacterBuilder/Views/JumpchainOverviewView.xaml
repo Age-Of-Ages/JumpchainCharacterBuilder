@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:JumpchainCharacterBuilder.Views"
              xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
              xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
+             xmlns:dd="urn:gong-wpf-dragdrop"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=viewModel:JumpchainOverviewViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="714" d:DesignWidth="928">
@@ -59,7 +60,9 @@
                       SelectedItem="{Binding JumpSelection}"
                       SelectedIndex="{Binding JumpSelectionIndex}"
                       SelectionChanged="JumpList_SelectionChanged" Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="1">
+                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="1"
+                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                      dd:DragDrop.DropHandler="{Binding}">
                 <ListView.View>
                     <GridView>
                         <GridView.Columns>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.NetworkInformation;
 
 namespace JumpchainCharacterBuilder
 {
@@ -16,6 +17,25 @@ namespace JumpchainCharacterBuilder
         public static void SwapListItems<T>(this List<T> list, int pos1, int pos2)
         {
             (list[pos1], list[pos2]) = (list[pos2], list[pos1]);
+        }
+
+
+        public static void Move<T>(this List<T> list, T item, int newIndex)
+        {
+            if (item != null)
+            {
+                int oldIndex = list.IndexOf(item);
+                if (oldIndex > -1) {
+                    list.RemoveAt(oldIndex);
+
+                    if (newIndex > oldIndex)
+                    {
+                        newIndex--;
+                    }
+
+                    list.Insert(newIndex, item);
+                }
+            }
         }
 
         /// <summary>

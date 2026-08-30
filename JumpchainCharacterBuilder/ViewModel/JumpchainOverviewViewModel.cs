@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using GongSolutions.Wpf.DragDrop;
 using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
@@ -2063,7 +2064,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
-        private void UpdateUniversalDrawbackSuspends(int oldIndex, int newIndex)
+        private void SwapUniversalDrawbackSuspends(int oldIndex, int newIndex)
         {
             List<DrawbackSupplementPurchase> drawbacks = LoadedDrawbackSupplement switch
             {
@@ -2080,6 +2081,53 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
         }
 
+        private void MoveUniversalDrawbackSuspends(int oldIndex, int newIndex)
+        {
+            List<DrawbackSupplementPurchase> drawbacks = LoadedDrawbackSupplement switch
+            {
+                Options.DrawbackSupplements.Generic => LoadedSave.GenericDrawbackSupplement.Purchases,
+                Options.DrawbackSupplements.UDS => LoadedSave.UniversalDrawbackSupplement.Purchases,
+                Options.DrawbackSupplements.UU => LoadedSave.UUSupplement.Purchases,
+                _ => LoadedSave.GenericDrawbackSupplement.Purchases,
+            };
+
+            foreach (DrawbackSupplementPurchase drawback in drawbacks)
+            {
+                ListValidationClass.CheckDrawbackSuspendCount(drawback, JumpList.Count);
+                drawback.SuspendList.Move(drawback.SuspendList[oldIndex], newIndex);
+            }
+        }
+
+
+        public override void DragOver(IDropInfo dropInfo)
+        {
+            base.DragOver(dropInfo);
+        }
+
+        public override void Drop(IDropInfo dropInfo)
+        {
+            switch (dropInfo.Data)
+            {
+                case Jump jump:
+                    if (dropInfo.TargetCollection == JumpList)
+                    {
+                        int source_index = JumpList.IndexOf(jump);
+                        int target_index = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        LoadedSave.JumpList.Move(jump, target_index);
+
+                        JumpSelectionIndex = target_index;
+
+                        CalculateJumpNumber(LoadedSave.JumpList);
+                        MoveUniversalDrawbackSuspends(source_index, target_index);
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
         #endregion
 
 
@@ -2161,7 +2209,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             JumpSelectionIndex = index - 1;
 
             CalculateJumpNumber(LoadedSave.JumpList);
-            UpdateUniversalDrawbackSuspends(index, index - 1);
+            SwapUniversalDrawbackSuspends(index, index - 1);
         }
 
         private bool CanMoveJumpUp() => LoadedSave.JumpList.IndexOf(JumpSelection) > 0 && JumpSelection != null;
@@ -2177,7 +2225,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             JumpSelectionIndex = index + 1;
 
             CalculateJumpNumber(LoadedSave.JumpList);
-            UpdateUniversalDrawbackSuspends(index, index + 1);
+            SwapUniversalDrawbackSuspends(index, index + 1);
         }
         private bool CanMoveJumpDown() => LoadedSave.JumpList.IndexOf(JumpSelection) < (JumpList.Count - 1) && JumpSelection != null;
 
