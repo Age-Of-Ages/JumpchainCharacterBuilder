@@ -3322,7 +3322,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                     }
                     break;
                 case SupplementPurchase purchase:
-                    if (LoadedBodyModSupplement == Options.BodyModSupplements.Generic)
+                    if (LoadedBodyModSupplement == Options.BodyModSupplements.Generic && dropInfo.TargetCollection == GenericBodyModPurchaseList)
                     {
                         int targetIndex = dropInfo.InsertIndex;
 
@@ -3338,7 +3338,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                     }
                     break;
                 case SupplementDrawbackModel drawback:
-                    if (LoadedBodyModSupplement == Options.BodyModSupplements.Generic)
+                    if (LoadedBodyModSupplement == Options.BodyModSupplements.Generic && dropInfo.TargetCollection == GenericBodyModDrawbackList)
                     {
                         int targetIndex = dropInfo.InsertIndex;
 
