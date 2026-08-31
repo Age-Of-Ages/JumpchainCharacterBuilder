@@ -3646,7 +3646,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 case Options.BodyModSupplements.Generic:
                     drawback.Category = "Generic";
-                    drawback.Name = "New Purchase";
+                    drawback.Name = "New Drawback";
 
                     CharacterSelection.BodyMod.Limitations.Add(drawback);
                     GenericBodyModDrawbackList.Add(drawback);
