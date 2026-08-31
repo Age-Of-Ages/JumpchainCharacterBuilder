@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using GongSolutions.Wpf.DragDrop;
 using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
@@ -10,6 +11,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Windows.Shell;
 
 namespace JumpchainCharacterBuilder.ViewModel
 {
@@ -3059,6 +3061,300 @@ namespace JumpchainCharacterBuilder.ViewModel
                         dependency.DependencySource = CurrentBoosterList[booster.BoosterDependencies.IndexOf(dependency) + 1].BoosterName;
                     }
                 }
+            }
+        }
+
+        public override void Drop(IDropInfo dropInfo)
+        {
+            switch (dropInfo.Data)
+            {
+                case ProfileAttribute attribute:
+                    if (dropInfo.TargetCollection == CurrentPhysicalAttributeList)
+                    {
+                        int dropIndex = dropInfo.InsertIndex;
+
+                        if (dropIndex < CurrentPhysicalAttributeList.Count - 1)
+                        {
+                            ProfileAttribute nextAttribute = CurrentPhysicalAttributeList[dropIndex];
+                            int nextAttributeIndex = CharacterSelection.Attributes.IndexOf(nextAttribute);
+
+                            CharacterSelection.Attributes.Move(attribute, nextAttributeIndex);
+                        }
+                        else
+                        {
+                            ProfileAttribute previousAttribute = CurrentPhysicalAttributeList[dropIndex - 1];
+                            int previousAttributeIndex = CharacterSelection.Attributes.IndexOf(previousAttribute);
+
+                            CharacterSelection.Attributes.Move(attribute, previousAttributeIndex + 1);
+                        }
+
+                        base.Drop(dropInfo);
+
+                        CurrentPhysicalAttributeIndex = CurrentPhysicalAttributeList.IndexOf(attribute);
+
+                        DeletePhysicalAttributeCommand.NotifyCanExecuteChanged();
+                        MovePhysicalAttributeUpCommand.NotifyCanExecuteChanged();
+                        MovePhysicalAttributeDownCommand.NotifyCanExecuteChanged();
+                    }
+                    else if (dropInfo.TargetCollection == CurrentMentalAttributeList)
+                    {
+                        int dropIndex = dropInfo.InsertIndex;
+
+                        if (dropIndex < CurrentMentalAttributeList.Count - 1)
+                        {
+                            ProfileAttribute nextAttribute = CurrentMentalAttributeList[dropIndex];
+                            int nextAttributeIndex = CharacterSelection.Attributes.IndexOf(nextAttribute);
+
+                            CharacterSelection.Attributes.Move(attribute, nextAttributeIndex);
+                        }
+                        else
+                        {
+                            ProfileAttribute previousAttribute = CurrentMentalAttributeList[dropIndex - 1];
+                            int previousAttributeIndex = CharacterSelection.Attributes.IndexOf(previousAttribute);
+
+                            CharacterSelection.Attributes.Move(attribute, previousAttributeIndex + 1);
+                        }
+
+                        base.Drop(dropInfo);
+
+                        CurrentMentalAttributeIndex = CurrentMentalAttributeList.IndexOf(attribute);
+
+                        DeleteMentalAttributeCommand.NotifyCanExecuteChanged();
+                        MoveMentalAttributeUpCommand.NotifyCanExecuteChanged();
+                        MoveMentalAttributeDownCommand.NotifyCanExecuteChanged();
+                    }
+                    else if (dropInfo.TargetCollection == CurrentSupernaturalAttributeList)
+                    {
+                        int dropIndex = dropInfo.InsertIndex;
+
+                        if (dropIndex < CurrentSupernaturalAttributeList.Count - 1)
+                        {
+                            ProfileAttribute nextAttribute = CurrentSupernaturalAttributeList[dropIndex];
+                            int nextAttributeIndex = CharacterSelection.Attributes.IndexOf(nextAttribute);
+
+                            CharacterSelection.Attributes.Move(attribute, nextAttributeIndex);
+                        }
+                        else
+                        {
+                            ProfileAttribute previousAttribute = CurrentSupernaturalAttributeList[dropIndex - 1];
+                            int previousAttributeIndex = CharacterSelection.Attributes.IndexOf(previousAttribute);
+
+                            CharacterSelection.Attributes.Move(attribute, previousAttributeIndex + 1);
+                        }
+
+                        base.Drop(dropInfo);
+
+                        CurrentSupernaturalAttributeIndex = CurrentSupernaturalAttributeList.IndexOf(attribute);
+
+                        DeleteSupernaturalAttributeCommand.NotifyCanExecuteChanged();
+                        MoveSupernaturalAttributeUpCommand.NotifyCanExecuteChanged();
+                        MoveSupernaturalAttributeDownCommand.NotifyCanExecuteChanged();
+                    }
+                    else if (dropInfo.TargetCollection == CurrentPhysicalSkillList)
+                    {
+                        int dropIndex = dropInfo.InsertIndex;
+
+                        if (dropIndex < CurrentPhysicalSkillList.Count - 1)
+                        {
+                            ProfileAttribute nextSkill = CurrentPhysicalSkillList[dropIndex];
+                            int nextSkillIndex = CharacterSelection.Skills.IndexOf(nextSkill);
+
+                            CharacterSelection.Skills.Move(attribute, nextSkillIndex);
+                        }
+                        else
+                        {
+                            ProfileAttribute previousSkill = CurrentPhysicalSkillList[dropIndex - 1];
+                            int previousSkillIndex = CharacterSelection.Skills.IndexOf(previousSkill);
+
+                            CharacterSelection.Skills.Move(attribute, previousSkillIndex + 1);
+                        }
+
+                        base.Drop(dropInfo);
+
+                        CurrentPhysicalSkillIndex = CurrentPhysicalSkillList.IndexOf(attribute);
+
+                        DeletePhysicalSkillCommand.NotifyCanExecuteChanged();
+                        MovePhysicalSkillUpCommand.NotifyCanExecuteChanged();
+                        MovePhysicalSkillDownCommand.NotifyCanExecuteChanged();
+                    }
+                    else if (dropInfo.TargetCollection == CurrentMentalSkillList)
+                    {
+                        int dropIndex = dropInfo.InsertIndex;
+
+                        if (dropIndex < CurrentMentalSkillList.Count - 1)
+                        {
+                            ProfileAttribute nextSkill = CurrentMentalSkillList[dropIndex];
+                            int nextSkillIndex = CharacterSelection.Skills.IndexOf(nextSkill);
+
+                            CharacterSelection.Skills.Move(attribute, nextSkillIndex);
+                        }
+                        else
+                        {
+                            ProfileAttribute previousSkill = CurrentMentalSkillList[dropIndex - 1];
+                            int previousSkillIndex = CharacterSelection.Skills.IndexOf(previousSkill);
+
+                            CharacterSelection.Skills.Move(attribute, previousSkillIndex + 1);
+                        }
+
+                        base.Drop(dropInfo);
+
+                        CurrentMentalSkillIndex = CurrentMentalSkillList.IndexOf(attribute);
+
+                        DeleteMentalSkillCommand.NotifyCanExecuteChanged();
+                        MoveMentalSkillUpCommand.NotifyCanExecuteChanged();
+                        MoveMentalSkillDownCommand.NotifyCanExecuteChanged();
+                    }
+                    else if (dropInfo.TargetCollection == CurrentSocialSkillList)
+                    {
+                        int dropIndex = dropInfo.InsertIndex;
+
+                        if (dropIndex < CurrentSocialSkillList.Count - 1)
+                        {
+                            ProfileAttribute nextSkill = CurrentSocialSkillList[dropIndex];
+                            int nextSkillIndex = CharacterSelection.Skills.IndexOf(nextSkill);
+
+                            CharacterSelection.Skills.Move(attribute, nextSkillIndex);
+                        }
+                        else
+                        {
+                            ProfileAttribute previousSkill = CurrentSocialSkillList[dropIndex - 1];
+                            int previousSkillIndex = CharacterSelection.Skills.IndexOf(previousSkill);
+
+                            CharacterSelection.Skills.Move(attribute, previousSkillIndex + 1);
+                        }
+
+                        base.Drop(dropInfo);
+
+                        CurrentSocialSkillIndex = CurrentSocialSkillList.IndexOf(attribute);
+
+                        DeleteSocialSkillCommand.NotifyCanExecuteChanged();
+                        MoveSocialSkillUpCommand.NotifyCanExecuteChanged();
+                        MoveSocialSkillDownCommand.NotifyCanExecuteChanged();
+                    }
+                    else if (dropInfo.TargetCollection == CurrentSupernaturalSkillList)
+                    {
+                        int dropIndex = dropInfo.InsertIndex;
+
+                        if (dropIndex < CurrentSupernaturalSkillList.Count - 1)
+                        {
+                            ProfileAttribute nextSkill = CurrentSupernaturalSkillList[dropIndex];
+                            int nextSkillIndex = CharacterSelection.Skills.IndexOf(nextSkill);
+
+                            CharacterSelection.Skills.Move(attribute, nextSkillIndex);
+                        }
+                        else
+                        {
+                            ProfileAttribute previousSkill = CurrentSupernaturalSkillList[dropIndex - 1];
+                            int previousSkillIndex = CharacterSelection.Skills.IndexOf(previousSkill);
+
+                            CharacterSelection.Skills.Move(attribute, previousSkillIndex + 1);
+                        }
+
+                        base.Drop(dropInfo);
+
+                        CurrentSupernaturalSkillIndex = CurrentSupernaturalSkillList.IndexOf(attribute);
+
+                        DeleteSupernaturalSkillCommand.NotifyCanExecuteChanged();
+                        MoveSupernaturalSkillUpCommand.NotifyCanExecuteChanged();
+                        MoveSupernaturalSkillDownCommand.NotifyCanExecuteChanged();
+                    }
+                    else if (dropInfo.TargetCollection == CurrentTechnologicalSkillList)
+                    {
+                        int dropIndex = dropInfo.InsertIndex;
+
+                        if (dropIndex < CurrentTechnologicalSkillList.Count - 1)
+                        {
+                            ProfileAttribute nextSkill = CurrentTechnologicalSkillList[dropIndex];
+                            int nextSkillIndex = CharacterSelection.Skills.IndexOf(nextSkill);
+
+                            CharacterSelection.Skills.Move(attribute, nextSkillIndex);
+                        }
+                        else
+                        {
+                            ProfileAttribute previousSkill = CurrentTechnologicalSkillList[dropIndex - 1];
+                            int previousSkillIndex = CharacterSelection.Skills.IndexOf(previousSkill);
+
+                            CharacterSelection.Skills.Move(attribute, previousSkillIndex + 1);
+                        }
+
+                        base.Drop(dropInfo);
+
+                        CurrentTechnologicalSkillIndex = CurrentTechnologicalSkillList.IndexOf(attribute);
+
+                        DeleteTechnologicalSkillCommand.NotifyCanExecuteChanged();
+                        MoveTechnologicalSkillUpCommand.NotifyCanExecuteChanged();
+                        MoveTechnologicalSkillDownCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                case Booster booster:
+                    if (dropInfo.TargetCollection == CurrentBoosterList)
+                    {
+                        int sourceIndex = CurrentBoosterList.IndexOf(booster);
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        BoosterDependency sourceDependency;
+                        int dependencyTarget;
+
+                        foreach (Booster currentBooster in CurrentBoosterList)
+                        {
+                            if (currentBooster != CurrentBoosterSelection)
+                            {
+                                sourceDependency = sourceIndex < CurrentBoosterList.IndexOf(currentBooster)
+                                    ? currentBooster.BoosterDependencies[sourceIndex]
+                                    : currentBooster.BoosterDependencies[sourceIndex - 1];
+                                dependencyTarget = targetIndex <= CurrentBoosterList.IndexOf(currentBooster)
+                                    ? targetIndex
+                                    : targetIndex - 1;
+
+                                currentBooster.BoosterDependencies.Move(sourceDependency, dependencyTarget);
+                            }
+                        }
+
+                        base.Drop(dropInfo);
+
+                        CharacterSelection.Boosters.Move(booster, targetIndex);
+
+                        CurrentBoosterIndex = CurrentBoosterList.IndexOf(booster);
+
+                        DeleteBoosterCommand.NotifyCanExecuteChanged();
+                        MoveBoosterUpCommand.NotifyCanExecuteChanged();
+                        MoveBoosterDownCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                case SupplementPurchase purchase:
+                    if (LoadedBodyModSupplement == Options.BodyModSupplements.Generic)
+                    {
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        CharacterSelection.BodyMod.Purchases.Move(purchase, targetIndex);
+
+                        GenericBodyModPurchaseSelectionIndex = GenericBodyModPurchaseList.IndexOf(purchase);
+
+                        DeleteBodyModPurchaseCommand.NotifyCanExecuteChanged();
+                        MoveBodyModPurchaseUpCommand.NotifyCanExecuteChanged();
+                        MoveBodyModPurchaseDownCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                case SupplementDrawbackModel drawback:
+                    if (LoadedBodyModSupplement == Options.BodyModSupplements.Generic)
+                    {
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        CharacterSelection.BodyMod.Limitations.Move(drawback, targetIndex);
+
+                        GenericBodyModDrawbackIndex = GenericBodyModDrawbackList.IndexOf(drawback);
+
+                        DeleteBodyModDrawbackCommand.NotifyCanExecuteChanged();
+                        MoveBodyModDrawbackUpCommand.NotifyCanExecuteChanged();
+                        MoveBodyModDrawbackDownCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                default:
+                    break;
             }
         }
         #endregion
