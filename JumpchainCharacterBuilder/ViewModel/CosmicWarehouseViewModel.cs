@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using GongSolutions.Wpf.DragDrop;
 using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
@@ -768,6 +769,272 @@ namespace JumpchainCharacterBuilder.ViewModel
             DeletePurchaseCommand.NotifyCanExecuteChanged();
             MovePurchaseDownCommand.NotifyCanExecuteChanged();
             MovePurchaseUpCommand.NotifyCanExecuteChanged();
+        }
+
+        public override void Drop(IDropInfo dropInfo)
+        {
+            switch (dropInfo.Data)
+            {
+                case SupplementPurchase purchase:
+                    switch (LoadedWarehouseSupplement)
+                    {
+                        case Options.CosmicWarehouseSupplements.Generic:
+                            if (dropInfo.TargetCollection == BasicsPurchaseList)
+                            {
+                                int targetIndex = dropInfo.InsertIndex;
+
+                                base.Drop(dropInfo);
+
+                                LoadedSave.GenericWarehouse.Purchases.Move(purchase, targetIndex);
+
+                                BasicsPurchaseSelectionIndex = BasicsPurchaseList.IndexOf(purchase); 
+                            }
+
+                            break;
+                        case Options.CosmicWarehouseSupplements.PersonalReality:
+                            switch (PurchasesTabIndex)
+                            {
+                                case 0:
+                                    if (dropInfo.TargetCollection == BasicsPurchaseList)
+                                    {
+                                        int dropIndex = dropInfo.InsertIndex;
+
+                                        if (dropIndex < BasicsPurchaseList.Count - 1)
+                                        {
+                                            SupplementPurchase nextPurchase = BasicsPurchaseList[dropIndex];
+                                            int nextPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(nextPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, nextPurchaseIndex);
+                                        }
+                                        else
+                                        {
+                                            SupplementPurchase previousPurchase = BasicsPurchaseList[dropIndex - 1];
+                                            int previousPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(previousPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, previousPurchaseIndex + 1);
+                                        }
+
+                                        base.Drop(dropInfo);
+
+                                        BasicsPurchaseSelectionIndex = BasicsPurchaseList.IndexOf(purchase);
+                                    }
+                                    break;
+                                case 1:
+                                    if (dropInfo.TargetCollection == UtilitiesPurchaseList)
+                                    {
+                                        int dropIndex = dropInfo.InsertIndex;
+
+                                        if (dropIndex < UtilitiesPurchaseList.Count - 1)
+                                        {
+                                            SupplementPurchase nextPurchase = UtilitiesPurchaseList[dropIndex];
+                                            int nextPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(nextPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, nextPurchaseIndex);
+                                        }
+                                        else
+                                        {
+                                            SupplementPurchase previousPurchase = UtilitiesPurchaseList[dropIndex - 1];
+                                            int previousPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(previousPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, previousPurchaseIndex + 1);
+                                        }
+
+                                        base.Drop(dropInfo);
+
+                                        UtilitiesPurchaseSelectionIndex = UtilitiesPurchaseList.IndexOf(purchase);
+                                    }
+                                    break;
+                                case 2:
+                                    if (dropInfo.TargetCollection == CosmeticPurchaseList)
+                                    {
+                                        int dropIndex = dropInfo.InsertIndex;
+
+                                        if (dropIndex < CosmeticPurchaseList.Count - 1)
+                                        {
+                                            SupplementPurchase nextPurchase = CosmeticPurchaseList[dropIndex];
+                                            int nextPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(nextPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, nextPurchaseIndex);
+                                        }
+                                        else
+                                        {
+                                            SupplementPurchase previousPurchase = CosmeticPurchaseList[dropIndex - 1];
+                                            int previousPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(previousPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, previousPurchaseIndex + 1);
+                                        }
+
+                                        base.Drop(dropInfo);
+
+                                        CosmeticPurchaseSelectionIndex = CosmeticPurchaseList.IndexOf(purchase);
+                                    }
+                                    break;
+                                case 3:
+                                    if (dropInfo.TargetCollection == FacilitiesPurchaseList)
+                                    {
+                                        int dropIndex = dropInfo.InsertIndex;
+
+                                        if (dropIndex < FacilitiesPurchaseList.Count - 1)
+                                        {
+                                            SupplementPurchase nextPurchase = FacilitiesPurchaseList[dropIndex];
+                                            int nextPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(nextPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, nextPurchaseIndex);
+                                        }
+                                        else
+                                        {
+                                            SupplementPurchase previousPurchase = FacilitiesPurchaseList[dropIndex - 1];
+                                            int previousPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(previousPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, previousPurchaseIndex + 1);
+                                        }
+
+                                        base.Drop(dropInfo);
+
+                                        FacilitiesPurchaseSelectionIndex = FacilitiesPurchaseList.IndexOf(purchase);
+                                    }
+                                    break;
+                                case 4:
+                                    if (dropInfo.TargetCollection == ExtensionsPurchaseList)
+                                    {
+                                        int dropIndex = dropInfo.InsertIndex;
+
+                                        if (dropIndex < ExtensionsPurchaseList.Count - 1)
+                                        {
+                                            SupplementPurchase nextPurchase = ExtensionsPurchaseList[dropIndex];
+                                            int nextPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(nextPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, nextPurchaseIndex);
+                                        }
+                                        else
+                                        {
+                                            SupplementPurchase previousPurchase = ExtensionsPurchaseList[dropIndex - 1];
+                                            int previousPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(previousPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, previousPurchaseIndex + 1);
+                                        }
+
+                                        base.Drop(dropInfo);
+
+                                        ExtensionsPurchaseSelectionIndex = ExtensionsPurchaseList.IndexOf(purchase);
+                                    }
+                                    break;
+                                case 5:
+                                    if (dropInfo.TargetCollection == EquipmentPurchaseList)
+                                    {
+                                        int dropIndex = dropInfo.InsertIndex;
+
+                                        if (dropIndex < EquipmentPurchaseList.Count - 1)
+                                        {
+                                            SupplementPurchase nextPurchase = EquipmentPurchaseList[dropIndex];
+                                            int nextPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(nextPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, nextPurchaseIndex);
+                                        }
+                                        else
+                                        {
+                                            SupplementPurchase previousPurchase = EquipmentPurchaseList[dropIndex - 1];
+                                            int previousPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(previousPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, previousPurchaseIndex + 1);
+                                        }
+
+                                        base.Drop(dropInfo);
+
+                                        EquipmentPurchaseSelectionIndex = EquipmentPurchaseList.IndexOf(purchase);
+                                    }
+                                    break;
+                                case 6:
+                                    if (dropInfo.TargetCollection == CompanionsPurchaseList)
+                                    {
+                                        int dropIndex = dropInfo.InsertIndex;
+
+                                        if (dropIndex < CompanionsPurchaseList.Count - 1)
+                                        {
+                                            SupplementPurchase nextPurchase = CompanionsPurchaseList[dropIndex];
+                                            int nextPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(nextPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, nextPurchaseIndex);
+                                        }
+                                        else
+                                        {
+                                            SupplementPurchase previousPurchase = CompanionsPurchaseList[dropIndex - 1];
+                                            int previousPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(previousPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, previousPurchaseIndex + 1);
+                                        }
+
+                                        base.Drop(dropInfo);
+
+                                        CompanionsPurchaseSelectionIndex = CompanionsPurchaseList.IndexOf(purchase);
+                                    }
+                                    break;
+                                case 7:
+                                    if (dropInfo.TargetCollection == MiscPurchaseList)
+                                    {
+                                        int dropIndex = dropInfo.InsertIndex;
+
+                                        if (dropIndex < MiscPurchaseList.Count - 1)
+                                        {
+                                            SupplementPurchase nextPurchase = MiscPurchaseList[dropIndex];
+                                            int nextPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(nextPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, nextPurchaseIndex);
+                                        }
+                                        else
+                                        {
+                                            SupplementPurchase previousPurchase = MiscPurchaseList[dropIndex - 1];
+                                            int previousPurchaseIndex = LoadedSave.PersonalReality.Purchases.IndexOf(previousPurchase);
+
+                                            LoadedSave.PersonalReality.Purchases.Move(purchase, previousPurchaseIndex + 1);
+                                        }
+
+                                        base.Drop(dropInfo);
+
+                                        MiscPurchaseSelectionIndex = MiscPurchaseList.IndexOf(purchase);
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        default:
+                            break;
+                    }
+
+                    DeletePurchaseCommand.NotifyCanExecuteChanged();
+                    MovePurchaseDownCommand.NotifyCanExecuteChanged();
+                    MovePurchaseUpCommand.NotifyCanExecuteChanged();
+                    break;
+                case SupplementDrawbackModel limitation:
+                    if (dropInfo.TargetCollection == LimitationList)
+                    {
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        switch (LoadedWarehouseSupplement)
+                        {
+                            case Options.CosmicWarehouseSupplements.Generic:
+                                LoadedSave.GenericWarehouse.Limitations.Move(limitation, targetIndex);
+                                break;
+                            case Options.CosmicWarehouseSupplements.PersonalReality:
+                                LoadedSave.PersonalReality.Limitations.Move(limitation, targetIndex);
+                                break;
+                            default:
+                                break;
+                        }
+
+                        LimitationSelectionIndex = LimitationList.IndexOf(limitation);
+
+                        DeleteLimitationCommand.NotifyCanExecuteChanged();
+                        MoveLimitationDownCommand.NotifyCanExecuteChanged();
+                        MoveLimitationUpCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
         #endregion
 
