@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using GongSolutions.Wpf.DragDrop;
 using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
@@ -1115,6 +1116,49 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
 
             Messenger.Send(new CategoryChangedMessage(true));
+        }
+
+        public override void Drop(IDropInfo dropInfo)
+        {
+            switch (dropInfo.Data)
+            {
+                case string category:
+                    if (dropInfo.TargetCollection == PerkCategories)
+                    {
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        LoadedSave.PerkCategoryList.Move(category, targetIndex);
+
+                        PerkCategoryIndex = PerkCategories.IndexOf(category);
+
+                        Messenger.Send(new CategoryChangedMessage(true));
+
+                        DeletePerkCategoryCommand.NotifyCanExecuteChanged();
+                        MovePerkCategoryUpCommand.NotifyCanExecuteChanged();
+                        MovePerkCategoryDownCommand.NotifyCanExecuteChanged();
+                    }
+                    else if (dropInfo.TargetCollection == ItemCategories)
+                    {
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        LoadedSave.ItemCategoryList.Move(category, targetIndex);
+
+                        ItemCategoryIndex = ItemCategories.IndexOf(category);
+
+                        Messenger.Send(new CategoryChangedMessage(true));
+
+                        DeleteItemCategoryCommand.NotifyCanExecuteChanged();
+                        MoveItemCategoryUpCommand.NotifyCanExecuteChanged();
+                        MoveItemCategoryDownCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                default:
+                    break;
+            }
         }
         #endregion
 
