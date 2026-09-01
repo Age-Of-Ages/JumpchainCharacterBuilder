@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using GongSolutions.Wpf.DragDrop;
 using JumpchainCharacterBuilder.Attributes;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
@@ -407,6 +408,66 @@ namespace JumpchainCharacterBuilder.ViewModel
             WPGained = wPTotal;
         }
 
+        public override void Drop(IDropInfo dropInfo)
+        {
+            switch (dropInfo.Data)
+            {
+                case HouseRuleModel houseRule:
+                    if (dropInfo.TargetCollection == HouseRuleList)
+                    {
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        switch (LoadedSupplement)
+                        {
+                            case Options.DrawbackSupplements.Generic:
+                                LoadedSave.GenericDrawbackSupplement.HouseRules.Move(houseRule, targetIndex);
+                                break;
+                            case Options.DrawbackSupplements.UDS:
+                                LoadedSave.UniversalDrawbackSupplement.HouseRules.Move(houseRule, targetIndex);
+                                break;
+                            case Options.DrawbackSupplements.UU:
+                                LoadedSave.UUSupplement.HouseRules.Move(houseRule, targetIndex);
+                                break;
+                        }
+                        HouseRuleSelectionIndex = HouseRuleList.IndexOf(houseRule);
+
+                        DeleteHouseRuleCommand.NotifyCanExecuteChanged();
+                        MoveHouseRuleUpCommand.NotifyCanExecuteChanged();
+                        MoveHouseRuleDownCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                case DrawbackSupplementPurchase drawback:
+                    if (dropInfo.TargetCollection == DrawbackList)
+                    {
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        switch (LoadedSupplement)
+                        {
+                            case Options.DrawbackSupplements.Generic:
+                                LoadedSave.GenericDrawbackSupplement.Purchases.Move(drawback, targetIndex);
+                                break;
+                            case Options.DrawbackSupplements.UDS:
+                                LoadedSave.UniversalDrawbackSupplement.Purchases.Move(drawback, targetIndex);
+                                break;
+                            case Options.DrawbackSupplements.UU:
+                                LoadedSave.UUSupplement.Purchases.Move(drawback, targetIndex);
+                                break;
+                        }
+                        DrawbackSelectionIndex = DrawbackList.IndexOf(drawback);
+
+                        DeleteDrawbackCommand.NotifyCanExecuteChanged();
+                        MoveDrawbackUpCommand.NotifyCanExecuteChanged();
+                        MoveDrawbackDownCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
         #endregion
 
         #region Commands
