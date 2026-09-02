@@ -1355,6 +1355,10 @@ namespace JumpchainCharacterBuilder.ViewModel
                     BuildTabIndex = 5;
                 }
             });
+            Messenger.Register<CharacterCreatedMessage>(this, (r, m) =>
+            {
+                CreateCharacterList();
+            });
 
             CreateJumpList();
 

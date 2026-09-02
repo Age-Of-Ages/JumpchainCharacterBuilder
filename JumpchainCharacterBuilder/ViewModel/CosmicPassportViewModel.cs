@@ -3390,6 +3390,8 @@ namespace JumpchainCharacterBuilder.ViewModel
 
             RefreshPassports();
 
+            Messenger.Send(new CharacterCreatedMessage(true));
+
             DeleteCharacterCommand.NotifyCanExecuteChanged();
         }
 
