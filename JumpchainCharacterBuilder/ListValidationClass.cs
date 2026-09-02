@@ -82,7 +82,8 @@ namespace JumpchainCharacterBuilder
 
             foreach (CompanionPurchase companionPurchase in jumpBuild.CompanionPurchase)
             {
-                if (companionPurchase.CompanionImportDetails.Count < saveFile.CharacterList.Count)
+                // Since Companion Import Details doesn't have the jumper there should be one less character in that list.
+                if (companionPurchase.CompanionImportDetails.Count < saveFile.CharacterList.Count - 1)
                 {
                     int index = companionPurchase.CompanionImportDetails.Count;
                     for (int i = index; i < saveFile.CharacterList.Count - 1; i++)

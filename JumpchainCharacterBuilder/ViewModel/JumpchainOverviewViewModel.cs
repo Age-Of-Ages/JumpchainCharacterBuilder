@@ -1430,6 +1430,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             LoadWarehouseInvestment();
             LoadBodyModInvestment();
 
+            for (int characterIndex = 0; characterIndex < CharacterList.Count; characterIndex++)
+            {
+                ListValidationClass.CheckImportListCount(LoadedSave, JumpSelection, characterIndex);
+            }
+
             CharacterSelectionIndex = 0;
 
             OriginDiscountsSelection = JumpSelection.OriginDiscounts;
