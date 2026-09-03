@@ -2547,24 +2547,45 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveSBExtraBitsUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveSBExtraBitsDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
 
                                                 <Button Content="New" 
-                                                    Command="{Binding NewSBExtraBitsCommand}"
-                                                    Style="{DynamicResource DataGridButton}"
-                                                    Grid.Row="0"/>
+                                                        Command="{Binding NewSBExtraBitsCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
 
                                                 <Button Content="Delete"
-                                                    Command="{Binding DeleteSBExtraBitsCommand}"
-                                                    Style="{DynamicResource DataGridButton}"
-                                                    Grid.Column="2"/>
+                                                         Command="{Binding DeleteSBExtraBitsCommand}"
+                                                         Style="{DynamicResource DataGridButton}"
+                                                         Grid.Column="2"
+                                                         Grid.Row="0"/>
                                             </Grid>
-                                            
+
                                             <ListView ItemsSource="{Binding SBExtraBitsList}"
                                                       SelectedIndex="{Binding SBExtraBitsIndex}"
                                                       SelectedItem="{Binding SBExtraBitsSelection}"
                                                       HorizontalAlignment="Stretch"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopySBExtraBitsCommand}">
@@ -2922,22 +2943,38 @@
                                             <RowDefinition Height="*"/>
                                         </Grid.RowDefinitions>
 
+                                        <Button Content="Move Up" 
+                                                Command="{Binding MoveSBPowerUpCommand}"
+                                                Style="{DynamicResource DataGridButton}"
+                                                Grid.Column="0"
+                                                Grid.Row="2"/>
+
+                                        <Button Content="Move Down"
+                                                Command="{Binding MoveSBPowerDownCommand}"
+                                                Style="{DynamicResource DataGridButton}"
+                                                Grid.Column="2"
+                                                Grid.Row="2"/>
+
                                         <Button Content="New" 
                                                 Command="{Binding NewSBPowerCommand}"
-                                                Style="{DynamicResource DataGridButton}"/>
+                                                Style="{DynamicResource DataGridButton}"
+                                                Grid.Column="0"
+                                                Grid.Row="0"/>
 
                                         <Button Content="Delete"
                                                 Command="{Binding DeleteSBPowerCommand}"
                                                 Style="{DynamicResource DataGridButton}"
-                                                Grid.Column="2"/>
+                                                Grid.Column="2"
+                                                Grid.Row="0"/>
                                     </Grid>
 
                                     <ListView ItemsSource="{Binding SBBodyModPowerList}"
                                               SelectedItem="{Binding SBBodyModPowerSelection}"
                                               SelectedIndex="{Binding SBBodyModPowerIndex}"
                                               Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged"
-                                              Tag="0">
+                                              ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                              dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                              dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                         <ListView.ContextMenu>
                                             <ContextMenu>
                                                 <MenuItem Header="Copy" Command="{Binding CopySBPowerCommand}">
@@ -3264,7 +3301,7 @@
                                 <GroupBox Header="Essence Selection" Grid.Row="1" Grid.Column="1"
                                           Visibility="{Binding EBMEssenceAllowed, Converter={StaticResource BoolToVis}}">
                                     <DockPanel>
-                                        <Grid DockPanel.Dock="Bottom">
+                                        <Grid DockPanel.Dock="Bottom" Margin="0,4,0,4">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="Auto"/>
                                                 <ColumnDefinition Width="*"/>
@@ -3272,18 +3309,33 @@
                                             </Grid.ColumnDefinitions>
                                             <Grid.RowDefinitions>
                                                 <RowDefinition Height="*"/>
-                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*" MinHeight="12"/>
                                                 <RowDefinition Height="*"/>
                                             </Grid.RowDefinitions>
 
-                                            <Button Content="New Essence" 
-                                                    Command="{Binding NewEssenceCommand}"
-                                                    Style="{DynamicResource DataGridButton}"/>
+                                            <Button Content="Move Up" 
+                                                Command="{Binding MoveEssenceUpCommand}"
+                                                Style="{DynamicResource DataGridButton}"
+                                                Grid.Column="0"
+                                                Grid.Row="2"/>
 
-                                            <Button Content="Delete Essence"
-                                                    Command="{Binding DeleteEssenceCommand}"
-                                                    Style="{DynamicResource DataGridButton}"
-                                                    Grid.Column="2"/>
+                                            <Button Content="Move Down"
+                                                Command="{Binding MoveEssenceDownCommand}"
+                                                Style="{DynamicResource DataGridButton}"
+                                                Grid.Column="2"
+                                                Grid.Row="2"/>
+
+                                            <Button Content="New" 
+                                                Command="{Binding NewEssenceCommand}"
+                                                Style="{DynamicResource DataGridButton}"
+                                                Grid.Column="0"
+                                                Grid.Row="0"/>
+
+                                            <Button Content="Delete"
+                                                Command="{Binding DeleteEssenceCommand}"
+                                                Style="{DynamicResource DataGridButton}"
+                                                Grid.Column="2"
+                                                Grid.Row="0"/>
                                         </Grid>
 
                                         <ListView ItemsSource="{Binding EBMEssenceList}"
@@ -3291,7 +3343,9 @@
                                                   SelectedIndex="{Binding EBMEssenceIndex}"
                                                   HorizontalAlignment="Stretch"
                                                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                  dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                  dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                             <ListView.View>
                                                 <GridView>
                                                     <GridView.Columns>
@@ -3354,22 +3408,44 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                <Button Content="New Purchase" 
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveEBMPerkUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveEBMPerkDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="New" 
                                                         Command="{Binding NewEBMPerkCommand}"
-                                                        Style="{DynamicResource DataGridButton}"/>
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
 
-                                                <Button Content="Delete Purchase"
+                                                <Button Content="Delete"
                                                         Command="{Binding DeleteEBMPerkCommand}"
                                                         Style="{DynamicResource DataGridButton}"
-                                                        Grid.Column="2"/>
+                                                        Grid.Column="2"
+                                                        Grid.Row="0"/>
                                             </Grid>
 
                                             <ListView ItemsSource="{Binding EBMBasicPerkList}"
                                                       SelectedItem="{Binding EBMBasicPerkSelection}"
                                                       SelectedIndex="{Binding EBMBasicPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
@@ -3540,22 +3616,44 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                <Button Content="New Purchase" 
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveEBMPerkUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveEBMPerkDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="New" 
                                                         Command="{Binding NewEBMPerkCommand}"
-                                                        Style="{DynamicResource DataGridButton}"/>
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
 
-                                                <Button Content="Delete Purchase"
+                                                <Button Content="Delete"
                                                         Command="{Binding DeleteEBMPerkCommand}"
                                                         Style="{DynamicResource DataGridButton}"
-                                                        Grid.Column="2"/>
+                                                        Grid.Column="2"
+                                                        Grid.Row="0"/>
                                             </Grid>
 
                                             <ListView ItemsSource="{Binding EBMPhysicalPerkList}"
                                                       SelectedItem="{Binding EBMPhysicalPerkSelection}"
                                                       SelectedIndex="{Binding EBMPhysicalPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
@@ -3726,22 +3824,44 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                <Button Content="New Purchase" 
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveEBMPerkUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveEBMPerkDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="New" 
                                                         Command="{Binding NewEBMPerkCommand}"
-                                                        Style="{DynamicResource DataGridButton}"/>
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
 
-                                                <Button Content="Delete Purchase"
+                                                <Button Content="Delete"
                                                         Command="{Binding DeleteEBMPerkCommand}"
                                                         Style="{DynamicResource DataGridButton}"
-                                                        Grid.Column="2"/>
+                                                        Grid.Column="2"
+                                                        Grid.Row="0"/>
                                             </Grid>
 
                                             <ListView ItemsSource="{Binding EBMMentalPerkList}"
                                                       SelectedItem="{Binding EBMMentalPerkSelection}"
                                                       SelectedIndex="{Binding EBMMentalPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
@@ -3914,22 +4034,44 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                <Button Content="New Purchase" 
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveEBMPerkUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveEBMPerkDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="New" 
                                                         Command="{Binding NewEBMPerkCommand}"
-                                                        Style="{DynamicResource DataGridButton}"/>
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
 
-                                                <Button Content="Delete Purchase"
+                                                <Button Content="Delete"
                                                         Command="{Binding DeleteEBMPerkCommand}"
                                                         Style="{DynamicResource DataGridButton}"
-                                                        Grid.Column="2"/>
+                                                        Grid.Column="2"
+                                                        Grid.Row="0"/>
                                             </Grid>
 
                                             <ListView ItemsSource="{Binding EBMSpiritualPerkList}"
                                                       SelectedItem="{Binding EBMSpiritualPerkSelection}"
                                                       SelectedIndex="{Binding EBMSpiritualPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
@@ -4100,22 +4242,44 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                <Button Content="New Purchase" 
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveEBMPerkUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveEBMPerkDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="New" 
                                                         Command="{Binding NewEBMPerkCommand}"
-                                                        Style="{DynamicResource DataGridButton}"/>
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
 
-                                                <Button Content="Delete Purchase"
+                                                <Button Content="Delete"
                                                         Command="{Binding DeleteEBMPerkCommand}"
                                                         Style="{DynamicResource DataGridButton}"
-                                                        Grid.Column="2"/>
+                                                        Grid.Column="2"
+                                                        Grid.Row="0"/>
                                             </Grid>
 
                                             <ListView ItemsSource="{Binding EBMSkillPerkList}"
                                                       SelectedItem="{Binding EBMSkillPerkSelection}"
                                                       SelectedIndex="{Binding EBMSkillPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
@@ -4286,22 +4450,44 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                <Button Content="New Purchase" 
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveEBMPerkUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveEBMPerkDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="New" 
                                                         Command="{Binding NewEBMPerkCommand}"
-                                                        Style="{DynamicResource DataGridButton}"/>
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
 
-                                                <Button Content="Delete Purchase"
+                                                <Button Content="Delete"
                                                         Command="{Binding DeleteEBMPerkCommand}"
                                                         Style="{DynamicResource DataGridButton}"
-                                                        Grid.Column="2"/>
+                                                        Grid.Column="2"
+                                                        Grid.Row="0"/>
                                             </Grid>
 
                                             <ListView ItemsSource="{Binding EBMSupernaturalPerkList}"
                                                       SelectedItem="{Binding EBMSupernaturalPerkSelection}"
                                                       SelectedIndex="{Binding EBMSupernaturalPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
@@ -4472,22 +4658,44 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                <Button Content="New Purchase" 
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveEBMPerkUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveEBMPerkDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="New" 
                                                         Command="{Binding NewEBMPerkCommand}"
-                                                        Style="{DynamicResource DataGridButton}"/>
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
 
-                                                <Button Content="Delete Purchase"
+                                                <Button Content="Delete"
                                                         Command="{Binding DeleteEBMPerkCommand}"
                                                         Style="{DynamicResource DataGridButton}"
-                                                        Grid.Column="2"/>
+                                                        Grid.Column="2"
+                                                        Grid.Row="0"/>
                                             </Grid>
 
                                             <ListView ItemsSource="{Binding EBMItemPerkList}"
                                                       SelectedItem="{Binding EBMItemPerkSelection}"
                                                       SelectedIndex="{Binding EBMItemPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
@@ -4658,22 +4866,44 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
+                                                    <RowDefinition Height="*"/>
+                                                </Grid.RowDefinitions>
 
-                                                <Button Content="New Purchase" 
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveEBMPerkUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveEBMPerkDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="New" 
                                                         Command="{Binding NewEBMPerkCommand}"
-                                                        Style="{DynamicResource DataGridButton}"/>
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
 
-                                                <Button Content="Delete Purchase"
+                                                <Button Content="Delete"
                                                         Command="{Binding DeleteEBMPerkCommand}"
                                                         Style="{DynamicResource DataGridButton}"
-                                                        Grid.Column="2"/>
+                                                        Grid.Column="2"
+                                                        Grid.Row="0"/>
                                             </Grid>
 
                                             <ListView ItemsSource="{Binding EBMCompanionPerkList}"
                                                       SelectedItem="{Binding EBMCompanionPerkSelection}"
                                                       SelectedIndex="{Binding EBMCompanionPerkIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopyEBMPurchaseCommand}">
@@ -4846,25 +5076,42 @@
                                                 </Grid.ColumnDefinitions>
                                                 <Grid.RowDefinitions>
                                                     <RowDefinition Height="*"/>
-                                                    <RowDefinition Height="*"/>
+                                                    <RowDefinition Height="*" MinHeight="12"/>
                                                     <RowDefinition Height="*"/>
                                                 </Grid.RowDefinitions>
 
-                                                <Button Content="New Drawback" 
-                                                        Command="{Binding NewEBMDrawbackCommand}"
-                                                        Style="{DynamicResource DataGridButton}"/>
+                                                <Button Content="Move Up" 
+                                                        Command="{Binding MoveEBMDrawbackUpCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="2"/>
 
-                                                <Button Content="Delete Drawback"
+                                                <Button Content="Move Down"
+                                                        Command="{Binding MoveEBMDrawbackDownCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="2"
+                                                        Grid.Row="2"/>
+
+                                                <Button Content="New" 
+                                                        Command="{Binding NewEBMDrawbackCommand}"
+                                                        Style="{DynamicResource DataGridButton}"
+                                                        Grid.Column="0"
+                                                        Grid.Row="0"/>
+
+                                                <Button Content="Delete"
                                                         Command="{Binding DeleteEBMDrawbackCommand}"
                                                         Style="{DynamicResource DataGridButton}"
-                                                        Grid.Column="2"/>
+                                                        Grid.Column="2"
+                                                        Grid.Row="0"/>
                                             </Grid>
 
                                             <ListView ItemsSource="{Binding EBMDrawbackList}"
                                                       SelectedItem="{Binding EBMDrawbackSelection}"
                                                       SelectedIndex="{Binding EBMDrawbackIndex}"
                                                       Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
-                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+                                                      ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0"
+                                                      dd:DragDrop.IsDragSource="True" dd:DragDrop.IsDropTarget="True"
+                                                      dd:DragDrop.UseDefaultDragAdorner="True" dd:DragDrop.DropHandler="{Binding}">
                                                 <ListView.ContextMenu>
                                                     <ContextMenu>
                                                         <MenuItem Header="Copy" Command="{Binding CopyEBMDrawbackCommand}">

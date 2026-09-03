@@ -314,6 +314,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private SupplementPurchase _sBExtraBitsSelection = new();
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSBExtraBitsCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSBExtraBitsUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSBExtraBitsDownCommand))]
         private int _sBExtraBitsIndex = 0;
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -357,6 +359,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<SupplementPurchase> _sBBodyModPowerList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteSBPowerTraitCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSBPowerUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveSBPowerDownCommand))]
         private SupplementPurchase _sBBodyModPowerSelection = new();
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -408,6 +412,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private ObservableCollection<EBMEssence> _eBMEssenceList = [];
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEssenceCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEssenceUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEssenceDownCommand))]
         private EBMEssence _eBMEssenceSelection = new();
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -423,6 +429,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMBasicPerkList = [];
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(DeleteEBMTraitCommand))]
         private SupplementPurchase _eBMBasicPerkSelection = new();
         [ObservableProperty]
         [NotifyDataErrorInfo]
@@ -434,6 +441,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _eBMBasicPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkDownCommand))]
         private int _eBMBasicPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMPhysicalPerkList = [];
@@ -450,6 +459,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _eBMPhysicalPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkDownCommand))]
         private int _eBMPhysicalPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMMentalPerkList = [];
@@ -466,6 +477,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _eBMMentalPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkDownCommand))]
         private int _eBMMentalPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMSpiritualPerkList = [];
@@ -482,6 +495,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _eBMSpiritualPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkDownCommand))]
         private int _eBMSpiritualPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMSkillPerkList = [];
@@ -498,6 +513,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _eBMSkillPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkDownCommand))]
         private int _eBMSkillPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMSupernaturalPerkList = [];
@@ -514,6 +531,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _eBMSupernaturalPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkDownCommand))]
         private int _eBMSupernaturalPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMItemPerkList = [];
@@ -530,6 +549,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _eBMItemPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkDownCommand))]
         private int _eBMItemPerkIndex = 0;
         [ObservableProperty]
         private ObservableCollection<SupplementPurchase> _eBMCompanionPerkList = [];
@@ -546,6 +567,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _eBMCompanionPerkDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMPerkCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMPerkDownCommand))]
         private int _eBMCompanionPerkIndex = 0;
 
         [ObservableProperty]
@@ -562,6 +585,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         private string _eBMDrawbackDescription = "";
         [ObservableProperty]
         [NotifyCanExecuteChangedFor(nameof(DeleteEBMDrawbackCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMDrawbackUpCommand))]
+        [NotifyCanExecuteChangedFor(nameof(MoveEBMDrawbackDownCommand))]
         private int _eBMDrawbackIndex = 0;
 
         [ObservableProperty]
@@ -3322,19 +3347,274 @@ namespace JumpchainCharacterBuilder.ViewModel
                     }
                     break;
                 case SupplementPurchase purchase:
-                    if (LoadedBodyModSupplement == Options.BodyModSupplements.Generic && dropInfo.TargetCollection == GenericBodyModPurchaseList)
+                    switch (LoadedBodyModSupplement)
                     {
-                        int targetIndex = dropInfo.InsertIndex;
+                        case Options.BodyModSupplements.Generic:
+                            if (dropInfo.TargetCollection == GenericBodyModPurchaseList)
+                            {
+                                int targetIndex = dropInfo.InsertIndex;
 
-                        base.Drop(dropInfo);
+                                base.Drop(dropInfo);
 
-                        CharacterSelection.BodyMod.Purchases.Move(purchase, targetIndex);
+                                CharacterSelection.BodyMod.Purchases.Move(purchase, targetIndex);
 
-                        GenericBodyModPurchaseSelectionIndex = GenericBodyModPurchaseList.IndexOf(purchase);
+                                GenericBodyModPurchaseSelectionIndex = GenericBodyModPurchaseList.IndexOf(purchase);
 
-                        DeleteBodyModPurchaseCommand.NotifyCanExecuteChanged();
-                        MoveBodyModPurchaseUpCommand.NotifyCanExecuteChanged();
-                        MoveBodyModPurchaseDownCommand.NotifyCanExecuteChanged();
+                                DeleteBodyModPurchaseCommand.NotifyCanExecuteChanged();
+                                MoveBodyModPurchaseUpCommand.NotifyCanExecuteChanged();
+                                MoveBodyModPurchaseDownCommand.NotifyCanExecuteChanged();
+                            }
+                            break;
+                        case Options.BodyModSupplements.SBBodyMod:
+                            if (dropInfo.TargetCollection == SBExtraBitsList)
+                            {
+                                int targetIndex = dropInfo.InsertIndex;
+
+                                base.Drop(dropInfo);
+
+                                CharacterSelection.BodyMod.ExtraBitsList.Move(purchase, targetIndex);
+
+                                SBExtraBitsIndex = SBExtraBitsList.IndexOf(purchase);
+
+                                DeleteSBExtraBitsCommand.NotifyCanExecuteChanged();
+                                MoveSBExtraBitsUpCommand.NotifyCanExecuteChanged();
+                                MoveSBExtraBitsDownCommand.NotifyCanExecuteChanged();
+                            }
+                            else if (dropInfo.TargetCollection == SBBodyModPowerList)
+                            {
+                                int targetIndex = dropInfo.InsertIndex;
+
+                                base.Drop(dropInfo);
+
+                                CharacterSelection.BodyMod.SBPowerList.Move(purchase, targetIndex);
+
+                                SBBodyModPowerIndex = SBBodyModPowerList.IndexOf(purchase);
+
+                                DeleteSBPowerCommand.NotifyCanExecuteChanged();
+                                MoveSBPowerUpCommand.NotifyCanExecuteChanged();
+                                MoveSBPowerDownCommand.NotifyCanExecuteChanged();
+                            }
+                            break;
+                        case Options.BodyModSupplements.EssentialBodyMod:
+                            if (dropInfo.TargetCollection == EBMBasicPerkList)
+                            {
+                                int dropIndex = dropInfo.InsertIndex;
+
+                                if (dropIndex < EBMBasicPerkList.Count - 1)
+                                {
+                                    SupplementPurchase nextPurchase = EBMBasicPerkList[dropIndex];
+                                    int nextPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(nextPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, nextPurchaseIndex);
+                                }
+                                else
+                                {
+                                    SupplementPurchase previousPurchase = EBMBasicPerkList[dropIndex - 1];
+                                    int previousPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(previousPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, previousPurchaseIndex + 1);
+                                }
+
+                                base.Drop(dropInfo);
+
+                                EBMBasicPerkIndex = EBMBasicPerkList.IndexOf(purchase);
+
+                                DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+                            }
+                            else if (dropInfo.TargetCollection == EBMPhysicalPerkList)
+                            {
+                                int dropIndex = dropInfo.InsertIndex;
+
+                                if (dropIndex < EBMPhysicalPerkList.Count - 1)
+                                {
+                                    SupplementPurchase nextPurchase = EBMPhysicalPerkList[dropIndex];
+                                    int nextPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(nextPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, nextPurchaseIndex);
+                                }
+                                else
+                                {
+                                    SupplementPurchase previousPurchase = EBMPhysicalPerkList[dropIndex - 1];
+                                    int previousPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(previousPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, previousPurchaseIndex + 1);
+                                }
+
+                                base.Drop(dropInfo);
+
+                                EBMPhysicalPerkIndex = EBMPhysicalPerkList.IndexOf(purchase);
+
+                                DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+                            }
+                            else if (dropInfo.TargetCollection == EBMMentalPerkList)
+                            {
+                                int dropIndex = dropInfo.InsertIndex;
+
+                                if (dropIndex < EBMMentalPerkList.Count - 1)
+                                {
+                                    SupplementPurchase nextPurchase = EBMMentalPerkList[dropIndex];
+                                    int nextPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(nextPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, nextPurchaseIndex);
+                                }
+                                else
+                                {
+                                    SupplementPurchase previousPurchase = EBMMentalPerkList[dropIndex - 1];
+                                    int previousPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(previousPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, previousPurchaseIndex + 1);
+                                }
+
+                                base.Drop(dropInfo);
+
+                                EBMMentalPerkIndex = EBMMentalPerkList.IndexOf(purchase);
+
+                                DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+                            }
+                            else if (dropInfo.TargetCollection == EBMSpiritualPerkList)
+                            {
+                                int dropIndex = dropInfo.InsertIndex;
+
+                                if (dropIndex < EBMSpiritualPerkList.Count - 1)
+                                {
+                                    SupplementPurchase nextPurchase = EBMSpiritualPerkList[dropIndex];
+                                    int nextPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(nextPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, nextPurchaseIndex);
+                                }
+                                else
+                                {
+                                    SupplementPurchase previousPurchase = EBMSpiritualPerkList[dropIndex - 1];
+                                    int previousPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(previousPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, previousPurchaseIndex + 1);
+                                }
+
+                                base.Drop(dropInfo);
+
+                                EBMSpiritualPerkIndex = EBMSpiritualPerkList.IndexOf(purchase);
+
+                                DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+                            }
+                            else if (dropInfo.TargetCollection == EBMSkillPerkList)
+                            {
+                                int dropIndex = dropInfo.InsertIndex;
+
+                                if (dropIndex < EBMSkillPerkList.Count - 1)
+                                {
+                                    SupplementPurchase nextPurchase = EBMSkillPerkList[dropIndex];
+                                    int nextPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(nextPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, nextPurchaseIndex);
+                                }
+                                else
+                                {
+                                    SupplementPurchase previousPurchase = EBMSkillPerkList[dropIndex - 1];
+                                    int previousPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(previousPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, previousPurchaseIndex + 1);
+                                }
+
+                                base.Drop(dropInfo);
+
+                                EBMSkillPerkIndex = EBMSkillPerkList.IndexOf(purchase);
+
+                                DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+                            }
+                            else if (dropInfo.TargetCollection == EBMSupernaturalPerkList)
+                            {
+                                int dropIndex = dropInfo.InsertIndex;
+
+                                if (dropIndex < EBMSupernaturalPerkList.Count - 1)
+                                {
+                                    SupplementPurchase nextPurchase = EBMSupernaturalPerkList[dropIndex];
+                                    int nextPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(nextPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, nextPurchaseIndex);
+                                }
+                                else
+                                {
+                                    SupplementPurchase previousPurchase = EBMSupernaturalPerkList[dropIndex - 1];
+                                    int previousPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(previousPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, previousPurchaseIndex + 1);
+                                }
+
+                                base.Drop(dropInfo);
+
+                                EBMSupernaturalPerkIndex = EBMSupernaturalPerkList.IndexOf(purchase);
+
+                                DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+                            }
+                            else if (dropInfo.TargetCollection == EBMItemPerkList)
+                            {
+                                int dropIndex = dropInfo.InsertIndex;
+
+                                if (dropIndex < EBMItemPerkList.Count - 1)
+                                {
+                                    SupplementPurchase nextPurchase = EBMItemPerkList[dropIndex];
+                                    int nextPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(nextPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, nextPurchaseIndex);
+                                }
+                                else
+                                {
+                                    SupplementPurchase previousPurchase = EBMItemPerkList[dropIndex - 1];
+                                    int previousPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(previousPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, previousPurchaseIndex + 1);
+                                }
+
+                                base.Drop(dropInfo);
+
+                                EBMItemPerkIndex = EBMItemPerkList.IndexOf(purchase);
+
+                                DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+                            }
+                            else if (dropInfo.TargetCollection == EBMCompanionPerkList)
+                            {
+                                int dropIndex = dropInfo.InsertIndex;
+
+                                if (dropIndex < EBMCompanionPerkList.Count - 1)
+                                {
+                                    SupplementPurchase nextPurchase = EBMCompanionPerkList[dropIndex];
+                                    int nextPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(nextPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, nextPurchaseIndex);
+                                }
+                                else
+                                {
+                                    SupplementPurchase previousPurchase = EBMCompanionPerkList[dropIndex - 1];
+                                    int previousPurchaseIndex = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(previousPurchase);
+
+                                    CharacterSelection.BodyMod.EBMPurchaseList.Move(purchase, previousPurchaseIndex + 1);
+                                }
+
+                                base.Drop(dropInfo);
+
+                                EBMCompanionPerkIndex = EBMCompanionPerkList.IndexOf(purchase);
+
+                                DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+                                MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+                            }
+                            break;
+                        default:
+                            break;
                     }
                     break;
                 case SupplementDrawbackModel drawback:
@@ -3351,6 +3631,36 @@ namespace JumpchainCharacterBuilder.ViewModel
                         DeleteBodyModDrawbackCommand.NotifyCanExecuteChanged();
                         MoveBodyModDrawbackUpCommand.NotifyCanExecuteChanged();
                         MoveBodyModDrawbackDownCommand.NotifyCanExecuteChanged();
+                    }
+                    else if (LoadedBodyModSupplement == Options.BodyModSupplements.EssentialBodyMod && dropInfo.TargetCollection == EBMDrawbackList)
+                    {
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        CharacterSelection.BodyMod.EBMDrawbackList.Move(drawback, targetIndex);
+
+                        EBMDrawbackIndex = EBMDrawbackList.IndexOf(drawback);
+
+                        DeleteEBMDrawbackCommand.NotifyCanExecuteChanged();
+                        MoveEBMDrawbackUpCommand.NotifyCanExecuteChanged();
+                        MoveEBMDrawbackDownCommand.NotifyCanExecuteChanged();
+                    }
+                    break;
+                case EBMEssence essence:
+                    if (dropInfo.TargetCollection == EBMEssenceList)
+                    {
+                        int targetIndex = dropInfo.InsertIndex;
+
+                        base.Drop(dropInfo);
+
+                        CharacterSelection.BodyMod.EBMEssenceList.Move(essence, targetIndex);
+
+                        EBMEssenceIndex = EBMEssenceList.IndexOf(essence);
+
+                        DeleteEssenceCommand.NotifyCanExecuteChanged();
+                        MoveEssenceUpCommand.NotifyCanExecuteChanged();
+                        MoveEssenceDownCommand.NotifyCanExecuteChanged();
                     }
                     break;
                 default:
@@ -3556,7 +3866,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             return LoadedBodyModSupplement switch
             {
-                Options.BodyModSupplements.Generic => GenericBodyModPurchaseList.Any() && GenericBodyModPurchaseSelectionIndex != -1,
+                Options.BodyModSupplements.Generic => GenericBodyModPurchaseSelectionIndex > 0,
                 _ => false,
             };
         }
@@ -3699,7 +4009,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             return LoadedBodyModSupplement switch
             {
-                Options.BodyModSupplements.Generic => GenericBodyModDrawbackList.Any() && GenericBodyModDrawbackIndex != -1,
+                Options.BodyModSupplements.Generic => GenericBodyModDrawbackIndex > 0,
                 _ => false,
             };
         }
@@ -3812,6 +4122,38 @@ namespace JumpchainCharacterBuilder.ViewModel
 
         private bool CanDeleteSBExtraBits() => SBExtraBitsList.Any() && SBExtraBitsIndex != -1;
 
+        [RelayCommand(CanExecute = nameof(CanMoveSBExtraBitsUp))]
+        private void MoveSBExtraBitsUp()
+        {
+            int index = SBExtraBitsIndex;
+
+            SBExtraBitsList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.BodyMod.ExtraBitsList.SwapListItems(index, index - 1);
+
+            SBExtraBitsIndex = index - 1;
+
+            MoveSBExtraBitsUpCommand.NotifyCanExecuteChanged();
+            MoveSBExtraBitsDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSBExtraBitsUp() => SBExtraBitsIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveSBExtraBitsDown))]
+        private void MoveSBExtraBitsDown()
+        {
+            int index = SBExtraBitsIndex;
+
+            SBExtraBitsList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.BodyMod.ExtraBitsList.SwapListItems(index, index + 1);
+
+            SBExtraBitsIndex = index + 1;
+
+            MoveSBExtraBitsUpCommand.NotifyCanExecuteChanged();
+            MoveSBExtraBitsDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSBExtraBitsDown() => SBExtraBitsIndex != -1 && SBExtraBitsIndex < SBExtraBitsList.Count - 1;
+
         [RelayCommand]
         private void NewSBPower()
         {
@@ -3823,6 +4165,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             SBBodyModPowerIndex = SBBodyModPowerList.Count - 1;
 
             DeleteSBPowerCommand.NotifyCanExecuteChanged();
+            MoveSBPowerUpCommand.NotifyCanExecuteChanged();
+            MoveSBPowerDownCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(CanDeleteSBPower))]
@@ -3837,10 +4181,44 @@ namespace JumpchainCharacterBuilder.ViewModel
                 SBBodyModPowerIndex = 0;
 
                 DeleteSBPowerCommand.NotifyCanExecuteChanged();
+                MoveSBPowerUpCommand.NotifyCanExecuteChanged();
+                MoveSBPowerDownCommand.NotifyCanExecuteChanged();
             }
         }
 
         private bool CanDeleteSBPower() => SBBodyModPowerList.Any() && SBBodyModPowerIndex != -1;
+
+        [RelayCommand(CanExecute = nameof(CanMoveSBPowerUp))]
+        private void MoveSBPowerUp()
+        {
+            int index = SBBodyModPowerIndex;
+
+            SBBodyModPowerList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.BodyMod.SBPowerList.SwapListItems(index, index - 1);
+
+            SBBodyModPowerIndex = index - 1;
+
+            MoveSBPowerUpCommand.NotifyCanExecuteChanged();
+            MoveSBPowerDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSBPowerUp() => SBBodyModPowerIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveSBPowerDown))]
+        private void MoveSBPowerDown()
+        {
+            int index = SBBodyModPowerIndex;
+
+            SBBodyModPowerList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.BodyMod.SBPowerList.SwapListItems(index, index + 1);
+
+            SBBodyModPowerIndex = index + 1;
+
+            MoveSBPowerUpCommand.NotifyCanExecuteChanged();
+            MoveSBPowerDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveSBPowerDown() => SBBodyModPowerIndex != -1 && SBBodyModPowerIndex < SBBodyModPowerList.Count - 1;
 
         [RelayCommand]
         private void NewEssence()
@@ -3874,6 +4252,38 @@ namespace JumpchainCharacterBuilder.ViewModel
         }
 
         private bool CanDeleteEssence() => EBMEssenceSelection != null && EBMEssenceList.Any();
+
+        [RelayCommand(CanExecute = nameof(CanMoveEssenceUp))]
+        private void MoveEssenceUp()
+        {
+            int index = EBMEssenceIndex;
+
+            EBMEssenceList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.BodyMod.EBMEssenceList.SwapListItems(index, index - 1);
+
+            EBMEssenceIndex = index - 1;
+
+            MoveEssenceUpCommand.NotifyCanExecuteChanged();
+            MoveEssenceDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveEssenceUp() => EBMEssenceIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveEssenceDown))]
+        private void MoveEssenceDown()
+        {
+            int index = EBMEssenceIndex;
+
+            EBMEssenceList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.BodyMod.EBMEssenceList.SwapListItems(index, index + 1);
+
+            EBMEssenceIndex = index + 1;
+
+            MoveEssenceUpCommand.NotifyCanExecuteChanged();
+            MoveEssenceDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveEssenceDown() => EBMEssenceIndex != -1 && EBMEssenceIndex < EBMEssenceList.Count - 1;
 
         [RelayCommand]
         private void NewEBMPerk()
@@ -3958,6 +4368,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             }
 
             DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+            MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+            MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(CanDeleteEBMPerk))]
@@ -4021,6 +4433,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 }
 
                 DeleteEBMPerkCommand.NotifyCanExecuteChanged();
+                MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+                MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
             }
         }
 
@@ -4040,6 +4454,229 @@ namespace JumpchainCharacterBuilder.ViewModel
             };
         }
 
+        [RelayCommand(CanExecute = nameof(CanMoveEBMPerkUp))]
+        private void MoveEBMPerkUp()
+        {
+            int index;
+            int indexList1;
+            int indexList2;
+
+            switch (EBMPurchaseTabIndex)
+            {
+                case 0:
+                    index = EBMBasicPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMBasicPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMBasicPerkList[index - 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMBasicPerkList.SwapCollectionItems(index, index - 1);
+
+                    EBMBasicPerkIndex = index - 1;
+                    break;
+                case 1:
+                    index = EBMPhysicalPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMPhysicalPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMPhysicalPerkList[index - 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMPhysicalPerkList.SwapCollectionItems(index, index - 1);
+
+                    EBMPhysicalPerkIndex = index - 1;
+                    break;
+                case 2:
+                    index = EBMMentalPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMMentalPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMMentalPerkList[index - 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMMentalPerkList.SwapCollectionItems(index, index - 1);
+
+                    EBMMentalPerkIndex = index - 1;
+                    break;
+                case 3:
+                    index = EBMSpiritualPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSpiritualPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSpiritualPerkList[index - 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMSpiritualPerkList.SwapCollectionItems(index, index - 1);
+
+                    EBMSpiritualPerkIndex = index - 1;
+                    break;
+                case 4:
+                    index = EBMSkillPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSkillPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSkillPerkList[index - 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMSkillPerkList.SwapCollectionItems(index, index - 1);
+
+                    EBMSkillPerkIndex = index - 1;
+                    break;
+                case 5:
+                    index = EBMSupernaturalPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSupernaturalPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSupernaturalPerkList[index - 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMSupernaturalPerkList.SwapCollectionItems(index, index - 1);
+
+                    EBMSupernaturalPerkIndex = index - 1;
+                    break;
+                case 6:
+                    index = EBMItemPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMItemPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMItemPerkList[index - 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMItemPerkList.SwapCollectionItems(index, index - 1);
+
+                    EBMItemPerkIndex = index - 1;
+                    break;
+                case 7:
+                    index = EBMCompanionPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMCompanionPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMCompanionPerkList[index - 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMCompanionPerkList.SwapCollectionItems(index, index - 1);
+
+                    EBMCompanionPerkIndex = index - 1;
+                    break;
+                default:
+                    break;
+            }
+
+            MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+            MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveEBMPerkUp() => EBMPurchaseTabIndex switch
+        {
+            0 => EBMBasicPerkIndex > 0,
+            1 => EBMPhysicalPerkIndex > 0,
+            2 => EBMMentalPerkIndex > 0,
+            3 => EBMSpiritualPerkIndex > 0,
+            4 => EBMSkillPerkIndex > 0,
+            5 => EBMSupernaturalPerkIndex > 0,
+            6 => EBMItemPerkIndex > 0,
+            7 => EBMCompanionPerkIndex > 0,
+            _ => false,
+        };
+
+        [RelayCommand(CanExecute = nameof(CanMoveEBMPerkDown))]
+        private void MoveEBMPerkDown()
+        {
+            int index;
+            int indexList1;
+            int indexList2;
+
+            switch (EBMPurchaseTabIndex)
+            {
+                case 0:
+                    index = EBMBasicPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMBasicPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMBasicPerkList[index + 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMBasicPerkList.SwapCollectionItems(index, index + 1);
+
+                    EBMBasicPerkIndex = index + 1;
+                    break;
+                case 1:
+                    index = EBMPhysicalPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMPhysicalPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMPhysicalPerkList[index + 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMPhysicalPerkList.SwapCollectionItems(index, index + 1);
+
+                    EBMPhysicalPerkIndex = index + 1;
+                    break;
+                case 2:
+                    index = EBMMentalPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMMentalPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMMentalPerkList[index + 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMMentalPerkList.SwapCollectionItems(index, index + 1);
+
+                    EBMMentalPerkIndex = index + 1;
+                    break;
+                case 3:
+                    index = EBMSpiritualPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSpiritualPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSpiritualPerkList[index + 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMSpiritualPerkList.SwapCollectionItems(index, index + 1);
+
+                    EBMSpiritualPerkIndex = index + 1;
+                    break;
+                case 4:
+                    index = EBMSkillPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSkillPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSkillPerkList[index + 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMSkillPerkList.SwapCollectionItems(index, index + 1);
+
+                    EBMSkillPerkIndex = index + 1;
+                    break;
+                case 5:
+                    index = EBMSupernaturalPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSupernaturalPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMSupernaturalPerkList[index + 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMSupernaturalPerkList.SwapCollectionItems(index, index + 1);
+
+                    EBMSupernaturalPerkIndex = index + 1;
+                    break;
+                case 6:
+                    index = EBMItemPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMItemPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMItemPerkList[index + 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMItemPerkList.SwapCollectionItems(index, index + 1);
+
+                    EBMItemPerkIndex = index + 1;
+                    break;
+                case 7:
+                    index = EBMCompanionPerkIndex;
+                    indexList1 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMCompanionPerkList[index]);
+                    indexList2 = CharacterSelection.BodyMod.EBMPurchaseList.IndexOf(EBMCompanionPerkList[index + 1]);
+
+                    CharacterSelection.BodyMod.EBMPurchaseList.SwapListItems(indexList1, indexList2);
+                    EBMCompanionPerkList.SwapCollectionItems(index, index + 1);
+
+                    EBMCompanionPerkIndex = index + 1;
+                    break;
+                default:
+                    break;
+            }
+
+            MoveEBMPerkUpCommand.NotifyCanExecuteChanged();
+            MoveEBMPerkDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveEBMPerkDown()
+        {
+            return EBMPurchaseTabIndex switch
+            {
+                0 => EBMBasicPerkIndex < EBMBasicPerkList.Count - 1 && EBMBasicPerkIndex != -1,
+                1 => EBMPhysicalPerkIndex < EBMPhysicalPerkList.Count - 1 && EBMPhysicalPerkIndex != -1,
+                2 => EBMMentalPerkIndex < EBMMentalPerkList.Count - 1 && EBMMentalPerkIndex != -1,
+                3 => EBMSpiritualPerkIndex < EBMSpiritualPerkList.Count - 1 && EBMSpiritualPerkIndex != -1,
+                4 => EBMSkillPerkIndex < EBMSkillPerkList.Count - 1 && EBMSkillPerkIndex != -1,
+                5 => EBMSupernaturalPerkIndex < EBMSupernaturalPerkList.Count - 1 && EBMSupernaturalPerkIndex != -1,
+                6 => EBMItemPerkIndex < EBMItemPerkList.Count - 1 && EBMItemPerkIndex != -1,
+                7 => EBMCompanionPerkIndex < EBMCompanionPerkList.Count - 1 && EBMCompanionPerkIndex != -1,
+                _ => false,
+            };
+        }
+
         [RelayCommand]
         private void NewEBMDrawback()
         {
@@ -4054,6 +4691,8 @@ namespace JumpchainCharacterBuilder.ViewModel
             EBMDrawbackIndex = EBMDrawbackList.Count - 1;
 
             DeleteEBMDrawbackCommand.NotifyCanExecuteChanged();
+            MoveEBMDrawbackUpCommand.NotifyCanExecuteChanged();
+            MoveEBMDrawbackDownCommand.NotifyCanExecuteChanged();
         }
 
         [RelayCommand(CanExecute = nameof(CanDeleteEBMDrawback))]
@@ -4068,10 +4707,44 @@ namespace JumpchainCharacterBuilder.ViewModel
                 EBMDrawbackIndex = 0;
 
                 DeleteEBMDrawbackCommand.NotifyCanExecuteChanged();
+                MoveEBMDrawbackUpCommand.NotifyCanExecuteChanged();
+                MoveEBMDrawbackDownCommand.NotifyCanExecuteChanged();
             }
         }
 
         private bool CanDeleteEBMDrawback() => EBMDrawbackList.Any() && EBMDrawbackIndex != -1;
+
+        [RelayCommand(CanExecute = nameof(CanMoveEBMDrawbackUp))]
+        private void MoveEBMDrawbackUp()
+        {
+            int index = EBMDrawbackIndex;
+
+            EBMDrawbackList.SwapCollectionItems(index, index - 1);
+            CharacterSelection.BodyMod.EBMDrawbackList.SwapListItems(index, index - 1);
+
+            EBMDrawbackIndex = index - 1;
+
+            MoveEBMDrawbackUpCommand.NotifyCanExecuteChanged();
+            MoveEBMDrawbackDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveEBMDrawbackUp() => EBMDrawbackIndex > 0;
+
+        [RelayCommand(CanExecute = nameof(CanMoveEBMDrawbackDown))]
+        private void MoveEBMDrawbackDown()
+        {
+            int index = EBMDrawbackIndex;
+
+            EBMDrawbackList.SwapCollectionItems(index, index + 1);
+            CharacterSelection.BodyMod.EBMDrawbackList.SwapListItems(index, index + 1);
+
+            EBMDrawbackIndex = index + 1;
+
+            MoveEBMDrawbackUpCommand.NotifyCanExecuteChanged();
+            MoveEBMDrawbackDownCommand.NotifyCanExecuteChanged();
+        }
+
+        private bool CanMoveEBMDrawbackDown() => EBMDrawbackIndex != -1 && EBMDrawbackIndex < EBMDrawbackList.Count - 1;
 
         [RelayCommand]
         private void NewAugmentTrait()
