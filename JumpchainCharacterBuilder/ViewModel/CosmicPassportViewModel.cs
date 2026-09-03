@@ -3866,7 +3866,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             return LoadedBodyModSupplement switch
             {
-                Options.BodyModSupplements.Generic => GenericBodyModPurchaseSelectionIndex > 0,
+                Options.BodyModSupplements.Generic => GenericBodyModPurchaseList.Any() && GenericBodyModPurchaseSelectionIndex != -1,
                 _ => false,
             };
         }
@@ -4009,7 +4009,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         {
             return LoadedBodyModSupplement switch
             {
-                Options.BodyModSupplements.Generic => GenericBodyModDrawbackIndex > 0,
+                Options.BodyModSupplements.Generic => GenericBodyModDrawbackList.Any() && GenericBodyModDrawbackIndex != -1,
                 _ => false,
             };
         }
