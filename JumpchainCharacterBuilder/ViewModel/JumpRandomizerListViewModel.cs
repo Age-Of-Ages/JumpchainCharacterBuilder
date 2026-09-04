@@ -13,7 +13,6 @@ namespace JumpchainCharacterBuilder.ViewModel
 {
     public partial class JumpRandomizerListViewModel : ViewModelBase
     {
-        // TODO - Add some sort of Jump List importer, if possible.
         #region Fields
         private readonly IDialogService _dialogService;
         [ObservableProperty]
