@@ -110,5 +110,10 @@ namespace JumpchainCharacterBuilder.Views
         {
             ThemeChange("Dark");
         }
+
+        private void Search_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

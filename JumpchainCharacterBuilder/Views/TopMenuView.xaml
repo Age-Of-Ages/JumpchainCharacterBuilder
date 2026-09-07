@@ -28,6 +28,7 @@
             <Separator/>
             <MenuItem Header="_Quit" Command="{Binding QuitCommand}"/>
         </MenuItem>
+        <MenuItem Header="Search" Click="Search_Click"/>
         <MenuItem Header="Input Formatter" Click="InputFormatter_Click"/>
         <MenuItem Header="Jump Randomizer">
             <MenuItem Header="Random Jump Selector" Click="JumpRandomizer_Click"/>
