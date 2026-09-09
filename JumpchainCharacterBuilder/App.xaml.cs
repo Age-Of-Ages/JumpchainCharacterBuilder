@@ -62,6 +62,7 @@ namespace JumpchainCharacterBuilder
             services.AddTransient<AboutViewModel>();
             services.AddTransient<JumpRandomizerSelectorViewModel>();
             services.AddTransient<JumpRandomizerListViewModel>();
+            services.AddTransient<SearchViewModel>();
 
             return services.BuildServiceProvider();
         }

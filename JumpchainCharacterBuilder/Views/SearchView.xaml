@@ -1,0 +1,114 @@
+﻿<Window x:Class="JumpchainCharacterBuilder.Views.SearchView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:JumpchainCharacterBuilder.Views"
+        xmlns:viewModel="clr-namespace:JumpchainCharacterBuilder.ViewModel"
+        xmlns:data="clr-namespace:JumpchainCharacterBuilder.Model"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=viewModel:SearchViewModel, IsDesignTimeCreatable=True}"
+        Cursor="" 
+        WindowStyle="SingleBorderWindow" 
+        Background="{DynamicResource Background}" 
+        Foreground="{DynamicResource TextColor}"
+        FontFamily="Lato" 
+        FontSize="12" 
+        ShowInTaskbar="False"
+        Title="SearchView" 
+        Height="600" Width="750"
+        MinHeight="550" MinWidth="750">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" MaxHeight="126"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <GroupBox Header="Search Settings">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="252"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <GroupBox Header="Search in">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <CheckBox Content="Perks" IsChecked="{Binding SearchPerks, ValidatesOnNotifyDataErrors=True}"/>
+                            <CheckBox Content="Items" IsChecked="{Binding SearchItems, ValidatesOnNotifyDataErrors=True}" Margin="0,4,0,0"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <CheckBox Content="Search Name" IsChecked="{Binding SearchName, ValidatesOnNotifyDataErrors=True}"/>
+                            <CheckBox Content="Search Description" IsChecked="{Binding SearchDescription, ValidatesOnNotifyDataErrors=True}"
+                                      Margin="0,4,0,0"/>
+                        </StackPanel>
+                    </Grid>
+                </GroupBox>
+
+                <StackPanel Grid.Column="1" Margin="12,4,12,0">
+                    <TextBox HorizontalAlignment="Stretch" 
+                             Text="{Binding SearchString, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                             Style="{DynamicResource TextBoxHintTemplate}"
+                             Tag="Search"/>
+                    <ContentControl Template="{DynamicResource CharacterSelector}" Margin="0,8,0,0"/>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+
+        <ListView Grid.Row="1" ItemsSource="{Binding SearchResults}"
+                  SelectedItem="{Binding PerkSelection}"
+                  Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
+                  ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Name" Width="Auto"
+                                        CellTemplate="{StaticResource ResourceKey=GridViewNameColumn}"/>
+                        <GridViewColumn Header="Category" Width="170"
+                                        CellTemplate="{StaticResource ResourceKey=GridViewDefaultColumn}"
+                                        DisplayMemberBinding="{Binding Category}"/>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <GroupBox Header="Perk Details" Grid.Column="1">
+            <GroupBox.Visibility>
+                <MultiBinding Converter="{StaticResource ListContainsToVis}">
+                    <Binding Path="PerkSelection"/>
+                    <Binding Path="SearchResults"/>
+                </MultiBinding>
+            </GroupBox.Visibility>
+            <Grid Margin="4,0,4,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" MaxHeight="150"/>
+                    <RowDefinition Height="3*" MaxHeight="400"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel>
+                    <TextBlock Text="Name"/>
+                    <TextBox Text="{Binding PerkName, UpdateSourceTrigger=PropertyChanged}" Width="140"/>
+
+                    <TextBlock Text="Source Jump" Margin="0,12,0,0"/>
+                    <TextBox Text="{Binding PerkSelection.SourceJump}" IsReadOnly="True" Width="140"/>
+                </StackPanel>
+
+                <DockPanel Grid.Row="1">
+                    <TextBlock Text="Description" DockPanel.Dock="Top"/>
+                    <TextBox Text="{Binding PerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                             HorizontalAlignment="Stretch"
+                             Style="{DynamicResource LargeTextBox}"/>
+                </DockPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

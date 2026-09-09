@@ -113,7 +113,15 @@ namespace JumpchainCharacterBuilder.Views
 
         private void Search_Click(object sender, RoutedEventArgs e)
         {
+            if (!Application.Current.Windows.OfType<SearchView>().Any())
+            {
+                SearchView search = new()
+                {
+                    Owner = Application.Current.MainWindow
+                };
 
+                search.Show();
+            }
         }
     }
 }
