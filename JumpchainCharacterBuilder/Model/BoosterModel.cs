@@ -54,5 +54,11 @@ namespace JumpchainCharacterBuilder.Model
         {
             BoosterName = name;
         }
+
+        public Booster(string name, string description)
+        {
+            BoosterName = name;
+            BoosterDescription = description;
+        }
     }
 }

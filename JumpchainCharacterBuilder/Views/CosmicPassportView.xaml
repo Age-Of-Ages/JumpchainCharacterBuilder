@@ -460,9 +460,13 @@
                     <TabControl Margin="0,4,0,0">
                         <TabItem Header="Attribute Lists">
                             <DockPanel Margin="0,4,0,0">
-                                <Button Content="Refresh Attribute Ranks" Command="{Binding RefreshAttributesCommand}"
-                                        DockPanel.Dock="Top" HorizontalAlignment="Center"
-                                        Style="{DynamicResource DataGridButton}"/>
+                                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <Button Content="Refresh Attribute Ranks" Command="{Binding RefreshAttributesCommand}"
+                                            Style="{DynamicResource DataGridButton}"/>
+                                    <Button Content="Copy Attributes From Jumper" Command="{Binding DuplicateJumperAttributesCommand}"
+                                            Style="{DynamicResource DataGridButton}" Margin="12,0,0,0" 
+                                            Visibility="{Binding JumperSelected, Converter={StaticResource NegatedBoolToVis}}"/>
+                                </StackPanel>
 
                                 <TabControl Margin="0,4,0,0">
                                     <TabItem Header="Physical Attributes">
@@ -950,10 +954,14 @@
                     <TabControl Margin="0,4,0,0">
                         <TabItem Header="Skill Lists">
                             <DockPanel Margin="0,4,0,0">
-
-                                <Button Content="Refresh Skill Ranks" Command="{Binding RefreshSkillsCommand}"
-                                        DockPanel.Dock="Top" HorizontalAlignment="Center"
-                                        Style="{DynamicResource DataGridButton}"/>
+                                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Center" Orientation="Horizontal">
+                                    <Button Content="Refresh Skill Ranks" Command="{Binding RefreshSkillsCommand}"
+                                            Style="{DynamicResource DataGridButton}"/>
+                                    <Button Content="Copy Skills From Jumper" Command="{Binding DuplicateJumperSkillsCommand}"
+                                            Style="{DynamicResource DataGridButton}" Margin="12,0,0,0" 
+                                            Visibility="{Binding JumperSelected, Converter={StaticResource NegatedBoolToVis}}"/>
+                                </StackPanel>
+                               
 
                                 <TabControl Margin="0,4,0,0">
                                     <TabItem Header="Physical Skills">
@@ -1706,9 +1714,14 @@
             </TabItem>
             <TabItem Header="Learning Rates">
                 <DockPanel Margin="0,4,0,0">
-                    <Button Content="Refresh Boosters" Command="{Binding RefreshBoostersCommand}"
-                            DockPanel.Dock="Top" HorizontalAlignment="Center"
-                            Style="{DynamicResource DataGridButton}"/>
+                    <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Center">
+                        <Button Content="Refresh Boosters" Command="{Binding RefreshBoostersCommand}"
+                                Style="{DynamicResource DataGridButton}"/>
+                        <Button Content="Copy Boosters From Jumper" Command="{Binding DuplicateJumperBoostersCommand}"
+                                Style="{DynamicResource DataGridButton}" Margin="12,0,0,0" 
+                                Visibility="{Binding JumperSelected, Converter={StaticResource NegatedBoolToVis}}"/>
+                    </StackPanel>
+                    
 
                     <Grid Grid.Row="1" Margin="0,4,0,0">
                         <Grid.ColumnDefinitions>

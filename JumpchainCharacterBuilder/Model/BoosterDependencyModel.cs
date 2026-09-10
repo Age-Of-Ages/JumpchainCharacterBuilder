@@ -35,5 +35,11 @@ namespace JumpchainCharacterBuilder.Model
             DependencySource = source.BoosterName;
             DependencyMultiplier = source.BoosterMultiplier;
         }
+
+        public BoosterDependency(string source, bool enabled)
+        {
+            DependencySource = source;
+            DependencyEnabled = enabled;
+        }
     }
 }

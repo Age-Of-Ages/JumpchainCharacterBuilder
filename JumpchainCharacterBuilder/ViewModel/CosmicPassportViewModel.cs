@@ -35,6 +35,8 @@ namespace JumpchainCharacterBuilder.ViewModel
         [NotifyCanExecuteChangedFor(nameof(DeleteCharacterCommand))]
         private Character _characterSelection = new();
         [ObservableProperty]
+        private bool _jumperSelected = true;
+        [ObservableProperty]
         [NotifyDataErrorInfo]
         [XmlFilter]
         private string _characterName = "";
@@ -875,6 +877,8 @@ namespace JumpchainCharacterBuilder.ViewModel
                 CharacterRace = value.Race;
                 CharacterPersonality = value.Personality;
                 CharacterPhysicalDescription = value.PhysicalDescription;
+
+                JumperSelected = CharacterList.IndexOf(value) == 0;
             }
         }
 
@@ -6023,6 +6027,59 @@ namespace JumpchainCharacterBuilder.ViewModel
                 EBMDrawbackIndex = EBMDrawbackList.Count - 1;
 
                 DeleteEBMDrawbackCommand.NotifyCanExecuteChanged();
+            }
+        }
+
+        [RelayCommand]
+        private void DuplicateJumperAttributes()
+        {
+            if (_dialogService.ConfirmDialog("Would you like to copy over all Attributes from the Jumper? " +
+                "Warning: This will overwrite all existing Attributes on this character."))
+            {
+                CharacterSelection.Attributes.Clear();
+                foreach (ProfileAttribute attribute in CharacterList[0].Attributes)
+                {
+                    CharacterSelection.Attributes.Add(new(attribute.Name, attribute.Type, attribute.Category));
+                }
+
+                LoadProfileAttributes();
+            }
+        }
+
+        [RelayCommand]
+        private void DuplicateJumperSkills()
+        {
+            if (_dialogService.ConfirmDialog("Would you like to copy over all Skills from the Jumper? " +
+                "Warning: This will overwrite all existing Skills on this character."))
+            {
+                CharacterSelection.Skills.Clear();
+                foreach (ProfileAttribute skill in CharacterList[0].Skills)
+                {
+                    CharacterSelection.Skills.Add(new(skill.Name, skill.Type, skill.Category));
+                }
+
+                LoadProfileAttributes();
+            }
+        }
+
+        [RelayCommand]
+        private void DuplicateJumperBoosters()
+        {
+            if (_dialogService.ConfirmDialog("Would you like to copy over all Boosters from the Jumper? " +
+                "Warning: This will overwrite all existing Boosters on this character."))
+            {
+                CharacterSelection.Boosters.Clear();
+                foreach (Booster booster in CharacterList[0].Boosters)
+                {
+                    Booster new_booster = new(booster.BoosterName, booster.BoosterDescription);
+                    CharacterSelection.Boosters.Add(new_booster);
+                    foreach (BoosterDependency dependency in booster.BoosterDependencies)
+                    {
+                        new_booster.BoosterDependencies.Add(new(dependency.DependencySource, dependency.DependencyEnabled));
+                    }
+                }
+
+                LoadProfileAttributes();
             }
         }
         #endregion
