@@ -50,6 +50,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 SaveSucceeded = m.Value;
             });
+            Messenger.Register<MainWindowViewModel, SaveRequestMessage>(this, (r, m) =>
+            {
+                m.Reply(r.LoadedSave);
+            });
 
             Messenger.Send(new SaveDataSendMessage(LoadedSave));
 

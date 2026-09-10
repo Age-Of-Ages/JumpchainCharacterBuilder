@@ -16,7 +16,7 @@ namespace JumpchainCharacterBuilder.Views
             InitializeComponent();
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
-                this.DataContext = App.Current.Services.GetService<SearchView>();
+                this.DataContext = App.Current.Services.GetService<SearchViewModel>();
             }
         }
 

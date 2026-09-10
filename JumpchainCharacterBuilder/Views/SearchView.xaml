@@ -65,7 +65,7 @@
         </GroupBox>
 
         <ListView Grid.Row="1" ItemsSource="{Binding SearchResults}"
-                  SelectedItem="{Binding PerkSelection}"
+                  SelectedItem="{Binding PurchaseSelection}"
                   Loaded="ListView_Loaded" SizeChanged="ListView_SizeChanged" 
                   ScrollViewer.ScrollChanged="ListView_ScrollChanged" Tag="0">
             <ListView.View>
@@ -81,10 +81,10 @@
             </ListView.View>
         </ListView>
 
-        <GroupBox Header="Perk Details" Grid.Column="1">
+        <GroupBox Header="Perk Details" Grid.Column="1" Grid.RowSpan="2">
             <GroupBox.Visibility>
                 <MultiBinding Converter="{StaticResource ListContainsToVis}">
-                    <Binding Path="PerkSelection"/>
+                    <Binding Path="PurchaseSelection"/>
                     <Binding Path="SearchResults"/>
                 </MultiBinding>
             </GroupBox.Visibility>
@@ -96,15 +96,15 @@
 
                 <StackPanel>
                     <TextBlock Text="Name"/>
-                    <TextBox Text="{Binding PerkName, UpdateSourceTrigger=PropertyChanged}" Width="140"/>
+                    <TextBox Text="{Binding PurchaseName, UpdateSourceTrigger=PropertyChanged}" Width="140"/>
 
                     <TextBlock Text="Source Jump" Margin="0,12,0,0"/>
-                    <TextBox Text="{Binding PerkSelection.SourceJump}" IsReadOnly="True" Width="140"/>
+                    <TextBox Text="{Binding PurchaseSelection.SourceJump}" IsReadOnly="True" Width="140"/>
                 </StackPanel>
 
                 <DockPanel Grid.Row="1">
                     <TextBlock Text="Description" DockPanel.Dock="Top"/>
-                    <TextBox Text="{Binding PerkDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Text="{Binding PurchaseDescription, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                              HorizontalAlignment="Stretch"
                              Style="{DynamicResource LargeTextBox}"/>
                 </DockPanel>
