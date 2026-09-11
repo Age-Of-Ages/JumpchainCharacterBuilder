@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.Messaging;
 using JumpchainCharacterBuilder.Interfaces;
 using JumpchainCharacterBuilder.Messages;
 using JumpchainCharacterBuilder.Model;
-using JumpchainCharacterBuilder.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -67,7 +66,7 @@ namespace JumpchainCharacterBuilder.ViewModel
         #region Constructor
         public JumpRandomizerSelectorViewModel()
         {
-            
+
         }
 
         public JumpRandomizerSelectorViewModel(IDialogService dialogService)

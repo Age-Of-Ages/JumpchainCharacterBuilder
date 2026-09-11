@@ -75,7 +75,7 @@ namespace JumpchainCharacterBuilder
             CheckSubdirectoryExists(targetDirectory);
             string fileExtension = string.IsNullOrEmpty(extension) ? "*" : extension;
             SearchOption searchOption = recursive ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly;
-            
+
             return [.. Directory.EnumerateFiles(targetDirectory, "*." + fileExtension, searchOption)];
         }
     }

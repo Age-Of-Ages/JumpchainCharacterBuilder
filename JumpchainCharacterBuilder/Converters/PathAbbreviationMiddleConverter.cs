@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Data;
 
 namespace JumpchainCharacterBuilder.Converters
@@ -22,7 +19,7 @@ namespace JumpchainCharacterBuilder.Converters
             folderNames = [.. path.Split("\\")];
             driveLetter = folderNames.First();
             fileName = folderNames.Last();
-            
+
             folderNames.RemoveAt(0);
             folderNames.RemoveAt(folderNames.Count - 1);
 
@@ -43,8 +40,8 @@ namespace JumpchainCharacterBuilder.Converters
                     currentFolderLength = folderNames[folderNames.Count / 2].Length;
                     folderNamesLength -= currentFolderLength;
                     folderNames.RemoveAt(folderNames.Count / 2);
-                } 
-                
+                }
+
                 if (abbreviationIndex > 0)
                 {
                     folderNames.Insert(abbreviationIndex, "...");

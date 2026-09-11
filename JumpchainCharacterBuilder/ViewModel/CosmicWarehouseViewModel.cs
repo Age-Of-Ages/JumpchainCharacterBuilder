@@ -787,7 +787,7 @@ namespace JumpchainCharacterBuilder.ViewModel
 
                                 LoadedSave.GenericWarehouse.Purchases.Move(purchase, targetIndex);
 
-                                BasicsPurchaseSelectionIndex = BasicsPurchaseList.IndexOf(purchase); 
+                                BasicsPurchaseSelectionIndex = BasicsPurchaseList.IndexOf(purchase);
                             }
 
                             break;

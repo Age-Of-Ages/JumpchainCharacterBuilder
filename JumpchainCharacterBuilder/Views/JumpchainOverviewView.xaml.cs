@@ -1,6 +1,5 @@
 ﻿using JumpchainCharacterBuilder.ViewModel;
 using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;

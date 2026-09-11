@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Net.NetworkInformation;
 
 namespace JumpchainCharacterBuilder
 {
@@ -25,7 +24,8 @@ namespace JumpchainCharacterBuilder
             if (item != null)
             {
                 int oldIndex = list.IndexOf(item);
-                if (oldIndex > -1) {
+                if (oldIndex > -1)
+                {
                     list.RemoveAt(oldIndex);
 
                     if (newIndex > oldIndex)

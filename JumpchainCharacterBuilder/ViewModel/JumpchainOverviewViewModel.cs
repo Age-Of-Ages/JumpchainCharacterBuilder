@@ -1648,7 +1648,7 @@ namespace JumpchainCharacterBuilder.ViewModel
                 else
                 {
                     ClearAttributeList();
-                } 
+                }
             }
         }
 
