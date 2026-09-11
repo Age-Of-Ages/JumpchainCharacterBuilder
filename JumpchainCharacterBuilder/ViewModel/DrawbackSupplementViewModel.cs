@@ -331,6 +331,10 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 DrawbackSelection = DrawbackList.Last();
             }
+            else
+            {
+                DrawbackSuspendList.Clear();
+            }
         }
 
         private void LoadHouseRuleList(List<HouseRuleModel> houseRuleList)
