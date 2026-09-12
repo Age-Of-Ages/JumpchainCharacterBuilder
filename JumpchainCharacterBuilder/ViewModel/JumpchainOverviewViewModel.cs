@@ -630,6 +630,11 @@ namespace JumpchainCharacterBuilder.ViewModel
             {
                 if (value != null && value != MiscOriginTypeList[MiscOriginTypeSelectionIndex])
                 {
+                    if (MiscOriginDetailList.Any(x => x.Category == MiscOriginTypeList[MiscOriginTypeSelectionIndex]))
+                    {
+                        MiscOriginDetailList.First(x => x.Category == MiscOriginTypeList[MiscOriginTypeSelectionIndex]).Category = value;
+                    }
+
                     JumpSelection.MiscOriginCategories[MiscOriginTypeSelectionIndex] = value;
                     MiscOriginTypeList[MiscOriginTypeSelectionIndex] = value;
                 }
