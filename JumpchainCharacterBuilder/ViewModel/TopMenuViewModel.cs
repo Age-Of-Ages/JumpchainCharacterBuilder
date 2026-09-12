@@ -7,6 +7,7 @@ using JumpchainCharacterBuilder.Model;
 using Microsoft.Win32;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Windows;
 
@@ -288,7 +289,7 @@ namespace JumpchainCharacterBuilder.ViewModel
             if (_dialogService.ConfirmDialog("Would you like to open the Github Wiki manual for this project? " +
                 "(Opens link in default browser)"))
             {
-
+                Process.Start(new ProcessStartInfo("https://github.com/Age-Of-Ages/JumpchainCharacterBuilder/wiki") { UseShellExecute = true });
             }
         }
 
