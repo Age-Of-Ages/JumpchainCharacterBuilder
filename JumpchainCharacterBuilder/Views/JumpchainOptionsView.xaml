@@ -491,9 +491,9 @@
                                 <TextBox Text="{Binding GBMIncrementalBudget, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
 
-                                <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding GBMInvestmentAllowed}" Margin="0,16,0,0"/>
+                                <CheckBox Content="Is buying BP with CP allowed?" IsChecked="{Binding GBMInvestmentAllowed}" Margin="0,16,0,0"/>
 
-                                <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
+                                <TextBlock Text="Rate of CP to BP" Margin="0,16,0,0"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox Text="{Binding GBMInvestmentRatio, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Width="40"/>
@@ -524,9 +524,9 @@
                                 <TextBox Text="{Binding SBBodyModBudget, UpdateSourceTrigger=PropertyChanged}"
                                          Width="40"/>
 
-                                <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding SBBodyModInvestmentAllowed}" Margin="0,16,0,0"/>
+                                <CheckBox Content="Is buying BP with CP allowed?" IsChecked="{Binding SBBodyModInvestmentAllowed}" Margin="0,16,0,0"/>
 
-                                <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
+                                <TextBlock Text="Rate of CP to BP" Margin="0,16,0,0"/>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBox Text="{Binding SBBodyModInvestmentRatio, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                              Width="40"/>
@@ -1195,9 +1195,9 @@
                                         <TextBox Text="{Binding GBMIncrementalBudget, UpdateSourceTrigger=PropertyChanged}"
                                                  Width="40"/>
 
-                                        <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding GBMInvestmentAllowed}" Margin="0,16,0,0"/>
+                                        <CheckBox Content="Is buying BP with CP allowed?" IsChecked="{Binding GBMInvestmentAllowed}" Margin="0,16,0,0"/>
 
-                                        <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
+                                        <TextBlock Text="Rate of CP to BP" Margin="0,16,0,0"/>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBox Text="{Binding GBMInvestmentRatio, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="40"/>
@@ -1230,9 +1230,9 @@
                                         <TextBox Text="{Binding SBBodyModBudget, UpdateSourceTrigger=PropertyChanged}"
                                                  Width="40"/>
 
-                                        <CheckBox Content="Is buying WP with CP allowed?" IsChecked="{Binding SBBodyModInvestmentAllowed}" Margin="0,16,0,0"/>
+                                        <CheckBox Content="Is buying BP with CP allowed?" IsChecked="{Binding SBBodyModInvestmentAllowed}" Margin="0,16,0,0"/>
 
-                                        <TextBlock Text="Rate of CP to WP" Margin="0,16,0,0"/>
+                                        <TextBlock Text="Rate of CP to BP" Margin="0,16,0,0"/>
                                         <StackPanel Orientation="Horizontal">
                                             <TextBox Text="{Binding SBBodyModInvestmentRatio, ValidatesOnNotifyDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                                      Width="40"/>

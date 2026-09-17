@@ -97,7 +97,7 @@ namespace JumpchainCharacterBuilder
         [GeneratedRegex("(?<!\\r\\n)(\\r\\n)(?!\\r\\n)")]
         private static partial Regex RemoveLineBreaksNoDoubleRegex();
 
-        [GeneratedRegex(@"\s{2,}")]
+        [GeneratedRegex(@"[ ]{2,}")]
         private static partial Regex RemoveExcessSpacesRegex();
 
         [GeneratedRegex("(?<=\\n) ")]
